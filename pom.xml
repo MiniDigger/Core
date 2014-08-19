@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>me.MiniDigger.Core</groupId>
+	<artifactId>Core</artifactId>
+	<version>parent</version>
+	<name>TheCore</name>
+	<description>A Bukkit MiniGame Framework</description>
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>MiniDigger</name>
+		<url>minidigger.me</url>
+	</organization>
+
+	<issueManagement>
+		<system>BitBucket</system>
+		<url>http://source.minidigger.me/thecore/issues</url>
+	</issueManagement>
+
+	<scm>
+		<url>https://MiniDigger@bitbucket.org/MiniDigger/thecore.git</url>
+		<connection>git</connection>
+		<developerConnection>MiniDigger</developerConnection>
+	</scm>
+
+	<properties>
+		<bukkit.version>1.7.9-R0.1-SNAPSHOT</bukkit.version>
+		<api.version>0.0.1-SNAPSHOT</api.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>API</module>
+		<module>External</module>
+		<module>CraftCore</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+					<executable>${env.JAVA_HOME}/bin/javac</executable>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<strictCheck>true</strictCheck>
+					<header>src/main/resources/fileHeader.txt</header>
+					<properties>
+
+					</properties>
+					<strictCheck>false</strictCheck>
+					<excludes>
+						<exclude>**/*.xml</exclude>
+						<exclude>**/*.md</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>remove</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.mycila</groupId>
+										<artifactId>
+											license-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.6,)
+										</versionRange>
+										<goals>
+											<goal>remove</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>bukkit-repo</id>
+			<url>http://repo.bukkit.org/content/groups/public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>fanciful-mvn-repo</id>
+			<url>https://raw.github.com/mkremins/fanciful/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>pex-repo</id>
+			<url>http://pex-repo.zachsthings.com</url>
+		</repository>
+		<repository>
+			<id>dj-tcraft repo</id><!-- NPC Factory -->
+			<url>http://ci.dj-tcraft.nl/plugin/repository/everything/</url>
+		</repository>
+		<repository>
+			<id>comphenix-repo</id><!-- PacketWrapper, ProtocolLib -->
+			<url>http://assets.comphenix.net/jenkins/plugin/repository/everything</url>
+		</repository>
+		<repository>
+			<id>comphenix-repo2</id><!-- PacketWrapper, ProtocolLib -->
+			<url>http://repo.comphenix.net/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>CraftBukkit</artifactId>
+			<version>${bukkit.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>mkremins</groupId>
+			<artifactId>fanciful</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>ru.tehkode</groupId>
+			<artifactId>PermissionsEx</artifactId>
+			<version>1.21.2-SNAPSHOT</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>updater</artifactId>
+					<groupId>net.gravitydevelopment.updater</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.lenis0012.bukkit</groupId>
+			<artifactId>NPCFactory</artifactId>
+			<version>1.4-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.comphenix.protocol</groupId>
+			<artifactId>ProtocolLib</artifactId>
+			<scope>provided</scope>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.comphenix.packetwrapper</groupId>
+			<artifactId>PacketWrapper</artifactId>
+			<version>1.7.2-R0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.java-websocket</groupId>
+			<artifactId>Java-WebSocket</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+	</dependencies>
+</project>
