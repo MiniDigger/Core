@@ -6,8 +6,8 @@
 		<artifactId>Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<artifactId>External</artifactId>
-	<name>Core External</name>
-	<description>All foreign ressources</description>
+	<artifactId>API</artifactId>
+	<name>Core API</name>
+	<description>The API for the Core Framework</description>
 	<version>0.0.1-SNAPSHOT</version>
 </project>
