@@ -17,6 +17,8 @@ package me.MiniDigger.CraftCore.AddOn;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
@@ -32,11 +34,11 @@ import org.bukkit.plugin.PluginDescriptionFile;
 
 public class CoreAddOn implements AddOn {
 	
-	private String	          name;
-	private PluginDescriptionFile description;
-	private File	          dataFolder;
-	private FileConfiguration	config;
-	private File	          configFile;
+	private String	              name;
+	private PluginDescriptionFile	description;
+	private File	              dataFolder;
+	private FileConfiguration	  config;
+	private File	              configFile;
 	
 	public void enable() {
 		
@@ -46,31 +48,32 @@ public class CoreAddOn implements AddOn {
 		
 	}
 	
-	public void registerChatChannel(ChatChannel channel){
-		
+	public List<ChatChannel> registerChatChannel() {
+		return new ArrayList<>();
 	}
 	
-	public void registerCommandHandler(Object obj){
-		
+	public List<Object> registerCommandHandler() {
+		return new ArrayList<>();
 	}
 	
-	public void registerPacket(Packet packet){
-		
+	public List<Packet> registerPacket() {
+		return new ArrayList<>();
 	}
 	
 	public void load() {
 		loadConfig();
 		try {
-	        description = new PluginDescriptionFile(new InputStreamReader(getClass().getResourceAsStream("addon.info")));
-        } catch (InvalidDescriptionException e) {
-	       Core.getCore().getInstance().error("Could not load description for AddOn " + name);
-	        e.printStackTrace();
-        }
+			description = new PluginDescriptionFile(new InputStreamReader(getClass().getResourceAsStream("addon.info")));
+		} catch (InvalidDescriptionException e) {
+			Core.getCore().getInstance().error("Could not load description for AddOn " + name);
+			e.printStackTrace();
+		}
 	}
 	
 	public String getName() {
 		return name;
 	}
+	
 	public File getDataFolder() {
 		return dataFolder;
 	}
@@ -79,7 +82,7 @@ public class CoreAddOn implements AddOn {
 		return config;
 	}
 	
-	public PluginDescriptionFile getDescription(){
+	public PluginDescriptionFile getDescription() {
 		return description;
 	}
 	

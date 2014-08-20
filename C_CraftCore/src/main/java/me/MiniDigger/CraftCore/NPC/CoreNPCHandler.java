@@ -33,6 +33,8 @@
 
 package me.MiniDigger.CraftCore.NPC;
 
+import java.util.concurrent.ExecutionException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -63,7 +65,13 @@ public class CoreNPCHandler implements NPCHandler {
 	
 	@Override
 	public void spawn(final Location loc) {
-		final NPCProfile profile = new NPCProfile(ChatColor.GOLD + "Bender", "bender12");
+		final NPCProfile profile;
+        try {
+	        profile = NPCProfile.loadProfile(ChatColor.GOLD + "Bender", "bender12");
+        } catch (ExecutionException e) {
+	        e.printStackTrace();
+	        return;
+        }
 		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override

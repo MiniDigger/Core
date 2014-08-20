@@ -94,7 +94,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Registriere Commands...");
 		try {
-			registerCommands();
+//			registerCommands(); //TODO Register Commands of AddOns
 		} catch (Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
@@ -257,17 +257,6 @@ public class CoreMain extends JavaPlugin implements Main {
 			User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.startSession();
 		}
-	}
-	
-	private void registerCommands() {
-		Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new GameStarterCommands(), new StatsCommands(), new ChatCommands(),
-		        new TrollCommands(), new AdminCommands(), new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(),
-		        new NPCCommands() };
-		for (Object obj : commandHandler) {
-			Core.getCore().getCommandHandler().registerCommands(obj);
-		}
-		
-		Core.getCore().getCommandHandler().registerHelp();
 	}
 	
 	private void enableHandler() {
