@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -25,14 +30,14 @@ public class TrollCommands {
 	}
 	
 	@SuppressWarnings("deprecation")
-	@Command(name = "troll.gtc", description = "Trolling", usage = "troll gtc <spieler> <3/4/5>", permission = "troll")
+	@Command(name = "troll.gtc", description = "Trolling", usage = "troll gtc <spieler> <3/4/5>", permission = "troll", min = 2)
 	public void troll(CommandArgs args) {
 		ForceCredits.force(Bukkit.getPlayer(args.getArgs()[0]), Integer.parseInt(args.getArgs()[1]));
 	}
 	
-	@Command(name = "troll.breakChunk", description = "Break the Chunk ;D", usage = "troll breakChunk <spieler> <chunkX> <chunkY>", permission = "troll")
+	@Command(name = "troll.breakChunk", description = "Break the Chunk ;D", usage = "troll breakChunk <spieler> <chunkX> <chunkY>", permission = "troll", min = 3)
 	public void breakChunk(CommandArgs args) {
-		@SuppressWarnings("deprecation") User user = UserManager.getInstance().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+		@SuppressWarnings("deprecation") User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		int x = Integer.parseInt(args.getArgs()[1]);
 		int y = Integer.parseInt(args.getArgs()[2]);
 		
@@ -40,9 +45,9 @@ public class TrollCommands {
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Chnuk im Arsch ;D"));
 	}
 	
-	@Command(name = "troll.unbreakChunk", description = "UnBreak the Chunk ;D", usage = "troll unbreakChunk <spieler> <chunkX> <chunkY>", permission = "troll")
+	@Command(name = "troll.unbreakChunk", description = "UnBreak the Chunk ;D", usage = "troll unbreakChunk <spieler> <chunkX> <chunkY>", permission = "troll", min = 3)
 	public void unbreakChunk(CommandArgs args) {
-		@SuppressWarnings("deprecation") User user = UserManager.getInstance().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+		@SuppressWarnings("deprecation") User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		int x = Integer.parseInt(args.getArgs()[1]);
 		int y = Integer.parseInt(args.getArgs()[2]);
 		
@@ -55,32 +60,32 @@ public class TrollCommands {
 		private static HashMap<UUID, ArrayList<String>>	breakedChunks	= new HashMap<>();
 		
 		public static void breakChunk(User user, int x, int y) {
-			if (breakedChunks.containsKey(user.getUuid())) {
-				ArrayList<String> old = breakedChunks.get(user.getUuid());
+			if (breakedChunks.containsKey(user.getUUID())) {
+				ArrayList<String> old = breakedChunks.get(user.getUUID());
 				old.add(x + ":" + y);
-				breakedChunks.remove(user.getUuid());
-				breakedChunks.put(user.getUuid(), old);
+				breakedChunks.remove(user.getUUID());
+				breakedChunks.put(user.getUUID(), old);
 			} else {
 				ArrayList<String> old = new ArrayList<>();
 				old.add(x + ":" + y);
-				breakedChunks.put(user.getUuid(), old);
+				breakedChunks.put(user.getUUID(), old);
 			}
 		}
 		
 		public static void unbreakChunk(User user, int x, int y) {
-			if (breakedChunks.containsKey(user.getUuid())) {
-				ArrayList<String> old = breakedChunks.get(user.getUuid());
+			if (breakedChunks.containsKey(user.getUUID())) {
+				ArrayList<String> old = breakedChunks.get(user.getUUID());
 				if (old.contains(x + ":" + y)) {
 					old.remove(x + ":" + y);
 				}
-				breakedChunks.remove(user.getUuid());
-				breakedChunks.put(user.getUuid(), old);
+				breakedChunks.remove(user.getUUID());
+				breakedChunks.put(user.getUUID(), old);
 			}
 		}
 		
 		public static void enable() {
 			ProtocolLibrary.getProtocolManager().addPacketListener(
-			        new PacketAdapter(Core.getInstance(), PacketType.Play.Server.MAP_CHUNK, PacketType.Play.Server.MAP_CHUNK_BULK) {
+			        new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.MAP_CHUNK, PacketType.Play.Server.MAP_CHUNK_BULK) {
 				        
 				        @Override
 				        public void onPacketSending(PacketEvent event) {

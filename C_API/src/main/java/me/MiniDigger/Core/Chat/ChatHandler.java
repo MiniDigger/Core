@@ -33,6 +33,8 @@
 
 package me.MiniDigger.Core.Chat;
 
+import java.util.List;
+
 import me.MiniDigger.Core.User.User;
 
 public interface ChatHandler {
@@ -76,4 +78,9 @@ public interface ChatHandler {
 	 *            The message send
 	 */
 	public void handleChat(User user, String message);
+	
+	/**
+	 * @return All registered chat channels
+	 */
+	public List<ChatChannel> getChannels();
 }

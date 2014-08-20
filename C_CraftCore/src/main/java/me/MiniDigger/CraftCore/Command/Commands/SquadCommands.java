@@ -1,44 +1,36 @@
 package me.MiniDigger.CraftCore.Command.Commands;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Squad.Squad;
+import me.MiniDigger.Core.User.User;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-
-
 public class SquadCommands {
 	
-	@Command(name = "squad", description = "Alles mit Squads", usage = "", permission = "squad")
+	@Command(name = "squad", description = "Alles mit Squads", usage = "", permission = "squad", consol = false)
 	public void squad(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad");
-			return;
-		}
+		// TODO Some help about sqoads
 	}
 	
-	@Command(name = "squad.create", description = "Erstellt ein neues Squad", usage = "", permission = "squad.create")
+	@Command(name = "squad.create", description = "Erstellt ein neues Squad", usage = "", permission = "squad.create", consol = false)
 	public void create(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad create");
-			return;
-		}
-		
-		SquadHandler.getInstance().createSquad(args.getUser().getUuid());
+		Core.getCore().getSquadHandler().createSquad(args.getUser().getUUID());
 		args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du hast ein Squad erstellt!").color(ChatColor.GREEN));
 		args.getUser().sendMessage(Prefix.HINT.getPrefix().then("Benutze /squad invite <player> um einen Spieler einzuladen"));
 	}
 	
-	@Command(name = "squad.destroy", description = "Zerstört dein Squad", usage = "", permission = "squad.destroy")
+	@Command(name = "squad.destroy", description = "Zerstört dein Squad", usage = "", permission = "squad.destroy", consol = false)
 	public void destroy(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad destroy");
-			return;
-		}
-		
-		Squad s = SquadHandler.getInstance().getSquad(args.getUser().getUuid());
-		if (s == null || s.getOwner() != args.getUser().getUuid()) {
+		Squad s = Core.getCore().getSquadHandler().getSquad(args.getUser().getUUID());
+		if (s == null || s.getOwner() != args.getUser().getUUID()) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist kein Squad-Führer!").color(ChatColor.RED));
 			return;
 		}
@@ -48,24 +40,20 @@ public class SquadCommands {
 		args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du hast dein Squad aufgelöst!").color(ChatColor.GREEN));
 	}
 	
-	@Command(name = "squad.join", description = "Tritt einem Squad bei", usage = "", permission = "squad.join")
+	@Command(name = "squad.join", description = "Tritt einem Squad bei", usage = "", permission = "squad.join", consol = false)
 	public void join(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad join");
-			return;
-		}
-		
-		ArrayList<Squad> invs = SquadHandler.getInstance().getInvitations(args.getUser().getUuid());
+		List<Squad> invs = Core.getCore().getSquadHandler().getInvitations(args.getUser().getUUID());
 		
 		if (invs.size() == 0) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist zu keinem Squad eingeladen ;(").color(ChatColor.RED));
 			return;
 		} else if (invs.size() == 1) {
 			Squad s = invs.get(0);
-			if (s.join(args.getUser().getUuid())) {
+			if (s.join(args.getUser().getUUID())) {
 				args.getUser().sendMessage(
-				        Prefix.SQUAD.getPrefix().then("Du bist dem Squad von ").color(ChatColor.GREEN).then(UserManager.getInstance().get(s.getOwner()).getDisplayName())
-				                .color(ChatColor.YELLOW).then(" beigetreten!").color(ChatColor.GREEN));
+				        Prefix.SQUAD.getPrefix().then("Du bist dem Squad von ").color(ChatColor.GREEN)
+				                .then(Core.getCore().getUserHandler().get(s.getOwner()).getDisplayName()).color(ChatColor.YELLOW).then(" beigetreten!")
+				                .color(ChatColor.GREEN));
 			} else {
 				args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du konntest dem Squad nicht betreten!").color(ChatColor.RED));
 				args.getUser().sendMessage(
@@ -81,53 +69,37 @@ public class SquadCommands {
 		ChatColor two = ChatColor.DARK_AQUA;
 		for (Squad squad : invs) {
 			args.getUser().sendMessage(
-			        Prefix.SQUAD.getPrefix().then(UserManager.getInstance().get(squad.getOwner()).getDisplayName()).color(one)
-			                .command("/squad join " + UserManager.getInstance().get(squad.getOwner()).getDisplayName())
+			        Prefix.SQUAD.getPrefix().then(Core.getCore().getUserHandler().get(squad.getOwner()).getDisplayName()).color(one)
+			                .command("/squad join " + Core.getCore().getUserHandler().get(squad.getOwner()).getDisplayName())
 			                .then(": " + squad.getMembers().size() + " Mitglieder").color(two));
 		}
 		
 		args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Klicke auf einen Spieler um seinem Squad beizutreten!"));
-		
 	}
 	
-	@Command(name = "squad.leave", description = "Verlässt ein Squad", usage = "", permission = "squad.leave")
+	@Command(name = "squad.leave", description = "Verlässt ein Squad", usage = "", permission = "squad.leave", consol = false)
 	public void leave(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad leave");
-			return;
-		}
-		
-		Squad s = SquadHandler.getInstance().getSquad(args.getUser().getUuid());
+		Squad s = Core.getCore().getSquadHandler().getSquad(args.getUser().getUUID());
 		if (s == null) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist in keinem Squad!").color(ChatColor.RED));
 			return;
 		}
-		if (s.getOwner().equals(args.getUser().getUuid())) {
+		if (s.getOwner().equals(args.getUser().getUUID())) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist in Squad Leader! Du kannst das Squad nicht verlassen!"));
 			args.getUser().sendMessage(
 			        Prefix.HINT.getPrefix().then("Benutze ").color(ChatColor.GOLD).then("squad delete ").color(ChatColor.YELLOW).then("um das Squad aufzulösen")
 			                .color(ChatColor.GOLD));
 			return;
 		}
-		s.leave(args.getUser().getUuid());
+		s.leave(args.getUser().getUUID());
 		args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du hast das Squad verlassen").color(ChatColor.GREEN));
 	}
 	
-	@Command(name = "squad.invite", description = "Läd einen Spieler zu deinem Squad ein", usage = "squad invite <spieler>", permission = "squad.invite")
+	@Command(name = "squad.invite", description = "Läd einen Spieler zu deinem Squad ein", usage = "squad invite <spieler>", permission = "squad.invite", consol = false, min = 1, max = 1)
 	public void invite(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad invite");
-			return;
-		}
-		
-		Squad s = SquadHandler.getInstance().getSquad(args.getUser().getUuid());
-		if (s == null || s.getOwner() != args.getUser().getUuid()) {
+		Squad s = Core.getCore().getSquadHandler().getSquad(args.getUser().getUUID());
+		if (s == null || s.getOwner() != args.getUser().getUUID()) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist kein Squad-Führer!").color(ChatColor.RED));
-			return;
-		}
-		
-		if (args.getArgs().length != 1) {
-			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Falsche Benutzung! ").color(ChatColor.RED).then("squad invite <spieler>").color(ChatColor.YELLOW));
 			return;
 		}
 		
@@ -138,30 +110,20 @@ public class SquadCommands {
 			                .color(ChatColor.RED));
 			return;
 		}
-		User user = UserManager.getInstance().get(p.getUniqueId());
+		User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 		
-		s.invite(user.getUuid());
+		s.invite(user.getUUID());
 		
 		args.getUser().sendMessage(
 		        Prefix.SQUAD.getPrefix().then("Du hast ").color(ChatColor.GREEN).then(user.getDisplayName()).color(ChatColor.YELLOW).then(" in dein Squad eingeladen!")
 		                .color(ChatColor.GREEN));
 	}
 	
-	@Command(name = "squad.kick", description = "Kickt einen Spieler aus deinem Squad", usage = "squad kick <spieler>", permission = "squad.kick")
+	@Command(name = "squad.kick", description = "Kickt einen Spieler aus deinem Squad", usage = "squad kick <spieler>", permission = "squad.kick", min = 1, max = 1, consol = false)
 	public void kick(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/squad kick");
-			return;
-		}
-		
-		Squad s = SquadHandler.getInstance().getSquad(args.getUser().getUuid());
-		if (s == null || s.getOwner() != args.getUser().getUuid()) {
+		Squad s = Core.getCore().getSquadHandler().getSquad(args.getUser().getUUID());
+		if (s == null || s.getOwner() != args.getUser().getUUID()) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist kein Squad-Führer!").color(ChatColor.RED));
-			return;
-		}
-		
-		if (args.getArgs().length != 1) {
-			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Falsche Benutzung! ").color(ChatColor.RED).then("squad kick <spieler>").color(ChatColor.YELLOW));
 			return;
 		}
 		
@@ -172,9 +134,9 @@ public class SquadCommands {
 			                .color(ChatColor.RED));
 			return;
 		}
-		User user = UserManager.getInstance().get(p.getUniqueId());
+		User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 		
-		if (!s.kick(user.getUuid())) {
+		if (!s.kick(user.getUUID())) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Der Spieler ist nicht in deinem Squad!").color(ChatColor.RED));
 			return;
 		}

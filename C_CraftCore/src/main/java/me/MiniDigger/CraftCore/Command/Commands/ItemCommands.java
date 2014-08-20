@@ -1,17 +1,16 @@
 package me.MiniDigger.CraftCore.Command.Commands;
 
-import org.bukkit.ChatColor;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Item.Item;
+import me.MiniDigger.Core.Prefix.Prefix;
 
+import org.bukkit.ChatColor;
 
 public class ItemCommands {
 	
-	@Command(name = "item", description = "Gibt das Item", permission = "item", usage = "<ITEM>")
+	@Command(name = "item", description = "Gibt das Item", permission = "item", usage = "<ITEM>", consol = false, max = 1, min = 1)
 	public void item(CommandArgs args) {
-		if (!args.isUser()) {
-			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + ChatColor.RED + "Nur für Spieler!");
-			return;
-		}
-		
 		Item item;
 		try {
 			item = Item.valueOf(args.getArgs()[0]);
@@ -20,7 +19,7 @@ public class ItemCommands {
 			return;
 		}
 		
-		args.getPlayer().getInventory().addItem(item.getItem().getItem());
+		args.getPlayer().getInventory().addItem(item.getItem());
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Item hinzugefügt!").color(ChatColor.GREEN));
 	}
 }

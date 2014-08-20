@@ -8,6 +8,13 @@ import java.util.List;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Map.MapData;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Map.CoreMapData;
 import mkremins.fanciful.FancyMessage;
 import net.minecraft.server.v1_7_R3.ExceptionWorldConflict;
 
@@ -20,15 +27,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_7_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_7_R3.CraftWorld;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class WorldCommands {
 	
-	@Command(name = "weather", description = "Ändert das Wetter", usage = "[wetter] [zeit]", permission = "weather")
+	@Command(name = "weather", description = "Ändert das Wetter", usage = "[wetter] [zeit]", permission = "weather", consol = false)
 	public void weather(CommandArgs args) {
-		if (!args.isUser()) {
-			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Nur Ingame!");
-		}
-		
 		World w = args.getPlayer().getWorld();
 		if (args.getArgs().length == 0) {
 			if (w.hasStorm()) {
@@ -62,12 +66,12 @@ public class WorldCommands {
 			String[] stormWords = new String[] { "storm", "rain", "regen", "sturm" };
 			String[] thunderWords = new String[] { "thunder", "gewitter" };
 			String[] sunWorlds = new String[] { "sun", "sonne" };
-			if (StringUtils.contains(stormWords, args.getArgs()[0].toLowerCase())) {
+			if (Core.getCore().getStringUtil().contains(stormWords, args.getArgs()[0].toLowerCase())) {
 				storm = true;
-			} else if (StringUtils.contains(thunderWords, args.getArgs()[0].toLowerCase())) {
+			} else if (Core.getCore().getStringUtil().contains(thunderWords, args.getArgs()[0].toLowerCase())) {
 				storm = true;
 				thunder = true;
-			} else if (StringUtils.contains(sunWorlds, args.getArgs()[0].toLowerCase())) {
+			} else if (Core.getCore().getStringUtil().contains(sunWorlds, args.getArgs()[0].toLowerCase())) {
 				storm = false;
 				thunder = false;
 			} else {
@@ -84,20 +88,13 @@ public class WorldCommands {
 		}
 	}
 	
-	@Command(name = "world.info", description = "Zeigt Infos übder die aktuelle Welt", usage = "", permission = "world.info")
+	@Command(name = "world.info", description = "Zeigt Infos übder die aktuelle Welt", usage = "", permission = "world.info", consol = false)
 	public void info(CommandArgs args) {
-		if (!args.isUser()) {
-			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Nur Ingame!");
-		}
-		
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Du bist auf World " + args.getPlayer().getWorld().getName()).color(ChatColor.GREEN));
 	}
 	
-	@Command(name = "tp", description = "Teleportiert", usage = "<x> <y> <z> / <spieler>")
+	@Command(name = "tp", description = "Teleportiert", usage = "<x> <y> <z> / <spieler>", consol = false, min = 1, max = 3)
 	public void tp2(CommandArgs args) {
-		if ((args.getArgs().length != 1 && args.getArgs().length != 3) || !args.isUser()) {
-			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Falsche Benutzung!");
-		}
 		if (args.getArgs().length == 1) {
 			@SuppressWarnings("deprecation") Player p = Bukkit.getPlayer(args.getArgs()[0]);
 			if (p == null) {
@@ -118,34 +115,32 @@ public class WorldCommands {
 			}
 			args.getPlayer().teleport(new Location(args.getPlayer().getWorld(), x, y, z));
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Wuusch..."));
+		} else {
+			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Falsche Benutzung!");
 		}
 	}
 	
-	@Command(name = "world.load", description = "Läd eine Welt", usage = "<gametype/name>", permission = "world.load")
+	@Command(name = "world.load", description = "Läd eine Welt", usage = "<gametype/name>", permission = "world.load", consol = false, min = 1)
 	public void load(CommandArgs args) {
-		if (args.getArgs().length < 1 || !args.isUser()) {
-			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Falsche benutzung!");
-		}
-		
 		String map = args.getArgs()[0];
 		
 		if (!(args.getArgs().length > 1 && args.getArgs()[1].contains("-f"))) {
-			File mapFolder = new File(Core.getInstance().getConfig().getString("mapFolder"));
+			File mapFolder = new File(((CoreMain) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 			File mapConfig = new File(mapFolder, "maps.yml");
 			
 			FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
 			List<String> maps = con.getStringList("maps");
 			
 			if (maps.contains(map)) {
-				WorldHandler.getInstance().copyWorld(map);
-				WorldHandler.getInstance().loadWorld(map);
+				Core.getCore().getWorldHandler().copyWorld(map);
+				Core.getCore().getWorldHandler().loadWorld(map);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map geladen!").color(ChatColor.GREEN));
 			} else {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannte Map!").color(ChatColor.RED));
 			}
 		} else {
 			try {
-				WorldHandler.getInstance().loadWorld(map);
+				Core.getCore().getWorldHandler().loadWorld(map);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map geladen!").color(ChatColor.GREEN));
 			} catch (Exception ex) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map nicht geladen!").color(ChatColor.RED));
@@ -154,23 +149,19 @@ public class WorldCommands {
 		
 		if ((args.getArgs().length > 1 && args.getArgs()[1].contains("-m"))) {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Setze Wool!").color(ChatColor.GREEN));
-			int i = MapHandler.getInstance().getMap(map).setLocs();
+			int i = Core.getCore().getMapHandler().getMap(map).setLocs();
 			args.getUser().sendMessage(Prefix.API.getPrefix().then(i + " Wools gesetzt").color(ChatColor.GREEN));
 		} else {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Lösche Wolle!").color(ChatColor.GREEN));
-			MapHandler.getInstance().getMap(map).clearLocs();
+			Core.getCore().getMapHandler().getMap(map).clearLocs();
 		}
 	}
 	
-	@Command(name = "world.unload", description = "Löscht eine Welt", usage = "<name>", permission = "world.unload")
+	@Command(name = "world.unload", description = "Löscht eine Welt", usage = "<name>", permission = "world.unload", consol = false, min = 1)
 	public void unload(CommandArgs args) {
-		if (args.getArgs().length < 1 || !args.isUser()) {
-			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Falsche benutzung!");
-		}
-		
 		String map = args.getArgs()[0];
 		
-		File mapFolder = new File(Core.getInstance().getConfig().getString("mapFolder"));
+		File mapFolder = new File(((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		File mapConfig = new File(mapFolder, "maps.yml");
 		
 		FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
@@ -178,30 +169,20 @@ public class WorldCommands {
 		
 		if (maps.contains(map) && Bukkit.getWorld(map) != null || (args.getArgs().length > 1 && args.getArgs()[1].contains("-f"))) {
 			try {
-				WorldHandler.getInstance().unloadWorld(map, Bukkit.getWorlds().get(0).getSpawnLocation());
+				Core.getCore().getWorldHandler().unloadWorld(map, Bukkit.getWorlds().get(0).getSpawnLocation());
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Welt unloaded! Lösche sie..."));
 			} catch (Exception ex) {}
 			System.gc();
-			File file = new File(StringUtils.replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""), map);
-			FileUtils.deleteDirectory(file);
+			File file = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""), map);
+			Core.getCore().getFileUtil().deleteDirectory(file);
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Welt gelöscht!"));
 		} else {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannt Map!").color(ChatColor.RED));
 		}
 	}
 	
-	@Command(name = "world.tp", description = "Teleportiert zu einer Welt", usage = "<name>", permission = "world.tp")
+	@Command(name = "world.tp", description = "Teleportiert zu einer Welt", usage = "<name>", permission = "world.tp", min = 1, consol = false)
 	public void tp(CommandArgs args) {
-		if (!args.isUser()) {
-			args.getSender().sendMessage("Player only!");
-			return;
-		}
-		
-		if (args.getArgs().length == 0) {
-			args.getUser().sendMessage(Prefix.API.getPrefix().then("Du musst ne Welt angeben!").color(ChatColor.RED));
-			return;
-		}
-		
 		World w = Bukkit.getWorld(args.getArgs()[0]);
 		if (w == null) {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannte Welt!").color(ChatColor.RED));
@@ -214,7 +195,7 @@ public class WorldCommands {
 	
 	@Command(name = "world.list", description = "Zeit alle Welten", usage = "", permission = "world.list")
 	public void list(CommandArgs args) {
-		File mapFolder = new File(Core.getInstance().getConfig().getString("mapFolder"));
+		File mapFolder = new File(((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		File mapConfig = new File(mapFolder, "maps.yml");
 		
 		FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
@@ -248,12 +229,12 @@ public class WorldCommands {
 	
 	HashMap<UUID, HashMap<String, String>>	data	= new HashMap<>();
 	
-	@Command(name = "world.create", description = "Erstellt ne neue Map", usage = "", permission = "world.create")
+	@Command(name = "world.create", description = "Erstellt ne neue Map", usage = "", permission = "world.create", consol = false)
 	public void create(final CommandArgs args) {
-		if (data.get(args.getUser().getUuid()) == null) {
-			data.put(args.getUser().getUuid(), new HashMap<String, String>());
+		if (data.get(args.getUser().getUUID()) == null) {
+			data.put(args.getUser().getUUID(), new HashMap<String, String>());
 		}
-		final HashMap<String, String> session = data.get(args.getUser().getUuid());
+		final HashMap<String, String> session = data.get(args.getUser().getUUID());
 		if (args.getArgs().length != 0) {
 			if (args.getArgs()[0].startsWith("w:")) {
 				String in = args.getArgs()[0].replace("w:", "");
@@ -274,7 +255,7 @@ public class WorldCommands {
 					middle(args);
 					return;
 				}
-				session.put("middle", LocationUtils.LocationToString(l));
+				session.put("middle", Core.getCore().getLocationUtil().LocationToString(l));
 			} else if (args.getArgs()[0].startsWith("r:")) {
 				String in = args.getArgs()[0].replace("r:", "");
 				try {
@@ -296,16 +277,16 @@ public class WorldCommands {
 				if (session.containsKey("gameTypes")) {
 					String old = session.get("gameTypes");
 					if (old.contains(",")) {
-						List<String> types = StringUtils.stringToList(old);
+						List<String> types = Core.getCore().getStringUtil().stringToList(old);
 						types.add(in);
 						session.remove("gameTypes");
-						session.put("gameTypes", StringUtils.listToString(types));
+						session.put("gameTypes", Core.getCore().getStringUtil().listToString(types));
 					} else {
 						List<String> types = new ArrayList<>();
 						types.add(old);
 						types.add(in);
 						session.remove("gameTypes");
-						session.put("gameTypes", StringUtils.listToString(types));
+						session.put("gameTypes", Core.getCore().getStringUtil().listToString(types));
 					}
 				} else {
 					session.put("gameTypes", in);
@@ -315,8 +296,8 @@ public class WorldCommands {
 			} else {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unknown args!").color(ChatColor.RED));
 			}
-			data.remove(data.get(args.getUser().getUuid()));
-			data.put(args.getUser().getUuid(), session);
+			data.remove(data.get(args.getUser().getUUID()));
+			data.put(args.getUser().getUUID(), session);
 		}
 		
 		if (!session.containsKey("start")) {
@@ -351,14 +332,14 @@ public class WorldCommands {
 			return;// WAIT
 		}
 		
-		final MapData data = new MapData(session.get("world"));
-		data.scanMap(LocationUtils.StringToLocation(session.get("middle")), Integer.parseInt(session.get("range")), new Runnable() {
+		final MapData data = new CoreMapData(session.get("world"));
+		data.scanMap(Core.getCore().getLocationUtil().StringToLocation(session.get("middle")), Integer.parseInt(session.get("range")), new Runnable() {
 			
 			@Override
 			public void run() {
 				data.createConfig();
 				
-				File mapFolder = new File(Core.getInstance().getConfig().getString("mapFolder"));
+				File mapFolder = new File(((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 				File mapConfig = new File(mapFolder, "maps.yml");
 				
 				FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
@@ -366,7 +347,7 @@ public class WorldCommands {
 				maps.add(session.get("world"));
 				con.set("maps", maps);
 				
-				List<String> types = StringUtils.stringToList(session.get("gameTypes"));
+				List<String> types = Core.getCore().getStringUtil().stringToList(session.get("gameTypes"));
 				con.set(session.get("world") + ".gametypes", types);
 				con.set(session.get("world") + ".author", session.get("author"));
 				con.set(session.get("world") + ".name", session.get("name"));
@@ -396,16 +377,23 @@ public class WorldCommands {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Zippe..."));
 				
 				try {
-					ZipUtils.zipFolder(StringUtils.replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "") + File.separatorChar + session.get("world"), Core
-					        .getInstance().getConfig().getString("mapFolder")
-					        + File.separatorChar + session.get("world") + ".zip");
+					Core.getCore()
+					        .getZipUtil()
+					        .zipFolder(
+					                Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "") + File.separatorChar
+					                        + session.get("world"),
+					                ((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder") + File.separatorChar + session.get("world") + ".zip");
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("ZIP ALLREADY THERE?! Retrying...");
 					try {
-						ZipUtils.zipFolder(StringUtils.replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "") + File.separatorChar + session.get("world"),
-						        Core.getInstance().getConfig().getString("mapFolder") + File.separatorChar + session.get("world") + ".zip"
-						                + RandomUtil.getInstance().nextInt(1000));
+						Core.getCore()
+						        .getZipUtil()
+						        .zipFolder(
+						                Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "") + File.separatorChar
+						                        + session.get("world"),
+						                ((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder") + File.separatorChar + session.get("world")
+						                        + ".zip" + Core.getCore().getRandomUtil().nextInt(1000));
 					} catch (Exception e1) {
 						e1.printStackTrace();
 						System.out.println("Giving up....");
@@ -413,7 +401,7 @@ public class WorldCommands {
 				}
 				
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Finished!"));
-				WorldCommands.this.data.remove(args.getUser().getUuid());
+				WorldCommands.this.data.remove(args.getUser().getUUID());
 			}
 		});
 	}

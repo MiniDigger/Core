@@ -2,9 +2,16 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Stats.Stats;
+import me.MiniDigger.Core.Stats.StatsType;
+import me.MiniDigger.Core.User.User;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-
 
 public class StatsCommands {
 	
@@ -25,7 +32,7 @@ public class StatsCommands {
 	public void add(CommandArgs args) {
 		User other;
 		try {
-			other = UserManager.getInstance().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		} catch (Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
@@ -65,15 +72,15 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = StatsManager.getInstance().get(other.getUuid());
+		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.add(type, anzahl);
 		stats.save();
 		stats.load();
 		
 		if (args.isUser()) {
-			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStat()));
+			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats()));
 		} else {
-			args.getSender().sendMessage("[Stats] Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStat());
+			args.getSender().sendMessage("[Stats] Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats());
 		}
 	}
 	
@@ -82,7 +89,7 @@ public class StatsCommands {
 	public void remove(CommandArgs args) {
 		User other;
 		try {
-			other = UserManager.getInstance().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		} catch (Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
@@ -122,15 +129,15 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = StatsManager.getInstance().get(other.getUuid());
+		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.remove(type, anzahl);
 		stats.save();
 		stats.load();
 		
 		if (args.isUser()) {
-			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStat()));
+			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats()));
 		} else {
-			args.getSender().sendMessage("[Stats] Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStat());
+			args.getSender().sendMessage("[Stats] Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats());
 		}
 	}
 	
@@ -139,7 +146,7 @@ public class StatsCommands {
 	public void set(CommandArgs args) {
 		User other;
 		try {
-			other = UserManager.getInstance().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		} catch (Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
@@ -179,15 +186,15 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = StatsManager.getInstance().get(other.getUuid());
+		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.set(type, anzahl);
 		stats.save();
 		stats.load();
 		
 		if (args.isUser()) {
-			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStat()));
+			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats()));
 		} else {
-			args.getSender().sendMessage("[Stats] Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStat());
+			args.getSender().sendMessage("[Stats] Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats());
 		}
 	}
 	
@@ -196,7 +203,7 @@ public class StatsCommands {
 	public void get(CommandArgs args) {
 		User other;
 		try {
-			other = UserManager.getInstance().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		} catch (Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
@@ -222,13 +229,13 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = StatsManager.getInstance().get(other.getUuid());
+		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.load();
 		
 		if (args.isUser()) {
-			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat " + stats.get(type) + " " + type.getGame() + "." + type.getStat()));
+			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat " + stats.get(type) + " " + type.getGame() + "." + type.getStats()));
 		} else {
-			args.getSender().sendMessage("[Stats] Der User hat " + stats.get(type) + " " + type.getGame() + "." + type.getStat());
+			args.getSender().sendMessage("[Stats] Der User hat " + stats.get(type) + " " + type.getGame() + "." + type.getStats());
 		}
 	}
 	
@@ -262,17 +269,17 @@ public class StatsCommands {
 			return;
 		}
 		
-		List<String> tops = StatsManager.getInstance().getTop(type, top);
+		List<String> tops = Core.getCore().getStatsHandler().getTop(type, top);
 		
 		if (args.isUser()) {
-			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Top " + top + " in der Kategorie " + type.getGame() + "." + type.getStat()));
+			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Top " + top + " in der Kategorie " + type.getGame() + "." + type.getStats()));
 			for (int i = 0; i < top; i++) {
 				args.getUser().sendMessage(
 				        Prefix.STATS.getPrefix().then("#" + i).color(ChatColor.GOLD).then(" " + tops.get(i).split(":")[0]).color(ChatColor.GRAY)
 				                .then(": " + tops.get(i).split(":")[1]));
 			}
 		} else {
-			args.getSender().sendMessage("[Stats] Top " + top + " in der Kategorie " + type.getGame() + "." + type.getStat());
+			args.getSender().sendMessage("[Stats] Top " + top + " in der Kategorie " + type.getGame() + "." + type.getStats());
 			for (int i = 0; i < top; i++) {
 				args.getSender().sendMessage("[Stats] #" + i + " " + tops.get(i).split(":")[0] + ": " + tops.get(i).split(":")[1]);
 			}

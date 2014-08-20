@@ -4,29 +4,26 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Prefix.Prefix;
 import mkremins.fanciful.FancyMessage;
-
 
 public class PluginCommands {
 	
 	@Command(name = "plugin", aliases = { "plugins", "version", "v", "bukkit", "spigot", "core" }, description = "Zeigt Informationen über das Plugin und den Server", usage = "", permission = "plugins")
 	public void pluginCommand(CommandArgs args) {
-		if (args.isUser()) {
-			FancyMessage msg = Prefix.CORE.getPrefix()
-			        .then("Dieser Server benutzt " + Core.getInstance().getDescription().getFullName() + " by MiniDigger zusammen mit " + Bukkit.getBukkitVersion())
-			        .color(ChatColor.GRAY);
-			msg.send(args.getPlayer());
-		} else {
-			String m = ChatColor.GRAY + "Dieser Server benutzt " + Core.getInstance().getDescription().getFullName() + " by MiniDigger zusammen mit "
-			        + Bukkit.getVersion();
-			args.getSender().sendMessage(Prefix.CORE.getConsolPrefix() + m);
-		}
+		FancyMessage msg = Prefix.CORE
+		        .getPrefix()
+		        .then("Dieser Server benutzt " + ((Plugin) Core.getCore().getInstance()).getDescription().getFullName() + " by MiniDigger zusammen mit "
+		                + Bukkit.getBukkitVersion()).color(ChatColor.GRAY);
+		msg.send(args.getSender());
 	}
 	
 	@Command(name = "plugin.list", aliases = { "plugins.list", "version.list", "v.list", "bukkit.list", "spigot.list", "core.list" }, description = "Zeigt alle Plugins", usage = "", permission = "plugins.list")
 	public void pluginListCommand(CommandArgs args) {
 		FancyMessage msg = Prefix.CORE.getPrefix().then("Es sind folgende Plugins installiert ").color(ChatColor.AQUA);
-		String plugins = ChatColor.AQUA + "Es sind folgende Plugins installiert:";
 		for (Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
 			ChatColor c;
 			if (Bukkit.getServer().getPluginManager().isPluginEnabled(p)) {
@@ -34,18 +31,13 @@ public class PluginCommands {
 			} else {
 				c = ChatColor.RED;
 			}
-			plugins += c + p.getName();
 			msg.then(p.getName())
 			        .color(c)
 			        .tooltip(
-			                p.getDescription().getFullName() + " by " + StringUtils.listToString(p.getDescription().getAuthors()) + " Info: "
-			                        + p.getDescription().getDescription() + " More Infos:" + p.getDescription().getWebsite());
+			                p.getDescription().getFullName() + " by " + Core.getCore().getStringUtil().listToString(p.getDescription().getAuthors()) + " Info: "
+			                        + p.getDescription().getDescription() + " More Infos:" + p.getDescription().getWebsite()).then(" ");
 		}
-		if (args.isUser()) {
-			msg.send(args.getPlayer());
-		} else {
-			args.getSender().sendMessage(plugins);
-		}
+		msg.send(args.getSender());
 	}
 	
 	@Command(name = "reload", aliases = { "rl", "warning" }, usage = "", description = "Wird ausgeführt um Commands zu Blocken", permission = "reload")
@@ -61,8 +53,9 @@ public class PluginCommands {
 		}
 	}
 	
-	@Command(name = "stop", usage = "", description = "Stopt den Server", permission = "stop")
+	@SuppressWarnings("deprecation")
+    @Command(name = "stop", usage = "", description = "Stopt den Server", permission = "stop")
 	public void stopCommand(CommandArgs args) {
-		CommonMethods.stopServer();
+		Core.getCore().getCommonMethods().stopServer();
 	}
 }

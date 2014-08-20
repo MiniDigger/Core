@@ -33,7 +33,7 @@
 
 package me.MiniDigger.Core.Squad;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public interface SquadHandler {
@@ -58,5 +58,5 @@ public interface SquadHandler {
 	 * @param user The user
 	 * @return All invites
 	 */
-	public ArrayList<Squad> getInvitations(UUID user);
+	public List<Squad> getInvitations(UUID user);
 }

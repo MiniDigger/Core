@@ -32,13 +32,8 @@ public class ChatCommands {
 		}
 	}
 	
-	@Command(name = "chat.join", description = "Joint einem Channel", usage = "/chat join <channel>", permission = "chat.join")
+	@Command(name = "chat.join", description = "Joint einem Channel", usage = "/chat join <channel>", permission = "chat.join", consol = false, min = 1, max = 1)
 	public void join(CommandArgs args) {
-		if (!args.isUser()) {
-			Core.getCore().getCommonMethods().onlyPlayer(args.getSender(), "/chat join");
-			return;
-		}
-		
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
@@ -53,17 +48,11 @@ public class ChatCommands {
 			return;
 		}
 		
-		ChatUser user = (ChatUser) args.getUser();
-		user.joinChannel(ch);
+		args.getUser().joinChannel(ch);
 	}
 	
-	@Command(name = "chat.leave", description = "Verlässt einen Channel", usage = "/chat leave <channel>", permission = "chat.leave")
+	@Command(name = "chat.leave", description = "Verlässt einen Channel", usage = "/chat leave <channel>", permission = "chat.leave", consol = false, min = 1, max = 1)
 	public void leave(CommandArgs args) {
-		if (!args.isUser()) {
-			Core.getCore().getCommonMethods().onlyPlayer(args.getSender(), "/chat join");
-			return;
-		}
-		
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
@@ -78,20 +67,14 @@ public class ChatCommands {
 			return;
 		}
 		
-		ChatUser user = (ChatUser) args.getUser();
-		user.leaveChannel(ch);
+		args.getUser().leaveChannel(ch);
 	}
 	
-	@Command(name = "chat.list", description = "Zeigt alle verfügbaren Channel", usage = "/chat list", permission = "chat.list")
+	@Command(name = "chat.list", description = "Zeigt alle verfügbaren Channel", usage = "/chat list", permission = "chat.list", consol = false, min = 0, max = 0)
 	public void list(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/chat join");
-			return;
-		}
-		
 		HashMap<ChatChannel, Boolean> channel = new HashMap<>();
 		
-		for (ChatChannel ch : ChatHandler.getInstance().getChannels()) {
+		for (ChatChannel ch : Core.getCore().getChatHandler().getChannels()) {
 			if (args.getUser().hasPermission(ch.getHearPerm())) {
 				if (args.getUser().hasPermission(ch.getSpeakPerm())) {
 					channel.put(ch, true);
@@ -110,13 +93,8 @@ public class ChatCommands {
 		}
 	}
 	
-	@Command(name = "chat.switch", description = "Wechselt den primären Channel", usage = "/chat switch <channel>", permission = "chat.switch")
+	@Command(name = "chat.switch", description = "Wechselt den primären Channel", usage = "/chat switch <channel>", permission = "chat.switch", consol = false, min = 1, max = 1)
 	public void switchCmd(CommandArgs args) {
-		if (!args.isUser()) {
-			CommonMethods.onlyPlayer(args.getSender(), "/chat join");
-			return;
-		}
-		
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
@@ -125,19 +103,17 @@ public class ChatCommands {
 			return;
 		}
 		
-		ChatChannel ch = ChatHandler.getInstance().getChannel(channel);
+		ChatChannel ch = Core.getCore().getChatHandler().getChannel(channel);
 		if (ch == null) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
 		
-		ChatUser user = (ChatUser) args.getUser();
-		user.setPrimaryChannel(ch);
+		args.getUser().setPrimaryChannel(ch);
 	}
 	
-	@Command(name = "chat.ban", description = "Bannt einen Spieler von einem Channel", usage = "/chat ban <user> <channel>", permission = "chat.ban")
+	@Command(name = "chat.ban", description = "Bannt einen Spieler von einem Channel", usage = "/chat ban <user> <channel>", permission = "chat.ban", consol = false, min = 2, max = 2)
 	public void ban(CommandArgs args) {
-		
 		String channel = "";
 		try {
 			channel = args.getArgs()[1];
@@ -146,7 +122,7 @@ public class ChatCommands {
 			return;
 		}
 		
-		ChatChannel ch = ChatHandler.getInstance().getChannel(channel);
+		ChatChannel ch = Core.getCore().getChatHandler().getChannel(channel);
 		if (ch == null) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Unbekannter Channel!").color(ChatColor.RED));
 			return;
@@ -154,7 +130,7 @@ public class ChatCommands {
 		// TODO Chat ban
 	}
 	
-	@Command(name = "chat.mute", description = "Mutet einen Spieler in einem Channel", usage = "/chat mute <user> <channel>", permission = "chat.mute")
+	@Command(name = "chat.mute", description = "Mutet einen Spieler in einem Channel", usage = "/chat mute <user> <channel>", permission = "chat.mute", consol = false, min = 2, max = 2)
 	public void mute(CommandArgs args) {
 		
 		String channel = "";
@@ -165,7 +141,7 @@ public class ChatCommands {
 			return;
 		}
 		
-		ChatChannel ch = ChatHandler.getInstance().getChannel(channel);
+		ChatChannel ch = Core.getCore().getChatHandler().getChannel(channel);
 		if (ch == null) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Unbekannter Channel!").color(ChatColor.RED));
 			return;
@@ -173,7 +149,7 @@ public class ChatCommands {
 		// TODO Chat mute
 	}
 	
-	@Command(name = "speak", description = "Sendet eine Nachricht in einen Channel", usage = "/speak <channel> <message>", permission = "speak")
+	@Command(name = "speak", description = "Sendet eine Nachricht in einen Channel", usage = "/speak <channel> <message>", permission = "speak", consol = false, min = 2, max = -1)
 	public void speak(CommandArgs args) {
 		String channel = "";
 		try {
@@ -183,7 +159,7 @@ public class ChatCommands {
 			return;
 		}
 		
-		ChatChannel ch = ChatHandler.getInstance().getChannel(channel);
+		ChatChannel ch = Core.getCore().getChatHandler().getChannel(channel);
 		if (ch == null) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Unbekannter Channel!").color(ChatColor.RED));
 			return;
@@ -194,7 +170,6 @@ public class ChatCommands {
 			message += args.getArgs()[i];
 		}
 		
-		ChatUser user = (ChatUser) args.getUser();
-		ch.chat(user, message);
+		ch.chat(args.getUser(), message);
 	}
 }
