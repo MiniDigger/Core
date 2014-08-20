@@ -3,4 +3,8 @@
 */.project
 */target*
 *.class
-*/bin*S
+*/bin*
+/bin
+/.classpath
+/.project
+/.settings
