@@ -61,7 +61,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import ru.tehkode.permissions.bukkit.commands.WorldCommands;
 
 public class CoreMain extends JavaPlugin implements Main {
-
+	
 	private boolean	update	= false;
 	
 	@Override
@@ -87,7 +87,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Aktiviere Externe Dependencies...");
 		try {
-			enableExternalDependencies();
+			// enableExternalDependencies();//TODO Do we need that?
 		} catch (Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
@@ -248,7 +248,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void disableHandler() {
-		Core.getCore().getBarHandler().disable();
+		Core.getCore().getBarHandler();
 		Core.getCore().getNametagHandler().disable();
 	}
 	
@@ -271,7 +271,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void enableHandler() {
-		Lag.init();
+		// Lag.init();
 		// GhostFactory.getInstance(); //TODO Disabled due to a strange NPE
 		Core.getCore().getProtocolHandler();
 		Core.getCore().getServerHandler().startTask();
@@ -281,7 +281,8 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void registerListener() {
-		Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(), new CoreEventListener(), new CoreBlockListener() };
+		Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
+		        new CoreEventListener(), new CoreBlockListener() };
 		for (Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}

@@ -51,12 +51,12 @@ public class CoreBarHandler implements BarHandler {
 	private Map<UUID, FakeDragon>	DRAGONS	= new HashMap<>();
 	
 	public boolean hasBar(Player player) {
-		return DRAGONS.containsKey(player.getUniqueId()) && DRAGONS.get(player) != null;
+		return DRAGONS.containsKey(player.getUniqueId()) && DRAGONS.get(player.getUniqueId()) != null;
 	}
 	
 	public void removeBar(Player player) {
 		if (hasBar(player)) {
-			sendPacket(player, DRAGONS.get(player).getDestroyPacket());
+			sendPacket(player, DRAGONS.get(player.getUniqueId()).getDestroyPacket());
 			DRAGONS.remove(player);
 		}
 	}
