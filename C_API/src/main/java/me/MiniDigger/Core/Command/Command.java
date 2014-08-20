@@ -87,4 +87,53 @@ public @interface Command {
 	 * @return
 	 */
 	public String usage() default "";
+	
+	/* Core Start */
+	/**
+	 * Weather or not the command should be useable by the consol
+	 * 
+	 * @return
+	 */
+	public boolean consol() default true;
+	
+	/**
+	 * The minimum amount of arguments needed for this command
+	 * 
+	 * @return
+	 */
+	public int min() default 0;
+	
+	/**
+	 * The maximum amount of arguments accepted for this command<br>
+	 * Use -1 for unlimited
+	 * 
+	 * @return
+	 */
+	public int max() default -1;
+	
+	/**
+	 * Sets the error message which gets shown, if a consol user uses a player
+	 * only command
+	 * 
+	 * @return
+	 */
+	public String noConsol() default "This command only can used by a player!";
+	
+	/**
+	 * Sets the error message which gets shown, if a command was executed with
+	 * too few arguments
+	 * 
+	 * @return
+	 */
+	public String fewArgs() default "You entered too fex arguments!";
+	
+	/**
+	 * Sets the error message which gets shown, if a command was executed with
+	 * too many arguments
+	 * 
+	 * @return
+	 */
+	public String manyArgs() default "You entered too many arguments";
+	
+	/* Core End */
 }

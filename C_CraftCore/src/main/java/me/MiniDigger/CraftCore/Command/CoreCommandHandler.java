@@ -48,6 +48,7 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.entity.Player;
 import org.bukkit.help.GenericCommandHelpTopic;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.help.HelpTopicComparator;
@@ -64,7 +65,9 @@ import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Command.Completer;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.CraftCore.CoreMain;
+import mkremins.fanciful.FancyMessage;
 
 public class CoreCommandHandler implements CommandHandler {
 	
@@ -175,11 +178,34 @@ public class CoreCommandHandler implements CommandHandler {
 			if (commandMap.containsKey(cmdLabel)) {
 				Method method = commandMap.getFirstValue(cmdLabel);
 				Object methodObject = commandMap.getSecondValue(cmdLabel);
+				/* Core Start */
 				Command command = method.getAnnotation(Command.class);
+				
 				if (!sender.hasPermission(command.permission())) {
-					sender.sendMessage(ChatColor.DARK_RED + command.noPerm());
+					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
+					msg.send(sender);
 					return true;
 				}
+				
+				if (!command.consol() && sender instanceof Player) {
+					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noConsol()).color(ChatColor.DARK_RED);
+					msg.send(sender);
+					return true;
+				}
+				
+				if (args.length < command.min()) {
+					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.fewArgs()).color(ChatColor.DARK_RED);
+					msg.send(sender);
+					return true;
+				}
+				
+				if (args.length > command.max()) {
+					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.manyArgs()).color(ChatColor.DARK_RED);
+					msg.send(sender);
+					return true;
+				}
+				
+				/* Core End */
 				try {
 					method.invoke(methodObject, new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1));
 				} catch (IllegalArgumentException e) {
