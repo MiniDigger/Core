@@ -13,12 +13,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>me.MiniDigger.Core</groupId>
-			<artifactId>API</artifactId>
+			<artifactId>C_API</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>me.MiniDigger.Core</groupId>
-			<artifactId>External</artifactId>
+			<artifactId>C_External</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

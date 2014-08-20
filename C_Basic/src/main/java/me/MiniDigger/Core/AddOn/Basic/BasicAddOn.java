@@ -15,6 +15,8 @@
  */
 package me.MiniDigger.Core.AddOn.Basic;
 
+import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
+
 public class BasicAddOn extends CoreAddOn{
 	
 }
