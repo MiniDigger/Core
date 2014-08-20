@@ -34,7 +34,6 @@
 		<module>C_External</module>
 		<module>C_CraftCore</module>
 		<module>C_API</module>
-		<module>Basic</module>
 		<module>C_Basic</module>
 	</modules>
 
