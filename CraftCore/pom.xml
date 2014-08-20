@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>me.MiniDigger.Core</groupId>
-		<artifactId>Core</artifactId>
+		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<artifactId>CraftCore</artifactId>
+	<artifactId>C_CraftCore</artifactId>
 	<name>CraftCore</name>
 	<description>A Core implementation</description>
 
