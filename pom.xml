@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.MiniDigger.Core</groupId>
-	<artifactId>Core</artifactId>
+	<artifactId>C_Core</artifactId>
 	<version>parent</version>
 	<name>TheCore</name>
 	<description>A Bukkit MiniGame Framework</description>
@@ -19,7 +19,7 @@
 	</issueManagement>
 
 	<scm>
-		<url>https://MiniDigger@bitbucket.org/MiniDigger/thecore.git</url>
+		<url>https://MiniDigger@bitbucket.org/MiniDigger/thecore-2.0.git</url>
 		<connection>git</connection>
 		<developerConnection>MiniDigger</developerConnection>
 	</scm>
@@ -31,9 +31,9 @@
 	</properties>
 
 	<modules>
-		<module>External</module>
-		<module>CraftCore</module>
-		<module>API</module>
+		<module>C_External</module>
+		<module>C_CraftCore</module>
+		<module>C_API</module>
 	</modules>
 
 	<build>
