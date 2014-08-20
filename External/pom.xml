@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>me.MiniDigger.Core</groupId>
-		<artifactId>Core</artifactId>
+		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<artifactId>External</artifactId>
+	<artifactId>C_External</artifactId>
 	<name>Core External</name>
 	<description>All foreign ressources</description>
 	<version>0.0.1-SNAPSHOT</version>
