@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>me.MiniDigger.Core</groupId>
-		<artifactId>Core</artifactId>
+		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<artifactId>API</artifactId>
+	<artifactId>C_API</artifactId>
 	<name>Core API</name>
 	<description>The API for the Core Framework</description>
 	<version>0.0.1-SNAPSHOT</version>
