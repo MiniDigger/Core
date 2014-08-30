@@ -43,6 +43,17 @@ import me.MiniDigger.Core.Update.UpdateType;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
+import me.MiniDigger.CraftCore.Command.Commands.ChatCommands;
+import me.MiniDigger.CraftCore.Command.Commands.DevCommands;
+import me.MiniDigger.CraftCore.Command.Commands.ItemCommands;
+import me.MiniDigger.CraftCore.Command.Commands.NPCCommands;
+import me.MiniDigger.CraftCore.Command.Commands.PluginCommands;
+import me.MiniDigger.CraftCore.Command.Commands.SettingsCommands;
+import me.MiniDigger.CraftCore.Command.Commands.SquadCommands;
+import me.MiniDigger.CraftCore.Command.Commands.StatsCommands;
+import me.MiniDigger.CraftCore.Command.Commands.ToggleCommands;
+import me.MiniDigger.CraftCore.Command.Commands.TrollCommands;
+import me.MiniDigger.CraftCore.Command.Commands.WorldCommands;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
@@ -93,7 +104,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Registriere Commands...");
 		try {
-			// registerCommands(); //TODO Register Commands of AddOns
+			registerCommands(); // TODO Register Commands of AddOns
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
@@ -249,6 +260,16 @@ public class CoreMain extends JavaPlugin implements Main {
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.startSession();
 		}
+	}
+	
+	private void registerCommands() {
+		Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
+		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands() };
+		for (Object obj : commandHandler) {
+			Core.getCore().getCommandHandler().registerCommands(obj);
+		}
+		
+		Core.getCore().getCommandHandler().registerHelp();
 	}
 	
 	private void enableHandler() {
