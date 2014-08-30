@@ -1,0 +1,27 @@
+package me.MiniDigger.CraftCore.Event.Events;
+
+import me.MiniDigger.Core.Event.Events.UserLeaveGameEvent;
+import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.Event.CoreEvent;
+
+public class CoreUserLeaveGameEvent extends CoreEvent implements UserLeaveGameEvent {
+	
+	private Game	game;
+	private User	user;
+	
+	public CoreUserLeaveGameEvent(Game game,User user){
+		this.game = game;
+		this.user = user;
+	}
+	
+	@Override
+	public Game getGame() {
+		return game;
+	}
+	
+	@Override
+	public User getUser() {
+		return user;
+	}
+}

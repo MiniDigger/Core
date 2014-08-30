@@ -39,11 +39,11 @@ import java.util.logging.LogRecord;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
-import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Update.UpdateType;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
+import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
@@ -58,7 +58,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
-import ru.tehkode.permissions.bukkit.commands.WorldCommands;
 
 public class CoreMain extends JavaPlugin implements Main {
 	

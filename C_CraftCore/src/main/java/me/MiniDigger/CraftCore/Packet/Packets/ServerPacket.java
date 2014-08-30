@@ -3,6 +3,7 @@ package me.MiniDigger.CraftCore.Packet.Packets;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.CraftCore.Packet.CorePacket;
+import me.MiniDigger.CraftCore.Server.CoreServer;
 
 import org.java_websocket.WebSocket;
 
@@ -26,7 +27,7 @@ public class ServerPacket extends CorePacket {
 	@Override
 	public void fromString(String s) {
 		s = s.replaceFirst(getName() + "|", "");
-		this.server = Server.fromString(s);
+		this.server = CoreServer.fromString(s);
 	}
 	
 	@Override
