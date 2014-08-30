@@ -1,0 +1,25 @@
+# Server Informations
+server-name: unnamed
+server-type: NOTHING
+# Updater
+update-type: MINOR
+#SQL
+sql-user:
+sql-pass:
+sql-port:
+sql-db:
+sql-host:
+#WS
+ws-user:
+ws-pass:
+#MapFolder
+mapFolder:
+# Data - Do not change anything below this point!
+spawn:
+    default:
+    premium:
+    staff:
+otherlocs:
+    holos:
+        1:
+        2:
