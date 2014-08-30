@@ -272,7 +272,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void enableHandler() {
 		// Lag.init();
 		// GhostFactory.getInstance(); //TODO Disabled due to a strange NPE
-		Core.getCore().getProtocolHandler();
+		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
 		Core.getCore().getItemHandler().register();
