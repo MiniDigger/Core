@@ -45,7 +45,9 @@ public class CoreItemHandler implements ItemHandler {
 	@Override
 	public void register() {
 		for (final ItemType i : ItemType.values()) {
-			Bukkit.getPluginManager().registerEvents(i.getItem(), (Plugin) Core.getCore().getInstance());
+			// Bukkit.getPluginManager().registerEvents(i.getItem(), (Plugin)
+			// Core.getCore().getInstance());
+			// TODO Fix item registeration
 		}
 	}
 	
