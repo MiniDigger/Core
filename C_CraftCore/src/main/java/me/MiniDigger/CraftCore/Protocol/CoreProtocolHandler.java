@@ -70,6 +70,9 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	@Override
 	public void init() {
+		signChangers = new CoreSignChangers();
+		skullChangers = new CoreSkullChangers();
+		
 		signChangers.init();
 		skullChangers.init();
 		
