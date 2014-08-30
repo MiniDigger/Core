@@ -1,34 +1,25 @@
 package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Holo.HoloList;
+import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.java_websocket.client.WebSocketClient;
 
 public class DevCommands {
 	
@@ -80,7 +71,7 @@ public class DevCommands {
 	@Command(name = "dev.sendTestPacket", description = "DEV!", usage = "", permission = "dev")
 	public void sendTestPacket(CommandArgs args) {
 		ChatPacket packet = new ChatPacket();
-		packet.setMsg("Dies ist die Nachricht");
+		packet.setMessage("Dies ist die Nachricht");
 		packet.setServer("DerServer");
 		packet.setUser(UUID.fromString("a0bfa3a5-d42c-34b4-8dc4-9ae4152e8a93"));
 		if (args.getArgs().length >= 1) {

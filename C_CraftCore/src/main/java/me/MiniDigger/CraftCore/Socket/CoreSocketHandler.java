@@ -40,9 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.server.WebSocketServer;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Packet.Packet;
@@ -51,6 +48,10 @@ import me.MiniDigger.Core.Socket.SocketClient;
 import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.SocketServer;
 import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
+import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
+import me.MiniDigger.CraftCore.Packet.Packets.LogRecordPacket;
+import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
 public class CoreSocketHandler implements SocketHandler {
 	
@@ -73,7 +74,7 @@ public class CoreSocketHandler implements SocketHandler {
 				@Override
 				public void run() {
 					IdentificationPacket packet = new IdentificationPacket();
-					packet.setUserName(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-user"));
+					packet.setClientName(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-user"));
 					packet.setPass(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-pass"));
 					Core.getCore().getPacketHandler().sendPacket(packet);
 				}

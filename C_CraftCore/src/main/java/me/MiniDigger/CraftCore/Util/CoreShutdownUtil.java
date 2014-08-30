@@ -39,9 +39,9 @@ import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.Core.Util.ShutdownUtil;
 import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
 
 public class CoreShutdownUtil implements ShutdownUtil {

@@ -122,14 +122,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			ex.printStackTrace();
 			error("Fehler: " + ex.getMessage());
 		}
-		
-		info("Registriere Packete...");
-		try {
-			registerPackets();
-		} catch (Exception ex) {
-			error("Fehler: " + ex.getMessage());
-		}
-		
+
 		info("Apply Reload fixes...");
 		try {
 			fixReload();
@@ -290,12 +283,6 @@ public class CoreMain extends JavaPlugin implements Main {
 		if (!Core.getCore().getClientHandler().loadAll()) {
 			error("Clients wurden nicht geladen!");
 		}
-	}
-	
-	private void registerPackets() {
-		PacketHandler handler = Core.getCore().getPacketHandler();
-		handler.registerPacket("chat", ChatPacket.class);
-		handler.registerPacket("identification", IdentificationPacket.class);
 	}
 	
 	@Override

@@ -36,13 +36,13 @@ package me.MiniDigger.CraftCore.Socket;
 import java.net.InetSocketAddress;
 
 import me.MiniDigger.Core.Socket.Session;
-import me.MiniDigger.Core.User.User;
+import me.MiniDigger.Core.Socket.Client.Client;
 
 public class CoreSession implements Session {
 	
 	private String	          name;
 	private InetSocketAddress	address;
-	private User	          user;
+	private Client	          client;
 	private boolean	          identified	= false;
 	
 	public CoreSession(InetSocketAddress address) {
@@ -55,8 +55,8 @@ public class CoreSession implements Session {
 	}
 	
 	@Override
-	public User getUser() {
-		return user;
+	public Client getClient() {
+		return client;
 	}
 	
 	@Override
@@ -75,8 +75,8 @@ public class CoreSession implements Session {
 	}
 	
 	@Override
-	public void setUser(User user) {
-		this.user = user;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	@Override

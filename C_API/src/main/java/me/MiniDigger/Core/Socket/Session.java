@@ -35,8 +35,7 @@ package me.MiniDigger.Core.Socket;
 
 import java.net.InetSocketAddress;
 
-import me.MiniDigger.Core.User.User;
-
+import me.MiniDigger.Core.Socket.Client.Client;
 public interface Session {
 	
 	/**
@@ -45,9 +44,9 @@ public interface Session {
 	public String getName();
 	
 	/**
-	 * @return the user
+	 * @return the client
 	 */
-	public User getUser();
+	public Client getClient();
 	
 	/**
 	 * @return the identified
@@ -68,9 +67,9 @@ public interface Session {
 	
 	/**
 	 * @param user
-	 *            the user to set
+	 *            the client to set
 	 */
-	public void setUser(User user);
+	public void setClient(Client client);
 	
 	/**
 	 * @param identified

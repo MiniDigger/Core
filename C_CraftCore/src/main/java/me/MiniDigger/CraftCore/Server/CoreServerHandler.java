@@ -37,13 +37,13 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.Core.Server.ServerHandler;
 import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
 public class CoreServerHandler implements ServerHandler {
 	
