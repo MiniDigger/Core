@@ -29,6 +29,7 @@ public class CorePluginVersion implements PluginVersion {
 	int	   build;
 	
 	public CorePluginVersion(final String raw) {
+		this.raw = raw;
 		final String[] s = raw.split(Pattern.quote("."));
 		major = Integer.parseInt(s[0]);
 		minor = Integer.parseInt(s[1]);

@@ -54,14 +54,18 @@ public class CoreUpdateHandler implements UpdateHandler {
 	private static final String	JAR_URL	     = "http://game-repo.minidigger.me/TheCore/TheCore.jar";
 	private static final String	VERSIONS_URL	= "http://game-repo.minidigger.me/TheCore/version.txt";
 	
-	private final UpdateType	type;
+	private UpdateType	type;
 	
 	public CoreUpdateHandler() {
 		type = UpdateType.valueOf(((CoreMain) Core.getCore().getInstance()).getConfig().getString("update-type"));
+		if(type == null){
+			type = UpdateType.FORCE;
+		}
 	}
 	
 	@Override
 	public boolean updateCheck() {
+		System.out.println(getVersion().getRaw());
 		if (getLatestVersion().isNewer(getVersion(), type)) {
 			new Thread(new Runnable() {
 				
@@ -94,6 +98,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 			
 			in.close();
 		} catch (final IOException e) {
+			Core.getCore().getInstance().error("Could not reach repo!");
 			e.printStackTrace();
 			return null;
 		}

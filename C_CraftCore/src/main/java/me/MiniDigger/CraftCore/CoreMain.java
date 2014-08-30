@@ -39,7 +39,6 @@ import java.util.logging.LogRecord;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
-import me.MiniDigger.Core.Update.UpdateType;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
@@ -82,8 +81,6 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Checke Updater...");
 		try {
-			
-			UpdateType.valueOf(getConfig().getString("update-type"));
 			if (Core.getCore().getUpdateHandler().updateCheck()) {
 				update = true;
 				return;
