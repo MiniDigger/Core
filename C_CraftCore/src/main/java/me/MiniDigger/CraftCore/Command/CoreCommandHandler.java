@@ -193,13 +193,16 @@ public class CoreCommandHandler implements CommandHandler {
 					return true;
 				}
 				
+				System.out.println("args.lenth: " + args.length);
+				System.out.println("command.min: " + command.min());
+				System.out.println("command.max: " + command.max());
 				if (args.length < command.min()) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.fewArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
 				
-				if (args.length > command.max()) {
+				if (args.length > command.max() && command.max() != -1) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.manyArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
