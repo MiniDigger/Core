@@ -34,10 +34,16 @@
 package me.MiniDigger.CraftCore.Chat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Chat.ChatHandler;
 import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.Chat.Channels.BroadcastChannel;
+import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
+import me.MiniDigger.CraftCore.Chat.Channels.GlobalChannel;
+import me.MiniDigger.CraftCore.Chat.Channels.NormalChannel;
+import me.MiniDigger.CraftCore.Chat.Channels.PremiumChannel;
 import mkremins.fanciful.FancyMessage;
 import mkremins.fanciful.TextualComponent;
 
@@ -84,5 +90,10 @@ public class CoreChatHandler implements ChatHandler {
 		user.getSpeakChannel().chat(user, message);
 		
 	}
+
+    @Override
+    public List<ChatChannel> getChannels() {
+	   return channels;
+    }
 	
 }
