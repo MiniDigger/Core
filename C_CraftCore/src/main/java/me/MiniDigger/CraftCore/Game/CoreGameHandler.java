@@ -45,9 +45,9 @@ import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreGameHandler implements GameHandler {
 	
-	private boolean	        mainGameStarted	= false;
-	private Game	    mainGame;
-	private ArrayList<Game>	games	        = new ArrayList<>();
+	private boolean	              mainGameStarted	= false;
+	private Game	              mainGame;
+	private final ArrayList<Game>	games	      = new ArrayList<>();
 	
 	@Override
 	public boolean isMainGameStarted() {
@@ -55,7 +55,7 @@ public class CoreGameHandler implements GameHandler {
 	}
 	
 	@Override
-	public void setMainGameStarted(boolean started) {
+	public void setMainGameStarted(final boolean started) {
 		mainGameStarted = started;
 	}
 	
@@ -66,15 +66,15 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void searchMainGame() {
-		String game = ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-type");
+		final String game = ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-type");
 		if (game != null) {
 			try {
-				GameType type = GameType.valueOf(game);
+				final GameType type = GameType.valueOf(game);
 				mainGame = type.getGame().newInstance();
 				addGame(mainGame);
 				Core.getCore().getInstance().info("Game " + type.getName() + " gefunden.");
 				Core.getCore().getInstance().info("Warte auf ersten Spieler...");
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				Core.getCore().getInstance().error("Game " + game + " isn't installed!");
 				ex.printStackTrace();
 			}
@@ -84,19 +84,19 @@ public class CoreGameHandler implements GameHandler {
 	}
 	
 	@Override
-	public void addGame(Game game) {
+	public void addGame(final Game game) {
 		games.add(game);
 	}
 	
 	@Override
-	public void removeGame(Game game) {
+	public void removeGame(final Game game) {
 		games.remove(game);
 	}
 	
 	@Override
-	public List<Game> getGames(User user) {
-		List<Game> g = new ArrayList<>();
-		for (Game game : games) {
+	public List<Game> getGames(final User user) {
+		final List<Game> g = new ArrayList<>();
+		for (final Game game : games) {
 			if (game.getPlayers().contains(user.getUUID())) {
 				g.add(game);
 			}

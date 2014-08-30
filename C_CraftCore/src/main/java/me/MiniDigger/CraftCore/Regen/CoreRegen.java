@@ -35,12 +35,12 @@ package me.MiniDigger.CraftCore.Regen;
 
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.block.BlockState;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Regen.Regen;
 import me.MiniDigger.CraftCore.CoreMain;
+
+import org.bukkit.Bukkit;
+import org.bukkit.block.BlockState;
 
 public class CoreRegen implements Regen {
 	
@@ -53,7 +53,7 @@ public class CoreRegen implements Regen {
 	}
 	
 	@Override
-	public void reset(boolean fancy, int delay) {
+	public void reset(final boolean fancy, final int delay) {
 		int i = 1;
 		if (fancy) {
 			while (!blocks.isEmpty()) {

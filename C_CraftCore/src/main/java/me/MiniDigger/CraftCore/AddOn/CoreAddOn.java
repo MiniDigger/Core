@@ -40,10 +40,12 @@ public class CoreAddOn implements AddOn {
 	private FileConfiguration	  config;
 	private File	              configFile;
 	
+	@Override
 	public void enable() {
 		
 	}
 	
+	@Override
 	public void disable() {
 		
 	}
@@ -64,20 +66,23 @@ public class CoreAddOn implements AddOn {
 		loadConfig();
 		try {
 			description = new PluginDescriptionFile(new InputStreamReader(getClass().getResourceAsStream("addon.info")));
-		} catch (InvalidDescriptionException e) {
+		} catch (final InvalidDescriptionException e) {
 			Core.getCore().getInstance().error("Could not load description for AddOn " + name);
 			e.printStackTrace();
 		}
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}
 	
+	@Override
 	public File getDataFolder() {
 		return dataFolder;
 	}
 	
+	@Override
 	public FileConfiguration getConfig() {
 		return config;
 	}
@@ -89,7 +94,7 @@ public class CoreAddOn implements AddOn {
 	public void saveConfig() {
 		try {
 			config.save(configFile);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			Core.getCore().getInstance().error("Error while saving ConfigFile for AddOn " + name);
 			e.printStackTrace();
 		}
@@ -107,7 +112,7 @@ public class CoreAddOn implements AddOn {
 			Core.getCore().getInstance().info("Creating ConfigFile for AddOn " + name);
 			try {
 				configFile.createNewFile();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				Core.getCore().getInstance().error("Error while creating ConfigFile for AddOn " + name);
 				e.printStackTrace();
 			}

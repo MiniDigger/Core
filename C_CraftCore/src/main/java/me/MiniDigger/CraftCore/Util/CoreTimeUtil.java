@@ -37,18 +37,19 @@ import me.MiniDigger.Core.Util.TimeUtil;
 
 public class CoreTimeUtil implements TimeUtil {
 	
-	public String formatTime(int secs) {
-		int remainder = secs % 86400;
+	@Override
+	public String formatTime(final int secs) {
+		final int remainder = secs % 86400;
 		
-		int days = secs / 86400;
-		int hours = remainder / 3600;
-		int minutes = (remainder / 60) - (hours * 60);
-		int seconds = (remainder % 3600) - (minutes * 60);
+		final int days = secs / 86400;
+		final int hours = remainder / 3600;
+		final int minutes = (remainder / 60) - (hours * 60);
+		final int seconds = (remainder % 3600) - (minutes * 60);
 		
-		String fDays = (days > 0 ? " " + days + " Tag" + (days > 1 ? "e" : "") : "");
-		String fHours = (hours > 0 ? " " + hours + " Stunde" + (hours > 1 ? "n" : "") : "");
-		String fMinutes = (minutes > 0 ? " " + minutes + " Minute" + (minutes > 1 ? "n" : "") : "");
-		String fSeconds = (seconds > 0 ? " " + seconds + " Sekunde" + (seconds > 1 ? "n" : "") : "");
+		final String fDays = (days > 0 ? " " + days + " Tag" + (days > 1 ? "e" : "") : "");
+		final String fHours = (hours > 0 ? " " + hours + " Stunde" + (hours > 1 ? "n" : "") : "");
+		final String fMinutes = (minutes > 0 ? " " + minutes + " Minute" + (minutes > 1 ? "n" : "") : "");
+		final String fSeconds = (seconds > 0 ? " " + seconds + " Sekunde" + (seconds > 1 ? "n" : "") : "");
 		
 		return new StringBuilder().append(fDays).append(fHours).append(fMinutes).append(fSeconds).toString();
 	}

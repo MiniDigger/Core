@@ -36,10 +36,10 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.bukkit.entity.EntityType;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Util.EntityUtil;
+
+import org.bukkit.entity.EntityType;
 
 public class CoreEntityUtil implements EntityUtil {
 	
@@ -47,7 +47,7 @@ public class CoreEntityUtil implements EntityUtil {
 	
 	public CoreEntityUtil() {
 		super();
-		for (EntityType type : EntityType.values()) {
+		for (final EntityType type : EntityType.values()) {
 			switch (type) {
 			case ARROW:
 				entitys.put(type, Type.PROJECTILE);
@@ -240,10 +240,10 @@ public class CoreEntityUtil implements EntityUtil {
 	}
 	
 	@Override
-	public ArrayList<EntityType> getAll(Type... types) {
-		ArrayList<EntityType> result = new ArrayList<>();
+	public ArrayList<EntityType> getAll(final Type... types) {
+		final ArrayList<EntityType> result = new ArrayList<>();
 		
-		for (EntityType type : entitys.keySet()) {
+		for (final EntityType type : entitys.keySet()) {
 			if (Core.getCore().getStringUtil().contains(types, entitys.get(type))) {
 				result.add(type);
 			}

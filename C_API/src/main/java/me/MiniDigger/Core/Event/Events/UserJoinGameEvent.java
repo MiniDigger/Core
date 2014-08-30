@@ -36,7 +36,6 @@ package me.MiniDigger.Core.Event.Events;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
 
-
 public interface UserJoinGameEvent {
 	
 	/**

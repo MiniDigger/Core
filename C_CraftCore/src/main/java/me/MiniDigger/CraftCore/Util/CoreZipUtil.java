@@ -41,9 +41,10 @@ import java.util.zip.ZipOutputStream;
 
 import me.MiniDigger.Core.Util.ZipUtil;
 
-public class CoreZipUtil implements ZipUtil{
+public class CoreZipUtil implements ZipUtil {
 	
-	public void zipFolder(String srcFolder, String destZipFile) throws Exception {
+	@Override
+	public void zipFolder(final String srcFolder, final String destZipFile) throws Exception {
 		ZipOutputStream zip = null;
 		FileOutputStream fileWriter = null;
 		
@@ -55,15 +56,15 @@ public class CoreZipUtil implements ZipUtil{
 		zip.close();
 	}
 	
-	private void addFileToZip(String path, String srcFile, ZipOutputStream zip) throws Exception {
+	private void addFileToZip(final String path, final String srcFile, final ZipOutputStream zip) throws Exception {
 		
-		File folder = new File(srcFile);
+		final File folder = new File(srcFile);
 		if (folder.isDirectory()) {
 			addFolderToZip(path, srcFile, zip);
 		} else {
-			byte[] buf = new byte[1024];
+			final byte[] buf = new byte[1024];
 			int len;
-			@SuppressWarnings("resource") FileInputStream in = new FileInputStream(srcFile);
+			@SuppressWarnings("resource") final FileInputStream in = new FileInputStream(srcFile);
 			zip.putNextEntry(new ZipEntry(path + "/" + folder.getName()));
 			while ((len = in.read(buf)) > 0) {
 				zip.write(buf, 0, len);
@@ -71,10 +72,10 @@ public class CoreZipUtil implements ZipUtil{
 		}
 	}
 	
-	private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
-		File folder = new File(srcFolder);
+	private void addFolderToZip(final String path, final String srcFolder, final ZipOutputStream zip) throws Exception {
+		final File folder = new File(srcFolder);
 		
-		for (String fileName : folder.list()) {
+		for (final String fileName : folder.list()) {
 			if (path.equals("")) {
 				addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip);
 			} else {

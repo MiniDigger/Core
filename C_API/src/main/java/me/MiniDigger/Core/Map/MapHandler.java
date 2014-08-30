@@ -48,7 +48,7 @@ public interface MapHandler {
 	 * @param data
 	 *            The data of the loaded map
 	 */
-	public void addMap(MapData data);
+	public void addMap(final MapData data);
 	
 	/**
 	 * Returns the map with the given name
@@ -57,7 +57,7 @@ public interface MapHandler {
 	 *            The name to search for
 	 * @return The result. May be null
 	 */
-	public MapData getMap(String name);
+	public MapData getMap(final String name);
 	
 	/**
 	 * Gets all maps, that match all required loctype
@@ -66,7 +66,7 @@ public interface MapHandler {
 	 *            The required types
 	 * @return A list with the maps
 	 */
-	public List<MapData> getMaps(List<DyeColor> types);
+	public List<MapData> getMaps(final List<DyeColor> types);
 	
 	/**
 	 * Gets the author of a map
@@ -75,7 +75,7 @@ public interface MapHandler {
 	 *            The name of the map
 	 * @return The name of the author
 	 */
-	public String getAuthor(String map);
+	public String getAuthor(final String map);
 	
 	/**
 	 * Gets the displayname of a map
@@ -84,7 +84,7 @@ public interface MapHandler {
 	 *            The name of the map
 	 * @return The displayname of the map
 	 */
-	public String getName(String map);
+	public String getName(final String map);
 	
 	/**
 	 * Returns 0-3 maps that can be played with the given type
@@ -93,5 +93,5 @@ public interface MapHandler {
 	 *            The type
 	 * @return The map(s)
 	 */
-	public ArrayList<String> loadMapConfig(GameType type);
+	public ArrayList<String> loadMapConfig(final GameType type);
 }

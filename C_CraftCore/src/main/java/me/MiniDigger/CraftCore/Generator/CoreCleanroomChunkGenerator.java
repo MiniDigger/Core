@@ -37,13 +37,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Generator.CleanroomChunkGenerator;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Generator.CleanroomChunkGenerator;
 
 public class CoreCleanroomChunkGenerator extends ChunkGenerator implements CleanroomChunkGenerator {
 	
@@ -54,7 +56,7 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 		this("64,stone");
 	}
 	
-	public CoreCleanroomChunkGenerator(String id) {
+	public CoreCleanroomChunkGenerator(final String id) {
 		parse(id);
 	}
 	
@@ -65,15 +67,15 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 			try {
 				int y = 0;
 				
-				this.layer = new short[''];
-				this.layerDataValues = null;
+				layer = new short[''];
+				layerDataValues = null;
 				if ((id.length() > 0) && (id.charAt(0) == '.')) {
 					id = id.substring(1);
 				} else {
-					this.layer[(y++)] = ((short) Material.BEDROCK.getId());
+					layer[(y++)] = ((short) Material.BEDROCK.getId());
 				}
 				if (id.length() > 0) {
-					String[] tokens = id.split("[,]");
+					final String[] tokens = id.split("[,]");
 					if (tokens.length % 2 != 0) {
 						throw new Exception();
 					}
@@ -83,12 +85,12 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 							Core.getCore().getInstance().error("[CleanroomGenerator] Invalid height '" + tokens[i] + "'. Using 64 instead.");
 							height = 64;
 						}
-						String[] materialTokens = tokens[(i + 1)].split("[:]", 2);
+						final String[] materialTokens = tokens[(i + 1)].split("[:]", 2);
 						byte dataValue = 0;
 						if (materialTokens.length == 2) {
 							try {
 								dataValue = Byte.parseByte(materialTokens[1]);
-							} catch (Exception e) {
+							} catch (final Exception e) {
 								Core.getCore().getInstance().error("[CleanroomGenerator] Invalid Data Value '" + materialTokens[1] + "'. Defaulting to 0.");
 								dataValue = 0;
 							}
@@ -97,7 +99,7 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 						if (mat == null) {
 							try {
 								mat = Material.getMaterial(Integer.parseInt(materialTokens[0]));
-							} catch (Exception e) {}
+							} catch (final Exception e) {}
 							if (mat == null) {
 								Core.getCore().getInstance().error("[CleanroomGenerator] Invalid Block ID '" + materialTokens[0] + "'. Defaulting to stone.");
 								mat = Material.STONE;
@@ -107,84 +109,84 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 							Core.getCore().getInstance().error("[CleanroomGenerator] Error, '" + materialTokens[0] + "' is not a block. Defaulting to stone.");
 							mat = Material.STONE;
 						}
-						if (y + height > this.layer.length) {
-							short[] newLayer = new short[Math.max(y + height, this.layer.length * 2)];
-							System.arraycopy(this.layer, 0, newLayer, 0, y);
-							this.layer = newLayer;
-							if (this.layerDataValues != null) {
-								byte[] newLayerDataValues = new byte[Math.max(y + height, this.layerDataValues.length * 2)];
-								System.arraycopy(this.layerDataValues, 0, newLayerDataValues, 0, y);
-								this.layerDataValues = newLayerDataValues;
+						if (y + height > layer.length) {
+							final short[] newLayer = new short[Math.max(y + height, layer.length * 2)];
+							System.arraycopy(layer, 0, newLayer, 0, y);
+							layer = newLayer;
+							if (layerDataValues != null) {
+								final byte[] newLayerDataValues = new byte[Math.max(y + height, layerDataValues.length * 2)];
+								System.arraycopy(layerDataValues, 0, newLayerDataValues, 0, y);
+								layerDataValues = newLayerDataValues;
 							}
 						}
-						Arrays.fill(this.layer, y, y + height, (short) mat.getId());
+						Arrays.fill(layer, y, y + height, (short) mat.getId());
 						if (dataValue != 0) {
-							if (this.layerDataValues == null) {
-								this.layerDataValues = new byte[this.layer.length];
+							if (layerDataValues == null) {
+								layerDataValues = new byte[layer.length];
 							}
-							Arrays.fill(this.layerDataValues, y, y + height, dataValue);
+							Arrays.fill(layerDataValues, y, y + height, dataValue);
 						}
 						y += height;
 					}
 				}
-				if (this.layer.length > y) {
-					short[] newLayer = new short[y];
-					System.arraycopy(this.layer, 0, newLayer, 0, y);
-					this.layer = newLayer;
+				if (layer.length > y) {
+					final short[] newLayer = new short[y];
+					System.arraycopy(layer, 0, newLayer, 0, y);
+					layer = newLayer;
 				}
-				if ((this.layerDataValues != null) && (this.layerDataValues.length > y)) {
-					byte[] newLayerDataValues = new byte[y];
-					System.arraycopy(this.layerDataValues, 0, newLayerDataValues, 0, y);
-					this.layerDataValues = newLayerDataValues;
+				if ((layerDataValues != null) && (layerDataValues.length > y)) {
+					final byte[] newLayerDataValues = new byte[y];
+					System.arraycopy(layerDataValues, 0, newLayerDataValues, 0, y);
+					layerDataValues = newLayerDataValues;
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				Core.getCore().getInstance().error("[CleanroomGenerator] Error parsing CleanroomGenerator ID '" + id + "'. using defaults '64,1': " + e.toString());
 				e.printStackTrace();
-				this.layerDataValues = null;
-				this.layer = new short[65];
-				this.layer[0] = ((short) Material.BEDROCK.getId());
-				Arrays.fill(this.layer, 1, 65, (short) Material.STONE.getId());
+				layerDataValues = null;
+				layer = new short[65];
+				layer[0] = ((short) Material.BEDROCK.getId());
+				Arrays.fill(layer, 1, 65, (short) Material.STONE.getId());
 			}
 		} else {
-			this.layerDataValues = null;
-			this.layer = new short[65];
-			this.layer[0] = ((short) Material.BEDROCK.getId());
-			Arrays.fill(this.layer, 1, 65, (short) Material.STONE.getId());
+			layerDataValues = null;
+			layer = new short[65];
+			layer[0] = ((short) Material.BEDROCK.getId());
+			Arrays.fill(layer, 1, 65, (short) Material.STONE.getId());
 		}
 	}
 	
 	@Override
-	public short[][] generateExtBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
-		int maxHeight = world.getMaxHeight();
-		if (this.layer.length > maxHeight) {
+	public short[][] generateExtBlockSections(final World world, final Random random, final int x, final int z, final BiomeGrid biomes) {
+		final int maxHeight = world.getMaxHeight();
+		if (layer.length > maxHeight) {
 			Core.getCore()
 			        .getInstance()
-			        .error("[CleanroomGenerator] Error, chunk height " + this.layer.length + " is greater than the world max height (" + maxHeight
+			        .error("[CleanroomGenerator] Error, chunk height " + layer.length + " is greater than the world max height (" + maxHeight
 			                + "). Trimming to world max height.");
-			short[] newLayer = new short[maxHeight];
-			System.arraycopy(this.layer, 0, newLayer, 0, maxHeight);
-			this.layer = newLayer;
+			final short[] newLayer = new short[maxHeight];
+			System.arraycopy(layer, 0, newLayer, 0, maxHeight);
+			layer = newLayer;
 		}
-		short[][] result = new short[maxHeight / 16][];
-		for (int i = 0; i < this.layer.length; i += 16) {
+		final short[][] result = new short[maxHeight / 16][];
+		for (int i = 0; i < layer.length; i += 16) {
 			result[(i >> 4)] = new short[4096];
-			for (int y = 0; y < Math.min(16, this.layer.length - i); y++) {
-				Arrays.fill(result[(i >> 4)], y * 16 * 16, (y + 1) * 16 * 16, this.layer[(i + y)]);
+			for (int y = 0; y < Math.min(16, layer.length - i); y++) {
+				Arrays.fill(result[(i >> 4)], y * 16 * 16, (y + 1) * 16 * 16, layer[(i + y)]);
 			}
 		}
 		return result;
 	}
 	
 	@Override
-	public List<BlockPopulator> getDefaultPopulators(World world) {
-		if (this.layerDataValues != null) {
-			return Arrays.asList(new BlockPopulator[] { new CoreCleanroomBlockPopulator(this.layerDataValues) });
+	public List<BlockPopulator> getDefaultPopulators(final World world) {
+		if (layerDataValues != null) {
+			return Arrays.asList(new BlockPopulator[] { new CoreCleanroomBlockPopulator(layerDataValues) });
 		}
 		return new ArrayList<>();
 	}
 	
 	@Override
-	public Location getFixedSpawnLocation(World world, Random random) {
+	public Location getFixedSpawnLocation(final World world, final Random random) {
 		if (!world.isChunkLoaded(0, 0)) {
 			world.loadChunk(0, 0);
 		}

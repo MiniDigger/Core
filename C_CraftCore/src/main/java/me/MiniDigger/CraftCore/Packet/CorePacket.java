@@ -35,7 +35,6 @@ package me.MiniDigger.CraftCore.Packet;
 
 import me.MiniDigger.Core.Packet.Packet;
 
-
 public abstract class CorePacket implements Packet {
-
+	
 }

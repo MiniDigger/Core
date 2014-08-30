@@ -36,11 +36,6 @@ package me.MiniDigger.CraftCore.Phase;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -50,19 +45,24 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.event.HandlerList;
+import org.bukkit.plugin.Plugin;
+
 public abstract class CorePhase implements Phase {
 	
-	protected Game	      game;
-	protected Phase	      next;
+	protected Game	        game;
+	protected Phase	        next;
 	protected List<Feature>	features	= new ArrayList<>();
 	
-	public CorePhase(Game game, Phase next) {
+	public CorePhase(final Game game, final Phase next) {
 		this.game = game;
 		this.next = next;
 	}
 	
-    public CorePhase() {
-	  
+	public CorePhase() {
+		
 	}
 	
 	@Override
@@ -71,12 +71,12 @@ public abstract class CorePhase implements Phase {
 			System.out.println("Incombability found!");
 			return;
 		}
-		for (Feature f : features) {
+		for (final Feature f : features) {
 			f.init(this);
 		}
 		Bukkit.getServer().getPluginManager().registerEvents(this, (Plugin) Core.getCore().getInstance());
 		Core.getCore().getCommandHandler().registerCommands(this);
-		for (Feature f : features) {
+		for (final Feature f : features) {
 			Bukkit.getServer().getPluginManager().registerEvents(f, (Plugin) Core.getCore().getInstance());
 			Core.getCore().getCommandHandler().registerCommands(f);
 			f.start();
@@ -93,7 +93,7 @@ public abstract class CorePhase implements Phase {
 		HandlerList.unregisterAll(this);
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		
-		for (Feature f : features) {
+		for (final Feature f : features) {
 			HandlerList.unregisterAll(f);
 			Core.getCore().getCommandHandler().unregisterCommands(f);
 			f.end();
@@ -103,8 +103,8 @@ public abstract class CorePhase implements Phase {
 		getNextPhase().init();
 		getNextPhase().startPhase();
 		try {
-			this.finalize();
-		} catch (Throwable e) {
+			finalize();
+		} catch (final Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -115,7 +115,7 @@ public abstract class CorePhase implements Phase {
 	}
 	
 	@Override
-	public void setNextPhase(Phase next) {
+	public void setNextPhase(final Phase next) {
 		this.next = next;
 	}
 	
@@ -126,13 +126,13 @@ public abstract class CorePhase implements Phase {
 	
 	@Override
 	public boolean checkCombability() {
-		List<FeatureType> fType = new ArrayList<>();
-		for (Feature f : features) {
+		final List<FeatureType> fType = new ArrayList<>();
+		for (final Feature f : features) {
 			fType.add(f.getType());
 		}
 		
-		for (Feature f : features) {
-			for (FeatureType s : f.getDependencies()) {
+		for (final Feature f : features) {
+			for (final FeatureType s : f.getDependencies()) {
 				if (!fType.contains(s)) {
 					Core.getCore().getInstance()
 					        .info("Dependency " + s + " for Feature " + f.getType() + " in Game " + getGame().getIdentifier().toString() + " is missing!");
@@ -140,7 +140,7 @@ public abstract class CorePhase implements Phase {
 				}
 			}
 			
-			for (FeatureType s : f.getIncompabilities()) {
+			for (final FeatureType s : f.getIncompabilities()) {
 				if (fType.contains(s)) {
 					Core.getCore().getInstance()
 					        .error("Dependency " + s + " is incompatible with Feature " + f.getType() + " in Game " + getGame().getIdentifier().toString() + "!");
@@ -153,8 +153,8 @@ public abstract class CorePhase implements Phase {
 	}
 	
 	@Override
-	public Feature getFeature(Class<Feature> clazz) {
-		for (Feature feature : features) {
+	public Feature getFeature(final Class<Feature> clazz) {
+		for (final Feature feature : features) {
 			if (feature.getClass().getCanonicalName().equals(clazz.getCanonicalName())) {
 				return feature;
 			}
@@ -163,15 +163,15 @@ public abstract class CorePhase implements Phase {
 	}
 	
 	@Override
-	public void addFeature(Feature f) {
+	public void addFeature(final Feature f) {
 		if (getFeature(f.getType()) == null) {
 			features.add(f);
 		}
 	}
 	
 	@Override
-	public Feature getFeature(FeatureType feature) {
-		for (Feature f : features) {
+	public Feature getFeature(final FeatureType feature) {
+		for (final Feature f : features) {
 			if (f.getType().equals(feature)) {
 				return f;
 			}
@@ -180,7 +180,7 @@ public abstract class CorePhase implements Phase {
 	}
 	
 	@Command(name = "skip", description = "�berspringt eine Phase", usage = "", permission = "skip")
-	public void skip(CommandArgs args) {
+	public void skip(final CommandArgs args) {
 		getGame().broadCastMessage(Prefix.API.getPrefix().then("Die Phase wurde �bersprungen!").color(ChatColor.RED));
 		endPhase();
 	}

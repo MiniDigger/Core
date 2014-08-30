@@ -45,47 +45,50 @@ import java.util.Set;
  * Zephyrus - MutliMap.java
  * 
  * @author minnymin3
- *
- * @param <A> Key type
- * @param <B> First value type
- * @param <C> Second value type
+ * 
+ * @param <A>
+ *            Key type
+ * @param <B>
+ *            First value type
+ * @param <C>
+ *            Second value type
  */
-//TODO MultiMap -> API
+// TODO MultiMap -> API
 public class MultiMap<A, B, C> implements Cloneable, Iterable<MultiEntry<A, B, C>> {
 	
-	private String name = null;
-	private Map<A, Object[]> map = null;
-
+	private String	         name	= null;
+	private Map<A, Object[]>	map	= null;
+	
 	public MultiMap() {
 		this.map = new HashMap<A, Object[]>();
 	}
-
-	public MultiMap(String name) {
+	
+	public MultiMap(final String name) {
 		this();
 		this.name = (name != null ? name : "MultiMap");
 	}
-
-	public MultiMap(int size) {
+	
+	public MultiMap(final int size) {
 		this.map = new HashMap<A, Object[]>(size);
 	}
-
-	public MultiMap(String name, int size) {
+	
+	public MultiMap(final String name, final int size) {
 		this(size);
 		this.name = (name != null ? name : "MultiMap");
 	}
-
-	public void put(A key, final B firstValue, final C secondValue) {
+	
+	public void put(final A key, final B firstValue, final C secondValue) {
 		map.put(key, new Object[] { firstValue, secondValue });
 	}
-
+	
 	public Set<A> keySet() {
 		return map.keySet();
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public Collection<B> firstValueSet() {
-		Set<B> set = new HashSet<B>();
-		for (Object[] obj : valueSet()) {
+		final Set<B> set = new HashSet<B>();
+		for (final Object[] obj : valueSet()) {
 			set.add((B) obj[0]);
 		}
 		return set;
@@ -93,8 +96,8 @@ public class MultiMap<A, B, C> implements Cloneable, Iterable<MultiEntry<A, B, C
 	
 	@SuppressWarnings("unchecked")
 	public Collection<C> secondValueSet() {
-		Set<C> set = new HashSet<C>();
-		for (Object[] obj : valueSet()) {
+		final Set<C> set = new HashSet<C>();
+		for (final Object[] obj : valueSet()) {
 			set.add((C) obj[1]);
 		}
 		return set;
@@ -103,99 +106,100 @@ public class MultiMap<A, B, C> implements Cloneable, Iterable<MultiEntry<A, B, C
 	public Collection<Object[]> valueSet() {
 		return map.values();
 	}
-
-	public void remove(A key) {
+	
+	public void remove(final A key) {
 		map.remove(key);
 	}
-
-	public void remove(int index) {
+	
+	public void remove(final int index) {
 		remove(getKey(index));
 	}
-
+	
 	public void clear() {
 		map.clear();
 	}
-
+	
 	public int size() {
 		return map.size();
 	}
-
+	
+	@Override
 	public int hashCode() {
 		return (map.hashCode() * map.values().hashCode() + map.keySet().hashCode() * valueSet().hashCode());
 	}
-
-	public int getIndex(A key) {
+	
+	public int getIndex(final A key) {
 		return new ArrayList<A>(this.keySet()).indexOf(key);
 	}
-
+	
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
-
-	public boolean containsKey(A key) {
+	
+	public boolean containsKey(final A key) {
 		return map.containsKey(key);
 	}
-
-	public A getKey(int index) {
+	
+	public A getKey(final int index) {
 		return new ArrayList<A>(this.keySet()).get(index);
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public B getFirstValue(A key) {
+	public B getFirstValue(final A key) {
 		return (B) map.get(key)[0];
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public C getSecondValue(A key) {
+	public C getSecondValue(final A key) {
 		return (C) map.get(key)[1];
 	}
-
-	public MultiEntry<A, B, C> getEntry(A key) {
+	
+	public MultiEntry<A, B, C> getEntry(final A key) {
 		return new MultiEntry<A, B, C>(key, this);
 	}
-
-	public MultiEntry<A, B, C> getEntry(int index) {
+	
+	public MultiEntry<A, B, C> getEntry(final int index) {
 		return getEntry(getKey(index));
 	}
-
-	public void putFirst(A key, B value) {
+	
+	public void putFirst(final A key, final B value) {
 		map.get(key)[0] = value;
 	}
-
-	public void putSecond(A key, C value) {
+	
+	public void putSecond(final A key, final C value) {
 		map.get(key)[1] = value;
 	}
-
+	
 	@Override
 	public MultiMap<A, B, C> clone() {
-		MultiMap<A, B, C> clone = new MultiMap<A, B, C>(this.size());
+		final MultiMap<A, B, C> clone = new MultiMap<A, B, C>(this.size());
 		clone.setMap(getMap());
 		clone.setName(getName());
 		return clone;
 	}
-
+	
 	@Override
 	public Iterator<MultiEntry<A, B, C>> iterator() {
 		return new MultiMapIterator<A, B, C>(this);
 	}
-
+	
 	private String getName() {
 		return this.name;
 	}
-
+	
 	private Map<A, Object[]> getMap() {
 		return this.map;
 	}
-
-	private void setName(String name) {
+	
+	private void setName(final String name) {
 		this.name = name;
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	private void setMap(Map<A, Object[]> c) {
-		for (A cc : c.keySet()) {
+	private void setMap(final Map<A, Object[]> c) {
+		for (final A cc : c.keySet()) {
 			this.put(cc, (B) c.get(cc)[0], (C) c.get(cc)[1]);
 		}
 	}
-
+	
 }

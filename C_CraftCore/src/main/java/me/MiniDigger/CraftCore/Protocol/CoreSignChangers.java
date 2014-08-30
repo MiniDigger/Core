@@ -37,6 +37,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Protocol.SignChangers;
+import me.MiniDigger.Core.Protocol.SignGUI;
+import me.MiniDigger.Core.Stats.StatsType;
+import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.CoreMain;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -53,14 +61,6 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.FieldAccessException;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.Protocol.SignChangers;
-import me.MiniDigger.Core.Protocol.SignGUI;
-import me.MiniDigger.Core.Stats.StatsType;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreSignChangers implements SignChangers {
 	
 	private final ArrayList<String>	                   edit	           = new ArrayList<>();
@@ -70,10 +70,10 @@ public class CoreSignChangers implements SignChangers {
 	public final ArrayList<String>	                   justJoined	   = new ArrayList<>();
 	
 	@SuppressWarnings("unchecked")
-    @Override
+	@Override
 	public void update() {
-		for (Location loc : (ArrayList<Location>) last_seen_signs.clone()) {
-			for (Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
+		for (final Location loc : (ArrayList<Location>) last_seen_signs.clone()) {
+			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 				if (e != null && e.getType() == EntityType.PLAYER) {
 					if (loc.getBlock().getState() instanceof Sign) {
 						if (!justJoined.contains(((Player) e).getName())) {
@@ -90,7 +90,7 @@ public class CoreSignChangers implements SignChangers {
 	}
 	
 	@Override
-	public void handlePacket(PacketEvent event) {
+	public void handlePacket(final PacketEvent event) {
 		if (event.getPacketType() == PacketType.Play.Server.UPDATE_SIGN) {
 			try {
 				boolean b = true;
@@ -109,6 +109,7 @@ public class CoreSignChangers implements SignChangers {
 	public void init() {
 		addSignChanger(new SignChanger("[Player]", "signchanger.create.player", "Zeigt den Spielernamen an") {
 			
+			@Override
 			public String getValue(final Player player, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
@@ -133,7 +134,7 @@ public class CoreSignChangers implements SignChangers {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
 				}
-				return Core.getCore().getStatsHandler().get(player.getUniqueId()).get(StatsType.Common.PAESSE)+"";
+				return Core.getCore().getStatsHandler().get(player.getUniqueId()).get(StatsType.Common.PAESSE) + "";
 			}
 		});
 		addSignChanger(new SignChanger("[Warns]", "signchanger.create.warns", "Zeigt wie vieler Warns der Spieler hat") {
@@ -143,7 +144,7 @@ public class CoreSignChangers implements SignChangers {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
 				}
-				int i = 0;
+				final int i = 0;
 				// if (Core.getSQLHandler().getModProvider()
 				// .loadList(player.getName()) == null) {
 				// return 0 + "";
@@ -205,7 +206,7 @@ public class CoreSignChangers implements SignChangers {
 						
 						int rank = 1;
 						for (final String top : Core.getCore().getStatsHandler().getTop(type, -1)) {
-							String name = top.split(":")[0];
+							final String name = top.split(":")[0];
 							if (name.equalsIgnoreCase(p.getName())) {
 								return ChatColor.BOLD + "" + rank + "";
 							}
@@ -247,7 +248,7 @@ public class CoreSignChangers implements SignChangers {
 						final List<String> tops = Core.getCore().getStatsHandler().getTop(type, top);
 						try {
 							return ChatColor.BOLD + "" + tops.get(top - 1).split(":")[0];
-						} catch (Exception ex) {
+						} catch (final Exception ex) {
 							return ChatColor.RED + "fail";
 						}
 					}
@@ -286,7 +287,7 @@ public class CoreSignChangers implements SignChangers {
 		addSignChanger(new SignChanger("[Fame]", "signchanger.create.fame", "Zeigt den Famen Player an") {
 			
 			@Override
-			public String getValue(Player paramPlayer, Location paramLocation) {
+			public String getValue(final Player paramPlayer, final Location paramLocation) {
 				return Core.getCore().getProtocolHandler().getFame();
 			}
 		});
@@ -429,7 +430,7 @@ public class CoreSignChangers implements SignChangers {
 	}
 	
 	@Override
-	public void addSignChanger(SignChanger changer) {
+	public void addSignChanger(final SignChanger changer) {
 		if (changer == null) {
 			throw new IllegalArgumentException("Changer cannot be null!");
 		}
@@ -443,7 +444,7 @@ public class CoreSignChangers implements SignChangers {
 	}
 	
 	@Override
-	public void removeSignChanger(SignChanger changer) {
+	public void removeSignChanger(final SignChanger changer) {
 		signchangers.remove(changer);
 	}
 	
@@ -453,7 +454,7 @@ public class CoreSignChangers implements SignChangers {
 	}
 	
 	@Override
-	public void handleInteract(PlayerInteractEvent event) {
+	public void handleInteract(final PlayerInteractEvent event) {
 		if ((event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) && (event.getClickedBlock() != null)) {
 			if ((event.getClickedBlock().getState() instanceof Sign)) {
 				final Sign sign = (Sign) event.getClickedBlock().getState();

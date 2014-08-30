@@ -44,29 +44,29 @@ import org.java_websocket.server.WebSocketServer;
 
 public class CoreSocketServer extends WebSocketServer implements SocketServer {
 	
-	public CoreSocketServer(InetSocketAddress address) {
+	public CoreSocketServer(final InetSocketAddress address) {
 		super(address);
 	}
 	
 	@Override
-	public void onOpen(WebSocket conn, ClientHandshake handshake) {
+	public void onOpen(final WebSocket conn, final ClientHandshake handshake) {
 		Core.getCore().getSocketHandler().openSession(conn.getRemoteSocketAddress());
 		Core.getCore().getInstance().info("[Server] Got connection from " + conn.getRemoteSocketAddress().toString());
 	}
 	
 	@Override
-	public void onClose(WebSocket conn, int code, String reason, boolean remote) {
+	public void onClose(final WebSocket conn, final int code, final String reason, final boolean remote) {
 		Core.getCore().getSocketHandler().closeSession(conn.getRemoteSocketAddress());
 		Core.getCore().getInstance().info("[Server] Closed " + conn.getRemoteSocketAddress().toString());
 	}
 	
 	@Override
-	public void onMessage(WebSocket conn, String message) {
+	public void onMessage(final WebSocket conn, final String message) {
 		Core.getCore().getPacketHandler().handleIncome(message, conn);
 	}
 	
 	@Override
-	public void onError(WebSocket conn, Exception ex) {
+	public void onError(final WebSocket conn, final Exception ex) {
 		if (conn != null) {
 			Core.getCore().getInstance().info("[Server] Error with connection " + conn.getRemoteSocketAddress().toString() + ": " + ex.getMessage());
 		} else {

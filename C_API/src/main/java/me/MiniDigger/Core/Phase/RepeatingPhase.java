@@ -33,7 +33,6 @@
 
 package me.MiniDigger.Core.Phase;
 
-
-public interface RepeatingPhase extends Phase{
+public interface RepeatingPhase extends Phase {
 	
 }

@@ -35,7 +35,6 @@ package me.MiniDigger.CraftCore.Achievement;
 
 import me.MiniDigger.Core.Achievement.Achievment;
 
-
 public class CoreAchievement implements Achievment {
 	
 }

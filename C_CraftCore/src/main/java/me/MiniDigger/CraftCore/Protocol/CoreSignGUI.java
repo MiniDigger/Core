@@ -33,20 +33,19 @@
 
 package me.MiniDigger.CraftCore.Protocol;
 
-import me.MiniDigger.Core.Protocol.SignGUI;
-import me.MiniDigger.CraftCore.CoreMain;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import me.MiniDigger.Core.Protocol.SignGUI;
+import me.MiniDigger.CraftCore.CoreMain;
+
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
@@ -65,53 +64,56 @@ public class CoreSignGUI implements SignGUI, Listener {
 	protected Map<String, Vector>	       signLocations;
 	protected CoreMain	                   plugin;
 	
-	public CoreSignGUI(Plugin plugin) {
+	public CoreSignGUI(final Plugin plugin) {
 		init();
 	}
 	
 	@Override
-	public void open(Player player, String[] defaultText, SignGUIListener response) {
-		List<PacketContainer> packets = new ArrayList<PacketContainer>();
+	public void open(final Player player, final String[] defaultText, final SignGUIListener response) {
+		final List<PacketContainer> packets = new ArrayList<PacketContainer>();
 		
-		int x = 0, y = 0, z = 0;
+		int x = 0;
+		final int y = 0;
+		int z = 0;
 		if (defaultText != null) {
 			x = player.getLocation().getBlockX();
 			z = player.getLocation().getBlockZ();
 			
-			PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
+			final PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
 			packet53.getIntegers().write(0, x).write(1, y).write(2, z);
 			packet53.getBlocks().write(0, org.bukkit.Material.SIGN_POST);
 			packets.add(packet53);
 			
-			PacketContainer packet130 = protocolManager.createPacket(PacketType.Play.Server.UPDATE_SIGN);
+			final PacketContainer packet130 = protocolManager.createPacket(PacketType.Play.Server.UPDATE_SIGN);
 			packet130.getIntegers().write(0, x).write(1, y).write(2, z);
 			packet130.getStringArrays().write(0, defaultText);
 			packets.add(packet130);
 		}
 		
-		PacketContainer packet133 = protocolManager.createPacket(PacketType.Play.Server.OPEN_SIGN_ENTITY);
+		final PacketContainer packet133 = protocolManager.createPacket(PacketType.Play.Server.OPEN_SIGN_ENTITY);
 		packet133.getIntegers().write(0, x).write(2, z);
 		packets.add(packet133);
 		
 		if (defaultText != null) {
-			PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
+			final PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
 			packet53.getIntegers().write(0, x).write(1, 0).write(2, z);
 			packet53.getBlocks().write(0, org.bukkit.Material.BEDROCK);
 			packets.add(packet53);
 		}
 		
 		try {
-			for (PacketContainer packet : packets) {
+			for (final PacketContainer packet : packets) {
 				protocolManager.sendServerPacket(player, packet);
 			}
 			signLocations.put(player.getName(), new Vector(x, y, z));
 			listeners.put(player.getName(), response);
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
+	@Override
 	public void destroy() {
 		protocolManager.removePacketListener(packetListener);
 		listeners.clear();
@@ -129,15 +131,23 @@ public class CoreSignGUI implements SignGUI, Listener {
 		ProtocolLibrary.getProtocolManager().addPacketListener(packetListener = new PacketAdapter(plugin, PacketType.Play.Client.UPDATE_SIGN) {
 			
 			@Override
-			public void onPacketReceiving(PacketEvent event) {
+			public void onPacketReceiving(final PacketEvent event) {
 				final Player player = event.getPlayer();
 				
-				Vector v = signLocations.remove(player.getName());
-				if (v == null) return;
-				List<Integer> list = event.getPacket().getIntegers().getValues();
-				if (list.get(0) != v.getBlockX()) return;
-				if (list.get(1) != v.getBlockY()) return;
-				if (list.get(2) != v.getBlockZ()) return;
+				final Vector v = signLocations.remove(player.getName());
+				if (v == null) {
+					return;
+				}
+				final List<Integer> list = event.getPacket().getIntegers().getValues();
+				if (list.get(0) != v.getBlockX()) {
+					return;
+				}
+				if (list.get(1) != v.getBlockY()) {
+					return;
+				}
+				if (list.get(2) != v.getBlockZ()) {
+					return;
+				}
 				
 				final String[] lines = event.getPacket().getStringArrays().getValues().get(0);
 				final SignGUIListener response = listeners.remove(event.getPlayer().getName());
@@ -145,6 +155,7 @@ public class CoreSignGUI implements SignGUI, Listener {
 					event.setCancelled(true);
 					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 						
+						@Override
 						public void run() {
 							response.onSignDone(player, lines);
 						}
@@ -155,18 +166,18 @@ public class CoreSignGUI implements SignGUI, Listener {
 	}
 	
 	@Override
-	public void open(Player player, SignGUIListener response) {
+	public void open(final Player player, final SignGUIListener response) {
 		open(player, null, response);
 	}
 	
 	@Override
-	public void cleanupPlayer(Player player) {
+	public void cleanupPlayer(final Player player) {
 		listeners.remove(player.getUniqueId());
 		signLocations.remove(player.getUniqueId());
 	}
 	
 	@Override
-	public void onQuit(PlayerQuitEvent event) {
+	public void onQuit(final PlayerQuitEvent event) {
 		cleanupPlayer(event.getPlayer());
 	}
 	

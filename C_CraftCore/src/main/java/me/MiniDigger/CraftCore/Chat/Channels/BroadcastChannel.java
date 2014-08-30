@@ -1,29 +1,29 @@
 package me.MiniDigger.CraftCore.Chat.Channels;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
 import mkremins.fanciful.FancyMessage;
 
+import org.bukkit.ChatColor;
+
 public class BroadcastChannel extends CoreChatChannel {
 	
-	public BroadcastChannel(String name, ChatColor color, String hearPerm, String speakPerm, FancyMessage prefix) {
+	public BroadcastChannel(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
 		init(name, color, hearPerm, speakPerm, prefix);
 	}
 	
 	@Override
-	public void join(User chatUser) {
+	public void join(final User chatUser) {
 		
 	}
 	
 	@Override
-	public void leave(User chatUser) {
+	public void leave(final User chatUser) {
 		
 	}
 	
 	@Override
-	public void chat(User chatUser, String message) {
+	public void chat(final User chatUser, final String message) {
 		broadcast(getPrefix().then(message).color(color));
 	}
 }

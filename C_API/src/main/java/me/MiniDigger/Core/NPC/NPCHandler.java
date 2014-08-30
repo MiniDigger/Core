@@ -56,5 +56,5 @@ public interface NPCHandler {
 	 * @param loc
 	 *            His location
 	 */
-	public void spawn(Location loc);
+	public void spawn(final Location loc);
 }

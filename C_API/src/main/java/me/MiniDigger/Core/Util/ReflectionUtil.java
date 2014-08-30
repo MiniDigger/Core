@@ -42,12 +42,12 @@ import org.bukkit.entity.Entity;
 public interface ReflectionUtil {
 	
 	/**
-	 * Returns a NMS class 
+	 * Returns a NMS class
 	 * 
 	 * @param ClassName
 	 * @return
 	 */
-	public Class<?> getCraftClass(String ClassName);
+	public Class<?> getCraftClass(final String ClassName);
 	
 	/**
 	 * Returns the CraftEntity
@@ -55,7 +55,7 @@ public interface ReflectionUtil {
 	 * @param entity
 	 * @return
 	 */
-	public Object getHandle(Entity entity);
+	public Object getHandle(final Entity entity);
 	
 	/**
 	 * Returns the CraftWorld
@@ -63,7 +63,7 @@ public interface ReflectionUtil {
 	 * @param world
 	 * @return
 	 */
-	public Object getHandle(World world);
+	public Object getHandle(final World world);
 	
 	/**
 	 * Gets a field in a class
@@ -72,7 +72,7 @@ public interface ReflectionUtil {
 	 * @param field_name
 	 * @return
 	 */
-	public Field getField(Class<?> cl, String field_name);
+	public Field getField(final Class<?> cl, final String field_name);
 	
 	/**
 	 * Gets a method in a class
@@ -82,7 +82,7 @@ public interface ReflectionUtil {
 	 * @param args
 	 * @return
 	 */
-	public Method getMethod(Class<?> cl, String method, Class<?>... args);
+	public Method getMethod(final Class<?> cl, final String method, final Class<?>... args);
 	
 	/**
 	 * Gets a method in a class
@@ -91,7 +91,7 @@ public interface ReflectionUtil {
 	 * @param method
 	 * @return
 	 */
-	public Method getMethod(Class<?> cl, String method);
+	public Method getMethod(final Class<?> cl, final String method);
 	
 	/**
 	 * Checks if both lists a equal
@@ -100,5 +100,5 @@ public interface ReflectionUtil {
 	 * @param l2
 	 * @return
 	 */
-	public boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2);
+	public boolean ClassListEqual(final Class<?>[] l1, final Class<?>[] l2);
 }

@@ -41,5 +41,5 @@ public interface CancelableEvent extends Event, Cancellable {
 	public boolean isCancelled();
 	
 	@Override
-	public void setCancelled(boolean cancel);
+	public void setCancelled(final boolean cancel);
 }

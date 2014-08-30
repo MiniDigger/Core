@@ -49,9 +49,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
-import org.bukkit.World.Environment;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
@@ -59,11 +59,12 @@ import org.bukkit.entity.LivingEntity;
 
 public class CoreWorldHandler implements WorldHandler {
 	
-	public void unloadWorld(String world, Location fallBackLoc) {
-		World w = Bukkit.getWorld(world);
+	@Override
+	public void unloadWorld(final String world, final Location fallBackLoc) {
+		final World w = Bukkit.getWorld(world);
 		w.save();
 		
-		for (LivingEntity e : w.getLivingEntities()) {
+		for (final LivingEntity e : w.getLivingEntities()) {
 			if (e.getType() == EntityType.PLAYER) {
 				e.teleport(fallBackLoc);
 			} else {
@@ -71,7 +72,7 @@ public class CoreWorldHandler implements WorldHandler {
 			}
 		}
 		
-		for (Chunk c : w.getLoadedChunks()) {
+		for (final Chunk c : w.getLoadedChunks()) {
 			c.unload();
 			w.unloadChunk(c);
 		}
@@ -79,48 +80,50 @@ public class CoreWorldHandler implements WorldHandler {
 		Bukkit.unloadWorld(w, true);
 	}
 	
-	public World loadWorld(String name) {
-		WorldCreator wc = WorldCreator.name(name);
+	@Override
+	public World loadWorld(final String name) {
+		final WorldCreator wc = WorldCreator.name(name);
 		wc.environment(Environment.NORMAL);
 		wc.generateStructures(false);
 		wc.type(WorldType.FLAT);
 		wc.generator(new CoreCleanroomChunkGenerator("."));
 		
-		File session = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), name + "/session.lock");
+		final File session = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), name + "/session.lock");
 		session.delete();
 		try {
 			session.createNewFile();
-			DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(session));
+			final DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(session));
 			
 			try {
 				dataoutputstream.writeLong(System.currentTimeMillis());
 			} finally {
 				dataoutputstream.close();
 			}
-		} catch (IOException ioexception) {
+		} catch (final IOException ioexception) {
 			Core.getCore().getInstance().error("ERROR: " + ioexception.getMessage());
 		}
 		
-		World w = new CoreWorldLoader().loadWorld(wc);
+		final World w = new CoreWorldLoader().loadWorld(wc);
 		w.setAutoSave(false);
 		
 		Core.getCore().getInstance().info("Loading Chunks");
 		try {
-			MapData data = Core.getCore().getMapHandler().getMap(name);
-			int i = data.loadChunks();
+			final MapData data = Core.getCore().getMapHandler().getMap(name);
+			final int i = data.loadChunks();
 			Core.getCore().getInstance().info(i + " chunks loaded!");
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			Core.getCore().getInstance().info("Error while loading chunks: " + ex.getMessage());
 		}
 		
 		return w;
 	}
 	
-	public void copyWorld(String name) {
-		File mapFolder = new File(((CoreMain) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
+	@Override
+	public void copyWorld(final String name) {
+		final File mapFolder = new File(((CoreMain) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		File map = new File(mapFolder, name + ".zip");
-		File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
-		File oldMap = new File(out, name);
+		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
+		final File oldMap = new File(out, name);
 		
 		if (oldMap.exists() && oldMap.isDirectory()) {
 			Core.getCore().getInstance().info("old map found, deleting...");
@@ -132,26 +135,26 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		Core.getCore().getDeZipUtil().extract(new File(map.getAbsolutePath()), out);
 		
-		File session = new File(oldMap, "session.lock");
+		final File session = new File(oldMap, "session.lock");
 		session.delete();
 		try {
 			session.createNewFile();
-			DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(session));
+			final DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(session));
 			
 			try {
 				dataoutputstream.writeLong(System.currentTimeMillis());
 			} finally {
 				dataoutputstream.close();
 			}
-		} catch (IOException ioexception) {
+		} catch (final IOException ioexception) {
 			Core.getCore().getInstance().info("ERROR: " + ioexception.getMessage());
 		}
 		
 		map = new File(Bukkit.getWorldContainer(), name);
-		File mapDataFile = new File(map, "map.yml");
-		FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
+		final File mapDataFile = new File(map, "map.yml");
+		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
 		
-		MapData data = new CoreMapData(con);
+		final MapData data = new CoreMapData(con);
 		Core.getCore().getMapHandler().addMap(data);
 	}
 }

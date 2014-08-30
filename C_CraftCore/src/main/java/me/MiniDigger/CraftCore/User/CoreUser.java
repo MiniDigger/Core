@@ -40,9 +40,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.SQL.SQLQuery;
@@ -51,6 +48,9 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 import mkremins.fanciful.FancyMessage;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class CoreUser implements User {
 	
@@ -75,8 +75,8 @@ public class CoreUser implements User {
 	// PRIVATE
 	protected Date	            sessionStart;
 	
-	public CoreUser(UUID id) {
-		this.uuid = id;
+	public CoreUser(final UUID id) {
+		uuid = id;
 		if (Bukkit.getPlayer(id) != null) {
 			displayName = Bukkit.getPlayer(id).getDisplayName();
 		} else {
@@ -88,9 +88,9 @@ public class CoreUser implements User {
 	public boolean save() {
 		// Try insertion
 		try {
-			SQLQuery query = new CoreSQLQuery(
+			final SQLQuery query = new CoreSQLQuery(
 			        "INSERT INTO `users`(`uuid`, `displayName`, `prefix`, `suffix`, `banned`, `banTime`, `muted`, `muteTime`,`firstSeen`,`lastSeen`,`playTime`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-			PreparedStatement stmt = query.getStatement();
+			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, uuid.toString());
 			stmt.setString(2, displayName);
 			stmt.setString(3, prefix);
@@ -105,12 +105,12 @@ public class CoreUser implements User {
 			
 			stmt.execute();
 			query.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			// Try update
 			try {
-				SQLQuery query = new CoreSQLQuery(
+				final SQLQuery query = new CoreSQLQuery(
 				        "UPDATE `users` SET `uuid`=?,`displayName`=?,`prefix`=?,`suffix`=?,`banned`=?,`banTime`=?,`muted`=?,`muteTime`=?,`firstSeen`=?,`lastSeen`=?,`playTime`=? WHERE `uuid` LIKE ?");
-				PreparedStatement stmt = query.getStatement();
+				final PreparedStatement stmt = query.getStatement();
 				stmt.setString(1, uuid.toString());
 				stmt.setString(2, displayName);
 				stmt.setString(3, prefix);
@@ -127,7 +127,7 @@ public class CoreUser implements User {
 				
 				stmt.execute();
 				query.kill();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				return false;
 			}
 		}
@@ -137,11 +137,11 @@ public class CoreUser implements User {
 	@Override
 	public boolean load() {
 		try {
-			SQLQuery query = new CoreSQLQuery("SELECT * FROM `users` WHERE `uuid` LIKE ?");
-			PreparedStatement stmt = query.getStatement();
+			final SQLQuery query = new CoreSQLQuery("SELECT * FROM `users` WHERE `uuid` LIKE ?");
+			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, uuid.toString());
 			
-			ResultSet r = stmt.executeQuery();
+			final ResultSet r = stmt.executeQuery();
 			if (r == null) {
 				throw new NullPointerException("ResultSet returned by query can not be null!");
 			}
@@ -158,7 +158,7 @@ public class CoreUser implements User {
 			lastSeen = new Date(r.getLong("lastSeen"));
 			playTime = r.getLong("playTime");
 			query.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			return false;
 		}
 		return true;
@@ -166,13 +166,13 @@ public class CoreUser implements User {
 	
 	@Override
 	public boolean createTable() {
-		SQLQuery q = new CoreSQLQuery(
+		final SQLQuery q = new CoreSQLQuery(
 		        "CREATE TABLE IF NOT EXISTS `users` (`uuid` varchar(40) NOT NULL,`displayName` varchar(25) NOT NULL,`prefix` varchar(25) NOT NULL,`suffix` varchar(25) NOT NULL, `banned` tinyint(1) NOT NULL DEFAULT '0', `banTime` bigint(20) NOT NULL, `muted` tinyint(1) NOT NULL DEFAULT '0', `muteTime` bigint(20) NOT NULL,`firstSeen` bigint(20) NOT NULL,`lastSeen` bigint(20) NOT NULL,`playTime` bigint(20) NOT NULL, PRIMARY KEY (`uuid`), UNIQUE KEY `uuid` (`uuid`))");
 		try {
 			q.getStatement().execute();
 			q.kill();
 			return true;
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			return false;
 		}
 	}
@@ -198,7 +198,7 @@ public class CoreUser implements User {
 	
 	@Override
 	public void stopSession() {
-		Date d = new Date();
+		final Date d = new Date();
 		long l = sessionStart.getTime();
 		sessionStart = new Date();
 		l = d.getTime() - l;
@@ -229,7 +229,7 @@ public class CoreUser implements User {
 			return false;
 		}
 		
-		Date nowTime = new Date();
+		final Date nowTime = new Date();
 		if (banTime.getTime() <= nowTime.getTime()) {
 			return true;
 		} else {
@@ -246,7 +246,7 @@ public class CoreUser implements User {
 			return false;
 		}
 		
-		Date nowTime = new Date();
+		final Date nowTime = new Date();
 		if (muteTime.getTime() <= nowTime.getTime()) {
 			return true;
 		} else {
@@ -267,7 +267,7 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void sendMessage(FancyMessage msg) {
+	public void sendMessage(final FancyMessage msg) {
 		if (!uuid.equals(CoreBot.getBotUUID())) {
 			msg.send(Bukkit.getPlayer(uuid));
 		}
@@ -279,7 +279,7 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public boolean hasPermission(String perm) {
+	public boolean hasPermission(final String perm) {
 		return getPlayer().hasPermission(perm);
 	}
 	
@@ -299,8 +299,8 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void setDisplayName(String name) {
-		this.displayName = name;
+	public void setDisplayName(final String name) {
+		displayName = name;
 	}
 	
 	@Override
@@ -309,7 +309,7 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void setPrefix(String prefix) {
+	public void setPrefix(final String prefix) {
 		this.prefix = prefix;
 	}
 	
@@ -319,7 +319,7 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void setSuffix(String suffix) {
+	public void setSuffix(final String suffix) {
 		this.suffix = suffix;
 	}
 	
@@ -374,7 +374,7 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void joinChannel(ChatChannel ch) {
+	public void joinChannel(final ChatChannel ch) {
 		speakChannel = ch;
 		if (!listenChannels.contains(ch)) {
 			listenChannels.add(ch);
@@ -383,13 +383,13 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void leaveChannel(ChatChannel ch) {
+	public void leaveChannel(final ChatChannel ch) {
 		ch.leave(this);
 		if (ch.getName().equals(speakChannel.getName())) {
 			speakChannel = new EmptyChannel();
 		}
 		
-		for (ChatChannel cc : listenChannels) {
+		for (final ChatChannel cc : listenChannels) {
 			if (cc.getName().equals(ch.getName())) {
 				listenChannels.remove(cc);
 				break;
@@ -398,7 +398,7 @@ public class CoreUser implements User {
 	}
 	
 	@Override
-	public void setPrimaryChannel(ChatChannel ch) {
+	public void setPrimaryChannel(final ChatChannel ch) {
 		speakChannel = ch;
 		if (!listenChannels.contains(ch)) {
 			listenChannels.add(ch);

@@ -53,7 +53,7 @@ public interface Game {
 	 *            The user
 	 * @return A error, that may occour
 	 */
-	public Error join(User user);
+	public Error join(final User user);
 	
 	/**
 	 * Let the user leave the game
@@ -62,7 +62,7 @@ public interface Game {
 	 *            The user
 	 * @return A error, that may occour
 	 */
-	public Error leave(User user);
+	public Error leave(final User user);
 	
 	/**
 	 * Start the game
@@ -85,7 +85,7 @@ public interface Game {
 	 * @param msg
 	 *            The message, to be send
 	 */
-	public void broadCastMessage(FancyMessage msg);
+	public void broadCastMessage(final FancyMessage msg);
 	
 	/**
 	 * Sends a sound to all players. The sound will be played at the location of
@@ -98,7 +98,7 @@ public interface Game {
 	 * @param pitch
 	 *            The pitch of the sound
 	 */
-	public void broadCastSound(Sound sound, float volume, float pitch);
+	public void broadCastSound(final Sound sound, final float volume, final float pitch);
 	
 	/**
 	 * Sends a sound to all players. THe sound will be played at the given
@@ -113,7 +113,7 @@ public interface Game {
 	 * @param loc
 	 *            The location, the sound should be played at
 	 */
-	public void broadCastSoundAtLocation(Sound sound, float volume, float pitch, Location loc);
+	public void broadCastSoundAtLocation(final Sound sound, final float volume, final float pitch, final Location loc);
 	
 	/**
 	 * 
@@ -137,7 +137,7 @@ public interface Game {
 	 * @param nextPhase
 	 *            The nextPhase
 	 */
-	public void setPhase(Phase nextPhase);
+	public void setPhase(final Phase nextPhase);
 	
 	/**
 	 * @return The type of the game
@@ -161,7 +161,7 @@ public interface Game {
 	 *            The key
 	 * @return The data stored unter this key. May be NULL
 	 */
-	public String getGameData(String key);
+	public String getGameData(final String key);
 	
 	/**
 	 * Stores some data unter a key
@@ -171,7 +171,7 @@ public interface Game {
 	 * @param data
 	 *            The data to be stored
 	 */
-	public void setGameData(String key, String data);
+	public void setGameData(final String key, final String data);
 	
 	/**
 	 * Finishs the game
@@ -179,5 +179,5 @@ public interface Game {
 	 * @param winner
 	 *            A list with all winners
 	 */
-	public void end(User... winner);
+	public void end(final User... winner);
 }

@@ -45,7 +45,7 @@ public class CoreSession implements Session {
 	private Client	          client;
 	private boolean	          identified	= false;
 	
-	public CoreSession(InetSocketAddress address) {
+	public CoreSession(final InetSocketAddress address) {
 		this.address = address;
 	}
 	
@@ -65,22 +65,22 @@ public class CoreSession implements Session {
 	}
 	
 	@Override
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
 	@Override
-	public void setAddress(InetSocketAddress address) {
+	public void setAddress(final InetSocketAddress address) {
 		this.address = address;
 	}
 	
 	@Override
-	public void setClient(Client client) {
+	public void setClient(final Client client) {
 		this.client = client;
 	}
 	
 	@Override
-	public void setIdentified(boolean identified) {
+	public void setIdentified(final boolean identified) {
 		this.identified = identified;
 	}
 	

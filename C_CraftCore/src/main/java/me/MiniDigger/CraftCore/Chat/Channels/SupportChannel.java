@@ -1,13 +1,13 @@
 package me.MiniDigger.CraftCore.Chat.Channels;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
 import mkremins.fanciful.FancyMessage;
 
+import org.bukkit.ChatColor;
+
 public class SupportChannel extends CoreChatChannel {
 	
-	public SupportChannel(String name, ChatColor color, String hearPerm, String speakPerm, FancyMessage prefix) {
+	public SupportChannel(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
 		init(name, color, hearPerm, speakPerm, prefix);
 	}
 	

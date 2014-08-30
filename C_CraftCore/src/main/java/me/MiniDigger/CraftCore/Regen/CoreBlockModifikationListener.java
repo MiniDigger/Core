@@ -35,7 +35,6 @@ package me.MiniDigger.CraftCore.Regen;
 
 import me.MiniDigger.Core.Regen.BlockModifikationListener;
 
-
-public class CoreBlockModifikationListener implements BlockModifikationListener{
-	//TODO Finish Regen Listener
+public class CoreBlockModifikationListener implements BlockModifikationListener {
+	// TODO Finish Regen Listener
 }

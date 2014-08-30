@@ -38,7 +38,7 @@ public enum ErrorLevel {
 	
 	private String	verb;
 	
-	private ErrorLevel(String verb) {
+	private ErrorLevel(final String verb) {
 		this.verb = verb;
 	}
 	

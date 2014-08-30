@@ -49,7 +49,7 @@ public interface CleanroomChunkGenerator {
 	 * @param id
 	 *            The id to parse
 	 */
-	public void parse(String id);
+	public void parse(final String id);
 	
 	/**
 	 * Shapes the chunk for the given coordinates.
@@ -67,7 +67,7 @@ public interface CleanroomChunkGenerator {
 	 * @return short[][] containing the types for each block created by this
 	 *         generator
 	 */
-	public short[][] generateExtBlockSections(World world, Random random, int x, int z, ChunkGenerator.BiomeGrid biomes);
+	public short[][] generateExtBlockSections(final World world, final Random random, final int x, final int z, final ChunkGenerator.BiomeGrid biomes);
 	
 	/**
 	 * Gets a list of default BlockPopulators to apply to a given world.
@@ -77,7 +77,7 @@ public interface CleanroomChunkGenerator {
 	 * 
 	 * @return List containing any amount of BlockPopulators
 	 */
-	public List<BlockPopulator> getDefaultPopulators(World world);
+	public List<BlockPopulator> getDefaultPopulators(final World world);
 	
 	/**
 	 * Gets a fixed spawn location to use for a given world.<br>
@@ -92,5 +92,5 @@ public interface CleanroomChunkGenerator {
 	 * 
 	 * @return Location containing a new spawn point, otherwise null
 	 */
-	public Location getFixedSpawnLocation(World world, Random random);
+	public Location getFixedSpawnLocation(final World world, final Random random);
 }

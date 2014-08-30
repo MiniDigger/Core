@@ -45,5 +45,5 @@ public interface WorldLoader {
 	 *            Essential infos for creation
 	 * @return The loaded world
 	 */
-	public World loadWorld(WorldCreator creator);
+	public World loadWorld(final WorldCreator creator);
 }

@@ -35,7 +35,6 @@ package me.MiniDigger.CraftCore.Class;
 
 import me.MiniDigger.Core.Class.ClassHandler;
 
-
 public class CoreClassHandler implements ClassHandler {
 	
 }

@@ -43,7 +43,7 @@ public interface DeZipUtil {
 	 * @param zipFilePath
 	 * @param outputDirectory
 	 */
-	public void UnzipToDirectory(String zipFilePath, String outputDirectory);
+	public void UnzipToDirectory(final String zipFilePath, final String outputDirectory);
 	
 	/**
 	 * Dezips a zip into a directory
@@ -51,5 +51,5 @@ public interface DeZipUtil {
 	 * @param zipfile
 	 * @param outdir
 	 */
-	public void extract(File zipfile, File outdir);
+	public void extract(final File zipfile, final File outdir);
 }

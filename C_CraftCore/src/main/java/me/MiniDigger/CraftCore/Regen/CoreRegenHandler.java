@@ -41,17 +41,17 @@ import me.MiniDigger.Core.Regen.RegenHandler;
 
 public class CoreRegenHandler implements RegenHandler {
 	
-	private List<Regen>	worlds	= new ArrayList<>();
+	private final List<Regen>	worlds	= new ArrayList<>();
 	
 	@Override
-	public void startLooking(Regen w) {
+	public void startLooking(final Regen w) {
 		if (!worlds.contains(w)) {
 			worlds.add(w);
 		}
 	}
 	
 	@Override
-	public void stopLooking(Regen w) {
+	public void stopLooking(final Regen w) {
 		while (worlds.contains(w)) {
 			worlds.remove(w);
 		}
@@ -59,14 +59,14 @@ public class CoreRegenHandler implements RegenHandler {
 	
 	@Override
 	public void resetAll() {
-		for (Regen w : worlds) {
+		for (final Regen w : worlds) {
 			w.reset(false, 0);
 		}
 	}
 	
 	@Override
-	public Regen get(String name) {
-		for (Regen w : worlds) {
+	public Regen get(final String name) {
+		for (final Regen w : worlds) {
 			if (w.getName().equalsIgnoreCase(name)) {
 				return w;
 			}

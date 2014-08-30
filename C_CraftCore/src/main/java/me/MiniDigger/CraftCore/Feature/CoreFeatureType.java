@@ -35,13 +35,12 @@ package me.MiniDigger.CraftCore.Feature;
 
 import me.MiniDigger.Core.Feature.FeatureType;
 
-
-public class CoreFeatureType implements FeatureType{
-
+public class CoreFeatureType implements FeatureType {
+	
 	@Override
-    public String getName() {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

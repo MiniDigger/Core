@@ -38,36 +38,40 @@ import java.util.List;
 
 import me.MiniDigger.Core.Util.StringUtil;
 
-public class CoreStringUtil implements StringUtil{
+public class CoreStringUtil implements StringUtil {
 	
-	public String replaceLast(String text, String regex, String replacement) {
+	@Override
+	public String replaceLast(final String text, final String regex, final String replacement) {
 		return text.replaceFirst("(?s)(.*)" + regex, "$1" + replacement);
 	}
 	
-	public String listToString(List<String> list) {
+	@Override
+	public String listToString(final List<String> list) {
 		String result = "";
-		for (String s : list) {
+		for (final String s : list) {
 			result += s + ",";
 		}
 		replaceLast(result, ",", "");
 		return result;
 	}
 	
-	public List<String> stringToList(String string) {
-		String[] s = string.split(",");
-		List<String> list = new ArrayList<>();
+	@Override
+	public List<String> stringToList(final String string) {
+		final String[] s = string.split(",");
+		final List<String> list = new ArrayList<>();
 		
-		for (String ss : s) {
+		for (final String ss : s) {
 			list.add(ss);
 		}
 		
 		return list;
 	}
 	
-	public String toString(String[] args) {
+	@Override
+	public String toString(final String[] args) {
 		String ss = "";
 		
-		for (String s : args) {
+		for (final String s : args) {
 			ss += " " + s;
 		}
 		
@@ -75,8 +79,9 @@ public class CoreStringUtil implements StringUtil{
 		return ss;
 	}
 	
-	public boolean contains(Object[] s, Object ss) {
-		for (Object sss : s) {
+	@Override
+	public boolean contains(final Object[] s, final Object ss) {
+		for (final Object sss : s) {
 			if (sss.equals(ss)) {
 				return true;
 			}

@@ -42,7 +42,7 @@ import mkremins.fanciful.FancyMessage;
 
 public class CoreBot extends CoreUser implements Bot {
 	
-	public CoreBot(UUID id) {
+	public CoreBot(final UUID id) {
 		super(id);
 		uuid = CoreBot.getBotUUID();
 		prefix = "";
@@ -63,7 +63,7 @@ public class CoreBot extends CoreUser implements Bot {
 	}
 	
 	@Override
-	public void sendMessage(FancyMessage msg) {
+	public void sendMessage(final FancyMessage msg) {
 		
 	}
 	

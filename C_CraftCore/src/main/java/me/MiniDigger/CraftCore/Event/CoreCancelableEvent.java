@@ -19,16 +19,15 @@ import me.MiniDigger.Core.Event.CancelableEvent;
 
 public class CoreCancelableEvent extends CoreEvent implements CancelableEvent {
 	
-	private boolean cancel;
+	private boolean	cancel;
 	
 	@Override
 	public boolean isCancelled() {
-	return cancel;
+		return cancel;
 	}
 	
-
 	@Override
-	public void setCancelled(boolean cancel) {
+	public void setCancelled(final boolean cancel) {
 		this.cancel = cancel;
 	}
 	

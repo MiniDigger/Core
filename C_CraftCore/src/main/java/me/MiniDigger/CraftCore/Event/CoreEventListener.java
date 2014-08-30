@@ -26,29 +26,31 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class CoreEventListener implements EventListener {
 	
+	@Override
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent e) {
-		User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+	public void onPlayerJoin(final PlayerJoinEvent e) {
+		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (Core.getCore().getGameHandler().getMainGame() != null && Core.getCore().getGameHandler().getMainGame().getType() != GameType.NOTHING) {
 			if (!Core.getCore().getGameHandler().isMainGameStarted()) {
 				Core.getCore().getGameHandler().setMainGameStarted(true);
 				Core.getCore().getGameHandler().getMainGame().init();
 				Core.getCore().getGameHandler().getMainGame().start();
 			}
-			CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(Core.getCore().getGameHandler().getMainGame(), user);
+			final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(Core.getCore().getGameHandler().getMainGame(), user);
 			Bukkit.getPluginManager().callEvent(event);
 			Core.getCore().getGameHandler().getMainGame().join(user);
 		}
 		e.setJoinMessage(null);
 	}
 	
+	@Override
 	@EventHandler
-	public void onPlayerQuit(PlayerQuitEvent e) {
-		User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-		List<Game> games = Core.getCore().getGameHandler().getGames(user);
+	public void onPlayerQuit(final PlayerQuitEvent e) {
+		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+		final List<Game> games = Core.getCore().getGameHandler().getGames(user);
 		if (games != null && games.size() != 0) {
-			for (Game game : games) {
-				CoreUserLeaveGameEvent event = new CoreUserLeaveGameEvent(game, user);
+			for (final Game game : games) {
+				final CoreUserLeaveGameEvent event = new CoreUserLeaveGameEvent(game, user);
 				Bukkit.getPluginManager().callEvent(event);
 				game.leave(user);
 			}
@@ -56,20 +58,21 @@ public class CoreEventListener implements EventListener {
 		
 	}
 	
-	private HashMap<UUID, UUID>	lastDamaged	= new HashMap<>();
+	private final HashMap<UUID, UUID>	lastDamaged	= new HashMap<>();
 	
+	@Override
 	@EventHandler
-	public void onPlayerDamage(EntityDamageEvent e) {
+	public void onPlayerDamage(final EntityDamageEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
-			User user = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
+			final User user = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
 			
 			User damager = null;
 			if (lastDamaged.containsKey(user.getUUID())) {
 				damager = Core.getCore().getUserHandler().get(lastDamaged.get(user.getUUID()));
 			}
 			
-			for (Game game : Core.getCore().getGameHandler().getGames(user)) {
-				CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game);
+			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
+				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game);
 				Bukkit.getPluginManager().callEvent(event);
 				e.setCancelled(event.isCancelled());
 				if (!event.isCancelled()) {
@@ -83,10 +86,11 @@ public class CoreEventListener implements EventListener {
 		}
 	}
 	
+	@Override
 	@EventHandler
-	public void onPlayerDamageByPlayer(EntityDamageByEntityEvent e) {
+	public void onPlayerDamageByPlayer(final EntityDamageByEntityEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
-			User user = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
+			final User user = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
 			
 			User damager = null;
 			if (e.getDamager().getType() == EntityType.PLAYER) {
@@ -95,8 +99,8 @@ public class CoreEventListener implements EventListener {
 				damager = Core.getCore().getUserHandler().get(lastDamaged.get(user.getUUID()));
 			}
 			
-			for (Game game : Core.getCore().getGameHandler().getGames(user)) {
-				CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game);
+			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
+				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game);
 				Bukkit.getPluginManager().callEvent(event);
 				e.setCancelled(event.isCancelled());
 				if (!event.isCancelled()) {
@@ -110,8 +114,9 @@ public class CoreEventListener implements EventListener {
 		}
 	}
 	
+	@Override
 	@EventHandler
-	public void onPlayerDeath(PlayerDeathEvent e) {
+	public void onPlayerDeath(final PlayerDeathEvent e) {
 		// resets
 		e.setDeathMessage(null);
 		e.setDroppedExp(0);
@@ -120,7 +125,7 @@ public class CoreEventListener implements EventListener {
 		e.setNewLevel(0);
 		e.setNewTotalExp(0);
 		
-		User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
+		final User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
 		
 		User damager = null;
 		if (e.getEntity().getKiller() != null) {
@@ -129,8 +134,8 @@ public class CoreEventListener implements EventListener {
 			damager = Core.getCore().getUserHandler().get(lastDamaged.get(user.getUUID()));
 		}
 		
-		for (Game game : Core.getCore().getGameHandler().getGames(user)) {
-			CoreUserDeathEvent event = new CoreUserDeathEvent(user, damager, game, true, true);
+		for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
+			final CoreUserDeathEvent event = new CoreUserDeathEvent(user, damager, game, true, true);
 			Bukkit.getPluginManager().callEvent(event);
 			if (!event.keepDrops()) {
 				e.getDrops().clear();

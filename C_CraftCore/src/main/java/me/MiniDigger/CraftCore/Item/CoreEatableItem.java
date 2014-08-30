@@ -33,15 +33,16 @@
 
 package me.MiniDigger.CraftCore.Item;
 
+import me.MiniDigger.Core.Item.EatableItem;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
-import me.MiniDigger.Core.Item.EatableItem;
-
 public abstract class CoreEatableItem extends CoreItem implements EatableItem {
 	
+	@Override
 	@EventHandler
-	public void onPlayerItemConsume(PlayerItemConsumeEvent e) {
+	public void onPlayerItemConsume(final PlayerItemConsumeEvent e) {
 		if (e.getItem().equals(getItem())) {
 			onEat(e);
 		}

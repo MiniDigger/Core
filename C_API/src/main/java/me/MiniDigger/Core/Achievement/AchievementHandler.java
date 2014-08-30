@@ -33,7 +33,6 @@
 
 package me.MiniDigger.Core.Achievement;
 
-
 public interface AchievementHandler {
 	
 }

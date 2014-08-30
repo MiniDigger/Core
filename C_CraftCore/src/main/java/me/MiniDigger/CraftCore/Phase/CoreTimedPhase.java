@@ -35,14 +35,14 @@ package me.MiniDigger.CraftCore.Phase;
 
 import java.util.UUID;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Phase.TimedPhase;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
-
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Phase.TimedPhase;
 
 public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 	
@@ -56,7 +56,7 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 		super.startPhase();
 		
 		subbed = 100;
-		sub = (float) subbed / (float) secs;
+		sub = subbed / secs;
 		
 		timer = Bukkit.getScheduler().runTaskTimer((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
@@ -65,7 +65,7 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 			@Override
 			public void run() {
 				passed++;
-				int toGo = secs - passed;
+				final int toGo = secs - passed;
 				if (toGo <= 0) {
 					timer.cancel();
 					endPhase();
@@ -85,10 +85,10 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 	public void endPhase() {
 		try {
 			timer.cancel();
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
-		for (UUID u : getGame().getPlayers()) {
-			Player p = Bukkit.getPlayer(u);
+		for (final UUID u : getGame().getPlayers()) {
+			final Player p = Bukkit.getPlayer(u);
 			if (displayLevel()) {
 				p.setLevel(0);
 				p.setExp(0);
@@ -101,14 +101,15 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 		super.endPhase();
 	}
 	
-	public void tick(int secsPassed, int secsToGo) {
+	@Override
+	public void tick(final int secsPassed, final int secsToGo) {
 		subbed -= sub;
 		if (displayLevel() || displayBar()) {
 			
-			float percent = subbed;
+			final float percent = subbed;
 			
-			for (UUID u : getGame().getPlayers()) {
-				Player p = Bukkit.getPlayer(u);
+			for (final UUID u : getGame().getPlayers()) {
+				final Player p = Bukkit.getPlayer(u);
 				if (displayLevel()) {
 					p.setLevel(secsToGo);
 					p.setExp(percent / 100);
@@ -120,7 +121,8 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 		}
 	}
 	
-	public void tickLast5secs(int secsPassed, int secsToGo) {
+	@Override
+	public void tickLast5secs(final int secsPassed, final int secsToGo) {
 		getGame().broadCastSound(Sound.CLICK, 10, 1);
 	}
 	

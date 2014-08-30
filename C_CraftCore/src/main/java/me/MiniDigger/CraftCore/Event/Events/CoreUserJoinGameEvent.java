@@ -7,10 +7,10 @@ import me.MiniDigger.CraftCore.Event.CoreEvent;
 
 public class CoreUserJoinGameEvent extends CoreEvent implements UserJoinGameEvent {
 	
-	private Game	game;
-	private User	user;
+	private final Game	game;
+	private final User	user;
 	
-	public CoreUserJoinGameEvent(Game game, User user) {
+	public CoreUserJoinGameEvent(final Game game, final User user) {
 		this.game = game;
 		this.user = user;
 	}

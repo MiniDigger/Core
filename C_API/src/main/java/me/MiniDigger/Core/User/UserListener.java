@@ -42,8 +42,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public interface UserListener extends Listener {
 	
 	@EventHandler(priority = EventPriority.LOW)
-	public void onPlayerJoin(PlayerJoinEvent e);
+	public void onPlayerJoin(final PlayerJoinEvent e);
 	
 	@EventHandler
-	public void onPlayerQuit(PlayerQuitEvent e);
+	public void onPlayerQuit(final PlayerQuitEvent e);
 }

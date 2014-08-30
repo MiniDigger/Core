@@ -36,8 +36,6 @@ package me.MiniDigger.CraftCore.Squad;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Prefix.Prefix;
@@ -45,17 +43,19 @@ import me.MiniDigger.Core.Squad.Squad;
 import me.MiniDigger.Core.User.User;
 import mkremins.fanciful.FancyMessage;
 
+import org.bukkit.ChatColor;
+
 public class CoreSquad implements Squad {
 	
-	private UUID	        owner;
+	private final UUID	    owner;
 	private ArrayList<UUID>	members;
 	private ArrayList<UUID>	invs;
 	private ChatChannel	    channel;
 	private final int	    LIMIT	= 4;
 	
-	public CoreSquad(UUID id) {
+	public CoreSquad(final UUID id) {
 		owner = id;
-		User u = Core.getCore().getUserHandler().get(id);
+		final User u = Core.getCore().getUserHandler().get(id);
 		if (!u.getListenChannels().contains(channel)) {
 			u.getListenChannels().add(channel);
 		}
@@ -82,7 +82,7 @@ public class CoreSquad implements Squad {
 	}
 	
 	@Override
-	public void setChannel(ChatChannel channel) {
+	public void setChannel(final ChatChannel channel) {
 		this.channel = channel;
 	}
 	
@@ -93,7 +93,7 @@ public class CoreSquad implements Squad {
 	}
 	
 	@Override
-	public boolean join(UUID user) {
+	public boolean join(final UUID user) {
 		if (members.size() >= LIMIT) {
 			return false;
 		}
@@ -102,7 +102,7 @@ public class CoreSquad implements Squad {
 		} else {
 			return false;
 		}
-		User u = Core.getCore().getUserHandler().get(user);
+		final User u = Core.getCore().getUserHandler().get(user);
 		if (!members.contains(user)) {
 			members.add(user);
 		}
@@ -113,8 +113,8 @@ public class CoreSquad implements Squad {
 	}
 	
 	@Override
-	public void leave(UUID user) {
-		User u = Core.getCore().getUserHandler().get(user);
+	public void leave(final UUID user) {
+		final User u = Core.getCore().getUserHandler().get(user);
 		if (members.contains(user)) {
 			members.remove(user);
 		}
@@ -127,15 +127,15 @@ public class CoreSquad implements Squad {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void destroy() {
-		for (UUID id : (ArrayList<UUID>) members.clone()) {
+		for (final UUID id : (ArrayList<UUID>) members.clone()) {
 			leave(id);
 		}
 		Core.getCore().getChatHandler().unregisterChannel(channel);
 	}
 	
 	@Override
-	public void sendMessage(FancyMessage msg) {
-		for (UUID id : members) {
+	public void sendMessage(final FancyMessage msg) {
+		for (final UUID id : members) {
 			Core.getCore().getUserHandler().get(id).sendMessage(msg);
 		}
 		
@@ -143,12 +143,12 @@ public class CoreSquad implements Squad {
 	}
 	
 	@Override
-	public void chat(User user, String message) {
+	public void chat(final User user, final String message) {
 		channel.chat(user, message);
 	}
 	
 	@Override
-	public void invite(UUID uuid) {
+	public void invite(final UUID uuid) {
 		if (members.contains(uuid)) {
 			return;
 		}
@@ -158,15 +158,15 @@ public class CoreSquad implements Squad {
 	}
 	
 	@Override
-	public boolean kick(UUID uuid) {
+	public boolean kick(final UUID uuid) {
 		if (members.contains(uuid)) {
 			members.remove(uuid);
-			User user = Core.getCore().getUserHandler().get(uuid);
+			final User user = Core.getCore().getUserHandler().get(uuid);
 			user.sendMessage(Prefix.SQUAD.getPrefix().then("Du wurdest aus dem Squad gekickt!").color(ChatColor.RED));
 			return true;
 		} else if (invs.contains(uuid)) {
 			invs.remove(uuid);
-			User user = Core.getCore().getUserHandler().get(uuid);
+			final User user = Core.getCore().getUserHandler().get(uuid);
 			user.sendMessage(Prefix.SQUAD.getPrefix().then("Die Einladung wurde zur�ckgezogen!").color(ChatColor.RED));
 			return true;
 		} else {

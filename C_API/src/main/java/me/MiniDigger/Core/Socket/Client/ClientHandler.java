@@ -37,5 +37,5 @@ import me.MiniDigger.Core.SQL.SaveHandler;
 
 public interface ClientHandler extends SaveHandler {
 	
-	public Client getClient(String name);
+	public Client getClient(final String name);
 }

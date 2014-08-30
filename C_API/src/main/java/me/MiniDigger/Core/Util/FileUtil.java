@@ -35,13 +35,13 @@ package me.MiniDigger.Core.Util;
 
 import java.io.File;
 
-
 public interface FileUtil {
+	
 	/**
 	 * Deletes a whole directory
 	 * 
 	 * @param path
 	 * @return
 	 */
-	public boolean deleteDirectory(File path);
+	public boolean deleteDirectory(final File path);
 }

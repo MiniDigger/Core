@@ -49,7 +49,7 @@ public interface GameHandler {
 	 * 
 	 * @param stared
 	 */
-	public void setMainGameStarted(boolean started);
+	public void setMainGameStarted(final boolean started);
 	
 	/**
 	 * @return The main game for this server
@@ -67,7 +67,7 @@ public interface GameHandler {
 	 * @param game
 	 *            The game to register
 	 */
-	public void addGame(Game game);
+	public void addGame(final Game game);
 	
 	/**
 	 * Removes a game
@@ -75,7 +75,7 @@ public interface GameHandler {
 	 * @param game
 	 *            The game to remove
 	 */
-	public void removeGame(Game game);
+	public void removeGame(final Game game);
 	
 	/**
 	 * Geathers all Games, a user is in
@@ -84,5 +84,5 @@ public interface GameHandler {
 	 *            The user
 	 * @return All the games
 	 */
-	public List<Game> getGames(User user);
+	public List<Game> getGames(final User user);
 }

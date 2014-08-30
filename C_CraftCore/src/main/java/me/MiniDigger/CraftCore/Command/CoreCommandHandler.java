@@ -42,6 +42,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.BukkitCommand;
+import me.MiniDigger.Core.Command.BukkitCompleter;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.CommandHandler;
+import me.MiniDigger.Core.Command.Completer;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.CraftCore.CoreMain;
+import mkremins.fanciful.FancyMessage;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandMap;
@@ -58,27 +69,16 @@ import org.bukkit.plugin.SimplePluginManager;
 
 import com.minnymin.zephyrus.core.util.map.MultiMap;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.BukkitCommand;
-import me.MiniDigger.Core.Command.BukkitCompleter;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Command.CommandHandler;
-import me.MiniDigger.Core.Command.Completer;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.CraftCore.CoreMain;
-import mkremins.fanciful.FancyMessage;
-
 public class CoreCommandHandler implements CommandHandler {
 	
-	private MultiMap<String, Method, Object>	commandMap	= new MultiMap<String, Method, Object>();
-	private CommandMap	                     map;
-	private Plugin	                         plugin;
+	private final MultiMap<String, Method, Object>	commandMap	= new MultiMap<String, Method, Object>();
+	private CommandMap	                           map;
+	private final Plugin	                       plugin;
 	/* Core Start */
-	private Map<String, String>	             relocations	= new HashMap<>();
+	private final Map<String, String>	           relocations	= new HashMap<>();
 	
 	@Override
-	public void addRelocation(String oldCmd, String newCmd) {
+	public void addRelocation(final String oldCmd, final String newCmd) {
 		if (relocations.containsKey(oldCmd)) {
 			relocations.remove(oldCmd);
 		}
@@ -86,17 +86,17 @@ public class CoreCommandHandler implements CommandHandler {
 	}
 	
 	@Override
-	public void unregister(String command) {
+	public void unregister(final String command) {
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
-			SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
+			final SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
 			try {
-				Field field = SimplePluginManager.class.getDeclaredField("commandMap");
+				final Field field = SimplePluginManager.class.getDeclaredField("commandMap");
 				field.setAccessible(true);
 				map = (CommandMap) field.get(manager);
-				Field field2 = SimpleCommandMap.class.getDeclaredField("knownCommands");
+				final Field field2 = SimpleCommandMap.class.getDeclaredField("knownCommands");
 				field2.setAccessible(true);
-				@SuppressWarnings("unchecked") Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
-				for (Map.Entry<String, org.bukkit.command.Command> entry : knownCommands.entrySet()) {
+				@SuppressWarnings("unchecked") final Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
+				for (final Map.Entry<String, org.bukkit.command.Command> entry : knownCommands.entrySet()) {
 					if (entry.getKey().equals(command)) {
 						entry.getValue().unregister(map);
 					}
@@ -109,16 +109,16 @@ public class CoreCommandHandler implements CommandHandler {
 	}
 	
 	@Override
-	public void unregisterCommands(Object obj) {
-		for (Method m : obj.getClass().getMethods()) {
+	public void unregisterCommands(final Object obj) {
+		for (final Method m : obj.getClass().getMethods()) {
 			if (m.getAnnotation(Command.class) != null) {
-				Command command = m.getAnnotation(Command.class);
+				final Command command = m.getAnnotation(Command.class);
 				if (m.getParameterTypes().length > 1 || m.getParameterTypes()[0] != CommandArgs.class) {
 					System.out.println("Unable to unregister command " + m.getName() + ". Unexpected method arguments");
 					continue;
 				}
 				unregister(command.name());
-				for (String alias : command.aliases()) {
+				for (final String alias : command.aliases()) {
 					unregister(alias);
 				}
 			}
@@ -128,21 +128,21 @@ public class CoreCommandHandler implements CommandHandler {
 	/* Core End */
 	
 	public CoreCommandHandler() {
-		this.plugin = (CoreMain) Core.getCore().getInstance();
+		plugin = (CoreMain) Core.getCore().getInstance();
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
-			SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
+			final SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
 			try {
-				Field field = SimplePluginManager.class.getDeclaredField("commandMap");
+				final Field field = SimplePluginManager.class.getDeclaredField("commandMap");
 				field.setAccessible(true);
 				map = (CommandMap) field.get(manager);
 				
 				/* Core Start */
-				Field field2 = SimpleCommandMap.class.getDeclaredField("knownCommands");
+				final Field field2 = SimpleCommandMap.class.getDeclaredField("knownCommands");
 				field2.setAccessible(true);
-				Map<String, org.bukkit.command.Command> newknownCommands = new HashMap<>();
-				@SuppressWarnings("unchecked") Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
-				for (Map.Entry<String, org.bukkit.command.Command> entry : knownCommands.entrySet()) {
-					for (String key : relocations.keySet()) {
+				final Map<String, org.bukkit.command.Command> newknownCommands = new HashMap<>();
+				@SuppressWarnings("unchecked") final Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
+				for (final Map.Entry<String, org.bukkit.command.Command> entry : knownCommands.entrySet()) {
+					for (final String key : relocations.keySet()) {
 						if (entry.getKey().startsWith(key)) {
 							newknownCommands.put(entry.getKey().replaceFirst(key, relocations.get(key)), entry.getValue());
 							Core.getCore().getInstance().info("Relocation: Moving " + entry.getKey() + " to " + entry.getKey().replaceFirst(key, relocations.get(key)));
@@ -154,53 +154,53 @@ public class CoreCommandHandler implements CommandHandler {
 				knownCommands.clear();
 				knownCommands.putAll(newknownCommands);
 				/* Core End */
-			} catch (IllegalArgumentException e) {
+			} catch (final IllegalArgumentException e) {
 				e.printStackTrace();
-			} catch (SecurityException e) {
+			} catch (final SecurityException e) {
 				e.printStackTrace();
-			} catch (IllegalAccessException e) {
+			} catch (final IllegalAccessException e) {
 				e.printStackTrace();
-			} catch (NoSuchFieldException e) {
+			} catch (final NoSuchFieldException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
 	@Override
-	public boolean handleCommand(CommandSender sender, String label, org.bukkit.command.Command cmd, String[] args) {
+	public boolean handleCommand(final CommandSender sender, final String label, final org.bukkit.command.Command cmd, final String[] args) {
 		for (int i = args.length; i >= 0; i--) {
-			StringBuffer buffer = new StringBuffer();
+			final StringBuffer buffer = new StringBuffer();
 			buffer.append(label.toLowerCase());
 			for (int x = 0; x < i; x++) {
 				buffer.append("." + args[x].toLowerCase());
 			}
-			String cmdLabel = buffer.toString();
+			final String cmdLabel = buffer.toString();
 			if (commandMap.containsKey(cmdLabel)) {
-				Method method = commandMap.getFirstValue(cmdLabel);
-				Object methodObject = commandMap.getSecondValue(cmdLabel);
+				final Method method = commandMap.getFirstValue(cmdLabel);
+				final Object methodObject = commandMap.getSecondValue(cmdLabel);
 				/* Core Start */
-				Command command = method.getAnnotation(Command.class);
+				final Command command = method.getAnnotation(Command.class);
 				
 				if (!sender.hasPermission(command.permission())) {
-					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
+					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
 				
 				if (!command.consol() && sender instanceof Player) {
-					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noConsol()).color(ChatColor.DARK_RED);
+					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noConsol()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
 				
 				if (args.length < command.min()) {
-					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.fewArgs()).color(ChatColor.DARK_RED);
+					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.fewArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
 				
 				if (args.length > command.max()) {
-					FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.manyArgs()).color(ChatColor.DARK_RED);
+					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.manyArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
@@ -208,11 +208,11 @@ public class CoreCommandHandler implements CommandHandler {
 				/* Core End */
 				try {
 					method.invoke(methodObject, new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1));
-				} catch (IllegalArgumentException e) {
+				} catch (final IllegalArgumentException e) {
 					e.printStackTrace();
-				} catch (IllegalAccessException e) {
+				} catch (final IllegalAccessException e) {
 					e.printStackTrace();
-				} catch (InvocationTargetException e) {
+				} catch (final InvocationTargetException e) {
 					e.printStackTrace();
 				}
 				return true;
@@ -223,20 +223,20 @@ public class CoreCommandHandler implements CommandHandler {
 	}
 	
 	@Override
-	public void registerCommands(Object obj) {
-		for (Method m : obj.getClass().getMethods()) {
+	public void registerCommands(final Object obj) {
+		for (final Method m : obj.getClass().getMethods()) {
 			if (m.getAnnotation(Command.class) != null) {
-				Command command = m.getAnnotation(Command.class);
+				final Command command = m.getAnnotation(Command.class);
 				if (m.getParameterTypes().length > 1 || m.getParameterTypes()[0] != CommandArgs.class) {
 					System.out.println("Unable to register command " + m.getName() + ". Unexpected method arguments");
 					continue;
 				}
 				registerCommand(command, command.name(), m, obj);
-				for (String alias : command.aliases()) {
+				for (final String alias : command.aliases()) {
 					registerCommand(command, alias, m, obj);
 				}
 			} else if (m.getAnnotation(Completer.class) != null) {
-				Completer comp = m.getAnnotation(Completer.class);
+				final Completer comp = m.getAnnotation(Completer.class);
 				if (m.getParameterTypes().length > 1 || m.getParameterTypes().length == 0 || m.getParameterTypes()[0] != CommandArgs.class) {
 					System.out.println("Unable to register tab completer " + m.getName() + ". Unexpected method arguments");
 					continue;
@@ -246,7 +246,7 @@ public class CoreCommandHandler implements CommandHandler {
 					continue;
 				}
 				registerCompleter(comp.name(), m, obj);
-				for (String alias : comp.aliases()) {
+				for (final String alias : comp.aliases()) {
 					registerCompleter(alias, m, obj);
 				}
 			}
@@ -255,24 +255,24 @@ public class CoreCommandHandler implements CommandHandler {
 	
 	@Override
 	public void registerHelp() {
-		Set<HelpTopic> help = new TreeSet<HelpTopic>(HelpTopicComparator.helpTopicComparatorInstance());
-		for (String s : commandMap.keySet()) {
+		final Set<HelpTopic> help = new TreeSet<HelpTopic>(HelpTopicComparator.helpTopicComparatorInstance());
+		for (final String s : commandMap.keySet()) {
 			if (!s.contains(".")) {
-				org.bukkit.command.Command cmd = map.getCommand(s);
-				HelpTopic topic = new GenericCommandHelpTopic(cmd);
+				final org.bukkit.command.Command cmd = map.getCommand(s);
+				final HelpTopic topic = new GenericCommandHelpTopic(cmd);
 				help.add(topic);
 			}
 		}
-		IndexHelpTopic topic = new IndexHelpTopic(plugin.getName(), "All commands for " + plugin.getName(), null, help, "Below is a list of all " + plugin.getName()
-		        + " commands:");
+		final IndexHelpTopic topic = new IndexHelpTopic(plugin.getName(), "All commands for " + plugin.getName(), null, help, "Below is a list of all "
+		        + plugin.getName() + " commands:");
 		Bukkit.getServer().getHelpMap().addTopic(topic);
 	}
 	
-	private void registerCommand(Command command, String label, Method m, Object obj) {
+	private void registerCommand(final Command command, final String label, final Method m, final Object obj) {
 		commandMap.put(label.toLowerCase(), m, obj);
-		String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
+		final String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
 		if (map.getCommand(cmdLabel) == null) {
-			org.bukkit.command.Command cmd = new CoreBukkitCommand(cmdLabel, plugin);
+			final org.bukkit.command.Command cmd = new CoreBukkitCommand(cmdLabel, plugin);
 			map.register(plugin.getName(), cmd);
 		}
 		if (!command.description().equalsIgnoreCase("") && cmdLabel == label) {
@@ -283,40 +283,40 @@ public class CoreCommandHandler implements CommandHandler {
 		}
 	}
 	
-	private void registerCompleter(String label, Method m, Object obj) {
-		String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
+	private void registerCompleter(final String label, final Method m, final Object obj) {
+		final String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
 		if (map.getCommand(cmdLabel) == null) {
-			org.bukkit.command.Command command = new CoreBukkitCommand(cmdLabel, plugin);
+			final org.bukkit.command.Command command = new CoreBukkitCommand(cmdLabel, plugin);
 			map.register(plugin.getName(), command);
 		}
 		if (map.getCommand(cmdLabel) instanceof CoreBukkitCommand) {
-			BukkitCommand command = (CoreBukkitCommand) map.getCommand(cmdLabel);
+			final BukkitCommand command = (CoreBukkitCommand) map.getCommand(cmdLabel);
 			if (command.getCompleter() == null) {
 				command.setCompleter(new CoreBukkitCompleter());
 			}
 			command.getCompleter().addCompleter(label, m, obj);
 		} else if (map.getCommand(cmdLabel) instanceof PluginCommand) {
 			try {
-				Object command = map.getCommand(cmdLabel);
-				Field field = command.getClass().getDeclaredField("completer");
+				final Object command = map.getCommand(cmdLabel);
+				final Field field = command.getClass().getDeclaredField("completer");
 				field.setAccessible(true);
 				if (field.get(command) == null) {
-					BukkitCompleter completer = new CoreBukkitCompleter();
+					final BukkitCompleter completer = new CoreBukkitCompleter();
 					completer.addCompleter(label, m, obj);
 					field.set(command, completer);
 				} else if (field.get(command) instanceof BukkitCompleter) {
-					BukkitCompleter completer = (CoreBukkitCompleter) field.get(command);
+					final BukkitCompleter completer = (CoreBukkitCompleter) field.get(command);
 					completer.addCompleter(label, m, obj);
 				} else {
 					System.out.println("Unable to register tab completer " + m.getName() + ". A tab completer is already registered for that command!");
 				}
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
 	
-	private void defaultCommand(CommandArgs args) {
+	private void defaultCommand(final CommandArgs args) {
 		args.getSender().sendMessage(args.getLabel() + " is not handled! Oh noes!");
 	}
 }

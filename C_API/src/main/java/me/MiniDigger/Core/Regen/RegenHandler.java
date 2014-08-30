@@ -40,14 +40,14 @@ public interface RegenHandler {
 	 * 
 	 * @param w
 	 */
-	public void startLooking(Regen w);
+	public void startLooking(final Regen w);
 	
 	/**
 	 * Stops listening to block events
 	 * 
 	 * @param w
 	 */
-	public void stopLooking(Regen w);
+	public void stopLooking(final Regen w);
 	
 	/**
 	 * Resets all words
@@ -57,8 +57,9 @@ public interface RegenHandler {
 	/**
 	 * Returns an object for he world
 	 * 
-	 * @param name the world name
+	 * @param name
+	 *            the world name
 	 * @return
 	 */
-	public Regen get(String name);
+	public Regen get(final String name);
 }

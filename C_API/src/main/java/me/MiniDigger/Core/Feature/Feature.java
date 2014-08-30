@@ -55,16 +55,19 @@ public interface Feature extends Listener {
 	 * @return A list with all soft-dependencies
 	 */
 	public List<FeatureType> getSoftDependencies();
+	
 	/**
 	 * @return A list with all incomabilities
 	 */
 	public List<FeatureType> getIncompabilities();
+	
 	/**
 	 * Inits this feature
 	 * 
-	 * @param phase The phase, this feature is running in
+	 * @param phase
+	 *            The phase, this feature is running in
 	 */
-	public void init(Phase phase);
+	public void init(final Phase phase);
 	
 	/**
 	 * Starts the feature

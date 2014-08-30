@@ -39,6 +39,7 @@ public interface Event {
 	
 	/**
 	 * All Handlers for this event
+	 * 
 	 * @return
 	 */
 	public HandlerList getHandlers();

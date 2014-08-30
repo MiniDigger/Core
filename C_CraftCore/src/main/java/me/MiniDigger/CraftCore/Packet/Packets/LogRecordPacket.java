@@ -6,9 +6,6 @@ import java.util.Date;
 import java.util.logging.LogRecord;
 import java.util.regex.Pattern;
 
-
-
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.CraftCore.Packet.CorePacket;
 
@@ -18,21 +15,21 @@ public class LogRecordPacket extends CorePacket {
 	
 	private String	message;
 	
-	public LogRecordPacket(LogRecord record) {
-		Date date = new Date(record.getMillis());
-		DateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
-		String dateFormatted = formatter.format(date);
+	public LogRecordPacket(final LogRecord record) {
+		final Date date = new Date(record.getMillis());
+		final DateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
+		final String dateFormatted = formatter.format(date);
 		
-		String[] s = record.getLoggerName().split(Pattern.quote("."));
-		String name = s[s.length - 1];
+		final String[] s = record.getLoggerName().split(Pattern.quote("."));
+		final String name = s[s.length - 1];
 		
 		message = "[" + dateFormatted + "] " + name + " [" + record.getLevel().getLocalizedName() + "] " + record.getMessage();
 	}
 	
-	public LogRecordPacket(String msg) {
-		Date date = new Date(System.currentTimeMillis());
-		DateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
-		String dateFormatted = formatter.format(date);
+	public LogRecordPacket(final String msg) {
+		final Date date = new Date(System.currentTimeMillis());
+		final DateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
+		final String dateFormatted = formatter.format(date);
 		message = "[" + dateFormatted + "] " + msg;
 	}
 	
@@ -46,8 +43,8 @@ public class LogRecordPacket extends CorePacket {
 	}
 	
 	@Override
-	public void fromString(String s) {
-		this.message = s.replaceFirst(getName() + "|", "");
+	public void fromString(final String s) {
+		message = s.replaceFirst(getName() + "|", "");
 	}
 	
 	@Override
@@ -56,7 +53,7 @@ public class LogRecordPacket extends CorePacket {
 	}
 	
 	@Override
-	public void handle(WebSocket con) {
+	public void handle(final WebSocket con) {
 		Core.getCore().getPacketHandler().sendBroadcast(this);
 	}
 	

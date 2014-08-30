@@ -36,6 +36,8 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.MiniDigger.Core.Util.PlayerUtil;
+
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -43,22 +45,20 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BlockIterator;
 
-import me.MiniDigger.Core.Util.PlayerUtil;
-
 public class CorePlayerUtil implements PlayerUtil {
 	
 	@Override
-	public Entity getTarget(Player p, int range) {
-		List<Entity> nearbyE = p.getNearbyEntities(range, range, range);
-		ArrayList<LivingEntity> livingE = new ArrayList<LivingEntity>();
+	public Entity getTarget(final Player p, final int range) {
+		final List<Entity> nearbyE = p.getNearbyEntities(range, range, range);
+		final ArrayList<LivingEntity> livingE = new ArrayList<LivingEntity>();
 		
-		for (Entity e : nearbyE) {
+		for (final Entity e : nearbyE) {
 			if (e instanceof LivingEntity) {
 				livingE.add((LivingEntity) e);
 			}
 		}
 		
-		BlockIterator bItr = new BlockIterator(p, range);
+		final BlockIterator bItr = new BlockIterator(p, range);
 		Block block;
 		Location loc;
 		int bx, by, bz;
@@ -70,7 +70,7 @@ public class CorePlayerUtil implements PlayerUtil {
 			by = block.getY();
 			bz = block.getZ();
 			// check for entities near this block in the line of sight
-			for (LivingEntity e : livingE) {
+			for (final LivingEntity e : livingE) {
 				loc = e.getLocation();
 				ex = loc.getX();
 				ey = loc.getY();

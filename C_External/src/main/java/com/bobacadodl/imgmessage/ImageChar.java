@@ -41,7 +41,7 @@ public enum ImageChar {
 	
 	private char	c;
 	
-	ImageChar(char c) {
+	ImageChar(final char c) {
 		this.c = c;
 	}
 	

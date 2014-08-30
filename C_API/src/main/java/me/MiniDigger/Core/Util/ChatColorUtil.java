@@ -65,7 +65,7 @@ public interface ChatColorUtil {
 	 *            The String to parse
 	 * @return The ChatColor, RESET if noting found
 	 */
-	public ChatColor toChatColor(String s);
+	public ChatColor toChatColor(final String s);
 	
 	/**
 	 * Replaces the old chars with the new ones

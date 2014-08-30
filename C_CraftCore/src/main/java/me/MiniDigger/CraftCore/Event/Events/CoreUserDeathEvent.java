@@ -7,13 +7,13 @@ import me.MiniDigger.CraftCore.Event.CoreEvent;
 
 public class CoreUserDeathEvent extends CoreEvent implements UserDeathEvent {
 	
-	private User	user;
-	private User	killer;
-	private Game	game;
-	private boolean	keepDrops;
-	private boolean	shouldRespawn;
+	private final User	user;
+	private final User	killer;
+	private final Game	game;
+	private boolean	   keepDrops;
+	private boolean	   shouldRespawn;
 	
-	public CoreUserDeathEvent(User user, User killer, Game game, boolean keepDrops, boolean shouldRespawn) {
+	public CoreUserDeathEvent(final User user, final User killer, final Game game, final boolean keepDrops, final boolean shouldRespawn) {
 		this.user = user;
 		this.killer = killer;
 		this.game = game;
@@ -37,7 +37,7 @@ public class CoreUserDeathEvent extends CoreEvent implements UserDeathEvent {
 	}
 	
 	@Override
-	public void setKeepDrops(boolean keepDrops) {
+	public void setKeepDrops(final boolean keepDrops) {
 		this.keepDrops = keepDrops;
 	}
 	
@@ -47,7 +47,7 @@ public class CoreUserDeathEvent extends CoreEvent implements UserDeathEvent {
 	}
 	
 	@Override
-	public void setShouldRespawn(boolean shouldRespawn) {
+	public void setShouldRespawn(final boolean shouldRespawn) {
 		this.shouldRespawn = shouldRespawn;
 	}
 	

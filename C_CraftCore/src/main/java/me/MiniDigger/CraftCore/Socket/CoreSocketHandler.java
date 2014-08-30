@@ -39,8 +39,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Packet.Packet;
 import me.MiniDigger.Core.Socket.Session;
@@ -53,17 +51,21 @@ import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.LogRecordPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
+import org.bukkit.Bukkit;
+
 public class CoreSocketHandler implements SocketHandler {
 	
-	private List<Session>	sessions	= new ArrayList<>();
-	private SocketServer	server;
-	private SocketClient	client;
+	private final List<Session>	sessions	= new ArrayList<>();
+	private SocketServer	    server;
+	private SocketClient	    client;
 	
+	@Override
 	public void startServer() {
 		server = new CoreSocketServer(new InetSocketAddress(33333));
 		((CoreSocketServer) server).start();
 	}
 	
+	@Override
 	public void startClient() {
 		try {
 			client = new CoreSocketClient(new URI("ws://localhost:33333"));
@@ -73,50 +75,55 @@ public class CoreSocketHandler implements SocketHandler {
 				
 				@Override
 				public void run() {
-					IdentificationPacket packet = new IdentificationPacket();
+					final IdentificationPacket packet = new IdentificationPacket();
 					packet.setClientName(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-user"));
 					packet.setPass(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-pass"));
 					Core.getCore().getPacketHandler().sendPacket(packet);
 				}
 			}, 10);
-		} catch (URISyntaxException e) {
+		} catch (final URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	@Override
 	public void registerPackets() {
-		List<Class<? extends Packet>> classes = new ArrayList<Class<? extends Packet>>();
+		final List<Class<? extends Packet>> classes = new ArrayList<Class<? extends Packet>>();
 		classes.add(ChatPacket.class);
 		classes.add(IdentificationPacket.class);
 		classes.add(ServerPacket.class);
 		classes.add(LogRecordPacket.class);
 		
-		for (Class<? extends Packet> c : classes) {
+		for (final Class<? extends Packet> c : classes) {
 			try {
 				Core.getCore().getPacketHandler().registerPacket(c.newInstance().getName(), c);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	public void openSession(InetSocketAddress address) {
-		Session session = new CoreSession(address);
+	@Override
+	public void openSession(final InetSocketAddress address) {
+		final Session session = new CoreSession(address);
 		sessions.add(session);
 	}
 	
-	public void closeSession(InetSocketAddress address) {
+	@Override
+	public void closeSession(final InetSocketAddress address) {
 		while (getSession(address) != null && sessions.contains(getSession(address))) {
 			sessions.remove(getSession(address));
 		}
 	}
 	
-	public void reciveName(String name, InetSocketAddress address) {
+	@Override
+	public void reciveName(final String name, final InetSocketAddress address) {
 		getSession(address).setName(name);
 	}
 	
-	public Session getSession(String name) {
-		for (Session session : sessions) {
+	@Override
+	public Session getSession(final String name) {
+		for (final Session session : sessions) {
 			if (session.getName() == null) {
 				continue;
 			}
@@ -127,8 +134,9 @@ public class CoreSocketHandler implements SocketHandler {
 		return null;
 	}
 	
-	public Session getSession(InetSocketAddress address) {
-		for (Session session : sessions) {
+	@Override
+	public Session getSession(final InetSocketAddress address) {
+		for (final Session session : sessions) {
 			if (session == null) {
 				continue;
 			}

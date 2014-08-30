@@ -11,7 +11,7 @@ public class ServerPacket extends CorePacket {
 	
 	private Server	server;
 	
-	public ServerPacket(Server server) {
+	public ServerPacket(final Server server) {
 		this.server = server;
 	}
 	
@@ -27,7 +27,7 @@ public class ServerPacket extends CorePacket {
 	@Override
 	public void fromString(String s) {
 		s = s.replaceFirst(getName() + "|", "");
-		this.server = CoreServer.fromString(s);
+		server = CoreServer.fromString(s);
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class ServerPacket extends CorePacket {
 	}
 	
 	@Override
-	public void handle(WebSocket con) {
+	public void handle(final WebSocket con) {
 		Core.getCore().getPacketHandler().sendBroadcast(this);
 	}
 	

@@ -45,7 +45,7 @@ public interface LocationUtil {
 	 * @param locString
 	 * @return
 	 */
-	public Location StringToLocation(String locString);
+	public Location StringToLocation(final String locString);
 	
 	/**
 	 * Converts a Location into a String
@@ -53,7 +53,7 @@ public interface LocationUtil {
 	 * @param loc
 	 * @return
 	 */
-	public String LocationToString(Location loc);
+	public String LocationToString(final Location loc);
 	
 	/**
 	 * Converts a bunch of Locations into a String
@@ -61,7 +61,7 @@ public interface LocationUtil {
 	 * @param locs
 	 * @return
 	 */
-	public String LocationsToString(List<Location> locs);
+	public String LocationsToString(final List<Location> locs);
 	
 	/**
 	 * Converts a String into a bunch of Locations
@@ -69,5 +69,5 @@ public interface LocationUtil {
 	 * @param s
 	 * @return
 	 */
-	public List<Location> StringToLocations(String s);
+	public List<Location> StringToLocations(final String s);
 }

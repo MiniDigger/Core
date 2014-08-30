@@ -46,7 +46,7 @@ public interface UserHandler extends SaveHandler {
 	 * @param bot
 	 *            The Bot to add
 	 */
-	public void addBot(Bot bot);
+	public void addBot(final Bot bot);
 	
 	/**
 	 * Searches for user data or creates a new one
@@ -55,7 +55,7 @@ public interface UserHandler extends SaveHandler {
 	 *            The id of the user
 	 * @return The result of the search or a brand new user
 	 */
-	public User get(UUID id);
+	public User get(final UUID id);
 	
 	/**
 	 * @return All online users

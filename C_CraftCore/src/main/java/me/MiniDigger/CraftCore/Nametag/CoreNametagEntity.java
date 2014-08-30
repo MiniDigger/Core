@@ -35,6 +35,7 @@ package me.MiniDigger.CraftCore.Nametag;
 
 import java.lang.reflect.Field;
 
+import me.MiniDigger.Core.Nametag.NametagEntity;
 import net.minecraft.server.v1_7_R3.Entity;
 import net.minecraft.server.v1_7_R3.EntityAmbient;
 
@@ -44,33 +45,31 @@ import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
-import me.MiniDigger.Core.Nametag.NametagEntity;
-
 public class CoreNametagEntity extends EntityAmbient implements NametagEntity {
 	
-	public CoreNametagEntity(Player player) {
+	public CoreNametagEntity(final Player player) {
 		super(((CraftWorld) player.getWorld()).getHandle());
 		
-		Location location = player.getLocation();
+		final Location location = player.getLocation();
 		
 		setInvisible(true);
 		setPosition(location.getX(), location.getY(), location.getZ());
 		try {
-			Field invulnerable = Entity.class.getDeclaredField("invulnerable");
+			final Field invulnerable = Entity.class.getDeclaredField("invulnerable");
 			invulnerable.setAccessible(true);
 			invulnerable.setBoolean(this, true);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
-		this.world.addEntity(this, SpawnReason.CUSTOM);
+		world.addEntity(this, SpawnReason.CUSTOM);
 		
-		this.persistent = true;
+		persistent = true;
 		
 		hideTag(player);
 	}
 	
 	@Override
-	public void hideTag(Player player) {
+	public void hideTag(final Player player) {
 		setPassengerOf(((CraftPlayer) player).getHandle());
 	}
 	
@@ -81,11 +80,12 @@ public class CoreNametagEntity extends EntityAmbient implements NametagEntity {
 	
 	@Override
 	public void h() {
-		this.motX = (this.motY = this.motZ = 0.0D);
+		motX = (motY = motZ = 0.0D);
 		a(0.0F, 0.0F);
 		a(0.0F, 0.0F, 0.0F);
 	}
 	
-	public void o(Entity entity) {
+	@Override
+	public void o(final Entity entity) {
 	}
 }

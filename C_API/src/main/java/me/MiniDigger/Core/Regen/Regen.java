@@ -41,12 +41,13 @@ public interface Regen {
 	 */
 	public String getName();
 	
-
 	/**
 	 * Resets all the blocks
 	 * 
-	 * @param fancy If true, only one block at a time
-	 * @param delay The delay
+	 * @param fancy
+	 *            If true, only one block at a time
+	 * @param delay
+	 *            The delay
 	 */
-	public void reset(boolean fancy, int delay);
+	public void reset(final boolean fancy, final int delay);
 }

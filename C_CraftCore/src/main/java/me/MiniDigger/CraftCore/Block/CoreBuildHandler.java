@@ -41,15 +41,15 @@ import me.MiniDigger.Core.User.User;
 
 public class CoreBuildHandler implements BuildHandler {
 	
-	private ArrayList<UUID>	builders	= new ArrayList<>();
+	private final ArrayList<UUID>	builders	= new ArrayList<>();
 	
 	@Override
-	public boolean isBuilder(User user) {
+	public boolean isBuilder(final User user) {
 		return builders.contains(user.getUUID());
 	}
 	
 	@Override
-	public void setBuilder(User user, boolean builder) {
+	public void setBuilder(final User user, final boolean builder) {
 		if (builder) {
 			if (!isBuilder(user)) {
 				builders.add(user.getUUID());

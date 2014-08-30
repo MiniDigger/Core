@@ -36,30 +36,32 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Util.LocationUtil;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Util.LocationUtil;
-
 public class CoreLocationUtil implements LocationUtil {
 	
-	public Location StringToLocation(String locString) {
-		String[] split = locString.split(";");
+	@Override
+	public Location StringToLocation(final String locString) {
+		final String[] split = locString.split(";");
 		
-		World world = Bukkit.getWorld(split[0].replaceFirst("@l@w", ""));
-		double x = Double.parseDouble(split[1].replaceFirst("@x", ""));
-		double y = Double.parseDouble(split[2].replaceFirst("@y", ""));
-		double z = Double.parseDouble(split[3].replaceFirst("@z", ""));
+		final World world = Bukkit.getWorld(split[0].replaceFirst("@l@w", ""));
+		final double x = Double.parseDouble(split[1].replaceFirst("@x", ""));
+		final double y = Double.parseDouble(split[2].replaceFirst("@y", ""));
+		final double z = Double.parseDouble(split[3].replaceFirst("@z", ""));
 		
-		float pitch = Float.parseFloat(split[4].replaceFirst("@p", ""));
-		float yaw = Float.parseFloat(split[5].replaceFirst("@yw", ""));
+		final float pitch = Float.parseFloat(split[4].replaceFirst("@p", ""));
+		final float yaw = Float.parseFloat(split[5].replaceFirst("@yw", ""));
 		
 		return new Location(world, x, y, z, pitch, yaw);
 	}
 	
-	public String LocationToString(Location loc) {
+	@Override
+	public String LocationToString(final Location loc) {
 		String result = "@l";
 		
 		result += "@w" + loc.getWorld().getName() + ";";
@@ -72,21 +74,23 @@ public class CoreLocationUtil implements LocationUtil {
 		return result;
 	}
 	
-	public String LocationsToString(List<Location> locs) {
-		List<String> strings = new ArrayList<>();
+	@Override
+	public String LocationsToString(final List<Location> locs) {
+		final List<String> strings = new ArrayList<>();
 		
-		for (Location loc : locs) {
+		for (final Location loc : locs) {
 			strings.add(LocationToString(loc));
 		}
 		
 		return Core.getCore().getStringUtil().listToString(strings);
 	}
 	
-	public List<Location> StringToLocations(String s) {
-		String[] ss = s.split(",");
-		List<Location> locs = new ArrayList<>();
+	@Override
+	public List<Location> StringToLocations(final String s) {
+		final String[] ss = s.split(",");
+		final List<Location> locs = new ArrayList<>();
 		
-		for (String l : ss) {
+		for (final String l : ss) {
 			locs.add(StringToLocation(l));
 		}
 		

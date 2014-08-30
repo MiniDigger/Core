@@ -20,8 +20,8 @@ public class ChatPacket extends CorePacket {
 	}
 	
 	@Override
-	public void fromString(String s) {
-		String[] ss = s.split(Pattern.quote("|"));
+	public void fromString(final String s) {
+		final String[] ss = s.split(Pattern.quote("|"));
 		
 		user = UUID.fromString(ss[1]);
 		server = ss[2];
@@ -37,7 +37,7 @@ public class ChatPacket extends CorePacket {
 	}
 	
 	@Override
-	public void handle(WebSocket con) {
+	public void handle(final WebSocket con) {
 		System.out.println("Beim Server Packet angekommen! (sender " + con.getRemoteSocketAddress().toString() + ")");
 		System.out.println("User " + user.toString() + "(" + Bukkit.getOfflinePlayer(user).getName() + ")");
 		System.out.println("Server " + server);
@@ -53,7 +53,7 @@ public class ChatPacket extends CorePacket {
 		return user;
 	}
 	
-	public void setUser(UUID u) {
+	public void setUser(final UUID u) {
 		user = u;
 	}
 	
@@ -61,7 +61,7 @@ public class ChatPacket extends CorePacket {
 		return server;
 	}
 	
-	public void setServer(String s) {
+	public void setServer(final String s) {
 		server = s;
 	}
 	
@@ -69,7 +69,7 @@ public class ChatPacket extends CorePacket {
 		return msg;
 	}
 	
-	public void setMessage(String msg){
+	public void setMessage(final String msg) {
 		this.msg = msg;
 	}
 }

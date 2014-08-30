@@ -42,24 +42,24 @@ import org.bukkit.entity.Player;
 
 public class CoreCommandArgs implements CommandArgs {
 	
-	private CommandSender	           sender;
-	private org.bukkit.command.Command	command;
-	private String	                   label;
-	private String[]	               args;
-	private User	                   user;
+	private final CommandSender	             sender;
+	private final org.bukkit.command.Command	command;
+	private final String	                 label;
+	private final String[]	                 args;
+	private User	                         user;
 	
-	protected CoreCommandArgs(CommandSender sender, org.bukkit.command.Command command, String label, String[] args, int subCommand) {
-		String[] modArgs = new String[args.length - subCommand];
+	protected CoreCommandArgs(final CommandSender sender, final org.bukkit.command.Command command, final String label, final String[] args, final int subCommand) {
+		final String[] modArgs = new String[args.length - subCommand];
 		for (int i = 0; i < args.length - subCommand; i++) {
 			modArgs[i] = args[i + subCommand];
 		}
 		
-		StringBuffer buffer = new StringBuffer();
+		final StringBuffer buffer = new StringBuffer();
 		buffer.append(label);
 		for (int x = 0; x < subCommand; x++) {
 			buffer.append("." + args[x]);
 		}
-		String cmdLabel = buffer.toString();
+		final String cmdLabel = buffer.toString();
 		this.sender = sender;
 		this.command = command;
 		this.label = cmdLabel;

@@ -1,12 +1,12 @@
 package me.MiniDigger.CraftCore.Chat.Channels;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
 import mkremins.fanciful.FancyMessage;
 import mkremins.fanciful.TextualComponent;
+
+import org.bukkit.ChatColor;
 
 public class EmptyChannel extends CoreChatChannel {
 	
@@ -15,17 +15,17 @@ public class EmptyChannel extends CoreChatChannel {
 	}
 	
 	@Override
-	public void join(User chatUser) {
+	public void join(final User chatUser) {
 		
 	}
 	
 	@Override
-	public void leave(User chatUser) {
+	public void leave(final User chatUser) {
 		
 	}
 	
 	@Override
-	public void chat(User chatUser, String message) {
+	public void chat(final User chatUser, final String message) {
 		chatUser.sendMessage(Prefix.CHAT.getPrefix().then("Du bist in keinem Channel!").color(ChatColor.DARK_RED));
 		
 		chatUser.sendMessage(Prefix.HINT.getPrefix().then("Betrete einen mit").color(ChatColor.RED).then("/chat join <channel>").color(ChatColor.YELLOW));

@@ -77,7 +77,7 @@ public class CoreMain extends JavaPlugin implements Main {
 				update = true;
 				return;
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -87,21 +87,21 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Aktiviere Externe Dependencies...");
 		try {
 			// enableExternalDependencies();//TODO Do we need that?
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Registriere Commands...");
 		try {
-//			registerCommands(); //TODO Register Commands of AddOns
-		} catch (Exception ex) {
+			// registerCommands(); //TODO Register Commands of AddOns
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Aktiviere Handler...");
 		try {
 			enableHandler();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 			error("Fehler: " + ex.getMessage());
 		}
@@ -109,7 +109,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Lade Daten...");
 		try {
 			loadStuff();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 			ex.printStackTrace();
 		}
@@ -117,22 +117,22 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Registriere Listener...");
 		try {
 			registerListener();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 			error("Fehler: " + ex.getMessage());
 		}
-
+		
 		info("Apply Reload fixes...");
 		try {
 			fixReload();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Feheler: " + ex.getMessage());
 		}
 		
 		info("Suche Game...");
 		try {
 			Core.getCore().getGameHandler().searchMainGame();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
@@ -143,7 +143,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 				
 				@Override
-				public void uncaughtException(Thread t, Throwable e) {
+				public void uncaughtException(final Thread t, final Throwable e) {
 					System.out.println("something got thrwon:  " + e.getMessage());
 					e.printStackTrace();
 				}
@@ -152,21 +152,21 @@ public class CoreMain extends JavaPlugin implements Main {
 			Bukkit.getLogger().setFilter(new Filter() {
 				
 				@Override
-				public boolean isLoggable(LogRecord record) {
+				public boolean isLoggable(final LogRecord record) {
 					if (record.getThrown() != null) {
 						System.out.println("soemtinf got thrown: " + record.getThrown().getMessage());
 					}
 					return true;
 				}
 			});
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Websocket Stuff...");
 		try {
 			Core.getCore().getSocketHandler().registerPackets();
-			String server = System.getProperty("server");
+			final String server = System.getProperty("server");
 			if (server != null && server.equalsIgnoreCase("true")) {
 				info("Starting server...");
 				Core.getCore().getSocketHandler().startServer();
@@ -180,7 +180,7 @@ public class CoreMain extends JavaPlugin implements Main {
 					Core.getCore().getSocketHandler().startClient();
 				}
 			}, 10);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
@@ -197,42 +197,42 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Vorbereitung...");
 		try {
 			Core.getCore().getShutdownUtil().initShutdown();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Stoppe Client...");
 		try {
 			((CoreSocketClient) Core.getCore().getSocketHandler().getClient()).close();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Stoppe Server...");
 		try {
 			((CoreSocketServer) Core.getCore().getSocketHandler().getServer()).stop(30);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Unregister Listener...");
 		try {
 			HandlerList.unregisterAll(this);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Stoppe Tasks...");
 		try {
 			Bukkit.getScheduler().cancelTasks(this);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		info("Deaktiviere Handler...");
 		try {
 			disableHandler();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
@@ -245,8 +245,8 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void fixReload() {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			User user = Core.getCore().getUserHandler().get(p.getUniqueId());
+		for (final Player p : Bukkit.getOnlinePlayers()) {
+			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.startSession();
 		}
 	}
@@ -262,9 +262,9 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void registerListener() {
-		Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
+		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
 		        new CoreEventListener(), new CoreBlockListener() };
-		for (Listener listener : listeners) {
+		for (final Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}
 	}
@@ -285,30 +285,30 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	@Override
-	public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+	public boolean onCommand(final CommandSender sender, final org.bukkit.command.Command command, final String label, final String[] args) {
 		return Core.getCore().getCommandHandler().handleCommand(sender, label, command, args);
 	}
 	
 	@Override
-	public void debug(String s) {
+	public void debug(final String s) {
 		if (getConfig().isBoolean("debug")) {
 			getLogger().info("[DEBUG]" + s);
 		}
 	}
 	
 	@Override
-	public void info(String s) {
+	public void info(final String s) {
 		getLogger().info(s);
 	}
 	
 	@Override
-	public void error(String s) {
+	public void error(final String s) {
 		getLogger().severe(s);
 	}
 	
 	@Override
-	public void broadcast(FancyMessage msg) {
-		for (Player p : getServer().getOnlinePlayers()) {
+	public void broadcast(final FancyMessage msg) {
+		for (final Player p : getServer().getOnlinePlayers()) {
 			msg.send(p);
 		}
 	}

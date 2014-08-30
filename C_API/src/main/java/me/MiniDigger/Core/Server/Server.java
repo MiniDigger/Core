@@ -46,7 +46,7 @@ public interface Server {
 	 * @param primaryGameType
 	 *            the primaryGameType to set
 	 */
-	public void setPrimaryGameType(GameType primaryGameType);
+	public void setPrimaryGameType(final GameType primaryGameType);
 	
 	/**
 	 * @return the name
@@ -57,7 +57,7 @@ public interface Server {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name);
+	public void setName(final String name);
 	
 	/**
 	 * @return the numPlayers
@@ -68,7 +68,7 @@ public interface Server {
 	 * @param numPlayers
 	 *            the numPlayers to set
 	 */
-	public void setNumPlayers(int numPlayers);
+	public void setNumPlayers(final int numPlayers);
 	
 	/**
 	 * @return the maxPlayers
@@ -79,7 +79,7 @@ public interface Server {
 	 * @param maxPlayers
 	 *            the maxPlayers to set
 	 */
-	public void setMaxPlayers(int maxPlayers);
+	public void setMaxPlayers(final int maxPlayers);
 	
 	/**
 	 * @return the phase
@@ -90,7 +90,7 @@ public interface Server {
 	 * @param phase
 	 *            the phase to set
 	 */
-	public void setPhase(String phase);
+	public void setPhase(final String phase);
 	
 	/**
 	 * @return the join
@@ -101,7 +101,7 @@ public interface Server {
 	 * @param join
 	 *            the join to set
 	 */
-	public void setJoin(boolean join);
+	public void setJoin(final boolean join);
 	
 	/**
 	 * @return the spectate
@@ -112,7 +112,7 @@ public interface Server {
 	 * @param spectate
 	 *            the spectate to set
 	 */
-	public void setSpectate(boolean spectate);
+	public void setSpectate(final boolean spectate);
 	
 	/**
 	 * @return the online
@@ -123,13 +123,14 @@ public interface Server {
 	 * @param online
 	 *            the online to set
 	 */
-	public void setOnline(boolean online);
+	public void setOnline(final boolean online);
 	
 	/**
 	 * Converts this bean into a string
 	 * 
 	 * @return
 	 */
+	@Override
 	public String toString();
 	
 	/**

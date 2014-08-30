@@ -37,23 +37,23 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.DyeColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
+import org.bukkit.DyeColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 public class CoreMapHandler implements MapHandler {
 	
-	private ArrayList<MapData>	maps	 = new ArrayList<>();
-	private File	           mapFolder;
-	private File	           mapConfig	= new File(mapFolder, "maps.yml");
+	private final ArrayList<MapData>	maps	= new ArrayList<>();
+	private final File	             mapFolder;
+	private File	                 mapConfig;
 	
-	private FileConfiguration	con;
+	private final FileConfiguration	 con;
 	
 	public CoreMapHandler() {
 		mapFolder = new File(((CoreMain) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
@@ -62,7 +62,7 @@ public class CoreMapHandler implements MapHandler {
 	}
 	
 	@Override
-	public void addMap(MapData data) {
+	public void addMap(final MapData data) {
 		if (data.getName() == null) {
 			System.out.println("Could not add map: Name was null");
 			return;
@@ -71,11 +71,11 @@ public class CoreMapHandler implements MapHandler {
 	}
 	
 	@Override
-	public MapData getMap(String name) {
+	public MapData getMap(final String name) {
 		if (name == null) {
 			return null;
 		}
-		for (MapData data : maps) {
+		for (final MapData data : maps) {
 			if (data == null) {
 				return null;
 			}
@@ -87,11 +87,11 @@ public class CoreMapHandler implements MapHandler {
 	}
 	
 	@Override
-	public List<MapData> getMaps(List<DyeColor> types) {
-		List<MapData> result = new ArrayList<>();
-		for (MapData data : maps) {
+	public List<MapData> getMaps(final List<DyeColor> types) {
+		final List<MapData> result = new ArrayList<>();
+		for (final MapData data : maps) {
 			boolean breaked = false;
-			for (DyeColor type : types) {
+			for (final DyeColor type : types) {
 				if (data.getLocs(type) == null) {
 					breaked = true;
 					break;
@@ -105,22 +105,22 @@ public class CoreMapHandler implements MapHandler {
 	}
 	
 	@Override
-	public String getAuthor(String map) {
+	public String getAuthor(final String map) {
 		return con.getString(map + ".author");
 	}
 	
 	@Override
-	public String getName(String map) {
+	public String getName(final String map) {
 		return con.getString(map + ".name");
 	}
 	
 	@Override
-	public ArrayList<String> loadMapConfig(GameType type) {
-		List<String> maps = con.getStringList("maps");
-		List<String> matched = new ArrayList<>();
+	public ArrayList<String> loadMapConfig(final GameType type) {
+		final List<String> maps = con.getStringList("maps");
+		final List<String> matched = new ArrayList<>();
 		
-		for (String s : maps) {
-			List<String> types = con.getStringList(s + ".gametypes");
+		for (final String s : maps) {
+			final List<String> types = con.getStringList(s + ".gametypes");
 			if (types.contains(type.name())) {
 				matched.add(s);
 			}
@@ -138,7 +138,7 @@ public class CoreMapHandler implements MapHandler {
 			
 			map3 = matched.get(Core.getCore().getRandomUtil().nextInt(matched.size()));
 			matched.remove(map3);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			
 		}
 		
@@ -147,7 +147,7 @@ public class CoreMapHandler implements MapHandler {
 			return new ArrayList<>();
 		}
 		
-		ArrayList<String> list = new ArrayList<>();
+		final ArrayList<String> list = new ArrayList<>();
 		if (map1 != null) {
 			list.add(map1);
 		}

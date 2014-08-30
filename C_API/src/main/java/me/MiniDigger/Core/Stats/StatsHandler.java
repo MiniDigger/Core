@@ -47,7 +47,7 @@ public interface StatsHandler extends SaveHandler {
 	 * @param count
 	 * @return
 	 */
-	public List<String> getTop(StatsType type, int count);
+	public List<String> getTop(final StatsType type, final int count);
 	
 	/**
 	 * Returns the stats object for the user
@@ -55,5 +55,5 @@ public interface StatsHandler extends SaveHandler {
 	 * @param user
 	 * @return
 	 */
-	public Stats get(UUID user);
+	public Stats get(final UUID user);
 }

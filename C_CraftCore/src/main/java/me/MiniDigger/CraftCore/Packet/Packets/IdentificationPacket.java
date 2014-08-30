@@ -21,8 +21,8 @@ public class IdentificationPacket extends CorePacket {
 	}
 	
 	@Override
-	public void fromString(String s) {
-		String[] ss = s.split(Pattern.quote("|"));
+	public void fromString(final String s) {
+		final String[] ss = s.split(Pattern.quote("|"));
 		
 		clientName = ss[1];
 		pass = ss[2];
@@ -34,10 +34,10 @@ public class IdentificationPacket extends CorePacket {
 	}
 	
 	@Override
-	public void handle(WebSocket con) {
+	public void handle(final WebSocket con) {
 		Core.getCore().getSocketHandler().reciveName(clientName, con.getRemoteSocketAddress());
-		Session session = Core.getCore().getSocketHandler().getSession(clientName);
-		Client client = new CoreClient(clientName);
+		final Session session = Core.getCore().getSocketHandler().getSession(clientName);
+		final Client client = new CoreClient(clientName);
 		client.load();
 		session.setClient(client);
 		if (pass.equalsIgnoreCase(client.getPassword())) {
@@ -59,7 +59,7 @@ public class IdentificationPacket extends CorePacket {
 		return clientName;
 	}
 	
-	public void setClientName(String clientName) {
+	public void setClientName(final String clientName) {
 		this.clientName = clientName;
 	}
 	
@@ -67,7 +67,7 @@ public class IdentificationPacket extends CorePacket {
 		return pass;
 	}
 	
-	public void setPass(String pass) {
+	public void setPass(final String pass) {
 		this.pass = pass;
 	}
 }

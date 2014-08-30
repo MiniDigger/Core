@@ -34,13 +34,14 @@
 package me.MiniDigger.Core.Phase;
 
 public interface TimedPhase extends Phase {
+	
 	/**
 	 * Gets called, when a second passed
 	 * 
 	 * @param secsPassed
 	 * @param secsToGo
 	 */
-	public void tick(int secsPassed, int secsToGo);
+	public void tick(final int secsPassed, final int secsToGo);
 	
 	/**
 	 * Gets called, when one of the last 5 seconds passed
@@ -48,5 +49,5 @@ public interface TimedPhase extends Phase {
 	 * @param secsPassed
 	 * @param secsToGo
 	 */
-	public void tickLast5secs(int secsPassed, int secsToGo);
+	public void tickLast5secs(final int secsPassed, final int secsToGo);
 }

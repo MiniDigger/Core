@@ -35,20 +35,20 @@ package me.MiniDigger.CraftCore.Server;
 
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.scheduler.BukkitTask;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.Core.Server.ServerHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.scheduler.BukkitTask;
+
 public class CoreServerHandler implements ServerHandler {
 	
-	private ArrayList<Server>	servers	= new ArrayList<>();
-	private BukkitTask	      task;
+	private final ArrayList<Server>	servers	= new ArrayList<>();
+	private BukkitTask	            task;
 	
 	@Override
 	public void startTask() {
@@ -67,10 +67,10 @@ public class CoreServerHandler implements ServerHandler {
 	}
 	
 	@Override
-	public String[] getServerInfo(String[] lines) {
-		String[] newLines = new String[4];
+	public String[] getServerInfo(final String[] lines) {
+		final String[] newLines = new String[4];
 		
-		Server server = getServerInfo(lines[1]);
+		final Server server = getServerInfo(lines[1]);
 		if (server == null || !server.isOnline()) {
 			newLines[0] = ChatColor.DARK_RED + "██████████";
 			newLines[1] = ChatColor.RED + " " + ChatColor.BOLD + ChatColor.UNDERLINE + "RESTART";
@@ -107,8 +107,8 @@ public class CoreServerHandler implements ServerHandler {
 	}
 	
 	@Override
-	public Server getServerInfo(String name) {
-		for (Server s : servers) {
+	public Server getServerInfo(final String name) {
+		for (final Server s : servers) {
 			if (s.getName().equalsIgnoreCase(name)) {
 				return s;
 			}
@@ -117,7 +117,7 @@ public class CoreServerHandler implements ServerHandler {
 	}
 	
 	@Override
-	public void gotServerInfo(Server server) {
+	public void gotServerInfo(final Server server) {
 		if (getServerInfo(server.getName()) == null) {
 			servers.add(server);
 		} else {

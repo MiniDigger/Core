@@ -35,12 +35,12 @@ package me.MiniDigger.CraftCore.Server;
 
 import java.util.regex.Pattern;
 
-import org.bukkit.Bukkit;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Server.Server;
+
+import org.bukkit.Bukkit;
 
 public class CoreServer implements Server {
 	
@@ -53,9 +53,9 @@ public class CoreServer implements Server {
 	private boolean	 spectate;
 	private boolean	 online;
 	
-	public static Server fromString(String data) {
-		String[] d = data.split(Pattern.quote("|"));
-		Server server = new CoreServer();
+	public static Server fromString(final String data) {
+		final String[] d = data.split(Pattern.quote("|"));
+		final Server server = new CoreServer();
 		
 		server.setName(d[0]);
 		server.setPrimaryGameType(GameType.valueOf(null));
@@ -69,20 +69,21 @@ public class CoreServer implements Server {
 		return server;
 	}
 	
+	@Override
 	public String toString() {
 		return name + "|" + primaryGameType.name() + "|" + numPlayers + "|" + maxPlayers + "|" + phase + "|" + join + "|" + spectate + "|" + online;
 	}
 	
-	public static Server getForThis(boolean online) {
-		Server server = new CoreServer();
+	public static Server getForThis(final boolean online) {
+		final Server server = new CoreServer();
 		
 		try {
-			Game game = Core.getCore().getGameHandler().getMainGame();
+			final Game game = Core.getCore().getGameHandler().getMainGame();
 			server.setPrimaryGameType(game.getType());
 			server.setPhase(game.getPhase().getName());
 			server.setJoin(game.allowJoin());
 			server.setSpectate(game.allowSpectate());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			server.setPrimaryGameType(GameType.NOTHING);
 			server.setPhase(" ");
 			server.setJoin(true);
@@ -97,6 +98,7 @@ public class CoreServer implements Server {
 		return server;
 	}
 	
+	@Override
 	public boolean isFull() {
 		return numPlayers >= maxPlayers ? true : false;
 	}
@@ -108,7 +110,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setPrimaryGameType(GameType primaryGameType) {
+	public void setPrimaryGameType(final GameType primaryGameType) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -119,7 +121,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
@@ -129,7 +131,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setNumPlayers(int numPlayers) {
+	public void setNumPlayers(final int numPlayers) {
 		this.numPlayers = numPlayers;
 	}
 	
@@ -139,7 +141,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setMaxPlayers(int maxPlayers) {
+	public void setMaxPlayers(final int maxPlayers) {
 		this.maxPlayers = maxPlayers;
 	}
 	
@@ -149,7 +151,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setPhase(String phase) {
+	public void setPhase(final String phase) {
 		this.phase = phase;
 	}
 	
@@ -159,7 +161,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setJoin(boolean join) {
+	public void setJoin(final boolean join) {
 		this.join = join;
 	}
 	
@@ -169,7 +171,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setSpectate(boolean spectate) {
+	public void setSpectate(final boolean spectate) {
 		this.spectate = spectate;
 	}
 	
@@ -179,7 +181,7 @@ public class CoreServer implements Server {
 	}
 	
 	@Override
-	public void setOnline(boolean online) {
+	public void setOnline(final boolean online) {
 		this.online = online;
 	}
 }

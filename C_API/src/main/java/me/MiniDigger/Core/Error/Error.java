@@ -59,7 +59,7 @@ public enum Error {
 	private ErrorType	type;
 	private ErrorLevel	level;
 	
-	private Error(String id, String name, String message, ErrorType type, ErrorLevel level) {
+	private Error(final String id, final String name, final String message, final ErrorType type, final ErrorLevel level) {
 		this.id = id;
 		this.name = name;
 		this.message = message;

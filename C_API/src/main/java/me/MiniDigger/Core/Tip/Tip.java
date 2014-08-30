@@ -33,7 +33,6 @@
 
 package me.MiniDigger.Core.Tip;
 
-
 public interface Tip {
-	//TODO Tip API
+	// TODO Tip API
 }

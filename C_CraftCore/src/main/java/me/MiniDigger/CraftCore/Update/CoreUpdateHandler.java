@@ -40,6 +40,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.Update.UpdateType;
@@ -53,12 +54,13 @@ public class CoreUpdateHandler implements UpdateHandler {
 	private static final String	JAR_URL	     = "http://game-repo.minidigger.me/TheCore/TheCore.jar";
 	private static final String	VERSIONS_URL	= "http://game-repo.minidigger.me/TheCore/version.txt";
 	
-	private UpdateType	        type;
+	private final UpdateType	type;
 	
 	public CoreUpdateHandler() {
 		type = UpdateType.valueOf(((CoreMain) Core.getCore().getInstance()).getConfig().getString("update-type"));
 	}
 	
+	@Override
 	public boolean updateCheck() {
 		if (getLatestVersion().isNewer(getVersion(), type)) {
 			new Thread(new Runnable() {

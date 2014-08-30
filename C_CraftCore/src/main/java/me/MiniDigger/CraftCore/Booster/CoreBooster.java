@@ -35,7 +35,6 @@ package me.MiniDigger.CraftCore.Booster;
 
 import me.MiniDigger.Core.Booster.Booster;
 
-
 public class CoreBooster implements Booster {
 	
 }

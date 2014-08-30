@@ -50,7 +50,7 @@ public interface Stats extends Saveable {
 	 * @param type
 	 * @param value
 	 */
-	public void set(StatsType type, int value);
+	public void set(final StatsType type, final int value);
 	
 	/**
 	 * Addts the value to the current value
@@ -58,7 +58,7 @@ public interface Stats extends Saveable {
 	 * @param type
 	 * @param value
 	 */
-	public void add(StatsType type, int value);
+	public void add(final StatsType type, final int value);
 	
 	/**
 	 * Removes the value from the current value
@@ -66,7 +66,7 @@ public interface Stats extends Saveable {
 	 * @param type
 	 * @param value
 	 */
-	public void remove(StatsType type, int value);
+	public void remove(final StatsType type, final int value);
 	
 	/**
 	 * Retuns the current value
@@ -74,7 +74,7 @@ public interface Stats extends Saveable {
 	 * @param type
 	 * @return
 	 */
-	public int get(StatsType type);
+	public int get(final StatsType type);
 	
 	public void init();
 }

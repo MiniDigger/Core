@@ -37,8 +37,8 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.EntityType;
 
-
 public interface EntityUtil {
+	
 	public enum Type {
 		PASSIV, ANGRY, FRIENDLY, PROJECTILE, OTHER, UTILITY, CART;
 	}
@@ -49,5 +49,5 @@ public interface EntityUtil {
 	 * @param types
 	 * @return
 	 */
-	public ArrayList<EntityType> getAll(Type... types);
+	public ArrayList<EntityType> getAll(final Type... types);
 }

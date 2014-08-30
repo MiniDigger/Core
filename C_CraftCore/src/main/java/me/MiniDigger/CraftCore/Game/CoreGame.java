@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
@@ -46,8 +47,6 @@ import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
-import me.MiniDigger.Core.Error.Error;
-
 import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.Bukkit;
@@ -59,16 +58,16 @@ import org.bukkit.event.HandlerList;
 
 public class CoreGame implements Game {
 	
-	private UUID	                id	     = UUID.randomUUID();
-	private List<UUID>	            users	 = new ArrayList<>();
-	private HashMap<String, String>	gameData	= new HashMap<>();
-	private Phase	                phase;
-	private GameType	            type;
-	private boolean	                allowJoin;
-	private boolean	                allowSpectate;
+	private final UUID	                  id	     = UUID.randomUUID();
+	private final List<UUID>	          users	     = new ArrayList<>();
+	private final HashMap<String, String>	gameData	= new HashMap<>();
+	private Phase	                      phase;
+	private GameType	                  type;
+	private boolean	                      allowJoin;
+	private boolean	                      allowSpectate;
 	
 	@Override
-	public Error join(User user) {
+	public Error join(final User user) {
 		if (users.contains(user.getUUID())) {
 			return Error.USER_ALLREADY_JOINED;
 		} else {
@@ -78,7 +77,7 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public Error leave(User user) {
+	public Error leave(final User user) {
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
 		user.getPlayer().setLevel(0);
 		user.getPlayer().setExp(0);
@@ -105,22 +104,22 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public void broadCastMessage(FancyMessage msg) {
-		for (UUID id : users) {
+	public void broadCastMessage(final FancyMessage msg) {
+		for (final UUID id : users) {
 			Core.getCore().getUserHandler().get(id).sendMessage(msg);
 		}
 	}
 	
 	@Override
-	public void broadCastSound(Sound sound, float volume, float pitch) {
-		for (UUID id : users) {
+	public void broadCastSound(final Sound sound, final float volume, final float pitch) {
+		for (final UUID id : users) {
 			Bukkit.getPlayer(id).playSound(Bukkit.getPlayer(id).getLocation(), sound, volume, pitch);
 		}
 	}
 	
 	@Override
-	public void broadCastSoundAtLocation(Sound sound, float volume, float pitch, Location loc) {
-		for (UUID id : users) {
+	public void broadCastSoundAtLocation(final Sound sound, final float volume, final float pitch, final Location loc) {
+		for (final UUID id : users) {
 			Bukkit.getPlayer(id).playSound(loc, sound, volume, pitch);
 		}
 	}
@@ -140,8 +139,8 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public void setPhase(Phase nextPhase) {
-		this.phase = nextPhase;
+	public void setPhase(final Phase nextPhase) {
+		phase = nextPhase;
 	}
 	
 	@Override
@@ -160,12 +159,12 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public String getGameData(String key) {
+	public String getGameData(final String key) {
 		return gameData.get(key);
 	}
 	
 	@Override
-	public void setGameData(String key, String data) {
+	public void setGameData(final String key, final String data) {
 		if (gameData.containsKey(key)) {
 			gameData.remove(gameData.get(key));
 		}
@@ -173,14 +172,16 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public void end(User... winner) {
-		MapData lobby = Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
-		Location loc = lobby.getLocs(DyeColor.RED).values().iterator().next();
-		for (User w : winner) {
-			if (w != null) w.getPlayer().teleport(loc);
+	public void end(final User... winner) {
+		final MapData lobby = Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
+		final Location loc = lobby.getLocs(DyeColor.RED).values().iterator().next();
+		for (final User w : winner) {
+			if (w != null) {
+				w.getPlayer().teleport(loc);
+			}
 		}
 		
-		for (Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Bukkit.getOnlinePlayers()) {
 			if (!p.getLocation().getWorld().getName().equalsIgnoreCase(lobby.getName())) {
 				p.teleport(loc);
 			}
@@ -190,7 +191,7 @@ public class CoreGame implements Game {
 		HandlerList.unregisterAll(getPhase());
 		Core.getCore().getCommandHandler().unregisterCommands(getPhase());
 		
-		for (Feature f : getPhase().getFeatures()) {
+		for (final Feature f : getPhase().getFeatures()) {
 			HandlerList.unregisterAll(f);
 			Core.getCore().getCommandHandler().unregisterCommands(f);
 			f.end();
@@ -199,8 +200,8 @@ public class CoreGame implements Game {
 		Core.getCore().getShutdownUtil().initShutdown();
 		
 		try {
-			this.finalize();
-		} catch (Throwable e) {
+			finalize();
+		} catch (final Throwable e) {
 			e.printStackTrace();
 		}
 	}

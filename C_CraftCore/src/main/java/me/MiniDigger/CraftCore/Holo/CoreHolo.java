@@ -36,6 +36,9 @@ package me.MiniDigger.CraftCore.Holo;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import me.MiniDigger.Core.Holo.Holo;
+import me.MiniDigger.Core.User.User;
+
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -49,18 +52,15 @@ import com.comphenix.packetwrapper.WrapperPlayServerSpawnEntityLiving;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 
-import me.MiniDigger.Core.Holo.Holo;
-import me.MiniDigger.Core.User.User;
-
 public class CoreHolo implements Holo {
 	
-	private int	     id;
-	private Location	loc;
-	private double	 dy;
-	private String	 name;
-	private double	 horeOffset	= 100;
+	private final int	   id;
+	private final Location	loc;
+	private final double	dy;
+	private String	       name;
+	private final double	horeOffset	= 100;
 	
-	public CoreHolo(int id, Location loc, double dy, String name) {
+	public CoreHolo(final int id, final Location loc, final double dy, final String name) {
 		this.id = id;
 		this.loc = loc;
 		this.dy = dy;
@@ -68,9 +68,9 @@ public class CoreHolo implements Holo {
 	}
 	
 	@Override
-	public void show(User u) {
-		Player p = u.getPlayer();
-		WrapperPlayServerSpawnEntityLiving horse = new WrapperPlayServerSpawnEntityLiving();
+	public void show(final User u) {
+		final Player p = u.getPlayer();
+		final WrapperPlayServerSpawnEntityLiving horse = new WrapperPlayServerSpawnEntityLiving();
 		
 		horse.setEntityID(id);
 		
@@ -80,7 +80,7 @@ public class CoreHolo implements Holo {
 		horse.setY(loc.getY() + dy + horeOffset);
 		horse.setZ(loc.getZ());
 		
-		WrappedDataWatcher wdw = new WrappedDataWatcher();
+		final WrappedDataWatcher wdw = new WrappedDataWatcher();
 		
 		wdw.setObject(10, name);
 		wdw.setObject(11, (byte) 1);
@@ -91,11 +91,11 @@ public class CoreHolo implements Holo {
 		
 		try {
 			ProtocolLibrary.getProtocolManager().sendServerPacket(p, horse.getHandle());
-		} catch (InvocationTargetException e2) {
+		} catch (final InvocationTargetException e2) {
 			e2.printStackTrace();
 		}
 		
-		WrapperPlayServerSpawnEntity skull = new WrapperPlayServerSpawnEntity();
+		final WrapperPlayServerSpawnEntity skull = new WrapperPlayServerSpawnEntity();
 		
 		skull.setEntityID(id + 1);
 		
@@ -107,27 +107,27 @@ public class CoreHolo implements Holo {
 		
 		try {
 			ProtocolLibrary.getProtocolManager().sendServerPacket(p, skull.getHandle());
-		} catch (InvocationTargetException e1) {
+		} catch (final InvocationTargetException e1) {
 			e1.printStackTrace();
 		}
 		
-		WrapperPlayServerAttachEntity attach = new WrapperPlayServerAttachEntity();
+		final WrapperPlayServerAttachEntity attach = new WrapperPlayServerAttachEntity();
 		
 		attach.setEntityId(id);
 		attach.setVehicleId(id + 1);
 		
 		try {
 			ProtocolLibrary.getProtocolManager().sendServerPacket(p, attach.getHandle());
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
-	public void hide(User u) {
-		WrapperPlayServerEntityDestroy destroy = new WrapperPlayServerEntityDestroy();
+	public void hide(final User u) {
+		final WrapperPlayServerEntityDestroy destroy = new WrapperPlayServerEntityDestroy();
 		
-		ArrayList<Integer> entities = new ArrayList<>();
+		final ArrayList<Integer> entities = new ArrayList<>();
 		
 		entities.add(id);
 		entities.add(id + 1);
@@ -136,14 +136,14 @@ public class CoreHolo implements Holo {
 		
 		try {
 			ProtocolLibrary.getProtocolManager().sendServerPacket(u.getPlayer(), destroy.getHandle());
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
-	public void setLocation(User u, Location loc) {
-		WrapperPlayServerEntityTeleport teleport = new WrapperPlayServerEntityTeleport();
+	public void setLocation(final User u, final Location loc) {
+		final WrapperPlayServerEntityTeleport teleport = new WrapperPlayServerEntityTeleport();
 		
 		teleport.setEntityID(id + 1);
 		
@@ -153,26 +153,26 @@ public class CoreHolo implements Holo {
 		
 		try {
 			ProtocolLibrary.getProtocolManager().sendServerPacket(u.getPlayer(), teleport.getHandle());
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
-	public void setMessage(User u, String msg) {
-		this.name = msg;
+	public void setMessage(final User u, final String msg) {
+		name = msg;
 		
-		WrapperPlayServerEntityMetadata eMeta = new WrapperPlayServerEntityMetadata();
+		final WrapperPlayServerEntityMetadata eMeta = new WrapperPlayServerEntityMetadata();
 		eMeta.setEntityId(id);
 		
-		WrappedDataWatcher wdw = new WrappedDataWatcher();	
+		final WrappedDataWatcher wdw = new WrappedDataWatcher();
 		wdw.setObject(10, name);
 		
 		eMeta.setEntityMetadata(wdw.getWatchableObjects());
 		
 		try {
 			ProtocolLibrary.getProtocolManager().sendServerPacket(u.getPlayer(), eMeta.getHandle());
-		} catch (InvocationTargetException e) {
+		} catch (final InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}

@@ -57,7 +57,7 @@ public enum Prefix {
 	private String	  name;
 	private GameType	type;
 	
-	private Prefix(ChatColor klammer, ChatColor color, String name, GameType type) {
+	private Prefix(final ChatColor klammer, final ChatColor color, final String name, final GameType type) {
 		this.klammer = klammer;
 		this.color = color;
 		this.name = name;
@@ -121,8 +121,8 @@ public enum Prefix {
 	 * @param type
 	 * @return may be null
 	 */
-	public static Prefix getByGameType(GameType type) {
-		for (Prefix p : Prefix.values()) {
+	public static Prefix getByGameType(final GameType type) {
+		for (final Prefix p : Prefix.values()) {
 			if (p.getType().equals(type)) {
 				return p;
 			}

@@ -40,9 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
@@ -51,6 +48,9 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.User.UserHandler;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 import me.MiniDigger.CraftCore.Stats.CoreStats;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class CoreUserHandler implements UserHandler {
 	
@@ -63,13 +63,13 @@ public class CoreUserHandler implements UserHandler {
 			Core.getCore().getInstance().info("Tabelle wurde nicht erstellt!");
 		}
 		users = new ArrayList<>();
-		ArrayList<String> uuids = new ArrayList<>();
-		SQLQuery q = new CoreSQLQuery("SELECT `uuid` FROM `users`");
-		PreparedStatement stmt = q.getStatement();
+		final ArrayList<String> uuids = new ArrayList<>();
+		final SQLQuery q = new CoreSQLQuery("SELECT `uuid` FROM `users`");
+		final PreparedStatement stmt = q.getStatement();
 		ResultSet r;
 		try {
 			r = stmt.executeQuery();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			return false;
 		}
 		
@@ -77,16 +77,16 @@ public class CoreUserHandler implements UserHandler {
 			while (r.next()) {
 				try {
 					uuids.add(r.getString("uuid"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					// skip on single error
 				}
 			}
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			return false;
 		}
 		boolean b = true;
-		for (String s : uuids) {
-			Stats stat = new CoreStats(UUID.fromString(s));
+		for (final String s : uuids) {
+			final Stats stat = new CoreStats(UUID.fromString(s));
 			if (!stat.load()) {
 				b = false;
 			}
@@ -99,27 +99,27 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public boolean saveAll() {
-		for (User u : users) {
+		for (final User u : users) {
 			u.save();
 		}
 		return true;
 	}
 	
 	@Override
-	public void addBot(Bot bot) {
+	public void addBot(final Bot bot) {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public User get(UUID id) {
-		for (User u : users) {
+	public User get(final UUID id) {
+		for (final User u : users) {
 			if (u.getUUID().equals(id)) {
 				return u;
 			}
 		}
 		
-		User u = new CoreUser(id);
+		final User u = new CoreUser(id);
 		if (!u.load()) {
 			u.init();
 		}
@@ -130,12 +130,12 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public List<User> getOnlineUsers() {
-		List<User> users = new ArrayList<>();
+		final List<User> users = new ArrayList<>();
 		
-		for (Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Bukkit.getOnlinePlayers()) {
 			users.add(get(p.getUniqueId()));
 		}
 		
 		return users;
-	}	
+	}
 }

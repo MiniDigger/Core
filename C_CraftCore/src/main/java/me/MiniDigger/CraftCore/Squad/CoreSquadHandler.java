@@ -36,30 +36,30 @@ package me.MiniDigger.CraftCore.Squad;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Squad.Squad;
 import me.MiniDigger.Core.Squad.SquadHandler;
 import me.MiniDigger.CraftCore.Chat.Channels.SquadChannel;
 
+import org.bukkit.ChatColor;
+
 public class CoreSquadHandler implements SquadHandler {
 	
-	private ArrayList<Squad>	squads	= new ArrayList<>();
+	private final ArrayList<Squad>	squads	= new ArrayList<>();
 	
 	@Override
-	public void createSquad(UUID id) {
-		SquadChannel channel = new SquadChannel(id.toString(), ChatColor.LIGHT_PURPLE, "chat.hear.squad", "chat.speak.squad", Prefix.SQUAD.getPrefix());
+	public void createSquad(final UUID id) {
+		final SquadChannel channel = new SquadChannel(id.toString(), ChatColor.LIGHT_PURPLE, "chat.hear.squad", "chat.speak.squad", Prefix.SQUAD.getPrefix());
 		Core.getCore().getChatHandler().registerChannel(channel);
 		
-		Squad squad = new CoreSquad(id);
+		final Squad squad = new CoreSquad(id);
 		squads.add(squad);
 	}
 	
 	@Override
-	public Squad getSquad(UUID user) {
-		for (Squad squad : squads) {
+	public Squad getSquad(final UUID user) {
+		for (final Squad squad : squads) {
 			if (squad.getOwner().equals(user)) {
 				return squad;
 			}
@@ -71,9 +71,9 @@ public class CoreSquadHandler implements SquadHandler {
 	}
 	
 	@Override
-	public ArrayList<Squad> getInvitations(UUID user) {
-		ArrayList<Squad> invs = new ArrayList<>();
-		for (Squad squad : squads) {
+	public ArrayList<Squad> getInvitations(final UUID user) {
+		final ArrayList<Squad> invs = new ArrayList<>();
+		for (final Squad squad : squads) {
 			if (squad.getInvs().contains(user)) {
 				invs.add(squad);
 			}

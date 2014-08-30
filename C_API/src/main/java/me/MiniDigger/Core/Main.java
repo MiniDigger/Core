@@ -65,7 +65,7 @@ public interface Main {
 	 *            The given arguments
 	 * @return If the Command was executed by the framework
 	 */
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args);
+	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args);
 	
 	/**
 	 * Prints a message into the consol using the info channel
@@ -73,7 +73,7 @@ public interface Main {
 	 * @param s
 	 *            The message
 	 */
-	public void info(String s);
+	public void info(final String s);
 	
 	/**
 	 * Prints a message into the consol using the error channel
@@ -81,7 +81,7 @@ public interface Main {
 	 * @param s
 	 *            The message
 	 */
-	public void error(String s);
+	public void error(final String s);
 	
 	/**
 	 * Prints a message into the consol using the debug channel
@@ -89,7 +89,7 @@ public interface Main {
 	 * @param s
 	 *            The message
 	 */
-	public void debug(String s);
+	public void debug(final String s);
 	
 	/**
 	 * Broadcasts a message to all players currently online
@@ -97,7 +97,7 @@ public interface Main {
 	 * @param msg
 	 *            The message
 	 */
-	public void broadcast(FancyMessage msg);
+	public void broadcast(final FancyMessage msg);
 	
 	/**
 	 * 

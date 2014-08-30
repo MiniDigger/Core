@@ -35,8 +35,7 @@ package me.MiniDigger.Core.Socket.Client;
 
 import me.MiniDigger.Core.SQL.Saveable;
 
-
-public interface Client extends Saveable{
+public interface Client extends Saveable {
 	
 	/**
 	 * 
@@ -52,13 +51,15 @@ public interface Client extends Saveable{
 	
 	/**
 	 * 
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
-	public void setName(String name);
+	public void setName(final String name);
 	
 	/**
 	 * 
-	 * @param password the password to set
+	 * @param password
+	 *            the password to set
 	 */
-	public void setPassword(String password);
+	public void setPassword(final String password);
 }

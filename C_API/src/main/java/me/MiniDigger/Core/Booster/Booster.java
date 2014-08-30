@@ -33,7 +33,6 @@
 
 package me.MiniDigger.Core.Booster;
 
-
 public interface Booster {
-	//TODO Booster API
+	// TODO Booster API
 }

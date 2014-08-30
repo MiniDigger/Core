@@ -58,7 +58,7 @@ public interface NametagHandler {
 	 * @param p
 	 *            The player, which tag should be hidden
 	 */
-	public void hideTag(Player p);
+	public void hideTag(final Player p);
 	
 	/**
 	 * Show players tag
@@ -66,7 +66,7 @@ public interface NametagHandler {
 	 * @param p
 	 *            The player, which tag should be shown
 	 */
-	public void showNametag(Player p);
+	public void showNametag(final Player p);
 	
 	/**
 	 * Checks if players nametag is hidden
@@ -75,5 +75,5 @@ public interface NametagHandler {
 	 *            The player
 	 * @return If the nametag is hidden or not
 	 */
-	public boolean isNametagHidden(Player p);
+	public boolean isNametagHidden(final Player p);
 }

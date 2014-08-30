@@ -41,7 +41,7 @@ import me.MiniDigger.Core.Socket.Client.ClientHandler;
 
 public class CoreClientHandler implements ClientHandler {
 	
-	private ArrayList<Client>	clients	= new ArrayList<>();
+	private final ArrayList<Client>	clients	= new ArrayList<>();
 	
 	@Override
 	public boolean loadAll() {
@@ -58,13 +58,13 @@ public class CoreClientHandler implements ClientHandler {
 	}
 	
 	@Override
-	public Client getClient(String name) {
-		for (Client client : clients) {
+	public Client getClient(final String name) {
+		for (final Client client : clients) {
 			if (client.getName().equals(name)) {
 				return client;
 			}
 		}
-		Client user = new CoreClient(name);
+		final Client user = new CoreClient(name);
 		user.load();
 		clients.add(user);
 		return user;

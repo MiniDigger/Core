@@ -52,7 +52,7 @@ public interface HoloList {
 	 * @param u
 	 *            The user to hide the holos for
 	 */
-	public void hideHolos(User u);
+	public void hideHolos(final User u);
 	
 	/**
 	 * Shows all holos in the list for a user
@@ -60,7 +60,7 @@ public interface HoloList {
 	 * @param u
 	 *            The user to show the holos for
 	 */
-	public void showHolos(User u);
+	public void showHolos(final User u);
 	
 	/**
 	 * Changes the location of all holos for a user
@@ -70,6 +70,6 @@ public interface HoloList {
 	 * @param loc
 	 *            The new location
 	 */
-	public void setLocation(User u, Location loc);
+	public void setLocation(final User u, final Location loc);
 	
 }

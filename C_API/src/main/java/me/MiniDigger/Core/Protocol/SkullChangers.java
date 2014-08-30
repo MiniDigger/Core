@@ -41,7 +41,7 @@ import org.bukkit.entity.Player;
 import com.comphenix.protocol.events.PacketEvent;
 
 public interface SkullChangers {
-
+	
 	/**
 	 * Updates all the changer
 	 */
@@ -58,7 +58,7 @@ public interface SkullChangers {
 	 * @param changer
 	 *            The changer to register
 	 */
-	public void addSkullChanger(SkullChanger changer);
+	public void addSkullChanger(final SkullChanger changer);
 	
 	/**
 	 * Unregister a changer
@@ -66,7 +66,7 @@ public interface SkullChangers {
 	 * @param changer
 	 *            The changer to unregister
 	 */
-	public void removeSkullChanger(SkullChanger changer);
+	public void removeSkullChanger(final SkullChanger changer);
 	
 	/**
 	 * @return All the registered changers
@@ -79,15 +79,15 @@ public interface SkullChangers {
 	 * @param event
 	 *            The Event
 	 */
-	public void handlePacket(PacketEvent event);
+	public void handlePacket(final PacketEvent event);
 	
 	public abstract class SkullChanger {
 		
-		private String	key;
-		private String	perm;
-		private String	desc;
+		private final String	key;
+		private final String	perm;
+		private final String	desc;
 		
-		public SkullChanger(String key, String perm, String desc) {
+		public SkullChanger(final String key, final String perm, final String desc) {
 			this.key = key;
 			this.perm = perm;
 			this.desc = desc;
@@ -123,6 +123,6 @@ public interface SkullChangers {
 		 *            The location of the sign
 		 * @return The value to replace the key
 		 */
-		public abstract String getValue(Player player, Location loc);
+		public abstract String getValue(final Player player, final Location loc);
 	}
 }

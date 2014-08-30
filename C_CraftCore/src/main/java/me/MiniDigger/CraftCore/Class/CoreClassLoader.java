@@ -44,16 +44,16 @@ import me.MiniDigger.Core.Class.ClassLoader;
 public class CoreClassLoader implements ClassLoader {
 	
 	@Override
-	public void load(String name) {
+	public void load(final String name) {
 		URL classUrl;
 		try {
 			classUrl = new URL("http://game-repo.minidigger.me/");
-		} catch (MalformedURLException e1) {
+		} catch (final MalformedURLException e1) {
 			e1.printStackTrace();
 			return;
 		}
-		URL[] classUrls = { classUrl };
-		URLClassLoader ucl = new URLClassLoader(classUrls);
+		final URL[] classUrls = { classUrl };
+		final URLClassLoader ucl = new URLClassLoader(classUrls);
 		Class<?> c;
 		try {
 			c = ucl.loadClass(name);
@@ -65,7 +65,7 @@ public class CoreClassLoader implements ClassLoader {
 		}
 		try {
 			ucl.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			Core.getCore().getInstance().error("Error while loading class " + name + " !");
 			e.printStackTrace();
 			return;

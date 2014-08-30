@@ -10,11 +10,11 @@ import org.bukkit.ChatColor;
 public class ItemCommands {
 	
 	@Command(name = "item", description = "Gibt das Item", permission = "item", usage = "<ITEM>", consol = false, max = 1, min = 1)
-	public void item(CommandArgs args) {
+	public void item(final CommandArgs args) {
 		ItemType item;
 		try {
 			item = ItemType.valueOf(args.getArgs()[0]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekanntes Item").color(ChatColor.RED));
 			return;
 		}

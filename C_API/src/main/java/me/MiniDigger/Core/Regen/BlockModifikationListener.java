@@ -35,7 +35,6 @@ package me.MiniDigger.Core.Regen;
 
 import org.bukkit.event.Listener;
 
-
-public interface BlockModifikationListener extends Listener{
+public interface BlockModifikationListener extends Listener {
 	
 }

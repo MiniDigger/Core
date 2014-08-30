@@ -52,5 +52,5 @@ public interface TimeUtil {
 	 * @param secs
 	 * @return
 	 */
-	public String formatTime(int secs);
+	public String formatTime(final int secs);
 }

@@ -33,7 +33,6 @@
 
 package me.MiniDigger.Core.Booster;
 
-
 public interface BoosterHandler {
 	
 }

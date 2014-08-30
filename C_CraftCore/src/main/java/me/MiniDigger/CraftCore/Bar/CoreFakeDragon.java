@@ -40,50 +40,54 @@ import me.MiniDigger.Core.Bar.FakeDragon;
 
 import org.bukkit.Location;
 
-public class CoreFakeDragon implements FakeDragon{
+public class CoreFakeDragon implements FakeDragon {
 	
 	private static final int	MAX_HEALTH	= 200;
 	private int	             id;
-	private int	             x;
-	private int	             y;
-	private int	             z;
-	private int	             pitch	       = 0;
-	private int	             yaw	       = 0;
-	private byte	         xvel	       = 0;
-	private byte	         yvel	       = 0;
-	private byte	         zvel	       = 0;
+	private final int	     x;
+	private final int	     y;
+	private final int	     z;
+	private final int	     pitch	       = 0;
+	private final int	     yaw	       = 0;
+	private final byte	     xvel	       = 0;
+	private final byte	     yvel	       = 0;
+	private final byte	     zvel	       = 0;
 	private float	         health;
-	private boolean	         visible	   = false;
+	private final boolean	 visible	   = false;
 	private String	         name;
-	private Object	         world;
+	private final Object	 world;
 	
 	private Object	         dragon;
 	
-	public CoreFakeDragon(Location loc, String name, float percent) {
+	public CoreFakeDragon(final Location loc, final String name, final float percent) {
 		this.name = name;
-		this.x = loc.getBlockX();
-		this.y = loc.getBlockY();
-		this.z = loc.getBlockZ();
-		this.health = percent * MAX_HEALTH;
-		this.world = Core.getCore().getReflectionUtil().getHandle(loc.getWorld());
+		x = loc.getBlockX();
+		y = loc.getBlockY();
+		z = loc.getBlockZ();
+		health = percent * MAX_HEALTH;
+		world = Core.getCore().getReflectionUtil().getHandle(loc.getWorld());
 	}
 	
-	public void setHealth(float percent) {
-		this.health = (percent / MAX_HEALTH);
+	@Override
+	public void setHealth(final float percent) {
+		health = (percent / MAX_HEALTH);
 	}
 	
-	public void setHealth(double health){
+	@Override
+	public void setHealth(final double health) {
 		this.health = (float) health;
 	}
 	
-	public void setName(String name) {
+	@Override
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
+	@Override
 	public Object getSpawnPacket() {
-		Class<?> Entity = Core.getCore().getReflectionUtil().getCraftClass("Entity");
-		Class<?> EntityLiving = Core.getCore().getReflectionUtil().getCraftClass("EntityLiving");
-		Class<?> EntityEnderDragon = Core.getCore().getReflectionUtil().getCraftClass("EntityEnderDragon");
+		final Class<?> Entity = Core.getCore().getReflectionUtil().getCraftClass("Entity");
+		final Class<?> EntityLiving = Core.getCore().getReflectionUtil().getCraftClass("EntityLiving");
+		final Class<?> EntityEnderDragon = Core.getCore().getReflectionUtil().getCraftClass("EntityEnderDragon");
 		
 		try {
 			dragon = EntityEnderDragon.getConstructor(Core.getCore().getReflectionUtil().getCraftClass("World")).newInstance(world);
@@ -98,64 +102,68 @@ public class CoreFakeDragon implements FakeDragon{
 			Core.getCore().getReflectionUtil().getField(Entity, "motY").set(dragon, yvel);
 			Core.getCore().getReflectionUtil().getField(Entity, "motZ").set(dragon, zvel);
 			
-			this.id = (Integer) Core.getCore().getReflectionUtil().getMethod(EntityEnderDragon, "getId").invoke(dragon);
+			id = (Integer) Core.getCore().getReflectionUtil().getMethod(EntityEnderDragon, "getId").invoke(dragon);
 			
-			Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutSpawnEntityLiving");
+			final Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutSpawnEntityLiving");
 			return packetClass.getConstructor(new Class<?>[] { EntityLiving }).newInstance(dragon);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
+	@Override
 	public Object getDestroyPacket() {
 		try {
-			Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityDestroy");
+			final Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityDestroy");
 			return packetClass.getConstructor(new Class<?>[] { int[].class }).newInstance(new int[] { id });
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Object getMetaPacket(Object watcher) {
+	@Override
+	public Object getMetaPacket(final Object watcher) {
 		try {
-			Class<?> watcherClass = Core.getCore().getReflectionUtil().getCraftClass("DataWatcher");
-			Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityMetadata");
+			final Class<?> watcherClass = Core.getCore().getReflectionUtil().getCraftClass("DataWatcher");
+			final Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityMetadata");
 			return packetClass.getConstructor(new Class<?>[] { int.class, watcherClass, boolean.class }).newInstance(id, watcher, true);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Object getTeleportPacket(Location loc) {
+	@Override
+	public Object getTeleportPacket(final Location loc) {
 		try {
-			Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityTeleport");
-			return packetClass.getConstructor(new Class<?>[] { int.class, int.class, int.class, int.class, byte.class, byte.class }).newInstance(this.id,
+			final Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityTeleport");
+			return packetClass.getConstructor(new Class<?>[] { int.class, int.class, int.class, int.class, byte.class, byte.class }).newInstance(id,
 			        loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360));
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
+	@Override
 	public Object getWatcher() {
-		Class<?> Entity = Core.getCore().getReflectionUtil().getCraftClass("Entity");
-		Class<?> DataWatcher = Core.getCore().getReflectionUtil().getCraftClass("DataWatcher");
+		final Class<?> Entity = Core.getCore().getReflectionUtil().getCraftClass("Entity");
+		final Class<?> DataWatcher = Core.getCore().getReflectionUtil().getCraftClass("DataWatcher");
 		
 		try {
-			Object watcher = DataWatcher.getConstructor(new Class<?>[] { Entity }).newInstance(dragon);
-			Method a = Core.getCore().getReflectionUtil().getMethod(DataWatcher, "a", new Class<?>[] { int.class, Object.class });
+			final Object watcher = DataWatcher.getConstructor(new Class<?>[] { Entity }).newInstance(dragon);
+			final Method a = Core.getCore().getReflectionUtil().getMethod(DataWatcher, "a", new Class<?>[] { int.class, Object.class });
 			
 			a.invoke(watcher, 0, visible ? (byte) 0 : (byte) 0x20);
-			a.invoke(watcher, 6, (Float) health);
-			a.invoke(watcher, 7, (Integer) 0);
-			a.invoke(watcher, 8, (Byte) (byte) 0);
+			a.invoke(watcher, 6, health);
+			a.invoke(watcher, 7, 0);
+			a.invoke(watcher, 8, (byte) 0);
 			a.invoke(watcher, 10, name);
-			a.invoke(watcher, 11, (Byte) (byte) 1);
+			a.invoke(watcher, 11, (byte) 1);
 			return watcher;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}

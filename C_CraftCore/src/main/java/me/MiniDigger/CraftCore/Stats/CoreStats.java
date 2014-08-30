@@ -39,8 +39,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
@@ -48,13 +46,15 @@ import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
+import org.bukkit.Bukkit;
+
 public class CoreStats implements Stats {
 	
 	private UUID	                    user;
 	private HashMap<StatsType, Integer>	stats;
 	
-	public CoreStats(UUID id){
-		this.user = id;
+	public CoreStats(final UUID id) {
+		user = id;
 	}
 	
 	@Override
@@ -63,7 +63,7 @@ public class CoreStats implements Stats {
 		String q = "INSERT INTO `stats`(";
 		int rows = 1;
 		q += "`uuid`,";
-		for (StatsType type : StatsType.values()) {
+		for (final StatsType type : StatsType.values()) {
 			q += "`" + type.getGame() + "." + type.getStats() + "`,";
 			rows++;
 		}
@@ -76,8 +76,8 @@ public class CoreStats implements Stats {
 		q += ")";
 		// Try insertion
 		try {
-			SQLQuery query = new CoreSQLQuery(q);
-			PreparedStatement stmt = query.getStatement();
+			final SQLQuery query = new CoreSQLQuery(q);
+			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, user.toString());
 			int i;
 			for (i = 2; i <= StatsType.values().size() + 1; i++) {
@@ -85,19 +85,19 @@ public class CoreStats implements Stats {
 			}
 			stmt.execute();
 			query.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			// Try update
 			try {
 				// create query
 				q = "UPDATE `stats` SET ";
 				q += "`uuid`=?,";
-				for (StatsType type : StatsType.values()) {
+				for (final StatsType type : StatsType.values()) {
 					q += "`" + type.getGame() + "." + type.getStats() + "`=?,";
 				}
 				q = Core.getCore().getStringUtil().replaceLast(q, ",", "");
 				q += "WHERE `uuid` LIKE ?";
-				SQLQuery query = new CoreSQLQuery(q);
-				PreparedStatement stmt = query.getStatement();
+				final SQLQuery query = new CoreSQLQuery(q);
+				final PreparedStatement stmt = query.getStatement();
 				int i;
 				stmt.setString(1, user.toString());
 				for (i = 2; i <= StatsType.values().size() + 1; i++) {
@@ -106,7 +106,7 @@ public class CoreStats implements Stats {
 				stmt.setString(i + 1, user.toString());
 				stmt.execute();
 				query.kill();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				return false;
 			}
 		}
@@ -116,11 +116,11 @@ public class CoreStats implements Stats {
 	@Override
 	public boolean load() {
 		try {
-			SQLQuery query = new CoreSQLQuery("SELECT * FROM `stats` WHERE `uuid` LIKE ?");
-			PreparedStatement stmt = query.getStatement();
+			final SQLQuery query = new CoreSQLQuery("SELECT * FROM `stats` WHERE `uuid` LIKE ?");
+			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, user.toString());
 			
-			ResultSet r = stmt.executeQuery();
+			final ResultSet r = stmt.executeQuery();
 			if (r == null) {
 				throw new NullPointerException("ResultSet returned by query can not be null!");
 			}
@@ -129,12 +129,12 @@ public class CoreStats implements Stats {
 			user = UUID.fromString(r.getString("user"));
 			stats = new HashMap<>();
 			
-			for (StatsType type : StatsType.values()) {
+			for (final StatsType type : StatsType.values()) {
 				stats.put(type, (int) r.getLong(type.getGame() + "." + type.getStats()));
 			}
 			
 			query.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			return false;
 		}
 		return true;
@@ -145,18 +145,18 @@ public class CoreStats implements Stats {
 		String query = "CREATE TABLE IF NOT EXISTS `stats` (";
 		
 		query += "`uuid` varchar(40) NOT NULL,";
-		for (StatsType type : StatsType.values()) {
+		for (final StatsType type : StatsType.values()) {
 			query += "`" + type.getGame() + "." + type.getStats() + "` bigint(20) NOT NULL DEFAULT '" + type.getDefaultValue() + "',";
 		}
 		
 		query += "PRIMARY KEY (`uuid`), UNIQUE KEY `uuid` (`uuid`))";
-		SQLQuery q = new CoreSQLQuery(query);
+		final SQLQuery q = new CoreSQLQuery(query);
 		
 		try {
 			q.getStatement().execute();
 			q.kill();
 			return true;
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -168,23 +168,23 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
-	public void set(StatsType type, int value) {
+	public void set(final StatsType type, final int value) {
 		stats.remove(type);
 		stats.put(type, value);
 	}
 	
 	@Override
-	public void add(StatsType type, int value) {
+	public void add(final StatsType type, final int value) {
 		set(type, get(type) + value);
 	}
 	
 	@Override
-	public void remove(StatsType type, int value) {
+	public void remove(final StatsType type, final int value) {
 		set(type, get(type) - value);
 	}
 	
 	@Override
-	public int get(StatsType type) {
+	public int get(final StatsType type) {
 		if (type == null) {
 			return 0;
 		}

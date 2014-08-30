@@ -46,7 +46,7 @@ public class CoreClient implements Client {
 	private String	name;
 	private String	password;
 	
-	public CoreClient(String name) {
+	public CoreClient(final String name) {
 		this.name = name;
 		password = "";
 	}
@@ -55,18 +55,18 @@ public class CoreClient implements Client {
 	public boolean save() {
 		// Try insertion
 		try {
-			SQLQuery query = new CoreSQLQuery("INSERT INTO `external_users`(`name`, `password`) VALUES (?,?)");
-			PreparedStatement stmt = query.getStatement();
+			final SQLQuery query = new CoreSQLQuery("INSERT INTO `external_users`(`name`, `password`) VALUES (?,?)");
+			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, name);
 			stmt.setString(2, password);
 			
 			stmt.execute();
 			query.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			// Try update
 			try {
-				SQLQuery query = new CoreSQLQuery("UPDATE `external_users` SET `name`=?,`password`=? WHERE `name` LIKE ?");
-				PreparedStatement stmt = query.getStatement();
+				final SQLQuery query = new CoreSQLQuery("UPDATE `external_users` SET `name`=?,`password`=? WHERE `name` LIKE ?");
+				final PreparedStatement stmt = query.getStatement();
 				stmt.setString(1, name);
 				stmt.setString(2, password);
 				
@@ -74,7 +74,7 @@ public class CoreClient implements Client {
 				
 				stmt.execute();
 				query.kill();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				return false;
 			}
 		}
@@ -84,11 +84,11 @@ public class CoreClient implements Client {
 	@Override
 	public boolean load() {
 		try {
-			SQLQuery query = new CoreSQLQuery("SELECT * FROM `external_users` WHERE `name` LIKE ?");
-			PreparedStatement stmt = query.getStatement();
+			final SQLQuery query = new CoreSQLQuery("SELECT * FROM `external_users` WHERE `name` LIKE ?");
+			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, name);
 			
-			ResultSet r = stmt.executeQuery();
+			final ResultSet r = stmt.executeQuery();
 			if (r == null) {
 				throw new NullPointerException("ResultSet returned by query can not be null!");
 			}
@@ -97,7 +97,7 @@ public class CoreClient implements Client {
 			name = r.getString("name");
 			password = r.getString("password");
 			query.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			return false;
 		}
 		return true;
@@ -105,13 +105,13 @@ public class CoreClient implements Client {
 	
 	@Override
 	public boolean createTable() {
-		SQLQuery q = new CoreSQLQuery(
+		final SQLQuery q = new CoreSQLQuery(
 		        "CREATE TABLE IF NOT EXISTS `external_users` (`name` varchar(40) NOT NULL, `password` varchar(40) NOT NULL, PRIMARY KEY (`name`), UNIQUE KEY `name` (`name`))");
 		try {
 			q.getStatement().execute();
 			q.kill();
 			return true;
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -128,12 +128,12 @@ public class CoreClient implements Client {
 	}
 	
 	@Override
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
 	@Override
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 	

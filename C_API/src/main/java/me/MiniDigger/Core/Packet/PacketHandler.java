@@ -38,57 +38,67 @@ import me.MiniDigger.Core.Socket.Session;
 import org.java_websocket.WebSocket;
 
 public interface PacketHandler {
-
+	
 	/**
 	 * Registers a packet
 	 * 
-	 * @param name The name
-	 * @param packet The packet
+	 * @param name
+	 *            The name
+	 * @param packet
+	 *            The packet
 	 */
-	public void registerPacket(String name, Class<? extends Packet> packet);
+	public void registerPacket(final String name, final Class<? extends Packet> packet);
 	
 	/**
 	 * Gets a packet class by name
 	 * 
-	 * @param name The name
+	 * @param name
+	 *            The name
 	 * @return The packet, may be null
 	 */
-	public Class<?> getPacket(String name);
+	public Class<?> getPacket(final String name);
 	
 	/**
 	 * Sends a packet to the server
 	 * 
-	 * @param packet The packet to send
+	 * @param packet
+	 *            The packet to send
 	 */
-	public void sendPacket(Packet packet);
+	public void sendPacket(final Packet packet);
 	
 	/**
 	 * Sends a packet to a client
 	 * 
-	 * @param packet The packet to send
-	 * @param session The client
+	 * @param packet
+	 *            The packet to send
+	 * @param session
+	 *            The client
 	 */
-	public void sendPacket(Packet packet, Session session);
+	public void sendPacket(final Packet packet, final Session session);
 	
 	/**
 	 * Sends a pakcet to all clients
 	 * 
-	 * @param packet The packet to send
+	 * @param packet
+	 *            The packet to send
 	 */
-	public void sendBroadcast(Packet packet);
+	public void sendBroadcast(final Packet packet);
 	
 	/**
 	 * Handles income from a client
 	 * 
-	 * @param msg The data
-	 * @param con The client
+	 * @param msg
+	 *            The data
+	 * @param con
+	 *            The client
 	 */
-	public void handleIncome(String msg, WebSocket con);
+	public void handleIncome(final String msg, final WebSocket con);
 	
 	/**
 	 * Handles income from the server
 	 * 
-	 * @param msg The data
+	 * @param msg
+	 *            The data
 	 */
-	public void handleIncome(String msg);
+	public void handleIncome(final String msg);
 }

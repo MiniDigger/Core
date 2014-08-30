@@ -33,13 +33,13 @@
 
 package me.MiniDigger.CraftCore.Item;
 
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerInteractEvent;
-
 import me.MiniDigger.Core.Item.Item;
 import me.MiniDigger.Core.Item.ItemType;
 import me.MiniDigger.Core.User.User;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public abstract class CoreItem implements Item {
 	
@@ -50,16 +50,17 @@ public abstract class CoreItem implements Item {
 		return type;
 	}
 	
+	@Override
 	@EventHandler
-	public void onPlayerInteract(PlayerInteractEvent e) {
+	public void onPlayerInteract(final PlayerInteractEvent e) {
 		if (e.hasItem() && e.getItem().equals(getItem())) {
 			onUse(e);
 		}
 	}
 	
 	@Override
-	public boolean hasItem(User u) {
-		Player p = u.getPlayer();
+	public boolean hasItem(final User u) {
+		final Player p = u.getPlayer();
 		if (p.getItemInHand() != null) {
 			if (p.getItemInHand().equals(getItem())) {
 				return true;

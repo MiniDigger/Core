@@ -66,7 +66,7 @@ public interface Squad {
 	 * @param channel
 	 *            the channel to set
 	 */
-	public void setChannel(ChatChannel channel);
+	public void setChannel(final ChatChannel channel);
 	
 	/**
 	 * Let the squad join a server
@@ -80,7 +80,7 @@ public interface Squad {
 	 *            The user
 	 * @return If it was successful
 	 */
-	public boolean join(UUID user);
+	public boolean join(final UUID user);
 	
 	/**
 	 * Let a user leave the squad
@@ -88,7 +88,7 @@ public interface Squad {
 	 * @param user
 	 *            The user
 	 */
-	public void leave(UUID user);
+	public void leave(final UUID user);
 	
 	/**
 	 * Destroys a squad
@@ -100,7 +100,7 @@ public interface Squad {
 	 * 
 	 * @param msg
 	 */
-	public void sendMessage(FancyMessage msg);
+	public void sendMessage(final FancyMessage msg);
 	
 	/**
 	 * Let a user speak in the squad channel
@@ -110,7 +110,7 @@ public interface Squad {
 	 * @param message
 	 *            The message
 	 */
-	public void chat(User user, String message);
+	public void chat(final User user, final String message);
 	
 	/**
 	 * Invites a user
@@ -118,7 +118,7 @@ public interface Squad {
 	 * @param uuid
 	 *            user's id
 	 */
-	public void invite(UUID uuid);
+	public void invite(final UUID uuid);
 	
 	/**
 	 * Kicks a user
@@ -127,5 +127,5 @@ public interface Squad {
 	 *            user's id
 	 * @return If it was successful
 	 */
-	public boolean kick(UUID uuid);
+	public boolean kick(final UUID uuid);
 }

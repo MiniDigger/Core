@@ -40,7 +40,7 @@ public abstract class CoreFeature implements Feature {
 	
 	private Phase	phase;
 	
-	public CoreFeature(Phase phase) {
+	public CoreFeature(final Phase phase) {
 		this.phase = phase;
 	}
 	
@@ -50,7 +50,7 @@ public abstract class CoreFeature implements Feature {
 	}
 	
 	@Override
-	public void init(Phase phase) {
+	public void init(final Phase phase) {
 		this.phase = phase;
 	}
 }

@@ -34,7 +34,7 @@
 package me.MiniDigger.Core.Game;
 
 public enum GameType {
-	//TODO Readd the game classes to gametype
+	// TODO Readd the game classes to gametype
 	TICTACTOE("TicTacToe", "TTT", null/* TicTacToeGame.class */),
 	LOBBY("Lobby", "Lobby", null/* Lobby.class */),
 	GETTHEDROP("GetTheDrop", "GTD", null /* GetTheDropGame.class */),
@@ -44,7 +44,7 @@ public enum GameType {
 	private String	    abk;
 	private Class<Game>	game;
 	
-	private GameType(String name, String abk, Class<Game> game) {
+	private GameType(final String name, final String abk, final Class<Game> game) {
 		this.name = name;
 		this.abk = abk;
 		this.game = game;

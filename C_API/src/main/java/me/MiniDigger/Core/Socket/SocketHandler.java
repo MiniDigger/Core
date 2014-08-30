@@ -68,7 +68,7 @@ public interface SocketHandler {
 	 * @param address
 	 *            The user, who connected
 	 */
-	public void openSession(InetSocketAddress address);
+	public void openSession(final InetSocketAddress address);
 	
 	/**
 	 * Close a session
@@ -76,7 +76,7 @@ public interface SocketHandler {
 	 * @param address
 	 *            The user, who disconnected
 	 */
-	public void closeSession(InetSocketAddress address);
+	public void closeSession(final InetSocketAddress address);
 	
 	/**
 	 * Enters the name of the user into the cache
@@ -84,7 +84,7 @@ public interface SocketHandler {
 	 * @param name
 	 * @param address
 	 */
-	public void reciveName(String name, InetSocketAddress address);
+	public void reciveName(final String name, final InetSocketAddress address);
 	
 	/**
 	 * Returns the session, labeled with name
@@ -92,7 +92,7 @@ public interface SocketHandler {
 	 * @param name
 	 * @return The session
 	 */
-	public Session getSession(String name);
+	public Session getSession(final String name);
 	
 	/**
 	 * Returns the session by the address
@@ -100,5 +100,5 @@ public interface SocketHandler {
 	 * @param address
 	 * @return The session
 	 */
-	public Session getSession(InetSocketAddress address);
+	public Session getSession(final InetSocketAddress address);
 }

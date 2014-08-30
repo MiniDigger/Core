@@ -38,6 +38,7 @@ public interface UpdateHandler {
 	public boolean updateCheck();
 	
 	public interface PluginVersion {
+		
 		/**
 		 * 
 		 * @return the raw version string
@@ -72,31 +73,31 @@ public interface UpdateHandler {
 		 * @param raw
 		 *            the raw to set
 		 */
-		public void setRaw(String raw);
+		public void setRaw(final String raw);
 		
 		/**
 		 * @param major
 		 *            the major to set
 		 */
-		public void setMajor(int major);
+		public void setMajor(final int major);
 		
 		/**
 		 * @param minor
 		 *            the minor to set
 		 */
-		public void setMinor(int minor);
+		public void setMinor(final int minor);
 		
 		/**
 		 * @param commit
 		 *            the commit to set
 		 */
-		public void setCommit(int commit);
+		public void setCommit(final int commit);
 		
 		/**
 		 * @param build
 		 *            the build to set
 		 */
-		public void setBuild(int build);
+		public void setBuild(final int build);
 		
 		/**
 		 * Checks if the other version is newer for that type
@@ -114,6 +115,6 @@ public interface UpdateHandler {
 		 * @param type
 		 * @return
 		 */
-		public boolean isNewerOrEqual(PluginVersion other, UpdateType type);
+		public boolean isNewerOrEqual(final PluginVersion other, final UpdateType type);
 	}
 }

@@ -42,5 +42,5 @@ public interface ZipUtil {
 	 * @param destZipFile
 	 * @throws Exception
 	 */
-	public void zipFolder(String srcFolder, String destZipFile) throws Exception;
+	public void zipFolder(final String srcFolder, final String destZipFile) throws Exception;
 }

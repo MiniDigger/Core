@@ -39,13 +39,13 @@ public interface RandomUtil {
 	 * @param seed
 	 * @see java.util.Random#setSeed(long)
 	 */
-	public void setSeed(long seed);
+	public void setSeed(final long seed);
 	
 	/**
 	 * @param bytes
 	 * @see java.util.Random#nextBytes(byte[])
 	 */
-	public void nextBytes(byte[] bytes);
+	public void nextBytes(final byte[] bytes);
 	
 	/**
 	 * @return
@@ -58,7 +58,7 @@ public interface RandomUtil {
 	 * @return
 	 * @see java.util.Random#nextInt(int)
 	 */
-	public int nextInt(int n);
+	public int nextInt(final int n);
 	
 	/**
 	 * @return

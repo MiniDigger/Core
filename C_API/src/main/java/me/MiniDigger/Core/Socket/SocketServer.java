@@ -38,11 +38,11 @@ import org.java_websocket.handshake.ClientHandshake;
 
 public interface SocketServer {
 	
-	public void onOpen(WebSocket conn, ClientHandshake handshake);
+	public void onOpen(final WebSocket conn, final ClientHandshake handshake);
 	
-	public void onClose(WebSocket conn, int code, String reason, boolean remote);
+	public void onClose(final WebSocket conn, final int code, final String reason, final boolean remote);
 	
-	public void onMessage(WebSocket conn, String message);
+	public void onMessage(final WebSocket conn, final String message);
 	
-	public void onError(WebSocket conn, Exception ex);
+	public void onError(final WebSocket conn, final Exception ex);
 }

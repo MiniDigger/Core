@@ -37,15 +37,15 @@ import org.bukkit.command.CommandSender;
 
 public interface CommandHandler {
 	
-	public void unregister(String command);
+	public void unregister(final String command);
 	
-	public boolean handleCommand(CommandSender sender, String label, org.bukkit.command.Command cmd, String[] args);
+	public boolean handleCommand(final CommandSender sender, final String label, final org.bukkit.command.Command cmd, final String[] args);
 	
-	public void registerCommands(Object obj);
+	public void registerCommands(final Object obj);
 	
-	public void unregisterCommands(Object obj);
+	public void unregisterCommands(final Object obj);
 	
 	public void registerHelp();
 	
-	public void addRelocation(String oldCmd, String newCmd);
+	public void addRelocation(final String oldCmd, final String newCmd);
 }

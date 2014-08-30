@@ -39,20 +39,20 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.SQL.SQLHandler;
 import me.MiniDigger.Core.SQL.SQLQuery;
-import me.MiniDigger.Core.Error.Error;
 
 public class CoreSQLQuery implements SQLQuery {
 	
-	private String	   stmt;
+	private final String	stmt;
 	
-	private SQLHandler	handler;
-	private Connection	conn;
-	private boolean	   cancel	= false;
-	private int	       limit	= 100000;
+	private SQLHandler	 handler;
+	private Connection	 conn;
+	private boolean	     cancel	= false;
+	private final int	 limit	= 100000;
 	
-	public CoreSQLQuery(String stmt) {
+	public CoreSQLQuery(final String stmt) {
 		this.stmt = stmt;
 		run();
 	}
@@ -62,7 +62,7 @@ public class CoreSQLQuery implements SQLQuery {
 		handler = Core.getCore().getSqlHandler();
 		try {
 			conn = DriverManager.getConnection(handler.getUrl(), handler.getUser(), handler.getPass());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Error.SQL_CONNECTION_FAILED.throwError(e);
 			e.printStackTrace();
 		}
@@ -74,7 +74,7 @@ public class CoreSQLQuery implements SQLQuery {
 			} else {
 				try {
 					// conn.close();
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					e.printStackTrace();
 				}
 				break;
@@ -87,7 +87,7 @@ public class CoreSQLQuery implements SQLQuery {
 		PreparedStatement stmt;
 		try {
 			stmt = conn.prepareStatement(this.stmt);
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			Error.SQL_STMT_CREATION_FAILED.throwError(e);
 			return null;
 		}
@@ -100,7 +100,7 @@ public class CoreSQLQuery implements SQLQuery {
 		cancel = true;
 		try {
 			conn.close();
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 	}

@@ -17,8 +17,8 @@ package me.MiniDigger.CraftCore.Update;
 
 import java.util.regex.Pattern;
 
-import me.MiniDigger.Core.Update.UpdateType;
 import me.MiniDigger.Core.Update.UpdateHandler.PluginVersion;
+import me.MiniDigger.Core.Update.UpdateType;
 
 public class CorePluginVersion implements PluginVersion {
 	
@@ -35,11 +35,12 @@ public class CorePluginVersion implements PluginVersion {
 		commit = Integer.parseInt(s[2].split("-")[0].replace(" ", ""));
 		try {
 			build = Integer.parseInt(s[2].split("-")[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			build = 0;
 		}
 	}
 	
+	@Override
 	public boolean isNewer(final PluginVersion other, final UpdateType type) {
 		switch (type) {
 		case FORCE:
@@ -79,7 +80,8 @@ public class CorePluginVersion implements PluginVersion {
 		return false;
 	}
 	
-	public boolean isNewerOrEqual(PluginVersion other, UpdateType type) {
+	@Override
+	public boolean isNewerOrEqual(final PluginVersion other, final UpdateType type) {
 		switch (type) {
 		case FORCE:
 			return true;
@@ -110,27 +112,27 @@ public class CorePluginVersion implements PluginVersion {
 	}
 	
 	@Override
-	public void setRaw(String raw) {
+	public void setRaw(final String raw) {
 		this.raw = raw;
 	}
 	
 	@Override
-	public void setMajor(int major) {
+	public void setMajor(final int major) {
 		this.major = major;
 	}
 	
 	@Override
-	public void setMinor(int minor) {
+	public void setMinor(final int minor) {
 		this.minor = minor;
 	}
 	
 	@Override
-	public void setCommit(int commit) {
+	public void setCommit(final int commit) {
 		this.commit = commit;
 	}
 	
 	@Override
-	public void setBuild(int build) {
+	public void setBuild(final int build) {
 		this.build = build;
 	}
 	

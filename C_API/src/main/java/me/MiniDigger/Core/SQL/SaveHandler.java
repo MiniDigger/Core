@@ -34,6 +34,7 @@
 package me.MiniDigger.Core.SQL;
 
 public interface SaveHandler {
+	
 	/**
 	 * Load all entries from the db
 	 */

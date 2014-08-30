@@ -7,7 +7,7 @@ import me.MiniDigger.Core.Command.CommandArgs;
 public class NPCCommands {
 	
 	@Command(name = "npc.spawn", description = "Spawnt einen NPC", permission = "npc.spawn", consol = false, max = 0)
-	public void spawn(CommandArgs args) {
+	public void spawn(final CommandArgs args) {
 		Core.getCore().getNPCHandler().spawn(args.getPlayer().getLocation());
 	}
 }

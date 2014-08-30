@@ -7,10 +7,10 @@ import me.MiniDigger.CraftCore.Event.CoreEvent;
 
 public class CoreUserLeaveGameEvent extends CoreEvent implements UserLeaveGameEvent {
 	
-	private Game	game;
-	private User	user;
+	private final Game	game;
+	private final User	user;
 	
-	public CoreUserLeaveGameEvent(Game game,User user){
+	public CoreUserLeaveGameEvent(final Game game, final User user) {
 		this.game = game;
 		this.user = user;
 	}

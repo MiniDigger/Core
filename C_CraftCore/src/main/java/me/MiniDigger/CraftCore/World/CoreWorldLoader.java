@@ -35,6 +35,8 @@ package me.MiniDigger.CraftCore.World;
 
 import java.io.File;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.World.WorldLoader;
 import net.minecraft.server.v1_7_R3.ConvertProgressUpdater;
 import net.minecraft.server.v1_7_R3.Convertable;
 import net.minecraft.server.v1_7_R3.EntityTracker;
@@ -51,25 +53,22 @@ import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.World.WorldLoader;
-
 public class CoreWorldLoader implements WorldLoader {
 	
 	@Override
-	public World loadWorld(WorldCreator creator) {
-		CraftServer server = (CraftServer) org.bukkit.Bukkit.getServer();
+	public World loadWorld(final WorldCreator creator) {
+		final CraftServer server = (CraftServer) org.bukkit.Bukkit.getServer();
 		if (creator == null) {
 			throw new IllegalArgumentException("Creator may not be null");
 		}
 		
-		String name = creator.name();
+		final String name = creator.name();
 		Core.getCore().getInstance().info("Loading world '" + name + "'");
 		ChunkGenerator generator = creator.generator();
-		File folder = new File(server.getWorldContainer(), name);
-		World world = server.getWorld(name);
-		net.minecraft.server.v1_7_R3.WorldType type = net.minecraft.server.v1_7_R3.WorldType.getType(creator.type().getName());
-		boolean generateStructures = creator.generateStructures();
+		final File folder = new File(server.getWorldContainer(), name);
+		final World world = server.getWorld(name);
+		final net.minecraft.server.v1_7_R3.WorldType type = net.minecraft.server.v1_7_R3.WorldType.getType(creator.type().getName());
+		final boolean generateStructures = creator.generateStructures();
 		
 		if (world != null) {
 			return world;
@@ -83,7 +82,7 @@ public class CoreWorldLoader implements WorldLoader {
 			generator = server.getGenerator(name);
 		}
 		
-		Convertable converter = new net.minecraft.server.v1_7_R3.WorldLoaderServer(server.getWorldContainer());
+		final Convertable converter = new net.minecraft.server.v1_7_R3.WorldLoaderServer(server.getWorldContainer());
 		if (converter.isConvertable(name)) {
 			Core.getCore().getInstance().info("Converting world '" + name + "'");
 			converter.convert(name, new ConvertProgressUpdater(server.getServer()));
@@ -92,7 +91,7 @@ public class CoreWorldLoader implements WorldLoader {
 		int dimension = 3 + server.getServer().worlds.size() + 1;
 		boolean used = false;
 		do {
-			for (WorldServer worldServer : server.getServer().worlds) {
+			for (final WorldServer worldServer : server.getServer().worlds) {
 				used = worldServer.dimension == dimension;
 				if (used) {
 					dimension++;
@@ -100,16 +99,16 @@ public class CoreWorldLoader implements WorldLoader {
 				}
 			}
 		} while (used);
-		boolean hardcore = false;
+		final boolean hardcore = false;
 		dimension = dimension + 3;
 		Core.getCore().getInstance().info("Created world with dimension : " + dimension);
-
-		WorldServer internal = new WorldServer(server.getServer(), new net.minecraft.server.v1_7_R3.ServerNBTManager(server.getWorldContainer(), name, true), name,
+		
+		final WorldServer internal = new WorldServer(server.getServer(), new net.minecraft.server.v1_7_R3.ServerNBTManager(server.getWorldContainer(), name, true), name,
 		        dimension, new WorldSettings(creator.seed(), EnumGamemode.SURVIVAL, generateStructures, hardcore, type), server.getServer().methodProfiler,
 		        creator.environment(), generator);
 		
 		boolean containsWorld = false;
-		for (World otherWorld : server.getWorlds()) {
+		for (final World otherWorld : server.getWorlds()) {
 			if (otherWorld.getName().equalsIgnoreCase(name.toLowerCase())) {
 				containsWorld = true;
 				break;
@@ -121,7 +120,7 @@ public class CoreWorldLoader implements WorldLoader {
 		}
 		
 		internal.scoreboard = server.getScoreboardManager().getMainScoreboard().getHandle();
-		internal.worldMaps = ((WorldServer) server.getServer().worlds.get(0)).worldMaps;
+		internal.worldMaps = server.getServer().worlds.get(0).worldMaps;
 		internal.tracker = new EntityTracker(internal);
 		internal.addIWorldAccess(new WorldManager(server.getServer(), internal));
 		internal.difficulty = EnumDifficulty.HARD;

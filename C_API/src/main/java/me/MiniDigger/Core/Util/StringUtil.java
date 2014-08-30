@@ -46,7 +46,7 @@ public interface StringUtil {
 	 * @param replacement
 	 * @return
 	 */
-	public String replaceLast(String text, String regex, String replacement);
+	public String replaceLast(final String text, final String regex, final String replacement);
 	
 	/**
 	 * Converts a String List into an String
@@ -54,7 +54,7 @@ public interface StringUtil {
 	 * @param list
 	 * @return
 	 */
-	public String listToString(List<String> list);
+	public String listToString(final List<String> list);
 	
 	/**
 	 * Converts a String into an StringList
@@ -62,7 +62,7 @@ public interface StringUtil {
 	 * @param string
 	 * @return
 	 */
-	public List<String> stringToList(String string);
+	public List<String> stringToList(final String string);
 	
 	/**
 	 * Converts an String Array into an String
@@ -70,7 +70,7 @@ public interface StringUtil {
 	 * @param args
 	 * @return
 	 */
-	public String toString(String[] args);
+	public String toString(final String[] args);
 	
 	/**
 	 * Checks if the Array contains an Object
@@ -79,5 +79,5 @@ public interface StringUtil {
 	 * @param ss
 	 * @return
 	 */
-	public boolean contains(Object[] s, Object ss);
+	public boolean contains(final Object[] s, final Object ss);
 }

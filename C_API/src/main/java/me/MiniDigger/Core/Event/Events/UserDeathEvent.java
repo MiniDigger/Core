@@ -63,7 +63,7 @@ public interface UserDeathEvent extends Event {
 	 * @param keepDrops
 	 *            false for deletion
 	 */
-	public void setKeepDrops(boolean keepDrops);
+	public void setKeepDrops(final boolean keepDrops);
 	
 	/**
 	 * 
@@ -76,7 +76,7 @@ public interface UserDeathEvent extends Event {
 	 * 
 	 * @param shouldRespawn
 	 */
-	public void setShouldRespawn(boolean shouldRespawn);
+	public void setShouldRespawn(final boolean shouldRespawn);
 	
 	/**
 	 * 

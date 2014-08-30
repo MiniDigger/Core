@@ -51,11 +51,11 @@ import org.bukkit.ChatColor;
 
 public class CoreChatHandler implements ChatHandler {
 	
-	private ArrayList<ChatChannel>	channels	= new ArrayList<>();
+	private final ArrayList<ChatChannel>	channels	= new ArrayList<>();
 	
 	@Override
-	public ChatChannel getChannel(String name) {
-		for (ChatChannel channel : channels) {
+	public ChatChannel getChannel(final String name) {
+		for (final ChatChannel channel : channels) {
 			if (channel.getName().equalsIgnoreCase(name)) {
 				return channel;
 			}
@@ -64,12 +64,12 @@ public class CoreChatHandler implements ChatHandler {
 	}
 	
 	@Override
-	public void registerChannel(ChatChannel channel) {
+	public void registerChannel(final ChatChannel channel) {
 		channels.add(channel);
 	}
 	
 	@Override
-	public void unregisterChannel(ChatChannel channel) {
+	public void unregisterChannel(final ChatChannel channel) {
 		channels.remove(channel);
 	}
 	
@@ -86,14 +86,14 @@ public class CoreChatHandler implements ChatHandler {
 	}
 	
 	@Override
-	public void handleChat(User user, String message) {
+	public void handleChat(final User user, final String message) {
 		user.getSpeakChannel().chat(user, message);
 		
 	}
-
-    @Override
-    public List<ChatChannel> getChannels() {
-	   return channels;
-    }
+	
+	@Override
+	public List<ChatChannel> getChannels() {
+		return channels;
+	}
 	
 }

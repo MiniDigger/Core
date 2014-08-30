@@ -36,11 +36,11 @@ package me.MiniDigger.CraftCore.Holo;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
-
 import me.MiniDigger.Core.Holo.Holo;
 import me.MiniDigger.Core.Holo.HoloList;
 import me.MiniDigger.Core.User.User;
+
+import org.bukkit.Location;
 
 public class CoreHoloList implements HoloList {
 	
@@ -52,22 +52,22 @@ public class CoreHoloList implements HoloList {
 	}
 	
 	@Override
-	public void hideHolos(User u) {
-		for (Holo nametag : nametags) {
+	public void hideHolos(final User u) {
+		for (final Holo nametag : nametags) {
 			nametag.show(u);
 		}
 	}
 	
 	@Override
-	public void showHolos(User u) {
-		for (Holo nametag : nametags) {
+	public void showHolos(final User u) {
+		for (final Holo nametag : nametags) {
 			nametag.hide(u);
 		}
 	}
 	
 	@Override
-	public void setLocation(User u, Location loc) {
-		for (Holo nametag : nametags) {
+	public void setLocation(final User u, final Location loc) {
+		for (final Holo nametag : nametags) {
 			nametag.setLocation(u, loc);
 		}
 	}

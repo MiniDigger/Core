@@ -46,7 +46,7 @@ public interface WorldHandler {
 	 * @param fallBackLoc
 	 *            The location to teleport the players on the world
 	 */
-	public void unloadWorld(String world, Location fallBackLoc);
+	public void unloadWorld(final String world, final Location fallBackLoc);
 	
 	/**
 	 * Loads a world by the given name
@@ -55,7 +55,7 @@ public interface WorldHandler {
 	 *            The name of the world
 	 * @return The loaded world object
 	 */
-	public World loadWorld(String name);
+	public World loadWorld(final String name);
 	
 	/**
 	 * Copies a world from the repo into the world folder
@@ -63,5 +63,5 @@ public interface WorldHandler {
 	 * @param name
 	 *            The name of the world
 	 */
-	public void copyWorld(String name);
+	public void copyWorld(final String name);
 }

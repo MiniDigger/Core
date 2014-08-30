@@ -35,8 +35,8 @@ package me.MiniDigger.Core.Bar;
 
 import org.bukkit.entity.Player;
 
-
 public interface BarHandler {
+	
 	/**
 	 * Checks to see if the player is currently being displayed a status bar via
 	 * fake Ender Dragon. <br>
@@ -53,7 +53,7 @@ public interface BarHandler {
 	 *            a player
 	 * @return true if this API has a record of the player being sent a bar
 	 */
-	public boolean hasBar(Player player);
+	public boolean hasBar(final Player player);
 	
 	/**
 	 * Removes a player's status bar by destroying their fake dragon (if they
@@ -62,7 +62,7 @@ public interface BarHandler {
 	 * @param player
 	 *            a player
 	 */
-	public void removeBar(Player player);
+	public void removeBar(final Player player);
 	
 	/**
 	 * Sets a player's status bar to display a specific message and fill amount.
@@ -80,7 +80,7 @@ public interface BarHandler {
 	 * @param percent
 	 *            a decimal percent in the range (0,1]
 	 */
-	public void setBar(Player player, String text, float percent);
+	public void setBar(final Player player, final String text, final float percent);
 	
 	/**
 	 * Removes the status bar for all players on the server. See
@@ -97,5 +97,5 @@ public interface BarHandler {
 	 * @param percent
 	 *            a decimal percent in the range (0,1]
 	 */
-	public void setAllStatusBars(String text, float percent);
+	public void setAllStatusBars(final String text, final float percent);
 }

@@ -52,12 +52,13 @@ public interface CommonMethods {
 	 * @param sender
 	 * @param command
 	 */
-	public void onlyPlayer(CommandSender sender, String command);
+	public void onlyPlayer(final CommandSender sender, final String command);
 	
 	/**
 	 * Prints the join message for that user
 	 * 
-	 * @param user the user to print the message
+	 * @param user
+	 *            the user to print the message
 	 */
-	public void printJoinMessage(User user);
+	public void printJoinMessage(final User user);
 }

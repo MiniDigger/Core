@@ -33,7 +33,6 @@
 
 package me.MiniDigger.Core.Class;
 
-
 public interface ClassHandler {
 	
 }

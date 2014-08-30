@@ -35,28 +35,28 @@ package me.MiniDigger.CraftCore.Generator;
 
 import java.util.Random;
 
+import me.MiniDigger.Core.Generator.CleanroomBlockPopulator;
+
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
-
-import me.MiniDigger.Core.Generator.CleanroomBlockPopulator;
 
 public class CoreCleanroomBlockPopulator extends BlockPopulator implements CleanroomBlockPopulator {
 	
 	byte[]	layerDataValues;
 	
-	protected CoreCleanroomBlockPopulator(byte[] layerDataValues) {
+	protected CoreCleanroomBlockPopulator(final byte[] layerDataValues) {
 		this.layerDataValues = layerDataValues;
 	}
 	
 	@SuppressWarnings("deprecation")
-    @Override
-	public void populate(World world, Random random, Chunk chunk) {
-		if (this.layerDataValues != null) {
-			int x = chunk.getX() << 4;
-			int z = chunk.getZ() << 4;
-			for (int y = 0; y < this.layerDataValues.length; y++) {
-				byte dataValue = this.layerDataValues[y];
+	@Override
+	public void populate(final World world, final Random random, final Chunk chunk) {
+		if (layerDataValues != null) {
+			final int x = chunk.getX() << 4;
+			final int z = chunk.getZ() << 4;
+			for (int y = 0; y < layerDataValues.length; y++) {
+				final byte dataValue = layerDataValues[y];
 				if (dataValue != 0) {
 					for (int xx = 0; xx < 16; xx++) {
 						for (int zz = 0; zz < 16; zz++) {

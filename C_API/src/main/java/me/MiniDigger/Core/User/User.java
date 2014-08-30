@@ -97,7 +97,7 @@ public interface User extends Saveable {
 	 * @param msg
 	 *            The message to send
 	 */
-	public void sendMessage(FancyMessage msg);
+	public void sendMessage(final FancyMessage msg);
 	
 	/**
 	 * @return Bukkit player object
@@ -111,7 +111,7 @@ public interface User extends Saveable {
 	 *            The permission string to check
 	 * @return If the user has the permission or not
 	 */
-	public boolean hasPermission(String perm);
+	public boolean hasPermission(final String perm);
 	
 	/**
 	 * @return The stats object for that player
@@ -134,7 +134,7 @@ public interface User extends Saveable {
 	 * @param name
 	 *            The new name;
 	 */
-	public void setDisplayName(String name);
+	public void setDisplayName(final String name);
 	
 	/**
 	 * @return The display name for that player
@@ -147,7 +147,7 @@ public interface User extends Saveable {
 	 * @param prefix
 	 *            The new prefix
 	 */
-	public void setPrefix(String prefix);
+	public void setPrefix(final String prefix);
 	
 	/**
 	 * @return The prefix, mostly used for colors
@@ -160,7 +160,7 @@ public interface User extends Saveable {
 	 * @param suffix
 	 *            The new suffix
 	 */
-	public void setSuffix(String suffix);
+	public void setSuffix(final String suffix);
 	
 	/**
 	 * @return The suffix, mostly used for colors
@@ -211,26 +211,29 @@ public interface User extends Saveable {
 	 * @return the channels the player is speaking in
 	 */
 	public ChatChannel getSpeakChannel();
-
+	
 	/**
 	 * Let the user join a ChatChannel
 	 * 
-     * @param ch The channel to join
-     */
-    public void joinChannel(ChatChannel ch);
-
+	 * @param ch
+	 *            The channel to join
+	 */
+	public void joinChannel(final ChatChannel ch);
+	
 	/**
 	 * Let the user leave a ChatChannel
 	 * 
-     * @param ch The channel to leave
-     */
-    public void leaveChannel(ChatChannel ch);
-
+	 * @param ch
+	 *            The channel to leave
+	 */
+	public void leaveChannel(final ChatChannel ch);
+	
 	/**
 	 * Sets the primary channel of a user, the channel a user is speaking in
 	 * 
-     * @param ch The channel to set
-     */
-    public void setPrimaryChannel(ChatChannel ch);
+	 * @param ch
+	 *            The channel to set
+	 */
+	public void setPrimaryChannel(final ChatChannel ch);
 	
 }

@@ -53,7 +53,7 @@ public interface MapData {
 	 *            The type
 	 * @return The locations with keys
 	 */
-	public HashMap<String, Location> getLocs(DyeColor type);
+	public HashMap<String, Location> getLocs(final DyeColor type);
 	
 	/**
 	 * Creates the map config for this map
@@ -66,7 +66,7 @@ public interface MapData {
 	 * @param con
 	 *            The config to load the data from
 	 */
-	public void load(FileConfiguration con);
+	public void load(final FileConfiguration con);
 	
 	/**
 	 * Scans the world for locations

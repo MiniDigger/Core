@@ -48,23 +48,26 @@ public interface ServerHandler {
 	/**
 	 * Replace the sign lines with server data
 	 * 
-	 * @param lines The sign lines
+	 * @param lines
+	 *            The sign lines
 	 * @return The lines with data
 	 */
-	public String[] getServerInfo(String[] lines);
+	public String[] getServerInfo(final String[] lines);
 	
 	/**
 	 * Gets the ServerData by a name
 	 * 
-	 * @param name The server name
-	 * @return  The server data
+	 * @param name
+	 *            The server name
+	 * @return The server data
 	 */
-	public Server getServerInfo(String name);
+	public Server getServerInfo(final String name);
 	
 	/**
 	 * Saves the server data
-	 *  
-	 * @param server The server data to save
+	 * 
+	 * @param server
+	 *            The server data to save
 	 */
-	public void gotServerInfo(Server server);
+	public void gotServerInfo(final Server server);
 }

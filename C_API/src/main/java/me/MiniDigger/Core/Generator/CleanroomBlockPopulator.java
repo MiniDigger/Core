@@ -50,5 +50,5 @@ public interface CleanroomBlockPopulator {
 	 * @param chunk
 	 *            The chunk
 	 */
-	public void populate(World world, Random random, Chunk chunk);
+	public void populate(final World world, final Random random, final Chunk chunk);
 }

@@ -51,7 +51,7 @@ public interface BukkitCommand {
 	 *            All arguments passed to the command, split via ' '
 	 * @return true if the command was successful, otherwise false
 	 */
-	public boolean execute(CommandSender sender, String commandLabel, String[] args);
+	public boolean execute(final CommandSender sender, final String commandLabel, final String[] args);
 	
 	/**
 	 * Executed on tab completion for this command, returning a list of options
@@ -68,7 +68,7 @@ public interface BukkitCommand {
 	 * @throws IllegalArgumentException
 	 *             if sender, alias, or args is null
 	 */
-	public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws CommandException, IllegalArgumentException;
+	public List<String> tabComplete(final CommandSender sender, final String alias, final String[] args) throws CommandException, IllegalArgumentException;
 	
 	/**
 	 * @return the tab completer for this command
@@ -81,5 +81,5 @@ public interface BukkitCommand {
 	 * @param c
 	 *            The tab completer to set
 	 */
-	public void setCompleter(BukkitCompleter c);
+	public void setCompleter(final BukkitCompleter c);
 }

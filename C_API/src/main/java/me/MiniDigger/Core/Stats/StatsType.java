@@ -44,10 +44,10 @@ public class StatsType {
 		public static StatsType	TOKENS		 = new StatsType(gameName, "tokens", 100);
 		public static StatsType	TOKENS_SPEND	= new StatsType(gameName, "tokens_spend", 100);
 		public static StatsType	SPIELZEIT		= new StatsType(gameName, "spielzeit", 0);
-		public static StatsType	PAESSE		= new StatsType(gameName, "paesse", 0);
+		public static StatsType	PAESSE		 = new StatsType(gameName, "paesse", 0);
 		
 		public static List<StatsType> values() {
-			List<StatsType> values = new ArrayList<>();
+			final List<StatsType> values = new ArrayList<>();
 			values.add(TOKENS);
 			values.add(TOKENS_SPEND);
 			values.add(SPIELZEIT);
@@ -63,7 +63,7 @@ public class StatsType {
 		public static StatsType	DROPS_2		= new StatsType(gameName, "drops2");
 		
 		public static List<StatsType> values() {
-			List<StatsType> values = StatsGame.values(gameName);
+			final List<StatsType> values = StatsGame.values(gameName);
 			values.add(DROPS_1);
 			values.add(DROPS_2);
 			return values;
@@ -77,7 +77,7 @@ public class StatsType {
 		public static StatsType	CLICKS		= new StatsType(gameName, "clicks");
 		
 		public static List<StatsType> values() {
-			List<StatsType> values = StatsGame.values(gameName, false);
+			final List<StatsType> values = StatsGame.values(gameName, false);
 			values.add(CLICKS);
 			return values;
 		}
@@ -92,8 +92,8 @@ public class StatsType {
 		public static StatsType	GAMES		= new StatsType(gameName, "games");
 		public static StatsType	KILLS		= new StatsType(gameName, "kills");
 		
-		public static List<StatsType> values(String gameName) {
-			List<StatsType> values = new ArrayList<>();
+		public static List<StatsType> values(final String gameName) {
+			final List<StatsType> values = new ArrayList<>();
 			values.add(WINS);
 			values.add(DEATHS);
 			values.add(GAMES);
@@ -101,28 +101,28 @@ public class StatsType {
 			return values;
 		}
 		
-		public static List<StatsType> values(String gameName, boolean pvp) {
+		public static List<StatsType> values(final String gameName, final boolean pvp) {
 			if (pvp) {
 				return values(gameName);
 			}
-			List<StatsType> values = new ArrayList<>();
+			final List<StatsType> values = new ArrayList<>();
 			values.add(WINS);
 			values.add(GAMES);
 			return values;
 		}
 	}
 	
-	private String	game;
-	private String	stat;
-	private int	   defaultValue;
+	private final String	game;
+	private final String	stat;
+	private int	         defaultValue;
 	
-	public StatsType(String game, String stat) {
+	public StatsType(final String game, final String stat) {
 		this.game = game;
 		this.stat = stat;
-		this.defaultValue = 0;
+		defaultValue = 0;
 	}
 	
-	public StatsType(String game, String stat, int defaultValue) {
+	public StatsType(final String game, final String stat, final int defaultValue) {
 		this(game, stat);
 		this.defaultValue = defaultValue;
 	}
@@ -140,14 +140,14 @@ public class StatsType {
 	}
 	
 	public static List<StatsType> values() {
-		List<StatsType> values = new ArrayList<>();
+		final List<StatsType> values = new ArrayList<>();
 		values.addAll(GetTheDrop.values());
 		values.addAll(Common.values());
 		return values;
 	}
 	
-	public static StatsType valueOf(String s) {
-		for (StatsType type : values()) {
+	public static StatsType valueOf(final String s) {
+		for (final StatsType type : values()) {
 			if ((type.getGame() + "." + type.getStats()).equalsIgnoreCase(s)) {
 				return type;
 			}

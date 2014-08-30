@@ -39,40 +39,49 @@ import me.MiniDigger.Core.Util.RandomUtil;
 
 public class CoreRandomUtil implements RandomUtil {
 	
-	private Random	r	= new Random();
+	private final Random	r	= new Random();
 	
-	public void setSeed(long seed) {
+	@Override
+	public void setSeed(final long seed) {
 		r.setSeed(seed);
 	}
 	
-	public void nextBytes(byte[] bytes) {
+	@Override
+	public void nextBytes(final byte[] bytes) {
 		r.nextBytes(bytes);
 	}
 	
+	@Override
 	public int nextInt() {
 		return r.nextInt();
 	}
 	
-	public int nextInt(int n) {
+	@Override
+	public int nextInt(final int n) {
 		return r.nextInt(n);
 	}
 	
+	@Override
 	public long nextLong() {
 		return r.nextLong();
 	}
 	
+	@Override
 	public boolean nextBoolean() {
 		return r.nextBoolean();
 	}
 	
+	@Override
 	public float nextFloat() {
 		return r.nextFloat();
 	}
 	
+	@Override
 	public double nextDouble() {
 		return r.nextDouble();
 	}
 	
+	@Override
 	public double nextGaussian() {
 		return r.nextGaussian();
 	}

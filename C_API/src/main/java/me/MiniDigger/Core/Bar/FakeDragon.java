@@ -42,21 +42,21 @@ public interface FakeDragon {
 	 * 
 	 * @param percent
 	 */
-	public void setHealth(float percent);
+	public void setHealth(final float percent);
 	
 	/**
 	 * Changes the health
 	 * 
 	 * @param percent
 	 */
-	public void setHealth(double health);
+	public void setHealth(final double health);
 	
 	/**
 	 * name changes the name
 	 * 
 	 * @param
 	 */
-	public void setName(String name);
+	public void setName(final String name);
 	
 	/**
 	 * @return the spawn packet
@@ -73,13 +73,13 @@ public interface FakeDragon {
 	 * @param watcher
 	 * @return the meta packet
 	 */
-	public Object getMetaPacket(Object watcher);
+	public Object getMetaPacket(final Object watcher);
 	
 	/**
 	 * @param loc
 	 * @return The tp packet
 	 */
-	public Object getTeleportPacket(Location loc);
+	public Object getTeleportPacket(final Location loc);
 	
 	/**
 	 * @return the meta data watcher

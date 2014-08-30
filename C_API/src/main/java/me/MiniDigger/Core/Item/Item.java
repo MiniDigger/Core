@@ -41,6 +41,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public interface Item extends Listener {
+	
 	/**
 	 * @return The type of the item
 	 */
@@ -54,18 +55,20 @@ public interface Item extends Listener {
 	/**
 	 * Gets executed, when a player used this item
 	 * 
-	 * @param e The event which was called
+	 * @param e
+	 *            The event which was called
 	 */
-	public void onUse(PlayerInteractEvent e);
+	public void onUse(final PlayerInteractEvent e);
 	
 	@EventHandler
-	public void onPlayerInteract(PlayerInteractEvent e);
+	public void onPlayerInteract(final PlayerInteractEvent e);
 	
 	/**
 	 * Check if the user has this item in his hand
 	 * 
-	 * @param p The user to check
+	 * @param p
+	 *            The user to check
 	 * @return If the user has this item in his hand
 	 */
-	public boolean hasItem(User u);
+	public boolean hasItem(final User u);
 }

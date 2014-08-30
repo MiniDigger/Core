@@ -54,7 +54,7 @@ public interface SignGUI {
 	 * @param response
 	 *            The code, that should get executed after the editing is done
 	 */
-	public void open(Player player, SignGUIListener response);
+	public void open(final Player player, final SignGUIListener response);
 	
 	/**
 	 * Opends the editor with default text
@@ -66,7 +66,7 @@ public interface SignGUI {
 	 * @param response
 	 *            The code, that should get executed after the editing is done
 	 */
-	public void open(Player player, String[] defaultText, SignGUIListener response);
+	public void open(final Player player, final String[] defaultText, final SignGUIListener response);
 	
 	/**
 	 * Destroys this instance of the gui
@@ -79,10 +79,10 @@ public interface SignGUI {
 	 * @param player
 	 *            The player
 	 */
-	public void cleanupPlayer(Player player);
+	public void cleanupPlayer(final Player player);
 	
 	@EventHandler
-	public void onQuit(PlayerQuitEvent event);
+	public void onQuit(final PlayerQuitEvent event);
 	
 	public interface SignGUIListener {
 		
@@ -94,11 +94,11 @@ public interface SignGUI {
 		 * @param lines
 		 *            The text he sended
 		 */
-		public void onSignDone(Player player, String[] lines);
+		public void onSignDone(final Player player, final String[] lines);
 	}
 	
 	interface PacketListener {
 		
-		public void onPacketReceiving(PacketEvent event);
+		public void onPacketReceiving(final PacketEvent event);
 	}
 }

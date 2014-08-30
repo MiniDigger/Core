@@ -37,11 +37,11 @@ import org.java_websocket.handshake.ServerHandshake;
 
 public interface SocketClient {
 	
-	public void onOpen(ServerHandshake handshakedata);
+	public void onOpen(final ServerHandshake handshakedata);
 	
-	public void onMessage(String message);
+	public void onMessage(final String message);
 	
-	public void onClose(int code, String reason, boolean remote);
+	public void onClose(final int code, final String reason, final boolean remote);
 	
-	public void onError(Exception ex);
+	public void onError(final Exception ex);
 }

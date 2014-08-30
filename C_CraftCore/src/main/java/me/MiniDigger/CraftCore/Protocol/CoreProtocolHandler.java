@@ -38,9 +38,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Protocol.ProtocolHandler;
+import me.MiniDigger.Core.Protocol.SignChangers;
+import me.MiniDigger.Core.Protocol.SkullChangers;
+import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.CoreMain;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -52,20 +60,13 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Protocol.ProtocolHandler;
-import me.MiniDigger.Core.Protocol.SignChangers;
-import me.MiniDigger.Core.Protocol.SkullChangers;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreProtocolHandler implements ProtocolHandler {
 	
-	private String	        fame;
-	private ProtocolManager	manager	= ProtocolLibrary.getProtocolManager();
+	private String	              fame;
+	private final ProtocolManager	manager	= ProtocolLibrary.getProtocolManager();
 	
-	private SignChangers	signChangers;
-	private SkullChangers	skullChangers;
+	private SignChangers	      signChangers;
+	private SkullChangers	      skullChangers;
 	
 	@Override
 	public void init() {
@@ -76,11 +77,11 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			
 			@Override
 			public void run() {
-				String[] names = new String[] { "MiniDigger", "Notch", "jeb_", "Dinnerbone", };
+				final String[] names = new String[] { "MiniDigger", "Notch", "jeb_", "Dinnerbone", };
 				
 				try {
 					fame = Bukkit.getServer().getOnlinePlayers()[Core.getCore().getRandomUtil().nextInt(Bukkit.getServer().getOnlinePlayers().length)].getName();
-				} catch (Throwable e) {
+				} catch (final Throwable e) {
 					fame = names[Core.getCore().getRandomUtil().nextInt(names.length)];
 				}
 			}
@@ -106,7 +107,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.TILE_ENTITY_DATA) {
 			
 			@Override
-			public void onPacketSending(PacketEvent event) {
+			public void onPacketSending(final PacketEvent event) {
 				skullChangers.handlePacket(event);
 			}
 		});
@@ -115,7 +116,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		        .asList(PacketType.Status.Server.OUT_SERVER_INFO)) {
 			
 			@Override
-			public void onPacketSending(PacketEvent event) {
+			public void onPacketSending(final PacketEvent event) {
 				handlePing(event.getPacket().getServerPings().read(0));
 			}
 		});
@@ -123,8 +124,8 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.CHAT) {
 			
 			@Override
-			public void onPacketSending(PacketEvent event) {
-				WrappedChatComponent chat = event.getPacket().getChatComponents().read(0);
+			public void onPacketSending(final PacketEvent event) {
+				final WrappedChatComponent chat = event.getPacket().getChatComponents().read(0);
 				
 				if (chat.getJson().contains("Unable to locate")) {
 					event.setCancelled(true);
@@ -134,24 +135,26 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		// TabBlocker
 		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Client.TAB_COMPLETE) {
 			
+			@Override
 			@SuppressWarnings("unchecked")
-			public void onPacketReceiving(PacketEvent event) {
+			public void onPacketReceiving(final PacketEvent event) {
 				if (event.getPacketType() == PacketType.Play.Client.TAB_COMPLETE) {
-					User user = Core.getCore().getUserHandler().get(event.getPlayer().getUniqueId());
+					final User user = Core.getCore().getUserHandler().get(event.getPlayer().getUniqueId());
 					if (!user.hasPermission("tabcomplete") && event.getPacket().getStrings().read(0).startsWith("/")) {
 						event.setCancelled(true);
 						List<String> list = new ArrayList<String>();
-						String start = event.getPacket().getStrings().read(0);
+						final String start = event.getPacket().getStrings().read(0);
 						
 						try {
 							list.addAll((List<? extends String>) Bukkit.getServer().getClass().getMethod("tabCompleteCommand", Player.class, String.class)
 							        .invoke(Bukkit.getServer(), event.getPlayer(), start));
-						} catch (Exception e) {
+						} catch (final Exception e) {
 							e.printStackTrace();
 						}
 						
-						List<String> allowed = new ArrayList<>();// TODO Fix
-						                                         // tabblocker
+						final List<String> allowed = new ArrayList<>();// TODO
+																	   // Fix
+						// tabblocker
 						// for (Command cmd :
 						// Core.getCore().getCommandHandler().getCommands()) {
 						// if (user.hasPermission(cmd.permission())) {
@@ -159,8 +162,8 @@ public class CoreProtocolHandler implements ProtocolHandler {
 						// }
 						// }
 						
-						List<String> newList = new ArrayList<>();
-						for (String s : list) {
+						final List<String> newList = new ArrayList<>();
+						for (final String s : list) {
 							if (allowed.contains(s.replaceFirst("/", ""))) {
 								newList.add(s);
 							}
@@ -168,17 +171,17 @@ public class CoreProtocolHandler implements ProtocolHandler {
 						
 						list = newList;
 						
-						String[] tabList = new String[list.size()];
+						final String[] tabList = new String[list.size()];
 						
 						for (int index = 0; index < list.size(); index++) {
 							tabList[index] = list.get(index);
 						}
 						
-						PacketContainer tabComplete = manager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
+						final PacketContainer tabComplete = manager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
 						tabComplete.getStringArrays().write(0, tabList);
 						try {
 							manager.sendServerPacket(event.getPlayer(), tabComplete);
-						} catch (InvocationTargetException e) {
+						} catch (final InvocationTargetException e) {
 							e.printStackTrace();
 						}
 					}
@@ -187,7 +190,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		});
 	}
 	
-	private void handlePing(WrappedServerPing ping) {
+	private void handlePing(final WrappedServerPing ping) {
 		ping.setPlayers(Arrays.asList(new WrappedGameProfile("1", ChatColor.RED + "Hallo und willkommen"), new WrappedGameProfile("2", "auf Zone-Games.eu!"),
 		        new WrappedGameProfile("3", "Hier findest du vieles.")));
 		ping.setVersionName("Please use 1.7.10");

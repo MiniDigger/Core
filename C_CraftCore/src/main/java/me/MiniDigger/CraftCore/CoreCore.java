@@ -116,7 +116,7 @@ import me.MiniDigger.CraftCore.World.CoreWorldHandler;
 
 public class CoreCore extends Core {
 	
-	private Main	           instance;
+	private final Main	       instance;
 	
 	private ItemHandler	       itemHandler;
 	private AchievementHandler	achievementHandler;
@@ -159,15 +159,17 @@ public class CoreCore extends Core {
 	private ZipUtil	           zipUtil;
 	private ReflectionUtil	   reflectionUtil;
 	
-	public CoreCore(Main instance) {
+	public CoreCore(final Main instance) {
 		super();
 		this.instance = instance;
 	}
 	
+	@Override
 	public Main getInstance() {
 		return instance;
 	}
 	
+	@Override
 	public AchievementHandler getAchievmentHandler() {
 		if (achievementHandler == null) {
 			achievementHandler = new CoreAchievementHandler();
@@ -175,6 +177,7 @@ public class CoreCore extends Core {
 		return achievementHandler;
 	}
 	
+	@Override
 	public ItemHandler getItemHandler() {
 		if (itemHandler == null) {
 			itemHandler = new CoreItemHandler();
@@ -182,6 +185,7 @@ public class CoreCore extends Core {
 		return itemHandler;
 	}
 	
+	@Override
 	public BuildHandler getBuildHandler() {
 		if (buildHandler == null) {
 			buildHandler = new CoreBuildHandler();
@@ -189,6 +193,7 @@ public class CoreCore extends Core {
 		return buildHandler;
 	}
 	
+	@Override
 	public BoosterHandler getBoosterHandler() {
 		if (boosterHandler == null) {
 			boosterHandler = new CoreBoosterHandler();
@@ -196,6 +201,7 @@ public class CoreCore extends Core {
 		return boosterHandler;
 	}
 	
+	@Override
 	public ChatHandler getChatHandler() {
 		if (chatHandler == null) {
 			chatHandler = new CoreChatHandler();
@@ -203,6 +209,7 @@ public class CoreCore extends Core {
 		return chatHandler;
 	}
 	
+	@Override
 	public ClassHandler getClassHandler() {
 		if (classHandler == null) {
 			classHandler = new CoreClassHandler();
@@ -210,6 +217,7 @@ public class CoreCore extends Core {
 		return classHandler;
 	}
 	
+	@Override
 	public CommandHandler getCommandHandler() {
 		if (commandHandler == null) {
 			commandHandler = new CoreCommandHandler();
@@ -217,6 +225,7 @@ public class CoreCore extends Core {
 		return commandHandler;
 	}
 	
+	@Override
 	public GameHandler getGameHandler() {
 		if (gameHandler == null) {
 			gameHandler = new CoreGameHandler();
@@ -224,6 +233,7 @@ public class CoreCore extends Core {
 		return gameHandler;
 	}
 	
+	@Override
 	public HoloHandler getHoloHandler() {
 		if (holoHandler == null) {
 			holoHandler = new CoreHoloHandler();
@@ -231,6 +241,7 @@ public class CoreCore extends Core {
 		return holoHandler;
 	}
 	
+	@Override
 	public MapHandler getMapHandler() {
 		if (mapHandler == null) {
 			mapHandler = new CoreMapHandler();
@@ -238,6 +249,7 @@ public class CoreCore extends Core {
 		return mapHandler;
 	}
 	
+	@Override
 	public NametagHandler getNametagHandler() {
 		if (nametagHandler == null) {
 			nametagHandler = new CoreNametagHandler();
@@ -245,6 +257,7 @@ public class CoreCore extends Core {
 		return nametagHandler;
 	}
 	
+	@Override
 	public NPCHandler getNPCHandler() {
 		if (npcHandler == null) {
 			npcHandler = new CoreNPCHandler();
@@ -252,6 +265,7 @@ public class CoreCore extends Core {
 		return npcHandler;
 	}
 	
+	@Override
 	public PacketHandler getPacketHandler() {
 		if (packetHandler == null) {
 			packetHandler = new CorePacketHandler();
@@ -259,6 +273,7 @@ public class CoreCore extends Core {
 		return packetHandler;
 	}
 	
+	@Override
 	public ProtocolHandler getProtocolHandler() {
 		if (protocolHandler == null) {
 			protocolHandler = new CoreProtocolHandler();
@@ -266,6 +281,7 @@ public class CoreCore extends Core {
 		return protocolHandler;
 	}
 	
+	@Override
 	public RegenHandler getRegenHandler() {
 		if (regenHandler == null) {
 			regenHandler = new CoreRegenHandler();
@@ -273,6 +289,7 @@ public class CoreCore extends Core {
 		return regenHandler;
 	}
 	
+	@Override
 	public ServerHandler getServerHandler() {
 		if (serverHandler == null) {
 			serverHandler = new CoreServerHandler();
@@ -280,6 +297,7 @@ public class CoreCore extends Core {
 		return serverHandler;
 	}
 	
+	@Override
 	public SocketHandler getSocketHandler() {
 		if (socketHandler == null) {
 			socketHandler = new CoreSocketHandler();
@@ -287,6 +305,7 @@ public class CoreCore extends Core {
 		return socketHandler;
 	}
 	
+	@Override
 	public ClientHandler getClientHandler() {
 		if (clientHandler == null) {
 			clientHandler = new CoreClientHandler();
@@ -294,6 +313,7 @@ public class CoreCore extends Core {
 		return clientHandler;
 	}
 	
+	@Override
 	public SquadHandler getSquadHandler() {
 		if (squadHandler == null) {
 			squadHandler = new CoreSquadHandler();
@@ -301,6 +321,7 @@ public class CoreCore extends Core {
 		return squadHandler;
 	}
 	
+	@Override
 	public SQLHandler getSqlHandler() {
 		if (sqlHandler == null) {
 			sqlHandler = new CoreSQLHandler();
@@ -308,6 +329,7 @@ public class CoreCore extends Core {
 		return sqlHandler;
 	}
 	
+	@Override
 	public StatsHandler getStatsHandler() {
 		if (statsHandler == null) {
 			statsHandler = new CoreStatsHandler();
@@ -315,6 +337,7 @@ public class CoreCore extends Core {
 		return statsHandler;
 	}
 	
+	@Override
 	public UpdateHandler getUpdateHandler() {
 		if (updateHandler == null) {
 			updateHandler = new CoreUpdateHandler();
@@ -322,6 +345,7 @@ public class CoreCore extends Core {
 		return updateHandler;
 	}
 	
+	@Override
 	public TipHandler getTipHandler() {
 		if (tipHandler == null) {
 			tipHandler = new CoreTipHandler();
@@ -329,6 +353,7 @@ public class CoreCore extends Core {
 		return tipHandler;
 	}
 	
+	@Override
 	public UserHandler getUserHandler() {
 		if (userHandler == null) {
 			userHandler = new CoreUserHandler();
@@ -336,6 +361,7 @@ public class CoreCore extends Core {
 		return userHandler;
 	}
 	
+	@Override
 	public WorldHandler getWorldHandler() {
 		if (worldHandler == null) {
 			worldHandler = new CoreWorldHandler();
@@ -343,6 +369,7 @@ public class CoreCore extends Core {
 		return worldHandler;
 	}
 	
+	@Override
 	public BarHandler getBarHandler() {
 		if (barHandler == null) {
 			barHandler = new CoreBarHandler();
@@ -356,6 +383,7 @@ public class CoreCore extends Core {
 	 * @see me.MiniDigger.Core.Core#getChatColorUtil()
 	 */
 	
+	@Override
 	public ChatColorUtil getChatColorUtil() {
 		if (chatColorUtil == null) {
 			chatColorUtil = new CoreChatColorUtil();
@@ -363,6 +391,7 @@ public class CoreCore extends Core {
 		return chatColorUtil;
 	}
 	
+	@Override
 	public CommonMethods getCommonMethods() {
 		if (commonMethods == null) {
 			commonMethods = new CoreCommonMethods();
@@ -370,6 +399,7 @@ public class CoreCore extends Core {
 		return commonMethods;
 	}
 	
+	@Override
 	public DeZipUtil getDeZipUtil() {
 		if (deZipUtil == null) {
 			deZipUtil = new CoreDeZipUtil();
@@ -377,6 +407,7 @@ public class CoreCore extends Core {
 		return deZipUtil;
 	}
 	
+	@Override
 	public EntityUtil getEntityUtil() {
 		if (entityUtil == null) {
 			entityUtil = new CoreEntityUtil();
@@ -384,6 +415,7 @@ public class CoreCore extends Core {
 		return entityUtil;
 	}
 	
+	@Override
 	public FileUtil getFileUtil() {
 		if (fileUtil == null) {
 			fileUtil = new CoreFileUtil();
@@ -391,6 +423,7 @@ public class CoreCore extends Core {
 		return fileUtil;
 	}
 	
+	@Override
 	public LocationUtil getLocationUtil() {
 		if (locationUtil == null) {
 			locationUtil = new CoreLocationUtil();
@@ -398,6 +431,7 @@ public class CoreCore extends Core {
 		return locationUtil;
 	}
 	
+	@Override
 	public PlayerUtil getPlayerUtil() {
 		if (playerUtil == null) {
 			playerUtil = new CorePlayerUtil();
@@ -405,6 +439,7 @@ public class CoreCore extends Core {
 		return playerUtil;
 	}
 	
+	@Override
 	public RandomUtil getRandomUtil() {
 		if (randomUtil == null) {
 			randomUtil = new CoreRandomUtil();
@@ -412,6 +447,7 @@ public class CoreCore extends Core {
 		return randomUtil;
 	}
 	
+	@Override
 	public ShutdownUtil getShutdownUtil() {
 		if (shutdownUtil == null) {
 			shutdownUtil = new CoreShutdownUtil();
@@ -419,6 +455,7 @@ public class CoreCore extends Core {
 		return shutdownUtil;
 	}
 	
+	@Override
 	public StringUtil getStringUtil() {
 		if (stringUtil == null) {
 			stringUtil = new CoreStringUtil();
@@ -426,6 +463,7 @@ public class CoreCore extends Core {
 		return stringUtil;
 	}
 	
+	@Override
 	public TimeUtil getTimeUtil() {
 		if (timeUtil == null) {
 			timeUtil = new CoreTimeUtil();
@@ -433,6 +471,7 @@ public class CoreCore extends Core {
 		return timeUtil;
 	}
 	
+	@Override
 	public ZipUtil getZipUtil() {
 		if (zipUtil == null) {
 			zipUtil = new CoreZipUtil();

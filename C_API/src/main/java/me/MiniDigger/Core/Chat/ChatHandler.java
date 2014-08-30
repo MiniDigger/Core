@@ -46,7 +46,7 @@ public interface ChatHandler {
 	 *            The name
 	 * @return The channel if found, else NULL
 	 */
-	public ChatChannel getChannel(String name);
+	public ChatChannel getChannel(final String name);
 	
 	/**
 	 * Register a channel
@@ -54,7 +54,7 @@ public interface ChatHandler {
 	 * @param channel
 	 *            The channel to register
 	 */
-	public void registerChannel(ChatChannel channel);
+	public void registerChannel(final ChatChannel channel);
 	
 	/**
 	 * Unregisters a channel
@@ -62,7 +62,7 @@ public interface ChatHandler {
 	 * @param channel
 	 *            Teh channel to unregister
 	 */
-	public void unregisterChannel(ChatChannel channel);
+	public void unregisterChannel(final ChatChannel channel);
 	
 	/**
 	 * Registers all channnels
@@ -77,7 +77,7 @@ public interface ChatHandler {
 	 * @param message
 	 *            The message send
 	 */
-	public void handleChat(User user, String message);
+	public void handleChat(final User user, final String message);
 	
 	/**
 	 * @return All registered chat channels

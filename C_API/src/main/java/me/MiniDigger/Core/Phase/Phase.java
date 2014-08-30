@@ -42,6 +42,7 @@ import me.MiniDigger.Core.Game.Game;
 import org.bukkit.event.Listener;
 
 public interface Phase extends Listener {
+	
 	/**
 	 * Starts the phase
 	 */
@@ -68,7 +69,7 @@ public interface Phase extends Listener {
 	public String getBarMessage();
 	
 	/**
-	 * @return if the time and message gets displayed in the bar 
+	 * @return if the time and message gets displayed in the bar
 	 */
 	public boolean displayBar();
 	
@@ -85,9 +86,10 @@ public interface Phase extends Listener {
 	/**
 	 * Sets the next phase
 	 * 
-	 * @param next the next phase
+	 * @param next
+	 *            the next phase
 	 */
-	public void setNextPhase(Phase next);
+	public void setNextPhase(final Phase next);
 	
 	/**
 	 * @return All Features running on this phase
@@ -95,24 +97,26 @@ public interface Phase extends Listener {
 	public List<Feature> getFeatures();
 	
 	/**
-	 * @return If all features 
+	 * @return If all features
 	 */
 	public boolean checkCombability();
 	
 	/**
 	 * Returns the feature object for the given class. May be NULL
 	 * 
-	 * @param clazz The class 
+	 * @param clazz
+	 *            The class
 	 * @return The feature object
 	 */
-	public Feature getFeature(Class<Feature> clazz);
+	public Feature getFeature(final Class<Feature> clazz);
 	
 	/**
 	 * Adds a feature to this phase
 	 * 
-	 * @param type The feature to add
+	 * @param type
+	 *            The feature to add
 	 */
-	public void addFeature(Feature f);
+	public void addFeature(final Feature f);
 	
 	/**
 	 * Returns the feature object for the give type. May be NULL
@@ -120,7 +124,7 @@ public interface Phase extends Listener {
 	 * @param feature
 	 * @return
 	 */
-	public Feature getFeature(FeatureType feature);
+	public Feature getFeature(final FeatureType feature);
 	
 	/**
 	 * Inits the feature

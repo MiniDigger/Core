@@ -33,36 +33,39 @@
 
 package me.MiniDigger.CraftCore.Util;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Util.ChatColorUtil;
+
+import org.bukkit.ChatColor;
 
 public class CoreChatColorUtil implements ChatColorUtil {
 	
 	final String	possibleColours	= "0123456789abcdefklmnor";
 	
+	@Override
 	public String[] replaceMcToAnd(final String[] lines) {
 		return replaceColorChars(lines, "\u00A7", "&");
 	}
 	
+	@Override
 	public String[] replaceAndToMc(final String[] lines) {
 		return replaceColorChars(lines, "&", "\u00A7");
 	}
 	
-	public ChatColor toChatColor(String s) {
+	@Override
+	public ChatColor toChatColor(final String s) {
 		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
+			final char c = s.charAt(i);
 			if (c != '&' && c != '�') {
 				continue;
 			}
 			
-			char next = s.charAt(i + 1);
+			final char next = s.charAt(i + 1);
 			if (next == -1) {
 				continue;
 			}
 			
 			if (possibleColours.contains(next + "")) {
-				for (ChatColor cc : ChatColor.values()) {
+				for (final ChatColor cc : ChatColor.values()) {
 					if (cc.getChar() == next) {
 						return cc;
 					}
@@ -72,6 +75,7 @@ public class CoreChatColorUtil implements ChatColorUtil {
 		return ChatColor.RESET;
 	}
 	
+	@Override
 	public String[] replaceColorChars(final String[] lines, final String old, final String neu) {
 		final String colourChar = old;
 		
@@ -94,14 +98,17 @@ public class CoreChatColorUtil implements ChatColorUtil {
 		return lines;
 	}
 	
+	@Override
 	public String replaceMcToAnd(final String msg) {
 		return replaceColorChars(msg, "\u00A7", "&");
 	}
 	
+	@Override
 	public String replaceAndToMc(final String msg) {
 		return replaceColorChars(msg, "&", "\u00A7");
 	}
 	
+	@Override
 	public String replaceColorChars(final String msg, final String old, final String neu) {
 		final String colourChar = old;
 		final String[] splitLine = msg.split(colourChar);

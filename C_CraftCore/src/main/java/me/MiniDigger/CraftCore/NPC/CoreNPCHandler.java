@@ -35,6 +35,9 @@ package me.MiniDigger.CraftCore.NPC;
 
 import java.util.concurrent.ExecutionException;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.NPC.NPCHandler;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -44,9 +47,6 @@ import com.lenis0012.bukkit.npc.NPC;
 import com.lenis0012.bukkit.npc.NPCAnimation;
 import com.lenis0012.bukkit.npc.NPCFactory;
 import com.lenis0012.bukkit.npc.NPCProfile;
-
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.NPC.NPCHandler;
 
 public class CoreNPCHandler implements NPCHandler {
 	
@@ -66,12 +66,12 @@ public class CoreNPCHandler implements NPCHandler {
 	@Override
 	public void spawn(final Location loc) {
 		final NPCProfile profile;
-        try {
-	        profile = NPCProfile.loadProfile(ChatColor.GOLD + "Bender", "bender12");
-        } catch (ExecutionException e) {
-	        e.printStackTrace();
-	        return;
-        }
+		try {
+			profile = NPCProfile.loadProfile(ChatColor.GOLD + "Bender", "bender12");
+		} catch (final ExecutionException e) {
+			e.printStackTrace();
+			return;
+		}
 		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override

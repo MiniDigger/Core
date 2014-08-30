@@ -56,7 +56,7 @@ public interface ChatChannel {
 	 * @param prefix
 	 *            The prefix used for this channel
 	 */
-	public void init(String name, ChatColor color, String hearPerm, String speakPerm, FancyMessage prefix);
+	public void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix);
 	
 	/**
 	 * Checks of two channels are identical
@@ -65,7 +65,7 @@ public interface ChatChannel {
 	 *            The channel to check with
 	 * @return If the channels are identical
 	 */
-	public boolean equals(ChatChannel channel);
+	public boolean equals(final ChatChannel channel);
 	
 	/**
 	 * Sends the join message
@@ -73,7 +73,7 @@ public interface ChatChannel {
 	 * @param user
 	 *            The user who joined
 	 */
-	public void join(User user);
+	public void join(final User user);
 	
 	/**
 	 * Sends the leave message
@@ -81,7 +81,7 @@ public interface ChatChannel {
 	 * @param user
 	 *            The user who left
 	 */
-	public void leave(User user);
+	public void leave(final User user);
 	
 	/**
 	 * Sends a message from the user into the channel
@@ -91,7 +91,7 @@ public interface ChatChannel {
 	 * @param message
 	 *            The message
 	 */
-	public void chat(User user, String message);
+	public void chat(final User user, final String message);
 	
 	/**
 	 * 
@@ -104,7 +104,7 @@ public interface ChatChannel {
 	 * 
 	 * @param message
 	 */
-	public void broadcast(FancyMessage message);
+	public void broadcast(final FancyMessage message);
 	
 	/**
 	 * @return the name of the channel

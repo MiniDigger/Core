@@ -33,10 +33,6 @@
 
 package me.MiniDigger.CraftCore.Util;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.ShutdownUtil;
@@ -44,24 +40,31 @@ import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
 public class CoreShutdownUtil implements ShutdownUtil {
 	
+	@Override
 	public void initShutdown() {
 		Core.getCore().getServerHandler().stopTask();
 		Core.getCore().getPacketHandler().sendPacket(new ServerPacket(CoreServer.getForThis(false)));
 	}
 	
+	@Override
 	public void doShutdown() {
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!",100F);
-			Core.getCore().getUserHandler().get(p.getUniqueId()).sendMessage(Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED));
+		for (final Player p : Bukkit.getOnlinePlayers()) {
+			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!", 100F);
+			Core.getCore().getUserHandler().get(p.getUniqueId())
+			        .sendMessage(Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED));
 		}
 		
-		Bukkit.getScheduler().runTaskLater((CoreMain)Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
-				for (Player p : Bukkit.getOnlinePlayers()) {
+				for (final Player p : Bukkit.getOnlinePlayers()) {
 					p.kickPlayer(ChatColor.RED + "Der Server wird nun neugestarte \n " + ChatColor.AQUA + " Er wird gleich wieder online sein");
 				}
 				Bukkit.shutdown();

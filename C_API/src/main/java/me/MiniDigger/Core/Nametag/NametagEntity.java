@@ -44,7 +44,7 @@ public interface NametagEntity {
 	 * 
 	 * @param player
 	 */
-	public void hideTag(Player player);
+	public void hideTag(final Player player);
 	
 	/**
 	 * Shows the nametag
@@ -59,5 +59,5 @@ public interface NametagEntity {
 	/**
 	 * internal overide
 	 */
-	public void o(Entity entity);
+	public void o(final Entity entity);
 }

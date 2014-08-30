@@ -43,7 +43,7 @@ public interface BuildHandler {
 	 * @param user
 	 * @return
 	 */
-	public boolean isBuilder(User user);
+	public boolean isBuilder(final User user);
 	
 	/**
 	 * Change the builder status for a user
@@ -53,5 +53,5 @@ public interface BuildHandler {
 	 * @param builder
 	 *            The new status
 	 */
-	public void setBuilder(User user, boolean builder);
+	public void setBuilder(final User user, final boolean builder);
 }

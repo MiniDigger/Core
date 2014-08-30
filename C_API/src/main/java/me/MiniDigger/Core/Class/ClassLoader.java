@@ -33,12 +33,13 @@
 
 package me.MiniDigger.Core.Class;
 
-
 public interface ClassLoader {
 	
 	/**
 	 * Load a class form the repo into the class path
-	 * @param name The class name
+	 * 
+	 * @param name
+	 *            The class name
 	 */
-	public void load(String name);
+	public void load(final String name);
 }

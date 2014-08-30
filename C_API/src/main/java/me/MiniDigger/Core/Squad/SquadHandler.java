@@ -37,26 +37,30 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SquadHandler {
+	
 	/**
 	 * Creates a new squad
 	 * 
-	 * @param id The owner
+	 * @param id
+	 *            The owner
 	 */
-	public void createSquad(UUID id);
-
+	public void createSquad(final UUID id);
+	
 	/**
 	 * Searches for user's squad, may be null
 	 * 
-	 * @param user The user
+	 * @param user
+	 *            The user
 	 * @return The squad
 	 */
-	public Squad getSquad(UUID user);
+	public Squad getSquad(final UUID user);
 	
 	/**
 	 * Returns all invites, a user has
 	 * 
-	 * @param user The user
+	 * @param user
+	 *            The user
 	 * @return All invites
 	 */
-	public List<Squad> getInvitations(UUID user);
+	public List<Squad> getInvitations(final UUID user);
 }

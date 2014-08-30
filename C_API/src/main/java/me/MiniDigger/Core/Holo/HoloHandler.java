@@ -40,11 +40,12 @@ public interface HoloHandler {
 	/**
 	 * Converts a img with the given url to a holo lists. If the img is a gif
 	 * there will be a number of hololists<br>
-	 * Automaticly show the holos
-	 * NULL when there was an error<br>
+	 * Automaticly show the holos NULL when there was an error<br>
 	 * 
-	 * @param url The url for the img
-	 * @return A lists with the hololists. Only one entry if the img wasn't a gif
+	 * @param url
+	 *            The url for the img
+	 * @return A lists with the hololists. Only one entry if the img wasn't a
+	 *         gif
 	 */
-	public List<HoloList> loadImage(String url);
+	public List<HoloList> loadImage(final String url);
 }

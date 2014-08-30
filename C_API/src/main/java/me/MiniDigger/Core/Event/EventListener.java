@@ -44,17 +44,17 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public interface EventListener extends Listener {
 	
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent e);
+	public void onPlayerJoin(final PlayerJoinEvent e);
 	
 	@EventHandler
-	public void onPlayerQuit(PlayerQuitEvent e);
+	public void onPlayerQuit(final PlayerQuitEvent e);
 	
 	@EventHandler
-	public void onPlayerDamage(EntityDamageEvent e);
+	public void onPlayerDamage(final EntityDamageEvent e);
 	
 	@EventHandler
-	public void onPlayerDamageByPlayer(EntityDamageByEntityEvent e);
+	public void onPlayerDamageByPlayer(final EntityDamageByEntityEvent e);
 	
 	@EventHandler
-	public void onPlayerDeath(PlayerDeathEvent e);
+	public void onPlayerDeath(final PlayerDeathEvent e);
 }

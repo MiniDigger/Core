@@ -56,7 +56,7 @@ public interface SignChangers extends Listener {
 	 * @param event
 	 *            The event
 	 */
-	public void handlePacket(PacketEvent event);
+	public void handlePacket(final PacketEvent event);
 	
 	/**
 	 * Adds all the changers
@@ -69,7 +69,7 @@ public interface SignChangers extends Listener {
 	 * @param changer
 	 *            The changer to register
 	 */
-	public void addSignChanger(SignChanger changer);
+	public void addSignChanger(final SignChanger changer);
 	
 	/**
 	 * Unregister a changer
@@ -77,7 +77,7 @@ public interface SignChangers extends Listener {
 	 * @param changer
 	 *            The changer to unregister
 	 */
-	public void removeSignChanger(SignChanger changer);
+	public void removeSignChanger(final SignChanger changer);
 	
 	/**
 	 * @return All the registered changers
@@ -134,6 +134,6 @@ public interface SignChangers extends Listener {
 		 *            The location of the sign
 		 * @return The value to replace the key
 		 */
-		public abstract String getValue(Player p, Location l);
+		public abstract String getValue(final Player p, final Location l);
 	}
 }

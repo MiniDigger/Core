@@ -34,11 +34,11 @@
 package me.MiniDigger.Core.Item;
 
 public enum ItemType {
-	GRABLING_HOOK(/*new GrablingHook()*/null);//TODO Reenter item in itemtype
+	GRABLING_HOOK(/* new GrablingHook() */null);// TODO Reenter item in itemtype
 	
 	private Item	item;
 	
-	private ItemType(Item item) {
+	private ItemType(final Item item) {
 		this.item = item;
 	}
 	

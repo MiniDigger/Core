@@ -38,8 +38,8 @@ import me.MiniDigger.Core.Phase.RepeatingPhase;
 
 public abstract class CoreRepeatingPhase extends CorePhase implements RepeatingPhase {
 	
-	public CoreRepeatingPhase(Game game) {
+	public CoreRepeatingPhase(final Game game) {
 		this.game = game;
-		this.next = this;
+		next = this;
 	}
 }

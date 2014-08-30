@@ -42,8 +42,8 @@ import org.bukkit.event.player.PlayerChatTabCompleteEvent;
 public interface ChatListener extends Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = false)
-	public void onPlayerChat(AsyncPlayerChatEvent e);
+	public void onPlayerChat(final AsyncPlayerChatEvent e);
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void tabChat(PlayerChatTabCompleteEvent e);
+	public void tabChat(final PlayerChatTabCompleteEvent e);
 }

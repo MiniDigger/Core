@@ -16,7 +16,7 @@ import org.bukkit.ChatColor;
 public class StatsCommands {
 	
 	@Command(name = "stats", description = "Macht alles mit Stats", usage = "", permission = "stats")
-	public void stats(CommandArgs args) {
+	public void stats(final CommandArgs args) {
 		if (args.isUser()) {
 			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Macht alles mit Stats"));
 			
@@ -29,11 +29,11 @@ public class StatsCommands {
 	
 	@SuppressWarnings("deprecation")
 	@Command(name = "stats.add", description = "Fügt Stats hinzu", usage = "stats add <spieler> <type> <anzahl>", permission = "stats.add")
-	public void add(CommandArgs args) {
+	public void add(final CommandArgs args) {
 		User other;
 		try {
 			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats add <spieler> <type> <anzahl>"));
@@ -47,7 +47,7 @@ public class StatsCommands {
 		StatsType type;
 		try {
 			type = StatsType.valueOf(args.getArgs()[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[1]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats add <spieler> <type> <anzahl>"));
@@ -61,7 +61,7 @@ public class StatsCommands {
 		int anzahl;
 		try {
 			anzahl = Integer.parseInt(args.getArgs()[2]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Anzahl: " + args.getArgs()[2]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats add <spieler> <type> <anzahl>"));
@@ -72,7 +72,7 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
+		final Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.add(type, anzahl);
 		stats.save();
 		stats.load();
@@ -86,11 +86,11 @@ public class StatsCommands {
 	
 	@SuppressWarnings("deprecation")
 	@Command(name = "stats.remove", description = "Nimmt Stats weg", usage = "stats remove <spieler> <type> <anzahl>", permission = "stats.remove")
-	public void remove(CommandArgs args) {
+	public void remove(final CommandArgs args) {
 		User other;
 		try {
 			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats remove <spieler> <type> <anzahl>"));
@@ -104,7 +104,7 @@ public class StatsCommands {
 		StatsType type;
 		try {
 			type = StatsType.valueOf(args.getArgs()[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[1]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats remove <spieler> <type> <anzahl>"));
@@ -118,7 +118,7 @@ public class StatsCommands {
 		int anzahl;
 		try {
 			anzahl = Integer.parseInt(args.getArgs()[2]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Anzahl: " + args.getArgs()[2]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats remove <spieler> <type> <anzahl>"));
@@ -129,7 +129,7 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
+		final Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.remove(type, anzahl);
 		stats.save();
 		stats.load();
@@ -143,11 +143,11 @@ public class StatsCommands {
 	
 	@SuppressWarnings("deprecation")
 	@Command(name = "stats.set", description = "Sets Stats", usage = "stats set <spieler> <type> <anzahl>", permission = "stats.set")
-	public void set(CommandArgs args) {
+	public void set(final CommandArgs args) {
 		User other;
 		try {
 			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats set <spieler> <type> <anzahl>"));
@@ -161,7 +161,7 @@ public class StatsCommands {
 		StatsType type;
 		try {
 			type = StatsType.valueOf(args.getArgs()[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[1]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats set <spieler> <type> <anzahl>"));
@@ -175,7 +175,7 @@ public class StatsCommands {
 		int anzahl;
 		try {
 			anzahl = Integer.parseInt(args.getArgs()[2]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Anzahl: " + args.getArgs()[2]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats set <spieler> <type> <anzahl>"));
@@ -186,7 +186,7 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
+		final Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.set(type, anzahl);
 		stats.save();
 		stats.load();
@@ -200,11 +200,11 @@ public class StatsCommands {
 	
 	@SuppressWarnings("deprecation")
 	@Command(name = "stats.get", description = "Zeigt Stats an", usage = "stats get <spieler> <type>", permission = "stats.get")
-	public void get(CommandArgs args) {
+	public void get(final CommandArgs args) {
 		User other;
 		try {
 			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats get <spieler> <type>"));
@@ -218,7 +218,7 @@ public class StatsCommands {
 		StatsType type;
 		try {
 			type = StatsType.valueOf(args.getArgs()[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[1]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats get <spieler> <type>"));
@@ -229,7 +229,7 @@ public class StatsCommands {
 			return;
 		}
 		
-		Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
+		final Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.load();
 		
 		if (args.isUser()) {
@@ -240,11 +240,11 @@ public class StatsCommands {
 	}
 	
 	@Command(name = "stats.top", description = "Zeigt Top Stats an", usage = "stats top <type> [top was?]", permission = "stats.top")
-	public void getTop(CommandArgs args) {
+	public void getTop(final CommandArgs args) {
 		StatsType type;
 		try {
 			type = StatsType.valueOf(args.getArgs()[0]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[0]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats top <type> [top was?]"));
@@ -258,7 +258,7 @@ public class StatsCommands {
 		int top = 5;
 		try {
 			top = Integer.parseInt(args.getArgs()[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannte Zahl: " + args.getArgs()[1]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats top <type> [top was?]"));
@@ -269,7 +269,7 @@ public class StatsCommands {
 			return;
 		}
 		
-		List<String> tops = Core.getCore().getStatsHandler().getTop(type, top);
+		final List<String> tops = Core.getCore().getStatsHandler().getTop(type, top);
 		
 		if (args.isUser()) {
 			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Top " + top + " in der Kategorie " + type.getGame() + "." + type.getStats()));

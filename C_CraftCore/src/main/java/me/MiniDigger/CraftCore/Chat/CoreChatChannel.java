@@ -36,12 +36,12 @@ package me.MiniDigger.CraftCore.Chat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.User.User;
 import mkremins.fanciful.FancyMessage;
+
+import org.bukkit.ChatColor;
 
 public class CoreChatChannel implements ChatChannel {
 	
@@ -52,7 +52,7 @@ public class CoreChatChannel implements ChatChannel {
 	protected FancyMessage	prefix;
 	
 	@Override
-	public void init(String name, ChatColor color, String hearPerm, String speakPerm, FancyMessage prefix) {
+	public void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
 		this.name = name;
 		this.color = color;
 		this.prefix = prefix;
@@ -61,7 +61,7 @@ public class CoreChatChannel implements ChatChannel {
 	}
 	
 	@Override
-	public boolean equals(ChatChannel channel) {
+	public boolean equals(final ChatChannel channel) {
 		if (channel.getName().equalsIgnoreCase(name)) {
 			return true;
 		} else {
@@ -70,7 +70,7 @@ public class CoreChatChannel implements ChatChannel {
 	}
 	
 	@Override
-	public void join(User chatUser) {
+	public void join(final User chatUser) {
 		broadcast(getPrefix().then("+ ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
 		        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
 		        .suggest("/pm " + chatUser.getDisplayName()).color(Core.getCore().getChatColorUtil().toChatColor(chatUser.getPrefix())).then(" hat den Raum betreten.")
@@ -78,7 +78,7 @@ public class CoreChatChannel implements ChatChannel {
 	}
 	
 	@Override
-	public void leave(User chatUser) {
+	public void leave(final User chatUser) {
 		broadcast(getPrefix().then("- ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
 		        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
 		        .suggest("/pm " + chatUser.getDisplayName()).color(Core.getCore().getChatColorUtil().toChatColor(chatUser.getPrefix())).then(" hat den Raum verlassen.")
@@ -86,7 +86,7 @@ public class CoreChatChannel implements ChatChannel {
 	}
 	
 	@Override
-	public void chat(User chatUser, String message) {
+	public void chat(final User chatUser, final String message) {
 		ChatColor color;
 		if (this.color == ChatColor.RESET) {
 			color = Core.getCore().getChatColorUtil().toChatColor(chatUser.getSuffix());
@@ -100,9 +100,9 @@ public class CoreChatChannel implements ChatChannel {
 	
 	@Override
 	public List<User> getListeners() {
-		List<User> result = new ArrayList<>();
+		final List<User> result = new ArrayList<>();
 		
-		for (User user : Core.getCore().getUserHandler().getOnlineUsers()) {
+		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
 			result.add(user);
 		}
 		
@@ -110,8 +110,8 @@ public class CoreChatChannel implements ChatChannel {
 	}
 	
 	@Override
-	public void broadcast(FancyMessage message) {
-		for (User user : getListeners()) {
+	public void broadcast(final FancyMessage message) {
+		for (final User user : getListeners()) {
 			user.sendMessage(message);
 		}
 	}

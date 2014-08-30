@@ -36,56 +36,61 @@ package me.MiniDigger.CraftCore.Util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import me.MiniDigger.Core.Util.ReflectionUtil;
+
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
-import me.MiniDigger.Core.Util.ReflectionUtil;
-
 public class CoreReflectionUtil implements ReflectionUtil {
 	
-	public Class<?> getCraftClass(String ClassName) {
-		String name = Bukkit.getServer().getClass().getPackage().getName();
-		String version = name.substring(name.lastIndexOf('.') + 1) + ".";
-		String className = "net.minecraft.server." + version + ClassName;
+	@Override
+	public Class<?> getCraftClass(final String ClassName) {
+		final String name = Bukkit.getServer().getClass().getPackage().getName();
+		final String version = name.substring(name.lastIndexOf('.') + 1) + ".";
+		final String className = "net.minecraft.server." + version + ClassName;
 		Class<?> c = null;
 		try {
 			c = Class.forName(className);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 		return c;
 	}
 	
-	public Object getHandle(Entity entity) {
+	@Override
+	public Object getHandle(final Entity entity) {
 		try {
 			return getMethod(entity.getClass(), "getHandle").invoke(entity);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Object getHandle(World world) {
+	@Override
+	public Object getHandle(final World world) {
 		try {
 			return getMethod(world.getClass(), "getHandle").invoke(world);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Field getField(Class<?> cl, String field_name) {
+	@Override
+	public Field getField(final Class<?> cl, final String field_name) {
 		try {
 			return cl.getDeclaredField(field_name);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Method getMethod(Class<?> cl, String method, Class<?>... args) {
-		for (Method m : cl.getMethods()) {
+	@Override
+	public Method getMethod(final Class<?> cl, final String method, final Class<?>... args) {
+		for (final Method m : cl.getMethods()) {
 			if (m.getName().equals(method) && ClassListEqual(args, m.getParameterTypes())) {
 				return m;
 			}
@@ -93,8 +98,9 @@ public class CoreReflectionUtil implements ReflectionUtil {
 		return null;
 	}
 	
-	public Method getMethod(Class<?> cl, String method) {
-		for (Method m : cl.getMethods()) {
+	@Override
+	public Method getMethod(final Class<?> cl, final String method) {
+		for (final Method m : cl.getMethods()) {
 			if (m.getName().equals(method)) {
 				return m;
 			}
@@ -102,9 +108,12 @@ public class CoreReflectionUtil implements ReflectionUtil {
 		return null;
 	}
 	
-	public boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2) {
+	@Override
+	public boolean ClassListEqual(final Class<?>[] l1, final Class<?>[] l2) {
 		boolean equal = true;
-		if (l1.length != l2.length) return false;
+		if (l1.length != l2.length) {
+			return false;
+		}
 		for (int i = 0; i < l1.length; i++) {
 			if (l1[i] != l2[i]) {
 				equal = false;

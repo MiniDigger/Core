@@ -52,7 +52,7 @@ public interface BukkitCompleter extends TabCompleter {
 	 * @param obj
 	 *            The ibject the method is found in
 	 */
-	public void addCompleter(String label, Method m, Object obj);
+	public void addCompleter(final String label, final Method m, final Object obj);
 	
 	/**
 	 * Requests a list of possible completions for a command argument.
@@ -69,5 +69,6 @@ public interface BukkitCompleter extends TabCompleter {
 	 * @return A List of possible completions for the final argument, or null to
 	 *         default to the command executor
 	 */
-	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args);
+	@Override
+	public List<String> onTabComplete(final CommandSender sender, final Command command, final String label, final String[] args);
 }
