@@ -48,6 +48,7 @@ import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 import mkremins.fanciful.FancyMessage;
 
@@ -69,7 +70,7 @@ public class CoreUser implements User {
 	protected Long	            playTime;
 	
 	protected List<ChatChannel>	listenChannels;
-	protected ChatChannel	speakChannel;
+	protected ChatChannel	    speakChannel;
 	
 	// PRIVATE
 	protected Date	            sessionStart;
@@ -370,6 +371,39 @@ public class CoreUser implements User {
 	@Override
 	public ChatChannel getSpeakChannel() {
 		return speakChannel;
+	}
+	
+	@Override
+	public void joinChannel(ChatChannel ch) {
+		speakChannel = ch;
+		if (!listenChannels.contains(ch)) {
+			listenChannels.add(ch);
+		}
+		ch.join(this);
+	}
+	
+	@Override
+	public void leaveChannel(ChatChannel ch) {
+		ch.leave(this);
+		if (ch.getName().equals(speakChannel.getName())) {
+			speakChannel = new EmptyChannel();
+		}
+		
+		for (ChatChannel cc : listenChannels) {
+			if (cc.getName().equals(ch.getName())) {
+				listenChannels.remove(cc);
+				break;
+			}
+		}
+	}
+	
+	@Override
+	public void setPrimaryChannel(ChatChannel ch) {
+		speakChannel = ch;
+		if (!listenChannels.contains(ch)) {
+			listenChannels.add(ch);
+			ch.join(this);
+		}
 	}
 	
 }

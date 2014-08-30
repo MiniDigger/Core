@@ -211,5 +211,26 @@ public interface User extends Saveable {
 	 * @return the channels the player is speaking in
 	 */
 	public ChatChannel getSpeakChannel();
+
+	/**
+	 * Let the user join a ChatChannel
+	 * 
+     * @param ch The channel to join
+     */
+    public void joinChannel(ChatChannel ch);
+
+	/**
+	 * Let the user leave a ChatChannel
+	 * 
+     * @param ch The channel to leave
+     */
+    public void leaveChannel(ChatChannel ch);
+
+	/**
+	 * Sets the primary channel of a user, the channel a user is speaking in
+	 * 
+     * @param ch The channel to set
+     */
+    public void setPrimaryChannel(ChatChannel ch);
 	
 }
