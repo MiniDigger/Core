@@ -25,7 +25,7 @@
 	</scm>
 
 	<properties>
-		<bukkit.version>1.7.9-R0.1-SNAPSHOT</bukkit.version>
+		<bukkit.version>1.7.9-R0.3-SNAPSHOT</bukkit.version>
 		<api.version>0.0.1-SNAPSHOT</api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -52,7 +52,48 @@
 					<executable>${env.JAVA_HOME}/bin/javac</executable>
 					<fork>true</fork>
 				</configuration>
-			</plugin>
+				
+			</plugin><!-- TODO Proguard
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<options>
+						<option>-allowaccessmodification</option>
+						<option>-keepattributes *Annotation*</option>
+						<option>-keepattributes Signature</option>
+						<option>-printmapping ${basedir}/mappings.map</option>
+						<option>-target 1.7</option>
+						<option>-mergeinterfacesaggressively</option>
+						<option>-overloadaggressively</option>
+						<option>-repackageclasses Core</option>
+						<option>-adaptclassstrings</option>
+						<option>-keepclassmembers,allowoptimization enum * {
+							public static
+							**[] values();
+							public static ** valueOf(java.lang.String);
+							}</option>
+					</options>
+					<obfuscate>true</obfuscate>
+					<shrink>true</shrink>
+					<injar>${project.build.finalName}.jar</injar>
+					<outjar>${project.build.finalName}-final.jar</outjar>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<proguardInclude>${basedir}/proguard.conf</proguardInclude>
+					<libs>
+						<lib>${java.home}/lib/rt.jar</lib>
+						<lib>${java.home}/lib/jsse.jar</lib>
+					</libs>
+				</configuration>
+			</plugin> -->
 		</plugins>
 	</build>
 
