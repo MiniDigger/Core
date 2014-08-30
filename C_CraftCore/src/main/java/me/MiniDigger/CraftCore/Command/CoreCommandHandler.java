@@ -180,6 +180,12 @@ public class CoreCommandHandler implements CommandHandler {
 				final Object methodObject = commandMap.getSecondValue(cmdLabel);
 				/* Core Start */
 				final Command command = method.getAnnotation(Command.class);
+				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
+				
+				System.out.println("cmdLabel: " + cmdLabel);
+				System.out.println("args.lenth: " + args.length + "(" + cmdArgs.getArgs().length + ")");
+				System.out.println("command.min: " + command.min());
+				System.out.println("command.max: " + command.max());
 				
 				if (!sender.hasPermission(command.permission())) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
@@ -187,22 +193,19 @@ public class CoreCommandHandler implements CommandHandler {
 					return true;
 				}
 				
-				if (!command.consol() && sender instanceof Player) {
+				if (!command.consol() && !(sender instanceof Player)) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noConsol()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
 				
-				System.out.println("args.lenth: " + args.length);
-				System.out.println("command.min: " + command.min());
-				System.out.println("command.max: " + command.max());
-				if (args.length < command.min()) {
+				if (cmdArgs.getArgs().length < command.min()) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.fewArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
 				
-				if (args.length > command.max() && command.max() != -1) {
+				if (cmdArgs.getArgs().length > command.max() && command.max() != -1) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.manyArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
@@ -210,7 +213,7 @@ public class CoreCommandHandler implements CommandHandler {
 				
 				/* Core End */
 				try {
-					method.invoke(methodObject, new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1));
+					method.invoke(methodObject, cmdArgs);
 				} catch (final IllegalArgumentException e) {
 					e.printStackTrace();
 				} catch (final IllegalAccessException e) {

@@ -125,7 +125,7 @@ public @interface Command {
 	 * 
 	 * @return
 	 */
-	public String fewArgs() default "You entered too fex arguments!";
+	public String fewArgs() default "You entered too few arguments!";
 	
 	/**
 	 * Sets the error message which gets shown, if a command was executed with
