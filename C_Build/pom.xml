@@ -12,6 +12,7 @@
 
 
 	<build>
+	<!-- TODO Add proguard to build -->
 		<finalName>Core</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
@@ -102,6 +103,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 		</plugins>
 		<pluginManagement>
 			<plugins>
