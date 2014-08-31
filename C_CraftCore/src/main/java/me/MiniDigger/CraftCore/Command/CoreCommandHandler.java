@@ -182,11 +182,6 @@ public class CoreCommandHandler implements CommandHandler {
 				final Command command = method.getAnnotation(Command.class);
 				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
 				
-				System.out.println("cmdLabel: " + cmdLabel);
-				System.out.println("args.lenth: " + args.length + "(" + cmdArgs.getArgs().length + ")");
-				System.out.println("command.min: " + command.min());
-				System.out.println("command.max: " + command.max());
-				
 				if (!sender.hasPermission(command.permission())) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
 					msg.send(sender);
