@@ -50,6 +50,7 @@ import me.MiniDigger.Core.NPC.NPCHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
+import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Regen.RegenHandler;
 import me.MiniDigger.Core.SQL.SQLHandler;
 import me.MiniDigger.Core.Server.ServerHandler;
@@ -89,6 +90,7 @@ import me.MiniDigger.CraftCore.NPC.CoreNPCHandler;
 import me.MiniDigger.CraftCore.Nametag.CoreNametagHandler;
 import me.MiniDigger.CraftCore.Packet.CorePacketHandler;
 import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
+import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Regen.CoreRegenHandler;
 import me.MiniDigger.CraftCore.SQL.CoreSQLHandler;
 import me.MiniDigger.CraftCore.Server.CoreServerHandler;
@@ -144,6 +146,7 @@ public class CoreCore extends Core {
 	private UserHandler	       userHandler;
 	private WorldHandler	   worldHandler;
 	private BarHandler	       barHandler;
+	private RESTHandler	       restHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -377,11 +380,15 @@ public class CoreCore extends Core {
 		return barHandler;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see me.MiniDigger.Core.Core#getChatColorUtil()
-	 */
+	@Override
+	public RESTHandler getRESTHandler() {
+		if(restHandler == null){
+			restHandler = new CoreRESTHandler();
+		}
+		return restHandler;
+	}
+	
+	/***********/
 	
 	@Override
 	public ChatColorUtil getChatColorUtil() {

@@ -10,6 +10,7 @@ import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Holo.HoloList;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
+import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 
@@ -19,6 +20,7 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.json.simple.JSONObject;
 
 public class DevCommands {
 	
@@ -143,5 +145,12 @@ public class DevCommands {
 	public void showTag(final CommandArgs args) {
 		@SuppressWarnings("deprecation") final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		Core.getCore().getNametagHandler().showNametag(p);
+	}
+	
+	@Command(name = "dev.rest", description = "DEV!", usage = "", permission = "dev")
+	public void rest(final CommandArgs args) {
+		JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
+		System.out.println(obj.toJSONString());
+		System.out.println(obj.get("success"));
 	}
 }
