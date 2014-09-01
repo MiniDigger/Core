@@ -42,6 +42,7 @@ import me.MiniDigger.Core.Main;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
+import me.MiniDigger.CraftCore.Command.Commands.AddOnCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ChatCommands;
 import me.MiniDigger.CraftCore.Command.Commands.DevCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ItemCommands;
@@ -261,7 +262,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void registerCommands() {
 		Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
-		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands() };
+		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands(), new AddOnCommands() };
 		for (Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
