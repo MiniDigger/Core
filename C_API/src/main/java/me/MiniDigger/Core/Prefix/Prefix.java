@@ -50,7 +50,8 @@ public enum Prefix {
 	HINT(ChatColor.MAGIC, ChatColor.GOLD, "JustATip", GameType.NOTHING),
 	GETHEDROP(ChatColor.AQUA, ChatColor.BLUE, "GetTheDrop", GameType.GETTHEDROP),
 	VOTE(ChatColor.AQUA, ChatColor.BLUE, "Vote", GameType.NOTHING),
-	SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY);
+	SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY), 
+	ADDON(ChatColor.RESET, ChatColor.AQUA, "AddOn>", GameType.NOTHING);
 	
 	private ChatColor	klammer;
 	private ChatColor	color;
