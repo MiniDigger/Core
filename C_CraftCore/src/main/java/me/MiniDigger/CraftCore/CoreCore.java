@@ -36,6 +36,7 @@ package me.MiniDigger.CraftCore;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
 import me.MiniDigger.Core.Achievement.AchievementHandler;
+import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Bar.BarHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
@@ -76,6 +77,7 @@ import me.MiniDigger.Core.Util.TimeUtil;
 import me.MiniDigger.Core.Util.ZipUtil;
 import me.MiniDigger.Core.World.WorldHandler;
 import me.MiniDigger.CraftCore.Achievement.CoreAchievementHandler;
+import me.MiniDigger.CraftCore.AddOn.CoreAddOnHandler;
 import me.MiniDigger.CraftCore.Bar.CoreBarHandler;
 import me.MiniDigger.CraftCore.Block.CoreBuildHandler;
 import me.MiniDigger.CraftCore.Booster.CoreBoosterHandler;
@@ -147,6 +149,7 @@ public class CoreCore extends Core {
 	private WorldHandler	   worldHandler;
 	private BarHandler	       barHandler;
 	private RESTHandler	       restHandler;
+	private AddOnHandler	   addOnHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -382,10 +385,18 @@ public class CoreCore extends Core {
 	
 	@Override
 	public RESTHandler getRESTHandler() {
-		if(restHandler == null){
+		if (restHandler == null) {
 			restHandler = new CoreRESTHandler();
 		}
 		return restHandler;
+	}
+
+	@Override
+	public AddOnHandler getAddOnHandler() {
+		if(addOnHandler == null){
+			addOnHandler = new CoreAddOnHandler();
+		}
+		return addOnHandler;
 	}
 	
 	/***********/

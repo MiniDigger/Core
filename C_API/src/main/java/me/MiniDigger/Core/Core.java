@@ -34,6 +34,7 @@
 package me.MiniDigger.Core;
 
 import me.MiniDigger.Core.Achievement.AchievementHandler;
+import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Bar.BarHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
@@ -145,6 +146,8 @@ public abstract class Core {
 	public abstract BarHandler getBarHandler();
 	
 	public abstract RESTHandler getRESTHandler();
+	
+	public abstract AddOnHandler getAddOnHandler();
 	
 	/*
 	 * #################### UTILS ####################
