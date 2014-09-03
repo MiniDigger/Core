@@ -71,6 +71,8 @@ public class AddOnCommands {
 		AddOnBean bean = new CoreAddOnBean();
 		bean.setName(args.getArgs()[0]);
 		bean = Core.getCore().getRESTHandler().requestInfos(bean, true);
+		FancyMessage msg1 = Prefix.ADDON.getPrefix().then("Info: " + bean.getName() + "v" + bean.getVersion() + " von " + bean.getAuthor());
+		msg1.send(args.getSender());
 	}
 	
 	private HashMap<String, AddOnBean>	addOns	= new HashMap<>();
@@ -113,7 +115,7 @@ public class AddOnCommands {
 	@Command(name = "addon.uninstall", description = "Deinstalliert ein AddOn", usage = "<name>", min = 1, max = 1, permission = "addon.uninstall")
 	public void uninstall(CommandArgs args) {
 		Core.getCore().getAddOnHandler().listAsUnInstalled(args.getArgs()[0]);
-		Prefix.ADDON.getPrefix().then(args.getArgs()[0]+ " deinstalliert!").color(ChatColor.GREEN).send(args.getSender());
+		Prefix.ADDON.getPrefix().then(args.getArgs()[0] + " deinstalliert!").color(ChatColor.GREEN).send(args.getSender());
 	}
 	
 	@Command(name = "addon.help", description = "Zeigt die Hilfe zu einem AddOn an", usage = "<name> [page]", min = 1, permission = "addon.help")

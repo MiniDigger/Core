@@ -15,8 +15,7 @@
  */
 package me.MiniDigger.CraftCore.AddOn;
 
-import me.MiniDigger.Core.AddOn.AddOnHandler;
 
-public class CoreAddOnInstaller implements AddOnHandler {
+public class CoreAddOnInstaller {
 	
 }
