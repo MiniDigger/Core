@@ -282,6 +282,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getSqlHandler();
 		Core.getCore().getItemHandler().register();
 		Core.getCore().getNametagHandler().enable();
+		Core.getCore().getAddOnHandler().load();
 	}
 	
 	private void registerListener() {
