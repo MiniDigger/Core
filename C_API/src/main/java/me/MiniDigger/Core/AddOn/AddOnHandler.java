@@ -15,6 +15,34 @@
  */
 package me.MiniDigger.Core.AddOn;
 
+import java.util.List;
+
 public interface AddOnHandler {
+
+	/**
+     * @param name
+     */
+    void listAsUnInstalled(String name);
+
+	/**
+     * @param name
+     * @param version
+     */
+    void listAsInstalled(String name, String version);
+
+	/**
+     * @return
+     */
+    List<AddOnBean> getInstalledBeans();
+
+	/**
+     * @return
+     */
+    List<String> getInstalledNames();
+
+	/**
+     * 
+     */
+    void load();
 	
 }

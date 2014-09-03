@@ -38,7 +38,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	
 	private File	  addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
 	private JSONArray	addOns;
-	
+	@Override
 	public void load() {
 		BufferedReader rd;
 		String line;
@@ -60,7 +60,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			e.printStackTrace();
 		}
 	}
-	
+	@Override
 	public List<String> getInstalledNames() {
 		List<String> result = new ArrayList<>();
 		
@@ -73,7 +73,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 		
 		return result;
 	}
-	
+	@Override
 	public List<AddOnBean> getInstalledBeans() {
 		List<AddOnBean> result = new ArrayList<>();
 		
@@ -87,6 +87,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 		return result;
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public void listAsInstalled(String name, String version) {
 		AddOnBean bean = new CoreAddOnBean();
@@ -95,6 +96,22 @@ public class CoreAddOnHandler implements AddOnHandler {
 		
 		bean = Core.getCore().getRESTHandler().requestInfos(bean, true);
 		addOns.add(bean);
+	}
+	@Override
+	public void listAsUnInstalled(String name) {
+		ArrayList<JSONObject> toRemove = new ArrayList<>();
+		for(Object obj : addOns.toArray()){
+			AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
+			if(bean.getName().equalsIgnoreCase(name)){
+				toRemove.add((JSONObject) obj);
+			}
+		}
+		
+		for(JSONObject obj : toRemove){
+			addOns.remove(obj);
+		}
+		
+		save();
 	}
 	
 	public void save() {
