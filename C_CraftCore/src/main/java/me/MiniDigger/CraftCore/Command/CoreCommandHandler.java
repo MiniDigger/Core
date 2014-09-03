@@ -206,16 +206,25 @@ public class CoreCommandHandler implements CommandHandler {
 					return true;
 				}
 				
+				Thread thread = new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						try {
+							method.invoke(methodObject, cmdArgs);
+						} catch (final IllegalArgumentException e) {
+							e.printStackTrace();
+						} catch (final IllegalAccessException e) {
+							e.printStackTrace();
+						} catch (final InvocationTargetException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				thread.setName("Core Command Worker (" + buffer + ")[" + sender.getName() + "]");
+				thread.start();
+				
 				/* Core End */
-				try {
-					method.invoke(methodObject, cmdArgs);
-				} catch (final IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (final IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (final InvocationTargetException e) {
-					e.printStackTrace();
-				}
 				return true;
 			}
 		}
