@@ -53,17 +53,42 @@ public class AddOnCommands {
 	
 	@Command(name = "addon.list.installed", description = "Zeigt alle installierten AddOns an", usage = "", max = 0, permission = "addon.list.installed")
 	public void installed(CommandArgs args) {
+		Prefix.ADDON.getPrefix().then("======== Installierte AddOns =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
 		
+		for (AddOnBean bean : Core.getCore().getAddOnHandler().getInstalledBeans()) {
+			Prefix.ADDON.getPrefix().then(bean.getName() + " v" + bean.getVersion()).color(ChatColor.YELLOW).tooltip("Klicke zum Deinstallieren")
+			        .suggest("/addon uninstall " + bean.getName()).then(" von " + bean.getAuthor()).tooltip("Klicke um alle", "Addons des Autors", "zu sehen")
+			        .color(ChatColor.GOLD).send(args.getSender());
+		}
+		
+		Prefix.ADDON.getPrefix().then("======== =================== =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
 	}
 	
 	@Command(name = "addon.list.all", description = "Zeigt alle verfügtbaren Addons an", usage = "", max = 0, permission = "addon.list.all")
 	public void all(CommandArgs args) {
+		Prefix.ADDON.getPrefix().then("======== Verfügbare AddOns =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
 		
+		for (AddOnBean bean : Core.getCore().getRESTHandler().getAllAddOns()) {
+			Prefix.ADDON.getPrefix().then(bean.getName() + " v" + bean.getVersion()).color(ChatColor.YELLOW).tooltip("Klicke zum Installieren")
+			        .suggest("/addon install " + bean.getName()).then(" von " + bean.getAuthor()).tooltip("Klicke um alle", "Addons des Autors", "zu sehen")
+			        .color(ChatColor.GOLD).send(args.getSender());
+		}
+		
+		Prefix.ADDON.getPrefix().then("======== ================= =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
 	}
 	
 	@Command(name = "addon.list.author", description = "Zeigt alle verfügtbaren Addons eines Authors an", usage = "<author>", max = 1, min = 1, permission = "addon.list.author")
 	public void author(CommandArgs args) {
+		Prefix.ADDON.getPrefix().then("======== AddOns von " + args.getArgs()[0] + "=========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
 		
+		for (AddOnBean bean : Core.getCore().getRESTHandler().getAllAddOnsBy(args.getArgs()[0])) {
+			Prefix.ADDON.getPrefix().then(bean.getName() + " v" + bean.getVersion()).color(ChatColor.YELLOW).tooltip("Klicke zum Installieren")
+			        .suggest("/addon install " + bean.getName()).then(" von " + bean.getAuthor()).tooltip("Klicke um alle", "Addons des Autors", "zu sehen")
+			        .color(ChatColor.GOLD).send(args.getSender());
+
+		}
+		
+		Prefix.ADDON.getPrefix().then("======== ================= =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
 	}
 	
 	@Command(name = "addon.info", description = "Zeigt Infos zu einem AddOn", usage = "<name>", min = 1, max = 1, permission = "addon.info")
@@ -100,8 +125,7 @@ public class AddOnCommands {
 	@Command(name = "addon.install.yes", description = "", usage = "", max = 0, permission = "addon.install.yes")
 	public void yes(CommandArgs args) {
 		AddOnBean bean = addOns.get(args.getSender().getName());
-		Core.getCore().getAddOnHandler();
-		
+		Core.getCore().getAddOnHandler().listAsInstalled(bean);
 		Prefix.ADDON.getPrefix().then("AddOn installiert! Es wird beim nächsten Neustart aktiviert!").color(ChatColor.GREEN).send(args.getSender());
 	}
 	

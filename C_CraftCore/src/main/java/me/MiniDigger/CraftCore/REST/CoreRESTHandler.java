@@ -19,6 +19,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOnBean;
@@ -110,5 +112,61 @@ public class CoreRESTHandler implements RESTHandler {
 			}
 		}
 		return bean;
+	}
+	
+	@Override
+	public List<AddOnBean> getAllAddOns() {
+		List<AddOnBean> result = new ArrayList<>();
+		JSONObject response = get("v1/addOns/all");
+		
+		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
+			Core.getCore().getInstance().error("Could not request Infos for all AddOns");
+			try {
+				JSONObject error = (JSONObject) response.get("result");
+				Integer id = (Integer) error.get("id");
+				String message = (String) error.get("message");
+				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return result;
+		}
+		
+		JSONArray addOns = (JSONArray) response.get("result");
+		
+		for (Object obj : addOns) {
+			AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
+			result.add(addOn);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public List<AddOnBean> getAllAddOnsBy(String name) {
+		List<AddOnBean> result = new ArrayList<>();
+		JSONObject response = get("v1/addOns/by/author/" + name);
+		
+		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
+			Core.getCore().getInstance().error("Could not request Infos for all AddOns by " + name);
+			try {
+				JSONObject error = (JSONObject) response.get("result");
+				Integer id = (Integer) error.get("id");
+				String message = (String) error.get("message");
+				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return result;
+		}
+		
+		JSONArray addOns = (JSONArray) response.get("result");
+		
+		for (Object obj : addOns) {
+			AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
+			result.add(addOn);
+		}
+		
+		return result;
 	}
 }

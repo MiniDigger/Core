@@ -25,12 +25,6 @@ public interface AddOnHandler {
     void listAsUnInstalled(String name);
 
 	/**
-     * @param name
-     * @param version
-     */
-    void listAsInstalled(String name, String version);
-
-	/**
      * @return
      */
     List<AddOnBean> getInstalledBeans();
@@ -44,5 +38,10 @@ public interface AddOnHandler {
      * 
      */
     void load();
+
+	/**
+     * @param bean
+     */
+    void listAsInstalled(AddOnBean bean);
 	
 }

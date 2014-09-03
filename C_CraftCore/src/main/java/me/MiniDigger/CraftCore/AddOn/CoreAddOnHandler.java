@@ -89,12 +89,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public void listAsInstalled(String name, String version) {
-		AddOnBean bean = new CoreAddOnBean();
-		bean.setName(name);
-		bean.setVersion(version);
-		
-		bean = Core.getCore().getRESTHandler().requestInfos(bean, true);
+	public void listAsInstalled(AddOnBean bean) {
 		addOns.add(bean);
 	}
 	@Override

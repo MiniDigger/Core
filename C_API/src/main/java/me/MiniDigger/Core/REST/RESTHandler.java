@@ -15,6 +15,8 @@
  */
 package me.MiniDigger.Core.REST;
 
+import java.util.List;
+
 import me.MiniDigger.Core.AddOn.AddOnBean;
 
 public interface RESTHandler {
@@ -24,5 +26,16 @@ public interface RESTHandler {
 	 * @return
 	 */
 	public AddOnBean requestInfos(AddOnBean bean,boolean exact);
-	// TODO RESTAPi
+
+	/**
+     * @return
+     */
+    public List<AddOnBean> getAllAddOns();
+
+	/**
+     * @param string
+     * @return
+     */
+    public List<AddOnBean> getAllAddOnsBy(String string);
+	
 }
