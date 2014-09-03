@@ -31,23 +31,23 @@ public class AddOnCommands {
 	
 	@Command(name = "addon", description = "Macht alles mit AddOns", usage = "", permission = "addon")
 	public void addOn(final CommandArgs args) {
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).command("/addon list").then("um Addons anzuzeigen").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/addon list").then("um Addons anzuzeigen").color(ChatColor.GOLD)
 		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon info ").then("um AddonsInfos anzuzeigen").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon info ").then("um AddonsInfos anzuzeigen").color(ChatColor.GOLD)
 		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon install ").then("um Addons zu installieren").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon install ").then("um Addons zu installieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
 	}
 	
 	@Command(name = "addon.list", description = "Zeigt AddOns an", usage = "", permission = "addon.list")
 	public void list(final CommandArgs args) {
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).command("/addon list all").then("um alle verfügtbaren AddOns anzuzeigen")
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/addon list all").then("um alle verfügtbaren AddOns anzuzeigen")
 		        .color(ChatColor.GOLD).send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).command("/addon list installed").then("um alle installieten AddOns anzuzeigen")
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/addon list installed").then("um alle installieten AddOns anzuzeigen")
 		        .color(ChatColor.GOLD).send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon list author ").then("um alle AddOns eines Autors anzuzeigen")
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon list author ").then("um alle AddOns eines Autors anzuzeigen")
 		        .color(ChatColor.GOLD).send(args.getSender());
 	}
 	
@@ -145,13 +145,13 @@ public class AddOnCommands {
 	
 	@Command(name = "addon.help", description = "Zeigt die Hilfe zu einem AddOn an", usage = "<name> [page]", min = 1, permission = "addon.help")
 	public void help(final CommandArgs args) {
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).command("/addon list").then("um Addons anzuzeigen").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/addon list").then("um Addons anzuzeigen").color(ChatColor.GOLD)
 		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon info ").then("um AddonsInfos anzuzeigen").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon info ").then("um AddonsInfos anzuzeigen").color(ChatColor.GOLD)
 		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon install ").then("um Addons zu installieren").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon install ").then("um Addons zu installieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
 	}
 }
