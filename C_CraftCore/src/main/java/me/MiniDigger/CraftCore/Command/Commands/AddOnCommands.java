@@ -96,7 +96,7 @@ public class AddOnCommands {
 		AddOnBean bean = new CoreAddOnBean();
 		bean.setName(args.getArgs()[0]);
 		bean = Core.getCore().getRESTHandler().requestInfos(bean, true);
-		final FancyMessage msg1 = Prefix.ADDON.getPrefix().then("Info: " + bean.getName() + "v" + bean.getVersion() + " von " + bean.getAuthor());
+		final FancyMessage msg1 = Prefix.ADDON.getPrefix().then("Info: " + bean.getName() + " v" + bean.getVersion() + " von " + bean.getAuthor());
 		msg1.send(args.getSender());
 	}
 	
@@ -115,7 +115,7 @@ public class AddOnCommands {
 		addOns.put(args.getSender().getName(), bean);
 		
 		final FancyMessage msg1 = Prefix.ADDON.getPrefix().then(
-		        "Du bist dabei " + bean.getName() + "v" + bean.getVersion() + " von " + bean.getAuthor() + " zu installieren");
+		        "Du bist dabei " + bean.getName() + " v" + bean.getVersion() + " von " + bean.getAuthor() + " zu installieren");
 		final FancyMessage msg2 = Prefix.ADDON.getPrefix().then("Drücke hier um fortzufahren,").color(ChatColor.YELLOW).command("/addon install yes")
 		        .then("klicke hier um den Vorgang abzubrechen").color(ChatColor.RED).command("/addon install no");
 		
