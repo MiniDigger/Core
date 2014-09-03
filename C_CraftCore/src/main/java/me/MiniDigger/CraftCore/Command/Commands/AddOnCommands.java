@@ -109,6 +109,12 @@ public class AddOnCommands {
 		bean.setName(name);
 		bean = Core.getCore().getRESTHandler().requestInfos(bean, false);
 		
+		if (bean.getVersion() == null || bean.getAuthor() == null) {
+			Prefix.ADDON.getPrefix().then("AddOn wurde nicht gefunden!").color(ChatColor.RED).send(args.getSender());
+			Prefix.ADDON.getPrefix().then("Benutze /addon list all um alle AddOns anzuzeigen").color(ChatColor.YELLOW).send(args.getSender());
+			return;
+		}
+		
 		if (addOns.containsKey(args.getSender().getName())) {
 			addOns.remove(args.getSender().getName());
 		}
