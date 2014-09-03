@@ -72,4 +72,16 @@ public class CoreAddOnBean implements AddOnBean {
 		this.version = version;
 	}
 	
+	@SuppressWarnings("unchecked")
+    @Override
+	public JSONObject toJson() {
+		JSONObject obj = new JSONObject();
+		
+		obj.put("name", name);
+		obj.put("version", version);
+		obj.put("author", author);
+		
+		return obj;
+	}
+	
 }

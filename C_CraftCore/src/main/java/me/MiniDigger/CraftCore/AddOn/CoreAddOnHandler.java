@@ -67,6 +67,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 		try {
 			addOns = (JSONArray) parser.parse(result);
 		} catch (final ParseException e) {
+			addOns = new JSONArray();
 			e.printStackTrace();
 		}
 	}
@@ -102,7 +103,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void listAsInstalled(final AddOnBean bean) {
-		addOns.add(bean);
+		addOns.add(bean.toJson());
 	}
 	
 	@Override

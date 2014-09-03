@@ -15,6 +15,8 @@
  */
 package me.MiniDigger.Core.AddOn;
 
+import org.json.simple.JSONObject;
+
 public interface AddOnBean {
 	
 	/**
@@ -49,4 +51,9 @@ public interface AddOnBean {
 	 *            the version to set
 	 */
 	public void setVersion(final String version);
+
+	/**
+     * @return
+     */
+    public JSONObject toJson();
 }
