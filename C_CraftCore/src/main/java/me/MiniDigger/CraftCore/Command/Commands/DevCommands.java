@@ -149,7 +149,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.rest", description = "DEV!", usage = "", permission = "dev")
 	public void rest(final CommandArgs args) {
-		JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
+		final JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
 		System.out.println(obj.toJSONString());
 		System.out.println(obj.get("success"));
 	}

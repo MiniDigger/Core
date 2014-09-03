@@ -156,7 +156,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 						}
 						
 						final List<String> allowed = new ArrayList<>();// TODO
-																	   // Fix
+						                                               // Fix
 						// tabblocker
 						// for (Command cmd :
 						// Core.getCore().getCommandHandler().getCommands()) {

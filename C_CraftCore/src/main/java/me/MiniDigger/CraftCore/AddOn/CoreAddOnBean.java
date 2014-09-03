@@ -15,53 +15,60 @@
  */
 package me.MiniDigger.CraftCore.AddOn;
 
-import org.json.simple.JSONObject;
-
 import me.MiniDigger.Core.AddOn.AddOnBean;
 
+import org.json.simple.JSONObject;
+
 public class CoreAddOnBean implements AddOnBean {
-	//TODO Maybe this should be located in the rest api?
+	
+	// TODO Maybe this should be located in the rest api?
 	private String	name;
 	private String	author;
 	private String	version;
 	
-	public CoreAddOnBean(){
+	public CoreAddOnBean() {
 		
 	}
 	
-	public CoreAddOnBean(JSONObject obj){
-		if(obj.containsKey("name")){
+	public CoreAddOnBean(final JSONObject obj) {
+		if (obj.containsKey("name")) {
 			name = (String) obj.get("name");
 		}
-		if(obj.containsKey("author")){
+		if (obj.containsKey("author")) {
 			author = (String) obj.get("author");
 		}
-		if(obj.containsKey("version")){
+		if (obj.containsKey("version")) {
 			version = (String) obj.get("version");
 		}
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}
 	
-	public void setName(String name) {
+	@Override
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
+	@Override
 	public String getAuthor() {
 		return author;
 	}
 	
-	public void setAuthor(String author) {
+	@Override
+	public void setAuthor(final String author) {
 		this.author = author;
 	}
 	
+	@Override
 	public String getVersion() {
 		return version;
 	}
 	
-	public void setVersion(String version) {
+	@Override
+	public void setVersion(final String version) {
 		this.version = version;
 	}
 	

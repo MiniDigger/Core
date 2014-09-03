@@ -54,11 +54,11 @@ public class CoreUpdateHandler implements UpdateHandler {
 	private static final String	JAR_URL	     = "http://game-repo.minidigger.me/TheCore/TheCore.jar";
 	private static final String	VERSIONS_URL	= "http://game-repo.minidigger.me/TheCore/version.txt";
 	
-	private UpdateType	type;
+	private UpdateType	        type;
 	
 	public CoreUpdateHandler() {
 		type = UpdateType.valueOf(((CoreMain) Core.getCore().getInstance()).getConfig().getString("update-type"));
-		if(type == null){
+		if (type == null) {
 			type = UpdateType.FORCE;
 		}
 	}

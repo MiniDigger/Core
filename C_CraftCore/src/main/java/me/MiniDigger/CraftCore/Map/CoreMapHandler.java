@@ -51,7 +51,7 @@ public class CoreMapHandler implements MapHandler {
 	
 	private final ArrayList<MapData>	maps	= new ArrayList<>();
 	private final File	             mapFolder;
-	private File	                 mapConfig;
+	private final File	             mapConfig;
 	
 	private final FileConfiguration	 con;
 	

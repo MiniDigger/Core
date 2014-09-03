@@ -25,17 +25,17 @@ public interface RESTHandler {
 	 * @param bean
 	 * @return
 	 */
-	public AddOnBean requestInfos(AddOnBean bean,boolean exact);
-
+	public AddOnBean requestInfos(final AddOnBean bean, final boolean exact);
+	
 	/**
-     * @return
-     */
-    public List<AddOnBean> getAllAddOns();
-
+	 * @return
+	 */
+	public List<AddOnBean> getAllAddOns();
+	
 	/**
-     * @param string
-     * @return
-     */
-    public List<AddOnBean> getAllAddOnsBy(String string);
+	 * @param string
+	 * @return
+	 */
+	public List<AddOnBean> getAllAddOnsBy(final String string);
 	
 }

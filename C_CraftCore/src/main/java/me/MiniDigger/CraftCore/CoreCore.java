@@ -390,10 +390,10 @@ public class CoreCore extends Core {
 		}
 		return restHandler;
 	}
-
+	
 	@Override
 	public AddOnHandler getAddOnHandler() {
-		if(addOnHandler == null){
+		if (addOnHandler == null) {
 			addOnHandler = new CoreAddOnHandler();
 		}
 		return addOnHandler;

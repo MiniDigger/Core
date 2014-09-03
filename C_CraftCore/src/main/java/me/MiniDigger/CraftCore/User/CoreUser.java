@@ -76,7 +76,9 @@ public class CoreUser implements User {
 	protected Date	            sessionStart;
 	
 	public CoreUser(final UUID id) {
-		if (id == null) return;
+		if (id == null) {
+			return;
+		}
 		uuid = id;
 		if (Bukkit.getPlayer(id) != null) {
 			displayName = Bukkit.getPlayer(id).getDisplayName();

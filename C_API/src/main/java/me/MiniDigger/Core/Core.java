@@ -87,7 +87,7 @@ public abstract class Core {
 		return core;
 	}
 	
-	public void disable(){
+	public void disable() {
 		core = null;
 	}
 	

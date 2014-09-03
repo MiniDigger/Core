@@ -42,7 +42,7 @@ public class CoreRESTHandler implements RESTHandler {
 		
 	}
 	
-	public JSONObject get(String urlToRead) {
+	public JSONObject get(final String urlToRead) {
 		URL url;
 		HttpURLConnection conn;
 		BufferedReader rd;
@@ -57,48 +57,48 @@ public class CoreRESTHandler implements RESTHandler {
 				result += line;
 			}
 			rd.close();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 		
-		JSONParser parser = new JSONParser();
+		final JSONParser parser = new JSONParser();
 		try {
 			return (JSONObject) parser.parse(result);
-		} catch (ParseException e) {
+		} catch (final ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
 	@Override
-	public AddOnBean requestInfos(AddOnBean bean, boolean exact) {
-		JSONObject response = get("v1/addOns/by/name/" + bean.getName());
+	public AddOnBean requestInfos(AddOnBean bean, final boolean exact) {
+		final JSONObject response = get("v1/addOns/by/name/" + bean.getName());
 		
 		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error("Could not request infos for AddOn " + bean.getName());
 			try {
-				JSONObject error = (JSONObject) response.get("result");
-				Integer id = (Integer) error.get("id");
-				String message = (String) error.get("message");
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 			return bean;
 		}
 		
-		JSONArray addOns = (JSONArray) response.get("result");
-		for (Object obj : addOns) {
-			AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
+		final JSONArray addOns = (JSONArray) response.get("result");
+		for (final Object obj : addOns) {
+			final AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
 			if (bean.getName().equalsIgnoreCase(addOn.getName())) {
 				if (!exact) {
 					try {
-						CorePluginVersion vBean = new CorePluginVersion(bean.getVersion());
-						CorePluginVersion vAddOn = new CorePluginVersion(addOn.getVersion());
+						final CorePluginVersion vBean = new CorePluginVersion(bean.getVersion());
+						final CorePluginVersion vAddOn = new CorePluginVersion(addOn.getVersion());
 						if (!vBean.isNewerOrEqual(vAddOn, UpdateType.FORCE)) {
 							bean = addOn;
 						}
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						bean = addOn;
 					}
 				} else {
@@ -116,26 +116,26 @@ public class CoreRESTHandler implements RESTHandler {
 	
 	@Override
 	public List<AddOnBean> getAllAddOns() {
-		List<AddOnBean> result = new ArrayList<>();
-		JSONObject response = get("v1/addOns/all");
+		final List<AddOnBean> result = new ArrayList<>();
+		final JSONObject response = get("v1/addOns/all");
 		
 		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error("Could not request Infos for all AddOns");
 			try {
-				JSONObject error = (JSONObject) response.get("result");
-				Integer id = (Integer) error.get("id");
-				String message = (String) error.get("message");
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 			return result;
 		}
 		
-		JSONArray addOns = (JSONArray) response.get("result");
+		final JSONArray addOns = (JSONArray) response.get("result");
 		
-		for (Object obj : addOns) {
-			AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
+		for (final Object obj : addOns) {
+			final AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
 			result.add(addOn);
 		}
 		
@@ -143,27 +143,27 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
-	public List<AddOnBean> getAllAddOnsBy(String name) {
-		List<AddOnBean> result = new ArrayList<>();
-		JSONObject response = get("v1/addOns/by/author/" + name);
+	public List<AddOnBean> getAllAddOnsBy(final String name) {
+		final List<AddOnBean> result = new ArrayList<>();
+		final JSONObject response = get("v1/addOns/by/author/" + name);
 		
 		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error("Could not request Infos for all AddOns by " + name);
 			try {
-				JSONObject error = (JSONObject) response.get("result");
-				Integer id = (Integer) error.get("id");
-				String message = (String) error.get("message");
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 			return result;
 		}
 		
-		JSONArray addOns = (JSONArray) response.get("result");
+		final JSONArray addOns = (JSONArray) response.get("result");
 		
-		for (Object obj : addOns) {
-			AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
+		for (final Object obj : addOns) {
+			final AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
 			result.add(addOn);
 		}
 		

@@ -71,7 +71,7 @@ public class AnimatedMessage {
 			reader.setInput(in);
 			for (int i = 0, count = reader.getNumImages(true); i < count; i++) {
 				final BufferedImage image = reader.read(i); // read next frame
-															// from
+				                                            // from
 				// gif
 				images.add(image);
 			}

@@ -15,11 +15,6 @@
  */
 package me.MiniDigger.CraftCore.AddOn;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,10 +29,16 @@ import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class CoreAddOnHandler implements AddOnHandler {
 	
-	private File	  addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
+	private final File	addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
 	private JSONArray	addOns;
+	
 	@Override
 	public void load() {
 		BufferedReader rd;
@@ -49,37 +50,39 @@ public class CoreAddOnHandler implements AddOnHandler {
 				result += line;
 			}
 			rd.close();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			
 		}
 		
-		JSONParser parser = new JSONParser();
+		final JSONParser parser = new JSONParser();
 		try {
 			addOns = (JSONArray) parser.parse(result);
-		} catch (ParseException e) {
+		} catch (final ParseException e) {
 			e.printStackTrace();
 		}
 	}
+	
 	@Override
 	public List<String> getInstalledNames() {
-		List<String> result = new ArrayList<>();
+		final List<String> result = new ArrayList<>();
 		
 		if (addOns != null) {
-			for (Object obj : addOns) {
-				AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
+			for (final Object obj : addOns) {
+				final AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
 				result.add(bean.getName());
 			}
 		}
 		
 		return result;
 	}
+	
 	@Override
 	public List<AddOnBean> getInstalledBeans() {
-		List<AddOnBean> result = new ArrayList<>();
+		final List<AddOnBean> result = new ArrayList<>();
 		
 		if (addOns != null) {
-			for (Object obj : addOns) {
-				AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
+			for (final Object obj : addOns) {
+				final AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
 				result.add(bean);
 			}
 		}
@@ -89,20 +92,21 @@ public class CoreAddOnHandler implements AddOnHandler {
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public void listAsInstalled(AddOnBean bean) {
+	public void listAsInstalled(final AddOnBean bean) {
 		addOns.add(bean);
 	}
+	
 	@Override
-	public void listAsUnInstalled(String name) {
-		ArrayList<JSONObject> toRemove = new ArrayList<>();
-		for(Object obj : addOns.toArray()){
-			AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
-			if(bean.getName().equalsIgnoreCase(name)){
+	public void listAsUnInstalled(final String name) {
+		final ArrayList<JSONObject> toRemove = new ArrayList<>();
+		for (final Object obj : addOns.toArray()) {
+			final AddOnBean bean = new CoreAddOnBean((JSONObject) obj);
+			if (bean.getName().equalsIgnoreCase(name)) {
 				toRemove.add((JSONObject) obj);
 			}
 		}
 		
-		for(JSONObject obj : toRemove){
+		for (final JSONObject obj : toRemove) {
 			addOns.remove(obj);
 		}
 		
@@ -116,7 +120,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			writer = new PrintWriter(addOnFile);
 			writer.print(addOns.toJSONString());
 			writer.close();
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

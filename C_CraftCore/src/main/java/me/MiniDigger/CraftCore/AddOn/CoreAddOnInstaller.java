@@ -15,7 +15,6 @@
  */
 package me.MiniDigger.CraftCore.AddOn;
 
-
 public class CoreAddOnInstaller {
 	
 }
