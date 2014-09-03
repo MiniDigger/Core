@@ -104,6 +104,8 @@ public class CoreAddOnHandler implements AddOnHandler {
 	@SuppressWarnings("unchecked")
 	public void listAsInstalled(final AddOnBean bean) {
 		addOns.add(bean.toJson());
+		
+		save();
 	}
 	
 	@Override
@@ -123,7 +125,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 		save();
 	}
 	
-	public void save() {
+	private void save() {
 		addOns.trimToSize();
 		PrintWriter writer;
 		try {
