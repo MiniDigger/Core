@@ -73,12 +73,13 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 public class CoreMain extends JavaPlugin implements Main {
 	
 	private boolean	update	= false;
+	private Core	core;
 	
 	@Override
 	public void onEnable() {
 		
 		info("Aktiviere " + getDescription().getFullName() + " by MiniDigger");
-		new CoreCore(this);
+		core = new CoreCore(this);
 		
 		info("Checke Updater...");
 		try {
@@ -244,6 +245,9 @@ public class CoreMain extends JavaPlugin implements Main {
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
+		
+		core.disable();
+		core = null;
 		
 		info("Deaktiviert!");
 	}

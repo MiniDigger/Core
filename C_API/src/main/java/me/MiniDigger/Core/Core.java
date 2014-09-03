@@ -87,6 +87,10 @@ public abstract class Core {
 		return core;
 	}
 	
+	public void disable(){
+		core = null;
+	}
+	
 	public abstract Main getInstance();
 	
 	/*
