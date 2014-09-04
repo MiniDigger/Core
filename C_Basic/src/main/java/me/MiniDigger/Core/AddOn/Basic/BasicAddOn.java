@@ -15,17 +15,20 @@
  */
 package me.MiniDigger.Core.AddOn.Basic;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class BasicAddOn extends CoreAddOn {
 	
 	@Override
-	public List<Object> registerCommandHandler() {
-		final List<Object> result = new ArrayList<>();
-		
-		return result;
+	public void enable() {
+		Core.getCore().getInstance().info("Hey, I am here!");
+		super.enable();
+	}
+	
+	@Override
+	public void disable() {
+		Core.getCore().getInstance().info("Now I am gone ;(");
+		super.disable();
 	}
 }
