@@ -18,7 +18,7 @@ package me.MiniDigger.Core.AddOn.Basic;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
-public class BasicAddOn extends CoreAddOn {
+public class Basic extends CoreAddOn {
 	
 	@Override
 	public void enable() {
