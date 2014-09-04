@@ -25,6 +25,7 @@ public class CoreAddOnBean implements AddOnBean {
 	private String	name;
 	private String	author;
 	private String	version;
+	private String	classPackage;
 	
 	public CoreAddOnBean() {
 		
@@ -72,16 +73,26 @@ public class CoreAddOnBean implements AddOnBean {
 		this.version = version;
 	}
 	
+	@Override
+	public void setPackage(final String classPackage) {
+		this.classPackage = classPackage;
+	}
+	
+	@Override
+	public String getPackage() {
+		return classPackage;
+	}
+	
 	@SuppressWarnings("unchecked")
-    @Override
+	@Override
 	public JSONObject toJson() {
 		JSONObject obj = new JSONObject();
 		
 		obj.put("name", name);
 		obj.put("version", version);
 		obj.put("author", author);
+		obj.put("package", classPackage);
 		
 		return obj;
 	}
-	
 }

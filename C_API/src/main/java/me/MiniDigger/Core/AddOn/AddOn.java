@@ -33,9 +33,10 @@ public interface AddOn {
 	public FileConfiguration getConfig();
 
 	/**
+	 * @param bean 
      * 
      */
-    void load();
+    void load(AddOnBean bean);
 
 	/**
      * 

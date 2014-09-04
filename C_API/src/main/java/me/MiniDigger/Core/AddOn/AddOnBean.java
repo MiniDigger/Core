@@ -51,9 +51,20 @@ public interface AddOnBean {
 	 *            the version to set
 	 */
 	public void setVersion(final String version);
-
+	
 	/**
-     * @return
-     */
-    public JSONObject toJson();
+	 * @return the object as json string
+	 */
+	public JSONObject toJson();
+	
+	/**
+	 * @return the path to the main class in the jar
+	 */
+	public String getPackage();
+	
+	/**
+	 * @param classPackage
+	 *            sets the path to the main class in the jar
+	 */
+	public void setPackage(String classPackage);
 }

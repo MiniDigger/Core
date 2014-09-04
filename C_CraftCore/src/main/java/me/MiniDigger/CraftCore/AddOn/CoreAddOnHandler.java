@@ -80,13 +80,16 @@ public class CoreAddOnHandler implements AddOnHandler {
 	public void enableAddOns() {
 		for (String name : getInstalledNames()) {
 			// TODO Version support
-			Core.getCore().getInstance().info("Loading Addon " + name);
-			Class<?> c = Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name), name);
+			AddOnBean bean = new CoreAddOnBean();
+			bean.setName(name);
+			bean =Core.getCore().getRESTHandler().requestInfos(bean, false);
+			
+			Core.getCore().getInstance().info("Loading Addon " + name + "v" + bean.getVersion() + " by " + bean.getAuthor());
+			Class<?> c = Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name), bean.getPackage());
 			if (c != null) {
 				try {
 					AddOn addon = (AddOn) c.newInstance();
-					addon.load();
-					Core.getCore().getInstance().info("Loaded Addon " + name + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
+					addon.load(bean);
 					active.add(addon);
 				} catch (Exception e) {
 					e.printStackTrace();
