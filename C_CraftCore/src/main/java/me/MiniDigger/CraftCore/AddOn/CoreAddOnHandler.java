@@ -72,7 +72,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			addOns = (JSONArray) parser.parse(result);
 		} catch (final ParseException e) {
 			addOns = new JSONArray();
-			e.printStackTrace();
+			Core.getCore().getInstance().error("AddOn file currupted! Creating new one...");
 		}
 	}
 	
