@@ -33,13 +33,18 @@
 
 package me.MiniDigger.Core.Class;
 
+import java.net.URL;
+
 public interface ClassLoader {
 	
 	/**
 	 * Load a class form the repo into the class path
 	 * 
+	 * @param url
+	 *            The REST url
 	 * @param name
 	 *            The class name
+	 * @return 
 	 */
-	public void load(final String name);
+	Class<?> load(URL url, String name);
 }

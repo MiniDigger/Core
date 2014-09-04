@@ -42,6 +42,18 @@ public class CoreRESTHandler implements RESTHandler {
 		
 	}
 	
+	@Override
+	public URL showFile(String name) {
+		URL classUrl;
+		try {
+			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name);
+			return classUrl;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	
 	public JSONObject get(final String urlToRead) {
 		URL url;
 		HttpURLConnection conn;

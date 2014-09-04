@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.CraftCore.CoreMain;
@@ -37,17 +38,20 @@ import org.json.simple.parser.ParseException;
 
 public class CoreAddOnHandler implements AddOnHandler {
 	
-	private final File	addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
-	private JSONArray	addOns;
+	private final File	     addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
+	private JSONArray	     addOns;
+	private ArrayList<AddOn>	active;
 	
 	@Override
 	public void load() {
-		if(!addOnFile.exists()){
+		active = new ArrayList<>();
+		
+		if (!addOnFile.exists()) {
 			try {
-	            addOnFile.createNewFile();
-            } catch (IOException e) {
-	             e.printStackTrace();
-            }
+				addOnFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		BufferedReader rd;
@@ -69,6 +73,38 @@ public class CoreAddOnHandler implements AddOnHandler {
 		} catch (final ParseException e) {
 			addOns = new JSONArray();
 			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void enableAddOns() {
+		for (String name : getInstalledNames()) {
+			// TODO Version support
+			Core.getCore().getInstance().info("Loading Addon " + name);
+			Class<?> c = Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name), name);
+			if (c != null) {
+				try {
+					AddOn addon = (AddOn) c.newInstance();
+					addon.load();
+					Core.getCore().getInstance().info("Loaded Addon " + name + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
+					active.add(addon);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		for (AddOn addon : active) {
+			Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
+			addon.enable();
+		}
+	}
+	
+	@Override
+	public void disableAddOns() {
+		for (AddOn addon : active) {
+			Core.getCore().getInstance().info("Disabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
+			addon.disable();
 		}
 	}
 	

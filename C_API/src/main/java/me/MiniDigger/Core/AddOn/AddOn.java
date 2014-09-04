@@ -31,4 +31,24 @@ public interface AddOn {
 	public File getDataFolder();
 	
 	public FileConfiguration getConfig();
+
+	/**
+     * 
+     */
+    void load();
+
+	/**
+     * 
+     */
+    void saveConfig();
+
+	/**
+     * 
+     */
+    void loadConfig();
+
+	/**
+     * @return
+     */
+    AddOnBean getBean();
 }

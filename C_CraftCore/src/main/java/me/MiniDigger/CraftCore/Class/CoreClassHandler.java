@@ -34,7 +34,16 @@
 package me.MiniDigger.CraftCore.Class;
 
 import me.MiniDigger.Core.Class.ClassHandler;
+import me.MiniDigger.Core.Class.ClassLoader;
 
 public class CoreClassHandler implements ClassHandler {
+	private ClassLoader loader;
 	
+	@Override
+	public ClassLoader getLoader(){
+		if(loader == null){
+			loader = new CoreClassLoader();
+		}
+		return loader;
+	}
 }

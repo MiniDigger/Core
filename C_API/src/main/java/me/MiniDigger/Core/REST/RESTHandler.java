@@ -15,6 +15,7 @@
  */
 package me.MiniDigger.Core.REST;
 
+import java.net.URL;
 import java.util.List;
 
 import me.MiniDigger.Core.AddOn.AddOnBean;
@@ -37,5 +38,11 @@ public interface RESTHandler {
 	 * @return
 	 */
 	public List<AddOnBean> getAllAddOnsBy(final String string);
+
+	/**
+     * @param name
+     * @return
+     */
+    URL showFile(String name);
 	
 }

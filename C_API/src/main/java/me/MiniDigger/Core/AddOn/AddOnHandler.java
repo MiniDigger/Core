@@ -43,5 +43,15 @@ public interface AddOnHandler {
 	 * @param bean
 	 */
 	void listAsInstalled(final AddOnBean bean);
+
+	/**
+     * 
+     */
+    void enableAddOns();
+
+	/**
+     * 
+     */
+    void disableAddOns();
 	
 }

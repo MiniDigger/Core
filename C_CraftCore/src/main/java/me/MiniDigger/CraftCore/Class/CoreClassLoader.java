@@ -34,7 +34,6 @@
 package me.MiniDigger.CraftCore.Class;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -44,14 +43,7 @@ import me.MiniDigger.Core.Class.ClassLoader;
 public class CoreClassLoader implements ClassLoader {
 	
 	@Override
-	public void load(final String name) {
-		URL classUrl;
-		try {
-			classUrl = new URL("http://game-repo.minidigger.me/");
-		} catch (final MalformedURLException e1) {
-			e1.printStackTrace();
-			return;
-		}
+	public Class<?> load(final URL classUrl,final String name) {
 		final URL[] classUrls = { classUrl };
 		final URLClassLoader ucl = new URLClassLoader(classUrls);
 		Class<?> c;
@@ -61,17 +53,18 @@ public class CoreClassLoader implements ClassLoader {
 		} catch (ClassNotFoundException | IOException e) {
 			Core.getCore().getInstance().error("Could not load class " + name + " from repo!");
 			e.printStackTrace();
-			return;
+			return null;
 		}
 		try {
 			ucl.close();
 		} catch (final IOException e) {
 			Core.getCore().getInstance().error("Error while loading class " + name + " !");
 			e.printStackTrace();
-			return;
+			return null;
 		}
 		
 		Core.getCore().getInstance().info("Class" + c.getPackage().getName() + "." + c.getSimpleName() + " loaded");
+		return c;
 	}
 	
 }

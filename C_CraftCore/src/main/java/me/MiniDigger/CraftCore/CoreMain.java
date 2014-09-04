@@ -255,6 +255,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void disableHandler() {
 		Core.getCore().getBarHandler();
 		Core.getCore().getNametagHandler().disable();
+		Core.getCore().getAddOnHandler().disableAddOns();
 	}
 	
 	private void fixReload() {
@@ -283,6 +284,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getItemHandler().register();
 		Core.getCore().getNametagHandler().enable();
 		Core.getCore().getAddOnHandler().load();
+		
+		Core.getCore().getAddOnHandler().enableAddOns();
 	}
 	
 	private void registerListener() {
