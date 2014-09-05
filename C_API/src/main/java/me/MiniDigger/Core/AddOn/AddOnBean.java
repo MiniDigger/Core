@@ -53,6 +53,7 @@ public interface AddOnBean {
 	public void setVersion(final String version);
 	
 	/**
+	 * 
 	 * @return the object as json string
 	 */
 	public JSONObject toJson();
