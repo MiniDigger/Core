@@ -84,7 +84,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			bean.setName(name);
 			bean =Core.getCore().getRESTHandler().requestInfos(bean, false);
 			
-			Core.getCore().getInstance().info("Loading Addon " + name + "v" + bean.getVersion() + " by " + bean.getAuthor());
+			Core.getCore().getInstance().info("Loading Addon " + name + " v" + bean.getVersion() + " by " + bean.getAuthor());
 			Class<?> c = Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name), bean.getPackage());
 			if (c != null) {
 				try {

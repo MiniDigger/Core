@@ -48,6 +48,7 @@ public class CoreClassLoader implements ClassLoader {
 		final URLClassLoader ucl = new URLClassLoader(classUrls);
 		Class<?> c;
 		try {
+			System.out.println(name);
 			c = ucl.loadClass(name);
 			ucl.close();
 		} catch (ClassNotFoundException | IOException e) {
