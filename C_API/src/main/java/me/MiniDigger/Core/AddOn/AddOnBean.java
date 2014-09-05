@@ -47,13 +47,13 @@ public interface AddOnBean {
 	public String getVersion();
 	
 	/**
-	 * @param version
+     * @param version
 	 *            the version to set
 	 */
 	public void setVersion(final String version);
 
 	/**
-     * @return
+     * @return the object as JSON String
      */
     public JSONObject toJson();
 }
