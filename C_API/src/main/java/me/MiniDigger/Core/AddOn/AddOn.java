@@ -22,13 +22,28 @@ import org.bukkit.configuration.file.FileConfiguration;
 public interface AddOn {
 	
 	// TODO AddOn API
+    /**
+     * @returns the name of this addon
+     */
 	public String getName();
 	
+    /**
+     * Gets called when the addon gets enabled
+     */
 	public void enable();
 	
+    /**
+     * Gets called when the addon gets disabled
+     */
 	public void disable();
 	
+    /**
+     * @returns The dataFolder of this addon, where files should be placed
+     */
 	public File getDataFolder();
 	
+    /**
+     * @returns The config for this addon
+     */
 	public FileConfiguration getConfig();
 }
