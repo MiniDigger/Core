@@ -20,27 +20,31 @@ import java.util.List;
 public interface AddOnHandler {
 	
 	/**
-	 * @param name
+	 * Uninstalls a AddOn
+	 *
+	 * @param name The name of the addon that should get uninstalled
 	 */
 	void listAsUnInstalled(final String name);
 	
 	/**
-	 * @return
+	 * @return All installed addons as bean
 	 */
 	List<AddOnBean> getInstalledBeans();
 	
 	/**
-	 * @return
+	 * @return The names of all installed addons
 	 */
 	List<String> getInstalledNames();
 	
 	/**
-     * 
+     * Loads the AddOn file
      */
 	void load();
 	
 	/**
-	 * @param bean
+	 * Marks a AddOn as installed
+	 * 
+	 * @param bean The addon to install
 	 */
 	void listAsInstalled(final AddOnBean bean);
 	
