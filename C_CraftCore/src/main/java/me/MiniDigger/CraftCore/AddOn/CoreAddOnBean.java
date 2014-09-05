@@ -41,6 +41,9 @@ public class CoreAddOnBean implements AddOnBean {
 		if (obj.containsKey("version")) {
 			version = (String) obj.get("version");
 		}
+		if (obj.containsKey("package")) {
+			classPackage = (String) obj.get("package");
+		}
 	}
 	
 	@Override
