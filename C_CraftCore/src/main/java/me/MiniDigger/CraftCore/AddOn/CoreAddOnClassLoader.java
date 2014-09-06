@@ -13,42 +13,93 @@
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
  */
-package me.MiniDigger.Core.AddOn.Basic;
+package me.MiniDigger.CraftCore.AddOn;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Command.Completer;
-import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
+import me.MiniDigger.Core.AddOn.AddOn;
+import me.MiniDigger.Core.AddOn.AddOnClassLoader;
 
-public class Basic extends CoreAddOn {
+import org.bukkit.plugin.InvalidPluginException;
+
+/**
+ * A ClassLoader for plugins, to allow shared classes across multiple plugins
+ */
+public class CoreAddOnClassLoader extends URLClassLoader implements AddOnClassLoader {
 	
-	@Override
-	public void enable() {
-		Core.getCore().getInstance().info("Hey, I am here!");
-		Core.getCore().getCommandHandler().registerCommands(this);
-		Core.getCore().getCommandHandler().registerHelp();
-		super.enable();
+	private final Map<String, Class<?>>	classes	= new HashMap<String, Class<?>>();
+	private final CoreAddOn	            plugin;
+	
+	public CoreAddOnClassLoader(final ClassLoader parent, String main, URL url) throws InvalidPluginException, MalformedURLException {
+		super(new URL[] { url }, parent);
+		
+		try {
+			Class<?> jarClass;
+			try {
+				jarClass = Class.forName(main, true, this);
+			} catch (ClassNotFoundException ex) {
+				throw new InvalidPluginException("Cannot find main class `" + main + "'", ex);
+			}
+			
+			Class<? extends CoreAddOn> pluginClass;
+			try {
+				pluginClass = jarClass.asSubclass(CoreAddOn.class);
+			} catch (ClassCastException ex) {
+				throw new InvalidPluginException("main class `" + main + "' does not extend CoreAddOn", ex);
+			}
+			
+			plugin = pluginClass.newInstance();
+		} catch (IllegalAccessException ex) {
+			throw new InvalidPluginException("No public constructor", ex);
+		} catch (InstantiationException ex) {
+			throw new InvalidPluginException("Abnormal plugin type", ex);
+		}
 	}
 	
 	@Override
-	public void disable() {
-		Core.getCore().getInstance().info("Now I am gone ;(");
-		super.disable();
+	protected Class<?> findClass(String name) throws ClassNotFoundException {
+		return findClass(name, true);
 	}
 	
-	@Command(name = "basic")
-	public void yeah(CommandArgs args) {
-		args.getSender().sendMessage("YEAH!");
+	@Override
+	public Class<?> findClass(String name, boolean checkGlobal) throws ClassNotFoundException {
+		if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
+			throw new ClassNotFoundException(name);
+		}
+		Class<?> result = classes.get(name);
+		
+		if (result == null) {
+			if (checkGlobal) {
+				result = Core.getCore().getAddOnHandler().getClassByName(name);
+			}
+			
+			if (result == null) {
+				result = super.findClass(name);
+				
+				if (result != null) {
+					Core.getCore().getAddOnHandler().setClass(name, result);
+				}
+			}
+			
+			classes.put(name, result);
+		}
+		
+		return result;
 	}
 	
-	@Completer(name = "basic")
-	public List<String> testCompleter(CommandArgs args) {
-		List<String> list = new ArrayList<String>();
-		list.add("Hello");
-		return list;
+	@Override
+	public Set<String> getClasses() {
+		return classes.keySet();
+	}
+	
+	@Override
+	public AddOn getAddOn() {
+		return plugin;
 	}
 }

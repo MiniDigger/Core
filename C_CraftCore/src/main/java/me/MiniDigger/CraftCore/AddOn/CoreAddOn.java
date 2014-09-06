@@ -62,8 +62,9 @@ public class CoreAddOn implements AddOn {
 	
 	@Override
 	public void load(AddOnBean bean) {
-		loadConfig();
+		this.name = bean.getName();
 		this.bean = bean;
+		loadConfig();
 	}
 	
 	@Override

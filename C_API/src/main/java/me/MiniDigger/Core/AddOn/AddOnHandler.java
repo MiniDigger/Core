@@ -57,5 +57,19 @@ public interface AddOnHandler {
      * 
      */
     void disableAddOns();
+
+	/**
+     * @param name
+     * @return
+     */
+    Class<?> getClassByName(String name);
+
+	/**
+     * @param name
+     * @param result
+     */
+    void setClass(String name, Class<?> result);
+    
+    //TODO Insert missing api
 	
 }

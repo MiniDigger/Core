@@ -22,15 +22,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnBean;
+import me.MiniDigger.Core.AddOn.AddOnClassLoader;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
+import org.bukkit.plugin.InvalidPluginException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -38,9 +44,12 @@ import org.json.simple.parser.ParseException;
 
 public class CoreAddOnHandler implements AddOnHandler {
 	
-	private final File	     addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
-	private JSONArray	     addOns;
-	private ArrayList<AddOn>	active;
+	private final File	                        addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
+	private JSONArray	                        addOns;
+	private ArrayList<AddOn>	                active;
+	
+	private final Map<String, Class<?>>	        classes	  = new HashMap<String, Class<?>>();
+	private final Map<String, AddOnClassLoader>	loaders	  = new LinkedHashMap<String, AddOnClassLoader>();
 	
 	@Override
 	public void load() {
@@ -82,19 +91,38 @@ public class CoreAddOnHandler implements AddOnHandler {
 			// TODO Version support
 			AddOnBean bean = new CoreAddOnBean();
 			bean.setName(name);
-			bean =Core.getCore().getRESTHandler().requestInfos(bean, false);
+			bean = Core.getCore().getRESTHandler().requestInfos(bean, false);
 			
 			Core.getCore().getInstance().info("Loading Addon " + name + " v" + bean.getVersion() + " by " + bean.getAuthor());
-			Class<?> c = Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name), bean.getPackage());
-			if (c != null) {
-				try {
-					AddOn addon = (AddOn) c.newInstance();
-					addon.load(bean);
-					active.add(addon);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			
+			if (bean.getVersion() == null || bean.getAuthor() == null || bean.getPackage() == null) {
+				Core.getCore().getInstance().error("Error while loading Addon " + name + ": Request returned null!");
+				return;
 			}
+			// Class<?> c =
+			// Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name),
+			// bean.getPackage());
+			// if (c != null) {
+			// try {
+			// AddOn addon = (AddOn) c.newInstance();
+			// addon.load(bean);
+			// active.add(addon);
+			// } catch (Exception e) {
+			// e.printStackTrace();
+			// }
+			// }
+			final CoreAddOnClassLoader loader;
+			try {
+				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), Core.getCore().getRESTHandler().showFile(bean.getName()));
+			} catch (MalformedURLException | InvalidPluginException e) {
+				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + ":");
+				e.printStackTrace();
+				return;
+			}
+			
+			loaders.put(bean.getName(), loader);
+			loader.getAddOn().load(bean);
+			active.add(loader.getAddOn());
 		}
 		
 		for (AddOn addon : active) {
@@ -108,6 +136,12 @@ public class CoreAddOnHandler implements AddOnHandler {
 		for (AddOn addon : active) {
 			Core.getCore().getInstance().info("Disabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
 			addon.disable();
+			AddOnClassLoader loader = loaders.get(addon.getName());
+			loaders.remove(addon.getName());
+			
+			for(String s : loader.getClasses()){
+				removeClass(s);
+			}
 		}
 	}
 	
@@ -174,5 +208,37 @@ public class CoreAddOnHandler implements AddOnHandler {
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Class<?> getClassByName(final String name) {
+		Class<?> cachedClass = classes.get(name);
+		
+		if (cachedClass != null) {
+			return cachedClass;
+		} else {
+			for (String current : loaders.keySet()) {
+				AddOnClassLoader loader = loaders.get(current);
+				
+				try {
+					cachedClass = loader.findClass(name, false);
+				} catch (ClassNotFoundException e) {}
+				if (cachedClass != null) {
+					return cachedClass;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public void setClass(final String name, final Class<?> clazz) {
+		if (!classes.containsKey(name)) {
+			classes.put(name, clazz);
+		}
+	}
+	
+	public void removeClass(String name) {
+		@SuppressWarnings("unused")
+        Class<?> clazz = classes.remove(name);
+		clazz = null; // Bye!
 	}
 }
