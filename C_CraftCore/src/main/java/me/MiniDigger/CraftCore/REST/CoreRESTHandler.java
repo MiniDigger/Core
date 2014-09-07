@@ -64,6 +64,7 @@ public class CoreRESTHandler implements RESTHandler {
 			url = new URL(BASE_URL + urlToRead);
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
+			conn.setRequestProperty("User-Agent", "CoreREST Client v1");
 			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			while ((line = rd.readLine()) != null) {
 				result += line;
