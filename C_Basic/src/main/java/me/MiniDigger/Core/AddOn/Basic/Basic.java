@@ -29,6 +29,7 @@ public class Basic extends CoreAddOn {
 	@Override
 	public void enable() {
 		Core.getCore().getInstance().info("Hey, I am here!");
+		Core.getCore().getInstance().info("And I am updated!");
 		Core.getCore().getCommandHandler().registerCommands(this);
 		Core.getCore().getCommandHandler().registerHelp();
 		super.enable();

@@ -102,7 +102,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 				return;
 			}
 			
-			final CoreAddOnClassLoader loader;
+			CoreAddOnClassLoader loader;
 			try {
 				URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
 				System.out.println(url.toExternalForm());
