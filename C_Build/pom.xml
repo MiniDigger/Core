@@ -12,7 +12,7 @@
 
 
 	<build>
-	<!-- TODO Add proguard to build -->
+		<!-- TODO Add proguard to build -->
 		<finalName>Core</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
@@ -103,7 +103,29 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>Move it!
+								</echo>
+								<copy
+									file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
+									todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
