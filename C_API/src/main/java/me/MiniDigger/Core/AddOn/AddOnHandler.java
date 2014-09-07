@@ -69,6 +69,12 @@ public interface AddOnHandler {
      * @param result
      */
     void setClass(String name, Class<?> result);
+
+	/**
+     * @param name
+     * @return
+     */
+    boolean update(String name);
     
     //TODO Insert missing api
 	

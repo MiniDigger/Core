@@ -67,4 +67,9 @@ public interface AddOn {
      * @return
      */
     AddOnBean getBean();
+
+	/**
+     * 
+     */
+    void checkUpdate();
 }

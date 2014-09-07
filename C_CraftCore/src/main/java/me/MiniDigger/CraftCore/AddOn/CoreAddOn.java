@@ -44,6 +44,14 @@ public class CoreAddOn implements AddOn {
 	}
 	
 	@Override
+	public void checkUpdate() {
+		AddOnBean bean = Core.getCore().getRESTHandler().checkUpdate(this.bean);
+		if (bean.getVersion() != null) {
+			Core.getCore().getInstance().info("Found update for AddOn " + name + ": " + this.bean.getVersion() + " -> " + bean.getVersion());
+		}
+	}
+	
+	@Override
 	public void disable() {
 		
 	}

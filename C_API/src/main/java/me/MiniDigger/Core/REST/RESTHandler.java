@@ -45,5 +45,13 @@ public interface RESTHandler {
      * @return
      */
     URL showFile(String name, String version);
+
+	/**
+     * @param bean
+     * @return
+     */
+    AddOnBean checkUpdate(AddOnBean bean);
+    
+    //TODO Insert missing api
 	
 }

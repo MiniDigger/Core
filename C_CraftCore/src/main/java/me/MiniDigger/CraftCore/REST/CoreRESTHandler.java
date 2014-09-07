@@ -41,8 +41,9 @@ public class CoreRESTHandler implements RESTHandler {
 	public CoreRESTHandler() {
 		
 	}
+	
 	@Override
-	public URL showFile(String name,String version) {
+	public URL showFile(String name, String version) {
 		URL classUrl;
 		try {
 			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name + "/" + version);
@@ -83,6 +84,34 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
+	public AddOnBean checkUpdate(AddOnBean bean) {
+		final JSONObject response = get("v1/addOns/checkupdate/" + bean.getName() + "/" + bean.getVersion());
+		
+		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
+			Core.getCore().getInstance().error("Could not request updateCheck");
+			try {
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
+				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
+			} catch (final Exception ex) {
+				ex.printStackTrace();
+			}
+			bean.setVersion(null);
+			return bean;
+		}
+		
+		JSONObject result = (JSONObject) response.get("result");
+		if (result.get("update") == Boolean.TRUE) {
+			bean.setVersion((String) result.get("version"));
+		} else {
+			bean.setVersion(null);
+		}
+		
+		return bean;
+	}
+	
+	@Override
 	public AddOnBean requestInfos(AddOnBean bean, final boolean exact) {
 		final JSONObject response = get("v1/addOns/by/name/" + bean.getName());
 		
@@ -119,6 +148,9 @@ public class CoreRESTHandler implements RESTHandler {
 					}
 					if (bean.getAuthor() == null || bean.getAuthor().equals("")) {
 						bean.setAuthor(addOn.getAuthor());
+					}
+					if (bean.getPackage() == null || bean.getPackage().equals("")) {
+						bean.setPackage(addOn.getPackage());
 					}
 				}
 			}

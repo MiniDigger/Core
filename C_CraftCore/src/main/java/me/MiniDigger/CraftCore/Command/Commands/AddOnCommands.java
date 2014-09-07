@@ -39,6 +39,8 @@ public class AddOnCommands {
 		        .send(args.getSender());
 		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon update  ").then("um Addons zu aktualisieren").color(ChatColor.GOLD)
+		        .send(args.getSender());
 	}
 	
 	@Command(name = "addon.list", description = "Zeigt AddOns an", usage = "", permission = "addon.list")
@@ -105,9 +107,17 @@ public class AddOnCommands {
 	@Command(name = "addon.install", description = "Installiert ein AddOn", usage = "<name> [version]", min = 1, max = 2, permission = "addon.install")
 	public void install(final CommandArgs args) {
 		final String name = args.getArgs()[0];
+		String version = null;
+		
 		AddOnBean bean = new CoreAddOnBean();
 		bean.setName(name);
-		bean = Core.getCore().getRESTHandler().requestInfos(bean, false);
+		
+		if(args.getArgs().length == 2){
+			 version = args.getArgs()[1];
+			 bean.setVersion(version);
+		}
+		
+		bean = Core.getCore().getRESTHandler().requestInfos(bean, version ==null ? false : true);
 		
 		if (bean.getVersion() == null || bean.getAuthor() == null) {
 			Prefix.ADDON.getPrefix().then("AddOn wurde nicht gefunden!").color(ChatColor.RED).send(args.getSender());
@@ -147,6 +157,16 @@ public class AddOnCommands {
 	public void uninstall(final CommandArgs args) {
 		Core.getCore().getAddOnHandler().listAsUnInstalled(args.getArgs()[0]);
 		Prefix.ADDON.getPrefix().then(args.getArgs()[0] + " deinstalliert!").color(ChatColor.GREEN).send(args.getSender());
+	}
+	
+	@Command(name = "addon.update", description = "Aktualisiert ein AddOn", usage = "<name>", min = 1, max = 1, permission = "addon.update")
+	public void update(final CommandArgs args) {
+		if (Core.getCore().getAddOnHandler().update(args.getArgs()[0])) {
+			Prefix.ADDON.getPrefix().then(args.getArgs()[0] + " aktualisiert!").color(ChatColor.GREEN).send(args.getSender());
+		} else {
+			Prefix.ADDON.getPrefix().then(args.getArgs()[0] + " wurde nicht aktualisiert!").color(ChatColor.RED).send(args.getSender());
+			Prefix.ADDON.getPrefix().then("War es schon aktuell?").color(ChatColor.YELLOW).send(args.getSender());
+		}
 	}
 	
 	@Command(name = "addon.help", description = "Zeigt die Hilfe zu einem AddOn an", usage = "<name> [page]", min = 1, permission = "addon.help")

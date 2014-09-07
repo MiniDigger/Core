@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -103,10 +104,11 @@ public class CoreAddOnHandler implements AddOnHandler {
 			
 			final CoreAddOnClassLoader loader;
 			try {
-				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), Core.getCore().getRESTHandler()
-				        .showFile(bean.getName(), bean.getVersion()));
+				URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
+				System.out.println(url.toExternalForm());
+				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), url);
 			} catch (MalformedURLException | InvalidPluginException e) {
-				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + ":");
+				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + " (CL):");
 				e.printStackTrace();
 				return;
 			}
@@ -134,6 +136,23 @@ public class CoreAddOnHandler implements AddOnHandler {
 				removeClass(s);
 			}
 		}
+	}
+	
+	@Override
+	public boolean update(String name) {
+		for (AddOnBean addon : getInstalledBeans()) {
+			if (addon.getName().equalsIgnoreCase(name)) {
+				AddOnBean bean = Core.getCore().getRESTHandler().checkUpdate(addon);
+				if (bean.getVersion() == null) {
+					return false;
+				} else {
+					listAsUnInstalled(name);
+					listAsInstalled(bean);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	@Override
