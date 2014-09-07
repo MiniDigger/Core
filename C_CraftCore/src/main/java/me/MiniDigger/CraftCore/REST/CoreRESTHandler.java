@@ -41,12 +41,11 @@ public class CoreRESTHandler implements RESTHandler {
 	public CoreRESTHandler() {
 		
 	}
-	
 	@Override
-	public URL showFile(String name) {
+	public URL showFile(String name,String version) {
 		URL classUrl;
 		try {
-			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name);
+			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name + "/" + version);
 			return classUrl;
 		} catch (Exception ex) {
 			ex.printStackTrace();

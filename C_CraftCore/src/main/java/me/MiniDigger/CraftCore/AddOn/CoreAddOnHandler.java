@@ -87,33 +87,24 @@ public class CoreAddOnHandler implements AddOnHandler {
 	
 	@Override
 	public void enableAddOns() {
-		for (String name : getInstalledNames()) {
+		for (AddOnBean b : getInstalledBeans()) {
 			// TODO Version support
 			AddOnBean bean = new CoreAddOnBean();
-			bean.setName(name);
-			bean = Core.getCore().getRESTHandler().requestInfos(bean, false);
+			bean.setName(b.getName());
+			bean.setVersion(b.getVersion());
+			bean = Core.getCore().getRESTHandler().requestInfos(bean, true);
 			
-			Core.getCore().getInstance().info("Loading Addon " + name + " v" + bean.getVersion() + " by " + bean.getAuthor());
+			Core.getCore().getInstance().info("Loading Addon " + b.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor());
 			
 			if (bean.getVersion() == null || bean.getAuthor() == null || bean.getPackage() == null) {
-				Core.getCore().getInstance().error("Error while loading Addon " + name + ": Request returned null!");
+				Core.getCore().getInstance().error("Error while loading Addon " + b.getName() + ": Request returned null!");
 				return;
 			}
-			// Class<?> c =
-			// Core.getCore().getClassHandler().getLoader().load(Core.getCore().getRESTHandler().showFile(name),
-			// bean.getPackage());
-			// if (c != null) {
-			// try {
-			// AddOn addon = (AddOn) c.newInstance();
-			// addon.load(bean);
-			// active.add(addon);
-			// } catch (Exception e) {
-			// e.printStackTrace();
-			// }
-			// }
+			
 			final CoreAddOnClassLoader loader;
 			try {
-				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), Core.getCore().getRESTHandler().showFile(bean.getName()));
+				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), Core.getCore().getRESTHandler()
+				        .showFile(bean.getName(), bean.getVersion()));
 			} catch (MalformedURLException | InvalidPluginException e) {
 				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + ":");
 				e.printStackTrace();
@@ -139,7 +130,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			AddOnClassLoader loader = loaders.get(addon.getName());
 			loaders.remove(addon.getName());
 			
-			for(String s : loader.getClasses()){
+			for (String s : loader.getClasses()) {
 				removeClass(s);
 			}
 		}
@@ -237,8 +228,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	}
 	
 	public void removeClass(String name) {
-		@SuppressWarnings("unused")
-        Class<?> clazz = classes.remove(name);
+		@SuppressWarnings("unused") Class<?> clazz = classes.remove(name);
 		clazz = null; // Bye!
 	}
 }

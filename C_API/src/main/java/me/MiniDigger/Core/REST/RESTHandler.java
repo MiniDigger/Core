@@ -41,8 +41,9 @@ public interface RESTHandler {
 
 	/**
      * @param name
+     * @param version
      * @return
      */
-    URL showFile(String name);
+    URL showFile(String name, String version);
 	
 }
