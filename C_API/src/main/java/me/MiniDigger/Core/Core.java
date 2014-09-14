@@ -45,6 +45,7 @@ import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.Item.ItemHandler;
 import me.MiniDigger.Core.Map.MapHandler;
+import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.NPC.NPCHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
@@ -152,6 +153,8 @@ public abstract class Core {
 	public abstract RESTHandler getRESTHandler();
 	
 	public abstract AddOnHandler getAddOnHandler();
+	
+	public abstract MirrorHandler getMirrorHandler();
 	
 	/*
 	 * #################### UTILS ####################

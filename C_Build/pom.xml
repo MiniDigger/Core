@@ -118,9 +118,10 @@
 							<tasks>
 								<echo>Move it!
 								</echo>
-								<copy
-									file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
+								<copy file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
 									todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
+								<copy file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
+									todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
 							</tasks>
 						</configuration>
 					</execution>

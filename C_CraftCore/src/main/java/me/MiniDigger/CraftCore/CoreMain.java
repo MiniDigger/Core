@@ -284,6 +284,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getItemHandler().register();
 		Core.getCore().getNametagHandler().enable();
 		Core.getCore().getAddOnHandler().load();
+		Core.getCore().getMirrorHandler().init();
 		
 		Core.getCore().getAddOnHandler().enableAddOns();
 	}
