@@ -22,9 +22,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Mirror.MirrorSender;
+import net.minecraft.util.com.google.gson.Gson;
 
-import com.comphenix.protocol.events.PacketEvent;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import me.MiniDigger.Core.Mirror.MirrorSender;
 
 public class CoreMirrorSender implements MirrorSender {
 	
@@ -37,7 +40,7 @@ public class CoreMirrorSender implements MirrorSender {
 	}
 	
 	@Override
-	public void send(PacketEvent event) {
+	public void send(Object event) {
 		for (ClientThread thread : clients) {
 			thread.send(event);
 		}
@@ -87,15 +90,14 @@ public class CoreMirrorSender implements MirrorSender {
 		/**
 		 * @param event
 		 */
-		public void send(PacketEvent event) {
+		public void send(Object event) {
 			try {
 				ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
-				out.writeObject(event.getPacket());
+				out.writeObject(new Gson().toJson(event));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		
 	}
-	
 }

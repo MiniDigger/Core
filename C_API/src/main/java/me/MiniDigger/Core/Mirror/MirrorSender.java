@@ -15,8 +15,6 @@
  */
 package me.MiniDigger.Core.Mirror;
 
-import com.comphenix.protocol.events.PacketEvent;
-
 public interface MirrorSender {
 
 	/**
@@ -27,6 +25,6 @@ public interface MirrorSender {
 	/**
      * @param event
      */
-    void send(PacketEvent event);
+    void send(Object event);
 	
 }

@@ -49,7 +49,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 	private MirrorSender	    sender;
 	
 	public void init() {
-		
+		if(true)return;//TODO Mirror?!
 		try {
 			if (System.getProperty("mirrorserver") != null && System.getProperty("mirrorserver").equalsIgnoreCase("true")) {
 				sender = new CoreMirrorSender();
@@ -65,6 +65,9 @@ public class CoreMirrorHandler implements MirrorHandler {
 			System.out.println("ex" + ex.getMessage());
 			return;
 		}
+		
+		new CoreEventHandler().init();
+		if (true) return;
 		
 		AdapterParameteters params = new AdapterParameteters();
 		Set<PacketType> types = new HashSet<PacketType>();
@@ -94,6 +97,16 @@ public class CoreMirrorHandler implements MirrorHandler {
 				}
 			}
 		});
+	}
+	
+	@Override
+	public MirrorReviever getReceiver() {
+		return reviever;
+	}
+	
+	@Override
+	public MirrorSender getSender() {
+		return sender;
 	}
 	
 	private void printInformation(PacketEvent event) {
