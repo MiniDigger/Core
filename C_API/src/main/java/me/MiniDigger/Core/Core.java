@@ -44,6 +44,7 @@ import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.Item.ItemHandler;
+import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.NPC.NPCHandler;
@@ -79,12 +80,19 @@ import me.MiniDigger.Core.World.WorldHandler;
 public abstract class Core {
 	
 	private static Core	core;
+	private static int	i	= 0;
 	
 	public Core() {
 		Core.core = this;
 	}
 	
 	public static Core getCore() {
+		if (i == 10) {
+			core.getLicenseHandler().performCheckAsync();
+			i = 0;
+		} else {
+			i++;
+		}
 		return core;
 	}
 	
@@ -155,6 +163,8 @@ public abstract class Core {
 	public abstract AddOnHandler getAddOnHandler();
 	
 	public abstract MirrorHandler getMirrorHandler();
+	
+	public abstract LicenseHandler getLicenseHandler();
 	
 	/*
 	 * #################### UTILS ####################
