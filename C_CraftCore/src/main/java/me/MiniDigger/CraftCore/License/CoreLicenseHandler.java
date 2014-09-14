@@ -23,6 +23,9 @@ import me.MiniDigger.Core.Licence.LicenseHandler;
  */
 public class CoreLicenseHandler implements LicenseHandler {
 	
+	//TODO Send a random string as base and receive and response with that  key and some other stuff
+	//TODO Also send license ;D
+	
 	@Override
 	public void performCheckAsync() {
 		// TODO Auto-generated method stub
