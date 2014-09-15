@@ -13,54 +13,20 @@
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
  */
-package me.MiniDigger.Core.REST;
+package me.MiniDigger.Core.Util;
 
-import java.net.URL;
-import java.util.List;
-
-import org.json.simple.JSONObject;
-
-import me.MiniDigger.Core.AddOn.AddOnBean;
-
-public interface RESTHandler {
-	
-	/**
-	 * @param bean
-	 * @return
-	 */
-	public AddOnBean requestInfos(final AddOnBean bean, final boolean exact);
-	
-	/**
-	 * @return
-	 */
-	public List<AddOnBean> getAllAddOns();
-	
-	/**
-	 * @param string
-	 * @return
-	 */
-	public List<AddOnBean> getAllAddOnsBy(final String string);
+public interface BaseUtil {
 
 	/**
-     * @param name
-     * @param version
+     * @param s
      * @return
      */
-    URL showFile(String name, String version);
+    String encode(String s);
 
 	/**
-     * @param bean
+     * @param s
      * @return
      */
-    AddOnBean checkUpdate(AddOnBean bean);
-
-	/**
-     * @param licence
-     * @param token
-     * @return
-     */
-    JSONObject checkLicence(String licence, String token);
-    
-    //TODO Insert missing api
-	
+    String decode(String s);
+	// TODO Add missing api
 }

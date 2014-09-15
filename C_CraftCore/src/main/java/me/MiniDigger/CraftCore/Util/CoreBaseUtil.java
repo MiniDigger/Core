@@ -13,54 +13,22 @@
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
  */
-package me.MiniDigger.Core.REST;
+package me.MiniDigger.CraftCore.Util;
 
-import java.net.URL;
-import java.util.List;
+import net.minecraft.util.org.apache.commons.codec.binary.Base64;
+import me.MiniDigger.Core.Util.BaseUtil;
 
-import org.json.simple.JSONObject;
-
-import me.MiniDigger.Core.AddOn.AddOnBean;
-
-public interface RESTHandler {
+public class CoreBaseUtil implements BaseUtil {
 	
-	/**
-	 * @param bean
-	 * @return
-	 */
-	public AddOnBean requestInfos(final AddOnBean bean, final boolean exact);
+	@Override
+	public String encode(String s) {
+		byte[] b = Base64.encodeBase64(s.getBytes());
+		return new String(b);
+	}
 	
-	/**
-	 * @return
-	 */
-	public List<AddOnBean> getAllAddOns();
-	
-	/**
-	 * @param string
-	 * @return
-	 */
-	public List<AddOnBean> getAllAddOnsBy(final String string);
-
-	/**
-     * @param name
-     * @param version
-     * @return
-     */
-    URL showFile(String name, String version);
-
-	/**
-     * @param bean
-     * @return
-     */
-    AddOnBean checkUpdate(AddOnBean bean);
-
-	/**
-     * @param licence
-     * @param token
-     * @return
-     */
-    JSONObject checkLicence(String licence, String token);
-    
-    //TODO Insert missing api
-	
+	@Override
+	public String decode(String s) {
+		byte[] b = Base64.decodeBase64(s.getBytes());
+		return (new String(b));
+	}
 }

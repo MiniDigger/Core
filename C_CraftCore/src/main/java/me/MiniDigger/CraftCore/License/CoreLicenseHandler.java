@@ -15,26 +15,37 @@
  */
 package me.MiniDigger.CraftCore.License;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Licence.LicenseHandler;
+import me.MiniDigger.CraftCore.CoreMain;
+import org.json.simple.JSONObject;
 
-/**
- * @author Martin
- * 
- */
 public class CoreLicenseHandler implements LicenseHandler {
 	
-	//TODO Send a random string as base and receive and response with that  key and some other stuff
-	//TODO Also send license ;D
+	private final String	licence	= ((CoreMain) Core.getCore().getInstance()).getConfig().getString("licence");
 	
 	@Override
 	public void performCheckAsync() {
-		// TODO Auto-generated method stub
-		
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				performCheckSync();
+			}
+		});
+		thread.setName("CoreLicenceChecker");
+		thread.start();
 	}
 	
 	@Override
 	public void performCheckSync() {
-		// TODO Auto-generated method stub
+		String token = generateToken();
+		
+		JSONObject result = Core.getCore().getRESTHandler().checkLicence(licence, Core.getCore().getBaseUtil().encode(token));
+		String tokenR = (String) result.get("token");
+		if (!checkToken(tokenR, token)) {
+			System.out.println("CHECK FAILED, KILL ADDONS,PLUGIN AND MAYBE SERVER");
+		}
 		
 	}
 	
@@ -47,4 +58,40 @@ public class CoreLicenseHandler implements LicenseHandler {
 		}
 	}
 	
+	private String generateToken() {
+		String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		String token = "";
+		int rnd = Core.getCore().getRandomUtil().nextInt(40) + 15;
+		for (int i = 0; i < rnd; i++) {
+			token += chars.charAt(Core.getCore().getRandomUtil().nextInt(chars.length() - 1));
+		}
+		return token;
+	}
+	
+	private boolean checkToken(String tokenR, String token) {
+		tokenR = Core.getCore().getBaseUtil().decode(tokenR);
+		String read = "";
+		String readOld = "";
+		String key = "";
+		boolean keyEnd = false;
+		for (int i = 0; i < tokenR.length(); i++) {
+			read += tokenR.charAt(i);
+			if (!token.startsWith(read) && !keyEnd) {
+				key += tokenR.charAt(i);
+				if (key.equals("MiniDiggerTheBoss")) {
+					keyEnd = true;
+				}
+				if (!"MiniDiggerTheBoss".startsWith(key)) {
+					return false;
+				}
+			} else {
+				readOld += tokenR.charAt(i);
+			}
+		}
+		if (key.equals("MiniDiggerTheBoss") && readOld.equals(token)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

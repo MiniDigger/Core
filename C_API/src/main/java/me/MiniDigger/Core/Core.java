@@ -62,6 +62,7 @@ import me.MiniDigger.Core.Stats.StatsHandler;
 import me.MiniDigger.Core.Tip.TipHandler;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.User.UserHandler;
+import me.MiniDigger.Core.Util.BaseUtil;
 import me.MiniDigger.Core.Util.ChatColorUtil;
 import me.MiniDigger.Core.Util.CommonMethods;
 import me.MiniDigger.Core.Util.DeZipUtil;
@@ -195,4 +196,6 @@ public abstract class Core {
 	public abstract ZipUtil getZipUtil();
 	
 	public abstract ReflectionUtil getReflectionUtil();
+	
+	public abstract BaseUtil getBaseUtil();
 }

@@ -84,6 +84,25 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
+	public JSONObject checkLicence(String licence, String token) {
+		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token);
+		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
+			Core.getCore().getInstance().error("Could not request licenceCheck");
+			try {
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
+				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
+			} catch (final Exception ex) {
+				ex.printStackTrace();
+			}
+			return null;
+		}
+		
+		return (JSONObject) response.get("result");
+	}
+	
+	@Override
 	public AddOnBean checkUpdate(AddOnBean bean) {
 		final JSONObject response = get("v1/addOns/checkupdate/" + bean.getName() + "/" + bean.getVersion());
 		

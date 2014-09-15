@@ -64,6 +64,7 @@ import me.MiniDigger.Core.Stats.StatsHandler;
 import me.MiniDigger.Core.Tip.TipHandler;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.User.UserHandler;
+import me.MiniDigger.Core.Util.BaseUtil;
 import me.MiniDigger.Core.Util.ChatColorUtil;
 import me.MiniDigger.Core.Util.CommonMethods;
 import me.MiniDigger.Core.Util.DeZipUtil;
@@ -107,6 +108,7 @@ import me.MiniDigger.CraftCore.Stats.CoreStatsHandler;
 import me.MiniDigger.CraftCore.Tip.CoreTipHandler;
 import me.MiniDigger.CraftCore.Update.CoreUpdateHandler;
 import me.MiniDigger.CraftCore.User.CoreUserHandler;
+import me.MiniDigger.CraftCore.Util.CoreBaseUtil;
 import me.MiniDigger.CraftCore.Util.CoreChatColorUtil;
 import me.MiniDigger.CraftCore.Util.CoreCommonMethods;
 import me.MiniDigger.CraftCore.Util.CoreDeZipUtil;
@@ -170,6 +172,7 @@ public class CoreCore extends Core {
 	private TimeUtil	       timeUtil;
 	private ZipUtil	           zipUtil;
 	private ReflectionUtil	   reflectionUtil;
+	private BaseUtil	       baseUtil;
 	
 	public CoreCore(final Main instance) {
 		super();
@@ -525,5 +528,13 @@ public class CoreCore extends Core {
 			reflectionUtil = new CoreReflectionUtil();
 		}
 		return reflectionUtil;
+	}
+	
+	@Override
+	public BaseUtil getBaseUtil() {
+		if (baseUtil != null) {
+			baseUtil = new CoreBaseUtil();
+		}
+		return baseUtil;
 	}
 }
