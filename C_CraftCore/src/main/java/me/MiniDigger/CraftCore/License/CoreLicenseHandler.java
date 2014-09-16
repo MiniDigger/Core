@@ -22,7 +22,15 @@ import org.json.simple.JSONObject;
 
 public class CoreLicenseHandler implements LicenseHandler {
 	
-	private final String	licence	= ((CoreMain) Core.getCore().getInstance()).getConfig().getString("licence");
+	private final String	licence	     = ((CoreMain) Core.getCore().getInstance()).getConfig().getString("licence");
+	private final String	sessionToken	= generateToken();
+	
+	@Override
+	public boolean register() {
+		JSONObject result = Core.getCore().getRESTHandler().registerLicence(licence, sessionToken);
+		String tokenR = (String) result.get("token");
+		return tokenR.equalsIgnoreCase(sessionToken);
+	}
 	
 	@Override
 	public void performCheckAsync() {
@@ -41,12 +49,11 @@ public class CoreLicenseHandler implements LicenseHandler {
 	public void performCheckSync() {
 		String token = generateToken();
 		
-		JSONObject result = Core.getCore().getRESTHandler().checkLicence(licence, Core.getCore().getBaseUtil().encode(token));
+		JSONObject result = Core.getCore().getRESTHandler().checkLicence(licence, Core.getCore().getBaseUtil().encode(token), sessionToken);
 		String tokenR = (String) result.get("token");
 		if (!checkToken(tokenR, token)) {
 			System.out.println("CHECK FAILED, KILL ADDONS,PLUGIN AND MAYBE SERVER");
 		}
-		
 	}
 	
 	@Override

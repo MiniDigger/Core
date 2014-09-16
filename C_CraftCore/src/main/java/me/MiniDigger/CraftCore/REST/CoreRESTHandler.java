@@ -84,10 +84,29 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
-	public JSONObject checkLicence(String licence, String token) {
-		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token);
+	public JSONObject checkLicence(String licence, String token, String sessionToken) {
+		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token + "/" + sessionToken);
 		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error("Could not request licenceCheck");
+			try {
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
+				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
+			} catch (final Exception ex) {
+				ex.printStackTrace();
+			}
+			return null;
+		}
+		
+		return (JSONObject) response.get("result");
+	}
+	
+	@Override
+	public JSONObject registerLicence(String licence, String sessionToken) {
+		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/register/" + licence + "/" + sessionToken);
+		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
+			Core.getCore().getInstance().error("Could not register licence");
 			try {
 				final JSONObject error = (JSONObject) response.get("result");
 				final Integer id = (Integer) error.get("id");

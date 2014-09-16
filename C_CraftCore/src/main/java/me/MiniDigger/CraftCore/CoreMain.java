@@ -81,6 +81,19 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Aktiviere " + getDescription().getFullName() + " by MiniDigger");
 		core = new CoreCore(this);
 		
+		info("Checke Lizenez...");
+		try{
+			if(Core.getCore().getLicenseHandler().register()){
+				info("Lizenz ok");
+			}else{
+				info("Lizenz nicht ok!");
+				Bukkit.getPluginManager().disablePlugin(this);
+				return;
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
 		info("Checke Updater...");
 		try {
 			if (Core.getCore().getUpdateHandler().updateCheck()) {

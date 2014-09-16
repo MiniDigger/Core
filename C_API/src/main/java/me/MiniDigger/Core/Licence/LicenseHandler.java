@@ -34,4 +34,10 @@ public interface LicenseHandler {
 	 */
 	public void performCheck(boolean sync);
 	
+	/**
+	 * Sends the license system the session token for this server
+	 * 
+	 * @return success?
+	 */
+	boolean register();
 }

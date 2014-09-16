@@ -57,9 +57,17 @@ public interface RESTHandler {
 	/**
      * @param licence
      * @param token
+	 * @param sessionToken 
      * @return
      */
-    JSONObject checkLicence(String licence, String token);
+    JSONObject checkLicence(String licence, String token, String sessionToken);
+
+	/**
+     * @param licence
+     * @param sessionToken
+     * @return
+     */
+    public JSONObject registerLicence(String licence, String sessionToken);
     
     //TODO Insert missing api
 	
