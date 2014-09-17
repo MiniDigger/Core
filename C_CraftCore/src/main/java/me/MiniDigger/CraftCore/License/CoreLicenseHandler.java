@@ -60,7 +60,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 	public void performCheckSync() {
 		String token = generateToken();
 		
-		JSONObject result = CoreMain.getCore().getRESTHandler().checkLicence(licence, CoreMain.getCore().getBaseUtil().encode(token), sessionToken);
+		JSONObject result = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
 		
 		if (result == null) {
 			CoreMain.getCore().getCommonMethods().killPlugin();

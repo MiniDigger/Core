@@ -114,6 +114,8 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void killPlugin(){
+		System.out.println("The Plugin decided to kill itselves");
+		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());
 	}
 }
