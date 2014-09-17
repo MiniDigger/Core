@@ -219,6 +219,8 @@ public class CoreRESTHandler implements RESTHandler {
 		if (response == null || response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error(msg);
 			try {
+				System.out.println("res: " + response.toJSONString());
+				
 				final JSONObject error = (JSONObject) response.get("result");
 				final Integer id = (Integer) error.get("id");
 				final String message = (String) error.get("message");
