@@ -77,7 +77,8 @@ public class CoreRESTHandler implements RESTHandler {
 		final JSONParser parser = new JSONParser();
 		try {
 			return (JSONObject) parser.parse(result);
-		} catch (final ParseException e) {
+		} catch (final Exception e) {
+			System.out.println("RESULT: " + result);
 			e.printStackTrace();
 		}
 		return null;
