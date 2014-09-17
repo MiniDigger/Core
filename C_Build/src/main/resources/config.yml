@@ -14,6 +14,9 @@ ws-user:
 ws-pass:
 #MapFolder
 mapFolder:
+#Licence
+#If you don't have one, visit minidigger.me
+licence: 
 # Data - Do not change anything below this point!
 spawn:
     default:

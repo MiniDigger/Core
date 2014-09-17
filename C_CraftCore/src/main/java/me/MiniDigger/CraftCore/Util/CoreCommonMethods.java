@@ -52,6 +52,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import com.bobacadodl.imgmessage.ImageChar;
 import com.bobacadodl.imgmessage.ImageMessage;
@@ -109,5 +110,10 @@ public class CoreCommonMethods implements CommonMethods {
 			user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
 			user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name")).color(ChatColor.YELLOW));
 		}
+	}
+	
+	@Override
+	public void killPlugin(){
+		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());
 	}
 }

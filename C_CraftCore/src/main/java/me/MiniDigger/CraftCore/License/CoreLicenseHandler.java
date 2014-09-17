@@ -15,6 +15,7 @@
  */
 package me.MiniDigger.CraftCore.License;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
@@ -22,13 +23,20 @@ import org.json.simple.JSONObject;
 
 public class CoreLicenseHandler implements LicenseHandler {
 	
-	@SuppressWarnings("deprecation") 
-	private final String	licence	     = ((CoreMain) CoreMain.getCore().getInstance()).getConfig().getString("licence");
-	private final String	sessionToken	= generateToken();
+	@SuppressWarnings("deprecation") private final String	licence	   = ((CoreMain) CoreMain.getCore().getInstance()).getConfig().getString("licence");
+	private final String	                              sessionToken	= generateToken();
 	
-	@Override
+	@SuppressWarnings("deprecation")
+    @Override
 	public boolean register() {
-		@SuppressWarnings("deprecation") JSONObject result = CoreMain.getCore().getRESTHandler().registerLicence(licence, sessionToken);
+		if (licence == null) {
+			CoreMain.getCore().getInstance().error("Du hast keine Lizenz angegeben!");
+			CoreMain.getCore().getInstance().error("Trage deine Lizenz in " + ((CoreMain) Core.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
+			CoreMain.getCore().getCommonMethods().killPlugin();
+			return false;
+		}
+		
+		JSONObject result = CoreMain.getCore().getRESTHandler().registerLicence(licence, sessionToken);
 		String tokenR = (String) result.get("token");
 		return tokenR.equalsIgnoreCase(sessionToken);
 	}
