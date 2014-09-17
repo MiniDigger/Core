@@ -86,16 +86,8 @@ public class CoreRESTHandler implements RESTHandler {
 	@Override
 	public JSONObject checkLicence(String licence, String token, String sessionToken) {
 		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token + "/" + sessionToken);
-		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
-			Core.getCore().getInstance().error("Could not request licenceCheck");
-			try {
-				final JSONObject error = (JSONObject) response.get("result");
-				final Integer id = (Integer) error.get("id");
-				final String message = (String) error.get("message");
-				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (final Exception ex) {
-				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
-			}
+		
+		if (!checkResponse(response, "Could not request licenceCheck")) {
 			return null;
 		}
 		
@@ -105,16 +97,8 @@ public class CoreRESTHandler implements RESTHandler {
 	@Override
 	public JSONObject registerLicence(String licence, String sessionToken) {
 		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/register/" + licence + "/" + sessionToken);
-		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
-			Core.getCore().getInstance().error("Could not register licence");
-			try {
-				final JSONObject error = (JSONObject) response.get("result");
-				final Integer id = (Integer) error.get("id");
-				final String message = (String) error.get("message");
-				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (final Exception ex) {
-				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
-			}
+		
+		if (!checkResponse(response, "Could not register licence")) {
 			return null;
 		}
 		
@@ -124,6 +108,11 @@ public class CoreRESTHandler implements RESTHandler {
 	@Override
 	public AddOnBean checkUpdate(AddOnBean bean) {
 		final JSONObject response = get("v1/addOns/checkupdate/" + bean.getName() + "/" + bean.getVersion());
+		
+		if (!checkResponse(response, "Could not request updateCheck")) {
+			bean.setVersion(null);
+			return bean;
+		}
 		
 		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error("Could not request updateCheck");
@@ -153,16 +142,7 @@ public class CoreRESTHandler implements RESTHandler {
 	public AddOnBean requestInfos(AddOnBean bean, final boolean exact) {
 		final JSONObject response = get("v1/addOns/by/name/" + bean.getName());
 		
-		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
-			Core.getCore().getInstance().error("Could not request infos for AddOn " + bean.getName());
-			try {
-				final JSONObject error = (JSONObject) response.get("result");
-				final Integer id = (Integer) error.get("id");
-				final String message = (String) error.get("message");
-				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (final Exception ex) {
-				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
-			}
+		if (!checkResponse(response, "Could not request infos for AddOn " + bean.getName())) {
 			return bean;
 		}
 		
@@ -201,16 +181,7 @@ public class CoreRESTHandler implements RESTHandler {
 		final List<AddOnBean> result = new ArrayList<>();
 		final JSONObject response = get("v1/addOns/all");
 		
-		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
-			Core.getCore().getInstance().error("Could not request Infos for all AddOns");
-			try {
-				final JSONObject error = (JSONObject) response.get("result");
-				final Integer id = (Integer) error.get("id");
-				final String message = (String) error.get("message");
-				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (final Exception ex) {
-				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
-			}
+		if (!checkResponse(response, "Could not request Infos for all AddOns")) {
 			return result;
 		}
 		
@@ -229,16 +200,7 @@ public class CoreRESTHandler implements RESTHandler {
 		final List<AddOnBean> result = new ArrayList<>();
 		final JSONObject response = get("v1/addOns/by/author/" + name);
 		
-		if (response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
-			Core.getCore().getInstance().error("Could not request Infos for all AddOns by " + name);
-			try {
-				final JSONObject error = (JSONObject) response.get("result");
-				final Integer id = (Integer) error.get("id");
-				final String message = (String) error.get("message");
-				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
-			} catch (final Exception ex) {
-				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
-			}
+		if (!checkResponse(response, "Could not resquest Addons with name " + name)) {
 			return result;
 		}
 		
@@ -250,5 +212,21 @@ public class CoreRESTHandler implements RESTHandler {
 		}
 		
 		return result;
+	}
+	
+	private boolean checkResponse(JSONObject response, String msg) {
+		if (response == null || response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
+			Core.getCore().getInstance().error(msg);
+			try {
+				final JSONObject error = (JSONObject) response.get("result");
+				final Integer id = (Integer) error.get("id");
+				final String message = (String) error.get("message");
+				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
+			} catch (final Exception ex) {
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
+			}
+			return false;
+		}
+		return true;
 	}
 }
