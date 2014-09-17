@@ -64,6 +64,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 		
 		if (result == null) {
 			CoreMain.getCore().getCommonMethods().killPlugin();
+			return;
 		}
 		
 		String tokenR = (String) result.get("result");
