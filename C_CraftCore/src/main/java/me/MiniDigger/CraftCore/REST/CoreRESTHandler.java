@@ -94,7 +94,7 @@ public class CoreRESTHandler implements RESTHandler {
 				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
 			} catch (final Exception ex) {
-				ex.printStackTrace();
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
 			}
 			return null;
 		}
@@ -113,7 +113,7 @@ public class CoreRESTHandler implements RESTHandler {
 				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
 			} catch (final Exception ex) {
-				ex.printStackTrace();
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
 			}
 			return null;
 		}
@@ -133,7 +133,7 @@ public class CoreRESTHandler implements RESTHandler {
 				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
 			} catch (final Exception ex) {
-				ex.printStackTrace();
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
 			}
 			bean.setVersion(null);
 			return bean;
@@ -161,7 +161,7 @@ public class CoreRESTHandler implements RESTHandler {
 				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
 			} catch (final Exception ex) {
-				ex.printStackTrace();
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
 			}
 			return bean;
 		}
@@ -209,7 +209,7 @@ public class CoreRESTHandler implements RESTHandler {
 				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
 			} catch (final Exception ex) {
-				ex.printStackTrace();
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
 			}
 			return result;
 		}
@@ -237,7 +237,7 @@ public class CoreRESTHandler implements RESTHandler {
 				final String message = (String) error.get("message");
 				Core.getCore().getInstance().error("Error #" + id.intValue() + ": " + message);
 			} catch (final Exception ex) {
-				ex.printStackTrace();
+				Core.getCore().getInstance().error("Error: " + (String) response.get("result"));
 			}
 			return result;
 		}
