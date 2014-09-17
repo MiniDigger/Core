@@ -105,8 +105,6 @@ public class CoreMain extends JavaPlugin implements Main {
 			return;
 		}
 		
-		core.enable();
-		
 		info("Checke Updater...");
 		try {
 			if (Core.getCore().getUpdateHandler().updateCheck()) {
@@ -219,6 +217,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
+		
+		core.enable();
 		
 		info("Aktiviert!");
 	}
