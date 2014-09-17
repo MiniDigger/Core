@@ -101,6 +101,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			core.getCommonMethods().killPlugin();
+			return;
 		}
 		
 		core.enable();

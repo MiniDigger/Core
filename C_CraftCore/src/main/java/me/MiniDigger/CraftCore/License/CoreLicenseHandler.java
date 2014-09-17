@@ -27,17 +27,18 @@ public class CoreLicenseHandler implements LicenseHandler {
 	private final String	                              sessionToken	= generateToken();
 	
 	@SuppressWarnings("deprecation")
-    @Override
+	@Override
 	public boolean register() {
 		if (licence == null) {
 			CoreMain.getCore().getInstance().error("Du hast keine Lizenz angegeben!");
-			CoreMain.getCore().getInstance().error("Trage deine Lizenz in " + ((CoreMain) Core.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
+			CoreMain.getCore().getInstance()
+			        .error("Trage deine Lizenz in " + ((CoreMain) Core.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
 			CoreMain.getCore().getCommonMethods().killPlugin();
 			return false;
 		}
 		
 		JSONObject result = CoreMain.getCore().getRESTHandler().registerLicence(licence, sessionToken);
-		String tokenR = (String) result.get("token");
+		String tokenR = (String) result.get("result");
 		return tokenR.equalsIgnoreCase(sessionToken);
 	}
 	
@@ -54,15 +55,20 @@ public class CoreLicenseHandler implements LicenseHandler {
 		thread.start();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void performCheckSync() {
 		String token = generateToken();
 		
-		@SuppressWarnings("deprecation") JSONObject result = CoreMain.getCore().getRESTHandler()
-		        .checkLicence(licence, CoreMain.getCore().getBaseUtil().encode(token), sessionToken);
-		String tokenR = (String) result.get("token");
+		JSONObject result = CoreMain.getCore().getRESTHandler().checkLicence(licence, CoreMain.getCore().getBaseUtil().encode(token), sessionToken);
+		
+		if (result == null) {
+			CoreMain.getCore().getCommonMethods().killPlugin();
+		}
+		
+		String tokenR = (String) result.get("result");
 		if (!checkToken(tokenR, token)) {
-			System.out.println("CHECK FAILED, KILL ADDONS,PLUGIN AND MAYBE SERVER");
+			CoreMain.getCore().getCommonMethods().killPlugin();
 		}
 	}
 	

@@ -524,7 +524,7 @@ public class CoreCore extends Core {
 	
 	@Override
 	public ReflectionUtil getReflectionUtil() {
-		if (reflectionUtil != null) {
+		if (reflectionUtil == null) {
 			reflectionUtil = new CoreReflectionUtil();
 		}
 		return reflectionUtil;
@@ -532,7 +532,7 @@ public class CoreCore extends Core {
 	
 	@Override
 	public BaseUtil getBaseUtil() {
-		if (baseUtil != null) {
+		if (baseUtil == null) {
 			baseUtil = new CoreBaseUtil();
 		}
 		return baseUtil;

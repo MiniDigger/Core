@@ -65,7 +65,7 @@ public interface RESTHandler {
 	/**
      * @param licence
      * @param sessionToken
-     * @return
+     * @return result
      */
     public JSONObject registerLicence(String licence, String sessionToken);
     

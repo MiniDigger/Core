@@ -118,7 +118,7 @@ public class CoreRESTHandler implements RESTHandler {
 			return null;
 		}
 		
-		return (JSONObject) response.get("result");
+		return (JSONObject) response;
 	}
 	
 	@Override
