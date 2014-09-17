@@ -73,7 +73,16 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 public class CoreMain extends JavaPlugin implements Main {
 	
 	private boolean	update	= false;
-	private Core	core;
+	private static Core	core;
+	
+	/**
+	 * DO NO USE
+	 * 
+	 * @deprecated DO NOT USE
+	 */
+	public static Core getCore() {
+		return core;
+	}
 	
 	@Override
 	public void onEnable() {
@@ -82,17 +91,19 @@ public class CoreMain extends JavaPlugin implements Main {
 		core = new CoreCore(this);
 		
 		info("Checke Lizenez...");
-		try{
-			if(Core.getCore().getLicenseHandler().register()){
+		try {
+			if (Core.getCore().getLicenseHandler().register()) {
 				info("Lizenz ok");
-			}else{
+			} else {
 				info("Lizenz nicht ok!");
 				Bukkit.getPluginManager().disablePlugin(this);
 				return;
 			}
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
+		core.enable();
 		
 		info("Checke Updater...");
 		try {

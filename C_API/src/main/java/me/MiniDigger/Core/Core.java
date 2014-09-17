@@ -80,15 +80,20 @@ import me.MiniDigger.Core.World.WorldHandler;
 
 public abstract class Core {
 	
-	private static Core	core;
-	private static int	i	= 0;
+	private static Core	     core;
+	private static final int	max	= 10;
+	private static int	     i	    = max + 1;
 	
 	public Core() {
 		Core.core = this;
 	}
 	
+	public void enable() {
+		i = 0;
+	}
+	
 	public static Core getCore() {
-		if (i == 10) {
+		if (i == max) {
 			core.getLicenseHandler().performCheckAsync();
 			i = 0;
 		} else {

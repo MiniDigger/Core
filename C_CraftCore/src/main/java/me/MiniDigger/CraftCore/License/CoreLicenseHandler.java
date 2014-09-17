@@ -15,19 +15,20 @@
  */
 package me.MiniDigger.CraftCore.License;
 
-import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.CraftCore.CoreMain;
+
 import org.json.simple.JSONObject;
 
 public class CoreLicenseHandler implements LicenseHandler {
 	
-	private final String	licence	     = ((CoreMain) Core.getCore().getInstance()).getConfig().getString("licence");
+	@SuppressWarnings("deprecation") 
+	private final String	licence	     = ((CoreMain) CoreMain.getCore().getInstance()).getConfig().getString("licence");
 	private final String	sessionToken	= generateToken();
 	
 	@Override
 	public boolean register() {
-		JSONObject result = Core.getCore().getRESTHandler().registerLicence(licence, sessionToken);
+		@SuppressWarnings("deprecation") JSONObject result = CoreMain.getCore().getRESTHandler().registerLicence(licence, sessionToken);
 		String tokenR = (String) result.get("token");
 		return tokenR.equalsIgnoreCase(sessionToken);
 	}
@@ -49,7 +50,8 @@ public class CoreLicenseHandler implements LicenseHandler {
 	public void performCheckSync() {
 		String token = generateToken();
 		
-		JSONObject result = Core.getCore().getRESTHandler().checkLicence(licence, Core.getCore().getBaseUtil().encode(token), sessionToken);
+		@SuppressWarnings("deprecation") JSONObject result = CoreMain.getCore().getRESTHandler()
+		        .checkLicence(licence, CoreMain.getCore().getBaseUtil().encode(token), sessionToken);
 		String tokenR = (String) result.get("token");
 		if (!checkToken(tokenR, token)) {
 			System.out.println("CHECK FAILED, KILL ADDONS,PLUGIN AND MAYBE SERVER");
@@ -65,18 +67,20 @@ public class CoreLicenseHandler implements LicenseHandler {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private String generateToken() {
 		String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String token = "";
-		int rnd = Core.getCore().getRandomUtil().nextInt(40) + 15;
+		int rnd = CoreMain.getCore().getRandomUtil().nextInt(40) + 15;
 		for (int i = 0; i < rnd; i++) {
-			token += chars.charAt(Core.getCore().getRandomUtil().nextInt(chars.length() - 1));
+			token += chars.charAt(CoreMain.getCore().getRandomUtil().nextInt(chars.length() - 1));
 		}
 		return token;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private boolean checkToken(String tokenR, String token) {
-		tokenR = Core.getCore().getBaseUtil().decode(tokenR);
+		tokenR = CoreMain.getCore().getBaseUtil().decode(tokenR);
 		String read = "";
 		String readOld = "";
 		String key = "";
