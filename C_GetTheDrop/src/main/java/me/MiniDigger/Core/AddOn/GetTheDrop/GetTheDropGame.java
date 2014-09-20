@@ -1,7 +1,7 @@
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.Feature;
+import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
@@ -45,10 +45,10 @@ public class GetTheDropGame extends CoreGame {
 		vote.setNextPhase(countdown);
 		lobby.setNextPhase(vote);
 		
-		((MapFeature) lobby.getFeature(Feature.MAP)).setMap("GTD_Lobby");
-		((MapFeature) vote.getFeature(Feature.MAP)).setMap("GTD_Lobby");
-		((MapFeature) countdown.getFeature(Feature.MAP)).setMap("GTD_Arena");
-		((MapFeature) one.getFeature(Feature.MAP)).setMap("GTD_Arena");
+		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("GTD_Lobby");
+		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("GTD_Lobby");
+		((MapFeature) countdown.getFeature(FeatureType.MAP)).setMap("GTD_Arena");
+		((MapFeature) one.getFeature(FeatureType.MAP)).setMap("GTD_Arena");
 		
 		setPhase(lobby);
 		super.init();
@@ -60,11 +60,11 @@ public class GetTheDropGame extends CoreGame {
 			final User w = winner[0];
 			if (w != null) {
 				
-				w.sendMessage(game.getPrefix().getPrefix().then("Du hast gewonnen!").color(ChatColor.GOLD));
+				w.sendMessage(getPrefix().then("Du hast gewonnen!").color(ChatColor.GOLD));
 				Core.getCore()
 				        .getInstance()
 				        .broadcast(
-				                game.getPrefix().then("Der Spieler ").color(ChatColor.GOLD).then(w.getDisplayName()).color(ChatColor.AQUA).then(" hat gewonnen!")
+				                getPrefix().then("Der Spieler ").color(ChatColor.GOLD).then(w.getDisplayName()).color(ChatColor.AQUA).then(" hat gewonnen!")
 				                        .color(ChatColor.GOLD));
 				leave(w);
 			} else {
@@ -73,7 +73,7 @@ public class GetTheDropGame extends CoreGame {
 		} else {
 			System.out.println("no winner?! " + winner.length);
 		}
-		Core.getCore().getInstance().broadcast(game.getPrefix().then("Das Spiel ist vorbei!").color(ChatColor.GOLD));
+		Core.getCore().getInstance().broadcast(getPrefix().then("Das Spiel ist vorbei!").color(ChatColor.GOLD));
 		super.end(winner);
 		Core.getCore().getShutdownUtil().doShutdown();
 	}
