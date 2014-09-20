@@ -7,10 +7,10 @@
 		<version>parent</version>
 	</parent>
 	<groupId>me.MiniDigger.Core.AddOn</groupId>
-	<artifactId>C_GetTheDrop</artifactId>
-	<name>C_GetTheDrop</name>
-	<description>GAME: A 2 phase pvp game</description>
-
+	<artifactId>C_Hub</artifactId>
+	<name>C_Hub</name>
+	<description>A hub AddOn</description>
+	
 	<dependencies>
 		<dependency>
 			<groupId>me.MiniDigger.Core</groupId>

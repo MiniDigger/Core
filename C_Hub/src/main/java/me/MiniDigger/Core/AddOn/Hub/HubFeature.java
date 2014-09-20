@@ -1,4 +1,4 @@
-package me.MiniDigger.CraftCore.Feature.Features;
+package me.MiniDigger.Core.AddOn.Hub;
 
 import java.util.ArrayList;
 import java.util.HashMap;

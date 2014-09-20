@@ -37,6 +37,7 @@
 		<module>C_CraftCore</module>
 		<module>C_Build</module>
 		<module>C_GetTheDrop</module>
+		<module>C_Hub</module>
 	</modules>
 
 	<build>
