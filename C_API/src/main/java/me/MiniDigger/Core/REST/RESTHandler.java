@@ -60,7 +60,7 @@ public interface RESTHandler {
 	 * @param sessionToken 
      * @return
      */
-    JSONObject checkLicence(String licence, String token, String sessionToken);
+    String checkLicence(String licence, String token, String sessionToken);
 
 	/**
      * @param licence

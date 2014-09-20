@@ -20,6 +20,7 @@ import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class CoreLicenseHandler implements LicenseHandler {
 	
@@ -60,11 +61,24 @@ public class CoreLicenseHandler implements LicenseHandler {
 	public void performCheckSync() {
 		String token = generateToken();
 		
-		JSONObject result = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
+		String s = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
 		
-		if (result == null) {
+		if (s == null) {
 			CoreMain.getCore().getCommonMethods().killPlugin();
 			return;
+		}
+		
+		JSONObject result;
+		try {
+			result = (JSONObject) new JSONParser().parse(s);
+		} catch (Exception ex) {
+			if (!checkToken(s, token)) {
+				CoreMain.getCore().getInstance().error(s);
+				CoreMain.getCore().getCommonMethods().killPlugin();
+				return;
+			} else {
+				return;
+			}
 		}
 		
 		String tokenR = (String) result.get("result");
@@ -100,6 +114,9 @@ public class CoreLicenseHandler implements LicenseHandler {
 		String readOld = "";
 		String key = "";
 		boolean keyEnd = false;
+//		System.out.println("TK: " + token);
+//		System.out.println("TR: " + tokenR);
+//		System.out.println("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
 		for (int i = 0; i < tokenR.length(); i++) {
 			read += tokenR.charAt(i);
 			if (!token.startsWith(read) && !keyEnd) {
@@ -113,11 +130,23 @@ public class CoreLicenseHandler implements LicenseHandler {
 			} else {
 				readOld += tokenR.charAt(i);
 			}
+//			System.out.println("read: " + read);
+//			System.out.println("readOld: " + readOld);
+//			System.out.println("key: " + key);
 		}
-		if (key.equals("MiniDiggerTheBoss") && readOld.equals(token)) {
-			return true;
-		} else {
-			return false;
+		
+//		System.out.println("END");
+//		System.out.println("Key: " + key);
+//		System.out.println("readold: " + readOld);
+//		System.out.println("read: " + read);
+//		System.out.println("token: " + token);
+		if (key.equals("MiniDiggerTheBoss")) {
+//			System.out.println("key right");
+			if (readOld.equals(token)) {
+//				System.out.println("token right");
+				return true;
+			}
 		}
+		return false;
 	}
 }

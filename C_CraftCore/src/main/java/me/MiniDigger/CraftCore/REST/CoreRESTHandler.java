@@ -85,14 +85,14 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
-	public JSONObject checkLicence(String licence, String token, String sessionToken) {
+	public String checkLicence(String licence, String token, String sessionToken) {
 		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token + "/" + sessionToken);
 		
 		if (!checkResponse(response, "Could not request licenceCheck")) {
 			return null;
 		}
 		
-		return (JSONObject) response.get("result");
+		return (String) response.get("result");
 	}
 	
 	@Override
