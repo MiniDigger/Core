@@ -36,6 +36,8 @@ package me.MiniDigger.CraftCore.Phase;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Phase.TimedPhase;
 
 import org.bukkit.Bukkit;
@@ -51,6 +53,19 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 	private float	   sub;
 	private float	   subbed;
 	
+    public CoreTimedPhase(Game game, Phase nextPhase, int time) {
+	   super(game, nextPhase);
+	   this.secs = time;
+    }
+    
+    public void setSecs(int secs){
+    	this.secs = secs;
+    }
+    
+    public int getSecs(){
+    	return secs;
+    }
+
 	@Override
 	public void startPhase() {
 		super.startPhase();
