@@ -42,13 +42,13 @@ public class Basic extends CoreAddOn {
 	}
 	
 	@Command(name = "basic")
-	public void yeah(CommandArgs args) {
+	public void yeah(final CommandArgs args) {
 		args.getSender().sendMessage("YEAH!");
 	}
 	
 	@Completer(name = "basic")
-	public List<String> testCompleter(CommandArgs args) {
-		List<String> list = new ArrayList<String>();
+	public List<String> testCompleter(final CommandArgs args) {
+		final List<String> list = new ArrayList<String>();
 		list.add("Hello");
 		return list;
 	}

@@ -32,7 +32,6 @@ import me.MiniDigger.CraftCore.Update.CorePluginVersion;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class CoreRESTHandler implements RESTHandler {
 	
@@ -43,12 +42,12 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
-	public URL showFile(String name, String version) {
+	public URL showFile(final String name, final String version) {
 		URL classUrl;
 		try {
 			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name + "/" + version);
 			return classUrl;
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 		}
 		return null;
@@ -85,8 +84,8 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
-	public String checkLicence(String licence, String token, String sessionToken) {
-		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token + "/" + sessionToken);
+	public String checkLicence(final String licence, final String token, final String sessionToken) {
+		final JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token + "/" + sessionToken);
 		
 		if (!checkResponse(response, "Could not request licenceCheck")) {
 			return null;
@@ -96,18 +95,18 @@ public class CoreRESTHandler implements RESTHandler {
 	}
 	
 	@Override
-	public JSONObject registerLicence(String licence, String sessionToken) {
-		JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/register/" + licence + "/" + sessionToken);
+	public JSONObject registerLicence(final String licence, final String sessionToken) {
+		final JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/register/" + licence + "/" + sessionToken);
 		
 		if (!checkResponse(response, "Could not register licence")) {
 			return null;
 		}
 		
-		return (JSONObject) response;
+		return response;
 	}
 	
 	@Override
-	public AddOnBean checkUpdate(AddOnBean bean) {
+	public AddOnBean checkUpdate(final AddOnBean bean) {
 		final JSONObject response = get("v1/addOns/checkupdate/" + bean.getName() + "/" + bean.getVersion());
 		
 		if (!checkResponse(response, "Could not request updateCheck")) {
@@ -129,7 +128,7 @@ public class CoreRESTHandler implements RESTHandler {
 			return bean;
 		}
 		
-		JSONObject result = (JSONObject) response.get("result");
+		final JSONObject result = (JSONObject) response.get("result");
 		if (result.get("update") == Boolean.TRUE) {
 			bean.setVersion((String) result.get("version"));
 		} else {
@@ -215,7 +214,7 @@ public class CoreRESTHandler implements RESTHandler {
 		return result;
 	}
 	
-	private boolean checkResponse(JSONObject response, String msg) {
+	private boolean checkResponse(final JSONObject response, final String msg) {
 		if (response == null || response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error(msg);
 			try {

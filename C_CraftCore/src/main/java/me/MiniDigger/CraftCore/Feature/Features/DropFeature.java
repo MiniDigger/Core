@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class DropFeature extends CoreFeature {
 	
-	public DropFeature(Phase phase) {
+	public DropFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -46,19 +46,19 @@ public class DropFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		
 		HashMap<String, Location> n = data.getLocs(DyeColor.YELLOW);
 		try {
 			normal = n.values().toArray(new Location[n.values().size()]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("No normal drop points found");
 		}
 		
 		try {
 			n = data.getLocs(DyeColor.LIME);
 			special = n.values().toArray(new Location[n.values().size()]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("No special drop points found");
 		}
 	}
@@ -69,14 +69,14 @@ public class DropFeature extends CoreFeature {
 		special = null;
 	}
 	
-	public void drop(boolean special) {
+	public void drop(final boolean special) {
 		if (special) {
-			for (Location loc : this.special) {
+			for (final Location loc : this.special) {
 				loc.getWorld().dropItem(loc, getSpecialItem());
 			}
 		} else {
 			for (int i = 0; i < getPhase().getGame().getPlayers().size(); i++) {
-				Location loc = normal[Core.getCore().getRandomUtil().nextInt(normal.length)];
+				final Location loc = normal[Core.getCore().getRandomUtil().nextInt(normal.length)];
 				loc.getWorld().dropItemNaturally(loc, getNormalItem());
 			}
 		}
@@ -107,7 +107,7 @@ public class DropFeature extends CoreFeature {
 	private ItemStack getSpecialItem() {
 		final Material[] mats = new Material[] { Material.BOW, Material.IRON_SWORD, Material.DIAMOND };
 		
-		ItemStack is = new ItemStack(mats[Core.getCore().getRandomUtil().nextInt(mats.length)]);
+		final ItemStack is = new ItemStack(mats[Core.getCore().getRandomUtil().nextInt(mats.length)]);
 		
 		return is;
 	}

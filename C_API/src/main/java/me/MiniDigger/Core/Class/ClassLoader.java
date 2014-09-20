@@ -44,7 +44,7 @@ public interface ClassLoader {
 	 *            The REST url
 	 * @param name
 	 *            The class name
-	 * @return 
+	 * @return
 	 */
-	Class<?> load(URL url, String name);
+	Class<?> load(final URL url, final String name);
 }

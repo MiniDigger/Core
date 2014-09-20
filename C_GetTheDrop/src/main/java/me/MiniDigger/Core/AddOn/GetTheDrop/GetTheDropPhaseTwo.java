@@ -1,14 +1,27 @@
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
+import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Util.EntityUtil;
+import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
+import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
+import me.MiniDigger.CraftCore.Feature.Features.DropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LastManStandingFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 
 import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 public class GetTheDropPhaseTwo extends TimedPhase {
 	
-	public GetTheDropPhaseTwo(Game game, Phase next, int secs) {
+	public GetTheDropPhaseTwo(final Game game, final Phase next, final int secs) {
 		super(game, next, secs);
 		init();
 	}
@@ -53,7 +66,7 @@ public class GetTheDropPhaseTwo extends TimedPhase {
 		getGame().broadCastMessage(game.getPrefix().then("Die Zweite Phase hat begonnen!").color(ChatColor.AQUA));
 		getGame().broadCastMessage(game.getPrefix().then("Töte deine Gegner!").color(ChatColor.AQUA));
 		getGame().broadCastMessage(game.getPrefix().then("Achte auf die Drops an den Altaren!").color(ChatColor.AQUA));
-		String winner = getGame().getGameData("VoteWinner");
+		final String winner = getGame().getGameData("VoteWinner");
 		System.out.println("winner = " + winner);
 		((MapFeature) getFeature(Feature.MAP)).setMap(winner);
 		super.startPhase();
@@ -62,7 +75,7 @@ public class GetTheDropPhaseTwo extends TimedPhase {
 	@Override
 	public void endPhase() {
 		getGame().broadCastMessage(game.getPrefix().then("Die Götter haben Items hinterlassen!").color(ChatColor.AQUA));
-		DropFeature drop = (DropFeature) getFeature(Feature.DROP);
+		final DropFeature drop = (DropFeature) getFeature(Feature.DROP);
 		drop.drop(true);
 		super.endPhase();
 	}

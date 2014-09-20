@@ -61,9 +61,9 @@ public interface CommonMethods {
 	 *            the user to print the message
 	 */
 	public void printJoinMessage(final User user);
-
+	
 	/**
-     * Beendet das plugin
-     */
-    void killPlugin();
+	 * Beendet das plugin
+	 */
+	void killPlugin();
 }

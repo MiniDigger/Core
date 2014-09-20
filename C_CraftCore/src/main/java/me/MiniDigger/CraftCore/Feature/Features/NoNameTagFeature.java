@@ -16,7 +16,7 @@ import org.bukkit.event.EventHandler;
 
 public class NoNameTagFeature extends CoreFeature {
 	
-	public NoNameTagFeature(Phase phase) {
+	public NoNameTagFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -42,27 +42,27 @@ public class NoNameTagFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			Core.getCore().getNametagHandler().hideTag(Bukkit.getPlayer(id));
 		}
 	}
 	
 	@Override
 	public void end() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			Core.getCore().getNametagHandler().showNametag(Bukkit.getPlayer(id));
 		}
 	}
 	
 	@EventHandler
-	public void onJoin(UserJoinGameEvent e) {
+	public void onJoin(final UserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			Core.getCore().getNametagHandler().hideTag(Bukkit.getPlayer(e.getUser().getUUID()));
 		}
 	}
 	
 	@EventHandler
-	public void onLeave(UserLeaveGameEvent e) {
+	public void onLeave(final UserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			Core.getCore().getNametagHandler().showNametag(Bukkit.getPlayer(e.getUser().getUUID()));
 		}

@@ -112,12 +112,12 @@ public class AddOnCommands {
 		AddOnBean bean = new CoreAddOnBean();
 		bean.setName(name);
 		
-		if(args.getArgs().length == 2){
-			 version = args.getArgs()[1];
-			 bean.setVersion(version);
+		if (args.getArgs().length == 2) {
+			version = args.getArgs()[1];
+			bean.setVersion(version);
 		}
 		
-		bean = Core.getCore().getRESTHandler().requestInfos(bean, version ==null ? false : true);
+		bean = Core.getCore().getRESTHandler().requestInfos(bean, version == null ? false : true);
 		
 		if (bean.getVersion() == null || bean.getAuthor() == null) {
 			Prefix.ADDON.getPrefix().then("AddOn wurde nicht gefunden!").color(ChatColor.RED).send(args.getSender());

@@ -34,10 +34,10 @@
 package me.MiniDigger.Core.Class;
 
 public interface ClassHandler {
-
+	
 	/**
-     * @return
-     */
-    ClassLoader getLoader();
+	 * @return
+	 */
+	ClassLoader getLoader();
 	
 }

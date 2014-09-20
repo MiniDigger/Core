@@ -19,7 +19,7 @@ import org.bukkit.util.Vector;
 
 public class JumpPadFeature extends CoreFeature {
 	
-	public JumpPadFeature(Phase phase) {
+	public JumpPadFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -55,7 +55,7 @@ public class JumpPadFeature extends CoreFeature {
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onStep(PlayerInteractEvent event) {
+	public void onStep(final PlayerInteractEvent event) {
 		if (!getPhase().getGame().getPlayers().contains(event.getPlayer().getUniqueId())) {
 			return;
 		}

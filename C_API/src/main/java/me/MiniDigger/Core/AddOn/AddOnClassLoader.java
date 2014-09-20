@@ -17,29 +17,28 @@ package me.MiniDigger.Core.AddOn;
 
 import java.util.Set;
 
-
 /**
  * @author Martin
- *
+ * 
  */
 public interface AddOnClassLoader {
-
+	
 	/**
-     * @param name
-     * @param b
-     * @return
-	 * @throws ClassNotFoundException 
-     */
-    Class<?> findClass(String name, boolean b) throws ClassNotFoundException;
-
+	 * @param name
+	 * @param b
+	 * @return
+	 * @throws ClassNotFoundException
+	 */
+	Class<?> findClass(final String name, final boolean b) throws ClassNotFoundException;
+	
 	/**
-     * @return
-     */
-    AddOn getAddOn();
-
+	 * @return
+	 */
+	AddOn getAddOn();
+	
 	/**
-     * @return
-     */
-    Set<String> getClasses();
-	//TODO Insdert missing api
+	 * @return
+	 */
+	Set<String> getClasses();
+	// TODO Insdert missing api
 }

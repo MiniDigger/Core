@@ -48,8 +48,11 @@ public class CoreMirrorHandler implements MirrorHandler {
 	private MirrorReviever	    reviever;
 	private MirrorSender	    sender;
 	
+	@Override
 	public void init() {
-		if(true)return;//TODO Mirror?!
+		if (true) {
+			return;// TODO Mirror?!
+		}
 		try {
 			if (System.getProperty("mirrorserver") != null && System.getProperty("mirrorserver").equalsIgnoreCase("true")) {
 				sender = new CoreMirrorSender();
@@ -61,38 +64,40 @@ public class CoreMirrorHandler implements MirrorHandler {
 			} else {
 				return;
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("ex" + ex.getMessage());
 			return;
 		}
 		
 		new CoreEventHandler().init();
-		if (true) return;
+		if (true) {
+			return;
+		}
 		
-		AdapterParameteters params = new AdapterParameteters();
-		Set<PacketType> types = new HashSet<PacketType>();
-		for (PacketType type : PacketType.values()) {
+		final AdapterParameteters params = new AdapterParameteters();
+		final Set<PacketType> types = new HashSet<PacketType>();
+		for (final PacketType type : PacketType.values()) {
 			types.add(type);
 		}
 		params.gamePhase(GamePhase.PLAYING).optionAsync().plugin((Plugin) Core.getCore().getInstance()).serverSide().types(types);
 		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(params) {
 			
 			@Override
-			public void onPacketSending(PacketEvent event) {
+			public void onPacketSending(final PacketEvent event) {
 				try {
 					// printInformation(event);
 					System.out.println("got " + event.getPacketType().name());
 					sender.send(event);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					
 				}
 			}
 			
 			@Override
-			public void onPacketReceiving(PacketEvent event) {
+			public void onPacketReceiving(final PacketEvent event) {
 				try {
 					// printInformation(event);
-				} catch (Exception e) {
+				} catch (final Exception e) {
 					
 				}
 			}
@@ -109,22 +114,22 @@ public class CoreMirrorHandler implements MirrorHandler {
 		return sender;
 	}
 	
-	private void printInformation(PacketEvent event) {
-		String verb = event.isServerPacket() ? "Sent" : "Received";
-		String format = event.isServerPacket() ? "%s %s to %s" : "%s %s from %s";
+	private void printInformation(final PacketEvent event) {
+		final String verb = event.isServerPacket() ? "Sent" : "Received";
+		final String format = event.isServerPacket() ? "%s %s to %s" : "%s %s from %s";
 		
-		String shortDescription = String.format(format, event.isCancelled() ? "Cancelled" : verb, event.getPacketType(), event.getPlayer().getName());
+		final String shortDescription = String.format(format, event.isCancelled() ? "Cancelled" : verb, event.getPacketType(), event.getPlayer().getName());
 		
 		try {
 			Core.getCore().getInstance().info(shortDescription + ":\n" + getPacketDescription(event.getPacket()));
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			Core.getCore().getInstance().error("Unable to use reflection.");
 			e.printStackTrace();
 		}
 	}
 	
-	public String getPacketDescription(PacketContainer packetContainer) throws IllegalAccessException {
-		Object packet = packetContainer.getHandle();
+	public String getPacketDescription(final PacketContainer packetContainer) throws IllegalAccessException {
+		final Object packet = packetContainer.getHandle();
 		Class<?> clazz = packet.getClass();
 		
 		// Get the first Minecraft super class
@@ -135,8 +140,8 @@ public class CoreMirrorHandler implements MirrorHandler {
 		return PrettyPrinter.printObject(packet, clazz, MinecraftReflection.getPacketClass(), PrettyPrinter.RECURSE_DEPTH, new ObjectPrinter() {
 			
 			@Override
-			public boolean print(StringBuilder output, Object value) {
-				EquivalentConverter<Object> converter = findConverter(value.getClass());
+			public boolean print(final StringBuilder output, final Object value) {
+				final EquivalentConverter<Object> converter = findConverter(value.getClass());
 				if (converter != null) {
 					output.append(converter.getSpecific(value));
 					return true;
@@ -147,15 +152,16 @@ public class CoreMirrorHandler implements MirrorHandler {
 	}
 	
 	private EquivalentConverter<Object> findConverter(Class<?> clazz) {
-		Map<Class<?>, EquivalentConverter<Object>> converters = BukkitConverters.getConvertersForGeneric();
+		final Map<Class<?>, EquivalentConverter<Object>> converters = BukkitConverters.getConvertersForGeneric();
 		
 		while (clazz != null) {
-			EquivalentConverter<Object> result = converters.get(clazz);
+			final EquivalentConverter<Object> result = converters.get(clazz);
 			
-			if (result != null)
+			if (result != null) {
 				return result;
-			else
+			} else {
 				clazz = clazz.getSuperclass();
+			}
 		}
 		return null;
 	}

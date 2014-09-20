@@ -67,5 +67,5 @@ public interface AddOnBean {
 	 * @param classPackage
 	 *            sets the path to the main class in the jar
 	 */
-	public void setPackage(String classPackage);
+	public void setPackage(final String classPackage);
 }

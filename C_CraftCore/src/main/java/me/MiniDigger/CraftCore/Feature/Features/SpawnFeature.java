@@ -24,19 +24,19 @@ public class SpawnFeature extends CoreFeature {
 	
 	private boolean	spawn;
 	
-	public SpawnFeature(Phase phase, boolean spawn) {
+	public SpawnFeature(final Phase phase, final boolean spawn) {
 		super(phase);
 		this.spawn = spawn;
 	}
 	
 	private List<Location>	usedSpawns;
-	private Location[]	        spawns;
+	private Location[]	   spawns;
 	
-	public boolean spawn(){
+	public boolean spawn() {
 		return spawn;
 	}
 	
-	public void setSpawn(boolean spawn){
+	public void setSpawn(final boolean spawn) {
 		this.spawn = spawn;
 	}
 	
@@ -47,7 +47,7 @@ public class SpawnFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -65,11 +65,11 @@ public class SpawnFeature extends CoreFeature {
 	@Override
 	public void start() {
 		usedSpawns = new ArrayList<>();
-		MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		HashMap<String, Location> spawns = data.getLocs(DyeColor.RED);
+		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+		final HashMap<String, Location> spawns = data.getLocs(DyeColor.RED);
 		this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
 		if (spawn) {
-			for (UUID id : getPhase().getGame().getPlayers()) {
+			for (final UUID id : getPhase().getGame().getPlayers()) {
 				spawn(Core.getCore().getUserHandler().get(id));
 			}
 		}
@@ -81,13 +81,13 @@ public class SpawnFeature extends CoreFeature {
 		spawns = null;
 	}
 	
-	public Location spawn(User user) {
+	public Location spawn(final User user) {
 		if (usedSpawns.size() >= spawns.length) {
 			usedSpawns = new ArrayList<>();
 		}
 		int counter = 0;// To prevent invinitiv loop
 		while (true) {
-			Location loc = spawns[Core.getCore().getRandomUtil().nextInt(spawns.length)];
+			final Location loc = spawns[Core.getCore().getRandomUtil().nextInt(spawns.length)];
 			if (loc == null) {
 				counter++;
 				continue;
@@ -108,14 +108,14 @@ public class SpawnFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onJoin(UserJoinGameEvent e) {
+	public void onJoin(final UserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			spawn(e.getUser());
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
-	public void onDeath(UserDeathEvent e) {
+	public void onDeath(final UserDeathEvent e) {
 		if (!e.shouldRespawn()) {
 			return;
 		}
@@ -125,8 +125,8 @@ public class SpawnFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onRespawn(PlayerRespawnEvent e) {
-		User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+	public void onRespawn(final PlayerRespawnEvent e) {
+		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (getPhase().getGame().getPlayers().contains(user.getUUID())) {
 			e.setRespawnLocation(spawn(user));
 		}

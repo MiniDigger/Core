@@ -79,7 +79,7 @@ public interface UserDamageEvent {
 	 * @param cancel
 	 *            If the event should be canceled or not
 	 */
-	public void setCanceled(boolean cancel);
+	public void setCanceled(final boolean cancel);
 	
 	/**
 	 * @return If the event should be canceled or not

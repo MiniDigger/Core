@@ -89,7 +89,7 @@ public class CoreAddOnBean implements AddOnBean {
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject toJson() {
-		JSONObject obj = new JSONObject();
+		final JSONObject obj = new JSONObject();
 		
 		obj.put("name", name);
 		obj.put("version", version);

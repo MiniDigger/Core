@@ -15,19 +15,19 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class FixedWeatherFeature extends CoreFeature {
 	
-	private String	                    world;
+	private String	    world;
 	private WeatherType	weather;
 	
-	public FixedWeatherFeature(Phase phase, WeatherType weather) {
+	public FixedWeatherFeature(final Phase phase, final WeatherType weather) {
 		super(phase);
 		this.weather = weather;
 	}
 	
-	public WeatherType getWeatherType(){
+	public WeatherType getWeatherType() {
 		return weather;
 	}
 	
-	public void setWeatherType(WeatherType type){
+	public void setWeatherType(final WeatherType type) {
 		weather = type;
 	}
 	
@@ -38,7 +38,7 @@ public class FixedWeatherFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -55,10 +55,10 @@ public class FixedWeatherFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
+		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		world = m.getMap().getName();
 		
-		World w = Bukkit.getWorld(world);
+		final World w = Bukkit.getWorld(world);
 		switch (weather) {
 		case CLEAR:
 			w.setStorm(false);
@@ -77,7 +77,7 @@ public class FixedWeatherFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onWeatherChange(WeatherChangeEvent e) {
+	public void onWeatherChange(final WeatherChangeEvent e) {
 		if (e.getWorld().getName().equals(world)) {
 			e.setCancelled(true);
 		}

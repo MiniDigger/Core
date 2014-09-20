@@ -52,7 +52,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.bobacadodl.imgmessage.ImageChar;
 import com.bobacadodl.imgmessage.ImageMessage;
@@ -113,7 +112,7 @@ public class CoreCommonMethods implements CommonMethods {
 	}
 	
 	@Override
-	public void killPlugin(){
+	public void killPlugin() {
 		System.out.println("The Plugin decided to kill itselves");
 		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());

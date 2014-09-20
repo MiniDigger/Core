@@ -36,39 +36,39 @@ public class CoreAddOnClassLoader extends URLClassLoader implements AddOnClassLo
 	private final Map<String, Class<?>>	classes	= new HashMap<String, Class<?>>();
 	private final CoreAddOn	            plugin;
 	
-	public CoreAddOnClassLoader(final ClassLoader parent, String main, URL url) throws InvalidPluginException, MalformedURLException {
+	public CoreAddOnClassLoader(final ClassLoader parent, final String main, final URL url) throws InvalidPluginException, MalformedURLException {
 		super(new URL[] { url }, parent);
 		
 		try {
 			Class<?> jarClass;
 			try {
 				jarClass = Class.forName(main, true, this);
-			} catch (ClassNotFoundException ex) {
+			} catch (final ClassNotFoundException ex) {
 				throw new InvalidPluginException("Cannot find main class `" + main + "'", ex);
 			}
 			
 			Class<? extends CoreAddOn> pluginClass;
 			try {
 				pluginClass = jarClass.asSubclass(CoreAddOn.class);
-			} catch (ClassCastException ex) {
+			} catch (final ClassCastException ex) {
 				throw new InvalidPluginException("main class `" + main + "' does not extend CoreAddOn", ex);
 			}
 			
 			plugin = pluginClass.newInstance();
-		} catch (IllegalAccessException ex) {
+		} catch (final IllegalAccessException ex) {
 			throw new InvalidPluginException("No public constructor", ex);
-		} catch (InstantiationException ex) {
+		} catch (final InstantiationException ex) {
 			throw new InvalidPluginException("Abnormal plugin type", ex);
 		}
 	}
 	
 	@Override
-	protected Class<?> findClass(String name) throws ClassNotFoundException {
+	protected Class<?> findClass(final String name) throws ClassNotFoundException {
 		return findClass(name, true);
 	}
 	
 	@Override
-	public Class<?> findClass(String name, boolean checkGlobal) throws ClassNotFoundException {
+	public Class<?> findClass(final String name, final boolean checkGlobal) throws ClassNotFoundException {
 		if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
 			throw new ClassNotFoundException(name);
 		}

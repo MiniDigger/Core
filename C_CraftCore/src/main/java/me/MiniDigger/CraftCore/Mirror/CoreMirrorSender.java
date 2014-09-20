@@ -22,35 +22,31 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.util.com.google.gson.Gson;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import me.MiniDigger.Core.Mirror.MirrorSender;
+import net.minecraft.util.com.google.gson.Gson;
 
 public class CoreMirrorSender implements MirrorSender {
 	
-	private ServerSocket	   socket;
-	private List<ClientThread>	clients	= new ArrayList<>();
+	private ServerSocket	         socket;
+	private final List<ClientThread>	clients	= new ArrayList<>();
 	
 	@Override
-	public void init(int port) {
+	public void init(final int port) {
 		new ServerThread(port).start();
 	}
 	
 	@Override
-	public void send(Object event) {
-		for (ClientThread thread : clients) {
+	public void send(final Object event) {
+		for (final ClientThread thread : clients) {
 			thread.send(event);
 		}
 	}
 	
 	private class ServerThread extends Thread {
 		
-		private int	port;
+		private final int	port;
 		
-		public ServerThread(int port) {
+		public ServerThread(final int port) {
 			setName("MirrorServerThread");
 			this.port = port;
 		}
@@ -63,12 +59,12 @@ public class CoreMirrorSender implements MirrorSender {
 				Socket client;
 				while ((client = socket.accept()) != null) {
 					System.out.println("client connected");
-					ClientThread thread = new ClientThread(client);
+					final ClientThread thread = new ClientThread(client);
 					thread.start();
 					clients.add(thread);
 				}
 				socket.close();
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 		}
@@ -77,12 +73,12 @@ public class CoreMirrorSender implements MirrorSender {
 	private class ClientThread extends Thread {
 		
 		// TODO is this cool?
-		private Socket	client;
+		private final Socket	client;
 		
 		/**
 		 * @param accept
 		 */
-		public ClientThread(Socket accept) {
+		public ClientThread(final Socket accept) {
 			setName("MirrorClientThread");
 			client = accept;
 		}
@@ -90,11 +86,11 @@ public class CoreMirrorSender implements MirrorSender {
 		/**
 		 * @param event
 		 */
-		public void send(Object event) {
+		public void send(final Object event) {
 			try {
-				ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+				final ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
 				out.writeObject(new Gson().toJson(event));
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		}

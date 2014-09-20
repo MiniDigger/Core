@@ -13,12 +13,12 @@ public class MapFeature extends CoreFeature {
 	
 	private MapData	map;
 	
-	public MapFeature(Phase phase, String map) {
+	public MapFeature(final Phase phase, final String map) {
 		super(phase);
 		setMap(map);
 	}
 	
-	public MapData getMap(){
+	public MapData getMap() {
 		return map;
 	}
 	
@@ -34,7 +34,7 @@ public class MapFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getSoftDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.VOTE);
 		return result;
 	}
@@ -56,7 +56,7 @@ public class MapFeature extends CoreFeature {
 		map = null;
 	}
 	
-	public void setMap(String map) {
+	public void setMap(final String map) {
 		if (map == null) {
 			return;
 		}

@@ -25,17 +25,17 @@ public class LobbyPhase extends CorePhase {
 	
 	private int	players;
 	
-	public LobbyPhase(Game game, Phase nextPhase, int players) {
+	public LobbyPhase(final Game game, final Phase nextPhase, final int players) {
 		super(game, nextPhase);
 		this.players = players;
 		init();
 	}
 	
-	public int getPlayers(){
+	public int getPlayers() {
 		return players;
 	}
 	
-	public void setPlayers(int players){
+	public void setPlayers(final int players) {
 		this.players = players;
 	}
 	
@@ -55,10 +55,10 @@ public class LobbyPhase extends CorePhase {
 	@Override
 	public void startPhase() {
 		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Die Lobby Phase hat begonnen.").color(ChatColor.GOLD));
-		int needed = players - getGame().getPlayers().size();
+		final int needed = players - getGame().getPlayers().size();
 		if (needed > 0) {
-			mkremins.fanciful.FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD).then("" + needed)
-			        .color(ChatColor.YELLOW).then(" Spieler zum starten ben").color(ChatColor.GOLD).then("\u00f6").color(ChatColor.GOLD).then("tigt.")
+			final mkremins.fanciful.FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD)
+			        .then("" + needed).color(ChatColor.YELLOW).then(" Spieler zum starten ben").color(ChatColor.GOLD).then("\u00f6").color(ChatColor.GOLD).then("tigt.")
 			        .color(ChatColor.GOLD);
 			getGame().broadCastMessage(msg);
 			System.out.println(msg.toJSONString());
@@ -106,11 +106,11 @@ public class LobbyPhase extends CorePhase {
 	}
 	
 	@EventHandler
-	public void onUserJoinGame(UserJoinGameEvent event) {
+	public void onUserJoinGame(final UserJoinGameEvent event) {
 		if (game.getIdentifier().equals(event.getGame().getIdentifier())) {
 			getGame().broadCastMessage(
 			        Prefix.getByGameType(getGame().getType()).getPrefix().then(event.getUser().getDisplayName() + " ist dem Spiel beigetreten").color(ChatColor.GOLD));
-			int needed = players - getGame().getPlayers().size();
+			final int needed = players - getGame().getPlayers().size();
 			getGame().broadCastMessage(
 			        Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD).then("" + needed).color(ChatColor.YELLOW)
 			                .then(" Spieler zum starten benötigt."));

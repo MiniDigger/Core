@@ -25,7 +25,7 @@ import org.bukkit.WeatherType;
 
 public class VotePhase extends CoreTimedPhase {
 	
-	public VotePhase(Game game, Phase next, int secs) {
+	public VotePhase(final Game game, final Phase next, final int secs) {
 		super(game, next, secs);
 		init();
 	}
@@ -77,10 +77,10 @@ public class VotePhase extends CoreTimedPhase {
 	
 	@Override
 	public void endPhase() {
-		VoteFeature vote = ((VoteFeature) getFeature(FeatureType.VOTE));
+		final VoteFeature vote = ((VoteFeature) getFeature(FeatureType.VOTE));
 		vote.announceWinner();
 		
-		String map = vote.getWinner();
+		final String map = vote.getWinner();
 		getGame().setGameData("VoteWinner", map);
 		Core.getCore().getWorldHandler().copyWorld(map);
 		Core.getCore().getWorldHandler().loadWorld(map);
@@ -89,9 +89,9 @@ public class VotePhase extends CoreTimedPhase {
 		super.endPhase();
 	}
 	
-	@Command(name = "vote", description = "Votet für eine Map", permission = "vote", usage = "vote <id>",consol=false,noConsol="Nur ein Spieler kann voten!")
-	public void vote(CommandArgs args) {
-		VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
+	@Command(name = "vote", description = "Votet für eine Map", permission = "vote", usage = "vote <id>", consol = false, noConsol = "Nur ein Spieler kann voten!")
+	public void vote(final CommandArgs args) {
+		final VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
 		
 		if (args.getArgs().length == 0) {
 			f.sendVoteMessage(args.getUser());
@@ -101,7 +101,7 @@ public class VotePhase extends CoreTimedPhase {
 		int id;
 		try {
 			id = Integer.parseInt(args.getArgs()[0]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Unbekannte Map!").color(ChatColor.RED));
 			return;
 		}

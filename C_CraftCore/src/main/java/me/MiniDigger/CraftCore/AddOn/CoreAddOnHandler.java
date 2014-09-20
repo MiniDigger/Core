@@ -59,7 +59,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 		if (!addOnFile.exists()) {
 			try {
 				addOnFile.createNewFile();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -88,7 +88,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	
 	@Override
 	public void enableAddOns() {
-		for (AddOnBean b : getInstalledBeans()) {
+		for (final AddOnBean b : getInstalledBeans()) {
 			// TODO Version support
 			AddOnBean bean = new CoreAddOnBean();
 			bean.setName(b.getName());
@@ -104,7 +104,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			
 			CoreAddOnClassLoader loader;
 			try {
-				URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
+				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
 				System.out.println(url.toExternalForm());
 				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), url);
 			} catch (MalformedURLException | InvalidPluginException e) {
@@ -118,7 +118,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			active.add(loader.getAddOn());
 		}
 		
-		for (AddOn addon : active) {
+		for (final AddOn addon : active) {
 			Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
 			addon.enable();
 		}
@@ -126,23 +126,23 @@ public class CoreAddOnHandler implements AddOnHandler {
 	
 	@Override
 	public void disableAddOns() {
-		for (AddOn addon : active) {
+		for (final AddOn addon : active) {
 			Core.getCore().getInstance().info("Disabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
 			addon.disable();
-			AddOnClassLoader loader = loaders.get(addon.getName());
+			final AddOnClassLoader loader = loaders.get(addon.getName());
 			loaders.remove(addon.getName());
 			
-			for (String s : loader.getClasses()) {
+			for (final String s : loader.getClasses()) {
 				removeClass(s);
 			}
 		}
 	}
 	
 	@Override
-	public boolean update(String name) {
-		for (AddOnBean addon : getInstalledBeans()) {
+	public boolean update(final String name) {
+		for (final AddOnBean addon : getInstalledBeans()) {
 			if (addon.getName().equalsIgnoreCase(name)) {
-				AddOnBean bean = Core.getCore().getRESTHandler().checkUpdate(addon);
+				final AddOnBean bean = Core.getCore().getRESTHandler().checkUpdate(addon);
 				if (bean.getVersion() == null) {
 					return false;
 				} else {
@@ -220,18 +220,19 @@ public class CoreAddOnHandler implements AddOnHandler {
 		}
 	}
 	
+	@Override
 	public Class<?> getClassByName(final String name) {
 		Class<?> cachedClass = classes.get(name);
 		
 		if (cachedClass != null) {
 			return cachedClass;
 		} else {
-			for (String current : loaders.keySet()) {
-				AddOnClassLoader loader = loaders.get(current);
+			for (final String current : loaders.keySet()) {
+				final AddOnClassLoader loader = loaders.get(current);
 				
 				try {
 					cachedClass = loader.findClass(name, false);
-				} catch (ClassNotFoundException e) {}
+				} catch (final ClassNotFoundException e) {}
 				if (cachedClass != null) {
 					return cachedClass;
 				}
@@ -240,13 +241,14 @@ public class CoreAddOnHandler implements AddOnHandler {
 		return null;
 	}
 	
+	@Override
 	public void setClass(final String name, final Class<?> clazz) {
 		if (!classes.containsKey(name)) {
 			classes.put(name, clazz);
 		}
 	}
 	
-	public void removeClass(String name) {
+	public void removeClass(final String name) {
 		@SuppressWarnings("unused") Class<?> clazz = classes.remove(name);
 		clazz = null; // Bye!
 	}

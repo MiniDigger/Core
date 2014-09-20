@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -19,21 +24,16 @@ import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
 
-import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 public class HubFeature extends CoreFeature {
 	
-	//TODO Move to own addon
+	// TODO Move to own addon
 	
 	private static StatsManager	        stats	  = new StatsManager();
 	private static Teleporter	        tp	      = new Teleporter();
 	private static TokenShop	        shop	  = new TokenShop();
 	private final HashMap<String, Long>	cooldowns	= new HashMap<>();
 	
-	public HubFeature(Phase phase) {
+	public HubFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -68,7 +68,7 @@ public class HubFeature extends CoreFeature {
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
-	public void onPlayerJoin(UserJoinGameEvent e) {
+	public void onPlayerJoin(final UserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			giveStartItems(e.getUser().getPlayer());
 		}

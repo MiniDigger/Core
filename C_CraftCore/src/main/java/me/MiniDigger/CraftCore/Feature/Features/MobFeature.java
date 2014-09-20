@@ -13,19 +13,19 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public class MobFeature extends CoreFeature {
 	
-	private String	                              world;
+	private String	         world;
 	private List<EntityType>	allowed;
 	
-	public MobFeature(Phase phase, List<EntityType> allowed) {
+	public MobFeature(final Phase phase, final List<EntityType> allowed) {
 		super(phase);
 		this.allowed = allowed;
 	}
 	
-	public List<EntityType> getAllowed(){
+	public List<EntityType> getAllowed() {
 		return allowed;
 	}
 	
-	public void setAllowed(List<EntityType> allowed){
+	public void setAllowed(final List<EntityType> allowed) {
 		this.allowed = allowed;
 	}
 	
@@ -36,7 +36,7 @@ public class MobFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -53,7 +53,7 @@ public class MobFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
+		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		if (m == null) {
 			System.out.println("m = null");
 		} else if (m.getMap() == null) {
@@ -68,7 +68,7 @@ public class MobFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onEntitySpawn(CreatureSpawnEvent e) {
+	public void onEntitySpawn(final CreatureSpawnEvent e) {
 		if (e.getLocation().getWorld().getName().equals(world)) {
 			if (!allowed.contains(e.getEntityType())) {
 				e.setCancelled(true);

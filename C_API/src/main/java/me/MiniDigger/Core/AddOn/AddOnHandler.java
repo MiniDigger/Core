@@ -21,8 +21,9 @@ public interface AddOnHandler {
 	
 	/**
 	 * Uninstalls a AddOn
-	 *
-	 * @param name The name of the addon that should get uninstalled
+	 * 
+	 * @param name
+	 *            The name of the addon that should get uninstalled
 	 */
 	void listAsUnInstalled(final String name);
 	
@@ -37,45 +38,46 @@ public interface AddOnHandler {
 	List<String> getInstalledNames();
 	
 	/**
-     * Loads the AddOn file
-     */
+	 * Loads the AddOn file
+	 */
 	void load();
 	
 	/**
 	 * Marks a AddOn as installed
 	 * 
-	 * @param bean The addon to install
+	 * @param bean
+	 *            The addon to install
 	 */
 	void listAsInstalled(final AddOnBean bean);
-
+	
 	/**
      * 
      */
-    void enableAddOns();
-
+	void enableAddOns();
+	
 	/**
      * 
      */
-    void disableAddOns();
-
+	void disableAddOns();
+	
 	/**
-     * @param name
-     * @return
-     */
-    Class<?> getClassByName(String name);
-
+	 * @param name
+	 * @return
+	 */
+	Class<?> getClassByName(final String name);
+	
 	/**
-     * @param name
-     * @param result
-     */
-    void setClass(String name, Class<?> result);
-
+	 * @param name
+	 * @param result
+	 */
+	void setClass(final String name, final Class<?> result);
+	
 	/**
-     * @param name
-     * @return
-     */
-    boolean update(String name);
-    
-    //TODO Insert missing api
+	 * @param name
+	 * @return
+	 */
+	boolean update(final String name);
+	
+	// TODO Insert missing api
 	
 }

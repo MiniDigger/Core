@@ -31,7 +31,7 @@ public class StatsManager implements Listener {
 		final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 		if (event.getInventory().getTitle().equals("§a§lGame-Statistiken")) {
 			try {
-				Stats stats = Core.getCore().getStatsHandler().get(user.getUUID());
+				final Stats stats = Core.getCore().getStatsHandler().get(user.getUUID());
 				if (event.getCurrentItem().getType() == crankitem().getType()) {
 					message(p, "§cComing soon...");
 				} else if (event.getCurrentItem().getType() == getthedropitem().getType()) {

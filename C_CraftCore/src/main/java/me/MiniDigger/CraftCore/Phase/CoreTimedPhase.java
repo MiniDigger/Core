@@ -53,19 +53,19 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 	private float	   sub;
 	private float	   subbed;
 	
-    public CoreTimedPhase(Game game, Phase nextPhase, int time) {
-	   super(game, nextPhase);
-	   this.secs = time;
-    }
-    
-    public void setSecs(int secs){
-    	this.secs = secs;
-    }
-    
-    public int getSecs(){
-    	return secs;
-    }
-
+	public CoreTimedPhase(final Game game, final Phase nextPhase, final int time) {
+		super(game, nextPhase);
+		secs = time;
+	}
+	
+	public void setSecs(final int secs) {
+		this.secs = secs;
+	}
+	
+	public int getSecs() {
+		return secs;
+	}
+	
 	@Override
 	public void startPhase() {
 		super.startPhase();

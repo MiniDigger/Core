@@ -18,7 +18,7 @@ import org.bukkit.event.EventHandler;
 
 public class VoteFeature extends CoreFeature {
 	
-	public VoteFeature(Phase phase) {
+	public VoteFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -41,7 +41,7 @@ public class VoteFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -61,7 +61,7 @@ public class VoteFeature extends CoreFeature {
 		voted = new ArrayList<>();
 		
 		System.out.println("searching maps for gametype " + getPhase().getGame().getType());
-		ArrayList<String> maps = Core.getCore().getMapHandler().loadMapConfig(getPhase().getGame().getType());
+		final ArrayList<String> maps = Core.getCore().getMapHandler().loadMapConfig(getPhase().getGame().getType());
 		System.out.println(maps.size() + " maps found");
 		
 		Collections.shuffle(maps);
@@ -69,7 +69,7 @@ public class VoteFeature extends CoreFeature {
 			mapOne = maps.get(0);
 			mapTwo = maps.get(1);
 			mapThree = maps.get(2);
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
 		if (mapOne == null) {
 			mapCount = 0;
@@ -99,7 +99,7 @@ public class VoteFeature extends CoreFeature {
 		}
 	}
 	
-	public boolean vote(User user, int id) {
+	public boolean vote(final User user, final int id) {
 		if (id > mapCount) {
 			return false;
 		}
@@ -127,7 +127,7 @@ public class VoteFeature extends CoreFeature {
 		return true;
 	}
 	
-	public void sendVoteMessage(User user) {
+	public void sendVoteMessage(final User user) {
 		if (mapCount == 0) {
 			user.sendMessage(Prefix.VOTE.getPrefix().then("Keine Map gefunden! Breche ab...").color(ChatColor.RED));
 			return;
@@ -158,26 +158,26 @@ public class VoteFeature extends CoreFeature {
 	}
 	
 	public void sendVoteMessages() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			sendVoteMessage(Core.getCore().getUserHandler().get(id));
 		}
 	}
 	
 	public void announceWinner() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			try {
-				User user = Core.getCore().getUserHandler().get(id);
+				final User user = Core.getCore().getUserHandler().get(id);
 				user.sendMessage(Prefix.VOTE.getPrefix().then("Das Voting wurde beendet!").color(ChatColor.GOLD));
 				user.sendMessage(Prefix.VOTE
 				        .getPrefix()
 				        .then("Es wird auf Map " + Core.getCore().getMapHandler().getName(getWinner()) + " von " + Core.getCore().getMapHandler().getAuthor(getWinner())
 				                + " gespielt!").color(ChatColor.GOLD));
-			} catch (Exception ex) {}
+			} catch (final Exception ex) {}
 		}
 	}
 	
 	@EventHandler
-	public void onJoin(UserJoinGameEvent e) {
+	public void onJoin(final UserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			sendVoteMessage(e.getUser());
 		}

@@ -21,7 +21,7 @@ import org.bukkit.WeatherType;
 
 public class CountdownPhase extends CoreTimedPhase {
 	
-	public CountdownPhase(Game game, Phase nextPhase, int time) {
+	public CountdownPhase(final Game game, final Phase nextPhase, final int time) {
 		super(game, nextPhase, time);
 		init();
 	}
@@ -73,9 +73,9 @@ public class CountdownPhase extends CoreTimedPhase {
 	}
 	
 	@Override
-	public void tickLast5secs(int secsPassed, int secsToGo) {
+	public void tickLast5secs(final int secsPassed, final int secsToGo) {
 		super.tickLast5secs(secsPassed, secsToGo);
-		FancyMessage msg = game.getPrefix().then("Der Countdownt endet in ").color(ChatColor.AQUA).then(secsToGo + "").color(ChatColor.YELLOW).then(" Sekunden!")
+		final FancyMessage msg = game.getPrefix().then("Der Countdownt endet in ").color(ChatColor.AQUA).then(secsToGo + "").color(ChatColor.YELLOW).then(" Sekunden!")
 		        .color(ChatColor.AQUA);
 		game.broadCastMessage(msg);
 	}

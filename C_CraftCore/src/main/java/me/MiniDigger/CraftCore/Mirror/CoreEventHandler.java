@@ -27,12 +27,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
-import ru.tehkode.libs.org.apache.commons.dbcp.AbandonedConfig;
-
-/**
- * @author Martin
- * 
- */
 public class CoreEventHandler implements Listener, org.bukkit.plugin.EventExecutor {
 	
 	@SuppressWarnings("unchecked") private static final Class<? extends Event>[]	events	= new Class[] { org.bukkit.event.inventory.InventoryClickEvent.class,
@@ -86,19 +80,19 @@ public class CoreEventHandler implements Listener, org.bukkit.plugin.EventExecut
 	        org.bukkit.event.vehicle.VehicleCreateEvent.class, org.bukkit.event.vehicle.VehicleUpdateEvent.class, org.bukkit.event.world.WorldInitEvent.class,
 	        org.bukkit.event.world.WorldLoadEvent.class, org.bukkit.event.world.WorldSaveEvent.class };
 	
-	private ArrayList<String>	                                                 blacklist	= new ArrayList<>();
+	private final ArrayList<String>	                                             blacklist	= new ArrayList<>();
 	
 	public void init() {
 		blacklist.add("ChunkUnloadEvent");
 		
-		PluginManager manager = Bukkit.getServer().getPluginManager();
-		for (Class<? extends Event> clazz : events) {
+		final PluginManager manager = Bukkit.getServer().getPluginManager();
+		for (final Class<? extends Event> clazz : events) {
 			manager.registerEvent(clazz, this, EventPriority.NORMAL, this, (Plugin) Core.getCore().getInstance(), true);
 		}
 	}
 	
 	@Override
-	public void execute(Listener listener, Event event) throws EventException {
+	public void execute(final Listener listener, final Event event) throws EventException {
 		System.out.println("got " + event.getEventName());
 		if (!blacklist.contains(event.getEventName())) {
 			Core.getCore().getMirrorHandler().getSender().send(event);

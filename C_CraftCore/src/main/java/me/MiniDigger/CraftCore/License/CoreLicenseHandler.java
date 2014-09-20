@@ -38,14 +38,14 @@ public class CoreLicenseHandler implements LicenseHandler {
 			return false;
 		}
 		
-		JSONObject result = CoreMain.getCore().getRESTHandler().registerLicence(licence, sessionToken);
-		String tokenR = (String) result.get("result");
+		final JSONObject result = CoreMain.getCore().getRESTHandler().registerLicence(licence, sessionToken);
+		final String tokenR = (String) result.get("result");
 		return tokenR.equalsIgnoreCase(sessionToken);
 	}
 	
 	@Override
 	public void performCheckAsync() {
-		Thread thread = new Thread(new Runnable() {
+		final Thread thread = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -59,9 +59,9 @@ public class CoreLicenseHandler implements LicenseHandler {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void performCheckSync() {
-		String token = generateToken();
+		final String token = generateToken();
 		
-		String s = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
+		final String s = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
 		
 		if (s == null) {
 			CoreMain.getCore().getCommonMethods().killPlugin();
@@ -71,7 +71,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 		JSONObject result;
 		try {
 			result = (JSONObject) new JSONParser().parse(s);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			if (!checkToken(s, token)) {
 				CoreMain.getCore().getInstance().error(s);
 				CoreMain.getCore().getCommonMethods().killPlugin();
@@ -81,14 +81,14 @@ public class CoreLicenseHandler implements LicenseHandler {
 			}
 		}
 		
-		String tokenR = (String) result.get("result");
+		final String tokenR = (String) result.get("result");
 		if (!checkToken(tokenR, token)) {
 			CoreMain.getCore().getCommonMethods().killPlugin();
 		}
 	}
 	
 	@Override
-	public void performCheck(boolean sync) {
+	public void performCheck(final boolean sync) {
 		if (sync) {
 			performCheckSync();
 		} else {
@@ -98,9 +98,9 @@ public class CoreLicenseHandler implements LicenseHandler {
 	
 	@SuppressWarnings("deprecation")
 	private String generateToken() {
-		String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		final String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String token = "";
-		int rnd = CoreMain.getCore().getRandomUtil().nextInt(40) + 15;
+		final int rnd = CoreMain.getCore().getRandomUtil().nextInt(40) + 15;
 		for (int i = 0; i < rnd; i++) {
 			token += chars.charAt(CoreMain.getCore().getRandomUtil().nextInt(chars.length() - 1));
 		}
@@ -108,15 +108,15 @@ public class CoreLicenseHandler implements LicenseHandler {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private boolean checkToken(String tokenR, String token) {
+	private boolean checkToken(String tokenR, final String token) {
 		tokenR = CoreMain.getCore().getBaseUtil().decode(tokenR);
 		String read = "";
 		String readOld = "";
 		String key = "";
 		boolean keyEnd = false;
-//		System.out.println("TK: " + token);
-//		System.out.println("TR: " + tokenR);
-//		System.out.println("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
+		// System.out.println("TK: " + token);
+		// System.out.println("TR: " + tokenR);
+		// System.out.println("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
 		for (int i = 0; i < tokenR.length(); i++) {
 			read += tokenR.charAt(i);
 			if (!token.startsWith(read) && !keyEnd) {
@@ -130,20 +130,20 @@ public class CoreLicenseHandler implements LicenseHandler {
 			} else {
 				readOld += tokenR.charAt(i);
 			}
-//			System.out.println("read: " + read);
-//			System.out.println("readOld: " + readOld);
-//			System.out.println("key: " + key);
+			// System.out.println("read: " + read);
+			// System.out.println("readOld: " + readOld);
+			// System.out.println("key: " + key);
 		}
 		
-//		System.out.println("END");
-//		System.out.println("Key: " + key);
-//		System.out.println("readold: " + readOld);
-//		System.out.println("read: " + read);
-//		System.out.println("token: " + token);
+		// System.out.println("END");
+		// System.out.println("Key: " + key);
+		// System.out.println("readold: " + readOld);
+		// System.out.println("read: " + read);
+		// System.out.println("token: " + token);
 		if (key.equals("MiniDiggerTheBoss")) {
-//			System.out.println("key right");
+			// System.out.println("key right");
 			if (readOld.equals(token)) {
-//				System.out.println("token right");
+				// System.out.println("token right");
 				return true;
 			}
 		}

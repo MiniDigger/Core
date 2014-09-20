@@ -1,19 +1,28 @@
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
-
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+import me.MiniDigger.Core.World.WorldHandler;
+import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
+import me.MiniDigger.CraftCore.Feature.Features.DropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 
 import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 public class GetTheDropPhaseOne extends TimedPhase {
 	
-	public GetTheDropPhaseOne(Game game, Phase next, int secs) {
+	public GetTheDropPhaseOne(final Game game, final Phase next, final int secs) {
 		super(game, next, secs);
 		init();
 	}
@@ -55,7 +64,7 @@ public class GetTheDropPhaseOne extends TimedPhase {
 	@Override
 	public void endPhase() {
 		getGame().broadCastMessage(game.getPrefix().then("Die Phase ist vorbei!").color(ChatColor.AQUA));
-		String winner = getGame().getGameData("VoteWinner");
+		final String winner = getGame().getGameData("VoteWinner");
 		Core.getCore().getWorldHandler().copyWorld(winner);
 		Core.getCore().getWorldHandler().loadWorld(winner);
 		super.endPhase();
@@ -71,8 +80,8 @@ public class GetTheDropPhaseOne extends TimedPhase {
 	}
 	
 	@Override
-	public void tick(int secsPassed, int secsToGo) {
-		DropFeature drop = (DropFeature) getFeature(Feature.DROP);
+	public void tick(final int secsPassed, final int secsToGo) {
+		final DropFeature drop = (DropFeature) getFeature(Feature.DROP);
 		drop.drop(false);
 		super.tick(secsPassed, secsToGo);
 	}

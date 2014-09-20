@@ -15,26 +15,26 @@ public class TwoPlayerFeature extends CoreFeature {
 	private UUID	one;
 	private UUID	two;
 	
-	public TwoPlayerFeature(Phase phase) {
+	public TwoPlayerFeature(final Phase phase) {
 		super(phase);
 		try {
 			one = getPhase().getGame().getPlayers().get(0);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			Core.getCore().getInstance().error("Well, play alone.");
 		}
 		try {
 			two = getPhase().getGame().getPlayers().get(1);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			Core.getCore().getInstance().error("Well, play alone.");
 			two = one;
 		}
 	}
 	
-	public UUID getOne(){
+	public UUID getOne() {
 		return one;
 	}
 	
-	public UUID getTwo(){
+	public UUID getTwo() {
 		return two;
 	}
 	
@@ -43,7 +43,7 @@ public class TwoPlayerFeature extends CoreFeature {
 		return FeatureType.TWOPLAYER;
 	}
 	
-	public UUID getOther(UUID id) {
+	public UUID getOther(final UUID id) {
 		if (id.equals(one)) {
 			return two;
 		} else {
@@ -51,7 +51,7 @@ public class TwoPlayerFeature extends CoreFeature {
 		}
 	}
 	
-	public User getOther(User user) {
+	public User getOther(final User user) {
 		return Core.getCore().getUserHandler().get(getOther(user.getUUID()));
 	}
 	
@@ -80,11 +80,11 @@ public class TwoPlayerFeature extends CoreFeature {
 		
 	}
 	
-	public boolean isOne(UUID uuid) {
+	public boolean isOne(final UUID uuid) {
 		return one.equals(uuid);
 	}
 	
-	public boolean isTwo(UUID uuid) {
+	public boolean isTwo(final UUID uuid) {
 		return two.equals(uuid);
 	}
 }

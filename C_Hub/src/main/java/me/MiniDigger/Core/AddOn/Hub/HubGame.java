@@ -7,7 +7,6 @@ import me.MiniDigger.CraftCore.Game.CoreGame;
 
 import org.bukkit.ChatColor;
 
-
 public class HubGame extends CoreGame {
 	
 	@Override
@@ -19,7 +18,7 @@ public class HubGame extends CoreGame {
 	public void init() {
 		setGameData("Lobby", "Spawn");
 		
-		HubPhase hub = new HubPhase(this, null, null);
+		final HubPhase hub = new HubPhase(this, null, null);
 		hub.setBarMsg(ChatColor.RED + "" + ChatColor.MAGIC + "abc" + ChatColor.RESET + ChatColor.GOLD + " Hub " + ChatColor.RESET + ChatColor.RED + ChatColor.MAGIC
 		        + "abc");
 		((MapFeature) hub.getFeature(FeatureType.MAP)).setMap("Spawn");

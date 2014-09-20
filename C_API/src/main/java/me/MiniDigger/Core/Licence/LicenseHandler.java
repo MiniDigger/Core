@@ -32,7 +32,7 @@ public interface LicenseHandler {
 	 * 
 	 * @param sync
 	 */
-	public void performCheck(boolean sync);
+	public void performCheck(final boolean sync);
 	
 	/**
 	 * Sends the license system the session token for this server

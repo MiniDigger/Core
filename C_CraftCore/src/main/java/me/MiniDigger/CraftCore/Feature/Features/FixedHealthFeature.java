@@ -15,7 +15,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class FixedHealthFeature extends CoreFeature {
 	
-	public FixedHealthFeature(Phase phase) {
+	public FixedHealthFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -41,7 +41,7 @@ public class FixedHealthFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			Bukkit.getPlayer(id).setHealth(20.0);
 		}
 	}
@@ -51,9 +51,9 @@ public class FixedHealthFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDmg(EntityDamageEvent e) {
+	public void onDmg(final EntityDamageEvent e) {
 		if (e.getEntity() instanceof Player) {
-			Player p = (Player) e.getEntity();
+			final Player p = (Player) e.getEntity();
 			if (getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
 				e.setCancelled(true);
 				e.setDamage(0.0);

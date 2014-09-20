@@ -5,8 +5,6 @@ import java.util.List;
 
 import me.MiniDigger.Core.Event.Events.UserDamageEvent;
 import me.MiniDigger.Core.Event.Events.UserDeathEvent;
-
-
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
@@ -19,17 +17,17 @@ public class PvPFeature extends CoreFeature {
 	
 	private boolean	pvpEnabled;
 	
-	public PvPFeature(Phase phase, boolean pvpEnabled) {
+	public PvPFeature(final Phase phase, final boolean pvpEnabled) {
 		super(phase);
 		this.pvpEnabled = pvpEnabled;
 	}
 	
-	public boolean isPvPEnabled(){
+	public boolean isPvPEnabled() {
 		return pvpEnabled;
 	}
 	
-	public void setPvPEnabled(boolean pvpenabled){
-		this.pvpEnabled = pvpenabled;
+	public void setPvPEnabled(final boolean pvpenabled) {
+		pvpEnabled = pvpenabled;
 	}
 	
 	@Override
@@ -39,7 +37,7 @@ public class PvPFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -65,7 +63,7 @@ public class PvPFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDmg(UserDamageEvent e) {
+	public void onDmg(final UserDamageEvent e) {
 		if (e.getGame() != null && e.getGame().equals(getPhase().getGame())) {
 			if (!pvpEnabled) {
 				if (e.getDamager() != null) {
@@ -77,7 +75,7 @@ public class PvPFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDeath(UserDeathEvent e) {
+	public void onDeath(final UserDeathEvent e) {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			if (e.getKiller() != null) {
 				getPhase().getGame().broadCastMessage(

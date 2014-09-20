@@ -11,7 +11,7 @@ public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDama
 	private final User	 damager;
 	private final User	 damaged;
 	private final Game	 game;
-	private boolean cancel;
+	private boolean	     cancel;
 	
 	public CoreUserDamageEvent(final double dmg, final User damager, final User damaged, final Game game, final boolean cancel) {
 		this.dmg = dmg;
@@ -52,9 +52,10 @@ public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDama
 	}
 	
 	@Override
-	public void setCanceled(boolean cancel) {
+	public void setCanceled(final boolean cancel) {
 		this.cancel = cancel;
 	}
+	
 	@Override
 	public boolean isCanceled() {
 		return cancel;

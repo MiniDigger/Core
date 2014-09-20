@@ -21,7 +21,7 @@ import org.bukkit.WeatherType;
 
 public class GracePhase extends CoreTimedPhase {
 	
-	public GracePhase(Game game, Phase nextPhase, int time) {
+	public GracePhase(final Game game, final Phase nextPhase, final int time) {
 		super(game, nextPhase, time);
 		init();
 	}
@@ -40,7 +40,7 @@ public class GracePhase extends CoreTimedPhase {
 	
 	@Override
 	public void startPhase() {
-		String winner = getGame().getGameData("VoteWinner");
+		final String winner = getGame().getGameData("VoteWinner");
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
 		getGame().broadCastMessage(game.getPrefix().then("Die Fiedensphase hat begonnen!").color(ChatColor.AQUA));
 		super.startPhase();
@@ -73,10 +73,10 @@ public class GracePhase extends CoreTimedPhase {
 	}
 	
 	@Override
-	public void tickLast5secs(int secsPassed, int secsToGo) {
+	public void tickLast5secs(final int secsPassed, final int secsToGo) {
 		super.tickLast5secs(secsPassed, secsToGo);
-		FancyMessage msg = game.getPrefix().then("Die Friedensphase endet in ").color(ChatColor.AQUA).then(secsToGo + "").color(ChatColor.YELLOW).then(" Sekunden!")
-		        .color(ChatColor.AQUA);
+		final FancyMessage msg = game.getPrefix().then("Die Friedensphase endet in ").color(ChatColor.AQUA).then(secsToGo + "").color(ChatColor.YELLOW)
+		        .then(" Sekunden!").color(ChatColor.AQUA);
 		game.broadCastMessage(msg);
 	}
 }

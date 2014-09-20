@@ -15,21 +15,21 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class FixedTimeFeature extends CoreFeature {
 	
-	private long	                   time;
-	private String	                   world;
+	private final long	time;
+	private String	   world;
 	private BukkitTask	task;
 	
-	public FixedTimeFeature(Phase phase, long time) {
+	public FixedTimeFeature(final Phase phase, final long time) {
 		super(phase);
 		this.time = time;
 		
 	}
 	
-	public BukkitTask getTask(){
+	public BukkitTask getTask() {
 		return task;
 	}
 	
-	public void setTask(BukkitTask task){
+	public void setTask(final BukkitTask task) {
 		this.task = task;
 	}
 	
@@ -40,7 +40,7 @@ public class FixedTimeFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -57,7 +57,7 @@ public class FixedTimeFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
+		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		world = m.getMap().getName();
 		
 		final World w = Bukkit.getWorld(world);

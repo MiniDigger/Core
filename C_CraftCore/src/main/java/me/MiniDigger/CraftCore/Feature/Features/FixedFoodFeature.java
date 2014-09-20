@@ -14,7 +14,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 
 public class FixedFoodFeature extends CoreFeature {
 	
-	public FixedFoodFeature(Phase phase) {
+	public FixedFoodFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -49,9 +49,9 @@ public class FixedFoodFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onFoodChange(FoodLevelChangeEvent e) {
+	public void onFoodChange(final FoodLevelChangeEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
-			Player p = (Player) e.getEntity();
+			final Player p = (Player) e.getEntity();
 			if (getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
 				e.setCancelled(true);
 				e.setFoodLevel(20);

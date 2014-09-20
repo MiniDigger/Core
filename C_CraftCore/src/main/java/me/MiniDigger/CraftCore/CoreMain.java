@@ -80,6 +80,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	 * 
 	 * @deprecated DO NOT USE
 	 */
+	@Deprecated
 	public static Core getCore() {
 		return core;
 	}
@@ -99,7 +100,7 @@ public class CoreMain extends JavaPlugin implements Main {
 				core.getCommonMethods().killPlugin();
 				return;
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 			core.getCommonMethods().killPlugin();
 			return;

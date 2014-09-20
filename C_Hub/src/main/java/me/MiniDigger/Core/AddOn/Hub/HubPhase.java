@@ -22,17 +22,17 @@ public class HubPhase extends CorePhase {
 	
 	private String	barMsg;
 	
-	public HubPhase(Game game, Phase nextPhase, String barMsg) {
+	public HubPhase(final Game game, final Phase nextPhase, final String barMsg) {
 		super(game, nextPhase);
 		this.barMsg = barMsg;
 		init();
 	}
 	
-	public String getBarMsg(){
+	public String getBarMsg() {
 		return barMsg;
 	}
 	
-	public void setBarMsg(String barMsg){
+	public void setBarMsg(final String barMsg) {
 		this.barMsg = barMsg;
 	}
 	

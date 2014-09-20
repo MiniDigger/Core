@@ -16,20 +16,20 @@
 package me.MiniDigger.Core.Mirror;
 
 public interface MirrorHandler {
-
+	
 	/**
      * 
      */
-    void init();
-
+	void init();
+	
 	/**
-     * @return
-     */
-    MirrorReviever getReceiver();
-
+	 * @return
+	 */
+	MirrorReviever getReceiver();
+	
 	/**
-     * @return
-     */
-    MirrorSender getSender();
+	 * @return
+	 */
+	MirrorSender getSender();
 	// TODO MirrorAPI
 }

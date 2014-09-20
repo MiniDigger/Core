@@ -4,12 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.event.EventHandler;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Event.Events.UserDeathEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -20,9 +14,15 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.event.EventHandler;
+
 public class LastManStandingFeature extends CoreFeature {
 	
-	public LastManStandingFeature(Phase phase) {
+	public LastManStandingFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -33,7 +33,7 @@ public class LastManStandingFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<>();
+		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.PVP);
 		return result;
 	}
@@ -58,12 +58,12 @@ public class LastManStandingFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDeath(UserDeathEvent e) {
+	public void onDeath(final UserDeathEvent e) {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			e.setShouldRespawn(false);
-			MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
-			HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
-			Location loc = locs.get(locs.keySet().iterator().next());
+			final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+			final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
+			final Location loc = locs.get(locs.keySet().iterator().next());
 			e.getUser().getPlayer().teleport(loc);
 			
 			getPhase().getGame().leave(e.getUser());
@@ -75,7 +75,7 @@ public class LastManStandingFeature extends CoreFeature {
 					public void run() {
 						try {
 							getPhase().getGame().end(Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0)));
-						} catch (Exception ex) {
+						} catch (final Exception ex) {
 							getPhase().getGame().end((User) null);
 						}
 					}

@@ -15,10 +15,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 
-
 public class DoubleJumpFeature extends CoreFeature {
 	
-	public DoubleJumpFeature(Phase phase) {
+	public DoubleJumpFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -54,7 +53,7 @@ public class DoubleJumpFeature extends CoreFeature {
 	
 	@EventHandler
 	public void e(final PlayerToggleFlightEvent event) {
-		Player player = event.getPlayer();
+		final Player player = event.getPlayer();
 		if (getPhase().getGame().getPlayers().contains(player.getUniqueId()) && player.getGameMode() != GameMode.CREATIVE) {
 			event.setCancelled(true);
 			player.setAllowFlight(false);
@@ -66,7 +65,7 @@ public class DoubleJumpFeature extends CoreFeature {
 	
 	@EventHandler
 	public void e(final PlayerMoveEvent event) {
-		Player player = event.getPlayer();
+		final Player player = event.getPlayer();
 		if (getPhase().getGame().getPlayers().contains(player.getUniqueId())) {
 			if (player.getLocation().getBlock().getRelative(0, -1, 0).getType() != Material.AIR && (!player.isFlying())) {
 				player.setAllowFlight(true);

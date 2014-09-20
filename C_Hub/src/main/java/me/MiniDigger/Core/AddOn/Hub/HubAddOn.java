@@ -17,6 +17,6 @@ package me.MiniDigger.Core.AddOn.Hub;
 
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
-public class HubAddOn extends CoreAddOn{
+public class HubAddOn extends CoreAddOn {
 	
 }

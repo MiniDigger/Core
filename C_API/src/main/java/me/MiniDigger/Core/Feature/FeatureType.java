@@ -35,7 +35,7 @@ package me.MiniDigger.Core.Feature;
 
 public interface FeatureType {
 	
-	//TODO Lets test this...
+	// TODO Lets test this...
 	
 	FeatureType	AUTORESPAWN	    = new FeatureType() {
 		                            

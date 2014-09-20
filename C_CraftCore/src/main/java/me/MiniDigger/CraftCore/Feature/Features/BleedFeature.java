@@ -16,7 +16,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class BleedFeature extends CoreFeature {
 	
-	public BleedFeature(Phase phase) {
+	public BleedFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -51,9 +51,9 @@ public class BleedFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onEntityDamage(EntityDamageEvent e) {
+	public void onEntityDamage(final EntityDamageEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
-			Player p = (Player) e.getEntity();
+			final Player p = (Player) e.getEntity();
 			if (getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
 				e.getEntity().getWorld().playEffect(e.getEntity().getLocation(), Effect.STEP_SOUND, 55);
 				e.getEntity().playEffect(EntityEffect.HURT);
