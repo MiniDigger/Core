@@ -69,7 +69,7 @@ public class PvPFeature extends CoreFeature {
 		if (e.getGame() != null && e.getGame().equals(getPhase().getGame())) {
 			if (!pvpEnabled) {
 				if (e.getDamager() != null) {
-					e.setCancelled(true);
+					e.setCanceled(true);
 					return;
 				}
 			}

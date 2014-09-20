@@ -74,4 +74,15 @@ public interface UserDamageEvent {
 	 * @return If there was a damager
 	 */
 	public boolean hasDamager();
+	
+	/**
+	 * @param cancel
+	 *            If the event should be canceled or not
+	 */
+	public void setCanceled(boolean cancel);
+	
+	/**
+	 * @return If the event should be canceled or not
+	 */
+	public boolean isCanceled();
 }

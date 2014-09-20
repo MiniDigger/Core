@@ -72,7 +72,7 @@ public class CoreEventListener implements EventListener {
 			}
 			
 			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
-				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game);
+				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled());
 				Bukkit.getPluginManager().callEvent(event);
 				e.setCancelled(event.isCancelled());
 				if (!event.isCancelled()) {
@@ -100,7 +100,7 @@ public class CoreEventListener implements EventListener {
 			}
 			
 			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
-				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game);
+				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled());
 				Bukkit.getPluginManager().callEvent(event);
 				e.setCancelled(event.isCancelled());
 				if (!event.isCancelled()) {
