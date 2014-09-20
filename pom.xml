@@ -36,6 +36,7 @@
 		<module>C_Basic</module>
 		<module>C_CraftCore</module>
 		<module>C_Build</module>
+		<module>C_GetTheDrop</module>
 	</modules>
 
 	<build>
