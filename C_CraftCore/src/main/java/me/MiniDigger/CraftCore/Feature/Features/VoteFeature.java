@@ -9,6 +9,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
