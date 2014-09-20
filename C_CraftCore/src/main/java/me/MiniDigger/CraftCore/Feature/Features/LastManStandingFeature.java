@@ -16,6 +16,7 @@ import me.MiniDigger.Core.Event.Events.UserDeathEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 

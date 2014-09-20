@@ -16,11 +16,19 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 public class FixedWeatherFeature extends CoreFeature {
 	
 	private String	                    world;
-	@Getter @Setter private WeatherType	weather;
+	private WeatherType	weather;
 	
 	public FixedWeatherFeature(Phase phase, WeatherType weather) {
 		super(phase);
 		this.weather = weather;
+	}
+	
+	public WeatherType getWeatherType(){
+		return weather;
+	}
+	
+	public void setWeatherType(WeatherType type){
+		weather = type;
 	}
 	
 	@Override
