@@ -71,11 +71,13 @@ public class CoreFakeDragon implements FakeDragon {
 	@Override
 	public void setHealth(final float percent) {
 		health = (percent / MAX_HEALTH);
+		System.out.println("new health: " + health);
 	}
 	
 	@Override
 	public void setHealth(final double health) {
-		this.health = (float) health;
+		this.health = (float) health;	
+		System.out.println("new healthd: " + health);
 	}
 	
 	@Override

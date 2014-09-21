@@ -98,4 +98,21 @@ public interface BarHandler {
 	 *            a decimal percent in the range (0,1]
 	 */
 	public void setAllStatusBars(final String text, final float percent);
+	
+	/**
+	 * Sets a player's status bar to display a specific message and fill amount.
+	 * The fill amount is a double<br>
+	 * <br>
+	 * <code>text</code> is limited to 64 characters, and <code>percent</code>
+	 * must be greater than zero and less than or equal to one. If either
+	 * argument is outside its constraints, it will be quietly trimmed to match.
+	 * 
+	 * @param player
+	 *            a player
+	 * @param text
+	 *            some text with 64 characters or less
+	 * @param health
+	 *            a decimal percent in the range (0,200)
+	 */
+	void setBar(Player player, String text, double health);
 }

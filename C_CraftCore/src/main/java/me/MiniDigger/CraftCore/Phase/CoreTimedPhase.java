@@ -130,7 +130,8 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 					p.setExp(percent / 100);
 				}
 				if (displayBar()) {
-					Core.getCore().getBarHandler().setBar(p, getBarMessage(), percent);
+					System.out.println("PERCENT: " + percent * 2);
+					Core.getCore().getBarHandler().setBar(p, getBarMessage(), (double) percent * 2);
 				}
 			}
 		}
