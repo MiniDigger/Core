@@ -72,6 +72,11 @@ public class CoreNPCHandler implements NPCHandler {
 			e.printStackTrace();
 			return;
 		}
+		//TODO REenable NPC Handler after the NCDFE is fixed
+		boolean b = true;
+		if(b){
+			return;
+		}
 		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
