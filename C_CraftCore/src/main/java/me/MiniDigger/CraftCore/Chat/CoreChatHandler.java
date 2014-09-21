@@ -75,11 +75,13 @@ public class CoreChatHandler implements ChatHandler {
 	
 	@Override
 	public void registerChannels() {
-		registerChannel(new BroadcastChannel("BroadCast", ChatColor.AQUA, "chat.hear.broadcast", "chat.speak.broadcast", new FancyMessage(TextualComponent.rawText("�r"))));
+		registerChannel(new BroadcastChannel("BroadCast", ChatColor.AQUA, "chat.hear.broadcast", "chat.speak.broadcast", new FancyMessage(
+		        TextualComponent.rawText(ChatColor.COLOR_CHAR + "" + ChatColor.RESET.getChar()))));
 		registerChannel(new EmptyChannel());
 		registerChannel(new GlobalChannel("Global", ChatColor.DARK_GREEN, "chat.hear.global", "chat.speak.global", new FancyMessage("[").color(ChatColor.GREEN)
 		        .then("GLOBAL").color(ChatColor.AQUA).then("]").color(ChatColor.GREEN)));
-		registerChannel(new NormalChannel("Default", ChatColor.GRAY, "chat.hear.default", "chat.speak.default", new FancyMessage(TextualComponent.rawText("�r"))));
+		registerChannel(new NormalChannel("Default", ChatColor.GRAY, "chat.hear.default", "chat.speak.default", new FancyMessage(
+		        TextualComponent.rawText(ChatColor.COLOR_CHAR + "" + ChatColor.RESET.getChar()))));
 		registerChannel(new PremiumChannel("Premium", ChatColor.GOLD, "chat.hear.premium", "chat.speak.premium", new FancyMessage("[").color(ChatColor.GOLD)
 		        .then("GLOBAL").color(ChatColor.YELLOW).then("]").color(ChatColor.GOLD)));
 		
@@ -87,8 +89,10 @@ public class CoreChatHandler implements ChatHandler {
 	
 	@Override
 	public void handleChat(final User user, final String message) {
+		if (user.getSpeakChannel() == null) {
+			user.joinChannel(getChannel("Default"));
+		}
 		user.getSpeakChannel().chat(user, message);
-		
 	}
 	
 	@Override
