@@ -38,6 +38,7 @@
 		<module>C_Build</module>
 		<module>C_GetTheDrop</module>
 		<module>C_Hub</module>
+		<module>C_TicTacToe</module>
 	</modules>
 
 	<build>
