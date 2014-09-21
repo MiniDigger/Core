@@ -29,6 +29,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.Features.TwoPlayerFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
+import me.MiniDigger.CraftCore.User.CoreBot;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -86,7 +87,7 @@ public class TicTacToeGame extends CoreGame {
 		
 		// int i = tpf.isOne(Bot.getBotUUID()) ? 1 : 2;
 		int waswießich = 0;
-		for (int i = tpf.isOne(Bot.getBotUUID()) ? 1 : 2;;) {
+		for (int i = tpf.isOne(CoreBot.getBotUUID()) ? 1 : 2;;) {
 			waswießich++;
 			if (waswießich == 3) {
 				break;
@@ -165,7 +166,7 @@ public class TicTacToeGame extends CoreGame {
 		User one = Core.getCore().getUserHandler().get(tpf.getOne());
 		User two = Core.getCore().getUserHandler().get(tpf.getTwo());
 		if (u == 1) {
-			if (one.getUUID().equals(Bot.getBotUUID())) {
+			if (one.getUUID().equals(CoreBot.getBotUUID())) {
 				return;
 			}
 			Inventory inv = Bukkit.createInventory(one.getPlayer(), InventoryType.WORKBENCH, "TicTacToe - " + two.getDisplayName());
@@ -173,7 +174,7 @@ public class TicTacToeGame extends CoreGame {
 			inv.setItem(0, itemOne);
 			one.getPlayer().openInventory(inv);
 		} else {
-			if (two.getUUID().equals(Bot.getBotUUID())) {
+			if (two.getUUID().equals(CoreBot.getBotUUID())) {
 				return;
 			}
 			Inventory inv = Bukkit.createInventory(two.getPlayer(), InventoryType.WORKBENCH, "TicTacToe - " + one.getDisplayName());
@@ -222,7 +223,7 @@ public class TicTacToeGame extends CoreGame {
 			inv_1 = fillInv(inv_1);
 			inv_1.setItem(0, itemOne);
 			
-			GameStarterCommands.saveGame(winner.getUUID(), inv_1);
+			TicTacToeAddOn.saveGame(winner.getUUID(), inv_1);
 		} catch (Exception ex) {}
 		
 		try {
@@ -230,7 +231,7 @@ public class TicTacToeGame extends CoreGame {
 			inv_2 = fillInv(inv_2);
 			inv_2.setItem(0, itemTwo);
 			
-			GameStarterCommands.saveGame(other.getUUID(), inv_2);
+			TicTacToeAddOn.saveGame(other.getUUID(), inv_2);
 		} catch (Exception ex) {}
 		
 		UserLeaveGameEvent e1 = new CoreUserLeaveGameEvent(this, winner);
@@ -261,7 +262,7 @@ public class TicTacToeGame extends CoreGame {
 			inv_1 = fillInv(inv_1);
 			inv_1.setItem(0, itemOne);
 			
-			GameStarterCommands.saveGame(one.getUUID(), inv_1);
+			TicTacToeAddOn.saveGame(one.getUUID(), inv_1);
 		} catch (Exception ex) {}
 		
 		try {
@@ -269,7 +270,7 @@ public class TicTacToeGame extends CoreGame {
 			inv_2 = fillInv(inv_2);
 			inv_2.setItem(0, itemTwo);
 			
-			GameStarterCommands.saveGame(two.getUUID(), inv_2);
+			TicTacToeAddOn.saveGame(two.getUUID(), inv_2);
 		} catch (Exception ex) {}
 		
 		UserLeaveGameEvent e1 = new CoreUserLeaveGameEvent(this, one);

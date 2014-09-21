@@ -1,4 +1,4 @@
-package me.MiniDigger.Core.GameAPI.Phases;
+package me.MiniDigger.Core.AddOn.TicTacToe;
 
 import java.util.UUID;
 
@@ -17,6 +17,7 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.Features.TwoPlayerFeature;
 import me.MiniDigger.CraftCore.Phase.CoreRepeatingPhase;
+import me.MiniDigger.CraftCore.User.CoreBot;
 
 public class TicTacToePhase extends CoreRepeatingPhase {
 	
@@ -70,7 +71,7 @@ public class TicTacToePhase extends CoreRepeatingPhase {
 		u.sendMessage(Prefix.TICTACTOE.getPrefix().then("Klicke hier um deinen Zug zu machen!").command("/tictactoe doStep"));
 		o.sendMessage(Prefix.TICTACTOE.getPrefix().then("Bitte warte, während " + u.getDisplayName() + " seinen Zug macht!"));
 		
-		if (acting.equals(Bot.getBotUUID())) {
+		if (acting.equals(CoreBot.getBotUUID())) {
 			System.out.println("best slot = " + ((TicTacToeGame) getGame()).getBestSlot());
 			int i = ((TicTacToeGame) getGame()).click(acting, ((TicTacToeGame) getGame()).getBestSlot());
 			System.out.println("result " + i);
