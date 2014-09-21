@@ -94,7 +94,9 @@ public class CoreChatChannel implements ChatChannel {
 			color = this.color;
 		}
 		
-		message = Core.getCore().getChatColorUtil().replaceAndToMc(message);
+		if (chatUser.hasPermission("chat.color")) {
+			message = Core.getCore().getChatColorUtil().replaceAndToMc(message);
+		}
 		
 		broadcast(getPrefix().then(chatUser.getPrefix() + chatUser.getDisplayName())
 		        .tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + chatUser.getDisplayName()).then("> " + message)
