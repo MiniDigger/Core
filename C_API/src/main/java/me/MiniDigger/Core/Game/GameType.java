@@ -34,11 +34,8 @@
 package me.MiniDigger.Core.Game;
 
 public enum GameType {
-	// TODO Readd the game classes to gametype
-	TICTACTOE("TicTacToe", "TTT", null/* TicTacToeGame.class */),
-	LOBBY("Lobby", "Lobby", null/* Lobby.class */),
-	GETTHEDROP("GetTheDrop", "GTD", null /* GetTheDropGame.class */),
-	NOTHING("Nothing", "", null);
+	
+	TICTACTOE("TicTacToe", "TTT", null), LOBBY("Lobby", "Lobby", null), GETTHEDROP("GetTheDrop", "GTD", null), NOTHING("Nothing", "", null);
 	
 	private String	    name;
 	private String	    abk;
@@ -58,7 +55,12 @@ public enum GameType {
 		return abk;
 	}
 	
-	public Class<Game> getGame() {
+	public Class<?> getGame() {
 		return game;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void setClass(Class<?> game) {
+		this.game = (Class<Game>) game;
 	}
 }

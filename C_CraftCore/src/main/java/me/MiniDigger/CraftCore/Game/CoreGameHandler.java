@@ -70,7 +70,7 @@ public class CoreGameHandler implements GameHandler {
 		if (game != null) {
 			try {
 				final GameType type = GameType.valueOf(game);
-				mainGame = type.getGame().newInstance();
+				mainGame = (Game) type.getGame().newInstance();
 				addGame(mainGame);
 				Core.getCore().getInstance().info("Game " + type.getName() + " gefunden.");
 				Core.getCore().getInstance().info("Warte auf ersten Spieler...");

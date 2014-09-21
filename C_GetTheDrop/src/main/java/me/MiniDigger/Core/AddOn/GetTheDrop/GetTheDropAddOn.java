@@ -15,8 +15,14 @@
  */
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class GetTheDropAddOn extends CoreAddOn {
 	
+	@Override
+	public void enable() {
+		GameType.GETTHEDROP.setClass(GetTheDropGame.class);
+		super.enable();
+	}
 }

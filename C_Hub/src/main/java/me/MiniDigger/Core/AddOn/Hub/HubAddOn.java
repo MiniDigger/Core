@@ -15,8 +15,14 @@
  */
 package me.MiniDigger.Core.AddOn.Hub;
 
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class HubAddOn extends CoreAddOn {
 	
+	@Override
+	public void enable() {
+		GameType.LOBBY.setClass(HubGame.class);
+		super.enable();
+	}
 }
