@@ -12,25 +12,25 @@ import org.bukkit.ChatColor;
 
 public class SettingsCommands {
 	
-	@Command(name = "setting.gametype", description = "Ändert den Spielmodi des Servers", usage = "<type>", permission = "setting.gametype", consol = false, min = 1, max = 1)
+	@Command(name = "setting.gametype", description = "Ändert den Spielmodi des Servers", usage = "<type>", permission = "setting.gametype", min = 1, max = 1)
 	public void gamemode(final CommandArgs args) {
 		GameType type;
 		try {
 			type = GameType.valueOf(args.getArgs()[0]);
 		} catch (final Exception ex) {
-			args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannter Modi: " + args.getArgs()[0]).color(ChatColor.RED));
+			Prefix.API.getPrefix().then("Unbekannter Modi: " + args.getArgs()[0]).color(ChatColor.RED).send(args.getSender());
 			final FancyMessage msg = Prefix.API.getPrefix();
 			for (final GameType t : GameType.values()) {
-				msg.then(t.getName() + " ").color(ChatColor.AQUA).command("/setting gametype " + t.name());
+				msg.then(t.getName() + " ").color(t.getClass() == null ? ChatColor.DARK_BLUE : ChatColor.AQUA).command("/setting gametype " + t.name());
 			}
-			args.getUser().sendMessage(Prefix.API.getPrefix().then("Es stehen folgende Modi zu Auswahl:"));
-			args.getUser().sendMessage(msg);// TODO only installed modi
+			Prefix.API.getPrefix().then("Es stehen folgende Modi zu Auswahl:").send(args.getSender());;
+			msg.send(args.getSender());
 			return;
 		}
 		
 		((CoreMain) Core.getCore().getInstance()).getConfig().set("server-type", type.name());
 		((CoreMain) Core.getCore().getInstance()).saveConfig();
 		
-		args.getUser().sendMessage(Prefix.API.getPrefix().then("Modi geändert!").color(ChatColor.GREEN));
+		Prefix.API.getPrefix().then("Modi geändert!").color(ChatColor.GREEN).send(args.getSender());
 	}
 }
