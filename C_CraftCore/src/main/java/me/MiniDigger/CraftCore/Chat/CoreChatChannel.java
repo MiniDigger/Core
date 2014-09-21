@@ -86,13 +86,16 @@ public class CoreChatChannel implements ChatChannel {
 	}
 	
 	@Override
-	public void chat(final User chatUser, final String message) {
+	public void chat(final User chatUser, String message) {
 		ChatColor color;
 		if (this.color == ChatColor.RESET) {
 			color = Core.getCore().getChatColorUtil().toChatColor(chatUser.getSuffix());
 		} else {
 			color = this.color;
 		}
+		
+		message = Core.getCore().getChatColorUtil().replaceAndToMc(message);
+		
 		broadcast(getPrefix().then(chatUser.getPrefix() + chatUser.getDisplayName())
 		        .tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + chatUser.getDisplayName()).then("> " + message)
 		        .color(color));
