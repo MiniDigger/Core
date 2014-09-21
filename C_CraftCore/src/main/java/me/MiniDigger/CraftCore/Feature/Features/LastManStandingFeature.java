@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Event.Events.UserDeathEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 import org.bukkit.Bukkit;
@@ -58,7 +58,7 @@ public class LastManStandingFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDeath(final UserDeathEvent e) {
+	public void onDeath(final CoreUserDeathEvent e) {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			e.setShouldRespawn(false);
 			final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));

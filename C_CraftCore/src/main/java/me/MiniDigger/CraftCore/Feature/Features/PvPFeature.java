@@ -3,11 +3,11 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Event.Events.UserDamageEvent;
-import me.MiniDigger.Core.Event.Events.UserDeathEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 import org.bukkit.ChatColor;
@@ -63,7 +63,7 @@ public class PvPFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDmg(final UserDamageEvent e) {
+	public void onDmg(final CoreUserDamageEvent e) {
 		if (e.getGame() != null && e.getGame().equals(getPhase().getGame())) {
 			if (!pvpEnabled) {
 				if (e.getDamager() != null) {
@@ -75,7 +75,7 @@ public class PvPFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDeath(final UserDeathEvent e) {
+	public void onDeath(final CoreUserDeathEvent e) {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			if (e.getKiller() != null) {
 				getPhase().getGame().broadCastMessage(

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Event.Events.UserDeathEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import net.minecraft.server.v1_7_R3.EnumClientCommand;
 import net.minecraft.server.v1_7_R3.PacketPlayInClientCommand;
@@ -53,7 +53,7 @@ public class AutoRespawnFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDeath(final UserDeathEvent e) {
+	public void onDeath(final CoreUserDeathEvent e) {
 		final PacketPlayInClientCommand packet = new PacketPlayInClientCommand(EnumClientCommand.PERFORM_RESPAWN);
 		final CraftPlayer craftPlayer = (CraftPlayer) e.getUser().getPlayer();
 		Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {

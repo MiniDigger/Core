@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 import org.bukkit.Bukkit;
@@ -25,8 +25,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
 
 public class HubFeature extends CoreFeature {
-	
-	// TODO Move to own addon
 	
 	private static StatsManager	        stats	  = new StatsManager();
 	private static Teleporter	        tp	      = new Teleporter();
@@ -68,7 +66,7 @@ public class HubFeature extends CoreFeature {
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
-	public void onPlayerJoin(final UserJoinGameEvent e) {
+	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			giveStartItems(e.getUser().getPlayer());
 		}

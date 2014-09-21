@@ -1,11 +1,11 @@
 package me.MiniDigger.CraftCore.Phase.Phases;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
@@ -106,7 +106,7 @@ public class LobbyPhase extends CorePhase {
 	}
 	
 	@EventHandler
-	public void onUserJoinGame(final UserJoinGameEvent event) {
+	public void onUserJoinGame(final CoreUserJoinGameEvent event) {
 		if (game.getIdentifier().equals(event.getGame().getIdentifier())) {
 			getGame().broadCastMessage(
 			        Prefix.getByGameType(getGame().getType()).getPrefix().then(event.getUser().getDisplayName() + " ist dem Spiel beigetreten").color(ChatColor.GOLD));
