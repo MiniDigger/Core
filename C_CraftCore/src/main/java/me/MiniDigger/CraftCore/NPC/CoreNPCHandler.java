@@ -50,7 +50,7 @@ import com.lenis0012.bukkit.npc.NPCProfile;
 
 public class CoreNPCHandler implements NPCHandler {
 	
-	private final NPCFactory	factory	= new NPCFactory((Plugin) Core.getCore().getInstance());
+	private final NPCFactory	factory	=null/*= new NPCFactory((Plugin) Core.getCore().getInstance())*/;
 	private NPC	             bender;
 	
 	@Override

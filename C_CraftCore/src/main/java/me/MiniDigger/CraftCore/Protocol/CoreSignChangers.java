@@ -77,7 +77,7 @@ public class CoreSignChangers implements SignChangers {
 				if (e != null && e.getType() == EntityType.PLAYER) {
 					if (loc.getBlock().getState() instanceof Sign) {
 						if (!justJoined.contains(((Player) e).getName())) {
-							if (!Core.getCore().getNPCHandler().getFactory().isNPC(e)) {
+							if (Core.getCore().getNPCHandler().getFactory() == null || !Core.getCore().getNPCHandler().getFactory().isNPC(e)) {
 								sendSignChange((Player) e, (Sign) loc.getBlock().getState());
 							}
 						} else {
