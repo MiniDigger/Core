@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -88,8 +88,7 @@ public class HubFeature extends CoreFeature {
 				}
 				
 				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (int i = 0; i < Core.getCore().getUserHandler().getOnlinePlayers().length; i++) {
-					final Player pl = Core.getCore().getUserHandler().getOnlinePlayers()[i];
+				for (Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					if (!pl.hasPermission("lm.kickjoin")) {
 						p.hidePlayer(pl);
 					}
@@ -115,8 +114,7 @@ public class HubFeature extends CoreFeature {
 				}
 				
 				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (int i = 0; i < Core.getCore().getUserHandler().getOnlinePlayers().length; i++) {
-					final Player pl = Core.getCore().getUserHandler().getOnlinePlayers()[i];
+				for (Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					p.showPlayer(pl);
 				}
 				
