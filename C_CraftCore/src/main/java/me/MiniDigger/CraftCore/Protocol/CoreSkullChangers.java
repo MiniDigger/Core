@@ -152,11 +152,8 @@ public class CoreSkullChangers implements SkullChangers {
 	private void sendSkullChange(final Player player, final Location loc) {
 		final PacketContainer result = Core.getCore().getProtocolHandler().getManager().createPacket(PacketType.Play.Server.TILE_ENTITY_DATA);
 		try {
-			@SuppressWarnings("unused") final Skull skull = (Skull) loc.getBlock().getState();// TODO
-			                                                                                  // Fix
-			                                                                                  // Update
-			                                                                                  // of
-			                                                                                  // SkullChanger
+			@SuppressWarnings("unused") final Skull skull = (Skull) loc.getBlock().getState();
+			// TODO Fix Update of SkullChanger
 			// NbtCompound tag = new NbtFactory().
 			// tag.setString("id", "Skull");
 			// tag.setInt("x", (int) loc.getX());

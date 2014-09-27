@@ -155,9 +155,8 @@ public class CoreProtocolHandler implements ProtocolHandler {
 							e.printStackTrace();
 						}
 						
-						final List<String> allowed = new ArrayList<>();// TODO
-						                                               // Fix
-						// tabblocker
+						final List<String> allowed = new ArrayList<>();
+						// TODO Fix tabblocker
 						// for (Command cmd :
 						// Core.getCore().getCommandHandler().getCommands()) {
 						// if (user.hasPermission(cmd.permission())) {
