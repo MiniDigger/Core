@@ -91,7 +91,7 @@ public class CoreServer implements Server {
 		}
 		
 		server.setMaxPlayers(Bukkit.getMaxPlayers());
-		server.setNumPlayers(Bukkit.getOnlinePlayers().length);
+		server.setNumPlayers(Core.getCore().getUserHandler().getOnlinePlayers().size());
 		
 		server.setOnline(online);
 		

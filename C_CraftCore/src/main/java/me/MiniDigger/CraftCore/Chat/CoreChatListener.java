@@ -33,7 +33,6 @@
 
 package me.MiniDigger.CraftCore.Chat;
 
-import java.util.Arrays;
 import java.util.HashSet;
 
 import me.MiniDigger.Core.Core;
@@ -69,10 +68,10 @@ public class CoreChatListener implements ChatListener {
 			Core.getCore().getChatHandler().handleChat(user, e.getChatMessage());
 		}
 		
-		final AsyncPlayerChatEvent event = new AsyncPlayerChatEvent(true, user.getPlayer(), e.getChatMessage(), new HashSet<Player>(Arrays.asList(Bukkit
-		        .getOnlinePlayers())));
+		final AsyncPlayerChatEvent event = new AsyncPlayerChatEvent(true, user.getPlayer(), e.getChatMessage(), new HashSet<Player>(Core.getCore().getUserHandler()
+		        .getOnlinePlayers()));
 		event.setCancelled(true);
-		Bukkit.getPluginManager().callEvent(event); // f�r bender
+		Bukkit.getPluginManager().callEvent(event); // für bender
 		
 		e.getPlayer().closeInventory();
 	}

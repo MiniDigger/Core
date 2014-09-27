@@ -98,7 +98,7 @@ public class CoreHoloHandler implements HoloHandler {
 					tags.add(nametagList);
 					
 					if (i == 0) {
-						for (final Player p : Bukkit.getOnlinePlayers()) {
+						for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 							nametagList.showHolos(Core.getCore().getUserHandler().get(p.getUniqueId()));
 						}
 					}
@@ -137,7 +137,7 @@ public class CoreHoloHandler implements HoloHandler {
 				currentID += 2;
 			}
 			
-			for (final Player p : Bukkit.getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				
 				nametagList.showHolos(Core.getCore().getUserHandler().get(p.getUniqueId()));
 			}
@@ -238,7 +238,7 @@ public class CoreHoloHandler implements HoloHandler {
 				final Holo nametag = tags.get(frame).getHolos().get(i);
 				final Holo nametag2 = tags.get(next).getHolos().get(i);
 				
-				for (final Player p : Bukkit.getOnlinePlayers()) {
+				for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
 					// nametag.setName(p, nametag2.name); Meh doesn't work, not
 					// exactly sure why.

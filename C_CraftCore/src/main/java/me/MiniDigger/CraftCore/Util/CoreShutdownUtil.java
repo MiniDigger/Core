@@ -54,7 +54,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 	
 	@Override
 	public void doShutdown() {
-		for (final Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!", 100F);
 			Core.getCore().getUserHandler().get(p.getUniqueId())
 			        .sendMessage(Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED));
@@ -64,7 +64,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 			
 			@Override
 			public void run() {
-				for (final Player p : Bukkit.getOnlinePlayers()) {
+				for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					p.kickPlayer(ChatColor.RED + "Der Server wird nun neugestarte \n " + ChatColor.AQUA + " Er wird gleich wieder online sein");
 				}
 				Bukkit.shutdown();

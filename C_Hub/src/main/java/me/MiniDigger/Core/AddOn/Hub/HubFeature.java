@@ -88,8 +88,8 @@ public class HubFeature extends CoreFeature {
 				}
 				
 				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (int i = 0; i < Bukkit.getOnlinePlayers().length; i++) {
-					final Player pl = Bukkit.getOnlinePlayers()[i];
+				for (int i = 0; i < Core.getCore().getUserHandler().getOnlinePlayers().length; i++) {
+					final Player pl = Core.getCore().getUserHandler().getOnlinePlayers()[i];
 					if (!pl.hasPermission("lm.kickjoin")) {
 						p.hidePlayer(pl);
 					}
@@ -115,8 +115,8 @@ public class HubFeature extends CoreFeature {
 				}
 				
 				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (int i = 0; i < Bukkit.getOnlinePlayers().length; i++) {
-					final Player pl = Bukkit.getOnlinePlayers()[i];
+				for (int i = 0; i < Core.getCore().getUserHandler().getOnlinePlayers().length; i++) {
+					final Player pl = Core.getCore().getUserHandler().getOnlinePlayers()[i];
 					p.showPlayer(pl);
 				}
 				

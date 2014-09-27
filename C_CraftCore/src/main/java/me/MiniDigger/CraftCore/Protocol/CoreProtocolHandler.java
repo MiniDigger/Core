@@ -83,7 +83,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 				final String[] names = new String[] { "MiniDigger", "Notch", "jeb_", "Dinnerbone", };
 				
 				try {
-					fame = Bukkit.getServer().getOnlinePlayers()[Core.getCore().getRandomUtil().nextInt(Bukkit.getServer().getOnlinePlayers().length)].getName();
+					fame = Core.getCore().getUserHandler().getOnlinePlayers().get(Core.getCore().getRandomUtil().nextInt(Core.getCore().getUserHandler().getOnlinePlayers().size())).getName();
 				} catch (final Throwable e) {
 					fame = names[Core.getCore().getRandomUtil().nextInt(names.length)];
 				}

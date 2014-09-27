@@ -61,7 +61,7 @@ public class CoreCommonMethods implements CommonMethods {
 	@Override
 	public void stopServer() {
 		Core.getCore().getInstance().info("Shutting down...");
-		for (final Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			FancyMessage msg = Prefix.CORE.getPrefix().then("Der Server wird neugestartet!").color(ChatColor.RED).style(ChatColor.BOLD);
 			msg.send(p);
 			msg = Prefix.CORE.getPrefix().then("Er wird gleich wieder da sein!").color(ChatColor.AQUA).style(ChatColor.BOLD);
@@ -79,7 +79,7 @@ public class CoreCommonMethods implements CommonMethods {
 			w.save();
 		}
 		
-		for (final Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			p.kickPlayer(ChatColor.RED + "Der Server wird neugestartet! \n " + ChatColor.AQUA + " Er wird gleich wieder da sein!");
 		}
 		

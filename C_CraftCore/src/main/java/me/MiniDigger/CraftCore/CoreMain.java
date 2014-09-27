@@ -286,7 +286,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void fixReload() {
-		for (final Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.startSession();
 		}
@@ -364,7 +364,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	@Override
 	public void broadcast(final FancyMessage msg) {
-		for (final Player p : getServer().getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			msg.send(p);
 		}
 	}

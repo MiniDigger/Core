@@ -181,7 +181,7 @@ public class CoreGame implements Game {
 			}
 		}
 		
-		for (final Player p : Bukkit.getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			if (!p.getLocation().getWorld().getName().equalsIgnoreCase(lobby.getName())) {
 				p.teleport(loc);
 			}

@@ -36,6 +36,8 @@ package me.MiniDigger.Core.User;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.SQL.SaveHandler;
 
 public interface UserHandler extends SaveHandler {
@@ -61,4 +63,9 @@ public interface UserHandler extends SaveHandler {
 	 * @return All online users
 	 */
 	public List<User> getOnlineUsers();
+
+	/**
+     * @return All online players
+     */
+    public List<Player> getOnlinePlayers();
 }

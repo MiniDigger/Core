@@ -9,7 +9,6 @@ import java.util.UUID;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Bar.BarHandler;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class CoreBarHandler implements BarHandler {
@@ -83,14 +82,14 @@ public class CoreBarHandler implements BarHandler {
 	
 	@Override
 	public void removeAllStatusBars() {
-		for (Player each : Bukkit.getOnlinePlayers()) {
+		for (Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			removeBar(each);
 		}
 	}
 	
 	@Override
 	public void setAllStatusBars(String text, float percent) {
-		for (Player each : Bukkit.getOnlinePlayers()) {
+		for (Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			setBar(each, text, percent);
 		}
 	}

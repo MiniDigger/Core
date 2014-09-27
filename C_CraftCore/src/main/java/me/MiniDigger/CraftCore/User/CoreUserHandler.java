@@ -138,4 +138,15 @@ public class CoreUserHandler implements UserHandler {
 		
 		return users;
 	}
+	
+	@Override
+	public List<Player> getOnlinePlayers() {
+		final List<Player> players = new ArrayList<>();
+		
+		for (final Player p : Bukkit.getOnlinePlayers()) {
+			players.add(p);
+		}
+		
+		return players;
+	}
 }
