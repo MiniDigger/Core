@@ -23,9 +23,11 @@ public class CoreBarHandler implements BarHandler {
 	
 	@Override
 	public void removeBar(Player player) {
+		// System.out.println("try to remove bar for " + player.getName());
 		if (hasBar(player)) {
+			// System.out.println("remove bar for " + player.getName());
 			sendPacket(player, DRAGONS.get(player.getUniqueId()).getDestroyPacket());
-			DRAGONS.remove(player);
+			DRAGONS.remove(player.getUniqueId());
 		}
 	}
 	
@@ -40,10 +42,12 @@ public class CoreBarHandler implements BarHandler {
 		if (text.isEmpty() && dragon != null) removeBar(player);
 		
 		if (dragon == null) {
+			// System.out.println("create d");
 			dragon = new CoreFakeDragon(player.getLocation().add(0, -200, 0), text, health);
 			sendPacket(player, dragon.getSpawnPacket());
 			DRAGONS.put(player.getUniqueId(), dragon);
 		} else {
+			// System.out.println("update d");
 			dragon.setName(text);
 			dragon.setHealth(health);
 			sendPacket(player, dragon.getMetaPacket(dragon.getWatcher()));
@@ -57,16 +61,18 @@ public class CoreBarHandler implements BarHandler {
 		CoreFakeDragon dragon = DRAGONS.containsKey(player.getUniqueId()) ? DRAGONS.get(player.getUniqueId()) : null;
 		
 		if (text.length() > 64) text = text.substring(0, 63);
-		if (health > 100) health = 100;
+		if (health > 200) health = 200;
 		if (health < 0) health = 0;
 		
 		if (text.isEmpty() && dragon != null) removeBar(player);
 		
 		if (dragon == null) {
+			// System.out.println("create dd");
 			dragon = new CoreFakeDragon(player.getLocation().add(0, -200, 0), text, (float) (200 / health));
 			sendPacket(player, dragon.getSpawnPacket());
 			DRAGONS.put(player.getUniqueId(), dragon);
 		} else {
+			// System.out.println("update dd");
 			dragon.setName(text);
 			dragon.setHealth(health);
 			sendPacket(player, dragon.getMetaPacket(dragon.getWatcher()));

@@ -84,6 +84,8 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 				if (toGo <= 0) {
 					timer.cancel();
 					endPhase();
+					Core.getCore().getBarHandler().removeAllStatusBars();
+					System.out.println("Clear all bars");
 					return;
 				}
 				
@@ -130,8 +132,25 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 					p.setExp(percent / 100);
 				}
 				if (displayBar()) {
-					System.out.println("PERCENT: " + percent * 2);
-					Core.getCore().getBarHandler().setBar(p, getBarMessage(), (double) percent * 2);
+					double per = percent;
+					double perX2 = per * 2;
+					// double perX4 = per * 4;
+					// double perX2M100 = perX2 - 100;
+					// double maxDper = 200 / per;
+					// double perD2 = per / 2;
+					// double perXmax = 200 * (per / 100);
+					//
+					// System.out.println("===============================");
+					// System.out.println("PER: " + per);
+					// System.out.println("PERX2: " + perX2);
+					// System.out.println("PERX4: " + perX4);
+					// System.out.println("PERX2M100: " + perX2M100);
+					// System.out.println("PERD2: " + perD2);
+					// System.out.println("MAXDPER: " + maxDper);
+					// System.out.println("PERXMAX: " + perXmax);
+					// System.out.println("===============================");
+					
+					Core.getCore().getBarHandler().setBar(p, getBarMessage(), perX2);
 				}
 			}
 		}
