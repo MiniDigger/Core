@@ -30,17 +30,21 @@ public class CoreEventListener implements EventListener {
 	@EventHandler
 	public void onPlayerJoin(final PlayerJoinEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+		
+		e.setJoinMessage(null);
+		Core.getCore().getCommonMethods().printJoinMessage(user);
+		
 		if (Core.getCore().getGameHandler().getMainGame() != null && Core.getCore().getGameHandler().getMainGame().getType() != GameType.NOTHING) {
+			final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(Core.getCore().getGameHandler().getMainGame(), user);
+			Bukkit.getPluginManager().callEvent(event);
+			Core.getCore().getGameHandler().getMainGame().join(user);
+			
 			if (!Core.getCore().getGameHandler().isMainGameStarted()) {
 				Core.getCore().getGameHandler().setMainGameStarted(true);
 				Core.getCore().getGameHandler().getMainGame().init();
 				Core.getCore().getGameHandler().getMainGame().start();
 			}
-			final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(Core.getCore().getGameHandler().getMainGame(), user);
-			Bukkit.getPluginManager().callEvent(event);
-			Core.getCore().getGameHandler().getMainGame().join(user);
 		}
-		e.setJoinMessage(null);
 	}
 	
 	@Override
