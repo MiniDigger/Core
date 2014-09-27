@@ -16,6 +16,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
+import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
@@ -57,11 +58,10 @@ public class LobbyPhase extends CorePhase {
 		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Die Lobby Phase hat begonnen.").color(ChatColor.GOLD));
 		final int needed = players - getGame().getPlayers().size();
 		if (needed > 0) {
-			final mkremins.fanciful.FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD)
+			final FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD)
 			        .then("" + needed).color(ChatColor.YELLOW).then(" Spieler zum starten ben").color(ChatColor.GOLD).then("\u00f6").color(ChatColor.GOLD).then("tigt.")
 			        .color(ChatColor.GOLD);
 			getGame().broadCastMessage(msg);
-			System.out.println(msg.toJSONString());
 		} else {
 			endPhase();
 		}
