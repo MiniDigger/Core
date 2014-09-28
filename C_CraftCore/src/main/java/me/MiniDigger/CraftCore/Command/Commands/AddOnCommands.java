@@ -60,7 +60,7 @@ public class AddOnCommands {
 		for (final AddOnBean bean : Core.getCore().getAddOnHandler().getInstalledBeans()) {
 			Prefix.ADDON.getPrefix().then(bean.getName() + " v" + bean.getVersion()).color(ChatColor.YELLOW).tooltip("Klicke zum Deinstallieren")
 			        .suggest("/addon uninstall " + bean.getName()).then(" von " + bean.getAuthor()).tooltip("Klicke um alle", "Addons des Autors", "zu sehen")
-			        .color(ChatColor.GOLD).send(args.getSender());
+			        .command("/addon list author " + bean.getAuthor()).color(ChatColor.GOLD).send(args.getSender());
 		}
 		
 		Prefix.ADDON.getPrefix().then("======== =================== =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
@@ -72,8 +72,9 @@ public class AddOnCommands {
 		
 		for (final AddOnBean bean : Core.getCore().getRESTHandler().getAllAddOns()) {
 			Prefix.ADDON.getPrefix().then(bean.getName() + " v" + bean.getVersion()).color(ChatColor.YELLOW).tooltip("Klicke zum Installieren")
-			        .suggest("/addon install " + bean.getName()).then(" von " + bean.getAuthor()).tooltip("Klicke um alle", "Addons des Autors", "zu sehen")
-			        .color(ChatColor.GOLD).send(args.getSender());
+			        .suggest("/addon install " + bean.getName() + " " + bean.getVersion()).then(" von " + bean.getAuthor())
+			        .tooltip("Klicke um alle", "Addons des Autors", "zu sehen").command("/addon list author " + bean.getAuthor()).color(ChatColor.GOLD)
+			        .send(args.getSender());
 		}
 		
 		Prefix.ADDON.getPrefix().then("======== ================= =========").color(ChatColor.GOLD).style(ChatColor.BOLD).send(args.getSender());
@@ -86,7 +87,7 @@ public class AddOnCommands {
 		for (final AddOnBean bean : Core.getCore().getRESTHandler().getAllAddOnsBy(args.getArgs()[0])) {
 			Prefix.ADDON.getPrefix().then(bean.getName() + " v" + bean.getVersion()).color(ChatColor.YELLOW).tooltip("Klicke zum Installieren")
 			        .suggest("/addon install " + bean.getName()).then(" von " + bean.getAuthor()).tooltip("Klicke um alle", "Addons des Autors", "zu sehen")
-			        .color(ChatColor.GOLD).send(args.getSender());
+			        .command("/addon list author " + bean.getAuthor()).color(ChatColor.GOLD).send(args.getSender());
 			
 		}
 		
