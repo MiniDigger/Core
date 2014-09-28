@@ -89,4 +89,15 @@ public interface RandomUtil {
 	 * @see java.util.Random#nextGaussian()
 	 */
 	public double nextGaussian();
+
+	/**
+     * @param l
+     * @return a random string with the given length
+     */
+    public String nextString(int l);
+
+	/**
+     * @return a random string with a random length
+     */
+    public String nextString();
 }

@@ -85,4 +85,21 @@ public class CoreRandomUtil implements RandomUtil {
 	public double nextGaussian() {
 		return r.nextGaussian();
 	}
+	
+	@Override
+	public String nextString() {
+		return nextString(nextInt(10));
+	}
+	
+	@Override
+	public String nextString(int l) {
+		final String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890<>,;.:-_öäü*+'#`´?ß~}][ {=)(/&%$§!°";
+		String result = "";
+		
+		for (int i = 0; i < l; i++) {
+			result += s.charAt(nextInt(s.length()));
+		}
+		
+		return result;
+	}
 }
