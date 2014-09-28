@@ -32,7 +32,14 @@ public class GetTheDropAddOn extends CoreAddOn {
 	@Override
 	public void enable() {
 		GameType.GETTHEDROP.setClass(GetTheDropGame.class);
+		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
+	}
+	
+	@Override
+	public void disable() {
+		Core.getCore().getCommandHandler().unregisterCommands(this);
+		super.disable();
 	}
 	
 	@Command(name = "getthedrop")

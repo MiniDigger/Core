@@ -50,7 +50,14 @@ public class TicTacToeAddOn extends CoreAddOn {
 	@Override
 	public void enable() {
 		GameType.TICTACTOE.setClass(TicTacToeGame.class);
+		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
+	}
+	
+	@Override
+	public void disable() {
+		Core.getCore().getCommandHandler().unregisterCommands(this);
+		super.disable();
 	}
 	
 	@Command(name = "tictactoe")

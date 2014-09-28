@@ -122,6 +122,8 @@ public class CoreAddOnHandler implements AddOnHandler {
 			Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
 			addon.enable();
 		}
+		
+		Core.getCore().getCommandHandler().registerHelp();
 	}
 	
 	@Override
@@ -136,6 +138,8 @@ public class CoreAddOnHandler implements AddOnHandler {
 				removeClass(s);
 			}
 		}
+		
+		Core.getCore().getCommandHandler().registerHelp();
 	}
 	
 	@Override

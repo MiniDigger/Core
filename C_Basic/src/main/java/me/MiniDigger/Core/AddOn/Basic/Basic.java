@@ -31,13 +31,13 @@ public class Basic extends CoreAddOn {
 		Core.getCore().getInstance().info("Hey, I am here!");
 		Core.getCore().getInstance().info("And I am updated!");
 		Core.getCore().getCommandHandler().registerCommands(this);
-		Core.getCore().getCommandHandler().registerHelp();
 		super.enable();
 	}
 	
 	@Override
 	public void disable() {
 		Core.getCore().getInstance().info("Now I am gone ;(");
+		Core.getCore().getCommandHandler().registerCommands(this);
 		super.disable();
 	}
 	
