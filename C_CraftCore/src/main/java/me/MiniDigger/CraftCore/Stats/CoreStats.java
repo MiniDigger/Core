@@ -75,8 +75,9 @@ public class CoreStats implements Stats {
 		q = Core.getCore().getStringUtil().replaceLast(q, ",", "");
 		q += ")";
 		// Try insertion
+		SQLQuery query = null;
 		try {
-			final SQLQuery query = new CoreSQLQuery(q);
+			query = new CoreSQLQuery(q);
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, user.toString());
 			int i;
@@ -86,6 +87,9 @@ public class CoreStats implements Stats {
 			stmt.execute();
 			query.kill();
 		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (Exception e) {}
 			// Try update
 			try {
 				// create query
@@ -96,7 +100,7 @@ public class CoreStats implements Stats {
 				}
 				q = Core.getCore().getStringUtil().replaceLast(q, ",", "");
 				q += "WHERE `uuid` LIKE ?";
-				final SQLQuery query = new CoreSQLQuery(q);
+				query = new CoreSQLQuery(q);
 				final PreparedStatement stmt = query.getStatement();
 				int i;
 				stmt.setString(1, user.toString());
@@ -107,6 +111,9 @@ public class CoreStats implements Stats {
 				stmt.execute();
 				query.kill();
 			} catch (final Exception e) {
+				try {
+					query.kill();
+				} catch (Exception exx) {}
 				return false;
 			}
 		}
@@ -115,8 +122,9 @@ public class CoreStats implements Stats {
 	
 	@Override
 	public boolean load() {
+		SQLQuery query = null;
 		try {
-			final SQLQuery query = new CoreSQLQuery("SELECT * FROM `stats` WHERE `uuid` LIKE ?");
+			query = new CoreSQLQuery("SELECT * FROM `stats` WHERE `uuid` LIKE ?");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, user.toString());
 			
@@ -135,6 +143,9 @@ public class CoreStats implements Stats {
 			
 			query.kill();
 		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (Exception exx) {}
 			return false;
 		}
 		return true;
@@ -157,6 +168,9 @@ public class CoreStats implements Stats {
 			q.kill();
 			return true;
 		} catch (final SQLException e) {
+			try {
+				q.kill();
+			} catch (Exception exx) {}
 			e.printStackTrace();
 			return false;
 		}

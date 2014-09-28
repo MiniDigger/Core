@@ -49,8 +49,6 @@ public class CoreSQLQuery implements SQLQuery {
 	
 	private SQLHandler	 handler;
 	private Connection	 conn;
-	private boolean	     cancel	= false;
-	private final int	 limit	= 100000;
 	
 	public CoreSQLQuery(final String stmt) {
 		this.stmt = stmt;
@@ -65,20 +63,6 @@ public class CoreSQLQuery implements SQLQuery {
 		} catch (final Exception e) {
 			Error.SQL_CONNECTION_FAILED.throwError(e);
 			e.printStackTrace();
-		}
-		// KEEP ALIVE
-		int i = 0;
-		while (!cancel) {
-			if (i < limit) {
-				i++;
-			} else {
-				try {
-					// conn.close();
-				} catch (final Exception e) {
-					e.printStackTrace();
-				}
-				break;
-			}
 		}
 	}
 	
@@ -97,7 +81,6 @@ public class CoreSQLQuery implements SQLQuery {
 	
 	@Override
 	public void kill() {
-		cancel = true;
 		try {
 			conn.close();
 		} catch (final SQLException e) {

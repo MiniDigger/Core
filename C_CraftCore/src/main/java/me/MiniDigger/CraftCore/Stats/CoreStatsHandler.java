@@ -128,6 +128,9 @@ public class CoreStatsHandler implements StatsHandler {
 		} catch (final Exception ex) {
 			ex.printStackTrace();
 		}
+		
+		query.kill();
+		
 		return result;
 	}
 	

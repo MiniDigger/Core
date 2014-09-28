@@ -52,6 +52,7 @@ import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.yaml.snakeyaml.emitter.EmitterException;
 
 public class CoreUser implements User {
 	
@@ -70,7 +71,7 @@ public class CoreUser implements User {
 	protected Date	            lastSeen;
 	protected Long	            playTime;
 	
-	protected List<ChatChannel>	listenChannels = new ArrayList<>();
+	protected List<ChatChannel>	listenChannels	= new ArrayList<>();
 	protected ChatChannel	    speakChannel;
 	
 	// PRIVATE
@@ -91,8 +92,9 @@ public class CoreUser implements User {
 	@Override
 	public boolean save() {
 		// Try insertion
+		SQLQuery query = null;
 		try {
-			final SQLQuery query = new CoreSQLQuery(
+			query = new CoreSQLQuery(
 			        "INSERT INTO `users`(`uuid`, `displayName`, `prefix`, `suffix`, `banned`, `banTime`, `muted`, `muteTime`,`firstSeen`,`lastSeen`,`playTime`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, uuid.toString());
@@ -110,9 +112,12 @@ public class CoreUser implements User {
 			stmt.execute();
 			query.kill();
 		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (Exception exx) {}
 			// Try update
 			try {
-				final SQLQuery query = new CoreSQLQuery(
+				query = new CoreSQLQuery(
 				        "UPDATE `users` SET `uuid`=?,`displayName`=?,`prefix`=?,`suffix`=?,`banned`=?,`banTime`=?,`muted`=?,`muteTime`=?,`firstSeen`=?,`lastSeen`=?,`playTime`=? WHERE `uuid` LIKE ?");
 				final PreparedStatement stmt = query.getStatement();
 				stmt.setString(1, uuid.toString());
@@ -132,6 +137,9 @@ public class CoreUser implements User {
 				stmt.execute();
 				query.kill();
 			} catch (final Exception e) {
+				try {
+					query.kill();
+				} catch (Exception exx) {}
 				return false;
 			}
 		}
@@ -140,8 +148,9 @@ public class CoreUser implements User {
 	
 	@Override
 	public boolean load() {
+		SQLQuery query = null;
 		try {
-			final SQLQuery query = new CoreSQLQuery("SELECT * FROM `users` WHERE `uuid` LIKE ?");
+			query = new CoreSQLQuery("SELECT * FROM `users` WHERE `uuid` LIKE ?");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, uuid.toString());
 			
@@ -163,6 +172,9 @@ public class CoreUser implements User {
 			playTime = r.getLong("playTime");
 			query.kill();
 		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (Exception exx) {}
 			return false;
 		}
 		return true;
@@ -177,6 +189,9 @@ public class CoreUser implements User {
 			q.kill();
 			return true;
 		} catch (final SQLException e) {
+			try {
+				q.kill();
+			} catch (Exception exx) {}
 			return false;
 		}
 	}

@@ -54,8 +54,9 @@ public class CoreClient implements Client {
 	@Override
 	public boolean save() {
 		// Try insertion
+		SQLQuery query = null;
 		try {
-			final SQLQuery query = new CoreSQLQuery("INSERT INTO `external_users`(`name`, `password`) VALUES (?,?)");
+			query = new CoreSQLQuery("INSERT INTO `external_users`(`name`, `password`) VALUES (?,?)");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, name);
 			stmt.setString(2, password);
@@ -63,9 +64,11 @@ public class CoreClient implements Client {
 			stmt.execute();
 			query.kill();
 		} catch (final Exception ex) {
-			// Try update
 			try {
-				final SQLQuery query = new CoreSQLQuery("UPDATE `external_users` SET `name`=?,`password`=? WHERE `name` LIKE ?");
+				query.kill();
+			} catch (Exception exe) {}
+			try {
+				query = new CoreSQLQuery("UPDATE `external_users` SET `name`=?,`password`=? WHERE `name` LIKE ?");
 				final PreparedStatement stmt = query.getStatement();
 				stmt.setString(1, name);
 				stmt.setString(2, password);
@@ -75,6 +78,9 @@ public class CoreClient implements Client {
 				stmt.execute();
 				query.kill();
 			} catch (final Exception e) {
+				try {
+					query.kill();
+				} catch (Exception exe) {}
 				return false;
 			}
 		}
@@ -83,8 +89,9 @@ public class CoreClient implements Client {
 	
 	@Override
 	public boolean load() {
+		SQLQuery query = null;
 		try {
-			final SQLQuery query = new CoreSQLQuery("SELECT * FROM `external_users` WHERE `name` LIKE ?");
+			query = new CoreSQLQuery("SELECT * FROM `external_users` WHERE `name` LIKE ?");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, name);
 			
@@ -98,6 +105,9 @@ public class CoreClient implements Client {
 			password = r.getString("password");
 			query.kill();
 		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (Exception exe) {}
 			return false;
 		}
 		return true;
@@ -112,6 +122,9 @@ public class CoreClient implements Client {
 			q.kill();
 			return true;
 		} catch (final SQLException e) {
+			try {
+				q.kill();
+			} catch (Exception exe) {}
 			e.printStackTrace();
 			return false;
 		}
