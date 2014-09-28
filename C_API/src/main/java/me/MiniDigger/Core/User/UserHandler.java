@@ -43,14 +43,6 @@ import me.MiniDigger.Core.SQL.SaveHandler;
 public interface UserHandler extends SaveHandler {
 	
 	/**
-	 * Adds a bot to the list of users
-	 * 
-	 * @param bot
-	 *            The Bot to add
-	 */
-	public void addBot(final Bot bot);
-	
-	/**
 	 * Searches for user data or creates a new one
 	 * 
 	 * @param id
@@ -63,9 +55,14 @@ public interface UserHandler extends SaveHandler {
 	 * @return All online users
 	 */
 	public List<User> getOnlineUsers();
-
+	
 	/**
-     * @return All online players
-     */
-    public List<Player> getOnlinePlayers();
+	 * @return All online players
+	 */
+	public List<Player> getOnlinePlayers();
+	
+	/**
+	 * @return the Server-Controlled user
+	 */
+	public User getBot();
 }

@@ -36,7 +36,6 @@ package me.MiniDigger.CraftCore.User;
 import java.util.Date;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.User.Bot;
 import mkremins.fanciful.FancyMessage;
 
@@ -55,11 +54,15 @@ public class CoreBot extends CoreUser implements Bot {
 		lastSeen = new Date();
 		playTime = 0L;
 		displayName = "Bot";
-		Core.getCore().getUserHandler().addBot(this);
 	}
 	
 	public static UUID getBotUUID() {
 		return UUID.fromString("11111111-1111-1111-1111-111111111111");
+	}
+	
+	@Override
+	public void setDisplayName(String name) {
+		this.displayName = name;
 	}
 	
 	@Override

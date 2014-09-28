@@ -187,7 +187,7 @@ public class TicTacToeGame extends CoreGame {
 	}
 	
 	public int click(UUID uniqueId, int slot) {
-		System.out.println("checksol" + checkSlot(slot));
+		// System.out.println("checksol" + checkSlot(slot));
 		if (checkSlot(slot) == 0) {
 			TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
 			setSlot(slot, tpf.isOne(uniqueId) ? 1 : 2);
@@ -339,6 +339,7 @@ public class TicTacToeGame extends CoreGame {
 					continue;
 				}
 			}
+//			System.out.println(s);
 		}
 		return inv;
 	}

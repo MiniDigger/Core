@@ -75,9 +75,9 @@ public class TicTacToePhase extends CoreRepeatingPhase {
 		o.sendMessage(Prefix.TICTACTOE.getPrefix().then("Bitte warte, während " + u.getDisplayName() + " seinen Zug macht!"));
 		
 		if (acting.equals(CoreBot.getBotUUID())) {
-			System.out.println("best slot = " + ((TicTacToeGame) getGame()).getBestSlot());
+//			System.out.println("best slot = " + ((TicTacToeGame) getGame()).getBestSlot());
 			int i = ((TicTacToeGame) getGame()).click(acting, ((TicTacToeGame) getGame()).getBestSlot());
-			System.out.println("result " + i);
+//			System.out.println("result " + i);
 			if (i == 1) {
 				didStep = true;
 				endPhase();

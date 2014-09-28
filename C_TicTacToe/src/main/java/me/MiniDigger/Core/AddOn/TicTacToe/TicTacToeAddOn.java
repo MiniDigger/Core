@@ -33,7 +33,6 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.Features.TwoPlayerFeature;
-import me.MiniDigger.CraftCore.User.CoreBot;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -89,9 +88,7 @@ public class TicTacToeAddOn extends CoreAddOn {
 		game.join(args.getUser()).name();
 		
 		if (args.getArgs()[0].equalsIgnoreCase("bot")) {
-			User bot = new CoreBot(CoreBot.getBotUUID());
-			bot.setDisplayName("TTT#" + ((int) (args.getUser().getUUID().getMostSignificantBits() / 200)));
-			((User) bot).setDisplayName("TTT#" + ((int) (args.getUser().getUUID().getMostSignificantBits() / 200)));
+			User bot = Core.getCore().getUserHandler().getBot();
 			UserJoinGameEvent e2 = new CoreUserJoinGameEvent(game, bot);
 			Bukkit.getPluginManager().callEvent((Event) e2);
 			game.join(bot);
@@ -110,7 +107,7 @@ public class TicTacToeAddOn extends CoreAddOn {
 	public List<String> tictactoeC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			result.add("doStep");
 			result.add("showLastGame");
 			result.add("bot");

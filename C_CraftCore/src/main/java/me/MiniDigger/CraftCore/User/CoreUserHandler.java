@@ -43,7 +43,6 @@ import java.util.UUID;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
-import me.MiniDigger.Core.User.Bot;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.User.UserHandler;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
@@ -55,6 +54,7 @@ import org.bukkit.entity.Player;
 public class CoreUserHandler implements UserHandler {
 	
 	private List<User>	users	= new ArrayList<>();
+	private User	   bot;
 	
 	@Override
 	public boolean loadAll() {
@@ -94,6 +94,8 @@ public class CoreUserHandler implements UserHandler {
 		
 		q.kill();
 		
+		bot = new CoreBot(CoreBot.getBotUUID());
+		users.add(bot);
 		return b;
 	}
 	
@@ -106,9 +108,8 @@ public class CoreUserHandler implements UserHandler {
 	}
 	
 	@Override
-	public void addBot(final Bot bot) {
-		// TODO Auto-generated method stub
-		
+	public User getBot() {
+		return bot;
 	}
 	
 	@Override
