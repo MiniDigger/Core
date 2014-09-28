@@ -1,5 +1,7 @@
 package me.MiniDigger.Core.AddOn.TicTacToe;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.event.EventHandler;
@@ -11,6 +13,7 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Game.Game;
@@ -97,14 +100,23 @@ public class TicTacToePhase extends CoreRepeatingPhase {
 		super.endPhase();
 	}
 	
-	@Command(name = "tictactoe.doStep")
+	@Command(name = "tictactoe.doStep", permission = "tictactoe.doStep", consol = false, max = 0, min = 0, usage = "", description = "Öffnet das Inventar um einen Zug zu machen")
 	public void doStepCommand(CommandArgs args) {
 		if (!args.getUser().getUUID().equals(acting)) {
-			// return;
+			// return; //TODO Why is this here?
 		}
 		TicTacToeGame game = (TicTacToeGame) getGame();
 		TwoPlayerFeature tpf = ((TwoPlayerFeature) getFeature(FeatureType.TWOPLAYER));
 		game.openInv(tpf.isOne(args.getUser().getUUID()) ? 1 : 2);
+	}
+	
+	@Completer(name="tictactoe.doStep")
+	public List<String> doStepCommandC(CommandArgs args){
+		List<String> result =  new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
 	}
 	
 	@EventHandler

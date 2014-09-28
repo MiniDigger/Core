@@ -13,42 +13,27 @@
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
  */
-package me.MiniDigger.Core.AddOn.Hub;
+package me.MiniDigger.CraftCore.Command.Completer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
-import me.MiniDigger.Core.Game.GameType;
-import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
+import me.MiniDigger.Core.Item.ItemType;
 
-public class HubAddOn extends CoreAddOn {
+public class ItemCompleter {
 	
-	@Override
-	public void enable() {
-		GameType.LOBBY.setClass(HubGame.class);
-		Core.getCore().getCommandHandler().registerCommands(this);
-		super.enable();
-	}
-	
-	@Override
-	public void disable() {
-		Core.getCore().getCommandHandler().unregisterCommands(this);
-		super.disable();
-	}
-	
-	@Command(name = "shop")
-	public void shop(CommandArgs args) {
-		// TODO Shop command
-	}
-	
-	@Completer(name = "shop")
-	public List<String> shopC(CommandArgs args) {
-		List<String> result = new ArrayList<>();;
-		// TODO Shop Completer
+	@Completer(name = "item")
+	public List<String> itemC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 1) {
+			for (ItemType t : ItemType.values()) {
+				result.add(t.name());
+			}
+		}
+		
 		return result;
 	}
 }

@@ -13,42 +13,138 @@
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
  */
-package me.MiniDigger.Core.AddOn.Hub;
+package me.MiniDigger.CraftCore.Command.Completer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
-import me.MiniDigger.Core.Game.GameType;
-import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
-public class HubAddOn extends CoreAddOn {
+public class AddOnCompleter {
 	
-	@Override
-	public void enable() {
-		GameType.LOBBY.setClass(HubGame.class);
-		Core.getCore().getCommandHandler().registerCommands(this);
-		super.enable();
+	@Completer(name = "addon")
+	public List<String> addOnC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			result.add("list");
+			result.add("info");
+			result.add("install");
+			result.add("uninstall");
+			result.add("update");
+		}
+		
+		return result;
 	}
 	
-	@Override
-	public void disable() {
-		Core.getCore().getCommandHandler().unregisterCommands(this);
-		super.disable();
+	@Completer(name = "addon.list")
+	public List<String> listC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			result.add("all");
+			result.add("installed");
+			result.add("author");
+		}
+		
+		return result;
 	}
 	
-	@Command(name = "shop")
-	public void shop(CommandArgs args) {
-		// TODO Shop command
+	@Completer(name = "addon.list.installed")
+	public List<String> installedC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
 	}
 	
-	@Completer(name = "shop")
-	public List<String> shopC(CommandArgs args) {
-		List<String> result = new ArrayList<>();;
-		// TODO Shop Completer
+	@Completer(name = "addon.list.all")
+	public List<String> allC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.list.author")
+	public List<String> authorC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.info")
+	public List<String> infoC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			for (String addon : Core.getCore().getAddOnHandler().getInstalledNames()) {
+				result.add(addon);
+			}
+		}
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.install")
+	public List<String> installC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			result.add("yes");
+			result.add("no");
+		}
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.install.yes")
+	public List<String> yesC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.install.no")
+	public List<String> noC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.uninstall")
+	public List<String> uninstallC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			for (String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
+				result.add(s);
+			}
+		}
+		
+		return result;
+	}
+	
+	@Completer(name = "addon.update")
+	public List<String> updateC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			for(String s : Core.getCore().getAddOnHandler().getInstalledNames()){
+				result.add(s);
+			}
+		}
+		
 		return result;
 	}
 }

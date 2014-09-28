@@ -21,15 +21,10 @@ public class ChatCommands {
 		        .tooltip("Oder klicke hier").color(ChatColor.YELLOW).then(" um einen Channel zu verlassen").color(ChatColor.GRAY);
 		final FancyMessage msg3 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY).then("/chat list").suggest("/chat join ").tooltip("Oder klicke hier")
 		        .color(ChatColor.YELLOW).then(" um alle für dich verfügbaren Channel anzuzeigen").color(ChatColor.GRAY);
-		if (args.isUser()) {
-			args.getUser().sendMessage(msg1);
-			args.getUser().sendMessage(msg2);
-			args.getUser().sendMessage(msg3);
-		} else {
-			args.getSender().sendMessage(msg1.toOldMessageFormat());
-			args.getSender().sendMessage(msg2.toOldMessageFormat());
-			args.getSender().sendMessage(msg3.toOldMessageFormat());
-		}
+		
+		msg1.send(args.getSender());
+		msg2.send(args.getSender());
+		msg3.send(args.getSender());
 	}
 	
 	@Command(name = "chat.join", description = "Joint einem Channel", usage = "/chat join <channel>", permission = "chat.join", consol = false, min = 1, max = 1)
@@ -163,6 +158,10 @@ public class ChatCommands {
 		if (ch == null) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Unbekannter Channel!").color(ChatColor.RED));
 			return;
+		}
+		
+		if (!args.getSender().hasPermission(ch.getSpeakPerm())) {
+			args.getUser().sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst in diesem Channel nicht reden!").color(ChatColor.RED));
 		}
 		
 		String message = "";

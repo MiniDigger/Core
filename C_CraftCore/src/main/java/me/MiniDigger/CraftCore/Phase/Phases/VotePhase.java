@@ -1,8 +1,12 @@
 package me.MiniDigger.CraftCore.Phase.Phases;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
@@ -89,7 +93,7 @@ public class VotePhase extends CoreTimedPhase {
 		super.endPhase();
 	}
 	
-	@Command(name = "vote", description = "Votet für eine Map", permission = "vote", usage = "vote <id>", consol = false, noConsol = "Nur ein Spieler kann voten!")
+	@Command(name = "vote", description = "Votet für eine Map", permission = "vote", usage = "vote [id]", consol = false, noConsol = "Nur ein Spieler kann voten!", min = 0, max = 1)
 	public void vote(final CommandArgs args) {
 		final VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
 		
@@ -112,6 +116,26 @@ public class VotePhase extends CoreTimedPhase {
 			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Vote fehlgeschlagen!").color(ChatColor.RED));
 			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Hast du bereits gevoted?!").color(ChatColor.RED));
 		}
+	}
+	
+	@Completer(name = "vote")
+	public List<String> voteC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		final VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
+		
+		switch (f.getMapCount()) {
+		case 3:
+			result.add("3");
+		case 2:
+			result.add("2");
+		case 1:
+			result.add("1");
+		}
+		
+		result.add("");
+		
+		return result;
 	}
 	
 }

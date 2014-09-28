@@ -15,12 +15,15 @@
  */
 package me.MiniDigger.Core.AddOn.TicTacToe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
@@ -60,7 +63,7 @@ public class TicTacToeAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "tictactoe")
+	@Command(name = "tictactoe", permission = "tictactoe", min = 0, max = 1, consol = false, description = "Macht alles mit TicTacToe", usage = "tictactoe [doStep,showLastGame,bot,(player)]")
 	public void tictactoe(CommandArgs args) {
 		if (args.getArgs().length == 0) {
 			for (Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
@@ -101,5 +104,22 @@ public class TicTacToeAddOn extends CoreAddOn {
 		}
 		args.getUser().sendMessage(Prefix.TICTACTOE.getPrefix().then("Das Spiel startet jetzt..."));
 		game.start();
+	}
+	
+	@Completer(name = "tictactoe")
+	public List<String> tictactoeC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			result.add("doStep");
+			result.add("showLastGame");
+			result.add("bot");
+			
+			for (User u : Core.getCore().getUserHandler().getOnlineUsers()) {
+				result.add(u.getDisplayName());
+			}
+		}
+		
+		return result;
 	}
 }

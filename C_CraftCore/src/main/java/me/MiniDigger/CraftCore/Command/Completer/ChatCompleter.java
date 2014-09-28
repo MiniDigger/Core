@@ -13,42 +13,117 @@
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
  */
-package me.MiniDigger.Core.AddOn.Hub;
+package me.MiniDigger.CraftCore.Command.Completer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
-import me.MiniDigger.Core.Game.GameType;
-import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
-public class HubAddOn extends CoreAddOn {
+public class ChatCompleter {
 	
-	@Override
-	public void enable() {
-		GameType.LOBBY.setClass(HubGame.class);
-		Core.getCore().getCommandHandler().registerCommands(this);
-		super.enable();
+	@Completer(name = "chat")
+	public List<String> chatC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			result.add("join");
+			result.add("leave");
+			result.add("list");
+		}
+		
+		return result;
 	}
 	
-	@Override
-	public void disable() {
-		Core.getCore().getCommandHandler().unregisterCommands(this);
-		super.disable();
+	@Completer(name = "chat.join")
+	public List<String> joinC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			for (ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
+				if (args.getSender().hasPermission(c.getHearPerm()) || args.getSender().hasPermission(c.getSpeakPerm())) {
+					result.add(c.getName());
+				}
+			}
+		}
+		
+		return result;
 	}
 	
-	@Command(name = "shop")
-	public void shop(CommandArgs args) {
-		// TODO Shop command
+	@Completer(name = "chat.leave")
+	public List<String> leaveC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			if (args.isUser()) {
+				for (ChatChannel c : args.getUser().getListenChannels()) {
+					result.add(c.getName());
+				}
+			}
+		}
+		
+		return result;
 	}
 	
-	@Completer(name = "shop")
-	public List<String> shopC(CommandArgs args) {
-		List<String> result = new ArrayList<>();;
-		// TODO Shop Completer
+	@Completer(name = "chat.list")
+	public List<String> listC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
+	}
+	
+	@Completer(name = "chat.switch")
+	public List<String> switchC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			for (ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
+				result.add(c.getName());
+			}
+		}
+		
+		return result;
+	}
+	
+	@Completer(name = "chat.ban")
+	public List<String> banC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			// TODO Ban Completer
+		}
+		
+		return result;
+	}
+	
+	@Completer(name = "ban.mute")
+	public List<String> muteC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			// TODO Mute Completer
+		}
+		
+		return result;
+	}
+	
+	@Completer(name = "speak")
+	public List<String> speakC(CommandArgs args) {
+		List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 0) {
+			for (ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
+				if (args.getSender().hasPermission(c.getSpeakPerm())) {
+					result.add(c.getName());
+				}
+			}
+		}
+		
 		return result;
 	}
 }

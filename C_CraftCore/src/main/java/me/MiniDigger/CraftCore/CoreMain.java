@@ -54,6 +54,18 @@ import me.MiniDigger.CraftCore.Command.Commands.StatsCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ToggleCommands;
 import me.MiniDigger.CraftCore.Command.Commands.TrollCommands;
 import me.MiniDigger.CraftCore.Command.Commands.WorldCommands;
+import me.MiniDigger.CraftCore.Command.Completer.AddOnCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.ChatCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.DevCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.ItemCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.NPCCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.PluginCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.SettingCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.SquadCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.StatsCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.ToggleCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
@@ -128,7 +140,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Registriere Commands...");
 		try {
-			registerCommands(); // TODO Register Commands of AddOns
+			registerCommands();
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
@@ -296,6 +308,12 @@ public class CoreMain extends JavaPlugin implements Main {
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands(), new AddOnCommands() };
 		for (final Object obj : commandHandler) {
+			Core.getCore().getCommandHandler().registerCommands(obj);
+		}
+		
+		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
+		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new NPCCompleter(), new AddOnCompleter() };
+		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
 		

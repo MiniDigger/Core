@@ -169,16 +169,4 @@ public class AddOnCommands {
 			Prefix.ADDON.getPrefix().then("War es schon aktuell?").color(ChatColor.YELLOW).send(args.getSender());
 		}
 	}
-	
-	@Command(name = "addon.help", description = "Zeigt die Hilfe zu einem AddOn an", usage = "<name> [page]", min = 1, permission = "addon.help")
-	public void help(final CommandArgs args) {
-		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/addon list").then("um Addons anzuzeigen").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon info ").then("um AddonsInfos anzuzeigen").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon install ").then("um Addons zu installieren").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
-		        .send(args.getSender());
-	}
 }

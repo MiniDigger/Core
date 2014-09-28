@@ -39,6 +39,7 @@ import java.util.List;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
@@ -179,9 +180,18 @@ public abstract class CorePhase implements Phase {
 		return null;
 	}
 	
-	@Command(name = "skip", description = "�berspringt eine Phase", usage = "", permission = "skip")
+	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip",max= 0)
 	public void skip(final CommandArgs args) {
-		getGame().broadCastMessage(Prefix.API.getPrefix().then("Die Phase wurde �bersprungen!").color(ChatColor.RED));
+		getGame().broadCastMessage(Prefix.API.getPrefix().then("Die Phase wurde übersprungen!").color(ChatColor.RED));
 		endPhase();
+	}
+	
+	@Completer(name="skip")
+	public List<String> skipC(CommandArgs args){
+		List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
 	}
 }

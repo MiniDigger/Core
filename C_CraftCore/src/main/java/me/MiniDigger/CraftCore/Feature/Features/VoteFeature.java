@@ -182,4 +182,8 @@ public class VoteFeature extends CoreFeature {
 			sendVoteMessage(e.getUser());
 		}
 	}
+	
+	public int getMapCount() {
+		return mapCount;
+	}
 }
