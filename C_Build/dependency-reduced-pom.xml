@@ -148,12 +148,6 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>CraftBukkit</artifactId>
-      <version>1.7.9-R0.3-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>ru.tehkode</groupId>
       <artifactId>PermissionsEx</artifactId>
       <version>1.21.2-SNAPSHOT</version>
