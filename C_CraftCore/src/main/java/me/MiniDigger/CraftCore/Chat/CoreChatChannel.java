@@ -41,6 +41,7 @@ import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.User.User;
 import mkremins.fanciful.FancyMessage;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 public class CoreChatChannel implements ChatChannel {
@@ -101,6 +102,8 @@ public class CoreChatChannel implements ChatChannel {
 		broadcast(getPrefix().then(chatUser.getPrefix() + chatUser.getDisplayName())
 		        .tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + chatUser.getDisplayName()).then("> " + message)
 		        .color(color));
+		
+		Bukkit.getConsoleSender().sendMessage("[CHAT]<" + name + "> " + chatUser.getDisplayName() + ": " + message);
 	}
 	
 	@Override
