@@ -28,7 +28,7 @@ public class AddOnCompleter {
 	public List<String> addOnC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			result.add("list");
 			result.add("info");
 			result.add("install");
@@ -43,7 +43,7 @@ public class AddOnCompleter {
 	public List<String> listC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			result.add("all");
 			result.add("installed");
 			result.add("author");
@@ -83,7 +83,7 @@ public class AddOnCompleter {
 	public List<String> infoC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			for (String addon : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(addon);
 			}
@@ -96,7 +96,7 @@ public class AddOnCompleter {
 	public List<String> installC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			result.add("yes");
 			result.add("no");
 		}
@@ -126,7 +126,7 @@ public class AddOnCompleter {
 	public List<String> uninstallC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			for (String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(s);
 			}
@@ -139,7 +139,7 @@ public class AddOnCompleter {
 	public List<String> updateC(CommandArgs args) {
 		List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			for(String s : Core.getCore().getAddOnHandler().getInstalledNames()){
 				result.add(s);
 			}

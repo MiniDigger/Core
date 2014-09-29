@@ -35,6 +35,8 @@ package me.MiniDigger.CraftCore.Util;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -121,5 +123,18 @@ public class CoreCommonMethods implements CommonMethods {
 		System.out.println("The Plugin decided to kill itselves");
 		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());
+	}
+	
+	@Override
+	public List<String> completer(List<String> list,String prefix){
+		List<String> result = new ArrayList<>();
+		
+		for (final String s : list) {
+			if (s.toLowerCase().startsWith(prefix.toLowerCase())) {
+				result.add(s);
+			}
+		}
+		
+		return result;
 	}
 }
