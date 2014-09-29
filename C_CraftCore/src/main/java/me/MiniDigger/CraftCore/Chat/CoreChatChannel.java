@@ -72,18 +72,24 @@ public class CoreChatChannel implements ChatChannel {
 	
 	@Override
 	public void join(final User chatUser) {
+		ChatColor color = Core.getCore().getChatColorUtil().toChatColor(chatUser.getPrefix());
+		if (color == ChatColor.RESET) {
+			color = ChatColor.WHITE;
+		}
 		broadcast(getPrefix().then("+ ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
 		        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
-		        .suggest("/pm " + chatUser.getDisplayName()).color(Core.getCore().getChatColorUtil().toChatColor(chatUser.getPrefix())).then(" hat den Raum betreten.")
-		        .color(ChatColor.YELLOW));
+		        .suggest("/pm " + chatUser.getDisplayName() + " ").color(color).then(" hat den Raum betreten.").color(ChatColor.YELLOW));
 	}
 	
 	@Override
 	public void leave(final User chatUser) {
+		ChatColor color = Core.getCore().getChatColorUtil().toChatColor(chatUser.getPrefix());
+		if (color == ChatColor.RESET) {
+			color = ChatColor.WHITE;
+		}
 		broadcast(getPrefix().then("- ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
 		        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
-		        .suggest("/pm " + chatUser.getDisplayName()).color(Core.getCore().getChatColorUtil().toChatColor(chatUser.getPrefix())).then(" hat den Raum verlassen.")
-		        .color(ChatColor.YELLOW));
+		        .suggest("/pm " + chatUser.getDisplayName() + " ").color(color).then(" hat den Raum verlassen.").color(ChatColor.YELLOW));
 	}
 	
 	@Override

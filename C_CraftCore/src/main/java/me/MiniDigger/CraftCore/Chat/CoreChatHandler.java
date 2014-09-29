@@ -83,7 +83,7 @@ public class CoreChatHandler implements ChatHandler {
 		registerChannel(new NormalChannel("Default", ChatColor.GRAY, "chat.hear.default", "chat.speak.default", new FancyMessage(
 		        TextualComponent.rawText(ChatColor.COLOR_CHAR + "" + ChatColor.RESET.getChar()))));
 		registerChannel(new PremiumChannel("Premium", ChatColor.GOLD, "chat.hear.premium", "chat.speak.premium", new FancyMessage("[").color(ChatColor.GOLD)
-		        .then("GLOBAL").color(ChatColor.YELLOW).then("]").color(ChatColor.GOLD)));
+		        .then("Premium").color(ChatColor.YELLOW).then("]").color(ChatColor.GOLD)));
 		
 	}
 	
