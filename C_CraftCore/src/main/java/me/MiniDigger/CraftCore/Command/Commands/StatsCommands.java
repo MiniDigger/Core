@@ -27,7 +27,6 @@ public class StatsCommands {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "stats.add", description = "Fügt Stats hinzu", usage = "stats add <spieler> <type> <anzahl>", permission = "stats.add")
 	public void add(final CommandArgs args) {
 		User other;
@@ -84,7 +83,6 @@ public class StatsCommands {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "stats.remove", description = "Nimmt Stats weg", usage = "stats remove <spieler> <type> <anzahl>", permission = "stats.remove")
 	public void remove(final CommandArgs args) {
 		User other;
@@ -141,7 +139,6 @@ public class StatsCommands {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "stats.set", description = "Sets Stats", usage = "stats set <spieler> <type> <anzahl>", permission = "stats.set")
 	public void set(final CommandArgs args) {
 		User other;
@@ -198,7 +195,6 @@ public class StatsCommands {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "stats.get", description = "Zeigt Stats an", usage = "stats get <spieler> <type>", permission = "stats.get")
 	public void get(final CommandArgs args) {
 		User other;

@@ -52,7 +52,6 @@ import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.yaml.snakeyaml.emitter.EmitterException;
 
 public class CoreUser implements User {
 	
@@ -114,7 +113,7 @@ public class CoreUser implements User {
 		} catch (final Exception ex) {
 			try {
 				query.kill();
-			} catch (Exception exx) {}
+			} catch (final Exception exx) {}
 			// Try update
 			try {
 				query = new CoreSQLQuery(
@@ -139,7 +138,7 @@ public class CoreUser implements User {
 			} catch (final Exception e) {
 				try {
 					query.kill();
-				} catch (Exception exx) {}
+				} catch (final Exception exx) {}
 				return false;
 			}
 		}
@@ -174,7 +173,7 @@ public class CoreUser implements User {
 		} catch (final Exception ex) {
 			try {
 				query.kill();
-			} catch (Exception exx) {}
+			} catch (final Exception exx) {}
 			return false;
 		}
 		return true;
@@ -191,7 +190,7 @@ public class CoreUser implements User {
 		} catch (final SQLException e) {
 			try {
 				q.kill();
-			} catch (Exception exx) {}
+			} catch (final Exception exx) {}
 			return false;
 		}
 	}

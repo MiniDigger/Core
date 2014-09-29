@@ -36,9 +36,9 @@ package me.MiniDigger.Core.User;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.entity.Player;
-
 import me.MiniDigger.Core.SQL.SaveHandler;
+
+import org.bukkit.entity.Player;
 
 public interface UserHandler extends SaveHandler {
 	

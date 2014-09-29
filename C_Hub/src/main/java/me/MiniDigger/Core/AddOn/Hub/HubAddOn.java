@@ -41,13 +41,13 @@ public class HubAddOn extends CoreAddOn {
 	}
 	
 	@Command(name = "shop")
-	public void shop(CommandArgs args) {
+	public void shop(final CommandArgs args) {
 		// TODO Shop command
 	}
 	
 	@Completer(name = "shop")
-	public List<String> shopC(CommandArgs args) {
-		List<String> result = new ArrayList<>();;
+	public List<String> shopC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();;
 		// TODO Shop Completer
 		return result;
 	}

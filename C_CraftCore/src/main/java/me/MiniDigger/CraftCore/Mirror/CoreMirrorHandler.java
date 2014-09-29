@@ -48,6 +48,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 	private MirrorReviever	    reviever;
 	private MirrorSender	    sender;
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void init() {
 		if (true) {
@@ -114,6 +115,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 		return sender;
 	}
 	
+	@SuppressWarnings("unused")
 	private void printInformation(final PacketEvent event) {
 		final String verb = event.isServerPacket() ? "Sent" : "Received";
 		final String format = event.isServerPacket() ? "%s %s to %s" : "%s %s from %s";

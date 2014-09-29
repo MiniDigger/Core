@@ -154,7 +154,7 @@ public class CoreChatChannel implements ChatChannel {
 	public FancyMessage getPrefix() {
 		try {
 			return prefix.clone();
-		} catch (CloneNotSupportedException e) {
+		} catch (final CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
 		return null;

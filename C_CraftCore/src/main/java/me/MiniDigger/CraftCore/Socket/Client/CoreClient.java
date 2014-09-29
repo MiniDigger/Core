@@ -66,7 +66,7 @@ public class CoreClient implements Client {
 		} catch (final Exception ex) {
 			try {
 				query.kill();
-			} catch (Exception exe) {}
+			} catch (final Exception exe) {}
 			try {
 				query = new CoreSQLQuery("UPDATE `external_users` SET `name`=?,`password`=? WHERE `name` LIKE ?");
 				final PreparedStatement stmt = query.getStatement();
@@ -80,7 +80,7 @@ public class CoreClient implements Client {
 			} catch (final Exception e) {
 				try {
 					query.kill();
-				} catch (Exception exe) {}
+				} catch (final Exception exe) {}
 				return false;
 			}
 		}
@@ -107,7 +107,7 @@ public class CoreClient implements Client {
 		} catch (final Exception ex) {
 			try {
 				query.kill();
-			} catch (Exception exe) {}
+			} catch (final Exception exe) {}
 			return false;
 		}
 		return true;
@@ -124,7 +124,7 @@ public class CoreClient implements Client {
 		} catch (final SQLException e) {
 			try {
 				q.kill();
-			} catch (Exception exe) {}
+			} catch (final Exception exe) {}
 			e.printStackTrace();
 			return false;
 		}

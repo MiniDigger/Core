@@ -68,13 +68,15 @@ public interface CommonMethods {
 	 * Beendet das plugin
 	 */
 	void killPlugin();
-
+	
 	/**
 	 * Tries to find the args, that match the arguments
 	 * 
-     * @param list all possible arguments
-     * @param prefix the start of the argument
-     * @return the matched arguments
-     */
-    public List<String> completer(List<String> list, String prefix);
+	 * @param list
+	 *            all possible arguments
+	 * @param prefix
+	 *            the start of the argument
+	 * @return the matched arguments
+	 */
+	public List<String> completer(final List<String> list, final String prefix);
 }

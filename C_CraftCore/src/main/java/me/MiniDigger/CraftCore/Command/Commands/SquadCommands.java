@@ -103,7 +103,7 @@ public class SquadCommands {
 			return;
 		}
 		
-		@SuppressWarnings("deprecation") final Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		if (p == null) {
 			args.getUser().sendMessage(
 			        Prefix.SQUAD.getPrefix().then("Spieler ").color(ChatColor.RED).then(args.getArgs()[0]).color(ChatColor.YELLOW).then(" konnte nicht gefunden werden!")
@@ -127,7 +127,7 @@ public class SquadCommands {
 			return;
 		}
 		
-		@SuppressWarnings("deprecation") final Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		if (p == null) {
 			args.getUser().sendMessage(
 			        Prefix.SQUAD.getPrefix().then("Spieler ").color(ChatColor.RED).then(args.getArgs()[0]).color(ChatColor.YELLOW).then(" konnte nicht gefunden werden!")

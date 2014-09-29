@@ -55,48 +55,20 @@
 					<executable>${env.JAVA_HOME}/bin/javac</executable>
 					<fork>true</fork>
 				</configuration>
-				
-			</plugin><!-- TODO Proguard
-			<plugin>
-				<groupId>com.github.wvengen</groupId>
-				<artifactId>proguard-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>proguard</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<options>
-						<option>-allowaccessmodification</option>
-						<option>-keepattributes *Annotation*</option>
-						<option>-keepattributes Signature</option>
-						<option>-printmapping ${basedir}/mappings.map</option>
-						<option>-target 1.7</option>
-						<option>-mergeinterfacesaggressively</option>
-						<option>-overloadaggressively</option>
-						<option>-repackageclasses Core</option>
-						<option>-adaptclassstrings</option>
-						<option>-keepclassmembers,allowoptimization enum * {
-							public static
-							**[] values();
-							public static ** valueOf(java.lang.String);
-							}</option>
-					</options>
-					<obfuscate>true</obfuscate>
-					<shrink>true</shrink>
-					<injar>${project.build.finalName}.jar</injar>
-					<outjar>${project.build.finalName}-final.jar</outjar>
-					<outputDirectory>${project.build.directory}</outputDirectory>
-					<proguardInclude>${basedir}/proguard.conf</proguardInclude>
-					<libs>
-						<lib>${java.home}/lib/rt.jar</lib>
-						<lib>${java.home}/lib/jsse.jar</lib>
-					</libs>
-				</configuration>
-			</plugin> -->
+
+			</plugin><!-- TODO Proguard <plugin> <groupId>com.github.wvengen</groupId> 
+				<artifactId>proguard-maven-plugin</artifactId> <executions> <execution> <phase>package</phase> 
+				<goals> <goal>proguard</goal> </goals> </execution> </executions> <configuration> 
+				<options> <option>-allowaccessmodification</option> <option>-keepattributes 
+				*Annotation*</option> <option>-keepattributes Signature</option> <option>-printmapping 
+				${basedir}/mappings.map</option> <option>-target 1.7</option> <option>-mergeinterfacesaggressively</option> 
+				<option>-overloadaggressively</option> <option>-repackageclasses Core</option> 
+				<option>-adaptclassstrings</option> <option>-keepclassmembers,allowoptimization 
+				enum * { public static **[] values(); public static ** valueOf(java.lang.String); 
+				}</option> </options> <obfuscate>true</obfuscate> <shrink>true</shrink> <injar>${project.build.finalName}.jar</injar> 
+				<outjar>${project.build.finalName}-final.jar</outjar> <outputDirectory>${project.build.directory}</outputDirectory> 
+				<proguardInclude>${basedir}/proguard.conf</proguardInclude> <libs> <lib>${java.home}/lib/rt.jar</lib> 
+				<lib>${java.home}/lib/jsse.jar</lib> </libs> </configuration> </plugin> -->
 		</plugins>
 	</build>
 
@@ -134,11 +106,16 @@
 	</repositories>
 
 	<dependencies>
+		<!-- <dependency> -->
+		<!-- <groupId>org.bukkit</groupId> -->
+		<!-- <artifactId>CraftBukkit</artifactId> -->
+		<!-- <version>${bukkit.version}</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
 		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>CraftBukkit</artifactId>
-			<version>${bukkit.version}</version>
-			<scope>provided</scope>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot</artifactId>
+			<version>20140927a</version>
 		</dependency>
 		<dependency>
 			<groupId>mkremins</groupId>

@@ -29,7 +29,6 @@ public class TrollCommands {
 		ChunkBreaker.enable();
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "troll.gtc", description = "Trolling", usage = "troll gtc <spieler> <3/4/5>", permission = "troll", min = 2)
 	public void troll(final CommandArgs args) {
 		ForceCredits.force(Bukkit.getPlayer(args.getArgs()[0]), Integer.parseInt(args.getArgs()[1]));
@@ -37,7 +36,7 @@ public class TrollCommands {
 	
 	@Command(name = "troll.breakChunk", description = "Break the Chunk ;D", usage = "troll breakChunk <spieler> <chunkX> <chunkY>", permission = "troll", min = 3)
 	public void breakChunk(final CommandArgs args) {
-		@SuppressWarnings("deprecation") final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+		final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		final int x = Integer.parseInt(args.getArgs()[1]);
 		final int y = Integer.parseInt(args.getArgs()[2]);
 		
@@ -47,7 +46,7 @@ public class TrollCommands {
 	
 	@Command(name = "troll.unbreakChunk", description = "UnBreak the Chunk ;D", usage = "troll unbreakChunk <spieler> <chunkX> <chunkY>", permission = "troll", min = 3)
 	public void unbreakChunk(final CommandArgs args) {
-		@SuppressWarnings("deprecation") final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+		final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
 		final int x = Integer.parseInt(args.getArgs()[1]);
 		final int y = Integer.parseInt(args.getArgs()[2]);
 		

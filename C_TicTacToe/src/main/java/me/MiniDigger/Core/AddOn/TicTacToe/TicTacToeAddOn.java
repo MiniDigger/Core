@@ -42,7 +42,7 @@ public class TicTacToeAddOn extends CoreAddOn {
 	
 	private static HashMap<UUID, Inventory>	savedGame	= new HashMap<>();
 	
-	public static void saveGame(UUID user, Inventory inv) {
+	public static void saveGame(final UUID user, final Inventory inv) {
 		if (savedGame.containsKey(user)) {
 			savedGame.remove(savedGame.get(user));
 		}
@@ -63,11 +63,11 @@ public class TicTacToeAddOn extends CoreAddOn {
 	}
 	
 	@Command(name = "tictactoe", permission = "tictactoe", min = 0, max = 1, consol = false, description = "Macht alles mit TicTacToe", usage = "tictactoe [doStep,showLastGame,bot,(player)]")
-	public void tictactoe(CommandArgs args) {
+	public void tictactoe(final CommandArgs args) {
 		if (args.getArgs().length == 0) {
-			for (Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
+			for (final Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
 				if (game instanceof TicTacToeGame) {
-					TicTacToeGame g = (TicTacToeGame) game;
+					final TicTacToeGame g = (TicTacToeGame) game;
 					g.openInv(((TwoPlayerFeature) g.getPhase().getFeature(FeatureType.TWOPLAYER)).isOne(args.getUser().getUUID()) ? 1 : 2);
 				}
 			}
@@ -80,21 +80,21 @@ public class TicTacToeAddOn extends CoreAddOn {
 			args.getPlayer().openInventory(savedGame.get(args.getPlayer().getUniqueId()));
 			return;
 		}
-		TicTacToeGame game = new TicTacToeGame();
+		final TicTacToeGame game = new TicTacToeGame();
 		Core.getCore().getGameHandler().addGame(game);
 		game.init();
-		UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, args.getUser());
+		final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, args.getUser());
 		Bukkit.getPluginManager().callEvent((Event) e1);
 		game.join(args.getUser()).name();
 		
 		if (args.getArgs()[0].equalsIgnoreCase("bot")) {
-			User bot = Core.getCore().getUserHandler().getBot();
-			UserJoinGameEvent e2 = new CoreUserJoinGameEvent(game, bot);
+			final User bot = Core.getCore().getUserHandler().getBot();
+			final UserJoinGameEvent e2 = new CoreUserJoinGameEvent(game, bot);
 			Bukkit.getPluginManager().callEvent((Event) e2);
 			game.join(bot);
 		} else {
-			@SuppressWarnings("deprecation") User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
-			UserJoinGameEvent e2 = new CoreUserJoinGameEvent(game, user);
+			final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
+			final UserJoinGameEvent e2 = new CoreUserJoinGameEvent(game, user);
 			Bukkit.getPluginManager().callEvent((Event) e2);
 			game.join(user);
 			user.sendMessage(Prefix.TICTACTOE.getPrefix().then(args.getUser().getDisplayName() + " hat dich herausgefordert!"));
@@ -104,15 +104,15 @@ public class TicTacToeAddOn extends CoreAddOn {
 	}
 	
 	@Completer(name = "tictactoe")
-	public List<String> tictactoeC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> tictactoeC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
 			result.add("doStep");
 			result.add("showLastGame");
 			result.add("bot");
 			
-			for (User u : Core.getCore().getUserHandler().getOnlineUsers()) {
+			for (final User u : Core.getCore().getUserHandler().getOnlineUsers()) {
 				result.add(u.getDisplayName());
 			}
 		}

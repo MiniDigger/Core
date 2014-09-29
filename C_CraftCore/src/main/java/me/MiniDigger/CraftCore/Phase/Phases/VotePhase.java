@@ -119,8 +119,8 @@ public class VotePhase extends CoreTimedPhase {
 	}
 	
 	@Completer(name = "vote")
-	public List<String> voteC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> voteC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		final VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
 		

@@ -25,7 +25,7 @@ import me.MiniDigger.Core.Command.Completer;
 public class DevCompleter {
 	
 	private List<String> randomShit() {
-		List<String> result = new ArrayList<>();
+		final List<String> result = new ArrayList<>();
 		
 		int r = Core.getCore().getRandomUtil().nextInt(100);
 		
@@ -41,87 +41,87 @@ public class DevCompleter {
 	}
 	
 	@Completer(name = "dev")
-	public List<String> devC(CommandArgs args) {
+	public List<String> devC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.startServer")
-	public List<String> startServerC(CommandArgs args) {
+	public List<String> startServerC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.startClient")
-	public List<String> startClientC(CommandArgs args) {
+	public List<String> startClientC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.stopClient")
-	public List<String> stopClientC(CommandArgs args) {
+	public List<String> stopClientC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.stopServer")
-	public List<String> stopServerC(CommandArgs args) {
+	public List<String> stopServerC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.sendToServer")
-	public List<String> sendToServerC(CommandArgs args) {
+	public List<String> sendToServerC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.reload")
-	public List<String> reloadC(CommandArgs args) {
+	public List<String> reloadC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.reloadPl")
-	public List<String> reloadPlC(CommandArgs args) {
+	public List<String> reloadPlC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.sendTestPacket")
-	public List<String> sendTestPacketC(CommandArgs args) {
+	public List<String> sendTestPacketC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.getUUID")
-	public List<String> getUUIDC(CommandArgs args) {
+	public List<String> getUUIDC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.timeTest")
-	public List<String> timeTestC(CommandArgs args) {
+	public List<String> timeTestC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.holoUrl")
-	public List<String> holoUrlC(CommandArgs args) {
+	public List<String> holoUrlC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.fakeBlock")
-	public List<String> fakeBlockC(CommandArgs args) {
+	public List<String> fakeBlockC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.pack")
-	public List<String> packC(CommandArgs args) {
+	public List<String> packC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.hideTag")
-	public List<String> hideTagC(CommandArgs args) {
+	public List<String> hideTagC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.showTag")
-	public List<String> showTagC(CommandArgs args) {
+	public List<String> showTagC(final CommandArgs args) {
 		return randomShit();
 	}
 	
 	@Completer(name = "dev.rest")
-	public List<String> restC(CommandArgs args) {
+	public List<String> restC(final CommandArgs args) {
 		return randomShit();
 	}
 }

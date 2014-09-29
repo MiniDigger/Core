@@ -37,18 +37,18 @@ import java.io.File;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.World.WorldLoader;
-import net.minecraft.server.v1_7_R3.ConvertProgressUpdater;
-import net.minecraft.server.v1_7_R3.Convertable;
-import net.minecraft.server.v1_7_R3.EntityTracker;
-import net.minecraft.server.v1_7_R3.EnumDifficulty;
-import net.minecraft.server.v1_7_R3.EnumGamemode;
-import net.minecraft.server.v1_7_R3.WorldManager;
-import net.minecraft.server.v1_7_R3.WorldServer;
-import net.minecraft.server.v1_7_R3.WorldSettings;
+import net.minecraft.server.v1_7_R4.ConvertProgressUpdater;
+import net.minecraft.server.v1_7_R4.Convertable;
+import net.minecraft.server.v1_7_R4.EntityTracker;
+import net.minecraft.server.v1_7_R4.EnumDifficulty;
+import net.minecraft.server.v1_7_R4.EnumGamemode;
+import net.minecraft.server.v1_7_R4.WorldManager;
+import net.minecraft.server.v1_7_R4.WorldServer;
+import net.minecraft.server.v1_7_R4.WorldSettings;
 
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import org.bukkit.craftbukkit.v1_7_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
@@ -67,7 +67,7 @@ public class CoreWorldLoader implements WorldLoader {
 		ChunkGenerator generator = creator.generator();
 		final File folder = new File(server.getWorldContainer(), name);
 		final World world = server.getWorld(name);
-		final net.minecraft.server.v1_7_R3.WorldType type = net.minecraft.server.v1_7_R3.WorldType.getType(creator.type().getName());
+		final net.minecraft.server.v1_7_R4.WorldType type = net.minecraft.server.v1_7_R4.WorldType.getType(creator.type().getName());
 		final boolean generateStructures = creator.generateStructures();
 		
 		if (world != null) {
@@ -82,7 +82,7 @@ public class CoreWorldLoader implements WorldLoader {
 			generator = server.getGenerator(name);
 		}
 		
-		final Convertable converter = new net.minecraft.server.v1_7_R3.WorldLoaderServer(server.getWorldContainer());
+		final Convertable converter = new net.minecraft.server.v1_7_R4.WorldLoaderServer(server.getWorldContainer());
 		if (converter.isConvertable(name)) {
 			Core.getCore().getInstance().info("Converting world '" + name + "'");
 			converter.convert(name, new ConvertProgressUpdater(server.getServer()));
@@ -103,7 +103,7 @@ public class CoreWorldLoader implements WorldLoader {
 		dimension = dimension + 3;
 		Core.getCore().getInstance().info("Created world with dimension : " + dimension);
 		
-		final WorldServer internal = new WorldServer(server.getServer(), new net.minecraft.server.v1_7_R3.ServerNBTManager(server.getWorldContainer(), name, true), name,
+		final WorldServer internal = new WorldServer(server.getServer(), new net.minecraft.server.v1_7_R4.ServerNBTManager(server.getWorldContainer(), name, true), name,
 		        dimension, new WorldSettings(creator.seed(), EnumGamemode.SURVIVAL, generateStructures, hardcore, type), server.getServer().methodProfiler,
 		        creator.environment(), generator);
 		

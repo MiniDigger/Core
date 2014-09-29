@@ -132,8 +132,8 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 					p.setExp(percent / 100);
 				}
 				if (displayBar()) {
-					double per = percent;
-					double perX2 = per * 2;
+					final double per = percent;
+					final double perX2 = per * 2;
 					// double perX4 = per * 4;
 					// double perX2M100 = perX2 - 100;
 					// double maxDper = 200 / per;

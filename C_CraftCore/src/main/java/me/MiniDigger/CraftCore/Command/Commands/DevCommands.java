@@ -128,7 +128,6 @@ public class DevCommands {
 		Bukkit.getPlayer(args.getArgs()[1]).sendBlockChange(args.getPlayer().getLocation(), Material.valueOf(args.getArgs()[0]), (byte) 0);
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "dev.pack", description = "DEV!", usage = "", permission = "dev")
 	public void pack(final CommandArgs args) {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
@@ -137,13 +136,13 @@ public class DevCommands {
 	
 	@Command(name = "dev.hideTag", description = "DEV!", usage = "", permission = "dev")
 	public void hideTag(final CommandArgs args) {
-		@SuppressWarnings("deprecation") final Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		Core.getCore().getNametagHandler().hideTag(p);
 	}
 	
 	@Command(name = "dev.showTag", description = "DEV!", usage = "", permission = "dev")
 	public void showTag(final CommandArgs args) {
-		@SuppressWarnings("deprecation") final Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		Core.getCore().getNametagHandler().showNametag(p);
 	}
 	

@@ -16,7 +16,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 import mkremins.fanciful.FancyMessage;
-import net.minecraft.server.v1_7_R3.ExceptionWorldConflict;
+import net.minecraft.server.v1_7_R4.ExceptionWorldConflict;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,8 +24,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_7_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_7_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -96,7 +96,7 @@ public class WorldCommands {
 	@Command(name = "tp", description = "Teleportiert", usage = "<x> <y> <z> / <spieler>", consol = false, min = 1, max = 3)
 	public void tp2(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
-			@SuppressWarnings("deprecation") final Player p = Bukkit.getPlayer(args.getArgs()[0]);
+			final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 			if (p == null) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannter Spieler!").color(ChatColor.RED));
 				return;

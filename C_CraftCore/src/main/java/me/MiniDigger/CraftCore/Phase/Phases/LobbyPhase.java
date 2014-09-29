@@ -58,8 +58,8 @@ public class LobbyPhase extends CorePhase {
 		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Die Lobby Phase hat begonnen.").color(ChatColor.GOLD));
 		final int needed = players - getGame().getPlayers().size();
 		if (needed > 0) {
-			final FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD)
-			        .then("" + needed).color(ChatColor.YELLOW).then(" Spieler zum starten ben").color(ChatColor.GOLD).then("\u00f6").color(ChatColor.GOLD).then("tigt.")
+			final FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD).then("" + needed)
+			        .color(ChatColor.YELLOW).then(" Spieler zum starten ben").color(ChatColor.GOLD).then("\u00f6").color(ChatColor.GOLD).then("tigt.")
 			        .color(ChatColor.GOLD);
 			getGame().broadCastMessage(msg);
 		} else {

@@ -60,7 +60,7 @@ public enum GameType {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void setClass(Class<?> game) {
+	public void setClass(final Class<?> game) {
 		this.game = (Class<Game>) game;
 	}
 }

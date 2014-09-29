@@ -156,7 +156,6 @@ public class CoreMapData implements MapData {
 	public void scanMap(final Location start, final int range, final Runnable finished) {
 		final Thread thread = new Thread(new Runnable() {
 			
-			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 				final HashMap<DyeColor, ArrayList<Location>> locs = new HashMap<>();
@@ -177,7 +176,7 @@ public class CoreMapData implements MapData {
 						for (int z = minZ; z <= maxZ; z++) {
 							final Location loc = new Location(start.getWorld(), x, y, z);
 							if (loc.getBlock().getType() == Material.WOOL) {
-								final DyeColor color = DyeColor.getByWoolData(loc.getBlock().getData());
+								@SuppressWarnings("deprecation") final DyeColor color = DyeColor.getByWoolData(loc.getBlock().getData());
 								ArrayList<Location> wLocs = locs.get(color);
 								if (color == DyeColor.BLACK) {
 									continue;// skip black, often used for back

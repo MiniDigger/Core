@@ -50,7 +50,10 @@ import com.lenis0012.bukkit.npc.NPCProfile;
 
 public class CoreNPCHandler implements NPCHandler {
 	
-	private final NPCFactory	factory	=null/*= new NPCFactory((Plugin) Core.getCore().getInstance())*/;
+	private final NPCFactory	factory	= null/*
+											 * = new NPCFactory((Plugin)
+											 * Core.getCore().getInstance())
+											 */;
 	private NPC	             bender;
 	
 	@Override
@@ -72,9 +75,9 @@ public class CoreNPCHandler implements NPCHandler {
 			e.printStackTrace();
 			return;
 		}
-		//TODO REenable NPC Handler after the NCDFE is fixed
-		boolean b = true;
-		if(b){
+		// TODO REenable NPC Handler after the NCDFE is fixed
+		final boolean b = true;
+		if (b) {
 			return;
 		}
 		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {

@@ -126,8 +126,8 @@ public class CoreCommonMethods implements CommonMethods {
 	}
 	
 	@Override
-	public List<String> completer(List<String> list, String prefix) {
-		List<String> result = new ArrayList<>();
+	public List<String> completer(final List<String> list, final String prefix) {
+		final List<String> result = new ArrayList<>();
 		
 		for (final String s : list) {
 			if (s.toLowerCase().startsWith(prefix.toLowerCase())) {

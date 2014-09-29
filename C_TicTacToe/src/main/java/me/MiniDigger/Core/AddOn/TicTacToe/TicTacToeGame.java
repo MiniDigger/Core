@@ -63,15 +63,15 @@ public class TicTacToeGame extends CoreGame {
 	}
 	
 	public int getBestSlot() {
-		TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
-		int[][] fields = new int[3][3];
+		final TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
+		final int[][] fields = new int[3][3];
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
 				fields[x][y] = checkSlot(fieldToSlot(x, y));
 			}
 		}
 		
-		ArrayList<Integer> possible = new ArrayList<>();
+		final ArrayList<Integer> possible = new ArrayList<>();
 		
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
@@ -87,15 +87,15 @@ public class TicTacToeGame extends CoreGame {
 		
 		// int i = tpf.isOne(Bot.getBotUUID()) ? 1 : 2;
 		int waswießich = 0;
-		for (int i = tpf.isOne(CoreBot.getBotUUID()) ? 1 : 2;;) {
+		for (final int i = tpf.isOne(CoreBot.getBotUUID()) ? 1 : 2;;) {
 			waswießich++;
 			if (waswießich == 3) {
 				break;
 			}
-			for (int slot : possible) {
-				String[] s = slotToField(slot).split(":");
-				int x = Integer.parseInt(s[0]);
-				int y = Integer.parseInt(s[1]);
+			for (final int slot : possible) {
+				final String[] s = slotToField(slot).split(":");
+				final int x = Integer.parseInt(s[0]);
+				final int y = Integer.parseInt(s[1]);
 				fields[x][y] = i;
 				
 				if (fields[0][0] == i && fields[0][1] == i && fields[0][2] == i) {
@@ -127,7 +127,7 @@ public class TicTacToeGame extends CoreGame {
 		super.start();
 		
 		setPhase(new TicTacToePhase(this));
-		TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
+		final TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
 		User starter;
 		User other;
 		
@@ -161,10 +161,10 @@ public class TicTacToeGame extends CoreGame {
 		getPhase().startPhase();
 	}
 	
-	public void openInv(int u) {
-		TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
-		User one = Core.getCore().getUserHandler().get(tpf.getOne());
-		User two = Core.getCore().getUserHandler().get(tpf.getTwo());
+	public void openInv(final int u) {
+		final TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
+		final User one = Core.getCore().getUserHandler().get(tpf.getOne());
+		final User two = Core.getCore().getUserHandler().get(tpf.getTwo());
 		if (u == 1) {
 			if (one.getUUID().equals(CoreBot.getBotUUID())) {
 				return;
@@ -182,17 +182,17 @@ public class TicTacToeGame extends CoreGame {
 			inv.setItem(0, itemTwo);
 			try {
 				two.getPlayer().openInventory(inv);
-			} catch (Exception ex) {}
+			} catch (final Exception ex) {}
 		}
 	}
 	
-	public int click(UUID uniqueId, int slot) {
+	public int click(final UUID uniqueId, final int slot) {
 		// System.out.println("checksol" + checkSlot(slot));
 		if (checkSlot(slot) == 0) {
-			TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
+			final TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
 			setSlot(slot, tpf.isOne(uniqueId) ? 1 : 2);
 			openInv(tpf.isOne(uniqueId) ? 1 : 2);
-			Stats s = Core.getCore().getUserHandler().get(uniqueId).getStats();
+			final Stats s = Core.getCore().getUserHandler().get(uniqueId).getStats();
 			s.add(StatsType.TicTacToe.CLICKS, 1);
 			s.save();
 			if (checkWin(tpf.isOne(uniqueId) ? 1 : 2)) {
@@ -204,9 +204,9 @@ public class TicTacToeGame extends CoreGame {
 		return 0;
 	}
 	
-	public void win(UUID w) {
-		User winner = Core.getCore().getUserHandler().get(w);
-		User other = ((TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER)).getOther(winner);
+	public void win(final UUID w) {
+		final User winner = Core.getCore().getUserHandler().get(w);
+		final User other = ((TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER)).getOther(winner);
 		
 		winner.getStats().add(StatsType.TicTacToe.WINS, 1);
 		winner.getStats().save();
@@ -224,7 +224,7 @@ public class TicTacToeGame extends CoreGame {
 			inv_1.setItem(0, itemOne);
 			
 			TicTacToeAddOn.saveGame(winner.getUUID(), inv_1);
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
 		try {
 			Inventory inv_2 = Bukkit.createInventory(other.getPlayer(), InventoryType.WORKBENCH, "TicTacToe - " + winner.getDisplayName());
@@ -232,21 +232,21 @@ public class TicTacToeGame extends CoreGame {
 			inv_2.setItem(0, itemTwo);
 			
 			TicTacToeAddOn.saveGame(other.getUUID(), inv_2);
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
-		UserLeaveGameEvent e1 = new CoreUserLeaveGameEvent(this, winner);
+		final UserLeaveGameEvent e1 = new CoreUserLeaveGameEvent(this, winner);
 		Bukkit.getPluginManager().callEvent((Event) e1);
 		
-		UserLeaveGameEvent e2 = new CoreUserLeaveGameEvent(this, other);
+		final UserLeaveGameEvent e2 = new CoreUserLeaveGameEvent(this, other);
 		Bukkit.getPluginManager().callEvent((Event) e2);
 		
 		Core.getCore().getGameHandler().removeGame(this);
 	}
 	
 	public void drawn() {
-		TwoPlayerFeature tpf = ((TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER));
-		User one = Core.getCore().getUserHandler().get(tpf.getOne());
-		User two = Core.getCore().getUserHandler().get(tpf.getTwo());
+		final TwoPlayerFeature tpf = ((TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER));
+		final User one = Core.getCore().getUserHandler().get(tpf.getOne());
+		final User two = Core.getCore().getUserHandler().get(tpf.getTwo());
 		
 		one.sendMessage(Prefix.TICTACTOE.getPrefix().then("Das Spiel gegen " + two.getDisplayName() + " ist unendschieden ausgegangen!"));
 		two.sendMessage(Prefix.TICTACTOE.getPrefix().then("Das Spiel gegen " + one.getDisplayName() + " ist unendschieden ausgegangen!"));
@@ -263,7 +263,7 @@ public class TicTacToeGame extends CoreGame {
 			inv_1.setItem(0, itemOne);
 			
 			TicTacToeAddOn.saveGame(one.getUUID(), inv_1);
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
 		try {
 			Inventory inv_2 = Bukkit.createInventory(two.getPlayer(), InventoryType.WORKBENCH, "TicTacToe - " + one.getDisplayName());
@@ -271,25 +271,25 @@ public class TicTacToeGame extends CoreGame {
 			inv_2.setItem(0, itemTwo);
 			
 			TicTacToeAddOn.saveGame(two.getUUID(), inv_2);
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
-		UserLeaveGameEvent e1 = new CoreUserLeaveGameEvent(this, one);
+		final UserLeaveGameEvent e1 = new CoreUserLeaveGameEvent(this, one);
 		Bukkit.getPluginManager().callEvent((Event) e1);
 		
-		UserLeaveGameEvent e2 = new CoreUserLeaveGameEvent(this, two);
+		final UserLeaveGameEvent e2 = new CoreUserLeaveGameEvent(this, two);
 		Bukkit.getPluginManager().callEvent((Event) e2);
 		
 		Core.getCore().getGameHandler().removeGame(this);
 	}
 	
-	public void setSlot(int slot, int value) {
-		String[] s = slotToField(slot).split(":");
-		int x = Integer.parseInt(s[0]);
-		int y = Integer.parseInt(s[1]);
+	public void setSlot(final int slot, final int value) {
+		final String[] s = slotToField(slot).split(":");
+		final int x = Integer.parseInt(s[0]);
+		final int y = Integer.parseInt(s[1]);
 		fields[x][y] = value;
 	}
 	
-	private String slotToField(int slot) {
+	private String slotToField(final int slot) {
 		int x = 0;
 		int y = 0;
 		
@@ -307,23 +307,23 @@ public class TicTacToeGame extends CoreGame {
 		return x + ":" + y;
 	}
 	
-	private int fieldToSlot(int x, int y) {
-		int slot = 1 + y + 3 * x;
+	private int fieldToSlot(final int x, final int y) {
+		final int slot = 1 + y + 3 * x;
 		return slot;
 	}
 	
-	public int checkSlot(int slot) {
-		String[] s = slotToField(slot).split(":");
-		int x = Integer.parseInt(s[0]);
-		int y = Integer.parseInt(s[1]);
+	public int checkSlot(final int slot) {
+		final String[] s = slotToField(slot).split(":");
+		final int x = Integer.parseInt(s[0]);
+		final int y = Integer.parseInt(s[1]);
 		return fields[x][y];
 	}
 	
-	public Inventory fillInv(Inventory inv) {
+	public Inventory fillInv(final Inventory inv) {
 		for (int x = 0; x < 3; x++) {
 			@SuppressWarnings("unused") String s = "";
 			for (int y = 0; y < 3; y++) {
-				int slot = fieldToSlot(x, y);
+				final int slot = fieldToSlot(x, y);
 				try {
 					if (fields[x][y] == 1) {
 						inv.setItem(slot, itemOne);
@@ -335,16 +335,16 @@ public class TicTacToeGame extends CoreGame {
 						s += "0";
 						inv.setItem(slot, new ItemStack(Material.AIR));
 					}
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					continue;
 				}
 			}
-//			System.out.println(s);
+			// System.out.println(s);
 		}
 		return inv;
 	}
 	
-	public boolean checkWin(int i) {
+	public boolean checkWin(final int i) {
 		if (fields[0][0] == i && fields[0][1] == i && fields[0][2] == i) {
 			
 		} else if (fields[1][0] == i && fields[1][1] == i && fields[1][2] == i) {
@@ -375,8 +375,8 @@ public class TicTacToeGame extends CoreGame {
 		return true;
 	}
 	
-	public ItemStack getItem(UUID uniqueId) {
-		TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
+	public ItemStack getItem(final UUID uniqueId) {
+		final TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
 		return tpf.isOne(uniqueId) ? itemOne : itemTwo;
 	}
 	

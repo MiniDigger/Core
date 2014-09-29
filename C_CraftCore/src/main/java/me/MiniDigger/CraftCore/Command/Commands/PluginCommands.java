@@ -53,9 +53,8 @@ public class PluginCommands {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "stop", usage = "", description = "Stopt den Server", permission = "stop")
 	public void stopCommand(final CommandArgs args) {
-		Core.getCore().getCommonMethods().stopServer();
+		Core.getCore().getShutdownUtil().doShutdown();
 	}
 }

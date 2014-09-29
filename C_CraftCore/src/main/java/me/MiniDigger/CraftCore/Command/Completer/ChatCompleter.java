@@ -26,8 +26,8 @@ import me.MiniDigger.Core.Command.Completer;
 public class ChatCompleter {
 	
 	@Completer(name = "chat")
-	public List<String> chatC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> chatC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
 			result.add("join");
@@ -39,11 +39,11 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "chat.join")
-	public List<String> joinC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> joinC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
-			for (ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
+			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
 				if (args.getSender().hasPermission(c.getHearPerm()) || args.getSender().hasPermission(c.getSpeakPerm())) {
 					result.add(c.getName());
 				}
@@ -54,12 +54,12 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "chat.leave")
-	public List<String> leaveC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> leaveC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
 			if (args.isUser()) {
-				for (ChatChannel c : args.getUser().getListenChannels()) {
+				for (final ChatChannel c : args.getUser().getListenChannels()) {
 					result.add(c.getName());
 				}
 			}
@@ -69,8 +69,8 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "chat.list")
-	public List<String> listC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> listC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		
@@ -78,11 +78,11 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "chat.switch")
-	public List<String> switchC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> switchC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
-			for (ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
+			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
 				result.add(c.getName());
 			}
 		}
@@ -91,8 +91,8 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "chat.ban")
-	public List<String> banC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> banC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
 			// TODO Ban Completer
@@ -102,8 +102,8 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "ban.mute")
-	public List<String> muteC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> muteC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
 			// TODO Mute Completer
@@ -113,11 +113,11 @@ public class ChatCompleter {
 	}
 	
 	@Completer(name = "speak")
-	public List<String> speakC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> speakC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 0) {
-			for (ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
+			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
 				if (args.getSender().hasPermission(c.getSpeakPerm())) {
 					result.add(c.getName());
 				}

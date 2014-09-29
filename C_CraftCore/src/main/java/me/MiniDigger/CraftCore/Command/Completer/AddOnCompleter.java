@@ -25,8 +25,8 @@ import me.MiniDigger.Core.Command.Completer;
 public class AddOnCompleter {
 	
 	@Completer(name = "addon")
-	public List<String> addOnC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> addOnC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
 			result.add("list");
@@ -40,8 +40,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.list")
-	public List<String> listC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> listC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
 			result.add("all");
@@ -53,8 +53,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.list.installed")
-	public List<String> installedC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> installedC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		
@@ -62,8 +62,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.list.all")
-	public List<String> allC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> allC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		
@@ -71,8 +71,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.list.author")
-	public List<String> authorC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> authorC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		
@@ -80,11 +80,11 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.info")
-	public List<String> infoC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> infoC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (String addon : Core.getCore().getAddOnHandler().getInstalledNames()) {
+			for (final String addon : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(addon);
 			}
 		}
@@ -93,8 +93,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.install")
-	public List<String> installC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> installC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
 			result.add("yes");
@@ -105,8 +105,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.install.yes")
-	public List<String> yesC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> yesC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		
@@ -114,8 +114,8 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.install.no")
-	public List<String> noC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> noC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		
@@ -123,11 +123,11 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.uninstall")
-	public List<String> uninstallC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> uninstallC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
+			for (final String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(s);
 			}
 		}
@@ -136,11 +136,11 @@ public class AddOnCompleter {
 	}
 	
 	@Completer(name = "addon.update")
-	public List<String> updateC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> updateC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for(String s : Core.getCore().getAddOnHandler().getInstalledNames()){
+			for (final String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(s);
 			}
 		}

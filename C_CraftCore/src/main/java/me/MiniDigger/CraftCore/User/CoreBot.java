@@ -61,8 +61,8 @@ public class CoreBot extends CoreUser implements Bot {
 	}
 	
 	@Override
-	public void setDisplayName(String name) {
-		this.displayName = name;
+	public void setDisplayName(final String name) {
+		displayName = name;
 	}
 	
 	@Override

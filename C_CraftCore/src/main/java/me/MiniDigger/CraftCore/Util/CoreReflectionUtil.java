@@ -12,52 +12,52 @@ import org.bukkit.entity.Entity;
 public class CoreReflectionUtil implements ReflectionUtil {
 	
 	@Override
-	public Class<?> getCraftClass(String ClassName) {
-		String name = Bukkit.getServer().getClass().getPackage().getName();
-		String version = name.substring(name.lastIndexOf('.') + 1) + ".";
-		String className = "net.minecraft.server." + version + ClassName;
+	public Class<?> getCraftClass(final String ClassName) {
+		final String name = Bukkit.getServer().getClass().getPackage().getName();
+		final String version = name.substring(name.lastIndexOf('.') + 1) + ".";
+		final String className = "net.minecraft.server." + version + ClassName;
 		Class<?> c = null;
 		try {
 			c = Class.forName(className);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 		return c;
 	}
 	
 	@Override
-	public Object getHandle(Entity entity) {
+	public Object getHandle(final Entity entity) {
 		try {
 			return getMethod(entity.getClass(), "getHandle").invoke(entity);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
 	@Override
-	public Object getHandle(World world) {
+	public Object getHandle(final World world) {
 		try {
 			return getMethod(world.getClass(), "getHandle").invoke(world);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
 	@Override
-	public Field getField(Class<?> cl, String field_name) {
+	public Field getField(final Class<?> cl, final String field_name) {
 		try {
 			return cl.getDeclaredField(field_name);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
 	@Override
-	public Method getMethod(Class<?> cl, String method, Class<?>... args) {
-		for (Method m : cl.getMethods()) {
+	public Method getMethod(final Class<?> cl, final String method, final Class<?>... args) {
+		for (final Method m : cl.getMethods()) {
 			if (m.getName().equals(method) && ClassListEqual(args, m.getParameterTypes())) {
 				return m;
 			}
@@ -66,8 +66,8 @@ public class CoreReflectionUtil implements ReflectionUtil {
 	}
 	
 	@Override
-	public Method getMethod(Class<?> cl, String method) {
-		for (Method m : cl.getMethods()) {
+	public Method getMethod(final Class<?> cl, final String method) {
+		for (final Method m : cl.getMethods()) {
 			if (m.getName().equals(method)) {
 				return m;
 			}
@@ -76,9 +76,11 @@ public class CoreReflectionUtil implements ReflectionUtil {
 	}
 	
 	@Override
-	public boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2) {
+	public boolean ClassListEqual(final Class<?>[] l1, final Class<?>[] l2) {
 		boolean equal = true;
-		if (l1.length != l2.length) return false;
+		if (l1.length != l2.length) {
+			return false;
+		}
 		for (int i = 0; i < l1.length; i++) {
 			if (l1[i] != l2[i]) {
 				equal = false;

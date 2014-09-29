@@ -43,7 +43,7 @@ import java.util.Map;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Nametag.NametagEntity;
 import me.MiniDigger.Core.Nametag.NametagHandler;
-import net.minecraft.server.v1_7_R3.EntityTypes;
+import net.minecraft.server.v1_7_R4.EntityTypes;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -81,7 +81,7 @@ public class CoreNametagHandler implements NametagHandler {
 		entities.clear();
 	}
 	
-	private void addCustomEntity(final Class<? extends net.minecraft.server.v1_7_R3.Entity> entityClass, final String name, final int id) {
+	private void addCustomEntity(final Class<? extends net.minecraft.server.v1_7_R4.Entity> entityClass, final String name, final int id) {
 		try {
 			final List<Map<?, ?>> dataMaps = new ArrayList<>();
 			for (final Field f : EntityTypes.class.getDeclaredFields()) {

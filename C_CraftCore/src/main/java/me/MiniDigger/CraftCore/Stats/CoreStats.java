@@ -89,7 +89,7 @@ public class CoreStats implements Stats {
 		} catch (final Exception ex) {
 			try {
 				query.kill();
-			} catch (Exception e) {}
+			} catch (final Exception e) {}
 			// Try update
 			try {
 				// create query
@@ -113,7 +113,7 @@ public class CoreStats implements Stats {
 			} catch (final Exception e) {
 				try {
 					query.kill();
-				} catch (Exception exx) {}
+				} catch (final Exception exx) {}
 				return false;
 			}
 		}
@@ -145,7 +145,7 @@ public class CoreStats implements Stats {
 		} catch (final Exception ex) {
 			try {
 				query.kill();
-			} catch (Exception exx) {}
+			} catch (final Exception exx) {}
 			return false;
 		}
 		return true;
@@ -170,7 +170,7 @@ public class CoreStats implements Stats {
 		} catch (final SQLException e) {
 			try {
 				q.kill();
-			} catch (Exception exx) {}
+			} catch (final Exception exx) {}
 			e.printStackTrace();
 			return false;
 		}

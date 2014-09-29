@@ -18,9 +18,6 @@ package me.MiniDigger.Core.AddOn.GetTheDrop;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -30,6 +27,9 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
 
 public class GetTheDropAddOn extends CoreAddOn {
 	
@@ -47,11 +47,11 @@ public class GetTheDropAddOn extends CoreAddOn {
 	}
 	
 	@Command(name = "getthedrop", permission = "getthedrop", usage = "", consol = true, description = "Initiiert ein GTD Game", max = 0)
-	public void getthedrop(CommandArgs args) {
-		GetTheDropGame game = new GetTheDropGame();
+	public void getthedrop(final CommandArgs args) {
+		final GetTheDropGame game = new GetTheDropGame();
 		Core.getCore().getGameHandler().addGame(game);
-		for (User user : Core.getCore().getUserHandler().getOnlineUsers()) {
-			UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
+		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
+			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
 			Bukkit.getPluginManager().callEvent((Event) e1);
 			game.join(user);
 		}
@@ -59,8 +59,8 @@ public class GetTheDropAddOn extends CoreAddOn {
 	}
 	
 	@Completer(name = "getthedrop")
-	public List<String> getthedropC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> getthedropC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		

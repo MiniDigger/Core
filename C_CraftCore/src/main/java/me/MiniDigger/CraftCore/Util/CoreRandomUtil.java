@@ -92,7 +92,7 @@ public class CoreRandomUtil implements RandomUtil {
 	}
 	
 	@Override
-	public String nextString(int l) {
+	public String nextString(final int l) {
 		final String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890<>,;.:-_öäü*+'#`´?ß~}][ {=)(/&%$§!°";
 		String result = "";
 		

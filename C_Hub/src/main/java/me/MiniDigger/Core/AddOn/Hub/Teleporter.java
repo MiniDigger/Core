@@ -87,9 +87,8 @@ public class Teleporter implements Listener {
 		return items;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public ItemStack placeholderitem(final int data) {
-		final ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE.getId(), 1, (short) 0, (byte) data);
+		@SuppressWarnings("deprecation") final ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE.getId(), 1, (short) 0, (byte) data);
 		final ItemMeta itemMeta = item.getItemMeta();
 		itemMeta.setDisplayName("§a");
 		
@@ -129,9 +128,8 @@ public class Teleporter implements Listener {
 		return item;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public ItemStack teamitem() {
-		final ItemStack item = new ItemStack(Material.SKULL_ITEM.getId(), 1, (short) 0, (byte) 3);
+		@SuppressWarnings("deprecation") final ItemStack item = new ItemStack(Material.SKULL_ITEM.getId(), 1, (short) 0, (byte) 3);
 		final SkullMeta itemMeta = (SkullMeta) item.getItemMeta();
 		itemMeta.setOwner("E");
 		itemMeta.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Das Team");
@@ -254,6 +252,7 @@ public class Teleporter implements Listener {
 	}
 	
 	// DEPRECATION
+	
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void handleClick(final InventoryClickEvent event) {

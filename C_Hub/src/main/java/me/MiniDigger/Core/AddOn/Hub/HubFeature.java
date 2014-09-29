@@ -88,7 +88,7 @@ public class HubFeature extends CoreFeature {
 				}
 				
 				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				for (final Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					if (!pl.hasPermission("lm.kickjoin")) {
 						p.hidePlayer(pl);
 					}
@@ -114,7 +114,7 @@ public class HubFeature extends CoreFeature {
 				}
 				
 				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				for (final Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					p.showPlayer(pl);
 				}
 				

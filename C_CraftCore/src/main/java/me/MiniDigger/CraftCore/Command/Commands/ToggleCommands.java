@@ -16,7 +16,6 @@ public class ToggleCommands {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Command(name = "toggle.build", description = "Toggelt den Build Modus", permission = "toggle.build", consol = false, min = 0, max = 1)
 	public void build(final CommandArgs args) {
 		User user;

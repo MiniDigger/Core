@@ -180,15 +180,15 @@ public abstract class CorePhase implements Phase {
 		return null;
 	}
 	
-	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip",max= 0)
+	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip", max = 0)
 	public void skip(final CommandArgs args) {
 		getGame().broadCastMessage(Prefix.API.getPrefix().then("Die Phase wurde übersprungen!").color(ChatColor.RED));
 		endPhase();
 	}
 	
-	@Completer(name="skip")
-	public List<String> skipC(CommandArgs args){
-		List<String> result = new ArrayList<>();
+	@Completer(name = "skip")
+	public List<String> skipC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		result.add("");
 		

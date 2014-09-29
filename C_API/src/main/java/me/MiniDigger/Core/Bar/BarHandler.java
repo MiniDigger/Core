@@ -114,5 +114,5 @@ public interface BarHandler {
 	 * @param health
 	 *            a decimal percent in the range (0,200)
 	 */
-	void setBar(Player player, String text, double health);
+	void setBar(final Player player, final String text, final double health);
 }

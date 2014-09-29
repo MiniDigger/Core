@@ -25,11 +25,11 @@ import me.MiniDigger.Core.Item.ItemType;
 public class ItemCompleter {
 	
 	@Completer(name = "item")
-	public List<String> itemC(CommandArgs args) {
-		List<String> result = new ArrayList<>();
+	public List<String> itemC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (ItemType t : ItemType.values()) {
+			for (final ItemType t : ItemType.values()) {
 				result.add(t.name());
 			}
 		}

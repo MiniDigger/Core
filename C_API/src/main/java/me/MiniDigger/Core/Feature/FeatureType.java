@@ -40,7 +40,7 @@ public enum FeatureType {
 	
 	private String	name;
 	
-	private FeatureType(String name) {
+	private FeatureType(final String name) {
 		this.name = name;
 	}
 	

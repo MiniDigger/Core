@@ -228,7 +228,6 @@ public class TokenShop implements Listener {
 			Inventory inv = null;
 			Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
 				
-				@SuppressWarnings("deprecation")
 				@Override
 				public void run() {
 					((Player) event.getView().getPlayer()).updateInventory();
@@ -297,11 +296,10 @@ public class TokenShop implements Listener {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	private void make(final InventoryClickEvent event) {
 		event.setCancelled(true);
 		event.setResult(Result.DENY);
-		event.setCursor(null);
+		event.setCurrentItem(null);
 		Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override

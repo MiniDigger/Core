@@ -13,15 +13,15 @@ import org.bukkit.entity.Player;
 
 public class CoreBarHandler implements BarHandler {
 	
-	private Map<UUID, CoreFakeDragon>	DRAGONS	= new HashMap<>();
+	private final Map<UUID, CoreFakeDragon>	DRAGONS	= new HashMap<>();
 	
 	@Override
-	public boolean hasBar(Player player) {
+	public boolean hasBar(final Player player) {
 		return DRAGONS.containsKey(player.getUniqueId()) && DRAGONS.get(player.getUniqueId()) != null;
 	}
 	
 	@Override
-	public void removeBar(Player player) {
+	public void removeBar(final Player player) {
 		// System.out.println("try to remove bar for " + player.getName());
 		if (hasBar(player)) {
 			// System.out.println("remove bar for " + player.getName());
@@ -31,14 +31,22 @@ public class CoreBarHandler implements BarHandler {
 	}
 	
 	@Override
-	public void setBar(Player player, String text, float health) {
+	public void setBar(final Player player, String text, float health) {
 		CoreFakeDragon dragon = DRAGONS.containsKey(player.getUniqueId()) ? DRAGONS.get(player.getUniqueId()) : null;
 		
-		if (text.length() > 64) text = text.substring(0, 63);
-		if (health > 100) health = 100;
-		if (health < 0) health = 0;
+		if (text.length() > 64) {
+			text = text.substring(0, 63);
+		}
+		if (health > 100) {
+			health = 100;
+		}
+		if (health < 0) {
+			health = 0;
+		}
 		
-		if (text.isEmpty() && dragon != null) removeBar(player);
+		if (text.isEmpty() && dragon != null) {
+			removeBar(player);
+		}
 		
 		if (dragon == null) {
 			// System.out.println("create d");
@@ -56,14 +64,22 @@ public class CoreBarHandler implements BarHandler {
 	}
 	
 	@Override
-	public void setBar(Player player, String text, double health) {
+	public void setBar(final Player player, String text, double health) {
 		CoreFakeDragon dragon = DRAGONS.containsKey(player.getUniqueId()) ? DRAGONS.get(player.getUniqueId()) : null;
 		
-		if (text.length() > 64) text = text.substring(0, 63);
-		if (health > 200) health = 200;
-		if (health < 0) health = 0;
+		if (text.length() > 64) {
+			text = text.substring(0, 63);
+		}
+		if (health > 200) {
+			health = 200;
+		}
+		if (health < 0) {
+			health = 0;
+		}
 		
-		if (text.isEmpty() && dragon != null) removeBar(player);
+		if (text.isEmpty() && dragon != null) {
+			removeBar(player);
+		}
 		
 		if (dragon == null) {
 			// System.out.println("create dd");
@@ -82,26 +98,26 @@ public class CoreBarHandler implements BarHandler {
 	
 	@Override
 	public void removeAllStatusBars() {
-		for (Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
+		for (final Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			removeBar(each);
 		}
 	}
 	
 	@Override
-	public void setAllStatusBars(String text, float percent) {
-		for (Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
+	public void setAllStatusBars(final String text, final float percent) {
+		for (final Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			setBar(each, text, percent);
 		}
 	}
 	
-	private static void sendPacket(Player player, Object packet) {
+	private static void sendPacket(final Player player, final Object packet) {
 		try {
-			Object nmsPlayer = Core.getCore().getReflectionUtil().getHandle(player);
-			Field connectionField = nmsPlayer.getClass().getField("playerConnection");
-			Object connection = connectionField.get(nmsPlayer);
-			Method sendPacket = Core.getCore().getReflectionUtil().getMethod(connection.getClass(), "sendPacket");
+			final Object nmsPlayer = Core.getCore().getReflectionUtil().getHandle(player);
+			final Field connectionField = nmsPlayer.getClass().getField("playerConnection");
+			final Object connection = connectionField.get(nmsPlayer);
+			final Method sendPacket = Core.getCore().getReflectionUtil().getMethod(connection.getClass(), "sendPacket");
 			sendPacket.invoke(connection, packet);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}

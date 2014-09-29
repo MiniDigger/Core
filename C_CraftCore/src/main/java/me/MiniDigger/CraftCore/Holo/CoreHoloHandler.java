@@ -59,7 +59,6 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class CoreHoloHandler implements HoloHandler {
 	
@@ -104,7 +103,7 @@ public class CoreHoloHandler implements HoloHandler {
 					}
 				}
 				
-				Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Core.getCore().getInstance(), new UpdateNametagTask(10, tags));
+				Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new UpdateNametagTask(10, tags));
 				return tags;
 			}
 			
@@ -218,7 +217,7 @@ public class CoreHoloHandler implements HoloHandler {
 		return lines;
 	}
 	
-	class UpdateNametagTask extends BukkitRunnable {
+	class UpdateNametagTask implements Runnable {
 		
 		private int		             frame	= 0;
 		private int		             next	= 1;
