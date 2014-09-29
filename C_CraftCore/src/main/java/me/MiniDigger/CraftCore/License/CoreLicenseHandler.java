@@ -125,7 +125,15 @@ public class CoreLicenseHandler implements LicenseHandler {
 					keyEnd = true;
 				}
 				if (!"MiniDiggerTheBoss".startsWith(key)) {
-					return false;
+					// System.out.println("SOMETHING IS WRONG WITH " + key);
+					if (key.equalsIgnoreCase("i")) {
+						key = "Mi";
+						readOld = Core.getCore().getStringUtil().replaceLast(readOld, "M", "");
+						// System.out.println("FIXED");
+					} else {
+						// System.out.println("COULD NOT FIX");
+						return false;
+					}
 				}
 			} else {
 				readOld += tokenR.charAt(i);
@@ -147,6 +155,14 @@ public class CoreLicenseHandler implements LicenseHandler {
 				return true;
 			}
 		}
+		// System.out.println("FAILED!");
+		// System.out.println("Key: " + key);
+		// System.out.println("readold: " + readOld);
+		// System.out.println("read: " + read);
+		// System.out.println("token: " + token);
+		// System.out.println("TK: " + token);
+		// System.out.println("TR: " + tokenR);
+		// System.out.println("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
 		return false;
 	}
 }

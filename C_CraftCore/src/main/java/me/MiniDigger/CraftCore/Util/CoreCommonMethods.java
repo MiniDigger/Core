@@ -115,18 +115,18 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void killPlugin() {
-		boolean b = true;
-		if(b == true){
-			System.out.println("Licene check failed but I don't care");//TODO REenabled licence check
-			return;
-		}
+		// boolean b = true;
+		// if(b == true){
+		// System.out.println("Licene check failed but I don't care");
+		// return;
+		// }
 		System.out.println("The Plugin decided to kill itselves");
 		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());
 	}
 	
 	@Override
-	public List<String> completer(List<String> list,String prefix){
+	public List<String> completer(List<String> list, String prefix) {
 		List<String> result = new ArrayList<>();
 		
 		for (final String s : list) {
