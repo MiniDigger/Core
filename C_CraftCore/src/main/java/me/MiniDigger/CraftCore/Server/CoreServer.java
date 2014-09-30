@@ -58,7 +58,9 @@ public class CoreServer implements Server {
 		final Server server = new CoreServer();
 		
 		server.setName(d[0]);
-		server.setPrimaryGameType(GameType.valueOf(d[1]));
+		if (d[1] != null && !d[1].equals("null")) {
+			server.setPrimaryGameType(GameType.valueOf(d[1]));
+		}
 		server.setNumPlayers(Integer.parseInt(d[2]));
 		server.setMaxPlayers(Integer.parseInt(d[3]));
 		server.setPhase(d[4]);
