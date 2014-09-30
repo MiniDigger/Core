@@ -105,14 +105,12 @@ public class CoreServer implements Server {
 	
 	@Override
 	public GameType getPrimaryGameType() {
-		// TODO Auto-generated method stub
-		return null;
+		return primaryGameType;
 	}
 	
 	@Override
 	public void setPrimaryGameType(final GameType primaryGameType) {
-		// TODO Auto-generated method stub
-		
+		this.primaryGameType = primaryGameType;
 	}
 	
 	@Override
