@@ -65,7 +65,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 	
 	@Override
 	public boolean updateCheck() {
-		System.out.println(getVersion().getRaw());
+		// System.out.println(getVersion().getRaw());
 		if (getLatestVersion().isNewer(getVersion(), type)) {
 			new Thread(new Runnable() {
 				
@@ -78,7 +78,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 			}).start();
 			return true;
 		}
-		System.out.println("not newer!");
+		// System.out.println("not newer!");
 		return false;
 	}
 	

@@ -89,7 +89,6 @@ public class CoreAddOnHandler implements AddOnHandler {
 	@Override
 	public void enableAddOns() {
 		for (final AddOnBean b : getInstalledBeans()) {
-			// TODO Version support
 			AddOnBean bean = new CoreAddOnBean();
 			bean.setName(b.getName());
 			bean.setVersion(b.getVersion());
@@ -105,7 +104,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			CoreAddOnClassLoader loader;
 			try {
 				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
-				System.out.println(url.toExternalForm());
+				// System.out.println(url.toExternalForm());
 				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), url);
 			} catch (MalformedURLException | InvalidPluginException e) {
 				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + " (CL):");
@@ -121,6 +120,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 		for (final AddOn addon : active) {
 			Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
 			addon.enable();
+			addon.checkUpdate();
 		}
 		
 		Core.getCore().getCommandHandler().registerHelp();
