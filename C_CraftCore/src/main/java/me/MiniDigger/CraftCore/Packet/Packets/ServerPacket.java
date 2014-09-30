@@ -27,6 +27,9 @@ public class ServerPacket extends CorePacket {
 	@Override
 	public void fromString(String s) {
 		s = s.replaceFirst(getName() + "|", "");
+		if(s.charAt(0)=='|'){
+			s = s.replaceFirst("|", "");
+		}
 		server = CoreServer.fromString(s);
 	}
 	

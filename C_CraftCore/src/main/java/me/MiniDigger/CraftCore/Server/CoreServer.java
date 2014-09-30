@@ -39,6 +39,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Server.Server;
+import me.MiniDigger.CraftCore.CoreMain;
 
 import org.bukkit.Bukkit;
 
@@ -53,9 +54,14 @@ public class CoreServer implements Server {
 	private boolean	 spectate;
 	private boolean	 online;
 	
-	public static Server fromString(final String data) {
+	public static Server fromString(String data) {
+		if (data.charAt(0) == '|') {
+			// System.out.println("REPLACE");
+			data = data.replaceFirst(Pattern.quote("|"), "");
+		}
 		final String[] d = data.split(Pattern.quote("|"));
 		final Server server = new CoreServer();
+		// System.out.println("DATA:" + data);
 		
 		server.setName(d[0]);
 		if (d[1] != null && !d[1].equals("null")) {
@@ -87,11 +93,12 @@ public class CoreServer implements Server {
 			server.setSpectate(game.allowSpectate());
 		} catch (final Exception ex) {
 			server.setPrimaryGameType(GameType.NOTHING);
-			server.setPhase(" ");
+			server.setPhase("UNKNOWN");
 			server.setJoin(true);
 			server.setSpectate(false);
 		}
 		
+		server.setName(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
 		server.setMaxPlayers(Bukkit.getMaxPlayers());
 		server.setNumPlayers(Core.getCore().getUserHandler().getOnlinePlayers().size());
 		
