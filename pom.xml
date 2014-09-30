@@ -39,7 +39,7 @@
 		<module>C_GetTheDrop</module>
 		<module>C_Hub</module>
 		<module>C_TicTacToe</module>
-		<module>C_GrapplingHook</module>
+		<module>C_GrablingHook</module>
 	</modules>
 
 	<build>
