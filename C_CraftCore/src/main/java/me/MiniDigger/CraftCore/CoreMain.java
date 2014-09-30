@@ -321,12 +321,11 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void enableHandler() {
+		Core.getCore().getAddOnHandler().load();
 		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
-		Core.getCore().getItemHandler().register();
 		Core.getCore().getNametagHandler().enable();
-		Core.getCore().getAddOnHandler().load();
 		Core.getCore().getMirrorHandler().init();
 		Core.getCore().getChatHandler().registerChannels();
 		

@@ -36,7 +36,9 @@ package me.MiniDigger.Core.Item;
 public interface ItemHandler {
 	
 	/**
-	 * Registers all items
-	 */
-	public void register();
+	 * Registers the listener and installs that item
+	 * 
+     * @param item
+     */
+    void register(Item item);
 }

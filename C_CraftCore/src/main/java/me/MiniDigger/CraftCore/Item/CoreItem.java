@@ -45,6 +45,10 @@ public abstract class CoreItem implements Item {
 	
 	private ItemType	type;
 	
+	public CoreItem(ItemType type) {
+		this.type = type;
+	}
+	
 	@Override
 	public ItemType getType() {
 		return type;

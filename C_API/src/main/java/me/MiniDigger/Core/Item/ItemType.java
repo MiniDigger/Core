@@ -34,7 +34,7 @@
 package me.MiniDigger.Core.Item;
 
 public enum ItemType {
-	GRABLING_HOOK(/* new GrablingHook() */null);// TODO Reenter item in itemtype
+	GRABLING_HOOK(null);
 	
 	private Item	item;
 	
@@ -43,9 +43,20 @@ public enum ItemType {
 	}
 	
 	/**
+	 * NULL: if not installed!
+	 * 
 	 * @return The item who is associated whith this type
 	 */
 	public Item getItem() {
 		return item;
+	}
+	
+	/**
+	 * "Installs" the Item
+	 * 
+	 * @param item
+	 */
+	public void setItem(Item item){
+		this.item = item;
 	}
 }

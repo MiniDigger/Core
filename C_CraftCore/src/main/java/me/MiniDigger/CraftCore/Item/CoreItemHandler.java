@@ -33,17 +33,19 @@
 
 package me.MiniDigger.CraftCore.Item;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Item.Item;
 import me.MiniDigger.Core.Item.ItemHandler;
 
 public class CoreItemHandler implements ItemHandler {
 	
 	@Override
-	public void register() {
-		// for (final ItemType i : ItemType.values()) {
-		// Bukkit.getPluginManager().registerEvents(i.getItem(), (Plugin)
-		// Core.getCore().getInstance());
-		// TODO Fix item registeration
-		// }
+	public void register(Item item) {
+		item.getType().setItem(item);
+		Bukkit.getPluginManager().registerEvents(item, (Plugin) Core.getCore().getInstance());
 	}
 	
 }

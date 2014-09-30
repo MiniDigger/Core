@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>me.MiniDigger.Core</groupId>
+		<artifactId>C_Core</artifactId>
+		<version>parent</version>
+	</parent>
+	<groupId>me.MiniDigger.Core.AddOn</groupId>
+	<artifactId>C_GrablingHook</artifactId>
+	<name>C_GrablingHook</name>
+	<description>ITEM: A GrablingHook Item</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>me.MiniDigger.Core</groupId>
+			<artifactId>C_API</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>me.MiniDigger.Core</groupId>
+			<artifactId>C_CraftCore</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>
