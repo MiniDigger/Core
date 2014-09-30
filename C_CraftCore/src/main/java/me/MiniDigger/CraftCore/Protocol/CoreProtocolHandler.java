@@ -36,7 +36,9 @@ package me.MiniDigger.CraftCore.Protocol;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
@@ -48,7 +50,11 @@ import me.MiniDigger.CraftCore.CoreMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.comphenix.packetwrapper.WrapperHandshakeClientSetProtocol;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -62,11 +68,13 @@ import com.comphenix.protocol.wrappers.WrappedServerPing;
 
 public class CoreProtocolHandler implements ProtocolHandler {
 	
-	private String	              fame;
-	private final ProtocolManager	manager	= ProtocolLibrary.getProtocolManager();
+	private String	                 fame;
+	private final ProtocolManager	 manager	         = ProtocolLibrary.getProtocolManager();
 	
-	private SignChangers	      signChangers;
-	private SkullChangers	      skullChangers;
+	private SignChangers	         signChangers;
+	private SkullChangers	         skullChangers;
+	
+	private HashMap<String, Integer>	protocolVersions	= new HashMap<>();
 	
 	@Override
 	public void init() {
@@ -191,6 +199,57 @@ public class CoreProtocolHandler implements ProtocolHandler {
 				}
 			}
 		});
+		
+		// Protocol verison
+		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Handshake.Client.SET_PROTOCOL) {
+			
+			@Override
+			public void onPacketReceiving(final PacketEvent event) {
+				WrapperHandshakeClientSetProtocol p = new WrapperHandshakeClientSetProtocol(event.getPacket());
+				// System.out.println(event.getPlayer().getName() +
+				// "'s protocol version: " + p.getProtocolVersion());
+				protocolVersions.put(event.getPlayer().getName(), p.getProtocolVersion());
+			}
+		});
+	}
+	
+	@Override
+	@EventHandler
+	public void onLogin(PlayerLoginEvent e) {
+		int protocol = 0;
+		String name = e.getPlayer().getName();
+		String key = "";
+		for (String s : protocolVersions.keySet()) {
+			if (s.startsWith("UNKNOWN[/")) {
+				String newS = "";
+				newS = s.replaceFirst(Pattern.quote("UNKNOWN[/"), "");
+				newS = newS.replaceFirst("]", "");
+				
+				if (e.getAddress().getHostAddress().equalsIgnoreCase(newS.split(":")[0])) {
+					key = s;
+					protocol = protocolVersions.get(s);
+					break;
+				}
+			}
+		}
+		
+		protocolVersions.remove(key);
+		protocolVersions.put(name, protocol);
+		
+		System.out.println(name + "'s protocol version is " + protocol);
+	}
+	
+	@Override
+	@EventHandler
+	public void onQuit(PlayerQuitEvent e) {
+		if (protocolVersions.containsKey(e.getPlayer().getName())) {
+			protocolVersions.remove(e.getPlayer().getName());
+		}
+	}
+	
+	@Override
+	public int getProtocolVersion(String name) {
+		return protocolVersions.get(name);
 	}
 	
 	private void handlePing(final WrappedServerPing ping) {

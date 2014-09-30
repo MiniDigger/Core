@@ -111,6 +111,12 @@ public class CoreCommonMethods implements CommonMethods {
 			user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
 			user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name")).color(ChatColor.YELLOW));
 		}
+		
+		if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
+			Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD).send(user.getPlayer());
+			Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen (danke Mojang fürs neue Protocol...").color(ChatColor.GOLD)
+			        .style(ChatColor.BOLD).send(user.getPlayer());
+		}
 	}
 	
 	@Override
