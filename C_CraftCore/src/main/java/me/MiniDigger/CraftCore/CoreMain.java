@@ -133,7 +133,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Aktiviere Externe Dependencies...");
 		try {
-			// enableExternalDependencies();//TODO Do we need that?
+			enableExternalDependencies();
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
@@ -321,8 +321,6 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void enableHandler() {
-		// Lag.init();
-		// GhostFactory.getInstance(); //TODO Disabled due to a strange NPE
 		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
@@ -333,6 +331,11 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getChatHandler().registerChannels();
 		
 		Core.getCore().getAddOnHandler().enableAddOns();
+	}
+	
+	private void enableExternalDependencies() {
+		// Lag.init();
+		// GhostFactory.getInstance(); //TODO Disabled due to a strange NPE
 	}
 	
 	private void registerListener() {

@@ -21,7 +21,6 @@ import org.json.simple.JSONObject;
 
 public class CoreAddOnBean implements AddOnBean {
 	
-	// TODO Maybe this should be located in the rest api?
 	private String	name;
 	private String	author;
 	private String	version;
