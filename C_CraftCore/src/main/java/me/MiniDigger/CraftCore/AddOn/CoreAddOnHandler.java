@@ -22,7 +22,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +36,6 @@ import me.MiniDigger.Core.AddOn.AddOnClassLoader;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
-import org.bukkit.plugin.InvalidPluginException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -106,7 +104,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
 				// System.out.println(url.toExternalForm());
 				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), url);
-			} catch (MalformedURLException | InvalidPluginException e) {
+			} catch (Exception e) {
 				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + " (CL):");
 				e.printStackTrace();
 				return;
@@ -118,9 +116,14 @@ public class CoreAddOnHandler implements AddOnHandler {
 		}
 		
 		for (final AddOn addon : active) {
-			Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
-			addon.enable();
-			addon.checkUpdate();
+			try {
+				Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
+				addon.enable();
+				addon.checkUpdate();
+			} catch (Exception ex) {
+				Core.getCore().getInstance()
+				        .error("Could not enable AddOn " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor() + ":");
+			}
 		}
 		
 		Core.getCore().getCommandHandler().registerHelp();

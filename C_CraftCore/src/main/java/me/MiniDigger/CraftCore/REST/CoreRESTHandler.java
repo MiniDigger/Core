@@ -195,6 +195,10 @@ public class CoreRESTHandler implements RESTHandler {
 		
 		final JSONArray addOns = (JSONArray) response.get("result");
 		
+		if (addOns == null) {
+			return result;
+		}
+		
 		for (final Object obj : addOns) {
 			final AddOnBean addOn = new CoreAddOnBean((JSONObject) obj);
 			result.add(addOn);
