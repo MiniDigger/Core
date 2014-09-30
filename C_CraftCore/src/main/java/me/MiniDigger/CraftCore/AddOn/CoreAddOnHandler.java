@@ -107,7 +107,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			} catch (Exception e) {
 				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + " (CL):");
 				e.printStackTrace();
-				return;
+				continue;
 			}
 			
 			loaders.put(bean.getName(), loader);
