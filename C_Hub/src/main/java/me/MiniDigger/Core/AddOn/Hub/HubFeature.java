@@ -16,7 +16,6 @@ import org.bukkit.Sound;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -77,7 +76,7 @@ public class HubFeature extends CoreFeature {
 		
 	}
 	
-	@EventHandler(priority = EventPriority.LOW)
+	@EventHandler
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			giveStartItems(e.getUser().getPlayer());
