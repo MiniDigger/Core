@@ -108,9 +108,11 @@ public class CoreServerHandler implements ServerHandler {
 	
 	@Override
 	public Server getServerInfo(final String name) {
-		for (final Server s : servers) {
-			if (s.getName().equalsIgnoreCase(name)) {
-				return s;
+		synchronized (servers) {
+			for (final Server s : servers) {
+				if (s.getName().equalsIgnoreCase(name)) {
+					return s;
+				}
 			}
 		}
 		return null;
