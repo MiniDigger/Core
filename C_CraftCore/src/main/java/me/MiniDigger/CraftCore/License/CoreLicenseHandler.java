@@ -15,7 +15,6 @@
  */
 package me.MiniDigger.CraftCore.License;
 
-import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.CraftCore.CoreMain;
 
@@ -27,13 +26,15 @@ public class CoreLicenseHandler implements LicenseHandler {
 	@SuppressWarnings("deprecation") private final String	licence	   = ((CoreMain) CoreMain.getCore().getInstance()).getConfig().getString("licence");
 	private final String	                              sessionToken	= generateToken();
 	
+	private boolean	                                      failed	   = false;
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean register() {
 		if (licence == null) {
 			CoreMain.getCore().getInstance().error("Du hast keine Lizenz angegeben!");
 			CoreMain.getCore().getInstance()
-			        .error("Trage deine Lizenz in " + ((CoreMain) Core.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
+			        .error("Trage deine Lizenz in " + ((CoreMain) CoreMain.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
 			CoreMain.getCore().getCommonMethods().killPlugin();
 			return false;
 		}
@@ -83,6 +84,11 @@ public class CoreLicenseHandler implements LicenseHandler {
 		
 		final String tokenR = (String) result.get("result");
 		if (!checkToken(tokenR, token)) {
+			if (!failed) {
+				failed = true;
+				CoreMain.getCore().getInstance().error("Licence check failed! Try again!");
+				performCheckAsync();
+			}
 			CoreMain.getCore().getCommonMethods().killPlugin();
 		}
 	}
@@ -128,7 +134,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 					// System.out.println("SOMETHING IS WRONG WITH " + key);
 					if (key.equalsIgnoreCase("i")) {
 						key = "Mi";
-						readOld = Core.getCore().getStringUtil().replaceLast(readOld, "M", "");
+						readOld = CoreMain.getCore().getStringUtil().replaceLast(readOld, "M", "");
 						// System.out.println("FIXED");
 					} else {
 						// System.out.println("COULD NOT FIX");
