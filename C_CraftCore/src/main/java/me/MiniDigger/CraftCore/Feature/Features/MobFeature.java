@@ -10,6 +10,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 public class MobFeature extends CoreFeature {
 	
@@ -70,7 +71,7 @@ public class MobFeature extends CoreFeature {
 	@EventHandler
 	public void onEntitySpawn(final CreatureSpawnEvent e) {
 		if (e.getLocation().getWorld().getName().equals(world)) {
-			if (!allowed.contains(e.getEntityType())) {
+			if (!allowed.contains(e.getEntityType()) && e.getSpawnReason() != SpawnReason.CUSTOM) {
 				e.setCancelled(true);
 			}
 		}
