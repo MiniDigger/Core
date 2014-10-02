@@ -13,6 +13,7 @@ import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
+import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -151,5 +152,14 @@ public class DevCommands {
 		final JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
 		System.out.println(obj.toJSONString());
 		System.out.println(obj.get("success"));
+	}
+	
+	@Command(name = "dev.showBlocks", description = "DEV!", usage = "", permission = "dev")
+	public void showBlocks(final CommandArgs args) {
+		FancyMessage msg = new FancyMessage(".");
+		for (Material m : Material.values()) {
+			msg.then(m.name() + " ");
+		}
+		msg.send(args.getSender());
 	}
 }

@@ -124,4 +124,9 @@ public class DevCompleter {
 	public List<String> restC(final CommandArgs args) {
 		return randomShit();
 	}
+	
+	@Completer(name = "dev.showBlocks")
+	public List<String> showBlocksC(final CommandArgs args) {
+		return randomShit();
+	}
 }
