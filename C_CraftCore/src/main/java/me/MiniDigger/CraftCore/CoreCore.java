@@ -69,6 +69,7 @@ import me.MiniDigger.Core.Util.ChatColorUtil;
 import me.MiniDigger.Core.Util.CommonMethods;
 import me.MiniDigger.Core.Util.DeZipUtil;
 import me.MiniDigger.Core.Util.EntityUtil;
+import me.MiniDigger.Core.Util.EnumUtil;
 import me.MiniDigger.Core.Util.FileUtil;
 import me.MiniDigger.Core.Util.LocationUtil;
 import me.MiniDigger.Core.Util.PlayerUtil;
@@ -113,6 +114,7 @@ import me.MiniDigger.CraftCore.Util.CoreChatColorUtil;
 import me.MiniDigger.CraftCore.Util.CoreCommonMethods;
 import me.MiniDigger.CraftCore.Util.CoreDeZipUtil;
 import me.MiniDigger.CraftCore.Util.CoreEntityUtil;
+import me.MiniDigger.CraftCore.Util.CoreEnumUtil;
 import me.MiniDigger.CraftCore.Util.CoreFileUtil;
 import me.MiniDigger.CraftCore.Util.CoreLocationUtil;
 import me.MiniDigger.CraftCore.Util.CorePlayerUtil;
@@ -173,6 +175,7 @@ public class CoreCore extends Core {
 	private ZipUtil	           zipUtil;
 	private ReflectionUtil	   reflectionUtil;
 	private BaseUtil	       baseUtil;
+	private EnumUtil	       enumUtil;
 	
 	public CoreCore(final Main instance) {
 		super();
@@ -536,5 +539,13 @@ public class CoreCore extends Core {
 			baseUtil = new CoreBaseUtil();
 		}
 		return baseUtil;
+	}
+	
+	@Override
+	public EnumUtil getEnumUtil() {
+		if (enumUtil == null) {
+			enumUtil = new CoreEnumUtil();
+		}
+		return enumUtil;
 	}
 }

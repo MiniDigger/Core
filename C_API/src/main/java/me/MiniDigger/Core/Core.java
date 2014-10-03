@@ -67,6 +67,7 @@ import me.MiniDigger.Core.Util.ChatColorUtil;
 import me.MiniDigger.Core.Util.CommonMethods;
 import me.MiniDigger.Core.Util.DeZipUtil;
 import me.MiniDigger.Core.Util.EntityUtil;
+import me.MiniDigger.Core.Util.EnumUtil;
 import me.MiniDigger.Core.Util.FileUtil;
 import me.MiniDigger.Core.Util.LocationUtil;
 import me.MiniDigger.Core.Util.PlayerUtil;
@@ -203,4 +204,6 @@ public abstract class Core {
 	public abstract ReflectionUtil getReflectionUtil();
 	
 	public abstract BaseUtil getBaseUtil();
+	
+	public abstract EnumUtil getEnumUtil();
 }
