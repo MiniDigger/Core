@@ -32,79 +32,45 @@ public class CoreTeam implements Team {
 	private List<UUID>	        players	= new ArrayList<UUID>();
 	private Map<String, String>	data	= new HashMap<>();
 	
-	/**
-	 * @return the name
-	 */
+	public CoreTeam(int teamSize) {
+		this.size = teamSize;
+	}
+	
 	@Override
 	public String getName() {
 		return name;
 	}
 	
-	/**
-	 * @param name
-	 *            the name to set
-	 */
 	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 	
-	/**
-	 * @return the game
-	 */
 	@Override
 	public Game getGame() {
 		return game;
 	}
 	
-	/**
-	 * @param game
-	 *            the game to set
-	 */
 	@Override
 	public void setGame(Game game) {
 		this.game = game;
 	}
 	
-	/**
-	 * @return the size
-	 */
 	@Override
 	public int getSize() {
 		return size;
 	}
 	
-	/**
-	 * @param size
-	 *            the size to set
-	 */
 	@Override
 	public void setSize(int size) {
 		this.size = size;
 	}
 	
-	/**
-	 * Returns the team data for the given key<br>
-	 * may be null
-	 * 
-	 * @param key
-	 *            the key
-	 * @return the data
-	 */
 	@Override
 	public String getData(String key) {
 		return data.get(key);
 	}
 	
-	/**
-	 * Saves team data<br>
-	 * Overrides is existing
-	 * 
-	 * @param key
-	 *            the key
-	 * @param data
-	 *            the data
-	 */
 	@Override
 	public void setData(String key, String data) {
 		if (this.data.containsKey(key)) {
@@ -113,11 +79,19 @@ public class CoreTeam implements Team {
 		this.data.put(key, data);
 	}
 	
-	/**
-	 * @return the players
-	 */
 	@Override
 	public List<UUID> getPlayers() {
 		return players;
+	}
+	
+	@Override
+	public void join(UUID player) {
+		if (!players.contains(player)) {
+			players.add(player);
+		}
+	}
+	@Override
+	public void leave(UUID player) {
+		players.remove(player);
 	}
 }

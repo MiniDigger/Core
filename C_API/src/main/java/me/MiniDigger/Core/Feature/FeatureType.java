@@ -36,7 +36,8 @@ public enum FeatureType {
 	PVP("PVP"),
 	SPAWN("SPAWN"),
 	TWOPLAYER("TWOPLAYER"),
-	VOTE("VOTE");
+	VOTE("VOTE"),
+	TEAM("TEAM"), TEAM_SELECT("TEAM_SELECT");
 	
 	private String	name;
 	
