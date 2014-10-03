@@ -18,37 +18,34 @@ package me.MiniDigger.Core.Feature;
 
 public enum FeatureType {
 	
-	AUTORESPAWN("AUTORESPAWN"),
-	BLEED("BLEED"),
-	CLEARINV("CLEARINV"),
-	DOUBLEJUMP("DOUBLEJUMP"),
-	DROP("DROP"),
-	FOOD("FOOD"),
-	FIXEDHEALTH("FIXEDHEALTH"),
-	FIXEDTIME("FIXEDTIME"),
-	FIXEDWEATHER("FIXEDWEATHER"),
-	HUB("HUB"),
-	JUMPPAD("JUMPPAD"),
-	LASTMANSTANDING("LASTMANSTANDING"),
-	MAP("MAP"),
-	MOB("MOB"),
-	NONAMETAG("NONAMETAG"),
-	PVP("PVP"),
-	SPAWN("SPAWN"),
-	TWOPLAYER("TWOPLAYER"),
-	VOTE("VOTE"),
-	TEAM("TEAM"), TEAM_SELECT("TEAM_SELECT");
-	
-	private String	name;
-	
-	private FeatureType(final String name) {
-		this.name = name;
-	}
+	AUTORESPAWN,
+	BLEED,
+	CLEARINV,
+	DOUBLEJUMP,
+	DROP,
+	FOOD,
+	FIXEDHEALTH,
+	FIXEDTIME,
+	FIXEDWEATHER,
+	HUB,
+	JUMPPAD,
+	LASTMANSTANDING,
+	MAP,
+	MOB,
+	NONAMETAG,
+	PVP,
+	SPAWN,
+	TWOPLAYER,
+	VOTE,
+	TEAM,
+	TEAM_SELECT,
+	SPAWNER;
 	
 	/**
 	 * @return A human readable name for the feature
+	 * @deprecated use name() insted
 	 */
 	public String getName() {
-		return name;
+		return name();
 	}
 }
