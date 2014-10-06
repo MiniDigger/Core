@@ -94,4 +94,9 @@ public interface MapHandler {
 	 * @return The map(s)
 	 */
 	public ArrayList<String> loadMapConfig(final GameType type);
+	
+	/**
+	 * @return a list with all map names installed
+	 */
+	public List<String> getMapNames();
 }

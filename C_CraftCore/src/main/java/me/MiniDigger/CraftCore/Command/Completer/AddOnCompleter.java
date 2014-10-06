@@ -34,9 +34,11 @@ public class AddOnCompleter {
 			result.add("install");
 			result.add("uninstall");
 			result.add("update");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "addon.list")
@@ -47,9 +49,11 @@ public class AddOnCompleter {
 			result.add("all");
 			result.add("installed");
 			result.add("author");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "addon.list.installed")
@@ -87,9 +91,11 @@ public class AddOnCompleter {
 			for (final String addon : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(addon);
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "addon.install")
@@ -99,9 +105,11 @@ public class AddOnCompleter {
 		if (args.getArgs().length == 1) {
 			result.add("yes");
 			result.add("no");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "addon.install.yes")
@@ -130,9 +138,11 @@ public class AddOnCompleter {
 			for (final String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(s);
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "addon.update")
@@ -143,8 +153,10 @@ public class AddOnCompleter {
 			for (final String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(s);
 			}
+	
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 }

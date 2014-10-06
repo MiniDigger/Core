@@ -18,6 +18,7 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Item.ItemType;
@@ -32,8 +33,10 @@ public class ItemCompleter {
 			for (final ItemType t : ItemType.values()) {
 				result.add(t.name());
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 }

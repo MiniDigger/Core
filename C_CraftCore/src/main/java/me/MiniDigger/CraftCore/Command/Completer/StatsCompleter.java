@@ -15,6 +15,18 @@
  */
 package me.MiniDigger.CraftCore.Command.Completer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
+
 public class StatsCompleter {
 	
+	@Completer(name = "stats")
+	public List<String> statsC(CommandArgs args) {
+		return new ArrayList<String>();
+	}
+	
+	//TODO Add missing stats completer
 }

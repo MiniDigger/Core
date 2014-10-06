@@ -13,7 +13,6 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 import mkremins.fanciful.FancyMessage;
 import net.minecraft.server.v1_7_R4.ExceptionWorldConflict;
@@ -120,16 +119,12 @@ public class WorldCommands {
 		}
 	}
 	
-	@Command(name = "world.load", description = "Läd eine Welt", usage = "<gametype/name>", permission = "world.load", consol = false, min = 1)
+	@Command(name = "world.load", description = "Läd eine Welt", usage = "<name>", permission = "world.load", consol = false, min = 1)
 	public void load(final CommandArgs args) {
 		final String map = args.getArgs()[0];
 		
 		if (!(args.getArgs().length > 1 && args.getArgs()[1].contains("-f"))) {
-			final File mapFolder = new File(((CoreMain) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
-			final File mapConfig = new File(mapFolder, "maps.yml");
-			
-			final FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
-			final List<String> maps = con.getStringList("maps");
+			final List<String> maps = Core.getCore().getMapHandler().getMapNames();
 			
 			if (maps.contains(map)) {
 				Core.getCore().getWorldHandler().copyWorld(map);

@@ -29,43 +29,49 @@ public class ChatCompleter {
 	public List<String> chatC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			result.add("join");
 			result.add("leave");
 			result.add("list");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "chat.join")
 	public List<String> joinC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
 				if (args.getSender().hasPermission(c.getHearPerm()) || args.getSender().hasPermission(c.getSpeakPerm())) {
 					result.add(c.getName());
 				}
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "chat.leave")
 	public List<String> leaveC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			if (args.isUser()) {
 				for (final ChatChannel c : args.getUser().getListenChannels()) {
 					result.add(c.getName());
 				}
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "chat.list")
@@ -81,49 +87,57 @@ public class ChatCompleter {
 	public List<String> switchC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
 				result.add(c.getName());
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "chat.ban")
 	public List<String> banC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			// TODO Ban Completer
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "ban.mute")
 	public List<String> muteC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			// TODO Mute Completer
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 	
 	@Completer(name = "speak")
 	public List<String> speakC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 0) {
+		if (args.getArgs().length == 1) {
 			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
 				if (args.getSender().hasPermission(c.getSpeakPerm())) {
 					result.add(c.getName());
 				}
 			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
 		}
-		
-		return result;
 	}
 }

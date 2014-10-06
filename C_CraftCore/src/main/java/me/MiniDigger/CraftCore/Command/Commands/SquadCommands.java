@@ -44,6 +44,7 @@ public class SquadCommands {
 	public void join(final CommandArgs args) {
 		final List<Squad> invs = Core.getCore().getSquadHandler().getInvitations(args.getUser().getUUID());
 		
+		//TODO Better Squad join, this is crap
 		if (invs.size() == 0) {
 			args.getUser().sendMessage(Prefix.SQUAD.getPrefix().then("Du bist zu keinem Squad eingeladen ;(").color(ChatColor.RED));
 			return;

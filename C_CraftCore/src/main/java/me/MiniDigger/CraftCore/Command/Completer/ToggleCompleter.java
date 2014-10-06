@@ -15,6 +15,31 @@
  */
 package me.MiniDigger.CraftCore.Command.Completer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
+
 public class ToggleCompleter {
 	
+	@Completer(name = "toggle")
+	public List<String> toggleC(CommandArgs args) {
+		List<String> result = new ArrayList<String>();
+		
+		if (args.getArgs().length == 1) {
+			result.add("build");
+			result.add("hacks");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "toggle.build")
+	public List<String> buildC(CommandArgs args) {
+		return new ArrayList<String>();
+	}
 }

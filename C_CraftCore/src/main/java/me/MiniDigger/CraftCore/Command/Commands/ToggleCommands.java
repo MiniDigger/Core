@@ -37,4 +37,6 @@ public class ToggleCommands {
 			Core.getCore().getBuildHandler().setBuilder(user, true);
 		}
 	}
+	
+	//TODO Toggle hacks
 }

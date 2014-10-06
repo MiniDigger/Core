@@ -52,6 +52,7 @@ public class CoreMapHandler implements MapHandler {
 	private final ArrayList<MapData>	maps	= new ArrayList<>();
 	private final File	             mapFolder;
 	private final File	             mapConfig;
+	private final List<String>	     mapNames;
 	
 	private final FileConfiguration	 con;
 	
@@ -59,6 +60,12 @@ public class CoreMapHandler implements MapHandler {
 		mapFolder = new File(((CoreMain) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		mapConfig = new File(mapFolder, "maps.yml");
 		con = YamlConfiguration.loadConfiguration(mapConfig);
+		mapNames = con.getStringList("maps");
+	}
+	
+	@Override
+	public List<String> getMapNames() {
+		return mapNames;
 	}
 	
 	@Override

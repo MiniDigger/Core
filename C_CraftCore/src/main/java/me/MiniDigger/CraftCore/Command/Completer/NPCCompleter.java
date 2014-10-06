@@ -15,6 +15,18 @@
  */
 package me.MiniDigger.CraftCore.Command.Completer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
+
 public class NPCCompleter {
 	
+	@Completer(name = "npc.spawn")
+	public List<String> spawnC(CommandArgs args) {
+		List<String> result = new ArrayList<String>();
+		
+		return result;
+	}
 }
