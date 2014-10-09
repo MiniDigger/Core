@@ -25,22 +25,22 @@ public interface AddOnHandler {
 	 * @param name
 	 *            The name of the addon that should get uninstalled
 	 */
-	void listAsUnInstalled(final String name);
+	public void listAsUnInstalled(final String name);
 	
 	/**
 	 * @return All installed addons as bean
 	 */
-	List<AddOnBean> getInstalledBeans();
+	public List<AddOnBean> getInstalledBeans();
 	
 	/**
 	 * @return The names of all installed addons
 	 */
-	List<String> getInstalledNames();
+	public List<String> getInstalledNames();
 	
 	/**
 	 * Loads the AddOn file
 	 */
-	void load();
+	public void load();
 	
 	/**
 	 * Marks a AddOn as installed
@@ -48,36 +48,34 @@ public interface AddOnHandler {
 	 * @param bean
 	 *            The addon to install
 	 */
-	void listAsInstalled(final AddOnBean bean);
+	public void listAsInstalled(final AddOnBean bean);
 	
 	/**
-     * 
-     */
-	void enableAddOns();
-	
-	/**
-     * 
-     */
-	void disableAddOns();
-	
-	/**
-	 * @param name
-	 * @return
+	 * Enables all addons
 	 */
-	Class<?> getClassByName(final String name);
+	public void enableAddOns();
 	
 	/**
-	 * @param name
-	 * @param result
+	 * Disables all addons
 	 */
-	void setClass(final String name, final Class<?> result);
+	public void disableAddOns();
 	
 	/**
-	 * @param name
-	 * @return
+	 * Classloader magic
 	 */
-	boolean update(final String name);
+	public Class<?> getClassByName(final String name);
 	
-	// TODO Insert missing api
+	/**
+	 * Classloader magic
+	 */
+	public void setClass(final String name, final Class<?> result);
 	
+	/**
+	 * Tries to update the addon, given by it's name
+	 * 
+	 * @param name
+	 *            the name of the addon to update
+	 * @return the sucess
+	 */
+	public boolean update(final String name);
 }
