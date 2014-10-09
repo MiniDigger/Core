@@ -18,15 +18,18 @@ package me.MiniDigger.Core.Util;
 public interface BaseUtil {
 	
 	/**
-	 * @param s
-	 * @return
+	 * Encodes the given string into Base64
+	 * 
+	 * @param s the string to encode
+	 * @return the encoded string
 	 */
-	String encode(final String s);
+	public String encode(final String s);
 	
 	/**
-	 * @param s
-	 * @return
+	 * Decodes the given Base64 string back to the raw input
+	 * 
+	 * @param s the string to decode
+	 * @return the decoded string
 	 */
-	String decode(final String s);
-	// TODO Add missing api
+	public String decode(final String s);
 }
