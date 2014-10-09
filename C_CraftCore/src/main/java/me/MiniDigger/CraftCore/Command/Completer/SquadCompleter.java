@@ -30,7 +30,19 @@ public class SquadCompleter {
 	
 	@Completer(name = "squad")
 	public List<String> squadC(final CommandArgs args) {
-		return new ArrayList<String>();
+		final List<String> result = new ArrayList<String>();
+		
+		if (args.getArgs().length == 1) {
+			result.add("create");
+			result.add("destroy");
+			result.add("join");
+			result.add("leave");
+			result.add("invite");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
 	}
 	
 	@Completer(name = "squad.create")

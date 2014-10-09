@@ -42,4 +42,9 @@ public class ToggleCompleter {
 	public List<String> buildC(final CommandArgs args) {
 		return new ArrayList<String>();
 	}
+	
+	@Completer(name = "toggle.hacks")
+	public List<String> hacksC(final CommandArgs args) {
+		return new ArrayList<String>();
+	}
 }

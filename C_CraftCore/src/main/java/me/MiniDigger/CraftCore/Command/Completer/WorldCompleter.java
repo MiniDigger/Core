@@ -47,6 +47,24 @@ public class WorldCompleter {
 		}
 	}
 	
+	@Completer(name = "world")
+	public List<String> worldC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
+		
+		if (args.getArgs().length == 1) {
+			result.add("info");
+			result.add("load");
+			result.add("unload");
+			result.add("tp");
+			result.add("list");
+			result.add("create");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
 	@Completer(name = "world.info")
 	public List<String> infoC(final CommandArgs args) {
 		return new ArrayList<String>();

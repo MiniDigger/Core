@@ -12,6 +12,11 @@ import org.bukkit.ChatColor;
 
 public class SettingsCommands {
 	
+	@Command(name = "setting", description = "Macht alles mit Settings", usage = "", permission = "setting")
+	public void setting(final CommandArgs args) {
+		Prefix.API.getPrefix().then("Versuchs mal mit '/setting gametype' :D");
+	}
+	
 	@Command(name = "setting.gametype", description = "Ändert den Spielmodi des Servers", usage = "<type>", permission = "setting.gametype", min = 1, max = 1)
 	public void gamemode(final CommandArgs args) {
 		GameType type;

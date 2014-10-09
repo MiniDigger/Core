@@ -29,7 +29,19 @@ public class StatsCompleter {
 	
 	@Completer(name = "stats")
 	public List<String> statsC(final CommandArgs args) {
-		return new ArrayList<String>();
+		final List<String> result = new ArrayList<String>();
+		
+		if (args.getArgs().length == 1) {
+			result.add("add");
+			result.add("remove");
+			result.add("set");
+			result.add("get");
+			result.add("top");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
 	}
 	
 	@Completer(name = "stats.add")

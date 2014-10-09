@@ -13,7 +13,8 @@ public class ToggleCommands {
 	
 	@Command(name = "toggle", description = "Stellt viele Sachen um", permission = "toggle")
 	public void toggle(final CommandArgs args) {
-		
+		Prefix.API.getPrefix().then("Stellt viele Sachen um").send(args.getSender());
+		Prefix.API.getPrefix().then("Sub-Commands: build,hacks").send(args.getSender());
 	}
 	
 	@Command(name = "toggle.build", description = "Toggelt den Build Modus", permission = "toggle.build", consol = false, min = 0, max = 1)
@@ -38,5 +39,8 @@ public class ToggleCommands {
 		}
 	}
 	
-	// TODO Toggle hacks
+	@Command(name = "toggle.hacks", description = "Toggelt die Hacks", permission = "toggle.hacks", consol = false, min = 0, max = 1)
+	public void hacks(final CommandArgs args) {		
+		// TODO Toggle hacks
+	}
 }

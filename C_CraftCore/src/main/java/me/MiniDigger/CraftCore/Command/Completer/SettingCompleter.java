@@ -26,6 +26,19 @@ import me.MiniDigger.Core.Game.GameType;
 public class SettingCompleter {
 	
 	@Completer(name = "setting.gamemode")
+	public List<String> settingC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
+		
+		if (args.getArgs().length == 1) {
+			result.add("gamemode");
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "setting.gamemode")
 	public List<String> gamemodeC(final CommandArgs args) {
 		final List<String> result = new ArrayList<String>();
 		

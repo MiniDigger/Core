@@ -29,8 +29,14 @@ public class TrollCommands {
 		ChunkBreaker.enable();
 	}
 	
-	@Command(name = "troll.gtc", description = "Trolling", usage = "troll gtc <spieler> <3/4/5>", permission = "troll", min = 2)
+	@Command(name = "troll", description = "Trolling", permission = "troll", min = 2)
 	public void troll(final CommandArgs args) {
+		Prefix.API.getPrefix().then("Trollolololol").send(args.getSender());
+		Prefix.API.getPrefix().then("Sub-Commands: gtc,breakChunk,unbreakChunk").send(args.getSender());
+	}
+	
+	@Command(name = "troll.gtc", description = "Trolling", usage = "troll gtc <spieler> <3/4/5>", permission = "troll", min = 2)
+	public void gtc(final CommandArgs args) {
 		ForceCredits.force(Bukkit.getPlayer(args.getArgs()[0]), Integer.parseInt(args.getArgs()[1]));
 	}
 	
