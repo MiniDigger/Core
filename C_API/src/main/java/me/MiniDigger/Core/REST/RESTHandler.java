@@ -25,50 +25,67 @@ import org.json.simple.JSONObject;
 public interface RESTHandler {
 	
 	/**
+	 * Updates the information for this addon
+	 * 
 	 * @param bean
-	 * @return
+	 *            the given addon
+	 * @param exact
+	 *            if the update should be version independent
+	 * @return the updated informations
 	 */
 	public AddOnBean requestInfos(final AddOnBean bean, final boolean exact);
 	
 	/**
-	 * @return
+	 * @return all addons in the repo
 	 */
 	public List<AddOnBean> getAllAddOns();
 	
 	/**
-	 * @param string
-	 * @return
+	 * @param author
+	 *            the author
+	 * @return all addons created by the given author
 	 */
-	public List<AddOnBean> getAllAddOnsBy(final String string);
+	public List<AddOnBean> getAllAddOnsBy(final String author);
 	
 	/**
+	 * Requests the URL for a addon
+	 * 
 	 * @param name
+	 *            the name of the addon
 	 * @param version
-	 * @return
+	 *            the version
+	 * @return the url for the file
 	 */
-	URL showFile(final String name, final String version);
+	public URL showFile(final String name, final String version);
 	
 	/**
+	 * Checks if there is an update for a addon
+	 * 
 	 * @param bean
-	 * @return
+	 *            the addon to check
+	 * @return the checked addon with updated informations
 	 */
-	AddOnBean checkUpdate(final AddOnBean bean);
+	public AddOnBean checkUpdate(final AddOnBean bean);
 	
 	/**
 	 * @param licence
+	 *            the licence for this server
 	 * @param token
+	 *            the request token
 	 * @param sessionToken
-	 * @return
+	 *            the token for this session
+	 * @return the response token
 	 */
-	String checkLicence(final String licence, final String token, final String sessionToken);
+	public String checkLicence(final String licence, final String token, final String sessionToken);
 	
 	/**
+	 * Registeres the session by the session server
+	 * 
 	 * @param licence
+	 *            the licence for this server
 	 * @param sessionToken
-	 * @return result
+	 *            the token for this session
+	 * @return result the result
 	 */
 	public JSONObject registerLicence(final String licence, final String sessionToken);
-	
-	// TODO Insert missing api
-	
 }
