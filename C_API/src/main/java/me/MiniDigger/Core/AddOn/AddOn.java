@@ -49,18 +49,19 @@ public interface AddOn {
 	/**
 	 * Loads the addon.
 	 * 
-	 * @param bean some informations about the addon
+	 * @param bean
+	 *            some informations about the addon
 	 */
 	public void load(final AddOnBean bean);
 	
 	/**
-     * Saves the config to the disk
-     */
+	 * Saves the config to the disk
+	 */
 	public void saveConfig();
 	
 	/**
-     * Loads the config back from disk
-     */
+	 * Loads the config back from disk
+	 */
 	public void loadConfig();
 	
 	/**
@@ -69,7 +70,7 @@ public interface AddOn {
 	public AddOnBean getBean();
 	
 	/**
-     * Checks if there is a newer version of this addon on the main repo
-     */
+	 * Checks if there is a newer version of this addon on the main repo
+	 */
 	public void checkUpdate();
 }

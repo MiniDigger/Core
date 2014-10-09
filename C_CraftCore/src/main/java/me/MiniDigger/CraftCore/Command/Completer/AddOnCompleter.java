@@ -153,7 +153,7 @@ public class AddOnCompleter {
 			for (final String s : Core.getCore().getAddOnHandler().getInstalledNames()) {
 				result.add(s);
 			}
-	
+			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else {
 			return new ArrayList<String>();

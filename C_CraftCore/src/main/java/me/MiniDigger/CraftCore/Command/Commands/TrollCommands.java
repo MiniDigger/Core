@@ -123,7 +123,7 @@ public class TrollCommands {
 		protected static boolean filterChunk(final String name, final int chunkX, final int chunkZ) {
 			// Remove the (0,0) chunk for a specific player
 			return "aadnk".equals(name) && chunkX == 0 && chunkZ == 0;
-			//TODO Fix chunkbreaker
+			// TODO Fix chunkbreaker
 		}
 	}
 }

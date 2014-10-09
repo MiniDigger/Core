@@ -41,7 +41,7 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 
 public abstract class CoreEatableItem extends CoreItem implements EatableItem {
 	
-	public CoreEatableItem(ItemType type) {
+	public CoreEatableItem(final ItemType type) {
 		super(type);
 	}
 	

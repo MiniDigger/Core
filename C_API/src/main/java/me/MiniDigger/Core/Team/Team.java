@@ -31,7 +31,7 @@ public interface Team {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name);
+	public void setName(final String name);
 	
 	/**
 	 * @return the game
@@ -42,7 +42,7 @@ public interface Team {
 	 * @param game
 	 *            the game to set
 	 */
-	public void setGame(Game game);
+	public void setGame(final Game game);
 	
 	/**
 	 * @return the size
@@ -53,7 +53,7 @@ public interface Team {
 	 * @param size
 	 *            the size to set
 	 */
-	public void setSize(int size);
+	public void setSize(final int size);
 	
 	/**
 	 * Returns the team data for the given key<br>
@@ -63,7 +63,7 @@ public interface Team {
 	 *            the key
 	 * @return the data
 	 */
-	public String getData(String key);
+	public String getData(final String key);
 	
 	/**
 	 * Saves team data<br>
@@ -74,21 +74,23 @@ public interface Team {
 	 * @param data
 	 *            the data
 	 */
-	public void setData(String key, String data);
+	public void setData(final String key, final String data);
 	
 	/**
 	 * @return the players
 	 */
 	public List<UUID> getPlayers();
-
+	
 	/**
-     * @param player the player to join this team
-     */
-    void join(UUID player);
-
+	 * @param player
+	 *            the player to join this team
+	 */
+	void join(final UUID player);
+	
 	/**
-     * @param player the player to leave this team
-     */
-    void leave(UUID player);
+	 * @param player
+	 *            the player to leave this team
+	 */
+	void leave(final UUID player);
 	
 }

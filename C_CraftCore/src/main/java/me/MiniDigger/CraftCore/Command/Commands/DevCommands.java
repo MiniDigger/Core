@@ -156,8 +156,8 @@ public class DevCommands {
 	
 	@Command(name = "dev.showBlocks", description = "DEV!", usage = "", permission = "dev")
 	public void showBlocks(final CommandArgs args) {
-		FancyMessage msg = new FancyMessage(".");
-		for (Material m : Material.values()) {
+		final FancyMessage msg = new FancyMessage(".");
+		for (final Material m : Material.values()) {
 			msg.then(m.name() + " ");
 		}
 		msg.send(args.getSender());

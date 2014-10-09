@@ -43,9 +43,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public abstract class CoreItem implements Item {
 	
-	private ItemType	type;
+	private final ItemType	type;
 	
-	public CoreItem(ItemType type) {
+	public CoreItem(final ItemType type) {
 		this.type = type;
 	}
 	

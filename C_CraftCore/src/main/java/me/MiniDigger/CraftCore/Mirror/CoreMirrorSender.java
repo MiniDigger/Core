@@ -72,7 +72,6 @@ public class CoreMirrorSender implements MirrorSender {
 	
 	private class ClientThread extends Thread {
 		
-		// TODO is this cool?
 		private final Socket	client;
 		
 		/**

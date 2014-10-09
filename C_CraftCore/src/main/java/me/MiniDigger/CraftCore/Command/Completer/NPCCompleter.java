@@ -24,8 +24,8 @@ import me.MiniDigger.Core.Command.Completer;
 public class NPCCompleter {
 	
 	@Completer(name = "npc.spawn")
-	public List<String> spawnC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> spawnC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		return result;
 	}

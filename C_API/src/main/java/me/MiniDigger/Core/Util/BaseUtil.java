@@ -20,7 +20,8 @@ public interface BaseUtil {
 	/**
 	 * Encodes the given string into Base64
 	 * 
-	 * @param s the string to encode
+	 * @param s
+	 *            the string to encode
 	 * @return the encoded string
 	 */
 	public String encode(final String s);
@@ -28,7 +29,8 @@ public interface BaseUtil {
 	/**
 	 * Decodes the given Base64 string back to the raw input
 	 * 
-	 * @param s the string to decode
+	 * @param s
+	 *            the string to decode
 	 * @return the decoded string
 	 */
 	public String decode(final String s);

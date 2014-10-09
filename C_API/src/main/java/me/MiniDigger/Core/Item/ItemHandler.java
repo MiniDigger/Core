@@ -38,7 +38,7 @@ public interface ItemHandler {
 	/**
 	 * Registers the listener and installs that item
 	 * 
-     * @param item
-     */
-    void register(Item item);
+	 * @param item
+	 */
+	void register(final Item item);
 }

@@ -26,14 +26,14 @@ import me.MiniDigger.Core.Team.Team;
 
 public class CoreTeam implements Team {
 	
-	private String	            name;
-	private Game	            game;
-	private int	                size;
-	private List<UUID>	        players	= new ArrayList<UUID>();
-	private Map<String, String>	data	= new HashMap<>();
+	private String	                  name;
+	private Game	                  game;
+	private int	                      size;
+	private final List<UUID>	      players	= new ArrayList<UUID>();
+	private final Map<String, String>	data	= new HashMap<>();
 	
-	public CoreTeam(int teamSize) {
-		this.size = teamSize;
+	public CoreTeam(final int teamSize) {
+		size = teamSize;
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class CoreTeam implements Team {
 	}
 	
 	@Override
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
@@ -52,7 +52,7 @@ public class CoreTeam implements Team {
 	}
 	
 	@Override
-	public void setGame(Game game) {
+	public void setGame(final Game game) {
 		this.game = game;
 	}
 	
@@ -62,17 +62,17 @@ public class CoreTeam implements Team {
 	}
 	
 	@Override
-	public void setSize(int size) {
+	public void setSize(final int size) {
 		this.size = size;
 	}
 	
 	@Override
-	public String getData(String key) {
+	public String getData(final String key) {
 		return data.get(key);
 	}
 	
 	@Override
-	public void setData(String key, String data) {
+	public void setData(final String key, final String data) {
 		if (this.data.containsKey(key)) {
 			this.data.remove(key);
 		}
@@ -85,13 +85,14 @@ public class CoreTeam implements Team {
 	}
 	
 	@Override
-	public void join(UUID player) {
+	public void join(final UUID player) {
 		if (!players.contains(player)) {
 			players.add(player);
 		}
 	}
+	
 	@Override
-	public void leave(UUID player) {
+	public void leave(final UUID player) {
 		players.remove(player);
 	}
 }

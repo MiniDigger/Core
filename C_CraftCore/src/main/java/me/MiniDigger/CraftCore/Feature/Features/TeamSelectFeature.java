@@ -35,7 +35,7 @@ public class TeamSelectFeature extends CoreFeature {
 	protected int	     teamSize;
 	protected int	     teamCount;
 	
-	public TeamSelectFeature(Phase next, int teamSize, int teamCount) {
+	public TeamSelectFeature(final Phase next, final int teamSize, final int teamCount) {
 		super(next);
 		this.teamSize = teamSize;
 		this.teamCount = teamCount;
@@ -49,8 +49,8 @@ public class TeamSelectFeature extends CoreFeature {
 		return teamCount;
 	}
 	
-	public Team getTeam(String name) {
-		for (Team t : teams) {
+	public Team getTeam(final String name) {
+		for (final Team t : teams) {
 			if (t.getName().equalsIgnoreCase(name)) {
 				return t;
 			}
@@ -58,8 +58,8 @@ public class TeamSelectFeature extends CoreFeature {
 		return null;
 	}
 	
-	public Team getTeam(Player p) {
-		for (Team t : teams) {
+	public Team getTeam(final Player p) {
+		for (final Team t : teams) {
 			if (t.getPlayers().contains(p.getUniqueId())) {
 				return t;
 			}
@@ -98,7 +98,7 @@ public class TeamSelectFeature extends CoreFeature {
 	public void end() {
 		HashMap<String, Integer> sizes = new HashMap<>();
 		
-		for (Team t : teams) {
+		for (final Team t : teams) {
 			sizes.put(t.getName(), t.getPlayers().size());
 		}
 		
@@ -108,32 +108,32 @@ public class TeamSelectFeature extends CoreFeature {
 	}
 	
 	public HashMap<String, Integer> calcSizes() {
-		HashMap<String, Integer> sizes = new HashMap<>();
+		final HashMap<String, Integer> sizes = new HashMap<>();
 		
-		for (Team t : teams) {
+		for (final Team t : teams) {
 			sizes.put(t.getName(), t.getPlayers().size());
 		}
 		return sizes;
 	}
 	
 	public void balance() {
-		HashMap<String, Integer> sizes = calcSizes();
-		String large = findLargest(sizes);
-		int largeCount = sizes.get(large);
+		final HashMap<String, Integer> sizes = calcSizes();
+		final String large = findLargest(sizes);
+		final int largeCount = sizes.get(large);
 		
-		String small = findSmallest(sizes);
-		int smallCount = sizes.get(small);
+		final String small = findSmallest(sizes);
+		final int smallCount = sizes.get(small);
 		
 		System.out.println("LARGE: " + large + " : " + largeCount);
 		System.out.println("SMALL: " + small + " : " + smallCount);
 		
 		if (!(largeCount == smallCount || largeCount == smallCount + 1)) {
-			Team largeT = getTeam(large);
-			Team smallT = getTeam(small);
+			final Team largeT = getTeam(large);
+			final Team smallT = getTeam(small);
 			
 			boolean switched = false;
 			for (int i = largeT.getPlayers().size() - 1; i > 0; i--) {
-				UUID player = largeT.getPlayers().get(i);
+				final UUID player = largeT.getPlayers().get(i);
 				System.out.println("SWITCH: " + player + " from " + large + " to " + small);
 				if (Core.getCore().getSquadHandler().getSquad(player) == null) {
 					largeT.leave(player);
@@ -146,7 +146,7 @@ public class TeamSelectFeature extends CoreFeature {
 			if (!switched) {
 				System.out.println(largeT.getName());
 				System.out.println(largeT.getPlayers().size());
-				UUID player = largeT.getPlayers().get(largeT.getPlayers().size() - 1);
+				final UUID player = largeT.getPlayers().get(largeT.getPlayers().size() - 1);
 				largeT.leave(player);
 				smallT.join(player);
 			}
@@ -155,12 +155,12 @@ public class TeamSelectFeature extends CoreFeature {
 		}
 	}
 	
-	private String findLargest(HashMap<String, Integer> sizes) {
+	private String findLargest(final HashMap<String, Integer> sizes) {
 		int largest = 0;
 		String name = "";
 		
-		for (String s : sizes.keySet()) {
-			int x = sizes.get(s);
+		for (final String s : sizes.keySet()) {
+			final int x = sizes.get(s);
 			if (x > largest) {
 				largest = x;
 				name = s;
@@ -169,12 +169,12 @@ public class TeamSelectFeature extends CoreFeature {
 		return name;
 	}
 	
-	private String findSmallest(HashMap<String, Integer> sizes) {
+	private String findSmallest(final HashMap<String, Integer> sizes) {
 		int largest = 100000;
 		String name = "";
 		
-		for (String s : sizes.keySet()) {
-			int x = sizes.get(s);
+		for (final String s : sizes.keySet()) {
+			final int x = sizes.get(s);
 			if (x < largest) {
 				largest = x;
 				name = s;

@@ -23,7 +23,7 @@ import me.MiniDigger.Core.Team.Team;
 
 public class TeamFeature extends TeamSelectFeature {
 	
-	public TeamFeature(Phase next, int teamSize, int teamCount, List<Team> teams) {
+	public TeamFeature(final Phase next, final int teamSize, final int teamCount, final List<Team> teams) {
 		super(next, teamCount, teamCount);
 		this.teams = teams;
 	}

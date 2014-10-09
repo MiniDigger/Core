@@ -113,7 +113,8 @@ public class CoreCommonMethods implements CommonMethods {
 		}
 		
 		if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
-			Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD).send(user.getPlayer());
+			Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
+			        .send(user.getPlayer());
 			Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen (danke Mojang fürs neue Protocol...").color(ChatColor.GOLD)
 			        .style(ChatColor.BOLD).send(user.getPlayer());
 		}
@@ -121,11 +122,11 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void killPlugin() {
-		 boolean b = true;
-		 if(b == true){
-		 System.out.println("Licene check failed but I don't care");
-		 return;
-		 }
+		final boolean b = true;
+		if (b == true) {
+			System.out.println("Licene check failed but I don't care");
+			return;
+		}
 		System.out.println("The Plugin decided to kill itselves");
 		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());

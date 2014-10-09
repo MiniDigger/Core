@@ -15,15 +15,15 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.EntityType;
-import org.bukkit.plugin.Plugin;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.EntityType;
+import org.bukkit.plugin.Plugin;
 
 /**
  * @author Martin
@@ -37,20 +37,21 @@ public class EssentialCommands {
 		final EntityType type;
 		try {
 			type = EntityType.valueOf(args.getArgs()[0]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			Prefix.API.getPrefix().then("Unbekanntes Entity!").color(ChatColor.RED).send(args.getPlayer());;
 			return;
 		}
 		
 		try {
 			c = Integer.parseInt(args.getArgs()[1]);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			c = 1;
 		}
 		
 		final int fC = c;
 		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
+			@Override
 			public void run() {
 				for (int i = 0; i < fC; i++) {
 					args.getPlayer().getWorld().spawn(args.getPlayer().getLocation(), type.getEntityClass());

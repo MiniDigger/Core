@@ -17,7 +17,6 @@ package me.MiniDigger.Core.AddOn.BedWars;
 
 import me.MiniDigger.CraftCore.Game.CoreGame;
 
-
-public class BedWarsGame extends CoreGame{
+public class BedWarsGame extends CoreGame {
 	
 }

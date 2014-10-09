@@ -56,7 +56,7 @@ public enum ItemType {
 	 * 
 	 * @param item
 	 */
-	public void setItem(Item item){
+	public void setItem(final Item item) {
 		this.item = item;
 	}
 }

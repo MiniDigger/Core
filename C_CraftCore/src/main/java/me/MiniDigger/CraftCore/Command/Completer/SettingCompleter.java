@@ -26,11 +26,11 @@ import me.MiniDigger.Core.Game.GameType;
 public class SettingCompleter {
 	
 	@Completer(name = "setting.gamemode")
-	public List<String> gamemodeC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> gamemodeC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
-			for (GameType type : GameType.values()) {
+			for (final GameType type : GameType.values()) {
 				result.add(type.name());
 			}
 			

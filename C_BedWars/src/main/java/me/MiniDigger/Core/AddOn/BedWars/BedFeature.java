@@ -23,42 +23,36 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class BedFeature extends CoreFeature {
 	
-	public BedFeature(Phase phase) {
+	public BedFeature(final Phase phase) {
 		super(phase);
 	}
 	
 	@Override
 	public FeatureType getType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
 	public List<FeatureType> getSoftDependencies() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
 	public List<FeatureType> getIncompabilities() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
 	}
 	
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
 	}
 	
 }

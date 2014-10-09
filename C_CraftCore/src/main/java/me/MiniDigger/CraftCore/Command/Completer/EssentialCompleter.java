@@ -18,11 +18,11 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.entity.EntityType;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
+
+import org.bukkit.entity.EntityType;
 
 /**
  * @author Martin
@@ -31,12 +31,12 @@ import me.MiniDigger.Core.Command.Completer;
 public class EssentialCompleter {
 	
 	@Completer(name = "spawnmob")
-	public List<String> spawnmobC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> spawnmobC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
 			
-			for (EntityType t : EntityType.values()) {
+			for (final EntityType t : EntityType.values()) {
 				result.add(t.name());
 			}
 			

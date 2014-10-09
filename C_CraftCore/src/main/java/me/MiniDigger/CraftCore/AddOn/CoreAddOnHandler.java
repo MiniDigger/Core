@@ -104,7 +104,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
 				// System.out.println(url.toExternalForm());
 				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), url);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				Core.getCore().getInstance().error("Could not load AddOn " + bean.getName() + " v" + bean.getVersion() + " by " + bean.getAuthor() + " (CL):");
 				e.printStackTrace();
 				continue;
@@ -120,7 +120,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 				Core.getCore().getInstance().info("Enabling Addon " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor());
 				addon.enable();
 				addon.checkUpdate();
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				Core.getCore().getInstance()
 				        .error("Could not enable AddOn " + addon.getName() + " v" + addon.getBean().getVersion() + " by " + addon.getBean().getAuthor() + ":");
 			}

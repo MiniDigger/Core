@@ -24,23 +24,23 @@ import me.MiniDigger.Core.Command.Completer;
 public class PluginCompleter {
 	
 	@Completer(name = "plugin", aliases = { "plugins", "version", "v", "bukkit", "spigot", "core" })
-	public List<String> pluginC(CommandArgs args) {
+	public List<String> pluginC(final CommandArgs args) {
 		return new ArrayList<String>();
 	}
 	
 	@Completer(name = "plugin.list", aliases = { "plugins.list", "version.list", "v.list", "bukkit.list", "spigot.list", "core.list" })
-	public List<String> listC(CommandArgs args) {
+	public List<String> listC(final CommandArgs args) {
 		return new ArrayList<String>();
 		
 	}
 	
 	@Completer(name = "reload", aliases = { "rl", "warning" })
-	public List<String> reloadC(CommandArgs args) {
+	public List<String> reloadC(final CommandArgs args) {
 		return new ArrayList<String>();
 	}
 	
 	@Completer(name = "stop")
-	public List<String> stopC(CommandArgs args) {
+	public List<String> stopC(final CommandArgs args) {
 		return new ArrayList<String>();
 	}
 }

@@ -18,17 +18,17 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.entity.Player;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
 
+import org.bukkit.entity.Player;
+
 public class TrollCompleter {
 	
 	@Completer(name = "troll")
-	public List<String> trollC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> trollC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
 			result.add("gtc");
@@ -42,11 +42,11 @@ public class TrollCompleter {
 	}
 	
 	@Completer(name = "troll.gtc")
-	public List<String> gtcC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> gtcC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getDisplayName());
 			}
 			
@@ -63,11 +63,11 @@ public class TrollCompleter {
 	}
 	
 	@Completer(name = "troll.breakChunk")
-	public List<String> breakC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> breakC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getDisplayName());
 			}
 			
@@ -78,11 +78,11 @@ public class TrollCompleter {
 	}
 	
 	@Completer(name = "troll.unbreakChunk")
-	public List<String> unbreakC(CommandArgs args) {
-		List<String> result = new ArrayList<String>();
+	public List<String> unbreakC(final CommandArgs args) {
+		final List<String> result = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getDisplayName());
 			}
 			

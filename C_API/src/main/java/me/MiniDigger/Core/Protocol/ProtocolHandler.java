@@ -39,7 +39,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.comphenix.protocol.ProtocolManager;
 
-public interface ProtocolHandler extends Listener{
+public interface ProtocolHandler extends Listener {
 	
 	/**
 	 * Setup all the timers and listener
@@ -65,20 +65,23 @@ public interface ProtocolHandler extends Listener{
 	 * @return the skull changer instance
 	 */
 	public SkullChangers getSkullSChangers();
-
+	
 	/**
-     * @param name the players name
-     * @return his protocol version
-     */
-    int getProtocolVersion(String name);
-
+	 * @param name
+	 *            the players name
+	 * @return his protocol version
+	 */
+	int getProtocolVersion(final String name);
+	
 	/**
-     * @param e event
-     */
-    void onLogin(PlayerLoginEvent e);
-
+	 * @param e
+	 *            event
+	 */
+	void onLogin(final PlayerLoginEvent e);
+	
 	/**
-     * @param e event
-     */
-    void onQuit(PlayerQuitEvent e);
+	 * @param e
+	 *            event
+	 */
+	void onQuit(final PlayerQuitEvent e);
 }

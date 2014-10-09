@@ -25,9 +25,9 @@ import org.bukkit.material.MaterialData;
 
 public class HubFeature extends CoreFeature {
 	
-	private StatsManager	            stats	  = new StatsManager();
-	private Teleporter	                tp	      = new Teleporter();
-	private TokenShop	                shop	  = new TokenShop();
+	private final StatsManager	        stats	  = new StatsManager();
+	private final Teleporter	        tp	      = new Teleporter();
+	private final TokenShop	            shop	  = new TokenShop();
 	private final HashMap<String, Long>	cooldowns	= new HashMap<>();
 	
 	public HubFeature(final Phase phase) {

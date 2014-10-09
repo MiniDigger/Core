@@ -17,36 +17,31 @@ package me.MiniDigger.Core.AddOn.BedWars;
 
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
-public class BedWarsPhase extends CorePhase{
-
-    @Override
-    public String getName() {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
-
-    @Override
-    public String getBarMessage() {
-	    // TODO Auto-generated method stub
-	    return null;
-    }
-
-    @Override
-    public boolean displayBar() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
-
-    @Override
-    public boolean displayLevel() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
-
-    @Override
-    public void init() {
-	    // TODO Auto-generated method stub
-	    
-    }
+public class BedWarsPhase extends CorePhase {
+	
+	@Override
+	public String getName() {
+		return null;
+	}
+	
+	@Override
+	public String getBarMessage() {
+		return null;
+	}
+	
+	@Override
+	public boolean displayBar() {
+		return false;
+	}
+	
+	@Override
+	public boolean displayLevel() {
+		return false;
+	}
+	
+	@Override
+	public void init() {
+		
+	}
 	
 }

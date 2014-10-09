@@ -19,26 +19,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.CreatureSpawner;
-import org.bukkit.entity.EntityType;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.EntityType;
+
 public class SpawnerFeature extends CoreFeature {
 	
-	private int	       interval;
-	private EntityType	type;
-	private DyeColor	locKey;
-	private Location[]	locs;
+	private final int	     interval;
+	private final EntityType	type;
+	private final DyeColor	 locKey;
+	private Location[]	     locs;
 	
-	public SpawnerFeature(Phase phase, DyeColor locKey, int interval, EntityType type) {
+	public SpawnerFeature(final Phase phase, final DyeColor locKey, final int interval, final EntityType type) {
 		super(phase);
 		this.locKey = locKey;
 		this.interval = interval;
@@ -52,7 +53,7 @@ public class SpawnerFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> list = new ArrayList<FeatureType>();
+		final List<FeatureType> list = new ArrayList<FeatureType>();
 		list.add(FeatureType.MAP);
 		return list;
 	}
@@ -71,7 +72,7 @@ public class SpawnerFeature extends CoreFeature {
 	public void start() {
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		
-		HashMap<String, Location> n = data.getLocs(DyeColor.YELLOW);
+		final HashMap<String, Location> n = data.getLocs(DyeColor.YELLOW);
 		try {
 			locs = n.values().toArray(new Location[n.values().size()]);
 		} catch (final Exception ex) {
@@ -79,11 +80,11 @@ public class SpawnerFeature extends CoreFeature {
 			return;
 		}
 		
-		for (Location l : locs) {
+		for (final Location l : locs) {
 			l.getBlock().setType(Material.MOB_SPAWNER);
-			Block b = l.getBlock();
+			final Block b = l.getBlock();
 			if (b.getType() == Material.MOB_SPAWNER) {
-				CreatureSpawner c = (CreatureSpawner) b;
+				final CreatureSpawner c = (CreatureSpawner) b;
 				c.setSpawnedType(type);
 				c.setDelay(interval);
 			}

@@ -15,7 +15,6 @@
  */
 package me.MiniDigger.Core.Util;
 
-
 public interface EnumUtil {
-	//TODO Enum Util api
+	// TODO Enum Util api
 }

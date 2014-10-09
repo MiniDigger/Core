@@ -18,17 +18,17 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.entity.Player;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Stats.StatsType;
 
+import org.bukkit.entity.Player;
+
 public class StatsCompleter {
 	
 	@Completer(name = "stats")
-	public List<String> statsC(CommandArgs args) {
+	public List<String> statsC(final CommandArgs args) {
 		return new ArrayList<String>();
 	}
 	
@@ -37,13 +37,13 @@ public class StatsCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else if (args.getArgs().length == 2) {
-			for (StatsType t : StatsType.values()) {
+			for (final StatsType t : StatsType.values()) {
 				result.add(t.getGame() + "." + t.getStats());
 			}
 			
@@ -58,13 +58,13 @@ public class StatsCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else if (args.getArgs().length == 2) {
-			for (StatsType t : StatsType.values()) {
+			for (final StatsType t : StatsType.values()) {
 				result.add(t.getGame() + "." + t.getStats());
 			}
 			
@@ -79,13 +79,13 @@ public class StatsCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else if (args.getArgs().length == 2) {
-			for (StatsType t : StatsType.values()) {
+			for (final StatsType t : StatsType.values()) {
 				result.add(t.getGame() + "." + t.getStats());
 			}
 			
@@ -100,13 +100,13 @@ public class StatsCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else if (args.getArgs().length == 2) {
-			for (StatsType t : StatsType.values()) {
+			for (final StatsType t : StatsType.values()) {
 				result.add(t.getGame() + "." + t.getStats());
 			}
 			
@@ -121,7 +121,7 @@ public class StatsCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (StatsType t : StatsType.values()) {
+			for (final StatsType t : StatsType.values()) {
 				result.add(t.getGame() + "." + t.getStats());
 			}
 			

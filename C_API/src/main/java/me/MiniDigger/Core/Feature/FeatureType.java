@@ -45,6 +45,7 @@ public enum FeatureType {
 	 * @return A human readable name for the feature
 	 * @deprecated use name() insted
 	 */
+	@Deprecated
 	public String getName() {
 		return name();
 	}

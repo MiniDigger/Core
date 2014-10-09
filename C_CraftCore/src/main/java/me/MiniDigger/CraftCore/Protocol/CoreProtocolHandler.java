@@ -68,13 +68,13 @@ import com.comphenix.protocol.wrappers.WrappedServerPing;
 
 public class CoreProtocolHandler implements ProtocolHandler {
 	
-	private String	                 fame;
-	private final ProtocolManager	 manager	         = ProtocolLibrary.getProtocolManager();
+	private String	                       fame;
+	private final ProtocolManager	       manager	         = ProtocolLibrary.getProtocolManager();
 	
-	private SignChangers	         signChangers;
-	private SkullChangers	         skullChangers;
+	private SignChangers	               signChangers;
+	private SkullChangers	               skullChangers;
 	
-	private HashMap<String, Integer>	protocolVersions	= new HashMap<>();
+	private final HashMap<String, Integer>	protocolVersions	= new HashMap<>();
 	
 	@Override
 	public void init() {
@@ -205,7 +205,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			
 			@Override
 			public void onPacketReceiving(final PacketEvent event) {
-				WrapperHandshakeClientSetProtocol p = new WrapperHandshakeClientSetProtocol(event.getPacket());
+				final WrapperHandshakeClientSetProtocol p = new WrapperHandshakeClientSetProtocol(event.getPacket());
 				// System.out.println(event.getPlayer().getName() +
 				// "'s protocol version: " + p.getProtocolVersion());
 				protocolVersions.put(event.getPlayer().getName(), p.getProtocolVersion());
@@ -215,11 +215,11 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	@Override
 	@EventHandler
-	public void onLogin(PlayerLoginEvent e) {
+	public void onLogin(final PlayerLoginEvent e) {
 		int protocol = 0;
-		String name = e.getPlayer().getName();
+		final String name = e.getPlayer().getName();
 		String key = "";
-		for (String s : protocolVersions.keySet()) {
+		for (final String s : protocolVersions.keySet()) {
 			if (s.startsWith("UNKNOWN[/")) {
 				String newS = "";
 				newS = s.replaceFirst(Pattern.quote("UNKNOWN[/"), "");
@@ -241,14 +241,14 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	@Override
 	@EventHandler
-	public void onQuit(PlayerQuitEvent e) {
+	public void onQuit(final PlayerQuitEvent e) {
 		if (protocolVersions.containsKey(e.getPlayer().getName())) {
 			protocolVersions.remove(e.getPlayer().getName());
 		}
 	}
 	
 	@Override
-	public int getProtocolVersion(String name) {
+	public int getProtocolVersion(final String name) {
 		return protocolVersions.get(name);
 	}
 	

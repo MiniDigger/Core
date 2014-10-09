@@ -18,8 +18,6 @@ package me.MiniDigger.Core.AddOn.Hub;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -28,6 +26,8 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
+
+import org.bukkit.ChatColor;
 
 public class HubAddOn extends CoreAddOn {
 	
@@ -47,7 +47,7 @@ public class HubAddOn extends CoreAddOn {
 	@Command(name = "shop", consol = false, permission = "shop", usage = "")
 	public void shop(final CommandArgs args) {
 		if (Core.getCore().getGameHandler().getMainGame().getType() == GameType.LOBBY) {
-			HubFeature f = (HubFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.HUB);
+			final HubFeature f = (HubFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.HUB);
 			f.getTokenShop().open(args.getPlayer());
 		} else {
 			Prefix.API.getPrefix().then("Du kannst den Shop derzeit nicht öffnen!").color(ChatColor.RED);

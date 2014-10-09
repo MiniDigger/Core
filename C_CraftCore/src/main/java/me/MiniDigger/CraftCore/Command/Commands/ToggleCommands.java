@@ -38,5 +38,5 @@ public class ToggleCommands {
 		}
 	}
 	
-	//TODO Toggle hacks
+	// TODO Toggle hacks
 }

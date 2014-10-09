@@ -46,7 +46,7 @@ public class HubPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		for (UUID u : getGame().getPlayers()) {
+		for (final UUID u : getGame().getPlayers()) {
 			((HubFeature) getFeature(FeatureType.HUB)).giveStartItems(Core.getCore().getUserHandler().get(u).getPlayer());
 		}
 		super.startPhase();
