@@ -21,7 +21,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public interface AddOn {
 	
-	// TODO AddOn API
 	/**
 	 * @returns the name of this addon
 	 */
@@ -48,28 +47,29 @@ public interface AddOn {
 	public FileConfiguration getConfig();
 	
 	/**
-	 * @param bean
+	 * Loads the addon.
 	 * 
+	 * @param bean some informations about the addon
 	 */
-	void load(final AddOnBean bean);
+	public void load(final AddOnBean bean);
 	
 	/**
-     * 
+     * Saves the config to the disk
      */
-	void saveConfig();
+	public void saveConfig();
 	
 	/**
-     * 
+     * Loads the config back from disk
      */
-	void loadConfig();
+	public void loadConfig();
 	
 	/**
-	 * @return
+	 * @return the bean with some informations about the addon
 	 */
-	AddOnBean getBean();
+	public AddOnBean getBean();
 	
 	/**
-     * 
+     * Checks if there is a newer version of this addon on the main repo
      */
-	void checkUpdate();
+	public void checkUpdate();
 }
