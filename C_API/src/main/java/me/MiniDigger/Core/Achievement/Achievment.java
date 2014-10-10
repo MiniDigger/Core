@@ -33,6 +33,50 @@
 
 package me.MiniDigger.Core.Achievement;
 
+import java.util.List;
+
+import me.MiniDigger.Core.User.User;
+
 public interface Achievment {
-	// TODO Achievment API
+	
+	/**
+	 * @return the type of this achievement
+	 */
+	public AchievmentType getType();
+	
+	/**
+	 * Adds a new level to this achievement
+	 * 
+	 * @param level
+	 *            the level to add
+	 */
+	public void addLevel(AchievmentLevel level);
+	
+	/**
+	 * @return the name of the achievement
+	 */
+	public String getName();
+	
+	/**
+	 * @return the msg which gets displayed, when the achievement is rewarded
+	 */
+	public String getMsg();
+	
+	/**
+	 * @return all levels of this achievement
+	 */
+	public List<AchievmentLevel> getLevels();
+
+	/**
+     * @param user the user
+     * @return the data for the given user
+     */
+    public AchievmentData getData(User user);
+
+	/**
+	 * Checks if the user should be promoted
+	 * 
+     * @param u the user to check for
+     */
+    void checkLevel(User u);
 }

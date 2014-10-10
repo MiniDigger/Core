@@ -40,6 +40,7 @@ import java.util.logging.LogRecord;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
 import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.Achievement.CoreAchievementListener;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
 import me.MiniDigger.CraftCore.Command.Commands.AddOnCommands;
@@ -343,7 +344,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void registerListener() {
 		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
-		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler() };
+		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener() };
 		for (final Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}

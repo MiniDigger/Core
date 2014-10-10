@@ -33,8 +33,46 @@
 
 package me.MiniDigger.CraftCore.Achievement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.MiniDigger.Core.Achievement.AchievementHandler;
+import me.MiniDigger.Core.Achievement.Achievment;
+import me.MiniDigger.Core.Achievement.AchievmentType;
+import me.MiniDigger.Core.User.User;
 
 public class CoreAchievementHandler implements AchievementHandler {
 	
+	private List<Achievment>	achievments	= new ArrayList<Achievment>();
+	
+	@Override
+	public void register(Achievment a) {
+		achievments.add(a);
+	}
+	
+	@Override
+	public void registerAchievments() {
+		Achievment joins = new CoreAchievement("Joins", "Du bist bereits %s% mal gejoint!", AchievmentType.JOINS);
+		joins.addLevel(new CoreAchievmentLevel(1, 1, 1));
+		joins.addLevel(new CoreAchievmentLevel(2, 10, 10));
+		joins.addLevel(new CoreAchievmentLevel(3, 50, 50));
+		joins.addLevel(new CoreAchievmentLevel(4, 100, 100));
+		joins.addLevel(new CoreAchievmentLevel(5, 200, 200));
+		// TODO Moar achievements
+	}
+	
+	@Override
+	public Achievment getAchievment(AchievmentType type) {
+		for (Achievment a : achievments) {
+			if (a.getType().equals(type)) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public void award(User u, AchievmentType a, int level) {
+		
+	}
 }

@@ -33,6 +33,39 @@
 
 package me.MiniDigger.Core.Achievement;
 
+import me.MiniDigger.Core.User.User;
+
 public interface AchievementHandler {
+	
+	/**
+	 * Registers an achievement
+	 * 
+	 * @param a
+	 *            the achievement to register
+	 */
+	public void register(Achievment a);
+	
+	/**
+	 * Registers all preinstalled achievements
+	 */
+	public void registerAchievments();
+	
+	/**
+	 * @param type the type of the searched achievement
+	 * @return the achievement with this type
+	 */
+	public Achievment getAchievment(AchievmentType type);
+	
+	/**
+	 * Awards a user an achievement level
+	 * 
+	 * @param u
+	 *            the user
+	 * @param a
+	 *            the achievement
+	 * @param level
+	 *            the new level
+	 */
+	public void award(User u, AchievmentType a, int level);
 	
 }
