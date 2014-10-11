@@ -24,11 +24,13 @@ public class CoreAchievmentData implements AchievmentData {
 	private String	achievmentName;
 	private UUID	user;
 	private int	   data;
+	private int	   level;
 	
-	public CoreAchievmentData(String name, UUID user, int data) {
+	public CoreAchievmentData(String name, UUID user, int data, int level) {
 		this.achievmentName = name;
 		this.user = user;
 		this.data = data;
+		this.level = level;
 	}
 	
 	@Override
@@ -54,5 +56,15 @@ public class CoreAchievmentData implements AchievmentData {
 	@Override
 	public void save() {
 		// TODO Save the achievement data
+	}
+	
+	@Override
+	public int getLevel(){
+		return level;
+	}
+	
+	@Override
+	public void setLevel(int level){
+		this.level = level;
 	}
 }

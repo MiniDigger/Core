@@ -20,6 +20,7 @@ package me.MiniDigger.CraftCore.Achievement;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Achievement.Achievment;
 import me.MiniDigger.Core.Achievement.AchievmentData;
 import me.MiniDigger.Core.Achievement.AchievmentLevel;
@@ -40,6 +41,8 @@ public class CoreAchievement implements Achievment {
 		this.levels = new ArrayList<AchievmentLevel>();
 		this.type = type;
 		this.data = new ArrayList<AchievmentData>();
+		
+		levels.add(new CoreAchievmentLevel(0, 0, 0));
 	}
 	
 	@Override
@@ -50,7 +53,7 @@ public class CoreAchievement implements Achievment {
 			}
 		}
 		
-		AchievmentData d = new CoreAchievmentData(name, user.getUUID(), 0);
+		AchievmentData d = new CoreAchievmentData(name, user.getUUID(), 0, 0);
 		data.add(d);
 		return d;
 	}
@@ -84,14 +87,18 @@ public class CoreAchievement implements Achievment {
 	public void checkLevel(User u) {
 		AchievmentData d = getData(u);
 		
-		int latest;
-		for (AchievmentLevel l : getLevels()) {
-			if (l.getData() > d.getData()) {
-				latest = l.getId();
-				continue;
-			} else if (l.getData() == d.getData()) {
-				// TODO Achievemtn promotion
-			}
+		AchievmentLevel current = getLevels().get(d.getLevel());
+		AchievmentLevel next;
+		try {
+			next = getLevels().get(current.getId() + 1);
+		} catch (Exception ex) {
+			return;
+		}
+		
+		if (d.getData() >= next.getData()) {
+			d.setLevel(next.getId());
+			d.save();
+			Core.getCore().getAchievmentHandler().award(u, getType(), d.getLevel());
 		}
 	}
 }

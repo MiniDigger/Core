@@ -45,4 +45,15 @@ public interface AchievmentData {
 	 */
 	public void save();
 	
+	/**
+	 * @return the achievement level
+	 */
+	int getLevel();
+	
+	/**
+	 * @param level
+	 *            the new level to set
+	 */
+	void setLevel(int level);
+	
 }
