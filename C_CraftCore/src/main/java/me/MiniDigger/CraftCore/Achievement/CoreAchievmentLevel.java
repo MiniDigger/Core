@@ -23,33 +23,39 @@ public class CoreAchievmentLevel implements AchievmentLevel {
 	private int	data;
 	private int	points;
 	
-	public CoreAchievmentLevel(int id, int data, int points) {
+	public CoreAchievmentLevel(final int id, final int data, final int points) {
 		this.id = id;
 		this.data = data;
 		this.points = points;
 	}
 	
+	@Override
 	public int getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	@Override
+	public void setId(final int id) {
 		this.id = id;
 	}
 	
+	@Override
 	public int getData() {
 		return data;
 	}
 	
-	public void setData(int data) {
+	@Override
+	public void setData(final int data) {
 		this.data = data;
 	}
 	
+	@Override
 	public int getPoints() {
 		return points;
 	}
 	
-	public void setPoints(int points) {
+	@Override
+	public void setPoints(final int points) {
 		this.points = points;
 	}
 	

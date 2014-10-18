@@ -43,7 +43,7 @@ public interface AchievementHandler {
 	 * @param a
 	 *            the achievement to register
 	 */
-	public void register(Achievment a);
+	public void register(final Achievment a);
 	
 	/**
 	 * Registers all preinstalled achievements
@@ -51,10 +51,11 @@ public interface AchievementHandler {
 	public void registerAchievments();
 	
 	/**
-	 * @param type the type of the searched achievement
+	 * @param type
+	 *            the type of the searched achievement
 	 * @return the achievement with this type
 	 */
-	public Achievment getAchievment(AchievmentType type);
+	public Achievment getAchievment(final AchievmentType type);
 	
 	/**
 	 * Awards a user an achievement level
@@ -66,6 +67,6 @@ public interface AchievementHandler {
 	 * @param level
 	 *            the new level
 	 */
-	public void award(User u, AchievmentType a, int level);
+	public void award(final User u, final AchievmentType a, final int level);
 	
 }

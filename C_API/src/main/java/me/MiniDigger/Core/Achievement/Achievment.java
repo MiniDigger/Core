@@ -50,7 +50,7 @@ public interface Achievment {
 	 * @param level
 	 *            the level to add
 	 */
-	public void addLevel(AchievmentLevel level);
+	public void addLevel(final AchievmentLevel level);
 	
 	/**
 	 * @return the name of the achievement
@@ -66,17 +66,19 @@ public interface Achievment {
 	 * @return all levels of this achievement
 	 */
 	public List<AchievmentLevel> getLevels();
-
+	
 	/**
-     * @param user the user
-     * @return the data for the given user
-     */
-    public AchievmentData getData(User user);
-
+	 * @param user
+	 *            the user
+	 * @return the data for the given user
+	 */
+	public AchievmentData getData(final User user);
+	
 	/**
 	 * Checks if the user should be promoted
 	 * 
-     * @param u the user to check for
-     */
-    void checkLevel(User u);
+	 * @param u
+	 *            the user to check for
+	 */
+	void checkLevel(final User u);
 }

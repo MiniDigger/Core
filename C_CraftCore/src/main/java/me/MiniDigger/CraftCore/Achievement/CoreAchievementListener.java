@@ -28,10 +28,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class CoreAchievementListener implements Listener {
 	
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
-		User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-		Achievment a = Core.getCore().getAchievmentHandler().getAchievment(AchievmentType.JOINS);
-		AchievmentData d = a.getData(u);
+	public void onJoin(final PlayerJoinEvent e) {
+		final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+		final Achievment a = Core.getCore().getAchievmentHandler().getAchievment(AchievmentType.JOINS);
+		final AchievmentData d = a.getData(u);
 		
 		d.setData(d.getData() + 1);
 		d.save();

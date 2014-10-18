@@ -43,16 +43,16 @@ import me.MiniDigger.Core.User.User;
 
 public class CoreAchievementHandler implements AchievementHandler {
 	
-	private List<Achievment>	achievments	= new ArrayList<Achievment>();
+	private final List<Achievment>	achievments	= new ArrayList<Achievment>();
 	
 	@Override
-	public void register(Achievment a) {
+	public void register(final Achievment a) {
 		achievments.add(a);
 	}
 	
 	@Override
 	public void registerAchievments() {
-		Achievment joins = new CoreAchievement("Joins", "Du bist bereits %s% mal gejoint!", AchievmentType.JOINS);
+		final Achievment joins = new CoreAchievement("Joins", "Du bist bereits %s% mal gejoint!", AchievmentType.JOINS);
 		joins.addLevel(new CoreAchievmentLevel(1, 1, 1));
 		joins.addLevel(new CoreAchievmentLevel(2, 10, 10));
 		joins.addLevel(new CoreAchievmentLevel(3, 50, 50));
@@ -62,8 +62,8 @@ public class CoreAchievementHandler implements AchievementHandler {
 	}
 	
 	@Override
-	public Achievment getAchievment(AchievmentType type) {
-		for (Achievment a : achievments) {
+	public Achievment getAchievment(final AchievmentType type) {
+		for (final Achievment a : achievments) {
 			if (a.getType().equals(type)) {
 				return a;
 			}
@@ -72,7 +72,7 @@ public class CoreAchievementHandler implements AchievementHandler {
 	}
 	
 	@Override
-	public void award(User u, AchievmentType a, int level) {
+	public void award(final User u, final AchievmentType a, final int level) {
 		
 	}
 }

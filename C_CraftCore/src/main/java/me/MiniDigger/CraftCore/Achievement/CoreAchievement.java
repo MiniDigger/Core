@@ -29,37 +29,37 @@ import me.MiniDigger.Core.User.User;
 
 public class CoreAchievement implements Achievment {
 	
-	private String	              name;
-	private String	              msg;
-	private List<AchievmentLevel>	levels;
-	private List<AchievmentData>	data;
-	private AchievmentType	      type;
+	private final String	            name;
+	private final String	            msg;
+	private final List<AchievmentLevel>	levels;
+	private final List<AchievmentData>	data;
+	private final AchievmentType	    type;
 	
-	public CoreAchievement(String name, String msg, AchievmentType type) {
+	public CoreAchievement(final String name, final String msg, final AchievmentType type) {
 		this.name = name;
 		this.msg = msg;
-		this.levels = new ArrayList<AchievmentLevel>();
+		levels = new ArrayList<AchievmentLevel>();
 		this.type = type;
-		this.data = new ArrayList<AchievmentData>();
+		data = new ArrayList<AchievmentData>();
 		
 		levels.add(new CoreAchievmentLevel(0, 0, 0));
 	}
 	
 	@Override
-	public AchievmentData getData(User user) {
-		for (AchievmentData d : data) {
+	public AchievmentData getData(final User user) {
+		for (final AchievmentData d : data) {
 			if (d.getUser().equals(user.getUUID())) {
 				return d;
 			}
 		}
 		
-		AchievmentData d = new CoreAchievmentData(name, user.getUUID(), 0, 0);
+		final AchievmentData d = new CoreAchievmentData(name, user.getUUID(), 0, 0);
 		data.add(d);
 		return d;
 	}
 	
 	@Override
-	public void addLevel(AchievmentLevel level) {
+	public void addLevel(final AchievmentLevel level) {
 		levels.add(level);
 	}
 	
@@ -84,14 +84,14 @@ public class CoreAchievement implements Achievment {
 	}
 	
 	@Override
-	public void checkLevel(User u) {
-		AchievmentData d = getData(u);
+	public void checkLevel(final User u) {
+		final AchievmentData d = getData(u);
 		
-		AchievmentLevel current = getLevels().get(d.getLevel());
+		final AchievmentLevel current = getLevels().get(d.getLevel());
 		AchievmentLevel next;
 		try {
 			next = getLevels().get(current.getId() + 1);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			return;
 		}
 		

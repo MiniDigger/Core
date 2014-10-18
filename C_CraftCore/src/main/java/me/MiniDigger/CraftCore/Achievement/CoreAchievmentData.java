@@ -21,13 +21,13 @@ import me.MiniDigger.Core.Achievement.AchievmentData;
 
 public class CoreAchievmentData implements AchievmentData {
 	
-	private String	achievmentName;
-	private UUID	user;
-	private int	   data;
-	private int	   level;
+	private final String	achievmentName;
+	private final UUID	 user;
+	private int	         data;
+	private int	         level;
 	
-	public CoreAchievmentData(String name, UUID user, int data, int level) {
-		this.achievmentName = name;
+	public CoreAchievmentData(final String name, final UUID user, final int data, final int level) {
+		achievmentName = name;
 		this.user = user;
 		this.data = data;
 		this.level = level;
@@ -49,7 +49,7 @@ public class CoreAchievmentData implements AchievmentData {
 	}
 	
 	@Override
-	public void setData(int data) {
+	public void setData(final int data) {
 		this.data = data;
 	}
 	
@@ -59,12 +59,12 @@ public class CoreAchievmentData implements AchievmentData {
 	}
 	
 	@Override
-	public int getLevel(){
+	public int getLevel() {
 		return level;
 	}
 	
 	@Override
-	public void setLevel(int level){
+	public void setLevel(final int level) {
 		this.level = level;
 	}
 }

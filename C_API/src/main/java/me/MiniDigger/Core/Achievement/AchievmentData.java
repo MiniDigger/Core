@@ -38,7 +38,7 @@ public interface AchievmentData {
 	 * @param data
 	 *            the data to set
 	 */
-	public void setData(int data);
+	public void setData(final int data);
 	
 	/**
 	 * Saves the data to the db
@@ -54,6 +54,6 @@ public interface AchievmentData {
 	 * @param level
 	 *            the new level to set
 	 */
-	void setLevel(int level);
+	void setLevel(final int level);
 	
 }

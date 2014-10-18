@@ -40,7 +40,7 @@ public class ToggleCommands {
 	}
 	
 	@Command(name = "toggle.hacks", description = "Toggelt die Hacks", permission = "toggle.hacks", consol = false, min = 0, max = 1)
-	public void hacks(final CommandArgs args) {		
+	public void hacks(final CommandArgs args) {
 		// TODO Toggle hacks
 	}
 }

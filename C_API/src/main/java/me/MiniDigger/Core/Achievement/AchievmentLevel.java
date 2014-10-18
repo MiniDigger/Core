@@ -26,7 +26,7 @@ public interface AchievmentLevel {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(int id);
+	public void setId(final int id);
 	
 	/**
 	 * @return the data to reach this level
@@ -37,7 +37,7 @@ public interface AchievmentLevel {
 	 * @param data
 	 *            the data to set
 	 */
-	public void setData(int data);
+	public void setData(final int data);
 	
 	/**
 	 * @return the points to earn
@@ -48,6 +48,6 @@ public interface AchievmentLevel {
 	 * @param points
 	 *            the points to set
 	 */
-	public void setPoints(int points);
+	public void setPoints(final int points);
 	
 }
