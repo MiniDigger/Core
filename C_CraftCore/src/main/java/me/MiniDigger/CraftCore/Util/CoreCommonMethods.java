@@ -54,6 +54,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.bobacadodl.imgmessage.ImageChar;
 import com.bobacadodl.imgmessage.ImageMessage;
@@ -96,28 +98,34 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void printJoinMessage(final User user) {
-		try {
-			final ImageMessage msg = new ImageMessage(ImageIO.read(new URL("https://minotar.net/avatar/" + user.getRealName() + "/200.png")), 8,
-			        ImageChar.DARK_SHADE.getChar());
-			msg.appendCenteredText("", "", ChatColor.GOLD + "Willkommen", ChatColor.YELLOW + user.getDisplayName(), ChatColor.GOLD + "Du bist auf Server:",
-			        ChatColor.YELLOW + ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
-			msg.sendToPlayer(user.getPlayer());
-		} catch (final IOException e) {
-			e.printStackTrace();
-			// Fallback
+		Bukkit.getScheduler().runTaskAsynchronously((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
-			user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
-			user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
-			user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
-			user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name")).color(ChatColor.YELLOW));
-		}
-		
-		if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
-			Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
-			        .send(user.getPlayer());
-			Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen (danke Mojang fürs neue Protocol...").color(ChatColor.GOLD)
-			        .style(ChatColor.BOLD).send(user.getPlayer());
-		}
+			@Override
+			public void run() {
+				try {
+					final ImageMessage msg = new ImageMessage(ImageIO.read(new URL("https://minotar.net/avatar/" + user.getRealName() + "/200.png")), 8,
+					        ImageChar.DARK_SHADE.getChar());
+					msg.appendCenteredText("", "", ChatColor.GOLD + "Willkommen", ChatColor.YELLOW + user.getDisplayName(), ChatColor.GOLD + "Du bist auf Server:",
+					        ChatColor.YELLOW + ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
+					msg.sendToPlayer(user.getPlayer());
+				} catch (final IOException e) {
+					e.printStackTrace();
+					// Fallback
+					
+					user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
+					user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
+					user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
+					user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name")).color(ChatColor.YELLOW));
+				}
+				
+				if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
+					Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
+					        .send(user.getPlayer());
+					Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen (danke Mojang fürs neue Protocol...").color(ChatColor.GOLD)
+					        .style(ChatColor.BOLD).send(user.getPlayer());
+				}
+			}
+		});
 	}
 	
 	@Override
