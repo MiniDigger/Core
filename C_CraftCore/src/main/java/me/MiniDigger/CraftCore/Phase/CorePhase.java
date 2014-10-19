@@ -183,8 +183,14 @@ public abstract class CorePhase implements Phase {
 	
 	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip", max = 0)
 	public void skip(final CommandArgs args) {
-		getGame().broadCastMessage(Prefix.API.getPrefix().then("Die Phase wurde übersprungen!").color(ChatColor.RED));
-		endPhase();
+		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				getGame().broadCastMessage(Prefix.API.getPrefix().then("Die Phase wurde übersprungen!").color(ChatColor.RED));
+				endPhase();
+			}
+		});
 	}
 	
 	@Completer(name = "skip")
