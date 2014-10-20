@@ -14,11 +14,18 @@ import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 import mkremins.fanciful.FancyMessage;
+import net.minecraft.server.v1_7_R4.NBTTagCompound;
+import net.minecraft.server.v1_7_R4.TileEntity;
+import net.minecraft.server.v1_7_R4.TileEntityMobSpawner;
+import net.minecraft.server.v1_7_R4.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.json.simple.JSONObject;
@@ -161,5 +168,46 @@ public class DevCommands {
 			msg.then(m.name() + " ");
 		}
 		msg.send(args.getSender());
+	}
+	
+	@Command(name = "dev.itemSpawner", description = "DEV!", usage = "", permission = "dev")
+	public void itemSpawner(final CommandArgs args) {
+		@SuppressWarnings("deprecation")
+        Block target = args.getPlayer().getTargetBlock(null, 200);
+		if ((target == null) || (target.getType() != Material.MOB_SPAWNER)) {
+			System.out.println("no spawner");
+			return;
+		}
+		int delay = 20;
+		World world = ((CraftWorld) target.getWorld()).getHandle();
+		TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
+		if ((tileEntity instanceof TileEntityMobSpawner)) {
+			TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
+			NBTTagCompound spawnerTag = new NBTTagCompound();
+			mobSpawner.b(spawnerTag);
+			spawnerTag.remove("SpawnPotentials");
+			spawnerTag.setString("EntityId", "Item");
+			NBTTagCompound itemTag = new NBTTagCompound();
+			itemTag.setShort("Health", (short) 5);
+			itemTag.setShort("Age", (short) 0);
+			net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy((CraftItemStack) args.getPlayer().getItemInHand());
+			NBTTagCompound itemStackTag = new NBTTagCompound();
+			itemStack.save(itemStackTag);
+			itemStackTag.setByte("Count", (byte) 1);
+			itemTag.set("Item", itemStackTag);
+			spawnerTag.set("SpawnData", itemTag);
+			spawnerTag.setShort("SpawnCount", (short) itemStack.count);
+			spawnerTag.setShort("SpawnRange", (short) (int) args.getPlayer().getLocation().distance(target.getLocation()));
+			spawnerTag.setShort("Delay", (short) 0);
+			spawnerTag.setShort("MinSpawnDelay", (short) (delay));
+			spawnerTag.setShort("MaxSpawnDelay", (short) (delay));
+			spawnerTag.setShort("MaxNearbyEntities", (short) 300);
+			spawnerTag.setShort("RequiredPlayerRange", (short) 300);
+			
+			mobSpawner.a(spawnerTag);
+			args.getPlayer().sendMessage(ChatColor.GREEN + "Properties were successfully edited!");
+		} else {
+			System.out.println("fail");
+		}
 	}
 }

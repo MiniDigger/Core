@@ -24,9 +24,11 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
+import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Team.CoreTeam;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class TeamSelectFeature extends CoreFeature {
@@ -34,11 +36,13 @@ public class TeamSelectFeature extends CoreFeature {
 	protected List<Team>	teams	= new ArrayList<>();
 	protected int	     teamSize;
 	protected int	     teamCount;
+	protected Phase	     next;
 	
-	public TeamSelectFeature(final Phase p, final int teamSize, final int teamCount) {
+	public TeamSelectFeature(final Phase p, final Phase next, final int teamSize, final int teamCount) {
 		super(p);
 		this.teamSize = teamSize;
 		this.teamCount = teamCount;
+		this.next = next;
 	}
 	
 	public int getTeamSize() {
@@ -47,6 +51,10 @@ public class TeamSelectFeature extends CoreFeature {
 	
 	public int getTeamCount() {
 		return teamCount;
+	}
+	
+	public List<Team> getTeams() {
+		return teams;
 	}
 	
 	public Team getTeam(final String name) {
@@ -61,6 +69,15 @@ public class TeamSelectFeature extends CoreFeature {
 	public Team getTeam(final Player p) {
 		for (final Team t : teams) {
 			if (t.getPlayers().contains(p.getUniqueId())) {
+				return t;
+			}
+		}
+		return null;
+	}
+	
+	public Team getTeam(User user) {
+		for (final Team t : teams) {
+			if (t.getPlayers().contains(user.getUUID())) {
 				return t;
 			}
 		}
@@ -89,8 +106,19 @@ public class TeamSelectFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
+		List<String> teamNames = new ArrayList<String>();
+		teamNames.add(ChatColor.BLUE + "Blau");
+		teamNames.add(ChatColor.RED + "Rot");
+		teamNames.add(ChatColor.GREEN + "Grün");
+		teamNames.add(ChatColor.YELLOW + "Gelb");
+		teamNames.add(ChatColor.LIGHT_PURPLE + "Pink");
+		teamNames.add(ChatColor.BLACK + "Schwarz");
+		
 		for (int i = 0; i < teamCount; i++) {
-			teams.add(new CoreTeam(teamSize));
+			Team t = new CoreTeam(teamSize);
+			t.setGame(getPhase().getGame());
+			t.setName(teamNames.get(i));
+			teams.add(t);
 		}
 	}
 	
@@ -106,7 +134,7 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		sizes = calcSizes();
 		
-		
+		((TeamFeature) next.getFeature(FeatureType.TEAM)).setTeams(teams);
 	}
 	
 	public HashMap<String, Integer> calcSizes() {
@@ -184,5 +212,4 @@ public class TeamSelectFeature extends CoreFeature {
 		}
 		return name;
 	}
-	
 }

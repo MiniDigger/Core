@@ -35,7 +35,11 @@ package me.MiniDigger.Core.Game;
 
 public enum GameType {
 	
-	TICTACTOE("TicTacToe", "TTT", null), LOBBY("Lobby", "Lobby", null), GETTHEDROP("GetTheDrop", "GTD", null), NOTHING("Nothing", "", null);
+	TICTACTOE("TicTacToe", "TTT", null),
+	LOBBY("Lobby", "Lobby", null),
+	GETTHEDROP("GetTheDrop", "GTD", null),
+	NOTHING("Nothing", "", null),
+	BEDWARS("BedWars", "BW", null);
 	
 	private String	    name;
 	private String	    abk;
