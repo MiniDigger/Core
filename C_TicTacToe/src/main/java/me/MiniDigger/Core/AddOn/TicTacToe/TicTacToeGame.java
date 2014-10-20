@@ -192,7 +192,16 @@ public class TicTacToeGame extends CoreGame {
 			final TwoPlayerFeature tpf = (TwoPlayerFeature) getPhase().getFeature(FeatureType.TWOPLAYER);
 			setSlot(slot, tpf.isOne(uniqueId) ? 1 : 2);
 			openInv(tpf.isOne(uniqueId) ? 1 : 2);
-			final Stats s = Core.getCore().getUserHandler().get(uniqueId).getStats();
+			final User user = Core.getCore().getUserHandler().get(uniqueId);
+			try {
+				final User other = Core.getCore().getUserHandler().get(tpf.getOther(uniqueId));
+				if (other.getPlayer().getOpenInventory().getTitle().contains("TicTacToe - " + user.getDisplayName())) {
+					openInv(tpf.isOne(uniqueId) ? 2 : 1);
+				}
+			} catch (Exception ex) {
+				
+			}
+			final Stats s = user.getStats();
 			s.add(StatsType.TicTacToe.CLICKS, 1);
 			s.save();
 			if (checkWin(tpf.isOne(uniqueId) ? 1 : 2)) {
