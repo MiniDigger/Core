@@ -35,8 +35,8 @@ public class TeamSelectFeature extends CoreFeature {
 	protected int	     teamSize;
 	protected int	     teamCount;
 	
-	public TeamSelectFeature(final Phase next, final int teamSize, final int teamCount) {
-		super(next);
+	public TeamSelectFeature(final Phase p, final int teamSize, final int teamCount) {
+		super(p);
 		this.teamSize = teamSize;
 		this.teamCount = teamCount;
 	}
@@ -105,6 +105,8 @@ public class TeamSelectFeature extends CoreFeature {
 		balance();
 		
 		sizes = calcSizes();
+		
+		
 	}
 	
 	public HashMap<String, Integer> calcSizes() {
