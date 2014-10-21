@@ -160,6 +160,7 @@ public class CoreCore extends Core {
 	private AddOnHandler	   addOnHandler;
 	private MirrorHandler	   mirrorHandler;
 	private LicenseHandler	   licenseHandler;
+	private VillagerHander     villagerHander;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -425,6 +426,14 @@ public class CoreCore extends Core {
 			licenseHandler = new CoreLicenseHandler();
 		}
 		return licenseHandler;
+	}
+	
+	@Override
+	public VillagerHandler getVillagerHandler() {
+		if (villagerHander == null) {
+			villagerHander = new CoreVillagerHandler();
+		}
+		return villagerHander;
 	}
 	
 	/***********/

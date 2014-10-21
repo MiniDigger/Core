@@ -172,6 +172,8 @@ public abstract class Core {
 	public abstract MirrorHandler getMirrorHandler();
 	
 	public abstract LicenseHandler getLicenseHandler();
+
+	public abstract VillagerHandler getVillagerHandler();
 	
 	/*
 	 * #################### UTILS ####################
