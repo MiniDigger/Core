@@ -94,25 +94,25 @@ public class SpawnerFeature extends CoreFeature {
 			final Block b = l.getBlock();
 			if (b.getType() == Material.MOB_SPAWNER) {
 				if (item != null) {
-					World world = ((CraftWorld) b.getWorld()).getHandle();
-					TileEntity tileEntity = world.getTileEntity(b.getX(), b.getY(), b.getZ());
+					final World world = ((CraftWorld) b.getWorld()).getHandle();
+					final TileEntity tileEntity = world.getTileEntity(b.getX(), b.getY(), b.getZ());
 					if ((tileEntity instanceof TileEntityMobSpawner)) {
-						TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
-						NBTTagCompound spawnerTag = new NBTTagCompound();
+						final TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
+						final NBTTagCompound spawnerTag = new NBTTagCompound();
 						mobSpawner.b(spawnerTag);
 						spawnerTag.remove("SpawnPotentials");
 						spawnerTag.setString("EntityId", "Item");
-						NBTTagCompound itemTag = new NBTTagCompound();
+						final NBTTagCompound itemTag = new NBTTagCompound();
 						itemTag.setShort("Health", (short) 5);
 						itemTag.setShort("Age", (short) 0);
-						net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy((CraftItemStack) item);
-						NBTTagCompound itemStackTag = new NBTTagCompound();
+						final net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+						final NBTTagCompound itemStackTag = new NBTTagCompound();
 						itemStack.save(itemStackTag);
 						itemStackTag.setByte("Count", (byte) 1);
 						itemTag.set("Item", itemStackTag);
 						spawnerTag.set("SpawnData", itemTag);
 						spawnerTag.setShort("SpawnCount", (short) itemStack.count);
-						spawnerTag.setShort("SpawnRange", (short) (int) 3);
+						spawnerTag.setShort("SpawnRange", (short) 3);
 						spawnerTag.setShort("Delay", (short) 0);
 						spawnerTag.setShort("MinSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxSpawnDelay", (short) (interval));
@@ -122,7 +122,7 @@ public class SpawnerFeature extends CoreFeature {
 						mobSpawner.a(spawnerTag);
 					}
 				} else if (type != null) {
-					CreatureSpawner s = (CreatureSpawner) b;
+					final CreatureSpawner s = (CreatureSpawner) b;
 					s.setSpawnedType(type);
 				}
 			}

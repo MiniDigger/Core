@@ -15,8 +15,6 @@
  */
 package me.MiniDigger.Core.AddOn.BedWars;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
@@ -28,6 +26,8 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
+
+import org.bukkit.ChatColor;
 
 public class BedWarsGame extends CoreGame {
 	
@@ -74,10 +74,10 @@ public class BedWarsGame extends CoreGame {
 				System.out.println("winner null");
 			}
 		} else if (winner.length > 1) {
-			for (User w : winner) {
+			for (final User w : winner) {
 				w.sendMessage(getPrefix().then("Dein Team hat gewonnen!").color(ChatColor.GOLD));
 			}
-			Team t = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeam(winner[0]);
+			final Team t = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeam(winner[0]);
 			Core.getCore().getInstance().broadcast(getPrefix().then("Das Team ").color(ChatColor.AQUA).then(t.getName()).then(" hat gewonnen").color(ChatColor.AQUA));
 		} else {
 			System.out.println("no winner?! " + winner.length);

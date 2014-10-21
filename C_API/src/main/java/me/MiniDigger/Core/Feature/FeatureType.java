@@ -42,7 +42,7 @@ public enum FeatureType {
 	SPAWNER,
 	BED,
 	TEAM_BED,
-	TEAM_DEATH_MATCH, 
+	TEAM_DEATH_MATCH,
 	VILLAGER;
 	
 	/**

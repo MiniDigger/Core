@@ -42,7 +42,7 @@ public class TeamFeature extends TeamSelectFeature {
 		
 	}
 	
-	public void setTeams(List<Team> teams) {
+	public void setTeams(final List<Team> teams) {
 		this.teams = teams;
 	}
 }

@@ -46,7 +46,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class BedWarsPhase extends CorePhase {
 	
-	public BedWarsPhase(Game g, Phase next) {
+	public BedWarsPhase(final Game g, final Phase next) {
 		super(g, next);
 	}
 	
@@ -87,17 +87,17 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamDeathMatchFeature(this));
 		addFeature(new VillagerFeature(this));
 		
-		ItemStack silver = new ItemStack(Material.IRON_INGOT);
+		final ItemStack silver = new ItemStack(Material.IRON_INGOT);
 		ItemMeta meta = silver.getItemMeta();
 		meta.setDisplayName("Silber");
 		silver.setItemMeta(meta);
 		
-		ItemStack bronce = new ItemStack(Material.BRICK);
+		final ItemStack bronce = new ItemStack(Material.BRICK);
 		meta = bronce.getItemMeta();
 		meta.setDisplayName("Bronze");
 		bronce.setItemMeta(meta);
 		
-		ItemStack gold = new ItemStack(Material.GOLD_INGOT);
+		final ItemStack gold = new ItemStack(Material.GOLD_INGOT);
 		meta = gold.getItemMeta();
 		meta.setDisplayName("Gold");
 		gold.setItemMeta(meta);
@@ -120,8 +120,8 @@ public class BedWarsPhase extends CorePhase {
 	@Override
 	public void endPhase() {
 		super.endPhase();
-		TeamFeature tf = (TeamFeature) getFeature(FeatureType.TEAM);
-		User[] winner = new User[tf.getTeams().size()];
+		final TeamFeature tf = (TeamFeature) getFeature(FeatureType.TEAM);
+		final User[] winner = new User[tf.getTeams().size()];
 		game.end(winner);
 	}
 }

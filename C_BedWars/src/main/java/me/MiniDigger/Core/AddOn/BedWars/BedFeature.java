@@ -18,6 +18,12 @@ package me.MiniDigger.Core.AddOn.BedWars;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -25,18 +31,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 public class BedFeature extends CoreFeature {
 	
-	private Location	bed;
-	private String	 teamName;
+	private Location	 bed;
+	private final String	teamName;
 	
-	public BedFeature(final Phase phase, Location bed, String teamName) {
+	public BedFeature(final Phase phase, final Location bed, final String teamName) {
 		super(phase);
 		this.bed = bed;
 		this.teamName = teamName;
@@ -76,9 +76,9 @@ public class BedFeature extends CoreFeature {
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onPlayerRespawn(PlayerRespawnEvent e) {
+	public void onPlayerRespawn(final PlayerRespawnEvent e) {
 		if (bed == null) {
-			User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+			final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			user.sendMessage(getPhase().getGame().getPrefix().then("Du bist draußen, weil dein Bett kaputt ist!"));
 			if (teamName != null) {
 				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(teamName + ": " + user.getDisplayName() + " ist draußen!"));
@@ -90,7 +90,7 @@ public class BedFeature extends CoreFeature {
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onbedDestory(BlockBreakEvent e) {
+	public void onbedDestory(final BlockBreakEvent e) {
 		if (e.getBlock().getLocation() == bed && e.getBlock().getType() == Material.BED_BLOCK) {
 			if (teamName != null) {
 				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed von ").then(teamName).then("wurde zerstört!"));

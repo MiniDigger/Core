@@ -198,7 +198,7 @@ public class TicTacToeGame extends CoreGame {
 				if (other.getPlayer().getOpenInventory().getTitle().contains("TicTacToe - " + user.getDisplayName())) {
 					openInv(tpf.isOne(uniqueId) ? 2 : 1);
 				}
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				
 			}
 			final Stats s = user.getStats();

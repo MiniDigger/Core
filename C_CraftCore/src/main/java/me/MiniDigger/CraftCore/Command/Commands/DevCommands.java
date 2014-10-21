@@ -172,26 +172,25 @@ public class DevCommands {
 	
 	@Command(name = "dev.itemSpawner", description = "DEV!", usage = "", permission = "dev")
 	public void itemSpawner(final CommandArgs args) {
-		@SuppressWarnings("deprecation")
-        Block target = args.getPlayer().getTargetBlock(null, 200);
+		@SuppressWarnings("deprecation") final Block target = args.getPlayer().getTargetBlock(null, 200);
 		if ((target == null) || (target.getType() != Material.MOB_SPAWNER)) {
 			System.out.println("no spawner");
 			return;
 		}
-		int delay = 20;
-		World world = ((CraftWorld) target.getWorld()).getHandle();
-		TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
+		final int delay = 20;
+		final World world = ((CraftWorld) target.getWorld()).getHandle();
+		final TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
 		if ((tileEntity instanceof TileEntityMobSpawner)) {
-			TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
-			NBTTagCompound spawnerTag = new NBTTagCompound();
+			final TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
+			final NBTTagCompound spawnerTag = new NBTTagCompound();
 			mobSpawner.b(spawnerTag);
 			spawnerTag.remove("SpawnPotentials");
 			spawnerTag.setString("EntityId", "Item");
-			NBTTagCompound itemTag = new NBTTagCompound();
+			final NBTTagCompound itemTag = new NBTTagCompound();
 			itemTag.setShort("Health", (short) 5);
 			itemTag.setShort("Age", (short) 0);
-			net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy((CraftItemStack) args.getPlayer().getItemInHand());
-			NBTTagCompound itemStackTag = new NBTTagCompound();
+			final net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy(args.getPlayer().getItemInHand());
+			final NBTTagCompound itemStackTag = new NBTTagCompound();
 			itemStack.save(itemStackTag);
 			itemStackTag.setByte("Count", (byte) 1);
 			itemTag.set("Item", itemStackTag);

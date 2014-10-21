@@ -75,7 +75,7 @@ public class TeamSelectFeature extends CoreFeature {
 		return null;
 	}
 	
-	public Team getTeam(User user) {
+	public Team getTeam(final User user) {
 		for (final Team t : teams) {
 			if (t.getPlayers().contains(user.getUUID())) {
 				return t;
@@ -106,7 +106,7 @@ public class TeamSelectFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		List<String> teamNames = new ArrayList<String>();
+		final List<String> teamNames = new ArrayList<String>();
 		teamNames.add(ChatColor.BLUE + "Blau");
 		teamNames.add(ChatColor.RED + "Rot");
 		teamNames.add(ChatColor.GREEN + "Grün");
@@ -115,7 +115,7 @@ public class TeamSelectFeature extends CoreFeature {
 		teamNames.add(ChatColor.BLACK + "Schwarz");
 		
 		for (int i = 0; i < teamCount; i++) {
-			Team t = new CoreTeam(teamSize);
+			final Team t = new CoreTeam(teamSize);
 			t.setGame(getPhase().getGame());
 			t.setName(teamNames.get(i));
 			teams.add(t);

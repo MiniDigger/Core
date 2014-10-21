@@ -22,15 +22,14 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
-
 public class VillagerFeature extends CoreFeature {
 	
-	//TODO Villagerfeature
+	// TODO Villagerfeature
 	
-    public VillagerFeature(Phase phase) {
-	    super(phase);
-    }
-
+	public VillagerFeature(final Phase phase) {
+		super(phase);
+	}
+	
 	@Override
 	public FeatureType getType() {
 		return FeatureType.VILLAGER;
@@ -45,24 +44,24 @@ public class VillagerFeature extends CoreFeature {
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-
+	
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
 	
 	@Override
-	public void init(Phase phase) {
+	public void init(final Phase phase) {
 		
 	}
 	
 	@Override
 	public void start() {
-	
+		
 	}
-
+	
 	@Override
 	public void end() {
-	
+		
 	}
 }

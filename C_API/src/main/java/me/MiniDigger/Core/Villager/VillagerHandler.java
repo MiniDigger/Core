@@ -20,6 +20,7 @@ import java.util.List;
 import org.bukkit.entity.Villager;
 
 public interface VillagerHandler {
+	
 	/**
 	 * Clears all Trades for the given villager
 	 * 
@@ -27,8 +28,8 @@ public interface VillagerHandler {
 	 *            the villager to clear
 	 * @return if the action was successfull
 	 */
-	public boolean clearTrades(Villager villager);
-
+	public boolean clearTrades(final Villager villager);
+	
 	/**
 	 * Adds a Trade to a Villager
 	 * 
@@ -38,16 +39,16 @@ public interface VillagerHandler {
 	 *            the trade to add
 	 * @return if the action was successfull
 	 */
-	public boolean addTrade(Villager villager, VillagerTrade villagerTrade);
-
+	public boolean addTrade(final Villager villager, final VillagerTrade villagerTrade);
+	
 	/**
 	 * 
 	 * @param villager
 	 *            the villager to get the trades from
 	 * @return all trades for the given villager
 	 */
-	public List<VillagerTrade> getTrades(Villager villager);
-
+	public List<VillagerTrade> getTrades(final Villager villager);
+	
 	/**
 	 * Sets the trades for the given villager
 	 * 
@@ -57,5 +58,5 @@ public interface VillagerHandler {
 	 *            the trads to the
 	 * @return if the action was successfull
 	 */
-	public boolean setTrades(Villager villager, List<VillagerTrade> trades);
+	public boolean setTrades(final Villager villager, final List<VillagerTrade> trades);
 }

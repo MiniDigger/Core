@@ -33,9 +33,9 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 public class TeamBedFeature extends CoreFeature {
 	
 	private HashMap<String, BedFeature>	beds;
-	private int	                        numTeams;
+	private final int	                numTeams;
 	
-	public TeamBedFeature(Phase phase, int numTeams) {
+	public TeamBedFeature(final Phase phase, final int numTeams) {
 		super(phase);
 		this.numTeams = numTeams;
 	}
@@ -64,10 +64,10 @@ public class TeamBedFeature extends CoreFeature {
 	public void start() {
 		beds = new HashMap<String, BedFeature>();
 		
-		List<Team> teams = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeams();
+		final List<Team> teams = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeams();
 		
 		for (int i = 0; i < numTeams; i++) {
-			BedFeature f = new BedFeature(getPhase(), Core.getCore().getLocationUtil().StringToLocation(teams.get(i).getData("bed_loc")), teams.get(i).getName());
+			final BedFeature f = new BedFeature(getPhase(), Core.getCore().getLocationUtil().StringToLocation(teams.get(i).getData("bed_loc")), teams.get(i).getName());
 			beds.put(teams.get(i).getName(), f);
 		}
 	}

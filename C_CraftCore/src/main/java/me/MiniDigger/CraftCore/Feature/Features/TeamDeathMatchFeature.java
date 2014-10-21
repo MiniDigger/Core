@@ -26,7 +26,7 @@ public class TeamDeathMatchFeature extends CoreFeature {
 	
 	// TODO teamdeathmatchfeature
 	
-	public TeamDeathMatchFeature(Phase phase) {
+	public TeamDeathMatchFeature(final Phase phase) {
 		super(phase);
 	}
 	

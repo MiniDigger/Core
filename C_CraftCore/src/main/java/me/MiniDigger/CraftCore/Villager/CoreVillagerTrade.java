@@ -22,23 +22,23 @@ import org.bukkit.inventory.ItemStack;
 
 public class CoreVillagerTrade implements VillagerTrade {
 	
-	private ItemStack	item1;
-	private ItemStack	item2;
-	private ItemStack	rewardItem;
+	private final ItemStack	item1;
+	private ItemStack	    item2;
+	private final ItemStack	rewardItem;
 	
-	public CoreVillagerTrade(ItemStack item1, ItemStack item2, ItemStack rewardItem) {
+	public CoreVillagerTrade(final ItemStack item1, final ItemStack item2, final ItemStack rewardItem) {
 		this.item1 = item1;
 		this.item2 = item2;
 		this.rewardItem = rewardItem;
 	}
 	
-	public CoreVillagerTrade(ItemStack item1, ItemStack rewardItem) {
+	public CoreVillagerTrade(final ItemStack item1, final ItemStack rewardItem) {
 		this.item1 = item1;
 		this.rewardItem = rewardItem;
 	}
-
-	public CoreVillagerTrade(net.minecraft.server.v1_7_R4.ItemStack buyItem1, net.minecraft.server.v1_7_R4.ItemStack buyItem2,
-	        net.minecraft.server.v1_7_R4.ItemStack buyItem3) {
+	
+	public CoreVillagerTrade(final net.minecraft.server.v1_7_R4.ItemStack buyItem1, final net.minecraft.server.v1_7_R4.ItemStack buyItem2,
+	        final net.minecraft.server.v1_7_R4.ItemStack buyItem3) {
 		item1 = CraftItemStack.asCraftMirror(buyItem1);
 		item2 = CraftItemStack.asCraftMirror(buyItem2);
 		rewardItem = CraftItemStack.asCraftMirror(buyItem3);

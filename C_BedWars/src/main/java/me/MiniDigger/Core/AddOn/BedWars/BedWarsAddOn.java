@@ -18,9 +18,6 @@ package me.MiniDigger.Core.AddOn.BedWars;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -30,6 +27,9 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
 
 public class BedWarsAddOn extends CoreAddOn {
 	
