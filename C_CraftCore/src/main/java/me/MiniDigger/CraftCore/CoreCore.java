@@ -79,6 +79,7 @@ import me.MiniDigger.Core.Util.ShutdownUtil;
 import me.MiniDigger.Core.Util.StringUtil;
 import me.MiniDigger.Core.Util.TimeUtil;
 import me.MiniDigger.Core.Util.ZipUtil;
+import me.MiniDigger.Core.Villager.VillagerHandler;
 import me.MiniDigger.Core.World.WorldHandler;
 import me.MiniDigger.CraftCore.Achievement.CoreAchievementHandler;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOnHandler;
@@ -124,6 +125,7 @@ import me.MiniDigger.CraftCore.Util.CoreShutdownUtil;
 import me.MiniDigger.CraftCore.Util.CoreStringUtil;
 import me.MiniDigger.CraftCore.Util.CoreTimeUtil;
 import me.MiniDigger.CraftCore.Util.CoreZipUtil;
+import me.MiniDigger.CraftCore.Villager.CoreVillagerHandler;
 import me.MiniDigger.CraftCore.World.CoreWorldHandler;
 
 public class CoreCore extends Core {
@@ -160,7 +162,7 @@ public class CoreCore extends Core {
 	private AddOnHandler	   addOnHandler;
 	private MirrorHandler	   mirrorHandler;
 	private LicenseHandler	   licenseHandler;
-	private VillagerHander     villagerHander;
+	private VillagerHandler	   villagerHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -430,10 +432,10 @@ public class CoreCore extends Core {
 	
 	@Override
 	public VillagerHandler getVillagerHandler() {
-		if (villagerHander == null) {
-			villagerHander = new CoreVillagerHandler();
+		if (villagerHandler == null) {
+			villagerHandler = new CoreVillagerHandler();
 		}
-		return villagerHander;
+		return villagerHandler;
 	}
 	
 	/***********/

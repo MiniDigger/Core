@@ -77,6 +77,7 @@ import me.MiniDigger.Core.Util.ShutdownUtil;
 import me.MiniDigger.Core.Util.StringUtil;
 import me.MiniDigger.Core.Util.TimeUtil;
 import me.MiniDigger.Core.Util.ZipUtil;
+import me.MiniDigger.Core.Villager.VillagerHandler;
 import me.MiniDigger.Core.World.WorldHandler;
 
 public abstract class Core {

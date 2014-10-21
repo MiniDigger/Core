@@ -15,6 +15,8 @@
  */
 package me.MiniDigger.Core.Villager;
 
+import org.bukkit.inventory.ItemStack;
+
 public interface VillagerTrade {
 	
 	/**

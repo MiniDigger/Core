@@ -15,40 +15,50 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
-import org.bukkit.item.ItemStack;
+import me.MiniDigger.Core.Villager.VillagerTrade;
 
-public class CoreVillagerTrade implements VillagerTrade{
-	private ItemStack item1;
-	private ItemStack item2;
-	private ItemStack rewardItem;
+import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+import org.bukkit.inventory.ItemStack;
 
-	public VillagerTrade(ItemStack item1, ItemStack item2, ItemStack rewardItem) {
+public class CoreVillagerTrade implements VillagerTrade {
+	
+	private ItemStack	item1;
+	private ItemStack	item2;
+	private ItemStack	rewardItem;
+	
+	public CoreVillagerTrade(ItemStack item1, ItemStack item2, ItemStack rewardItem) {
 		this.item1 = item1;
 		this.item2 = item2;
 		this.rewardItem = rewardItem;
 	}
-
-	@Override
-	public VillagerTrade(ItemStack item1, ItemStack rewardItem) {
+	
+	public CoreVillagerTrade(ItemStack item1, ItemStack rewardItem) {
 		this.item1 = item1;
 		this.rewardItem = rewardItem;
 	}
 
+	public CoreVillagerTrade(net.minecraft.server.v1_7_R4.ItemStack buyItem1, net.minecraft.server.v1_7_R4.ItemStack buyItem2,
+	        net.minecraft.server.v1_7_R4.ItemStack buyItem3) {
+		item1 = CraftItemStack.asCraftMirror(buyItem1);
+		item2 = CraftItemStack.asCraftMirror(buyItem2);
+		rewardItem = CraftItemStack.asCraftMirror(buyItem3);
+	}
+	
 	@Override
 	public boolean hasItem2() {
 		return item2 != null;
 	}
-
+	
 	@Override
 	public ItemStack getItem1() {
 		return item1;
 	}
-
+	
 	@Override
 	public ItemStack getItem2() {
 		return item2;
 	}
-
+	
 	@Override
 	public ItemStack getRewardItem() {
 		return rewardItem;

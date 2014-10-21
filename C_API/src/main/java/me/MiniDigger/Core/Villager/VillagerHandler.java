@@ -15,6 +15,10 @@
  */
 package me.MiniDigger.Core.Villager;
 
+import java.util.List;
+
+import org.bukkit.entity.Villager;
+
 public interface VillagerHandler {
 	/**
 	 * Clears all Trades for the given villager

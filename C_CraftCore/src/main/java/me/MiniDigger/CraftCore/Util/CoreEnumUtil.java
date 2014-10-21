@@ -41,7 +41,8 @@ public class CoreEnumUtil implements EnumUtil {
 			final Field field = Material.class.getDeclaredField("BY_NAME");
 			field.setAccessible(true);
 			final Object object = field.get(null);
-			final Map<String, FeatureType> BY_NAME = (Map<String, FeatureType>) object;
+			@SuppressWarnings("unchecked")
+            final Map<String, FeatureType> BY_NAME = (Map<String, FeatureType>) object;
 			BY_NAME.put(name, type);
 		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
