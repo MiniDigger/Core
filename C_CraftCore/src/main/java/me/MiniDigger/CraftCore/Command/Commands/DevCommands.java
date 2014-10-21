@@ -13,6 +13,7 @@ import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
+import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
 import mkremins.fanciful.FancyMessage;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
@@ -26,7 +27,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.json.simple.JSONObject;
 
@@ -168,6 +172,20 @@ public class DevCommands {
 			msg.then(m.name() + " ");
 		}
 		msg.send(args.getSender());
+	}
+	
+	@Command(name = "dev.trade", description = "DEV!", usage = "", permission = "dev")
+	public void trade(final CommandArgs args) {
+		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				Villager v = (Villager) args.getPlayer().getWorld().spawnEntity(args.getPlayer().getLocation(), EntityType.VILLAGER);
+				Core.getCore().getVillagerHandler().clearTrades(v);
+				Core.getCore().getVillagerHandler()
+				        .addTrade(v, new CoreVillagerTrade(new ItemStack(Material.ICE), new ItemStack(Material.APPLE), new ItemStack(Material.MAGMA_CREAM, 100)));
+			}
+		});
 	}
 	
 	@Command(name = "dev.itemSpawner", description = "DEV!", usage = "", permission = "dev")
