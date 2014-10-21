@@ -15,6 +15,8 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
+import org.bukkit.item.ItemStack;
+
 public class CoreVillagerTrade implements VillagerTrade{
 	private ItemStack item1;
 	private ItemStack item2;
