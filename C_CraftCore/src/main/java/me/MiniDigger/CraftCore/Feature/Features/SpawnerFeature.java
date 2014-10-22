@@ -81,7 +81,7 @@ public class SpawnerFeature extends CoreFeature {
 	public void start() {
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		
-		final HashMap<String, Location> n = data.getLocs(DyeColor.YELLOW);
+		final HashMap<String, Location> n = data.getLocs(locKey);
 		try {
 			locs = n.values().toArray(new Location[n.values().size()]);
 		} catch (final Exception ex) {

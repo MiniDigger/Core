@@ -26,8 +26,8 @@ public class ChatCommands {
 		msg2.send(args.getSender());
 		msg3.send(args.getSender());
 	}
-	
-	@Command(name = "chat.join", description = "Joint einem Channel", usage = "/chat join <channel>", permission = "chat.join", consol = false, min = 1, max = 1)
+		@Command(name = "chat.join", description = "Joint einem Channel", usage = "/chat join <channel>", permission = "chat.join", consol = false, min = 1, max = 1)
+
 	public void join(final CommandArgs args) {
 		String channel = "";
 		try {
