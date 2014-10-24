@@ -52,6 +52,9 @@ public class CoreItemBuilder implements ItemBuilder {
 	public ItemBuilder lore(String name) {
 		ItemMeta meta = is.getItemMeta();
 		List<String> lore = meta.getLore();
+		if(lore == null){
+			lore = new ArrayList<String>();
+		}
 		lore.add(name);
 		meta.setLore(lore);
 		is.setItemMeta(meta);
@@ -59,15 +62,15 @@ public class CoreItemBuilder implements ItemBuilder {
 	}
 	
 	@Override
-	public ItemBuilder durability(short durability) {
-		is.setDurability(durability);
+	public ItemBuilder durability(int durability) {
+		is.setDurability((short) durability);
 		return this;
 	}
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public ItemBuilder data(byte data) {
-		is.setData(new MaterialData(is.getType(), data));
+	public ItemBuilder data(int data) {
+		is.setData(new MaterialData(is.getType(), (byte) data));
 		return this;
 	}
 	

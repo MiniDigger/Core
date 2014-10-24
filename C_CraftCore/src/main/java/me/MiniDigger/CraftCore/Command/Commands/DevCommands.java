@@ -1,7 +1,6 @@
 package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -9,16 +8,12 @@ import java.util.UUID;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Holo.HoloList;
-import me.MiniDigger.Core.Villager.VillagerTrade;
-import me.MiniDigger.CraftCore.Feature.Features.SpawnerFeature;
-import me.MiniDigger.CraftCore.Feature.Features.VillagerFeature;
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
-import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
 import mkremins.fanciful.FancyMessage;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
@@ -27,20 +22,14 @@ import net.minecraft.server.v1_7_R4.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
-import org.bukkit.entity.Villager.Profession;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.json.simple.JSONObject;
 
@@ -184,214 +173,6 @@ public class DevCommands {
 		msg.send(args.getSender());
 	}
 	
-	@Command(name = "dev.trade", description = "DEV!", usage = "", permission = "dev")
-	public void trade(final CommandArgs args) {
-		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
-			
-			@Override
-			public void run() {
-				final ItemStack silver = new ItemStack(Material.IRON_INGOT);
-				ItemMeta meta = silver.getItemMeta();
-				meta.setDisplayName("Silber");
-				silver.setItemMeta(meta);
-				
-				final ItemStack bronce = new ItemStack(Material.BRICK);
-				meta = bronce.getItemMeta();
-				meta.setDisplayName("Bronze");
-				bronce.setItemMeta(meta);
-				
-				final ItemStack gold = new ItemStack(Material.GOLD_INGOT);
-				meta = gold.getItemMeta();
-				meta.setDisplayName("Gold");
-				gold.setItemMeta(meta);
-				
-				ItemStack is1;
-				Location loc = args.getPlayer().getLocation();
-				List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
-				bronce.setAmount(16);
-				trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.APPLE)));
-				bronce.setAmount(32);
-				is1 = new ItemStack(Material.COOKED_BEEF);
-				is1.setAmount(2);
-				trades.add(new CoreVillagerTrade(bronce, is1));
-				silver.setAmount(3);
-				trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.GOLDEN_APPLE)));
-				bronce.setAmount(64);
-				silver.setAmount(1);
-				trades.add(new CoreVillagerTrade(bronce, silver));
-				silver.setAmount(16);
-				gold.setAmount(1);
-				trades.add(new CoreVillagerTrade(silver, gold));
-				createVillager(loc, trades, Profession.BUTCHER);
-				
-				// TODO Team armor, vlt beim traden erst?
-				
-				trades = new ArrayList<VillagerTrade>();
-				bronce.setAmount(1);
-				is1 = new ItemStack(Material.LEATHER_HELMET);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Armor");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(bronce, is1));
-				bronce.setAmount(1);
-				is1 = new ItemStack(Material.LEATHER_LEGGINGS);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Armor");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(bronce, is1));
-				bronce.setAmount(1);
-				is1 = new ItemStack(Material.LEATHER_BOOTS);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Armor");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(bronce, is1));
-				silver.setAmount(2);
-				is1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Chestplate");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(8);
-				is1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Chestplate");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(16);
-				is1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Chestplate");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(48);
-				is1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Chestplate");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				createVillager(loc, trades, Profession.FARMER);
-				
-				
-				trades = new ArrayList<VillagerTrade>();
-				gold.setAmount(2);
-				is1 = new ItemStack(Material.BOW);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Bow");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(gold, is1));
-				gold.setAmount(8);
-				is1 = new ItemStack(Material.BOW);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.ARROW_DAMAGE, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Bow");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(gold, is1));
-				gold.setAmount(12);
-				is1 = new ItemStack(Material.BOW);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Bow");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(gold, is1));
-				gold.setAmount(24);
-				is1 = new ItemStack(Material.BOW);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
-				is1.addEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
-				meta = is1.getItemMeta();
-				meta.setDisplayName("Bow");
-				is1.setItemMeta(meta);
-				trades.add(new CoreVillagerTrade(gold, is1));
-				gold.setAmount(1);
-				trades.add(new CoreVillagerTrade(gold, new ItemStack(Material.ARROW)));
-				silver.setAmount(1);
-				trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.LADDER, 3)));
-				silver.setAmount(1);
-				trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.WEB, 3)));
-				createVillager(loc, trades, Profession.PRIEST);
-				
-				
-				trades = new ArrayList<VillagerTrade>();
-				silver.setAmount(2);
-				is1 = new ItemStack(Material.GOLD_SWORD);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(8);
-				is1 = new ItemStack(Material.GOLD_SWORD);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(16);
-				is1 = new ItemStack(Material.GOLD_SWORD);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(48);
-				is1 = new ItemStack(Material.GOLD_SWORD);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
-				is1.addEnchantment(Enchantment.KNOCKBACK, 1);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				silver.setAmount(6);
-				trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.TNT)));
-				gold.setAmount(1);
-				trades.add(new CoreVillagerTrade(gold, new ItemStack(Material.FLINT_AND_STEEL)));
-				createVillager(loc, trades, Profession.BLACKSMITH);
-				
-				
-				trades = new ArrayList<VillagerTrade>();
-				bronce.setAmount(8);
-				trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.NETHERRACK, 32)));
-				bronce.setAmount(16);
-				trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.BRICK, 16)));
-				bronce.setAmount(32);
-				trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.EMERALD_BLOCK, 8)));
-				bronce.setAmount(8);
-				trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.GLOWSTONE, 8)));
-				bronce.setAmount(6);
-				is1 = new ItemStack(Material.WOOD_PICKAXE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				trades.add(new CoreVillagerTrade(bronce, is1));
-				silver.setAmount(3);
-				is1 = new ItemStack(Material.IRON_PICKAXE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.DIG_SPEED, 1);
-				trades.add(new CoreVillagerTrade(silver, is1));
-				gold.setAmount(1);
-				is1 = new ItemStack(Material.GOLD_PICKAXE);
-				is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-				is1.addEnchantment(Enchantment.DIG_SPEED, 3);
-				trades.add(new CoreVillagerTrade(gold, is1));
-				silver.setAmount(1);
-				trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.CHEST)));
-				createVillager(loc, trades, Profession.BUTCHER);
-			}
-		});
-	}
-	
-	private void createVillager(Location loc, List<VillagerTrade> trades, Profession prof) {
-		Villager v = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
-		v.setProfession(prof);
-		Core.getCore().getVillagerHandler().setTrades(v, trades);
-	}
-	
 	@Command(name = "dev.itemSpawner", description = "DEV!", usage = "", permission = "dev")
 	public void itemSpawner(final CommandArgs args) {
 		@SuppressWarnings("deprecation") final Block target = args.getPlayer().getTargetBlock(null, 200);
@@ -430,5 +211,12 @@ public class DevCommands {
 		} else {
 			System.out.println("fail");
 		}
+	}
+	
+	@Command(name = "dev.itemBuilder", description = "DEV!", usage = "", permission = "dev")
+	public void itemBuilder(final CommandArgs args) {
+		ItemStack is = new CoreItemBuilder(Material.WOOL).amount(2).data(4).durability(4).enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.LUCK, 2)
+		        .name(ChatColor.RED + "Der Wool Block").lore(ChatColor.GREEN + "Zeile 1").lore(ChatColor.BLUE + "Zeile 2").build();
+		args.getPlayer().getInventory().addItem(is);
 	}
 }

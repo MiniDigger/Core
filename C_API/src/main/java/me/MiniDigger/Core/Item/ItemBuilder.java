@@ -59,7 +59,7 @@ public interface ItemBuilder {
 	 * @return this builder for chaining
 	 * @since 1.0
 	 */
-	ItemBuilder durability(short durability);
+	ItemBuilder durability(int durability);
 	
 	/**
 	 * Changes the data of the {@link ItemStack}
@@ -69,7 +69,7 @@ public interface ItemBuilder {
 	 * @return this builder for chaining
 	 * @since 1.0
 	 */
-	ItemBuilder data(byte data);
+	ItemBuilder data(int data);
 	
 	/**
 	 * Adds an {@link Enchantment} with the given level to the {@link ItemStack}

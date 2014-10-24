@@ -129,4 +129,14 @@ public class DevCompleter {
 	public List<String> showBlocksC(final CommandArgs args) {
 		return randomShit();
 	}
+	
+	@Completer(name = "dev.itemSpawner")
+	public List<String> itemSpawnerC(final CommandArgs args) {
+		return randomShit();
+	}
+	
+	@Completer(name = "dev.itemBuilder")
+	public List<String> itemBuilderC(final CommandArgs args) {
+		return randomShit();
+	}
 }
