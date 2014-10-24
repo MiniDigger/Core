@@ -114,31 +114,136 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new SpawnerFeature(this, DyeColor.GREEN, 20 * 15, null, silver));
 		addFeature(new SpawnerFeature(this, DyeColor.GREEN, 20 * 60, null, gold));
 		
-		//TODO Better machen: einzelne methoden, item meta usw. (API für is util evt.!!!)
-		//TODO Infinity weg
+		// TODO Better machen: einzelne methoden, item meta usw. (API für is
+		// util evt.!!!)
+		// TODO Infinity weg
+		
+		genFoodVillager(null, bronce, silver, gold);
+		genArmorVillager(null, bronce, silver, gold);
+		genBowVillager(null, bronce, silver, gold);
+		genWeaponVillager(null, bronce, silver, gold);
+		genBlockVillager(null, bronce, silver, gold);
+		genPotionVillager(null, bronce, silver, gold);
+	}
+	
+	private void genPotionVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
+		// TODO Add potion villager
+	}
+	
+	private void genBlockVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
 		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is1;
-		Location loc = null;
 		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		bronce.setAmount(8);
+		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.NETHERRACK, 32)));
 		bronce.setAmount(16);
-		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.APPLE)));
+		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.BRICK, 16)));
 		bronce.setAmount(32);
-		is1 = new ItemStack(Material.COOKED_BEEF);
-		is1.setAmount(2);
+		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.EMERALD_BLOCK, 8)));
+		bronce.setAmount(8);
+		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.GLOWSTONE, 8)));
+		bronce.setAmount(6);
+		is1 = new ItemStack(Material.WOOD_PICKAXE);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 		trades.add(new CoreVillagerTrade(bronce, is1));
 		silver.setAmount(3);
-		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.GOLDEN_APPLE)));
-		bronce.setAmount(64);
-		silver.setAmount(1);
-		trades.add(new CoreVillagerTrade(bronce, silver));
-		silver.setAmount(16);
+		is1 = new ItemStack(Material.IRON_PICKAXE);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.DIG_SPEED, 1);
+		trades.add(new CoreVillagerTrade(silver, is1));
 		gold.setAmount(1);
-		trades.add(new CoreVillagerTrade(silver, gold));
+		is1 = new ItemStack(Material.GOLD_PICKAXE);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.DIG_SPEED, 3);
+		trades.add(new CoreVillagerTrade(gold, is1));
+		silver.setAmount(1);
+		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.CHEST)));
 		f.createVillager(loc, trades, Profession.BUTCHER);
-		
+	}
+	
+	private void genWeaponVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
+		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+		ItemStack is1;
+		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		silver.setAmount(2);
+		is1 = new ItemStack(Material.GOLD_SWORD);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		trades.add(new CoreVillagerTrade(silver, is1));
+		silver.setAmount(8);
+		is1 = new ItemStack(Material.GOLD_SWORD);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+		trades.add(new CoreVillagerTrade(silver, is1));
+		silver.setAmount(16);
+		is1 = new ItemStack(Material.GOLD_SWORD);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
+		trades.add(new CoreVillagerTrade(silver, is1));
+		silver.setAmount(48);
+		is1 = new ItemStack(Material.GOLD_SWORD);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
+		is1.addEnchantment(Enchantment.KNOCKBACK, 1);
+		trades.add(new CoreVillagerTrade(silver, is1));
+		silver.setAmount(6);
+		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.TNT)));
+		gold.setAmount(1);
+		trades.add(new CoreVillagerTrade(gold, new ItemStack(Material.FLINT_AND_STEEL)));
+		f.createVillager(loc, trades, Profession.BLACKSMITH);
+	}
+	
+	private void genBowVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
+		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+		ItemStack is1;
+		ItemMeta meta;
+		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		gold.setAmount(2);
+		is1 = new ItemStack(Material.BOW);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		meta = is1.getItemMeta();
+		meta.setDisplayName("Bow");
+		is1.setItemMeta(meta);
+		trades.add(new CoreVillagerTrade(gold, is1));
+		gold.setAmount(8);
+		is1 = new ItemStack(Material.BOW);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.ARROW_DAMAGE, 1);
+		meta = is1.getItemMeta();
+		meta.setDisplayName("Bow");
+		is1.setItemMeta(meta);
+		trades.add(new CoreVillagerTrade(gold, is1));
+		gold.setAmount(12);
+		is1 = new ItemStack(Material.BOW);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
+		meta = is1.getItemMeta();
+		meta.setDisplayName("Bow");
+		is1.setItemMeta(meta);
+		trades.add(new CoreVillagerTrade(gold, is1));
+		gold.setAmount(24);
+		is1 = new ItemStack(Material.BOW);
+		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
+		is1.addEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
+		meta = is1.getItemMeta();
+		meta.setDisplayName("Bow");
+		is1.setItemMeta(meta);
+		trades.add(new CoreVillagerTrade(gold, is1));
+		gold.setAmount(1);
+		trades.add(new CoreVillagerTrade(gold, new ItemStack(Material.ARROW)));
+		silver.setAmount(1);
+		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.LADDER, 3)));
+		silver.setAmount(1);
+		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.WEB, 3)));
+		f.createVillager(loc, trades, Profession.PRIEST);
+	}
+	
+	private void genArmorVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
 		// TODO Team armor, vlt beim traden erst?
-		loc = null;
-		trades = new ArrayList<VillagerTrade>();
+		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+		ItemStack is1;
+		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		ItemMeta meta;
 		bronce.setAmount(1);
 		is1 = new ItemStack(Material.LEATHER_HELMET);
 		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -196,106 +301,25 @@ public class BedWarsPhase extends CorePhase {
 		is1.setItemMeta(meta);
 		trades.add(new CoreVillagerTrade(silver, is1));
 		f.createVillager(loc, trades, Profession.FARMER);
-		
-		loc = null;
-		trades = new ArrayList<VillagerTrade>();
-		gold.setAmount(2);
-		is1 = new ItemStack(Material.BOW);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		meta = is1.getItemMeta();
-		meta.setDisplayName("Bow");
-		is1.setItemMeta(meta);
-		trades.add(new CoreVillagerTrade(gold, is1));
-		gold.setAmount(8);
-		is1 = new ItemStack(Material.BOW);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.ARROW_DAMAGE, 1);
-		meta = is1.getItemMeta();
-		meta.setDisplayName("Bow");
-		is1.setItemMeta(meta);
-		trades.add(new CoreVillagerTrade(gold, is1));
-		gold.setAmount(12);
-		is1 = new ItemStack(Material.BOW);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
-		meta = is1.getItemMeta();
-		meta.setDisplayName("Bow");
-		is1.setItemMeta(meta);
-		trades.add(new CoreVillagerTrade(gold, is1));
-		gold.setAmount(24);
-		is1 = new ItemStack(Material.BOW);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
-		is1.addEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
-		meta = is1.getItemMeta();
-		meta.setDisplayName("Bow");
-		is1.setItemMeta(meta);
-		trades.add(new CoreVillagerTrade(gold, is1));
-		gold.setAmount(1);
-		trades.add(new CoreVillagerTrade(gold, new ItemStack(Material.ARROW)));
-		silver.setAmount(1);
-		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.LADDER, 3)));
-		silver.setAmount(1);
-		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.WEB, 3)));
-		f.createVillager(loc, trades, Profession.PRIEST);
-		
-		loc = null;
-		trades = new ArrayList<VillagerTrade>();
-		silver.setAmount(2);
-		is1 = new ItemStack(Material.GOLD_SWORD);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		trades.add(new CoreVillagerTrade(silver, is1));
-		silver.setAmount(8);
-		is1 = new ItemStack(Material.GOLD_SWORD);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-		trades.add(new CoreVillagerTrade(silver, is1));
-		silver.setAmount(16);
-		is1 = new ItemStack(Material.GOLD_SWORD);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
-		trades.add(new CoreVillagerTrade(silver, is1));
-		silver.setAmount(48);
-		is1 = new ItemStack(Material.GOLD_SWORD);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.DAMAGE_ALL, 2);
-		is1.addEnchantment(Enchantment.KNOCKBACK, 1);
-		trades.add(new CoreVillagerTrade(silver, is1));
-		silver.setAmount(6);
-		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.TNT)));
-		gold.setAmount(1);
-		trades.add(new CoreVillagerTrade(gold, new ItemStack(Material.FLINT_AND_STEEL)));
-		f.createVillager(loc, trades, Profession.BLACKSMITH);
-		
-		loc = null;
-		trades = new ArrayList<VillagerTrade>();
-		bronce.setAmount(8);
-		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.NETHERRACK, 32)));
-		bronce.setAmount(16);
-		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.BRICK, 16)));
+	}
+	
+	private void genFoodVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
+		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+		ItemStack is1;
+		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		bronce.setAmount(32);
-		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.EMERALD_BLOCK, 8)));
-		bronce.setAmount(8);
-		trades.add(new CoreVillagerTrade(bronce, new ItemStack(Material.GLOWSTONE, 8)));
-		bronce.setAmount(6);
-		is1 = new ItemStack(Material.WOOD_PICKAXE);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		is1 = new ItemStack(Material.COOKED_BEEF);
+		is1.setAmount(2);
 		trades.add(new CoreVillagerTrade(bronce, is1));
 		silver.setAmount(3);
-		is1 = new ItemStack(Material.IRON_PICKAXE);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.DIG_SPEED, 1);
-		trades.add(new CoreVillagerTrade(silver, is1));
-		gold.setAmount(1);
-		is1 = new ItemStack(Material.GOLD_PICKAXE);
-		is1.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		is1.addEnchantment(Enchantment.DIG_SPEED, 3);
-		trades.add(new CoreVillagerTrade(gold, is1));
+		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.GOLDEN_APPLE)));
+		bronce.setAmount(64);
 		silver.setAmount(1);
-		trades.add(new CoreVillagerTrade(silver, new ItemStack(Material.CHEST)));
+		trades.add(new CoreVillagerTrade(bronce, silver));
+		silver.setAmount(16);
+		gold.setAmount(1);
+		trades.add(new CoreVillagerTrade(silver, gold));
 		f.createVillager(loc, trades, Profession.BUTCHER);
-		
-		//TODO Add potion villager
 	}
 	
 	@Override
