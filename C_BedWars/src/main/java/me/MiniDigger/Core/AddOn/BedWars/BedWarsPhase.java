@@ -46,12 +46,14 @@ import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.WeatherType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Villager.Profession;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 
 public class BedWarsPhase extends CorePhase {
 	
@@ -115,34 +117,34 @@ public class BedWarsPhase extends CorePhase {
 	}
 	
 	private void genPotionVillager(Location loc, ItemStack bronce, ItemStack silver, ItemStack gold) {
-		//TODO Add potion effects
 		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(32);
-		// http://puu.sh/crauC/271477ba41.jpg
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Speed").lore(ChatChars.Misc.bullet + "Causes Hunger").build();
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Speed").lore(ChatChars.Misc.bullet + "Causes Hunger")
+		        .effect(PotionEffectType.HUNGER, 90 * 20, 2).effect(PotionEffectType.SPEED, 90 * 20, 2).build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		silver.setAmount(1);
-		// http://puu.sh/crayj/47afe4855a.jpg
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Haste").lore(ChatChars.Misc.bullet + "Causes Hunger").build();
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Haste").lore(ChatChars.Misc.bullet + "Causes Hunger")
+		        .effect(PotionEffectType.HUNGER, 90 * 20, 2).effect(PotionEffectType.FAST_DIGGING, 90 * 20).build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(1);
-		// http://puu.sh/crazn/b4851b1546.jpg
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Strength").lore(ChatChars.Misc.bullet + "Causes Hunger").build();
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Strength").lore(ChatChars.Misc.bullet + "Causes Hunger")
+		        .effect(PotionEffectType.HUNGER, 90 * 20, 2).effect(PotionEffectType.INCREASE_DAMAGE, 90 * 20).build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(1);
-		// http://puu.sh/craAo/03999efda3.jpg
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Resistance").lore(ChatChars.Misc.bullet + "Causes Hunger").build();
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Resistance").lore(ChatChars.Misc.bullet + "Causes Hunger")
+		        .effect(PotionEffectType.HUNGER, 90 * 20, 2).effect(PotionEffectType.ABSORPTION, 90 * 20).build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
-		// http://puu.sh/craCf/507c59e33e.jpg
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode").lore(ChatChars.Misc.bullet + "Become The Beast")
-		        .build();
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
+		        .effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2).effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20)
+		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
+		        .lore(ChatChars.Misc.bullet + "Become The Beast").build();
 		trades.add(new CoreVillagerTrade(new ItemStack(Material.BED), is));
 		
 		f.createVillager(loc, trades, Profession.BUTCHER, "Potion Trader", true);

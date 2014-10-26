@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Holo.HoloList;
@@ -14,6 +15,7 @@ import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
+import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
 import mkremins.fanciful.FancyMessage;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
@@ -22,6 +24,7 @@ import net.minecraft.server.v1_7_R4.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
@@ -31,8 +34,14 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
 
+/**
+ * @version
+ * @author Martin
+ * 
+ */
 public class DevCommands {
 	
 	@Command(name = "dev", description = "DEV!", usage = "", permission = "dev")
@@ -236,8 +245,10 @@ public class DevCommands {
 	
 	@Command(name = "dev.itemBuilder", description = "DEV!", usage = "", permission = "dev")
 	public void itemBuilder(final CommandArgs args) {
-		ItemStack is = new CoreItemBuilder(Material.WOOL).amount(2).data(4).durability(4).enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.LUCK, 2)
-		        .name(ChatColor.RED + "Der Wool Block").lore(ChatColor.GREEN + "Zeile 1").lore(ChatColor.BLUE + "Zeile 2").build();
+		ItemStack is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
+		        .effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2).effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20)
+		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
+		        .lore(ChatChars.Misc.bullet + "Become The Beast").build();
 		args.getPlayer().getInventory().addItem(is);
 	}
 }
