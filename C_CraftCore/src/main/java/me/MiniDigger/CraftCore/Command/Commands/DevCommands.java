@@ -15,7 +15,6 @@ import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
-import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
 import mkremins.fanciful.FancyMessage;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
@@ -24,24 +23,17 @@ import net.minecraft.server.v1_7_R4.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
 
-/**
- * @version
- * @author Martin
- * 
- */
 public class DevCommands {
 	
 	@Command(name = "dev", description = "DEV!", usage = "", permission = "dev")
@@ -171,27 +163,6 @@ public class DevCommands {
 		final JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
 		System.out.println(obj.toJSONString());
 		System.out.println(obj.get("success"));
-	}
-	
-	@Command(name = "dev.villager", description = "DEV!", usage = "", permission = "dev")
-	public void villager(final CommandArgs args) {
-		
-		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
-			
-			@Override
-			public void run() {
-				final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").build();
-				final ItemStack bronce = new CoreItemBuilder(Material.BRICK).name(ChatColor.AQUA + "Bronze").build();
-				final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").build();
-				v v = new v();
-				v.genArmorVillager(args.getPlayer().getLocation(), bronce, silver, gold);
-				v.genBlockVillager(args.getPlayer().getLocation(), bronce, silver, gold);
-				v.genBowVillager(args.getPlayer().getLocation(), bronce, silver, gold);
-				v.genFoodVillager(args.getPlayer().getLocation(), bronce, silver, gold);
-				v.genPotionVillager(args.getPlayer().getLocation(), bronce, silver, gold);
-				v.genWeaponVillager(args.getPlayer().getLocation(), bronce, silver, gold);
-			}
-		});
 	}
 	
 	@Command(name = "dev.showBlocks", description = "DEV!", usage = "", permission = "dev")
