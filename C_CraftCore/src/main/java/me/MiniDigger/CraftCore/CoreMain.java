@@ -73,6 +73,7 @@ import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
+import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
 import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.Bukkit;
@@ -344,7 +345,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void registerListener() {
 		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
-		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener() };
+		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener() };
 		for (final Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}
