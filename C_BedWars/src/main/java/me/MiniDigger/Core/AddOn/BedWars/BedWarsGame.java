@@ -55,6 +55,8 @@ public class BedWarsGame extends CoreGame {
 		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("BW_Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("BW_Lobby");
+		
+		setPhase(lobby);
 	}
 	
 	@Override
