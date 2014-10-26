@@ -206,6 +206,19 @@ public class CoreCommandHandler implements CommandHandler {
 					return true;
 				}
 				
+				if(command.sync()){
+					try {
+						method.invoke(methodObject, cmdArgs);
+					} catch (final IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (final IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (final InvocationTargetException e) {
+						e.printStackTrace();
+					}
+					return true;
+				}
+				
 				final Thread thread = new Thread(new Runnable() {
 					
 					@Override

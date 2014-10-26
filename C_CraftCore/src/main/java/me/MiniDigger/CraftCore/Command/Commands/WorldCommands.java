@@ -98,7 +98,7 @@ public class WorldCommands {
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Du bist auf World " + args.getPlayer().getWorld().getName()).color(ChatColor.GREEN));
 	}
 	
-	@Command(name = "tp", description = "Teleportiert", usage = "<x> <y> <z> / <spieler>", consol = false, min = 1, max = 3)
+	@Command(name = "tp", description = "Teleportiert", usage = "<x> <y> <z> / <spieler>", consol = false, min = 1, max = 3, sync = true)
 	public void tp2(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
 			final Player p = Bukkit.getPlayer(args.getArgs()[0]);
@@ -184,7 +184,7 @@ public class WorldCommands {
 		}
 	}
 	
-	@Command(name = "world.tp", description = "Teleportiert zu einer Welt", usage = "<name>", permission = "world.tp", min = 1, consol = false)
+	@Command(name = "world.tp", description = "Teleportiert zu einer Welt", usage = "<name>", permission = "world.tp", min = 1, consol = false, sync = true)
 	public void tp(final CommandArgs args) {
 		final World w = Bukkit.getWorld(args.getArgs()[0]);
 		if (w == null) {
@@ -232,7 +232,7 @@ public class WorldCommands {
 	
 	HashMap<UUID, HashMap<String, String>>	data	= new HashMap<>();
 	
-	@Command(name = "world.create", description = "Erstellt ne neue Map", usage = "", permission = "world.create", consol = false)
+	@Command(name = "world.create", description = "Erstellt ne neue Map", usage = "", permission = "world.create", consol = false, sync = true)
 	public void create(final CommandArgs args) {
 		if (data.get(args.getUser().getUUID()) == null) {
 			data.put(args.getUser().getUUID(), new HashMap<String, String>());
