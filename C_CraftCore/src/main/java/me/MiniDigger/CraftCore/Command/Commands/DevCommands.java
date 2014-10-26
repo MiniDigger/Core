@@ -164,6 +164,27 @@ public class DevCommands {
 		System.out.println(obj.get("success"));
 	}
 	
+	@Command(name = "dev.villager", description = "DEV!", usage = "", permission = "dev")
+	public void villager(final CommandArgs args) {
+		
+		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").build();
+				final ItemStack bronce = new CoreItemBuilder(Material.BRICK).name(ChatColor.AQUA + "Bronze").build();
+				final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").build();
+				v v = new v();
+				v.genArmorVillager(args.getPlayer().getLocation(), bronce, silver, gold);
+				v.genBlockVillager(args.getPlayer().getLocation(), bronce, silver, gold);
+				v.genBowVillager(args.getPlayer().getLocation(), bronce, silver, gold);
+				v.genFoodVillager(args.getPlayer().getLocation(), bronce, silver, gold);
+				v.genPotionVillager(args.getPlayer().getLocation(), bronce, silver, gold);
+				v.genWeaponVillager(args.getPlayer().getLocation(), bronce, silver, gold);
+			}
+		});
+	}
+	
 	@Command(name = "dev.showBlocks", description = "DEV!", usage = "", permission = "dev")
 	public void showBlocks(final CommandArgs args) {
 		final FancyMessage msg = new FancyMessage(".");

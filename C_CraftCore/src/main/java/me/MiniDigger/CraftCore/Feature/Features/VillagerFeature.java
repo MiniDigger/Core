@@ -72,9 +72,23 @@ public class VillagerFeature extends CoreFeature {
 		
 	}
 	
-	public void createVillager(Location loc, List<VillagerTrade> trades, Profession prof) {
+	public void createVillager(Location loc, List<VillagerTrade> trades, Profession prof, String name, boolean invincible) {
 		Villager v = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+		if (name != null) {
+			v.setCustomName(name);
+			v.setCustomNameVisible(true);
+		}
+		if (invincible) {
+			v.setNoDamageTicks(Integer.MAX_VALUE);
+		}
+		v.setCanPickupItems(false);
+		v.setRemoveWhenFarAway(false);
+		v.setTarget(v);
 		v.setProfession(prof);
-		Core.getCore().getVillagerHandler().setTrades(v, trades);
+		
+		Core.getCore().getVillagerHandler().clearTrades(v);
+		for (VillagerTrade t : trades) {
+			Core.getCore().getVillagerHandler().addTrade(v, t);
+		}
 	}
 }
