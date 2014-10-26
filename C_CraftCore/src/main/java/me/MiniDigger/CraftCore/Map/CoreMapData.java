@@ -49,6 +49,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.Wool;
+import org.bukkit.plugin.Plugin;
 
 public class CoreMapData implements MapData {
 	
@@ -154,10 +155,10 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public void scanMap(final Location start, final int range, final Runnable finished) {
-		final Thread thread = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
+//		final Thread thread = new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
 				final HashMap<DyeColor, ArrayList<Location>> locs = new HashMap<>();
 				
 				final int startX = start.getBlockX();
@@ -203,12 +204,12 @@ public class CoreMapData implements MapData {
 					}
 					CoreMapData.this.locs.put(color, l);
 				}
-				finished.run();
-			}
-		});
-		
-		thread.setName("MapScanner #1");
-		thread.start();
+				Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), finished);
+//			}
+//		});
+//		
+//		thread.setName("MapScanner #1");
+//		thread.start();
 	}
 	
 	@Override

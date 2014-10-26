@@ -135,5 +135,11 @@ public @interface Command {
 	 */
 	public String manyArgs() default "You entered too many arguments";
 	
-	/* Core End */
+	/**
+	 * If the command should get executed synced to main thread
+	 * 
+	 * @return
+	 */
+	public boolean sync() default false;
+
 }
