@@ -35,7 +35,7 @@ import org.json.simple.parser.JSONParser;
 
 public class CoreRESTHandler implements RESTHandler {
 	
-	private static final String	BASE_URL	= "http://core/";
+	private static final String	BASE_URL	= "http://atlas.minidigger.me/";
 	
 	public CoreRESTHandler() {
 		
