@@ -46,7 +46,6 @@ import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.WeatherType;
@@ -156,35 +155,35 @@ public class BedWarsPhase extends CorePhase {
 		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(8);
-		is = new CoreItemBuilder(Material.NETHERRACK).amount(32).name(ChatColor.GOLD + "Block").lore(ChatChars.Misc.bullet + "Level 1").build();
+		is = new CoreItemBuilder(Material.NETHERRACK).amount(32).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		bronce.setAmount(16);
-		is = new CoreItemBuilder(Material.BRICK).amount(16).name(ChatColor.GOLD + "Block").lore(ChatChars.Misc.bullet + "Level 2").build();
+		is = new CoreItemBuilder(Material.BRICK).amount(16).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		bronce.setAmount(32);
-		is = new CoreItemBuilder(Material.EMERALD_BLOCK).amount(8).name(ChatColor.GOLD + "Block").lore(ChatChars.Misc.bullet + "Level 3").build();
+		is = new CoreItemBuilder(Material.EMERALD_BLOCK).amount(8).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		bronce.setAmount(8);
-		is = new CoreItemBuilder(Material.GLOWSTONE).amount(8).name(ChatColor.GOLD + "Block").lore(ChatChars.Misc.bullet + "Level 4")
+		is = new CoreItemBuilder(Material.GLOWSTONE).amount(8).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 4")
 		        .lore(ChatChars.Misc.bullet + "Macht Licht!").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		bronce.setAmount(6);
 		is = new CoreItemBuilder(Material.WOOD_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE)
-		        .lore(ChatChars.Misc.bullet + "Level 1").build();
+		        .lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		silver.setAmount(3);
 		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE)
-		        .enchantment(Enchantment.DIG_SPEED).lore(ChatChars.Misc.bullet + "Level 2").build();
+		        .enchantment(Enchantment.DIG_SPEED).lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		gold.setAmount(1);
 		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE)
-		        .enchantment(Enchantment.DIG_SPEED, 3).lore(ChatChars.Misc.bullet + "Level 3").build();
+		        .enchantment(Enchantment.DIG_SPEED, 3).lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(gold, is));
 		
 		silver.setAmount(1);
@@ -199,23 +198,23 @@ public class BedWarsPhase extends CorePhase {
 		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		silver.setAmount(2);
-		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).lore(ChatChars.Misc.bullet + "Level 1")
-		        .build();
+		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE)
+		        .lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(8);
 		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL)
-		        .lore(ChatChars.Misc.bullet + "Level 2").build();
+		        .lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(16);
 		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL, 2)
-		        .lore(ChatChars.Misc.bullet + "Level 3").build();
+		        .lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(48);
 		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL, 2)
-		        .enchantment(Enchantment.KNOCKBACK).lore(ChatChars.Misc.bullet + "Level 4").build();
+		        .enchantment(Enchantment.KNOCKBACK).lore(" " + ChatChars.Misc.bullet + " Level 4").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(6);
@@ -233,22 +232,23 @@ public class BedWarsPhase extends CorePhase {
 		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		gold.setAmount(2);
-		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).lore(ChatChars.Misc.bullet + "Level 1").build();
+		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1")
+		        .build();
 		trades.add(new CoreVillagerTrade(gold, is));
 		
 		gold.setAmount(8);
 		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.ARROW_DAMAGE)
-		        .lore(ChatChars.Misc.bullet + "Level 2").build();
+		        .lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(gold, is));
 		
 		gold.setAmount(12);
 		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.ARROW_DAMAGE, 2)
-		        .lore(ChatChars.Misc.bullet + "Level 3").build();
+		        .lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(gold, is));
 		
 		gold.setAmount(24);
 		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.ARROW_DAMAGE, 2)
-		        .enchantment(Enchantment.ARROW_KNOCKBACK).lore(ChatChars.Misc.bullet + "Level 4").build();
+		        .enchantment(Enchantment.ARROW_KNOCKBACK).lore(" " + ChatChars.Misc.bullet + " Level 4").build();
 		trades.add(new CoreVillagerTrade(gold, is));
 		
 		gold.setAmount(1);
@@ -286,22 +286,22 @@ public class BedWarsPhase extends CorePhase {
 		
 		silver.setAmount(2);
 		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL)
-		        .enchantment(Enchantment.ARROW_INFINITE).lore(ChatChars.Misc.bullet + "Level 1").build();
+		        .enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(8);
 		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2)
-		        .enchantment(Enchantment.ARROW_INFINITE).lore(ChatChars.Misc.bullet + "Level 2").build();
+		        .enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(16);
 		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3)
-		        .enchantment(Enchantment.ARROW_INFINITE).lore(ChatChars.Misc.bullet + "Level 3").build();
+		        .enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		silver.setAmount(48);
 		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5)
-		        .enchantment(Enchantment.ARROW_INFINITE).lore(ChatChars.Misc.bullet + "Level 4").build();
+		        .enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 4").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		f.createVillager(loc, trades, Profession.FARMER, "Armor Trader", true);
 	}
@@ -312,15 +312,15 @@ public class BedWarsPhase extends CorePhase {
 		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(16);
-		is = new CoreItemBuilder(Material.APPLE).amount(4).name(ChatColor.YELLOW + "Food").lore(ChatChars.Misc.bullet + "Level 1").build();
+		is = new CoreItemBuilder(Material.APPLE).amount(4).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		bronce.setAmount(32);
-		is = new CoreItemBuilder(Material.APPLE).amount(2).name(ChatColor.YELLOW + "Food").lore(ChatChars.Misc.bullet + "Level 2").build();
+		is = new CoreItemBuilder(Material.APPLE).amount(2).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(bronce, is));
 		
 		silver.setAmount(3);
-		is = new CoreItemBuilder(Material.GOLDEN_APPLE).name(ChatColor.YELLOW + "Food").lore(ChatChars.Misc.bullet + "Level 3").build();
+		is = new CoreItemBuilder(Material.GOLDEN_APPLE).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(silver, is));
 		
 		bronce.setAmount(64);
