@@ -138,6 +138,7 @@ public class WorldCommands {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map geladen!").color(ChatColor.GREEN));
 			} else {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannte Map!").color(ChatColor.RED));
+				return;
 			}
 		} else {
 			try {
@@ -145,6 +146,7 @@ public class WorldCommands {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map geladen!").color(ChatColor.GREEN));
 			} catch (final Exception ex) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map nicht geladen!").color(ChatColor.RED));
+				return;
 			}
 		}
 		
