@@ -16,6 +16,7 @@
 package me.MiniDigger.CraftCore.Villager;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -56,7 +57,10 @@ public class CoreVillagerHandler implements VillagerHandler {
 	
 	@Override
 	public boolean addTrade(final Villager villager, final VillagerTrade villagerTrade) {
-		final List<VillagerTrade> l = this.villager.remove(villager.getUniqueId());
+		List<VillagerTrade> l = this.villager.remove(villager.getUniqueId());
+		if(l == null){
+			l = new ArrayList<VillagerTrade>();
+		}
 		l.add(villagerTrade);
 		this.villager.put(villager.getUniqueId(), l);
 		return true;

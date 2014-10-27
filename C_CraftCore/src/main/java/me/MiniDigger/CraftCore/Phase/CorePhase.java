@@ -95,6 +95,8 @@ public abstract class CorePhase implements Phase {
 		HandlerList.unregisterAll(this);
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		
+		getNextPhase().init();
+		
 		for (final Feature f : features) {
 			HandlerList.unregisterAll(f);
 			Core.getCore().getCommandHandler().unregisterCommands(f);
@@ -102,7 +104,6 @@ public abstract class CorePhase implements Phase {
 		}
 		
 		getGame().setPhase(getNextPhase());
-		getNextPhase().init();
 		getNextPhase().startPhase();
 		try {
 			finalize();

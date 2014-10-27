@@ -124,10 +124,14 @@ public class TeamSelectFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		HashMap<String, Integer> sizes = new HashMap<>();
+		HashMap<String, Integer> sizes = calcSizes();
 		
-		for (final Team t : teams) {
-			sizes.put(t.getName(), t.getPlayers().size());
+		for(UUID id : getPhase().getGame().getPlayers()){
+			if(getTeam(Core.getCore().getUserHandler().get(id)) == null){
+				Team t = getTeam(findSmallest(sizes));
+				t.join(id);
+				sizes = calcSizes();
+			}
 		}
 		
 		balance();
@@ -147,8 +151,16 @@ public class TeamSelectFeature extends CoreFeature {
 	}
 	
 	public void balance() {
+		//TODO Balancing by stats
 		final HashMap<String, Integer> sizes = calcSizes();
 		final String large = findLargest(sizes);
+		if (large == null || large.equals("")) {
+			System.out.println("no balancing");
+			for (Team t : teams) {
+				System.out.println(t.getName() + ": " + t.getPlayers().size());
+			}
+			return;
+		}
 		final int largeCount = sizes.get(large);
 		
 		final String small = findSmallest(sizes);
@@ -191,7 +203,7 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		for (final String s : sizes.keySet()) {
 			final int x = sizes.get(s);
-			if (x > largest) {
+			if (x >= largest) {
 				largest = x;
 				name = s;
 			}
@@ -205,7 +217,7 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		for (final String s : sizes.keySet()) {
 			final int x = sizes.get(s);
-			if (x < largest) {
+			if (x <= largest) {
 				largest = x;
 				name = s;
 			}

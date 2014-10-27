@@ -94,7 +94,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new DropFeature(this));
-		addFeature(new MapFeature(this, null));
+		addFeature(new MapFeature(this, getGame().getGameData("VoteWinner")));
 		addFeature(new PvPFeature(this, true));
 		addFeature(new TeamSpawnFeature(this, true, DyeColor.WHITE));
 		addFeature(new TeamBedFeature(this, 4));
@@ -403,6 +403,11 @@ public class BedWarsPhase extends CorePhase {
 		trades.add(new CoreVillagerTrade(silver, gold));
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
+		if(data == null){
+			if(((MapFeature) getFeature(FeatureType.MAP)).getMap() == null){
+				System.out.println("data and map null!");
+			}
+		}
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);

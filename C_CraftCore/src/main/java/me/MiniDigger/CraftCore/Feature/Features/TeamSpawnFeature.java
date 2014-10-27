@@ -88,6 +88,7 @@ public class TeamSpawnFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
+		spawns = new HashMap<String, List<Location>>();
 		usedSpawns = new HashMap<String, List<Location>>();
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> spawns = data.getLocs(locKey);
