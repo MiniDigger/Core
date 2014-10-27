@@ -18,6 +18,20 @@
 		<url>http://source.minidigger.me/thecore/issues</url>
 	</issueManagement>
 
+
+	<distributionManagement>
+		<repository>
+			<id>archiva.release</id>
+			<name>Internal Release Repository</name>
+			<url>http://atlas.minidigger.me:8060/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>archiva.snapshots</id>
+			<name>Internal Snapshot Repository</name>
+			<url>http://atlas.minidigger.me:8060/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<scm>
 		<url>https://MiniDigger@bitbucket.org/MiniDigger/thecore-2.0.git</url>
 		<connection>git</connection>

@@ -10,7 +10,6 @@
 	<name>Core Build Project</name>
 	<description>The build and delopy mechanisems</description>
 
-
 	<build>
 		<!-- TODO Add proguard to build -->
 		<finalName>Core</finalName>

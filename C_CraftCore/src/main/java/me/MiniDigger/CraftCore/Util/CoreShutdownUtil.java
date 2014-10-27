@@ -47,6 +47,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.spigotmc.RestartCommand;
 
 public class CoreShutdownUtil implements ShutdownUtil {
 	
@@ -93,7 +94,8 @@ public class CoreShutdownUtil implements ShutdownUtil {
 					w.save();
 				}
 				
-				Bukkit.shutdown();
+				// Bukkit.shutdown();
+				RestartCommand.restart();
 			}
 		}, 10 * 20);
 	}
