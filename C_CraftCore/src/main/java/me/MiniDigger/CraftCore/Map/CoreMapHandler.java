@@ -61,6 +61,10 @@ public class CoreMapHandler implements MapHandler {
 		mapConfig = new File(mapFolder, "maps.yml");
 		con = YamlConfiguration.loadConfiguration(mapConfig);
 		mapNames = con.getStringList("maps");
+		File warning = new File(mapFolder, "DO_NOT_EDIT_FILES_IN_THIS_DIRECTORY_OR_CORE_WILL_LIKLY_FAIL_RUNNING");
+		if(!warning.exists()){
+			warning.mkdir();
+		}
 	}
 	
 	@Override
