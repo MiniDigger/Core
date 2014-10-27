@@ -10,7 +10,51 @@
 	<artifactId>C_Basic</artifactId>
 	<name>BasicAddOn</name>
 	<description>A basic AddOn with usefull stuff</description>
-	
+
+	<build>
+		<finalName>Basic-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<!-- Load the jsch lib -->
+								<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
+								<fail if="ant-jsch.present"
+									message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
+								<path id="jsch.class.path">
+									<pathelement
+										location="C:\Program Files (x86)\Eclipse\plugins\org.apache.ant_1.8.4.v201303080030\lib\ant-jsch.jar" />
+									<pathelement
+										location="C:\Program Files (x86)\Eclipse\plugins\org.apache.ant_1.8.4.v201303080030\lib\jsch-0.1.51.jar" />
+								</path>
+								<taskdef name="scp"
+									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
+									classpathref="jsch.class.path" />
+
+								<scp todir="root:zw8C8Ffgy7YbbSb@atlas.minidigger.me:/var/www/addons"
+									trust="true">
+									<fileset dir="target">
+										<include name="*.jar" />
+									</fileset>
+								</scp>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>me.MiniDigger.Core</groupId>
@@ -23,4 +67,5 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	<version>1.0</version>
 </project>
