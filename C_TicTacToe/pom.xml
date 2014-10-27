@@ -41,7 +41,7 @@
 									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
 									classpathref="jsch.class.path" />
 
-								<scp todir="root:zw8C8Ffgy7YbbSb@atlas.minidigger.me:/var/www/addons"
+								<scp todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/addons"
 									trust="true">
 									<fileset dir="target">
 										<include name="*.jar" />
