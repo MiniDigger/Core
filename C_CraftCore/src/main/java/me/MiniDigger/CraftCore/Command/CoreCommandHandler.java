@@ -206,7 +206,7 @@ public class CoreCommandHandler implements CommandHandler {
 					return true;
 				}
 				
-				if(command.sync()){
+				if (command.sync()) {
 					try {
 						method.invoke(methodObject, cmdArgs);
 					} catch (final IllegalArgumentException e) {

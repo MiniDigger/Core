@@ -216,10 +216,10 @@ public class DevCommands {
 	
 	@Command(name = "dev.itemBuilder", description = "DEV!", usage = "", permission = "dev")
 	public void itemBuilder(final CommandArgs args) {
-		ItemStack is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
+		final ItemStack is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
 		        .effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2).effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20)
 		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
-		        .lore(" " +ChatChars.Misc.bullet + " Become The Beast").build();
+		        .lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
 		args.getPlayer().getInventory().addItem(is);
 	}
 }

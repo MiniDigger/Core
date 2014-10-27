@@ -22,16 +22,16 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class SpawnFeature extends CoreFeature {
 	
-	private DyeColor locKey;
-	private boolean	spawn;
+	private DyeColor	locKey;
+	private boolean	 spawn;
 	
 	public SpawnFeature(final Phase phase, final boolean spawn) {
 		super(phase);
 		this.spawn = spawn;
-		this.locKey = DyeColor.RED;
+		locKey = DyeColor.RED;
 	}
 	
-	public SpawnFeature(final Phase phase, final boolean spawn,final DyeColor locKey){
+	public SpawnFeature(final Phase phase, final boolean spawn, final DyeColor locKey) {
 		this(phase, spawn);
 		this.locKey = locKey;
 	}

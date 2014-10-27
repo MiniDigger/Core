@@ -75,7 +75,7 @@ public abstract class CorePhase implements Phase {
 		for (final Feature f : features) {
 			f.init(this);
 		}
-		System.out.println("register cmds");
+		// System.out.println("register cmds");
 		Bukkit.getServer().getPluginManager().registerEvents(this, (Plugin) Core.getCore().getInstance());
 		Core.getCore().getCommandHandler().registerCommands(this);
 		for (final Feature f : features) {

@@ -104,7 +104,8 @@ public class TicTacToePhase extends CoreRepeatingPhase {
 	@Command(name = "tictactoe.doStep", permission = "tictactoe.doStep", consol = false, max = 0, min = 0, usage = "", description = "Öffnet das Inventar um einen Zug zu machen")
 	public void doStepCommand(final CommandArgs args) {
 		if (!args.getUser().getUUID().equals(acting)) {
-			// return; //TODO Why is this here?
+			System.out.println("möööp");
+			return;
 		}
 		final TicTacToeGame game = (TicTacToeGame) getGame();
 		final TwoPlayerFeature tpf = ((TwoPlayerFeature) getFeature(FeatureType.TWOPLAYER));

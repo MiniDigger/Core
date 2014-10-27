@@ -120,10 +120,10 @@ public class BedWarsPhase extends CorePhase {
 		genPotionVillager(DyeColor.ORANGE, bronce, silver, gold, 6);
 	}
 	
-	private void genPotionVillager(DyeColor locKey, ItemStack bronce, ItemStack silver, ItemStack gold, int id) {
-		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+	private void genPotionVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
+		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
-		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(32);
 		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Speed").lore(ChatChars.Misc.bullet + "Causes Hunger")
@@ -153,13 +153,13 @@ public class BedWarsPhase extends CorePhase {
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
-		for(Location loc : locs.values()){
-			Block b = loc.getBlock().getRelative(BlockFace.DOWN,2);
-			if(b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN){
-				Sign s = (Sign) b.getState();
-				if(s.getLine(0).equalsIgnoreCase("[Villager]")){
-					int i = Integer.parseInt(s.getLine(1));
-					if(i == id){
+		for (final Location loc : locs.values()) {
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
+				final Sign s = (Sign) b.getState();
+				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+					final int i = Integer.parseInt(s.getLine(1));
+					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
 					}
 				}
@@ -167,10 +167,10 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 	
-	private void genBlockVillager(DyeColor locKey, ItemStack bronce, ItemStack silver, ItemStack gold, int id) {
-		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+	private void genBlockVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
+		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
-		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(8);
 		is = new CoreItemBuilder(Material.NETHERRACK).amount(32).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 1").build();
@@ -209,13 +209,13 @@ public class BedWarsPhase extends CorePhase {
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
-		for(Location loc : locs.values()){
-			Block b = loc.getBlock().getRelative(BlockFace.DOWN,2);
-			if(b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN){
-				Sign s = (Sign) b.getState();
-				if(s.getLine(0).equalsIgnoreCase("[Villager]")){
-					int i = Integer.parseInt(s.getLine(1));
-					if(i == id){
+		for (final Location loc : locs.values()) {
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
+				final Sign s = (Sign) b.getState();
+				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+					final int i = Integer.parseInt(s.getLine(1));
+					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
 					}
 				}
@@ -223,10 +223,10 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 	
-	private void genWeaponVillager(DyeColor locKey, ItemStack bronce, ItemStack silver, ItemStack gold, int id) {
-		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+	private void genWeaponVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
+		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
-		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		silver.setAmount(2);
 		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE)
@@ -256,13 +256,13 @@ public class BedWarsPhase extends CorePhase {
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
-		for(Location loc : locs.values()){
-			Block b = loc.getBlock().getRelative(BlockFace.DOWN,2);
-			if(b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN){
-				Sign s = (Sign) b.getState();
-				if(s.getLine(0).equalsIgnoreCase("[Villager]")){
-					int i = Integer.parseInt(s.getLine(1));
-					if(i == id){
+		for (final Location loc : locs.values()) {
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
+				final Sign s = (Sign) b.getState();
+				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+					final int i = Integer.parseInt(s.getLine(1));
+					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
 					}
 				}
@@ -270,10 +270,10 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 	
-	private void genBowVillager(DyeColor locKey, ItemStack bronce, ItemStack silver, ItemStack gold, int id) {
-		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+	private void genBowVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
+		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
-		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		gold.setAmount(2);
 		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1")
@@ -306,12 +306,12 @@ public class BedWarsPhase extends CorePhase {
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
-		for (Location loc : locs.values()) {
-			Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
+		for (final Location loc : locs.values()) {
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
-				Sign s = (Sign) b.getState();
+				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
-					int i = Integer.parseInt(s.getLine(1));
+					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
 					}
@@ -320,11 +320,11 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 	
-	private void genArmorVillager(DyeColor locKey, ItemStack bronce, ItemStack silver, ItemStack gold, int id) {
+	private void genArmorVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		// TODO Team armor, vlt beim traden erst, oder beim anziehen?
-		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
-		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(1);
 		is = new CoreItemBuilder(Material.LEATHER_HELMET).name(ChatColor.BLUE + "Armor").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL)
@@ -363,12 +363,12 @@ public class BedWarsPhase extends CorePhase {
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
-		for (Location loc : locs.values()) {
-			Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
+		for (final Location loc : locs.values()) {
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
-				Sign s = (Sign) b.getState();
+				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
-					int i = Integer.parseInt(s.getLine(1));
+					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
 					}
@@ -377,10 +377,10 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 	
-	private void genFoodVillager(DyeColor locKey, ItemStack bronce, ItemStack silver, ItemStack gold, int id) {
-		VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
+	private void genFoodVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
+		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
-		List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
+		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		bronce.setAmount(16);
 		is = new CoreItemBuilder(Material.APPLE).amount(4).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 1").build();
@@ -404,12 +404,12 @@ public class BedWarsPhase extends CorePhase {
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
-		for (Location loc : locs.values()) {
-			Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
+		for (final Location loc : locs.values()) {
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
-				Sign s = (Sign) b.getState();
+				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
-					int i = Integer.parseInt(s.getLine(1));
+					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
 					}

@@ -60,13 +60,15 @@ public interface VillagerHandler {
 	 * @return if the action was successfull
 	 */
 	public boolean setTrades(final Villager villager, final List<VillagerTrade> trades);
-
+	
 	/**
 	 * Opens the Trading Inventory for a player
 	 * 
-     * @param v the villager with his trades
-     * @param p the player who wants to trade
-     * @return succes
-     */
-    boolean open(Villager v, Player p);
+	 * @param v
+	 *            the villager with his trades
+	 * @param p
+	 *            the player who wants to trade
+	 * @return succes
+	 */
+	boolean open(final Villager v, final Player p);
 }

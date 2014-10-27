@@ -15,19 +15,20 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Villager.VillagerListener;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Villager.VillagerListener;
-
-public class CoreVillagerListener implements VillagerListener{
+public class CoreVillagerListener implements VillagerListener {
+	
 	@EventHandler
-	public void onPlayerInteract(PlayerInteractEntityEvent e){
-		if(e.getRightClicked().getType() == EntityType.VILLAGER){
-			e.setCancelled(Core.getCore().getVillagerHandler().open((Villager)e.getRightClicked(), e.getPlayer()));
+	public void onPlayerInteract(final PlayerInteractEntityEvent e) {
+		if (e.getRightClicked().getType() == EntityType.VILLAGER) {
+			e.setCancelled(Core.getCore().getVillagerHandler().open((Villager) e.getRightClicked(), e.getPlayer()));
 		}
 	}
 }

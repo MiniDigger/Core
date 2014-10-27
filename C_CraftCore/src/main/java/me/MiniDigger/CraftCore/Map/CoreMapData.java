@@ -155,61 +155,61 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public void scanMap(final Location start, final int range, final Runnable finished) {
-//		final Thread thread = new Thread(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-				final HashMap<DyeColor, ArrayList<Location>> locs = new HashMap<>();
-				
-				final int startX = start.getBlockX();
-				final int startY = start.getBlockZ();
-				
-				final int minX = startX - range;
-				final int minY = 0;
-				final int minZ = startY - range;
-				
-				final int maxX = startX + range;
-				final int maxY = start.getWorld().getMaxHeight();
-				final int maxZ = startY + range;
-				
-				for (int x = minX; x <= maxX; x++) {
-					for (int y = minY; y <= maxY; y++) {
-						for (int z = minZ; z <= maxZ; z++) {
-							final Location loc = new Location(start.getWorld(), x, y, z);
-							if (loc.getBlock().getType() == Material.WOOL) {
-								@SuppressWarnings("deprecation") final DyeColor color = DyeColor.getByWoolData(loc.getBlock().getData());
-								ArrayList<Location> wLocs = locs.get(color);
-								if (color == DyeColor.BLACK) {
-									continue;// skip black, often used for back
-									         // of windows
-								}
-								if (wLocs == null) {
-									wLocs = new ArrayList<>();
-								}
-								wLocs.add(loc);
-								
-								locs.remove(color);
-								locs.put(color, wLocs);
-								// TODO We will need some kind of pitch and ywa
-								// for the spawns
-							}
+		// final Thread thread = new Thread(new Runnable() {
+		//
+		// @Override
+		// public void run() {
+		final HashMap<DyeColor, ArrayList<Location>> locs = new HashMap<>();
+		
+		final int startX = start.getBlockX();
+		final int startY = start.getBlockZ();
+		
+		final int minX = startX - range;
+		final int minY = 0;
+		final int minZ = startY - range;
+		
+		final int maxX = startX + range;
+		final int maxY = start.getWorld().getMaxHeight();
+		final int maxZ = startY + range;
+		
+		for (int x = minX; x <= maxX; x++) {
+			for (int y = minY; y <= maxY; y++) {
+				for (int z = minZ; z <= maxZ; z++) {
+					final Location loc = new Location(start.getWorld(), x, y, z);
+					if (loc.getBlock().getType() == Material.WOOL) {
+						@SuppressWarnings("deprecation") final DyeColor color = DyeColor.getByWoolData(loc.getBlock().getData());
+						ArrayList<Location> wLocs = locs.get(color);
+						if (color == DyeColor.BLACK) {
+							continue;// skip black, often used for back
+							         // of windows
 						}
+						if (wLocs == null) {
+							wLocs = new ArrayList<>();
+						}
+						wLocs.add(loc);
+						
+						locs.remove(color);
+						locs.put(color, wLocs);
+						// TODO We will need some kind of pitch and ywa
+						// for the spawns
 					}
 				}
-				for (final DyeColor color : locs.keySet()) {
-					final ArrayList<Location> loc = locs.get(color);
-					final HashMap<String, Location> l = new HashMap<>();
-					for (int i = 0; i < loc.size(); i++) {
-						l.put(i + "", loc.get(i));
-					}
-					CoreMapData.this.locs.put(color, l);
-				}
-				Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), finished);
-//			}
-//		});
-//		
-//		thread.setName("MapScanner #1");
-//		thread.start();
+			}
+		}
+		for (final DyeColor color : locs.keySet()) {
+			final ArrayList<Location> loc = locs.get(color);
+			final HashMap<String, Location> l = new HashMap<>();
+			for (int i = 0; i < loc.size(); i++) {
+				l.put(i + "", loc.get(i));
+			}
+			CoreMapData.this.locs.put(color, l);
+		}
+		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), finished);
+		// }
+		// });
+		//
+		// thread.setName("MapScanner #1");
+		// thread.start();
 	}
 	
 	@Override

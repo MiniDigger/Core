@@ -18,20 +18,18 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Villager;
-import org.bukkit.entity.Villager.Profession;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Villager.VillagerTrade;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
+import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Villager.Profession;
+
 public class VillagerFeature extends CoreFeature {
-	
-	// TODO Villagerfeature
 	
 	public VillagerFeature(final Phase phase) {
 		super(phase);
@@ -72,8 +70,8 @@ public class VillagerFeature extends CoreFeature {
 		
 	}
 	
-	public void createVillager(Location loc, List<VillagerTrade> trades, Profession prof, String name, boolean invincible) {
-		Villager v = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+	public void createVillager(final Location loc, final List<VillagerTrade> trades, final Profession prof, final String name, final boolean invincible) {
+		final Villager v = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 		if (name != null) {
 			v.setCustomName(name);
 			v.setCustomNameVisible(true);
@@ -87,7 +85,7 @@ public class VillagerFeature extends CoreFeature {
 		v.setProfession(prof);
 		
 		Core.getCore().getVillagerHandler().clearTrades(v);
-		for (VillagerTrade t : trades) {
+		for (final VillagerTrade t : trades) {
 			Core.getCore().getVillagerHandler().addTrade(v, t);
 		}
 	}

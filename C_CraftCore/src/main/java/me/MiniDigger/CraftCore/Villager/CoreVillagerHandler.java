@@ -32,7 +32,7 @@ import org.bukkit.entity.Villager;
 
 public class CoreVillagerHandler implements VillagerHandler {
 	
-	private HashMap<UUID, List<VillagerTrade>>	villager	= new HashMap<UUID, List<VillagerTrade>>();
+	private final HashMap<UUID, List<VillagerTrade>>	villager	= new HashMap<UUID, List<VillagerTrade>>();
 	
 	@Override
 	public boolean clearTrades(final Villager villager) {
@@ -56,7 +56,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 	
 	@Override
 	public boolean addTrade(final Villager villager, final VillagerTrade villagerTrade) {
-		List<VillagerTrade> l = this.villager.remove(villager.getUniqueId());
+		final List<VillagerTrade> l = this.villager.remove(villager.getUniqueId());
 		l.add(villagerTrade);
 		this.villager.put(villager.getUniqueId(), l);
 		return true;
@@ -158,19 +158,19 @@ public class CoreVillagerHandler implements VillagerHandler {
 	}
 	
 	@Override
-	public boolean open(Villager v,Player p){
-		return openTradeWindow(v.getCustomName(),this.villager.get(v.getUniqueId()), p);
+	public boolean open(final Villager v, final Player p) {
+		return openTradeWindow(v.getCustomName(), villager.get(v.getUniqueId()), p);
 	}
 	
 	@SuppressWarnings("unchecked")
-    private boolean openTradeWindow(String name, List<VillagerTrade> recipes, Player player) {
+	private boolean openTradeWindow(final String name, final List<VillagerTrade> recipes, final Player player) {
 		try {
-			EntityVillager villager = new EntityVillager(((CraftPlayer) player).getHandle().world, 0);
+			final EntityVillager villager = new EntityVillager(((CraftPlayer) player).getHandle().world, 0);
 			if (name != null && !name.isEmpty()) {
 				villager.setCustomName(name);
 			}
 			
-			Field recipeListField = EntityVillager.class.getDeclaredField("bu");
+			final Field recipeListField = EntityVillager.class.getDeclaredField("bu");
 			recipeListField.setAccessible(true);
 			MerchantRecipeList recipeList = (MerchantRecipeList) recipeListField.get(villager);
 			if (recipeList == null) {
@@ -178,7 +178,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 				recipeListField.set(villager, recipeList);
 			}
 			recipeList.clear();
-			for (VillagerTrade recipe : recipes) {
+			for (final VillagerTrade recipe : recipes) {
 				recipeList.add(createMerchantRecipe(recipe.getItem1(), recipe.getItem2(), recipe.getRewardItem()));
 			}
 			
@@ -191,24 +191,27 @@ public class CoreVillagerHandler implements VillagerHandler {
 			villager.a(((CraftPlayer) player).getHandle());
 			
 			return true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 	
-	private MerchantRecipe createMerchantRecipe(org.bukkit.inventory.ItemStack item1, org.bukkit.inventory.ItemStack item2, org.bukkit.inventory.ItemStack item3) {
-		MerchantRecipe recipe = new MerchantRecipe(convertItemStack(item1), convertItemStack(item2), convertItemStack(item3));
+	private MerchantRecipe createMerchantRecipe(final org.bukkit.inventory.ItemStack item1, final org.bukkit.inventory.ItemStack item2,
+	        final org.bukkit.inventory.ItemStack item3) {
+		final MerchantRecipe recipe = new MerchantRecipe(convertItemStack(item1), convertItemStack(item2), convertItemStack(item3));
 		try {
-			Field maxUsesField = MerchantRecipe.class.getDeclaredField("maxUses");
+			final Field maxUsesField = MerchantRecipe.class.getDeclaredField("maxUses");
 			maxUsesField.setAccessible(true);
 			maxUsesField.set(recipe, 10000);
-		} catch (Exception e) {}
+		} catch (final Exception e) {}
 		return recipe;
 	}
 	
-	private net.minecraft.server.v1_7_R4.ItemStack convertItemStack(org.bukkit.inventory.ItemStack item) {
-		if (item == null) return null;
+	private net.minecraft.server.v1_7_R4.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
+		if (item == null) {
+			return null;
+		}
 		return org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack.asNMSCopy(item);
 	}
 }

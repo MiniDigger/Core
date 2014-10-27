@@ -17,6 +17,6 @@ package me.MiniDigger.Core.Villager;
 
 import org.bukkit.event.Listener;
 
-public interface VillagerListener extends Listener{
+public interface VillagerListener extends Listener {
 	
 }

@@ -226,10 +226,10 @@ public class CoreItemBuilder implements Listener {
 	 * @return this builder for chaining
 	 * @since 1.1
 	 */
-	public CoreItemBuilder color(Color color) {
+	public CoreItemBuilder color(final Color color) {
 		if (is.getType() == Material.LEATHER_BOOTS || is.getType() == Material.LEATHER_CHESTPLATE || is.getType() == Material.LEATHER_HELMET
 		        || is.getType() == Material.LEATHER_LEGGINGS) {
-			LeatherArmorMeta meta = (LeatherArmorMeta) is.getItemMeta();
+			final LeatherArmorMeta meta = (LeatherArmorMeta) is.getItemMeta();
 			meta.setColor(color);
 			is.setItemMeta(meta);
 			return this;
@@ -253,7 +253,7 @@ public class CoreItemBuilder implements Listener {
 	 * @return this builder for chaining
 	 * @since 1.2
 	 */
-	public CoreItemBuilder effect(PotionEffectType type, int duration, int amplifier, boolean ambient) {
+	public CoreItemBuilder effect(final PotionEffectType type, final int duration, final int amplifier, final boolean ambient) {
 		effect(new PotionEffect(type, duration, amplifier, ambient));
 		return this;
 	}
@@ -267,7 +267,7 @@ public class CoreItemBuilder implements Listener {
 	 * @return this builder for chaining
 	 * @since 1.2
 	 */
-	public CoreItemBuilder effect(PotionEffect effect) {
+	public CoreItemBuilder effect(final PotionEffect effect) {
 		if (!listener) {
 			Bukkit.getPluginManager().registerEvents(this, plugin);
 			listener = true;
@@ -293,7 +293,7 @@ public class CoreItemBuilder implements Listener {
 	 * @return this builder for chaining
 	 * @since 1.2
 	 */
-	public CoreItemBuilder effect(PotionEffectType type, int duration, int amplifier) {
+	public CoreItemBuilder effect(final PotionEffectType type, final int duration, final int amplifier) {
 		effect(new PotionEffect(type, duration == -1 ? 1000000 : duration, amplifier));
 		return this;
 	}
@@ -309,7 +309,7 @@ public class CoreItemBuilder implements Listener {
 	 * @return this builder for chaining
 	 * @since 1.2
 	 */
-	public CoreItemBuilder effect(PotionEffectType type, int duration) {
+	public CoreItemBuilder effect(final PotionEffectType type, final int duration) {
 		effect(new PotionEffect(type, duration == -1 ? 1000000 : duration, 1));
 		return this;
 	}
@@ -325,9 +325,9 @@ public class CoreItemBuilder implements Listener {
 	}
 	
 	@EventHandler
-	public void onItemConsume(PlayerItemConsumeEvent e) {
+	public void onItemConsume(final PlayerItemConsumeEvent e) {
 		if (e.getItem().hasItemMeta()) {
-			@SuppressWarnings("unchecked") HashMap<String, PotionEffect> copy = (HashMap<String, PotionEffect>) effects.clone();
+			@SuppressWarnings("unchecked") final HashMap<String, PotionEffect> copy = (HashMap<String, PotionEffect>) effects.clone();
 			String name = e.getItem().getItemMeta().getDisplayName();
 			while (copy.containsKey(name)) {
 				e.getPlayer().addPotionEffect(copy.get(name), true);
@@ -338,7 +338,7 @@ public class CoreItemBuilder implements Listener {
 	}
 	
 	@EventHandler
-	public void onItemApply(InventoryClickEvent e) {
+	public void onItemApply(final InventoryClickEvent e) {
 		// TODO add effects when item is applied
 	}
 	
