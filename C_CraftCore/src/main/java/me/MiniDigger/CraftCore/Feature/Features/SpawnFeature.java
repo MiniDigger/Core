@@ -28,6 +28,7 @@ public class SpawnFeature extends CoreFeature {
 	public SpawnFeature(final Phase phase, final boolean spawn) {
 		super(phase);
 		this.spawn = spawn;
+		this.locKey = DyeColor.RED;
 	}
 	
 	public SpawnFeature(final Phase phase, final boolean spawn,final DyeColor locKey){
