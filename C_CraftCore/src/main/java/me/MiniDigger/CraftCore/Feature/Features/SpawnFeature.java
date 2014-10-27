@@ -22,11 +22,17 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class SpawnFeature extends CoreFeature {
 	
+	private DyeColor locKey;
 	private boolean	spawn;
 	
 	public SpawnFeature(final Phase phase, final boolean spawn) {
 		super(phase);
 		this.spawn = spawn;
+	}
+	
+	public SpawnFeature(final Phase phase, final boolean spawn,final DyeColor locKey){
+		this(phase, spawn);
+		this.locKey = locKey;
 	}
 	
 	private List<Location>	usedSpawns;
@@ -66,7 +72,7 @@ public class SpawnFeature extends CoreFeature {
 	public void start() {
 		usedSpawns = new ArrayList<>();
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		final HashMap<String, Location> spawns = data.getLocs(DyeColor.RED);
+		final HashMap<String, Location> spawns = data.getLocs(locKey);
 		this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
 		if (spawn) {
 			for (final UUID id : getPhase().getGame().getPlayers()) {
