@@ -12,7 +12,7 @@
 	<description>GAME: A 2 phase pvp game</description>
 
 	<build>
-		<finalName>GeTheDrop-${project.version}</finalName>
+		<finalName>GetTheDrop-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
