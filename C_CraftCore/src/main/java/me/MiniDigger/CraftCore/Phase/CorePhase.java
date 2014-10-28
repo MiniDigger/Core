@@ -45,6 +45,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.CraftCore.Feature.Features.SpawnerFeature;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -167,9 +168,9 @@ public abstract class CorePhase implements Phase {
 	
 	@Override
 	public void addFeature(final Feature f) {
-		if (getFeature(f.getType()) == null) {
-			features.add(f);
-		}
+		// if (getFeature(f.getType()) == null) {
+		features.add(f);
+		// }
 	}
 	
 	@Override

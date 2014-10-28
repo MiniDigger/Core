@@ -101,6 +101,7 @@ public class SpawnerFeature extends CoreFeature {
 			final Block b = l.getBlock();
 			if (b.getType() == Material.MOB_SPAWNER) {
 				if (item != null) {
+					System.out.println("create spawner: " + locKey.name());
 					final World world = ((CraftWorld) b.getWorld()).getHandle();
 					final TileEntity tileEntity = world.getTileEntity(b.getX(), b.getY(), b.getZ());
 					if ((tileEntity instanceof TileEntityMobSpawner)) {

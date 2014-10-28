@@ -119,7 +119,7 @@ public class BedWarsPhase extends CorePhase {
 		genBlockVillager(DyeColor.ORANGE, bronce, silver, gold, 5);
 		genPotionVillager(DyeColor.ORANGE, bronce, silver, gold, 6);
 	}
-	
+
 	private void genPotionVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
