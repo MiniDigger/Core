@@ -49,6 +49,7 @@ import net.minecraft.server.v1_7_R4.WorldSettings;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
@@ -134,6 +135,10 @@ public class CoreWorldLoader implements WorldLoader {
 		
 		server.getPluginManager().callEvent(new WorldInitEvent(internal.getWorld()));
 		server.getPluginManager().callEvent(new WorldLoadEvent(internal.getWorld()));
+		
+		for (Entity e : internal.getWorld().getEntities()) {
+			e.remove();
+		}
 		
 		return internal.getWorld();
 	}
