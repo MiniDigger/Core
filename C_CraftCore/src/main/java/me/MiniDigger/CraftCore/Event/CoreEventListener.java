@@ -32,6 +32,7 @@ public class CoreEventListener implements EventListener {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		
 		e.setJoinMessage(null);
+		Core.getCore().getPlayerUtil().prepare(e.getPlayer());
 		Core.getCore().getCommonMethods().printJoinMessage(user);
 		
 		if (Core.getCore().getGameHandler().getMainGame() != null && Core.getCore().getGameHandler().getMainGame().getType() != GameType.NOTHING) {

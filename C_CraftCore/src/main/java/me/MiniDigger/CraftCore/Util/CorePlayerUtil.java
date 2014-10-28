@@ -39,10 +39,12 @@ import java.util.List;
 import me.MiniDigger.Core.Util.PlayerUtil;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockIterator;
 
 public class CorePlayerUtil implements PlayerUtil {
@@ -82,6 +84,39 @@ public class CorePlayerUtil implements PlayerUtil {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void clearArmor(Player p) {
+		ItemStack[] items = p.getInventory().getArmorContents();
+		for (int i = 0; i < items.length; i++) {
+			items[i] = new ItemStack(Material.AIR);
+		}
+		p.getInventory().setArmorContents(items);
+	}
+	
+	@Override
+	public void clearInv(Player p) {
+		ItemStack[] items = p.getInventory().getContents();
+		for (int i = 0; i < items.length; i++) {
+			items[i] = new ItemStack(Material.AIR);
+		}
+		p.getInventory().setContents(items);
+	}
+
+	@Override
+	public void fixHealth(Player p) {
+		p.setHealth(20d);
+		p.setSaturation(1);
+		p.setFoodLevel(20);
+		p.getActivePotionEffects().clear();
+	}
+
+	@Override
+	public void prepare(Player p) {
+		clearArmor(p);
+		clearInv(p);
+		fixHealth(p);
 	}
 	
 }
