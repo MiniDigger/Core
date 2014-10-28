@@ -123,10 +123,7 @@ public class TeamSpawnFeature extends CoreFeature {
 		spawns = null;
 	}
 	
-	public Location spawn(final User user) {
-		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		Team t = tf.getTeam(user);
-		
+	public Location getSpawn(Team t) {
 		List<Location> usedSpawns = this.usedSpawns.remove(t.getName());
 		List<Location> spawns = this.spawns.remove(t.getName());
 		
@@ -158,13 +155,22 @@ public class TeamSpawnFeature extends CoreFeature {
 				continue;
 			}
 			usedSpawns.add(loc);
-			user.getPlayer().teleport(loc);
-			
 			this.usedSpawns.put(t.getName(), usedSpawns);
 			this.spawns.put(t.getName(), spawns);
 			
 			return loc;
 		}
+	}
+	
+	public Location spawn(final User user) {
+		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		Team t = tf.getTeam(user);
+		
+		Location loc = getSpawn(t);
+		
+		user.getPlayer().teleport(loc);
+		
+		return loc;
 	}
 	
 	@EventHandler

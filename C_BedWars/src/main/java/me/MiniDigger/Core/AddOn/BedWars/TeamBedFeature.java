@@ -19,17 +19,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamSpawnFeature;
 
-/**
- * @author Martin
- * 
- */
 public class TeamBedFeature extends CoreFeature {
 	
 	private HashMap<String, BedFeature>	beds;
@@ -67,7 +63,7 @@ public class TeamBedFeature extends CoreFeature {
 		final List<Team> teams = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeams();
 		
 		for (int i = 0; i < numTeams; i++) {
-			final BedFeature f = new BedFeature(getPhase(), Core.getCore().getLocationUtil().StringToLocation(teams.get(i).getData("bed_loc")), teams.get(i).getName());
+			final BedFeature f = new BedFeature(getPhase(), ((TeamSpawnFeature) getPhase().getFeature(FeatureType.TEAM_SPAWN)).getSpawn(teams.get(i)), teams.get(i).getName());
 			beds.put(teams.get(i).getName(), f);
 		}
 	}
