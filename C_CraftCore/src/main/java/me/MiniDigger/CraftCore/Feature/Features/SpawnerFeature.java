@@ -110,7 +110,7 @@ public class SpawnerFeature extends CoreFeature {
 						spawnerTag.remove("SpawnPotentials");
 						spawnerTag.setString("EntityId", "Item");
 						final NBTTagCompound itemTag = new NBTTagCompound();
-						itemTag.setShort("Health", (short) 5);
+						itemTag.setShort("Health", (short) 1);
 						itemTag.setShort("Age", (short) 0);
 						final net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
 						final NBTTagCompound itemStackTag = new NBTTagCompound();
@@ -118,8 +118,8 @@ public class SpawnerFeature extends CoreFeature {
 						itemStackTag.setByte("Count", (byte) 1);
 						itemTag.set("Item", itemStackTag);
 						spawnerTag.set("SpawnData", itemTag);
-						spawnerTag.setShort("SpawnCount", (short) itemStack.count);
-						spawnerTag.setShort("SpawnRange", (short) 3);
+						spawnerTag.setShort("SpawnCount", (short) 1);
+						spawnerTag.setShort("SpawnRange", (short) 2);
 						spawnerTag.setShort("Delay", (short) interval);
 						spawnerTag.setShort("MinSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxSpawnDelay", (short) (interval));
@@ -131,7 +131,11 @@ public class SpawnerFeature extends CoreFeature {
 				} else if (type != null) {
 					final CreatureSpawner s = (CreatureSpawner) b;
 					s.setSpawnedType(type);
+				}else{
+					System.out.println("failed to spawner");
 				}
+			}else{
+				System.out.println("no spawner!");
 			}
 		}
 	}

@@ -108,7 +108,7 @@ public class BedWarsPhase extends CorePhase {
 		
 		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 		
-		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20 * 2, null, bronce));
+		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20, null, bronce));
 		addFeature(new SpawnerFeature(this, DyeColor.BLUE, 20 * 15, null, silver));
 		addFeature(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 60, null, gold));
 		
