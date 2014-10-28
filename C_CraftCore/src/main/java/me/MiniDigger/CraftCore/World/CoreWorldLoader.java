@@ -138,6 +138,7 @@ public class CoreWorldLoader implements WorldLoader {
 		
 		for (Entity e : internal.getWorld().getEntities()) {
 			e.remove();
+			System.out.println("remove " + e.getType());
 		}
 		
 		return internal.getWorld();

@@ -18,12 +18,14 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import net.minecraft.server.v1_7_R4.EntityItem;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
 import net.minecraft.server.v1_7_R4.TileEntityMobSpawner;
@@ -37,6 +39,9 @@ import org.bukkit.block.CreatureSpawner;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class SpawnerFeature extends CoreFeature {
@@ -46,6 +51,7 @@ public class SpawnerFeature extends CoreFeature {
 	private final DyeColor	 locKey;
 	private final ItemStack	 item;
 	private Location[]	     locs;
+	private final List<UUID>	justSpawned;
 	
 	public SpawnerFeature(final Phase phase, final DyeColor locKey, final int interval, final EntityType type, final ItemStack item) {
 		super(phase);
@@ -53,6 +59,7 @@ public class SpawnerFeature extends CoreFeature {
 		this.interval = interval;
 		this.type = type;
 		this.item = item;
+		this.justSpawned = new ArrayList<UUID>();
 	}
 	
 	@Override
@@ -113,7 +120,7 @@ public class SpawnerFeature extends CoreFeature {
 						spawnerTag.set("SpawnData", itemTag);
 						spawnerTag.setShort("SpawnCount", (short) itemStack.count);
 						spawnerTag.setShort("SpawnRange", (short) 3);
-						spawnerTag.setShort("Delay", (short) 0);
+						spawnerTag.setShort("Delay", (short) interval);
 						spawnerTag.setShort("MinSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxNearbyEntities", (short) 300);
@@ -126,6 +133,29 @@ public class SpawnerFeature extends CoreFeature {
 					s.setSpawnedType(type);
 				}
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onEntitySpawn(EntitySpawnEvent event) {
+		if (event.getEntityType() == EntityType.DROPPED_ITEM) {
+			if (justSpawned.remove(event.getEntity().getUniqueId())) {
+				return;
+			}
+			event.setCancelled(true);
+			final Item item = (Item) event.getEntity();
+			final EntityItem e = new EntityItem(((CraftWorld) event.getLocation().getWorld()).getHandle(), event.getLocation().getX(), event.getLocation().getY(), event
+			        .getLocation().getZ()) {
+				
+				@Override
+				public boolean a(EntityItem entityitem) {
+					// DO NOT merge items
+					return false;
+				}
+			};
+			e.setItemStack(CraftItemStack.asNMSCopy(item.getItemStack()));
+			justSpawned.add(e.getUniqueID());
+			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}
 	}
 	
