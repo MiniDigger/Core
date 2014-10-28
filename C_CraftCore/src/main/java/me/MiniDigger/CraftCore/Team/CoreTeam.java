@@ -21,12 +21,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Team.Team;
 
 public class CoreTeam implements Team {
 	
 	private String	                  name;
+	private ChatColor	              color;
 	private Game	                  game;
 	private int	                      size;
 	private final List<UUID>	      players	= new ArrayList<UUID>();
@@ -34,6 +37,16 @@ public class CoreTeam implements Team {
 	
 	public CoreTeam(final int teamSize) {
 		size = teamSize;
+	}
+	
+	@Override
+	public ChatColor getColor() {
+		return color;
+	}
+	
+	@Override
+	public void setColor(final ChatColor color) {
+		this.color = color;
 	}
 	
 	@Override

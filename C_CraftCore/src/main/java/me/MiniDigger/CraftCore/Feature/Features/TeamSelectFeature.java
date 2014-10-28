@@ -114,10 +114,19 @@ public class TeamSelectFeature extends CoreFeature {
 		teamNames.add(ChatColor.LIGHT_PURPLE + "Pink");
 		teamNames.add(ChatColor.BLACK + "Schwarz");
 		
+		final List<ChatColor> teamColors = new ArrayList<ChatColor>();
+		teamColors.add(ChatColor.BLUE);
+		teamColors.add(ChatColor.RED);
+		teamColors.add(ChatColor.GREEN);
+		teamColors.add(ChatColor.YELLOW);
+		teamColors.add(ChatColor.LIGHT_PURPLE);
+		teamColors.add(ChatColor.BLACK);
+		
 		for (int i = 0; i < teamCount; i++) {
 			final Team t = new CoreTeam(teamSize);
 			t.setGame(getPhase().getGame());
 			t.setName(teamNames.get(i));
+			t.setColor(teamColors.get(i));
 			teams.add(t);
 		}
 	}
@@ -126,8 +135,8 @@ public class TeamSelectFeature extends CoreFeature {
 	public void end() {
 		HashMap<String, Integer> sizes = calcSizes();
 		
-		for(UUID id : getPhase().getGame().getPlayers()){
-			if(getTeam(Core.getCore().getUserHandler().get(id)) == null){
+		for (UUID id : getPhase().getGame().getPlayers()) {
+			if (getTeam(Core.getCore().getUserHandler().get(id)) == null) {
 				Team t = getTeam(findSmallest(sizes));
 				t.join(id);
 				sizes = calcSizes();
@@ -151,7 +160,7 @@ public class TeamSelectFeature extends CoreFeature {
 	}
 	
 	public void balance() {
-		//TODO Balancing by stats
+		// TODO Balancing by stats
 		final HashMap<String, Integer> sizes = calcSizes();
 		final String large = findLargest(sizes);
 		if (large == null || large.equals("")) {

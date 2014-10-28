@@ -100,11 +100,12 @@ public class TeamSpawnFeature extends CoreFeature {
 				if (s.getLine(0).equalsIgnoreCase("[Team]")) {
 					String name = s.getLine(1);
 					List<Location> spawn = this.spawns.remove(name);
-					if(spawn == null){
+					if (spawn == null) {
 						spawn = new ArrayList<Location>();
 					}
 					spawn.add(loc);
 					this.spawns.put(name, spawn);
+					System.out.println("Found spawn for Team: " + name);
 				}
 			}
 		}
@@ -127,7 +128,15 @@ public class TeamSpawnFeature extends CoreFeature {
 		Team t = tf.getTeam(user);
 		
 		List<Location> usedSpawns = this.usedSpawns.remove(t.getName());
-		List<Location> spawns = this.spawns.get(t.getName());
+		List<Location> spawns = this.spawns.remove(t.getName());
+		
+		if (usedSpawns == null) {
+			usedSpawns = new ArrayList<Location>();
+		}
+		
+		if (spawns == null) {
+			System.out.println("SPAWNS FOR TEAM " + t.getName() + " = NULL");
+		}
 		
 		if (usedSpawns.size() >= spawns.size()) {
 			usedSpawns = new ArrayList<>();
@@ -152,6 +161,7 @@ public class TeamSpawnFeature extends CoreFeature {
 			user.getPlayer().teleport(loc);
 			
 			this.usedSpawns.put(t.getName(), usedSpawns);
+			this.spawns.put(t.getName(), spawns);
 			
 			return loc;
 		}
