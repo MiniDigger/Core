@@ -47,9 +47,13 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
 import org.spigotmc.RestartCommand;
 
 public class CoreShutdownUtil implements ShutdownUtil {
+	
+	private BukkitTask	task;
 	
 	@Override
 	public void initShutdown() {
@@ -59,6 +63,13 @@ public class CoreShutdownUtil implements ShutdownUtil {
 	
 	@Override
 	public void doShutdown() {
+		if (task != null) {
+			Bukkit.getScheduler().cancelTask(task.getTaskId());
+			task.cancel();
+			shutdown();
+			return;
+		}
+		
 		initShutdown();
 		
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
@@ -68,35 +79,39 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED).send(Bukkit.getConsoleSender());
 		
-		Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
-				for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-					FancyMessage msg = Prefix.CORE.getPrefix().then("Der Server wird neugestartet!").color(ChatColor.RED).style(ChatColor.BOLD);
-					msg.send(p);
-					msg = Prefix.CORE.getPrefix().then("Er wird gleich wieder da sein!").color(ChatColor.AQUA).style(ChatColor.BOLD);
-					msg.send(p);
-				}
-				
-				for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-					p.kickPlayer(ChatColor.RED + "Der Server wird nun neugestarte \n " + ChatColor.AQUA + " Er wird gleich wieder online sein");
-				}
-				
-				for (final World w : Bukkit.getWorlds()) {
-					for (final Entity e : w.getEntities()) {
-						if (e.getType() != EntityType.PLAYER && e.getType() != EntityType.ENDER_CRYSTAL && e.getType() != EntityType.ITEM_FRAME
-						        && e.getType() != EntityType.LEASH_HITCH && e.getType() != EntityType.PAINTING) {
-							e.eject();
-							e.remove();
-						}
-					}
-					w.save();
-				}
-				
-				// Bukkit.shutdown();
-				RestartCommand.restart();
+				shutdown();
 			}
 		}, 10 * 20);
+	}
+	
+	private void shutdown() {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			FancyMessage msg = Prefix.CORE.getPrefix().then("Der Server wird neugestartet!").color(ChatColor.RED).style(ChatColor.BOLD);
+			msg.send(p);
+			msg = Prefix.CORE.getPrefix().then("Er wird gleich wieder da sein!").color(ChatColor.AQUA).style(ChatColor.BOLD);
+			msg.send(p);
+		}
+		
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			p.kickPlayer(ChatColor.RED + "Der Server wird nun neugestarte \n " + ChatColor.AQUA + " Er wird gleich wieder online sein");
+		}
+		
+		for (final World w : Bukkit.getWorlds()) {
+			for (final Entity e : w.getEntities()) {
+				if (e.getType() != EntityType.PLAYER && e.getType() != EntityType.ENDER_CRYSTAL && e.getType() != EntityType.ITEM_FRAME
+				        && e.getType() != EntityType.LEASH_HITCH && e.getType() != EntityType.PAINTING) {
+					e.eject();
+					e.remove();
+				}
+			}
+			w.save();
+		}
+		
+		// Bukkit.shutdown();
+		RestartCommand.restart();
 	}
 }
