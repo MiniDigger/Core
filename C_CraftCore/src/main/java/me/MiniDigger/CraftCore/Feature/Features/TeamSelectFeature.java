@@ -107,12 +107,12 @@ public class TeamSelectFeature extends CoreFeature {
 	@Override
 	public void start() {
 		final List<String> teamNames = new ArrayList<String>();
-		teamNames.add(ChatColor.BLUE + "Blau");
-		teamNames.add(ChatColor.RED + "Rot");
-		teamNames.add(ChatColor.GREEN + "Grün");
-		teamNames.add(ChatColor.YELLOW + "Gelb");
-		teamNames.add(ChatColor.LIGHT_PURPLE + "Pink");
-		teamNames.add(ChatColor.BLACK + "Schwarz");
+		teamNames.add("Blau");
+		teamNames.add("Rot");
+		teamNames.add("Grün");
+		teamNames.add("Gelb");
+		teamNames.add("Pink");
+		teamNames.add("Schwarz");
 		
 		final List<ChatColor> teamColors = new ArrayList<ChatColor>();
 		teamColors.add(ChatColor.BLUE);
