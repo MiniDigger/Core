@@ -47,8 +47,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
+import org.spigotmc.AsyncCatcher;
 import org.spigotmc.RestartCommand;
 
 public class CoreShutdownUtil implements ShutdownUtil {
@@ -63,6 +63,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 	
 	@Override
 	public void doShutdown() {
+		AsyncCatcher.enabled = false;
 		if (task != null) {
 			Bukkit.getScheduler().cancelTask(task.getTaskId());
 			task.cancel();
