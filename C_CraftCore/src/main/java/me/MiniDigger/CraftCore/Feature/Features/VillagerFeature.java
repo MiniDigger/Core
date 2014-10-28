@@ -28,6 +28,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class VillagerFeature extends CoreFeature {
 	
@@ -71,7 +73,7 @@ public class VillagerFeature extends CoreFeature {
 	}
 	
 	public void createVillager(final Location loc, final List<VillagerTrade> trades, final Profession prof, final String name, final boolean invincible) {
-		final Villager v = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+		final Villager v = (Villager) loc.getWorld().spawnEntity(loc.add(0.5, 0.5, 0.5), EntityType.VILLAGER);
 		if (name != null) {
 			v.setCustomName(name);
 			v.setCustomNameVisible(true);
@@ -83,6 +85,7 @@ public class VillagerFeature extends CoreFeature {
 		v.setRemoveWhenFarAway(false);
 		v.setTarget(v);
 		v.setProfession(prof);
+		v.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 100000, false), true);
 		
 		Core.getCore().getVillagerHandler().clearTrades(v);
 		for (final VillagerTrade t : trades) {

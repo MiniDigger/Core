@@ -102,13 +102,13 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamDeathMatchFeature(this));
 		addFeature(new VillagerFeature(this));
 		
-		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").build();
+		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 		
-		final ItemStack bronce = new CoreItemBuilder(Material.BRICK).name(ChatColor.AQUA + "Bronze").build();
+		final ItemStack bronce = new CoreItemBuilder(Material.CLAY_BRICK).name(ChatColor.AQUA + "Bronze").amount(1).build();
 		
-		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").build();
+		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 		
-		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20, null, bronce));
+		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20 * 2, null, bronce));
 		addFeature(new SpawnerFeature(this, DyeColor.BLUE, 20 * 15, null, silver));
 		addFeature(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 60, null, gold));
 		
@@ -160,7 +160,7 @@ public class BedWarsPhase extends CorePhase {
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
-						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
+						f.createVillager(loc, trades, Profession.BUTCHER, "Potion Trader", true);
 					}
 				}
 			}
@@ -216,7 +216,7 @@ public class BedWarsPhase extends CorePhase {
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
-						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
+						f.createVillager(loc, trades, Profession.BUTCHER, "Block Trader", true);
 					}
 				}
 			}
@@ -263,7 +263,7 @@ public class BedWarsPhase extends CorePhase {
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
-						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
+						f.createVillager(loc, trades, Profession.BUTCHER, "Weapon Trader", true);
 					}
 				}
 			}
@@ -313,7 +313,7 @@ public class BedWarsPhase extends CorePhase {
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
-						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
+						f.createVillager(loc, trades, Profession.BUTCHER, "Bow Trader", true);
 					}
 				}
 			}
@@ -370,7 +370,7 @@ public class BedWarsPhase extends CorePhase {
 				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
-						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);
+						f.createVillager(loc, trades, Profession.BUTCHER, "Armor Trader", true);
 					}
 				}
 			}
@@ -403,8 +403,8 @@ public class BedWarsPhase extends CorePhase {
 		trades.add(new CoreVillagerTrade(silver, gold));
 		
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
-		if(data == null){
-			if(((MapFeature) getFeature(FeatureType.MAP)).getMap() == null){
+		if (data == null) {
+			if (((MapFeature) getFeature(FeatureType.MAP)).getMap() == null) {
 				System.out.println("data and map null!");
 			}
 		}
