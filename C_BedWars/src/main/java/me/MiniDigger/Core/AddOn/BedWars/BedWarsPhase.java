@@ -108,8 +108,8 @@ public class BedWarsPhase extends CorePhase {
 		
 		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 		
-		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20, null, bronce));
-		addFeature(new SpawnerFeature(this, DyeColor.BLUE, 20 * 15, null, silver));
+		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20 * 4, null, bronce));
+		addFeature(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 15, null, silver));
 		addFeature(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 60, null, gold));
 		
 		genFoodVillager(DyeColor.ORANGE, bronce, silver, gold, 4);
@@ -119,7 +119,7 @@ public class BedWarsPhase extends CorePhase {
 		genBlockVillager(DyeColor.ORANGE, bronce, silver, gold, 5);
 		genPotionVillager(DyeColor.ORANGE, bronce, silver, gold, 6);
 	}
-
+	
 	private void genPotionVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;

@@ -98,6 +98,10 @@ public class SpawnerFeature extends CoreFeature {
 			return;
 		}
 		
+		if (locs.length == 0) {
+			Core.getCore().getInstance().error("No SpawnerPoints found for locKey " + locKey.name());
+		}
+		
 		for (final Location l : locs) {
 			l.getBlock().setType(Material.MOB_SPAWNER);
 			final Block b = l.getBlock();
@@ -122,7 +126,9 @@ public class SpawnerFeature extends CoreFeature {
 						itemTag.set("Item", itemStackTag);
 						spawnerTag.set("SpawnData", itemTag);
 						spawnerTag.setShort("SpawnCount", (short) 1);
-						spawnerTag.setShort("SpawnRange", (short) 2);
+						System.out.println("SpawnCount" + spawnerTag.getShort("SpawnCount"));
+						spawnerTag.setShort("SpawnRange", (short) 0.1);
+						System.out.println("SpawnRange" + spawnerTag.getShort("SpawnRange"));
 						spawnerTag.setShort("Delay", (short) interval);
 						spawnerTag.setShort("MinSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxSpawnDelay", (short) (interval));
@@ -165,8 +171,7 @@ public class SpawnerFeature extends CoreFeature {
 			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
 			ee.setMetadata("doNotRemove", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), "true"));
 			ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
-			if (ee.hasMetadata("doNotRemove")) {
-			}
+			if (ee.hasMetadata("doNotRemove")) {}
 			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}
 	}
