@@ -36,6 +36,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -168,7 +169,31 @@ public class TeamSpawnFeature extends CoreFeature {
 		
 		Location loc = getSpawn(t);
 		
+		if (user == null) {
+			System.out.println("wait, user null?!");
+		}
+		
+		if (loc == null) {
+			System.out.println("wait, loc null?! " + t.getName());
+		}
+		
+		if (user.getPlayer() == null) {
+			System.out.println("wait, player null?! " + user.getDisplayName() + " " + user.getUUID());
+		}
+		
 		user.getPlayer().teleport(loc);
+		
+		return loc;
+	}
+	
+	public Location spawn(Player p) {
+		User user = Core.getCore().getUserHandler().get(p.getUniqueId());
+		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		Team t = tf.getTeam(user);
+		
+		Location loc = getSpawn(t);
+		
+		p.teleport(loc);
 		
 		return loc;
 	}
@@ -194,7 +219,7 @@ public class TeamSpawnFeature extends CoreFeature {
 	public void onRespawn(final PlayerRespawnEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (getPhase().getGame().getPlayers().contains(user.getUUID())) {
-			e.setRespawnLocation(spawn(user));
+			e.setRespawnLocation(spawn(e.getPlayer()));
 		}
 	}
 }
