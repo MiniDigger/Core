@@ -7,6 +7,8 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -61,6 +63,12 @@ public class MobFeature extends CoreFeature {
 			System.out.println("map = null");
 		}
 		world = m.getMap().getName();
+		
+		for(Entity e :  Bukkit.getWorld(world).getEntities()){
+			if(!allowed.contains(e.getType())){
+				e.remove();
+			}
+		}
 	}
 	
 	@Override
