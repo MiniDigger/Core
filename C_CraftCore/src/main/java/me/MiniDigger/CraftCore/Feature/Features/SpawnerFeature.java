@@ -18,7 +18,6 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -31,18 +30,23 @@ import net.minecraft.server.v1_7_R4.TileEntity;
 import net.minecraft.server.v1_7_R4.TileEntityMobSpawner;
 import net.minecraft.server.v1_7_R4.World;
 
+import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.plugin.Plugin;
 
 public class SpawnerFeature extends CoreFeature {
 	
@@ -51,7 +55,6 @@ public class SpawnerFeature extends CoreFeature {
 	private final DyeColor	 locKey;
 	private final ItemStack	 item;
 	private Location[]	     locs;
-	private final List<UUID>	justSpawned;
 	
 	public SpawnerFeature(final Phase phase, final DyeColor locKey, final int interval, final EntityType type, final ItemStack item) {
 		super(phase);
@@ -59,7 +62,6 @@ public class SpawnerFeature extends CoreFeature {
 		this.interval = interval;
 		this.type = type;
 		this.item = item;
-		this.justSpawned = new ArrayList<UUID>();
 	}
 	
 	@Override
@@ -132,10 +134,10 @@ public class SpawnerFeature extends CoreFeature {
 				} else if (type != null) {
 					final CreatureSpawner s = (CreatureSpawner) b;
 					s.setSpawnedType(type);
-				}else{
+				} else {
 					System.out.println("failed to spawner");
 				}
-			}else{
+			} else {
 				System.out.println("no spawner!");
 			}
 		}
@@ -144,7 +146,7 @@ public class SpawnerFeature extends CoreFeature {
 	@EventHandler
 	public void onEntitySpawn(EntitySpawnEvent event) {
 		if (event.getEntityType() == EntityType.DROPPED_ITEM) {
-			if (justSpawned.remove(event.getEntity().getUniqueId())) {
+			if (event.getEntity().hasMetadata("doNotRemove")) {
 				return;
 			}
 			event.setCancelled(true);
@@ -159,7 +161,12 @@ public class SpawnerFeature extends CoreFeature {
 				}
 			};
 			e.setItemStack(CraftItemStack.asNMSCopy(item.getItemStack()));
-			justSpawned.add(e.getUniqueID());
+			e.fromMobSpawner = true;
+			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
+			ee.setMetadata("doNotRemove", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), "true"));
+			ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
+			if (ee.hasMetadata("doNotRemove")) {
+			}
 			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}
 	}
