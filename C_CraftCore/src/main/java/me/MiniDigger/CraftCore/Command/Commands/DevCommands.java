@@ -26,6 +26,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -105,6 +106,53 @@ public class DevCommands {
 			args.getPlayer().sendMessage("UUID: " + args.getPlayer().getUniqueId());
 			System.out.println("UUID " + args.getPlayer().getName() + ": " + args.getPlayer().getUniqueId());
 		}
+	}
+	
+	@SuppressWarnings("deprecation")
+    @Command(name = "dev.bed", description = "DEV!", usage = "", permission = "dev", sync = true)
+	public void bed(final CommandArgs args) {
+		BlockFace face = BlockFace.EAST;
+		Block bed = args.getPlayer().getLocation().getBlock();
+		Block sign = bed.getRelative(BlockFace.DOWN, 2);
+		face = getFacing(sign);
+		Block head = bed.getRelative(face);
+		byte flags = (byte) 8;
+		byte direction = (byte) (0x0);
+		
+		switch (face) {
+		case EAST:
+			flags = (byte) (flags | 0x3);
+			direction = (byte) (0x3);
+			break;
+		
+		case SOUTH:
+			flags = (byte) (flags | 0x0);
+			direction = (byte) (0x0);
+			break;
+		
+		case WEST:
+			flags = (byte) (flags | 0x1);
+			direction = (byte) (0x1);
+			break;
+		
+		case NORTH:
+			flags = (byte) (flags | 0x2);
+			direction = (byte) (0x2);
+			break;
+		default:
+			break;
+		}
+		
+		bed.setTypeIdAndData(Material.BED_BLOCK.getId(), direction, false);
+		head.setTypeIdAndData(Material.BED_BLOCK.getId(), flags, false);
+		
+		bed.setTypeIdAndData(Material.BED_BLOCK.getId(), flags, false);
+		head.setTypeIdAndData(Material.BED_BLOCK.getId(), direction, false);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public BlockFace getFacing(Block b) {
+		return ((org.bukkit.material.Directional) b.getType().getNewData(b.getData())).getFacing();
 	}
 	
 	@Command(name = "Dev.timeTest", description = "DEV!", usage = "", permission = "dev")
