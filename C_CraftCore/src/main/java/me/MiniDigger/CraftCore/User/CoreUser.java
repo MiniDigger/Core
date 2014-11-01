@@ -52,6 +52,7 @@ import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 public class CoreUser implements User {
 	
@@ -75,6 +76,7 @@ public class CoreUser implements User {
 	
 	// PRIVATE
 	protected Date	            sessionStart;
+	private int	                retrys	       = 0;
 	
 	public CoreUser(final UUID id) {
 		if (id == null) {
@@ -287,7 +289,25 @@ public class CoreUser implements User {
 	@Override
 	public void sendMessage(final FancyMessage msg) {
 		if (!uuid.equals(CoreBot.getBotUUID())) {
-			msg.send(Bukkit.getPlayer(uuid));
+			final Player p = getPlayer();
+			if (p == null) {
+				retrys++;
+				if (retrys == 10) {
+					retrys = 0;
+					System.out.println("giving up...");
+					return;
+				}
+				Bukkit.getScheduler().runTaskLater((Plugin) Core.getCore().getInstance(), new Runnable() {
+					
+					@Override
+					public void run() {
+						sendMessage(msg);
+					}
+				}, 20 * 2);
+			} else {
+				retrys = 0;
+				msg.send(p);
+			}
 		}
 	}
 	
