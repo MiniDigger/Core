@@ -52,8 +52,8 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.plugin.Plugin;
 
 import com.comphenix.packetwrapper.WrapperPlayServerUpdateSign;
 import com.comphenix.protocol.PacketType;
@@ -298,10 +298,9 @@ public class CoreSignChangers implements SignChangers {
 		if (!user.hasPermission("builder.changesigns")) {
 			// return;
 		}
-		System.out.println("e");
 		String[] lines = sign.getLines();
 		lines = Core.getCore().getChatColorUtil().replaceMcToAnd(sign.getLines());
-		new CoreSignGUI((Plugin) Core.getCore().getInstance()).open(event.getPlayer(), lines, new SignGUI.SignGUIListener() {
+		new CoreSignGUI().open(event.getPlayer(), lines, new SignGUI.SignGUIListener() {
 			
 			@Override
 			public void onSignDone(final Player player, String[] lines) {
@@ -454,6 +453,7 @@ public class CoreSignChangers implements SignChangers {
 	}
 	
 	@Override
+	@EventHandler
 	public void handleInteract(final PlayerInteractEvent event) {
 		if ((event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) && (event.getClickedBlock() != null)) {
 			if ((event.getClickedBlock().getState() instanceof Sign)) {

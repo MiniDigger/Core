@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Protocol.SignGUI;
 import me.MiniDigger.CraftCore.CoreMain;
 
@@ -46,7 +47,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import com.comphenix.protocol.PacketType;
@@ -64,7 +64,8 @@ public class CoreSignGUI implements SignGUI, Listener {
 	protected Map<String, Vector>	       signLocations;
 	protected CoreMain	                   plugin;
 	
-	public CoreSignGUI(final Plugin plugin) {
+	public CoreSignGUI() {
+		this.plugin = (CoreMain) Core.getCore().getInstance();
 		init();
 	}
 	
