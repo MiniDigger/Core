@@ -20,10 +20,12 @@ import java.util.List;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -65,7 +67,7 @@ public class BedFeature extends CoreFeature {
 	}
 	
 	@SuppressWarnings("deprecation")
-    @Override
+	@Override
 	public void start() {
 		BlockFace face = BlockFace.EAST;
 		Block bed = this.bed.getBlock();
@@ -127,18 +129,28 @@ public class BedFeature extends CoreFeature {
 				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName() + " ist draußen!"));
 			}
 		}
-		e.setRespawnLocation(bed.add(0.5, 1, 0.5));
+		if (bed == null) {
+			MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+			e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
+		} else {
+			e.setRespawnLocation(bed.add(0.5, 1, 0.5));
+		}
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onbedDestory(final BlockBreakEvent e) {
-		if (e.getBlock().getLocation() == bed && e.getBlock().getType() == Material.BED_BLOCK) {
-			if (teamName != null) {
-				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed von ").then(teamName).then("wurde zerstört!"));
-				bed = null;
+	public void onBedDestory(final BlockBreakEvent e) {
+		if (e.getBlock().getType() == Material.BED_BLOCK) {
+			if (e.getBlock().getLocation().equals(bed) || e.getBlock().getLocation().add(1, 0, 0).equals(bed) || e.getBlock().getLocation().add(-1, 0, 0).equals(bed)
+			        || e.getBlock().getLocation().add(0, 0, 1).equals(bed) || e.getBlock().getLocation().add(0, 0, -1).equals(bed)) {
+				if (teamName != null) {
+					getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed von Team ").then(teamName).then(" wurde zerstört!"));
+					bed = null;
+				} else {
+					getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed wurde zerstört!"));
+					bed = null;
+				}
 			} else {
-				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed wurde zerstört!"));
-				bed = null;
+				System.out.println("Wrong bed? " + (teamName != null ? teamName : "") + " " + bed);
 			}
 		}
 	}

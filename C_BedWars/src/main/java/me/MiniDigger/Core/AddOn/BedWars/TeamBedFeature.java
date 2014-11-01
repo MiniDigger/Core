@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
-
-import me.MiniDigger.Core.Core;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
@@ -72,7 +71,6 @@ public class TeamBedFeature extends CoreFeature {
 			        .getName());
 			f.init(getPhase());
 			f.start();
-			Bukkit.getPluginManager().registerEvents(f, (Plugin) Core.getCore().getInstance());
 			beds.put(teams.get(i).getName(), f);
 		}
 	}
@@ -81,8 +79,20 @@ public class TeamBedFeature extends CoreFeature {
 	public void end() {
 		for (BedFeature f : beds.values()) {
 			f.end();
-			HandlerList.unregisterAll(f);
 		}
+	}
+	
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onBedDestory(final BlockBreakEvent e) {
+		for (BedFeature f : beds.values()) {
+			f.onBedDestory(e);
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onPlayerRespawn(final PlayerRespawnEvent e) {
+		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		beds.get(tf.getTeam(e.getPlayer()).getName()).onPlayerRespawn(e);
 	}
 	
 }
