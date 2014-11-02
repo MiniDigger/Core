@@ -54,6 +54,7 @@ import me.MiniDigger.CraftCore.Command.Commands.PluginCommands;
 import me.MiniDigger.CraftCore.Command.Commands.SettingsCommands;
 import me.MiniDigger.CraftCore.Command.Commands.SquadCommands;
 import me.MiniDigger.CraftCore.Command.Commands.StatsCommands;
+import me.MiniDigger.CraftCore.Command.Commands.TeamCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ToggleCommands;
 import me.MiniDigger.CraftCore.Command.Commands.TrollCommands;
 import me.MiniDigger.CraftCore.Command.Commands.WorldCommands;
@@ -67,6 +68,7 @@ import me.MiniDigger.CraftCore.Command.Completer.PluginCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.SettingCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.SquadCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.StatsCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.TeamCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.ToggleCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
@@ -350,14 +352,14 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void registerCommands() {
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands(), new AddOnCommands(),
-		        new EssentialCommands() };
+		        new EssentialCommands(), new TeamCommands() };
 		for (final Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
 		
 		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
 		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new NPCCompleter(), new AddOnCompleter(),
-		        new EssentialCompleter() };
+		        new EssentialCompleter(), new TeamCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
@@ -384,7 +386,8 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void registerListener() {
 		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
-		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),Core.getCore().getProtocolHandler().getSignListeners() };
+		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),
+		        Core.getCore().getProtocolHandler().getSignListeners() };
 		for (final Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}
