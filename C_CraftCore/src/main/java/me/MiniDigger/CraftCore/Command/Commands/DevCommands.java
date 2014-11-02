@@ -281,9 +281,13 @@ public class DevCommands {
 	public void cinematic(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
 			V3CameraClip c = new V3CameraClip();
-			V3Player p = new V3Player(args.getPlayer(), c);
+			V3Player p = new V3Player(args.getUser().getPlayer(), c);
+			p.play();
 		} else if (args.getArgs().length == 0) {
-			r = new V3BasicRecorder(args.getPlayer(), 20);
+			if(args.getSender() == null){
+				System.out.println("wait, whut?");
+			}
+			r = new V3BasicRecorder((Player) args.getSender(), 20);
 			r.record();
 		} else if (args.getArgs().length == 2) {
 			r.stop();

@@ -18,6 +18,7 @@
 // @formatter:on
 package eu.matejkormuth.pexel.PexelCore.cinematics;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -59,6 +60,10 @@ public class V3BasicRecorder extends BasicRecorder {
      */
     @Override
     public void record() {
+    	if(this.player == null){
+    		System.out.println("cmon");
+    		this.player = Bukkit.getServer().getOnlinePlayers().clone()[0];
+    	}
         this.player.sendMessage("Recording " + ChatColor.RED + "[ID " + this.ID + "] "
                 + ChatColor.YELLOW + " (" + this.FPS + "fps) " + ChatColor.GREEN
                 + " has started...");
@@ -68,6 +73,7 @@ public class V3BasicRecorder extends BasicRecorder {
                     + "Nahravanie na VIAC AKO 20 FPS nema vyznam! Vysledny zaznam bude rovnaky pri pouziti 20 aj 60 fps.");
         
         this.recording = true;
+        this.clip = new V3CameraClip();
         
         //Start recording thread.
         new Thread(new Runnable() {
