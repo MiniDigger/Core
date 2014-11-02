@@ -35,6 +35,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
 
+import eu.matejkormuth.pexel.PexelCore.cinematics.V3BasicRecorder;
+import eu.matejkormuth.pexel.PexelCore.cinematics.V3CameraClip;
+import eu.matejkormuth.pexel.PexelCore.cinematics.V3Player;
+
 public class DevCommands {
 	
 	@Command(name = "dev", description = "DEV!", usage = "", permission = "dev")
@@ -109,7 +113,7 @@ public class DevCommands {
 	}
 	
 	@SuppressWarnings("deprecation")
-    @Command(name = "dev.bed", description = "DEV!", usage = "", permission = "dev", sync = true)
+	@Command(name = "dev.bed", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void bed(final CommandArgs args) {
 		BlockFace face = BlockFace.EAST;
 		Block bed = args.getPlayer().getLocation().getBlock();
@@ -269,5 +273,20 @@ public class DevCommands {
 		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
 		        .lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
 		args.getPlayer().getInventory().addItem(is);
+	}
+	
+	V3BasicRecorder	r;
+	
+	@Command(name = "dev.cinematic", description = "DEV!", usage = "", permission = "dev")
+	public void cinematic(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			V3CameraClip c = new V3CameraClip();
+			V3Player p = new V3Player(args.getPlayer(), c);
+		} else if (args.getArgs().length == 0) {
+			r = new V3BasicRecorder(args.getPlayer(), 20);
+			r.record();
+		} else if (args.getArgs().length == 2) {
+			r.stop();
+		}
 	}
 }
