@@ -387,7 +387,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void registerListener() {
 		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
 		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),
-		        Core.getCore().getProtocolHandler().getSignListeners() };
+		        Core.getCore().getProtocolHandler().getSignListeners(),new ToggleCommands() };
 		for (final Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}
