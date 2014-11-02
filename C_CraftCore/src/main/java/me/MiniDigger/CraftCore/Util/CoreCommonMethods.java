@@ -134,7 +134,7 @@ public class CoreCommonMethods implements CommonMethods {
 			System.out.println("Licene check failed but I don't care");
 			return;
 		}
-		System.out.println("The Plugin decided to kill itselves");
+		System.out.println("The Plugin decided to kill itselve");
 		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin((CoreMain) Core.getCore().getInstance());
 	}

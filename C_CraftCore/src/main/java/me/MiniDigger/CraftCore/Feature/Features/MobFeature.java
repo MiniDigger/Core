@@ -64,8 +64,8 @@ public class MobFeature extends CoreFeature {
 		}
 		world = m.getMap().getName();
 		
-		for(Entity e :  Bukkit.getWorld(world).getEntities()){
-			if(!allowed.contains(e.getType())){
+		for (final Entity e : Bukkit.getWorld(world).getEntities()) {
+			if (!allowed.contains(e.getType())) {
 				e.remove();
 			}
 		}

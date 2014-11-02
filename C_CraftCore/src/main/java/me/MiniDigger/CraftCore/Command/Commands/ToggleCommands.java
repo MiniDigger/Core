@@ -55,7 +55,7 @@ public class ToggleCommands implements Listener {
 		}
 	}
 	
-	private List<UUID>	hacks	= new ArrayList<>();
+	private final List<UUID>	hacks	= new ArrayList<>();
 	
 	@Command(name = "toggle.hacks", description = "Toggelt die Hacks", permission = "toggle.hacks", consol = false, min = 0, max = 1)
 	public void hacks(final CommandArgs args) {
@@ -75,7 +75,7 @@ public class ToggleCommands implements Listener {
 			return;
 		}
 		
-		Player player = (Player) event.getEntity();
+		final Player player = (Player) event.getEntity();
 		System.out.println("pn: " + player.getName() + " uuid: " + player.getUniqueId());
 		if (!hacks.contains(player.getUniqueId())) {
 			System.out.println("ppfff");
@@ -85,10 +85,10 @@ public class ToggleCommands implements Listener {
 			double minAngle = 6.283185307179586D;
 			Entity minEntity = null;
 			
-			for (Entity entity : player.getNearbyEntities(64.0D, 64.0D, 64.0D)) {
+			for (final Entity entity : player.getNearbyEntities(64.0D, 64.0D, 64.0D)) {
 				if ((player.hasLineOfSight(entity)) && ((entity instanceof LivingEntity)) && (!entity.isDead())) {
-					Vector toTarget = entity.getLocation().toVector().clone().subtract(player.getLocation().toVector());
-					double angle = event.getProjectile().getVelocity().angle(toTarget);
+					final Vector toTarget = entity.getLocation().toVector().clone().subtract(player.getLocation().toVector());
+					final double angle = event.getProjectile().getVelocity().angle(toTarget);
 					if (angle < minAngle) {
 						minAngle = angle;
 						minEntity = entity;
@@ -115,29 +115,30 @@ public class ToggleCommands implements Listener {
 		Arrow		 arrow;
 		LivingEntity	target;
 		
-		public HomingTask(Arrow arrow, LivingEntity target) {
+		public HomingTask(final Arrow arrow, final LivingEntity target) {
 			this.arrow = arrow;
 			this.target = target;
 			runTaskTimer((Plugin) Core.getCore().getInstance(), 1L, 1L);
 		}
 		
+		@Override
 		public void run() {
-			double speed = this.arrow.getVelocity().length();
-			if ((this.arrow.isOnGround()) || (this.arrow.isDead()) || (this.target.isDead())) {
+			final double speed = arrow.getVelocity().length();
+			if ((arrow.isOnGround()) || (arrow.isDead()) || (target.isDead())) {
 				cancel();
 				return;
 			}
 			
-			Vector toTarget = this.target.getLocation().clone().add(new Vector(0.0D, 0.5D, 0.0D)).subtract(this.arrow.getLocation()).toVector();
+			final Vector toTarget = target.getLocation().clone().add(new Vector(0.0D, 0.5D, 0.0D)).subtract(arrow.getLocation()).toVector();
 			
-			Vector dirVelocity = this.arrow.getVelocity().clone().normalize();
-			Vector dirToTarget = toTarget.clone().normalize();
-			double angle = dirVelocity.angle(dirToTarget);
+			final Vector dirVelocity = arrow.getVelocity().clone().normalize();
+			final Vector dirToTarget = toTarget.clone().normalize();
+			final double angle = dirVelocity.angle(dirToTarget);
 			
 			double newSpeed = 0.9D * speed + 0.14D;
 			
-			if (((this.target instanceof Player)) && (this.arrow.getLocation().distance(this.target.getLocation()) < 8.0D)) {
-				Player player = (Player) this.target;
+			if (((target instanceof Player)) && (arrow.getLocation().distance(target.getLocation()) < 8.0D)) {
+				final Player player = (Player) target;
 				if (player.isBlocking()) {
 					newSpeed = speed * 0.6D;
 					cancel();
@@ -147,13 +148,13 @@ public class ToggleCommands implements Listener {
 			if (angle < 0.12D) {
 				newVelocity = dirVelocity.clone().multiply(newSpeed);
 			} else {
-				Vector newDir = dirVelocity.clone().multiply((angle - 0.12D) / angle).add(dirToTarget.clone().multiply(0.12D / angle));
+				final Vector newDir = dirVelocity.clone().multiply((angle - 0.12D) / angle).add(dirToTarget.clone().multiply(0.12D / angle));
 				newDir.normalize();
 				newVelocity = newDir.clone().multiply(newSpeed);
 			}
 			
-			this.arrow.setVelocity(newVelocity.add(new Vector(0.0D, 0.03D, 0.0D)));
-			this.arrow.getWorld().playEffect(this.arrow.getLocation(), Effect.SMOKE, 0);
+			arrow.setVelocity(newVelocity.add(new Vector(0.0D, 0.03D, 0.0D)));
+			arrow.getWorld().playEffect(arrow.getLocation(), Effect.SMOKE, 0);
 		}
 	}
 }

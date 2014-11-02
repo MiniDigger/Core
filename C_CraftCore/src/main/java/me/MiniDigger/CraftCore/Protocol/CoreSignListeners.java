@@ -29,12 +29,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class CoreSignListeners implements SignListeners{
+public class CoreSignListeners implements SignListeners {
 	
-	private ArrayList<SignListener>	listener	= new ArrayList<SignListener>();
+	private final ArrayList<SignListener>	listener	= new ArrayList<SignListener>();
 	
 	@Override
-	public void register(SignListener l) {
+	public void register(final SignListener l) {
 		listener.add(l);
 	}
 	
@@ -44,8 +44,8 @@ public class CoreSignListeners implements SignListeners{
 			
 			@Override
 			public void run() {
-				String team = getSign().getLine(1);
-				TeamSelectFeature tf = (TeamFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM);
+				final String team = getSign().getLine(1);
+				final TeamSelectFeature tf = (TeamFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM);
 				if (tf == null) {
 					return;
 				}
@@ -69,15 +69,15 @@ public class CoreSignListeners implements SignListeners{
 	@EventHandler
 	public void onInteract(final PlayerInteractEvent e) {
 		if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			Block b = e.getClickedBlock();
+			final Block b = e.getClickedBlock();
 			if (b.getState() instanceof Sign) {
 				final Sign sign = (Sign) b.getState();
-				Thread t = new Thread() {
+				final Thread t = new Thread() {
 					
 					@Override
 					public void run() {
-						for (String line : sign.getLines()) {
-							for (SignListener l : listener) {
+						for (final String line : sign.getLines()) {
+							for (final SignListener l : listener) {
 								if (l.getKey().equalsIgnoreCase(line)) {
 									l.getAction().setSign(sign);
 									l.getAction().setPlayer(e.getPlayer());

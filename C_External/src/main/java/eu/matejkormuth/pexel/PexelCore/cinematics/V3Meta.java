@@ -28,22 +28,23 @@ import java.io.IOException;
  * 
  */
 public interface V3Meta {
-    /**
-     * Typ meta.
-     */
-    public V3MetaType getMetaType();
-    
-    /**
-     * Zapise meta do streamu.
-     * 
-     * @param stream
-     */
-    public void writeMeta(DataOutputStream stream) throws IOException;
-    
-    /**
-     * Vrati ciselny typ META.
-     * 
-     * @return
-     */
-    public int getType();
+	
+	/**
+	 * Typ meta.
+	 */
+	public V3MetaType getMetaType();
+	
+	/**
+	 * Zapise meta do streamu.
+	 * 
+	 * @param stream
+	 */
+	public void writeMeta(final DataOutputStream stream) throws IOException;
+	
+	/**
+	 * Vrati ciselny typ META.
+	 * 
+	 * @return
+	 */
+	public int getType();
 }

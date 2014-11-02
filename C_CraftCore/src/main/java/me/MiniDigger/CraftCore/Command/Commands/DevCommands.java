@@ -116,10 +116,10 @@ public class DevCommands {
 	@Command(name = "dev.bed", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void bed(final CommandArgs args) {
 		BlockFace face = BlockFace.EAST;
-		Block bed = args.getPlayer().getLocation().getBlock();
-		Block sign = bed.getRelative(BlockFace.DOWN, 2);
+		final Block bed = args.getPlayer().getLocation().getBlock();
+		final Block sign = bed.getRelative(BlockFace.DOWN, 2);
 		face = getFacing(sign);
-		Block head = bed.getRelative(face);
+		final Block head = bed.getRelative(face);
 		byte flags = (byte) 8;
 		byte direction = (byte) (0x0);
 		
@@ -155,7 +155,7 @@ public class DevCommands {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public BlockFace getFacing(Block b) {
+	public BlockFace getFacing(final Block b) {
 		return ((org.bukkit.material.Directional) b.getType().getNewData(b.getData())).getFacing();
 	}
 	
@@ -280,11 +280,11 @@ public class DevCommands {
 	@Command(name = "dev.cinematic", description = "DEV!", usage = "", permission = "dev")
 	public void cinematic(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
-			V3CameraClip c = new V3CameraClip();
-			V3Player p = new V3Player(args.getUser().getPlayer(), c);
+			final V3CameraClip c = new V3CameraClip();
+			final V3Player p = new V3Player(args.getUser().getPlayer(), c);
 			p.play();
 		} else if (args.getArgs().length == 0) {
-			if(args.getSender() == null){
+			if (args.getSender() == null) {
 				System.out.println("wait, whut?");
 			}
 			r = new V3BasicRecorder((Player) args.getSender(), 20);

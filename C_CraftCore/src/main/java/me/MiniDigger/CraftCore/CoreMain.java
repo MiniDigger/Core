@@ -106,7 +106,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	@Override
 	public void onEnable() {
-		Date start = new Date();
+		final Date start = new Date();
 		info("Aktiviere " + getDescription().getFullName() + " by MiniDigger");
 		core = new CoreCore(this);
 		
@@ -114,10 +114,10 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Checke Lizenz...");
 		try {
 			if (Core.getCore().getLicenseHandler().register()) {
-				Date d2 = new Date();
+				final Date d2 = new Date();
 				info("Lizenz ok (" + (d2.getTime() - d1.getTime()) + "ms)");
 			} else {
-				Date d2 = new Date();
+				final Date d2 = new Date();
 				info("Lizenz nicht ok! (" + (d2.getTime() - d1.getTime()) + "ms)");
 				core.getCommonMethods().killPlugin();
 				return;
@@ -135,7 +135,7 @@ public class CoreMain extends JavaPlugin implements Main {
 				update = true;
 				return;
 			}
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception e) {
 			e.printStackTrace();
@@ -145,7 +145,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Setzte Default Config...");
 		try {
 			saveDefaultConfig();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
@@ -155,7 +155,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Aktiviere Externe Dependencies...");
 		try {
 			enableExternalDependencies();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
@@ -165,7 +165,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Registriere Commands...");
 		try {
 			registerCommands();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
@@ -175,7 +175,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Aktiviere Handler...");
 		try {
 			enableHandler();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			ex.printStackTrace();
@@ -186,7 +186,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Lade Daten...");
 		try {
 			loadStuff();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
@@ -197,7 +197,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Registriere Listener...");
 		try {
 			registerListener();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			ex.printStackTrace();
@@ -208,7 +208,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Apply Reload fixes...");
 		try {
 			fixReload();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Feheler: " + ex.getMessage());
@@ -218,7 +218,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		info("Suche Game...");
 		try {
 			Core.getCore().getGameHandler().searchMainGame();
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
@@ -246,7 +246,7 @@ public class CoreMain extends JavaPlugin implements Main {
 					return true;
 				}
 			});
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
@@ -270,14 +270,14 @@ public class CoreMain extends JavaPlugin implements Main {
 					Core.getCore().getSocketHandler().startClient();
 				}
 			}, 10);
-			Date d2 = new Date();
+			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}
 		
 		core.enable();
-		Date end = new Date();
+		final Date end = new Date();
 		info("Aktiviert! (" + (end.getTime() - start.getTime()) + "ms)");
 	}
 	
@@ -387,7 +387,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void registerListener() {
 		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
 		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),
-		        Core.getCore().getProtocolHandler().getSignListeners(),new ToggleCommands() };
+		        Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
 		for (final Listener listener : listeners) {
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}

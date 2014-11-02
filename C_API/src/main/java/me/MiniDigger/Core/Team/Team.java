@@ -18,9 +18,9 @@ package me.MiniDigger.Core.Team;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.ChatColor;
-
 import me.MiniDigger.Core.Game.Game;
+
+import org.bukkit.ChatColor;
 
 public interface Team {
 	
@@ -94,15 +94,16 @@ public interface Team {
 	 *            the player to leave this team
 	 */
 	void leave(final UUID player);
-
+	
 	/**
-     * @return the teams color
-     */
-    ChatColor getColor();
-
+	 * @return the teams color
+	 */
+	ChatColor getColor();
+	
 	/**
-     * @param color the new color to set
-     */
-    void setColor(ChatColor color);
+	 * @param color
+	 *            the new color to set
+	 */
+	void setColor(final ChatColor color);
 	
 }

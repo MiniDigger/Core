@@ -91,7 +91,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
 		addFeature(new FixedFoodFeature(this));
-		List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY);
+		final List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY);
 		allowed.add(EntityType.VILLAGER);
 		addFeature(new MobFeature(this, allowed));
 		addFeature(new FixedTimeFeature(this, 12000));
@@ -105,11 +105,11 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamDeathMatchFeature(this));
 		addFeature(new VillagerFeature(this));
 		
-		ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
+		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 		
-		ItemStack bronce = new CoreItemBuilder(Material.CLAY_BRICK).name(ChatColor.AQUA + "Bronze").amount(1).build();
+		final ItemStack bronce = new CoreItemBuilder(Material.CLAY_BRICK).name(ChatColor.AQUA + "Bronze").amount(1).build();
 		
-		ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
+		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 		
 		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20 * 4, null, bronce));
 		addFeature(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 15, null, silver));

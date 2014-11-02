@@ -58,7 +58,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 	@Override
 	public boolean addTrade(final Villager villager, final VillagerTrade villagerTrade) {
 		List<VillagerTrade> l = this.villager.remove(villager.getUniqueId());
-		if(l == null){
+		if (l == null) {
 			l = new ArrayList<VillagerTrade>();
 		}
 		l.add(villagerTrade);

@@ -32,113 +32,113 @@ import org.bukkit.Location;
  * 
  */
 public class V3CompiledWriter {
-    /**
-     * Vystupny stream.
-     */
-    private DataOutputStream output;
-    
-    /**
-     * Kuzelne cislo 1.
-     */
-    public final static int  MAGIC_1 = 86;
-    /**
-     * Kuzelne cislo 2.
-     */
-    public final static int  MAGIC_2 = 114;
-    /**
-     * Verzia suboru.
-     */
-    public final static int  VERSION = 1;
-    
-    public static V3CompiledWriter createFile(final String path) {
-        return new V3CompiledWriter(path);
-    }
-    
-    // Sukromny konstruktor.
-    private V3CompiledWriter(final String path) {
-        try {
-            this.output = new DataOutputStream(new FileOutputStream(path));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Nezatvori subor!
-     * 
-     * @param clip
-     * @throws IOException
-     */
-    public void writeClip(final V3CameraClip clip) throws IOException {
-        this.checkForNull(clip);
-        
-        // Write FileHeader.
-        this.writeFileHeader(clip.FPS);
-        // Write Frames.
-        for (V3CameraFrame frame : clip.frames) {
-            // Write FrameHeader.
-            Location l = frame.getCameraLocation();
-            this.writeFrameHeader(l.getX(), l.getY(), l.getZ(), l.getYaw(),
-                    l.getPitch(), frame.getZoom(), frame.isMetaOnly());
-            // Write FrameMeta (ExtraData).
-            this.writeMetaHeader(frame.getMetaCount());
-            
-            if (frame.hasMeta()) {
-                for (V3Meta meta : frame.getMetas()) {
-                    // Write importatnt things.
-                    this.output.writeByte(meta.getType());
-                    
-                    // Write data metas's way.
-                    meta.writeMeta(this.output);
-                }
-            }
-            
-            // Proceed to next frame.
-        }
-    }
-    
-    /**
-     * @param clip
-     */
-    private void checkForNull(final V3CameraClip clip) {
-        
-    }
-    
-    private void writeMetaHeader(final int metaCount) throws IOException {
-        // Write Meta Header.
-        this.output.writeShort(metaCount);
-    }
-    
-    private void writeFileHeader(final int fps) throws IOException {
-        // Write FileHeader.
-        this.output.writeByte(V3CompiledWriter.MAGIC_1);
-        this.output.writeByte(V3CompiledWriter.MAGIC_2);
-        this.output.writeByte(V3CompiledWriter.VERSION);
-        if (fps >= 255)
-            throw new IOException("FPS must be lower than 255!");
-        else
-            this.output.writeByte(fps);
-    }
-    
-    private void writeFrameHeader(final double camX, final double camY,
-            final double camZ, final float yaw, final float pitch, final float zoom,
-            final boolean isMeta) throws IOException {
-        // Write FrameHeader.
-        this.output.writeDouble(camX);
-        this.output.writeDouble(camY);
-        this.output.writeDouble(camZ);
-        this.output.writeFloat(yaw);
-        this.output.writeFloat(pitch);
-        this.output.writeFloat(zoom);
-        this.output.writeBoolean(isMeta);
-    }
-    
-    /**
-     * Zatvori subor.
-     * 
-     * @throws IOException
-     */
-    public void close() throws IOException {
-        this.output.close();
-    }
+	
+	/**
+	 * Vystupny stream.
+	 */
+	private DataOutputStream	output;
+	
+	/**
+	 * Kuzelne cislo 1.
+	 */
+	public final static int	 MAGIC_1	= 86;
+	/**
+	 * Kuzelne cislo 2.
+	 */
+	public final static int	 MAGIC_2	= 114;
+	/**
+	 * Verzia suboru.
+	 */
+	public final static int	 VERSION	= 1;
+	
+	public static V3CompiledWriter createFile(final String path) {
+		return new V3CompiledWriter(path);
+	}
+	
+	// Sukromny konstruktor.
+	private V3CompiledWriter(final String path) {
+		try {
+			output = new DataOutputStream(new FileOutputStream(path));
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Nezatvori subor!
+	 * 
+	 * @param clip
+	 * @throws IOException
+	 */
+	public void writeClip(final V3CameraClip clip) throws IOException {
+		checkForNull(clip);
+		
+		// Write FileHeader.
+		writeFileHeader(clip.FPS);
+		// Write Frames.
+		for (final V3CameraFrame frame : clip.frames) {
+			// Write FrameHeader.
+			final Location l = frame.getCameraLocation();
+			writeFrameHeader(l.getX(), l.getY(), l.getZ(), l.getYaw(), l.getPitch(), frame.getZoom(), frame.isMetaOnly());
+			// Write FrameMeta (ExtraData).
+			writeMetaHeader(frame.getMetaCount());
+			
+			if (frame.hasMeta()) {
+				for (final V3Meta meta : frame.getMetas()) {
+					// Write importatnt things.
+					output.writeByte(meta.getType());
+					
+					// Write data metas's way.
+					meta.writeMeta(output);
+				}
+			}
+			
+			// Proceed to next frame.
+		}
+	}
+	
+	/**
+	 * @param clip
+	 */
+	private void checkForNull(final V3CameraClip clip) {
+		
+	}
+	
+	private void writeMetaHeader(final int metaCount) throws IOException {
+		// Write Meta Header.
+		output.writeShort(metaCount);
+	}
+	
+	private void writeFileHeader(final int fps) throws IOException {
+		// Write FileHeader.
+		output.writeByte(V3CompiledWriter.MAGIC_1);
+		output.writeByte(V3CompiledWriter.MAGIC_2);
+		output.writeByte(V3CompiledWriter.VERSION);
+		if (fps >= 255) {
+			throw new IOException("FPS must be lower than 255!");
+		} else {
+			output.writeByte(fps);
+		}
+	}
+	
+	private void writeFrameHeader(final double camX, final double camY, final double camZ, final float yaw, final float pitch, final float zoom, final boolean isMeta)
+	        throws IOException {
+		// Write FrameHeader.
+		output.writeDouble(camX);
+		output.writeDouble(camY);
+		output.writeDouble(camZ);
+		output.writeFloat(yaw);
+		output.writeFloat(pitch);
+		output.writeFloat(zoom);
+		output.writeBoolean(isMeta);
+	}
+	
+	/**
+	 * Zatvori subor.
+	 * 
+	 * @throws IOException
+	 */
+	public void close() throws IOException {
+		output.close();
+	}
 }

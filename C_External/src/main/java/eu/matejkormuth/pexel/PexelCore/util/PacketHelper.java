@@ -28,13 +28,14 @@ import org.bukkit.entity.Player;
  * 
  */
 public class PacketHelper {
-    /**
-     * Posle paketu packet hracovi player.
-     * 
-     * @param player
-     * @param packet
-     */
-    public static void send(final Player player, final Packet packet) {
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-    }
+	
+	/**
+	 * Posle paketu packet hracovi player.
+	 * 
+	 * @param player
+	 * @param packet
+	 */
+	public static void send(final Player player, final Packet packet) {
+		((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+	}
 }

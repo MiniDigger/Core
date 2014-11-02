@@ -150,7 +150,7 @@ public class SpawnerFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onEntitySpawn(EntitySpawnEvent event) {
+	public void onEntitySpawn(final EntitySpawnEvent event) {
 		if (event.getEntityType() == EntityType.DROPPED_ITEM) {
 			if (event.getEntity().hasMetadata("doNotRemove")) {
 				return;
@@ -161,7 +161,7 @@ public class SpawnerFeature extends CoreFeature {
 			        .getLocation().getZ()) {
 				
 				@Override
-				public boolean a(EntityItem entityitem) {
+				public boolean a(final EntityItem entityitem) {
 					// DO NOT merge items
 					return false;
 				}

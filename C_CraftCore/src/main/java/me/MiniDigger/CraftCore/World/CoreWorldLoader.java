@@ -136,7 +136,7 @@ public class CoreWorldLoader implements WorldLoader {
 		server.getPluginManager().callEvent(new WorldInitEvent(internal.getWorld()));
 		server.getPluginManager().callEvent(new WorldLoadEvent(internal.getWorld()));
 		
-		for (Entity e : internal.getWorld().getEntities()) {
+		for (final Entity e : internal.getWorld().getEntities()) {
 			e.remove();
 			System.out.println("remove " + e.getType());
 		}

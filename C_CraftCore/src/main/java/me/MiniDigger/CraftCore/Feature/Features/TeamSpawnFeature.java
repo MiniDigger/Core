@@ -99,7 +99,7 @@ public class TeamSpawnFeature extends CoreFeature {
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("[Team]")) {
-					String name = s.getLine(1);
+					final String name = s.getLine(1);
 					List<Location> spawn = this.spawns.remove(name);
 					if (spawn == null) {
 						spawn = new ArrayList<Location>();
@@ -124,9 +124,9 @@ public class TeamSpawnFeature extends CoreFeature {
 		spawns = null;
 	}
 	
-	public Location getSpawn(Team t) {
+	public Location getSpawn(final Team t) {
 		List<Location> usedSpawns = this.usedSpawns.remove(t.getName());
-		List<Location> spawns = this.spawns.remove(t.getName());
+		final List<Location> spawns = this.spawns.remove(t.getName());
 		
 		if (usedSpawns == null) {
 			usedSpawns = new ArrayList<Location>();
@@ -164,10 +164,10 @@ public class TeamSpawnFeature extends CoreFeature {
 	}
 	
 	public Location spawn(final User user) {
-		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		Team t = tf.getTeam(user);
+		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final Team t = tf.getTeam(user);
 		
-		Location loc = getSpawn(t);
+		final Location loc = getSpawn(t);
 		
 		if (user == null) {
 			System.out.println("wait, user null?!");
@@ -186,12 +186,12 @@ public class TeamSpawnFeature extends CoreFeature {
 		return loc;
 	}
 	
-	public Location spawn(Player p) {
-		User user = Core.getCore().getUserHandler().get(p.getUniqueId());
-		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		Team t = tf.getTeam(user);
+	public Location spawn(final Player p) {
+		final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
+		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final Team t = tf.getTeam(user);
 		
-		Location loc = getSpawn(t);
+		final Location loc = getSpawn(t);
 		
 		p.teleport(loc);
 		

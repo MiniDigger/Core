@@ -32,7 +32,7 @@ public interface SignListeners extends Listener {
 	 * @param l
 	 *            the listener
 	 */
-	public void register(SignListener l);
+	public void register(final SignListener l);
 	
 	/**
 	 * Handles all interactions with signs
@@ -40,7 +40,7 @@ public interface SignListeners extends Listener {
 	 * @param e
 	 *            the bukkit event
 	 */
-	public void onInteract(PlayerInteractEvent e);
+	public void onInteract(final PlayerInteractEvent e);
 	
 	/**
 	 * Registers all listeners
@@ -56,7 +56,7 @@ public interface SignListeners extends Listener {
 		 * @param sign
 		 *            the sign to set
 		 */
-		public void setSign(Sign sign) {
+		public void setSign(final Sign sign) {
 			this.sign = sign;
 		}
 		
@@ -71,7 +71,7 @@ public interface SignListeners extends Listener {
 		 * @param player
 		 *            the player to set
 		 */
-		public void setPlayer(Player player) {
+		public void setPlayer(final Player player) {
 			this.player = player;
 		}
 		
@@ -85,18 +85,18 @@ public interface SignListeners extends Listener {
 	
 	public class SignListener {
 		
-		private String		key;
-		private SignAction	action;
-		private boolean		async;
-		private boolean		finalAction;
+		private final String		key;
+		private final SignAction	action;
+		private final boolean		async;
+		private boolean		     finalAction;
 		
-		public SignListener(String key, SignAction action, boolean async) {
+		public SignListener(final String key, final SignAction action, final boolean async) {
 			this.key = key;
 			this.action = action;
 			this.async = async;
 		}
 		
-		public SignListener(String key, SignAction action, boolean async, boolean finalAction) {
+		public SignListener(final String key, final SignAction action, final boolean async, final boolean finalAction) {
 			this.key = key;
 			this.action = action;
 			this.async = async;
@@ -113,7 +113,7 @@ public interface SignListeners extends Listener {
 		 * @param sign
 		 *            the sign which was clicked
 		 */
-		public void doAction(Sign sign) {
+		public void doAction(final Sign sign) {
 			if (isAsync()) {
 				Bukkit.getScheduler().runTaskAsynchronously((Plugin) Core.getCore().getInstance(), action);
 			} else {

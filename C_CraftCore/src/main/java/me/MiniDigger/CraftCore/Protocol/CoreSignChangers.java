@@ -295,7 +295,7 @@ public class CoreSignChangers implements SignChangers {
 		addSignChanger(new SignChanger("[Team]", "signchangers.create.team", "Zeigt das Team schön formatiert an") {
 			
 			@Override
-			public String getValue(Player p, Location loc) {
+			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
 				}

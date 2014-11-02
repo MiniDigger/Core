@@ -70,10 +70,10 @@ public class BedFeature extends CoreFeature {
 	@Override
 	public void start() {
 		BlockFace face = BlockFace.EAST;
-		Block bed = this.bed.getBlock();
-		Block sign = bed.getRelative(BlockFace.DOWN, 2);
+		final Block bed = this.bed.getBlock();
+		final Block sign = bed.getRelative(BlockFace.DOWN, 2);
 		face = getFacing(sign);
-		Block head = bed.getRelative(face);
+		final Block head = bed.getRelative(face);
 		byte flags = (byte) 8;
 		byte direction = (byte) (0x0);
 		
@@ -106,7 +106,7 @@ public class BedFeature extends CoreFeature {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public BlockFace getFacing(Block b) {
+	public BlockFace getFacing(final Block b) {
 		return ((org.bukkit.material.Directional) b.getType().getNewData(b.getData())).getFacing();
 	}
 	
@@ -130,7 +130,7 @@ public class BedFeature extends CoreFeature {
 			}
 		}
 		if (bed == null) {
-			MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+			final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 			e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
 		} else {
 			e.setRespawnLocation(bed.add(0.5, 1, 0.5));

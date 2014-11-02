@@ -46,32 +46,36 @@ public interface PlayerUtil {
 	 * @return May be null
 	 */
 	public Entity getTarget(final Player p, final int range);
-
+	
 	/**
 	 * Prepares the player for the game
 	 * 
-     * @param p the player
-     */
-    void prepare(Player p);
-
+	 * @param p
+	 *            the player
+	 */
+	void prepare(final Player p);
+	
 	/**
 	 * Heal, feed and remove effects from the player
 	 * 
-     * @param p the player
-     */
-    void fixHealth(Player p);
-
+	 * @param p
+	 *            the player
+	 */
+	void fixHealth(final Player p);
+	
 	/**
 	 * Clears the inv of the player
 	 * 
-     * @param p the player
-     */
-    void clearInv(Player p);
-    
+	 * @param p
+	 *            the player
+	 */
+	void clearInv(final Player p);
+	
 	/**
 	 * Clears the armor of the player
 	 * 
-     * @param p the player
-     */
-    void clearArmor(Player p);
+	 * @param p
+	 *            the player
+	 */
+	void clearArmor(final Player p);
 }

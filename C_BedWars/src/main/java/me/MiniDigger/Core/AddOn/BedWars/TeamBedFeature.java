@@ -19,16 +19,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamSpawnFeature;
+
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class TeamBedFeature extends CoreFeature {
 	
@@ -77,21 +78,21 @@ public class TeamBedFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		for (BedFeature f : beds.values()) {
+		for (final BedFeature f : beds.values()) {
 			f.end();
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBedDestory(final BlockBreakEvent e) {
-		for (BedFeature f : beds.values()) {
+		for (final BedFeature f : beds.values()) {
 			f.onBedDestory(e);
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
-		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		beds.get(tf.getTeam(e.getPlayer()).getName()).onPlayerRespawn(e);
 	}
 	

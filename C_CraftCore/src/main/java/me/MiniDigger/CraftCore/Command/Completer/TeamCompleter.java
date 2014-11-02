@@ -43,14 +43,14 @@ public class TeamCompleter {
 	
 	@Completer(name = "team.join")
 	public List<String> joinC(final CommandArgs args) {
-		TeamSelectFeature f = (TeamSelectFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM_SELECT);
+		final TeamSelectFeature f = (TeamSelectFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM_SELECT);
 		if (f == null) {
 			return new ArrayList<String>();
 		}
 		
 		if (args.getArgs().length == 1) {
-			List<String> names = new ArrayList<String>();
-			for (Team teams : f.getTeams()) {
+			final List<String> names = new ArrayList<String>();
+			for (final Team teams : f.getTeams()) {
 				names.add(teams.getName());
 			}
 			

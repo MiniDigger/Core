@@ -129,6 +129,7 @@ public class CoreUserHandler implements UserHandler {
 		return u;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public List<User> getOnlineUsers() {
 		final List<User> users = new ArrayList<>();
@@ -140,6 +141,7 @@ public class CoreUserHandler implements UserHandler {
 		return users;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public List<Player> getOnlinePlayers() {
 		final List<Player> players = new ArrayList<>();

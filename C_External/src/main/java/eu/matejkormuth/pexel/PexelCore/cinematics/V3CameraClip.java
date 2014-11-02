@@ -40,145 +40,142 @@ import org.bukkit.plugin.Plugin;
  * 
  */
 public class V3CameraClip {
-    List<V3CameraFrame> frames    = Collections.synchronizedList(new ArrayList<V3CameraFrame>());
-    List<Entity>        entites   = Collections.synchronizedList(new ArrayList<Entity>());
-    
-    /**
-     * Pocet ramov za sekundu v tomto klipe.
-     */
-    public int          FPS       = 20;
-    public int          verzia    = 3;
-    public int          metaCount = 0;
-    
-    /**
-     * Prida jeden frame do zoznamu frameov.
-     * 
-     * @param frame
-     */
-    public void addFrame(final V3CameraFrame frame) {
-        frame.clip = this;
-        this.frames.add(frame);
-        this.metaCount += frame.getMetaCount();
-    }
-    
-    /**
-     * Prida kolekciu frameov do zoznamu frameov.
-     * 
-     * @param frames
-     */
-    public void addFrames(final List<V3CameraFrame> frames) {
-        this.frames.addAll(frames);
-    }
-    
-    /**
-     * Vrati vsetky framy v klipe.
-     * 
-     * @return
-     */
-    public List<V3CameraFrame> getFrames() {
-        return this.frames;
-    }
-    
-    /**
-     * Vrati frame specifikovany indexom.
-     * 
-     * @param index
-     * @return
-     */
-    public V3CameraFrame getFrame(final int index) {
-        return this.frames.get(index);
-    }
-    
-    /**
-     * Ulozi klip do suboru.
-     * 
-     * @param meno
-     *            suboru.
-     */
-    public void save(final String name) {
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter(new File(((Plugin)Core.getCore().getInstance()).getDataFolder(),name + ".dat"));
-            writer.println("#mertex-fun | CameraClip | v 1.2.1");
-            writer.println("#{fsavetime=" + System.currentTimeMillis() + ",fcount="
-                    + this.frames.size() + ",ver=1}");
-            writer.println("#{FPS=" + this.FPS + "}");
-            writer.println("#{VERSION3}");
-            
-            for (V3CameraFrame cframe : this.frames) {
-                writer.println(cframe.serialize());
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Nacita klip zo suboru.
-     * 
-     * @param meno
-     *            suboru
-     * @return klip.
-     */
-    public static V3CameraClip load(final String name) {
-        System.out.println("Nacitavam subor " + name);
-        V3CameraClip clip = new V3CameraClip();
-        clip.verzia = 3;
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(new File(((Plugin)Core.getCore().getInstance()).getDataFolder(),name + ".dat")));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Poznamky sa nesnaz nacitat ako bloky.
-                if (!line.startsWith("#")) {
-                    // Pridaj blok.
-                    try {
-                        clip.addFrame(new V3CameraFrame(line));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                else {
-                    // Poznamka alebo specialne metadata?
-                    if (line.startsWith("#{")) {
-                        if (line.startsWith("#{FPS=")) {
-                            clip.FPS = Integer.parseInt(line.substring(6,
-                                    line.indexOf("}")));
-                        }
-                        
-                        if (line.startsWith("#{VERSION3")) {
-                            clip.verzia = 3;
-                        }
-                        // Metadata!
-                        // Fajn, aj tak ich zatial nevyuzivame...
-                    }
-                }
-                
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("Nacitanych " + clip.getFrames().size() + " frameov.");
-        return clip;
-    }
-    
-    /**
-     * Vrati pocet ramov v klipe.
-     * 
-     * @return
-     */
-    public int getNumOfFrames() {
-        return this.frames.size();
-    }
+	
+	List<V3CameraFrame>	frames	  = Collections.synchronizedList(new ArrayList<V3CameraFrame>());
+	List<Entity>	    entites	  = Collections.synchronizedList(new ArrayList<Entity>());
+	
+	/**
+	 * Pocet ramov za sekundu v tomto klipe.
+	 */
+	public int	        FPS	      = 20;
+	public int	        verzia	  = 3;
+	public int	        metaCount	= 0;
+	
+	/**
+	 * Prida jeden frame do zoznamu frameov.
+	 * 
+	 * @param frame
+	 */
+	public void addFrame(final V3CameraFrame frame) {
+		frame.clip = this;
+		frames.add(frame);
+		metaCount += frame.getMetaCount();
+	}
+	
+	/**
+	 * Prida kolekciu frameov do zoznamu frameov.
+	 * 
+	 * @param frames
+	 */
+	public void addFrames(final List<V3CameraFrame> frames) {
+		this.frames.addAll(frames);
+	}
+	
+	/**
+	 * Vrati vsetky framy v klipe.
+	 * 
+	 * @return
+	 */
+	public List<V3CameraFrame> getFrames() {
+		return frames;
+	}
+	
+	/**
+	 * Vrati frame specifikovany indexom.
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public V3CameraFrame getFrame(final int index) {
+		return frames.get(index);
+	}
+	
+	/**
+	 * Ulozi klip do suboru.
+	 * 
+	 * @param meno
+	 *            suboru.
+	 */
+	public void save(final String name) {
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat"));
+			writer.println("#mertex-fun | CameraClip | v 1.2.1");
+			writer.println("#{fsavetime=" + System.currentTimeMillis() + ",fcount=" + frames.size() + ",ver=1}");
+			writer.println("#{FPS=" + FPS + "}");
+			writer.println("#{VERSION3}");
+			
+			for (final V3CameraFrame cframe : frames) {
+				writer.println(cframe.serialize());
+			}
+			writer.close();
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Nacita klip zo suboru.
+	 * 
+	 * @param meno
+	 *            suboru
+	 * @return klip.
+	 */
+	public static V3CameraClip load(final String name) {
+		System.out.println("Nacitavam subor " + name);
+		final V3CameraClip clip = new V3CameraClip();
+		clip.verzia = 3;
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat")));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				// Poznamky sa nesnaz nacitat ako bloky.
+				if (!line.startsWith("#")) {
+					// Pridaj blok.
+					try {
+						clip.addFrame(new V3CameraFrame(line));
+					} catch (final Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					// Poznamka alebo specialne metadata?
+					if (line.startsWith("#{")) {
+						if (line.startsWith("#{FPS=")) {
+							clip.FPS = Integer.parseInt(line.substring(6, line.indexOf("}")));
+						}
+						
+						if (line.startsWith("#{VERSION3")) {
+							clip.verzia = 3;
+						}
+						// Metadata!
+						// Fajn, aj tak ich zatial nevyuzivame...
+					}
+				}
+				
+			}
+			reader.close();
+		} catch (final FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (final IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("Nacitanych " + clip.getFrames().size() + " frameov.");
+		return clip;
+	}
+	
+	/**
+	 * Vrati pocet ramov v klipe.
+	 * 
+	 * @return
+	 */
+	public int getNumOfFrames() {
+		return frames.size();
+	}
 }

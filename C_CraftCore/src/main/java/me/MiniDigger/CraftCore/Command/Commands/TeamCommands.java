@@ -38,17 +38,17 @@ public class TeamCommands {
 	
 	@Command(name = "team.join", description = "Joint einem Team", usage = "<team>", permission = "team.join", min = 1, max = 1)
 	public void join(final CommandArgs args) {
-		TeamSelectFeature f = (TeamSelectFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM_SELECT);
+		final TeamSelectFeature f = (TeamSelectFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM_SELECT);
 		if (f == null) {
 			Prefix.API.getPrefix().then("Du kannst zur Zeit keinem Team beitreten!").color(ChatColor.RED).send(args.getSender());
 			return;
 		}
 		
-		Team t = f.getTeam(args.getArgs()[0]);
+		final Team t = f.getTeam(args.getArgs()[0]);
 		if (t == null) {
 			Prefix.API.getPrefix().then("Diese Team gibt es nicht! Verfügbare Teams: ").color(ChatColor.RED).send(args.getSender());
-			FancyMessage msg = Prefix.API.getPrefix();
-			for (Team team : f.getTeams()) {
+			final FancyMessage msg = Prefix.API.getPrefix();
+			for (final Team team : f.getTeams()) {
 				msg.then(" " + team.getName()).color(team.getColor()).command("/team join " + team.getName());
 			}
 			msg.send(args.getSender());
@@ -64,13 +64,13 @@ public class TeamCommands {
 	
 	@Command(name = "team.list", description = "Zeigt alle Teams", usage = "", permission = "team.list")
 	public void list(final CommandArgs args) {
-		TeamSelectFeature f = (TeamSelectFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM_SELECT);
+		final TeamSelectFeature f = (TeamSelectFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM_SELECT);
 		if (f == null) {
 			Prefix.API.getPrefix().then("Es gibt zur Zeit keine Teams").color(ChatColor.RED).send(args.getSender());
 			return;
 		}
 		Prefix.API.getPrefix().then("========= Teams ===========").color(ChatColor.GOLD).send(args.getSender());;
-		for (Team team : f.getTeams()) {
+		for (final Team team : f.getTeams()) {
 			Prefix.API.getPrefix().then(team.getName() + ": ").color(team.getColor()).command("/team join " + team.getName()).then(team.getPlayers().size() + " Spieler")
 			        .color(ChatColor.AQUA).send(args.getSender());;
 		}

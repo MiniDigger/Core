@@ -65,7 +65,7 @@ public class CoreSignGUI implements SignGUI, Listener {
 	protected CoreMain	                   plugin;
 	
 	public CoreSignGUI() {
-		this.plugin = (CoreMain) Core.getCore().getInstance();
+		plugin = (CoreMain) Core.getCore().getInstance();
 		init();
 	}
 	

@@ -85,10 +85,10 @@ public class CorePlayerUtil implements PlayerUtil {
 		}
 		return null;
 	}
-
+	
 	@Override
-	public void clearArmor(Player p) {
-		ItemStack[] items = p.getInventory().getArmorContents();
+	public void clearArmor(final Player p) {
+		final ItemStack[] items = p.getInventory().getArmorContents();
 		for (int i = 0; i < items.length; i++) {
 			items[i] = new ItemStack(Material.AIR);
 		}
@@ -96,24 +96,24 @@ public class CorePlayerUtil implements PlayerUtil {
 	}
 	
 	@Override
-	public void clearInv(Player p) {
-		ItemStack[] items = p.getInventory().getContents();
+	public void clearInv(final Player p) {
+		final ItemStack[] items = p.getInventory().getContents();
 		for (int i = 0; i < items.length; i++) {
 			items[i] = new ItemStack(Material.AIR);
 		}
 		p.getInventory().setContents(items);
 	}
-
+	
 	@Override
-	public void fixHealth(Player p) {
+	public void fixHealth(final Player p) {
 		p.setHealth(20d);
 		p.setSaturation(1);
 		p.setFoodLevel(20);
 		p.getActivePotionEffects().clear();
 	}
-
+	
 	@Override
-	public void prepare(Player p) {
+	public void prepare(final Player p) {
 		clearArmor(p);
 		clearInv(p);
 		fixHealth(p);

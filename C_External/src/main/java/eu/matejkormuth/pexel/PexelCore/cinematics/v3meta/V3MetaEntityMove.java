@@ -30,104 +30,103 @@ import eu.matejkormuth.pexel.PexelCore.cinematics.V3MetaType;
  * 
  */
 public class V3MetaEntityMove implements V3Meta {
-    private final double movX;
-    private final double movY;
-    private final double movZ;
-    private final float  yaw;
-    private final float  pitch;
-    private final long   internalId;
-    
-    /**
-     * @param movX
-     * @param movY
-     * @param movZ
-     * @param yaw
-     * @param pitch
-     * @param internalId
-     */
-    public V3MetaEntityMove(final double movX, final double movY, final double movZ,
-            final float yaw, final float pitch, final long internalId) {
-        super();
-        this.movX = movX;
-        this.movY = movY;
-        this.movZ = movZ;
-        this.yaw = yaw;
-        this.pitch = pitch;
-        this.internalId = internalId;
-    }
-    
-    @Override
-    public V3MetaType getMetaType() {
-        return V3MetaType.V3MetaEntityMove;
-    }
-    
-    @Override
-    public void writeMeta(final DataOutputStream stream) throws IOException {
-        stream.writeDouble(this.movX);
-        stream.writeDouble(this.movY);
-        stream.writeDouble(this.movZ);
-        stream.writeFloat(this.yaw);
-        stream.writeFloat(this.pitch);
-        stream.writeLong(this.internalId);
-    }
-    
-    public static V3MetaEntityMove readMeta(final DataInputStream stream)
-            throws IOException {
-        double x = stream.readDouble();
-        double y = stream.readDouble();
-        double z = stream.readDouble();
-        float yaw = stream.readFloat();
-        float pitch = stream.readFloat();
-        long internalId = stream.readLong();
-        
-        return new V3MetaEntityMove(x, y, z, yaw, pitch, internalId);
-    }
-    
-    @Override
-    public int getType() {
-        return 10;
-    }
-    
-    /**
-     * @return the movX
-     */
-    public double getMovX() {
-        return this.movX;
-    }
-    
-    /**
-     * @return the movY
-     */
-    public double getMovY() {
-        return this.movY;
-    }
-    
-    /**
-     * @return the movZ
-     */
-    public double getMovZ() {
-        return this.movZ;
-    }
-    
-    /**
-     * @return the yaw
-     */
-    public float getYaw() {
-        return this.yaw;
-    }
-    
-    /**
-     * @return the pitch
-     */
-    public float getPitch() {
-        return this.pitch;
-    }
-    
-    /**
-     * @return the internalId
-     */
-    public long getInternalId() {
-        return this.internalId;
-    }
-    
+	
+	private final double	movX;
+	private final double	movY;
+	private final double	movZ;
+	private final float	 yaw;
+	private final float	 pitch;
+	private final long	 internalId;
+	
+	/**
+	 * @param movX
+	 * @param movY
+	 * @param movZ
+	 * @param yaw
+	 * @param pitch
+	 * @param internalId
+	 */
+	public V3MetaEntityMove(final double movX, final double movY, final double movZ, final float yaw, final float pitch, final long internalId) {
+		super();
+		this.movX = movX;
+		this.movY = movY;
+		this.movZ = movZ;
+		this.yaw = yaw;
+		this.pitch = pitch;
+		this.internalId = internalId;
+	}
+	
+	@Override
+	public V3MetaType getMetaType() {
+		return V3MetaType.V3MetaEntityMove;
+	}
+	
+	@Override
+	public void writeMeta(final DataOutputStream stream) throws IOException {
+		stream.writeDouble(movX);
+		stream.writeDouble(movY);
+		stream.writeDouble(movZ);
+		stream.writeFloat(yaw);
+		stream.writeFloat(pitch);
+		stream.writeLong(internalId);
+	}
+	
+	public static V3MetaEntityMove readMeta(final DataInputStream stream) throws IOException {
+		final double x = stream.readDouble();
+		final double y = stream.readDouble();
+		final double z = stream.readDouble();
+		final float yaw = stream.readFloat();
+		final float pitch = stream.readFloat();
+		final long internalId = stream.readLong();
+		
+		return new V3MetaEntityMove(x, y, z, yaw, pitch, internalId);
+	}
+	
+	@Override
+	public int getType() {
+		return 10;
+	}
+	
+	/**
+	 * @return the movX
+	 */
+	public double getMovX() {
+		return movX;
+	}
+	
+	/**
+	 * @return the movY
+	 */
+	public double getMovY() {
+		return movY;
+	}
+	
+	/**
+	 * @return the movZ
+	 */
+	public double getMovZ() {
+		return movZ;
+	}
+	
+	/**
+	 * @return the yaw
+	 */
+	public float getYaw() {
+		return yaw;
+	}
+	
+	/**
+	 * @return the pitch
+	 */
+	public float getPitch() {
+		return pitch;
+	}
+	
+	/**
+	 * @return the internalId
+	 */
+	public long getInternalId() {
+		return internalId;
+	}
+	
 }
