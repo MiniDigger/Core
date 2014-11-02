@@ -43,6 +43,7 @@ import java.util.regex.Pattern;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
 import me.MiniDigger.Core.Protocol.SignChangers;
+import me.MiniDigger.Core.Protocol.SignListeners;
 import me.MiniDigger.Core.Protocol.SkullChangers;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.CoreMain;
@@ -73,6 +74,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	private SignChangers	               signChangers;
 	private SkullChangers	               skullChangers;
+	private SignListeners	               signListeners;
 	
 	private final HashMap<String, Integer>	protocolVersions	= new HashMap<>();
 	
@@ -80,9 +82,11 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	public void init() {
 		signChangers = new CoreSignChangers();
 		skullChangers = new CoreSkullChangers();
+		signListeners = new CoreSignListeners();
 		
 		signChangers.init();
 		skullChangers.init();
+		signListeners.init();
 		
 		Bukkit.getScheduler().runTaskTimer((CoreMain) Core.getCore().getInstance(), new Runnable() {
 			
@@ -278,6 +282,11 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	@Override
 	public SkullChangers getSkullSChangers() {
 		return skullChangers;
+	}
+	
+	@Override
+	public SignListeners getSignListeners() {
+		return signListeners;
 	}
 	
 }

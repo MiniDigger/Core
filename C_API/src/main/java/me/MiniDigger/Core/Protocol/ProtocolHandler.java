@@ -67,6 +67,11 @@ public interface ProtocolHandler extends Listener {
 	public SkullChangers getSkullSChangers();
 	
 	/**
+	 * @return the sign listener instance
+	 */
+	SignListeners getSignListeners();
+	
+	/**
 	 * @param name
 	 *            the players name
 	 * @return his protocol version

@@ -127,7 +127,7 @@ public class CoreSignChangers implements SignChangers {
 				return Core.getCore().getStatsHandler().get(player.getUniqueId()).get(StatsType.Common.TOKENS) + "";
 			}
 		});
-		addSignChanger(new SignChanger("[Paesse]", "signchanger.create.paesse", "Zeigt wie viele P�sse der Spieler hat") {
+		addSignChanger(new SignChanger("[Paesse]", "signchanger.create.paesse", "Zeigt wie viele Pässe der Spieler hat") {
 			
 			@Override
 			public String getValue(final Player player, final Location loc) {
@@ -169,7 +169,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger(ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]", "signchanger.create.full",
-		        "Wichtig f�r die Teleport Schilder") {
+		        "Wichtig für die Teleport Schilder") {
 			
 			@Override
 			public String getValue(final Player p, final Location loc) {
@@ -289,6 +289,22 @@ public class CoreSignChangers implements SignChangers {
 			@Override
 			public String getValue(final Player paramPlayer, final Location paramLocation) {
 				return Core.getCore().getProtocolHandler().getFame();
+			}
+		});
+		
+		addSignChanger(new SignChanger("[Team]", "signchangers.create.team", "Zeigt das Team schön formatiert an") {
+			
+			@Override
+			public String getValue(Player p, Location loc) {
+				if (!(loc.getBlock().getState() instanceof Sign)) {
+					return ChatColor.RED + "fail";
+				}
+				final Sign sign = (Sign) loc.getBlock().getState();
+				sign.setLine(0, "Klicke hier, um");
+				sign.setLine(1, "Team " + sign.getLine(1));
+				sign.setLine(2, "Zu beizutreten!");
+				sign.setLine(3, "");
+				return "";
 			}
 		});
 	}
