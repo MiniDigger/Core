@@ -21,7 +21,9 @@
 package me.MiniDigger.Core.Cinematic.commands;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Cinematic.CameraClip;
@@ -32,6 +34,7 @@ import me.MiniDigger.Core.Cinematic.Recorder;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
+import mkremins.fanciful.FancyMessage;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -93,6 +96,22 @@ public class CineCommands {
 	
 	@Command(name = "cinematic.list", description = "Listet alle Cinematics auf", permission = "cinematic.list", aliases = "cine.list")
 	public void list(final CommandArgs args) {
+		List<String> files = new ArrayList<String>();
 		
+		for (File f : CinematicAddOn.INSTANCE.getDataFolder().listFiles()) {
+			if (f.getName().endsWith(".cine")) {
+				files.add(f.getName().replace(".cine", ""));
+			}
+		}
+		
+		FancyMessage msg = Prefix.CINE.getPrefix();
+		boolean b = true;
+		for (String s : files) {
+			msg.then(s + " ").command("/cine play " + s).tooltip("Klick um abzuspielen").color(b ? ChatColor.AQUA : ChatColor.BLUE);
+			b = !b;
+		}
+		
+		Prefix.CINE.getPrefix().then("Verfügbare Cinematics: ").send(args.getSender());;
+		msg.send(args.getSender());
 	}
 }
