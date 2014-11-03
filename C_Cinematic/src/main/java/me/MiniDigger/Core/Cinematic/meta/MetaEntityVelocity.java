@@ -70,11 +70,6 @@ public class MetaEntityVelocity implements Meta {
 	}
 	
 	@Override
-	public int getType() {
-		return 6;
-	}
-	
-	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_VELOCITY;
 	}

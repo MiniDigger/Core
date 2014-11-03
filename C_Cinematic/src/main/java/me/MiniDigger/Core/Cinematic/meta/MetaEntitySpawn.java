@@ -36,8 +36,6 @@ import org.bukkit.entity.EntityType;
  */
 public class MetaEntitySpawn implements Meta {
 	
-	private static final int	TYPEID	= 1;
-	
 	private final double	 posX;
 	private final double	 posY;
 	private final double	 posZ;
@@ -91,12 +89,7 @@ public class MetaEntitySpawn implements Meta {
 		
 		return new MetaEntitySpawn(x, y, z, yaw, pitch, type, internalId);
 	}
-	
-	@Override
-	public int getType() {
-		return MetaEntitySpawn.TYPEID;
-	}
-	
+
 	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_SPAWN;

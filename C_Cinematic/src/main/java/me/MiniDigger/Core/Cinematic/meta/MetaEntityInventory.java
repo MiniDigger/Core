@@ -63,12 +63,7 @@ public class MetaEntityInventory implements Meta {
 		
 		return new MetaEntityInventory(internalId, slot, type);
 	}
-	
-	@Override
-	public int getType() {
-		return 4;
-	}
-	
+
 	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_INVENTORY;

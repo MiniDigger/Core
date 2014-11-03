@@ -54,11 +54,6 @@ public class MetaEntityRemove implements Meta {
 	}
 	
 	@Override
-	public int getType() {
-		return 5;
-	}
-	
-	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_REMOVE;
 	}

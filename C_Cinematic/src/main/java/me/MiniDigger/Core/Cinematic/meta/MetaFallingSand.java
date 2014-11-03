@@ -88,11 +88,6 @@ public class MetaFallingSand implements Meta {
 	}
 	
 	@Override
-	public int getType() {
-		return 8;
-	}
-	
-	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_FALLING_SAND;
 	}

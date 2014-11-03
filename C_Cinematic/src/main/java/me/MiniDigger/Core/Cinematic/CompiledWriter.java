@@ -88,7 +88,7 @@ public class CompiledWriter {
 			if (frame.hasMeta()) {
 				for (final Meta meta : frame.getMetas()) {
 					// Write importatnt things.
-					output.writeByte(meta.getType());
+					output.writeByte(meta.getMetaType().getId());
 					
 					// Write data metas's way.
 					meta.writeMeta(output);

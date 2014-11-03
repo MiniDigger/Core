@@ -42,11 +42,4 @@ public interface Meta {
 	 * @param stream
 	 */
 	public void writeMeta(final DataOutputStream stream) throws IOException;
-	
-	/**
-	 * Vrati ciselny typ META.
-	 * 
-	 * @return
-	 */
-	public int getType();
 }

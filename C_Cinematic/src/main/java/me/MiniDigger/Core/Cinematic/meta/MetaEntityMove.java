@@ -84,11 +84,6 @@ public class MetaEntityMove implements Meta {
 		return new MetaEntityMove(x, y, z, yaw, pitch, internalId);
 	}
 	
-	@Override
-	public int getType() {
-		return 10;
-	}
-	
 	/**
 	 * @return the movX
 	 */

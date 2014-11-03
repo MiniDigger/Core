@@ -46,11 +46,6 @@ public class MetaExplosion implements Meta {
 		
 	}
 	
-	@Override
-	public int getType() {
-		return 0;
-	}
-	
 	/**
 	 * @return the posX
 	 */

@@ -33,8 +33,6 @@ import me.MiniDigger.Core.Cinematic.MetaType;
  */
 public class MetaEntityDamage implements Meta {
 	
-	private static final int	TYPEID	= 2;
-	
 	private final long	     internalId;
 	private final float	     damage;
 	
@@ -58,11 +56,6 @@ public class MetaEntityDamage implements Meta {
 		final float damage = stream.readFloat();
 		
 		return new MetaEntityDamage(internalId, damage);
-	}
-	
-	@Override
-	public int getType() {
-		return MetaEntityDamage.TYPEID;
 	}
 	
 	@Override

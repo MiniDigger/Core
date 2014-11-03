@@ -80,11 +80,6 @@ public class MetaEntityTeleport implements Meta {
 	}
 	
 	@Override
-	public int getType() {
-		return 3;
-	}
-	
-	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_TELEPORT;
 	}

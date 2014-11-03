@@ -33,8 +33,6 @@ import me.MiniDigger.Core.Cinematic.MetaType;
  */
 public class MetaSoundEffect implements Meta {
 	
-	private static final int	TYPEID	= 0;
-	
 	private final double	 posX;
 	private final double	 posY;
 	private final double	 posZ;
@@ -80,11 +78,6 @@ public class MetaSoundEffect implements Meta {
 		final String name = stream.readUTF();
 		
 		return new MetaSoundEffect(x, y, z, pitch, volume, name);
-	}
-	
-	@Override
-	public int getType() {
-		return MetaSoundEffect.TYPEID;
 	}
 	
 	@Override

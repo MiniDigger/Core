@@ -27,15 +27,25 @@ package me.MiniDigger.Core.Cinematic;
  * 
  */
 public enum MetaType {
-	ENTITY_DAMAGE,
-	ENTITY_INVENTORY,
-	ENTITY_REMOVE,
-	ENTITY_SPAWN,
-	ENTITY_TELEPORT,
-	ENTITY_VELOCITY,
-	ENTITY_FALLING_SAND,
-	ENTITY_MOVE,
-	PARTICLE_EFFECT,
-	SOUND_EFFECT,
-	EXPLOSION;
+	ENTITY_DAMAGE(1),
+	ENTITY_INVENTORY(2),
+	ENTITY_REMOVE(3),
+	ENTITY_SPAWN(4),
+	ENTITY_TELEPORT(5),
+	ENTITY_VELOCITY(6),
+	ENTITY_FALLING_SAND(7),
+	ENTITY_MOVE(8),
+	PARTICLE_EFFECT(9),
+	SOUND_EFFECT(10),
+	EXPLOSION(11);
+	
+	private int	id;
+	
+	private MetaType(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
 }

@@ -69,11 +69,6 @@ public class MetaParticleEffect implements Meta {
 	}
 	
 	@Override
-	public int getType() {
-		return 7;
-	}
-	
-	@Override
 	public MetaType getMetaType() {
 		return MetaType.PARTICLE_EFFECT;
 	}
