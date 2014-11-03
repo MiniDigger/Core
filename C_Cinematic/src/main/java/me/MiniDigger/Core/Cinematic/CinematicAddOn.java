@@ -7,8 +7,11 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class CinematicAddOn extends CoreAddOn {
 	
+	public static CinematicAddOn	INSTANCE;
+	
 	@Override
 	public void enable() {
+		INSTANCE = this;
 		Core.getCore().getCommandHandler().registerCommands(new CineCommands());
 		Core.getCore().getCommandHandler().registerCommands(new CineCompleter());
 	}
