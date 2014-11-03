@@ -42,6 +42,7 @@ import org.bukkit.Location;
 public class CineCommands {
 	
 	private final HashMap<UUID, Recorder>	recs	= new HashMap<UUID, Recorder>();
+	private final List<UUID>	          playing	= new ArrayList<UUID>();
 	
 	@Command(name = "cinematic", description = "Macht alles mit Cinematics", permission = "cinematic", aliases = "cine")
 	public void cinematic(final CommandArgs args) {
@@ -73,6 +74,11 @@ public class CineCommands {
 	
 	@Command(name = "cinematic.play", description = "Spielt eine Cinematic ab", permission = "cinematic.play", usage = "<name>", min = 1, consol = false, aliases = "cine.play")
 	public void play(final CommandArgs args) {
+		if (playing.contains(args.getPlayer().getUniqueId())) {
+			Prefix.CINE.getPrefix().then("Du bist bereits dabei, eine Cinematic anzuschauen!").color(ChatColor.RED).send(args.getSender());
+			return;
+		}
+		
 		final String name = args.getArgs()[0];
 		CameraClip clip;
 		try {
@@ -89,9 +95,11 @@ public class CineCommands {
 			@Override
 			public void run() {
 				args.getPlayer().teleport(loc);
+				playing.remove(args.getPlayer().getUniqueId());
 			}
 		});
 		player.play();
+		playing.add(args.getPlayer().getUniqueId());
 	}
 	
 	@Command(name = "cinematic.list", description = "Listet alle Cinematics auf", permission = "cinematic.list", aliases = "cine.list")
