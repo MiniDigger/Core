@@ -24,21 +24,30 @@ import net.minecraft.server.v1_7_R4.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 import org.json.simple.JSONObject;
+import org.spigotmc.AsyncCatcher;
+
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3BasicRecorder;
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3CameraClip;
+import eu.matejkormuth.pexel.PexelCore.cinematics.V3CameraFrame;
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3CompiledReader;
+import eu.matejkormuth.pexel.PexelCore.cinematics.V3Generator;
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3Player;
+import eu.matejkormuth.pexel.PexelCore.cinematics.v3meta.V3MetaEntityMove;
+import eu.matejkormuth.pexel.PexelCore.cinematics.v3meta.V3MetaEntitySpawn;
 
 public class DevCommands {
 	

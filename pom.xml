@@ -42,8 +42,6 @@
 		<bukkit.version>1.7.9-R0.3-SNAPSHOT</bukkit.version>
 		<api.version>0.0.1-SNAPSHOT</api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<inceptionYear>2013</inceptionYear>
-		<copyrightOwner>MiniDigger</copyrightOwner>
 	</properties>
 
 	<modules>
@@ -60,94 +58,34 @@
 	</modules>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
-					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
-						<showDeprecation>true</showDeprecation>
-						<showWarnings>true</showWarnings>
-						<executable>${env.JAVA_HOME}/bin/javac</executable>
-						<fork>true</fork>
-					</configuration>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+					<executable>${env.JAVA_HOME}/bin/javac</executable>
+					<fork>true</fork>
+				</configuration>
 
-				</plugin><!-- TODO Proguard <plugin> <groupId>com.github.wvengen</groupId> 
-					<artifactId>proguard-maven-plugin</artifactId> <executions> <execution> <phase>package</phase> 
-					<goals> <goal>proguard</goal> </goals> </execution> </executions> <configuration> 
-					<options> <option>-allowaccessmodification</option> <option>-keepattributes 
-					*Annotation*</option> <option>-keepattributes Signature</option> <option>-printmapping 
-					${basedir}/mappings.map</option> <option>-target 1.7</option> <option>-mergeinterfacesaggressively</option> 
-					<option>-overloadaggressively</option> <option>-repackageclasses Core</option> 
-					<option>-adaptclassstrings</option> <option>-keepclassmembers,allowoptimization 
-					enum * { public static **[] values(); public static ** valueOf(java.lang.String); 
-					}</option> </options> <obfuscate>true</obfuscate> <shrink>true</shrink> <injar>${project.build.finalName}.jar</injar> 
-					<outjar>${project.build.finalName}-final.jar</outjar> <outputDirectory>${project.build.directory}</outputDirectory> 
-					<proguardInclude>${basedir}/proguard.conf</proguardInclude> <libs> <lib>${java.home}/lib/rt.jar</lib> 
-					<lib>${java.home}/lib/jsse.jar</lib> </libs> </configuration> </plugin> -->
-				<plugin>
-					<groupId>org.codehaus.groovy.maven</groupId>
-					<artifactId>gmaven-plugin</artifactId>
-					<version>1.0</version>
-					<executions>
-						<execution>
-							<phase>validate</phase>
-							<goals>
-								<goal>execute</goal>
-							</goals>
-							<configuration>
-								<source>
-									import java.util.Date
-									import java.text.MessageFormat
-									def
-									vartimestamp = MessageFormat.format("{0,date,yyyy}", new
-									Date())
-									project.properties['currentYear'] = vartimestamp
-								</source>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>com.mycila.maven-license-plugin</groupId>
-					<artifactId>maven-license-plugin</artifactId>
-					<version>1.8.0</version>
-					<configuration>
-						<!-- Template location -->
-						<header>F:\DATA\Dev\bukkit_ws\C_Core\src\main\resources\fileHeader.txt</header>
-						<properties>
-							<!-- Values to be substituted in template -->
-							<h_inceptionYear>${inceptionYear}</h_inceptionYear>
-							<h_currentYear>${currentYear}</h_currentYear>
-							<h_copyrightOwner>${copyrightOwner}</h_copyrightOwner>
-						</properties>
-						<strictCheck>true</strictCheck>
-						<excludes>
-							<exclude>**/*.html</exclude>
-							<exclude>**/*.xml</exclude>
-							<exclude>**/*.txt</exclude>
-							<exclude>**/*.ec</exclude>
-							<exclude>**/*.log</exclude>
-							<exclude>**/*.css</exclude>
-							<exclude>**/*.js</exclude>
-							<exclude>**/*.jsp</exclude>
-							<exclude>**/*.md</exclude>
-						</excludes>
-					</configuration>
-					<executions>
-						<execution>
-							<phase>validate</phase>
-							<goals>
-								<goal>remove</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+			</plugin><!-- TODO Proguard <plugin> <groupId>com.github.wvengen</groupId> 
+				<artifactId>proguard-maven-plugin</artifactId> <executions> <execution> <phase>package</phase> 
+				<goals> <goal>proguard</goal> </goals> </execution> </executions> <configuration> 
+				<options> <option>-allowaccessmodification</option> <option>-keepattributes 
+				*Annotation*</option> <option>-keepattributes Signature</option> <option>-printmapping 
+				${basedir}/mappings.map</option> <option>-target 1.7</option> <option>-mergeinterfacesaggressively</option> 
+				<option>-overloadaggressively</option> <option>-repackageclasses Core</option> 
+				<option>-adaptclassstrings</option> <option>-keepclassmembers,allowoptimization 
+				enum * { public static **[] values(); public static ** valueOf(java.lang.String); 
+				}</option> </options> <obfuscate>true</obfuscate> <shrink>true</shrink> <injar>${project.build.finalName}.jar</injar> 
+				<outjar>${project.build.finalName}-final.jar</outjar> <outputDirectory>${project.build.directory}</outputDirectory> 
+				<proguardInclude>${basedir}/proguard.conf</proguardInclude> <libs> <lib>${java.home}/lib/rt.jar</lib> 
+				<lib>${java.home}/lib/jsse.jar</lib> </libs> </configuration> </plugin> -->
+		</plugins>
 	</build>
 
 	<repositories>
