@@ -35,7 +35,7 @@ public class CopyrightFixer {
 	private static int	              changed	  = 0;
 	private static int	              skipped	  = 0;
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		newHeader.add("/**");
 		newHeader.add(" * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████");
 		newHeader.add(" * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█");
@@ -59,7 +59,7 @@ public class CopyrightFixer {
 		
 		included.add(".java");
 		
-		File file = new File("F:/DATA/Dev/bukkit_ws/C_Core");
+		final File file = new File("F:/DATA/Dev/bukkit_ws/C_Core");
 		fix(file);
 		
 		System.out.println("************************************");
@@ -71,16 +71,16 @@ public class CopyrightFixer {
 		System.out.println("************************************");
 	}
 	
-	public static void fix(File file) throws Exception {
+	public static void fix(final File file) throws Exception {
 		if (file.isDirectory()) {
-			for (File f : file.listFiles()) {
+			for (final File f : file.listFiles()) {
 				fix(f);
 			}
 			return;
 		}
 		
 		boolean found = false;
-		for (String s : included) {
+		for (final String s : included) {
 			if (file.getName().endsWith(s)) {
 				found = true;
 			}
@@ -91,10 +91,10 @@ public class CopyrightFixer {
 			return;
 		}
 		
-		List<String> lines = new ArrayList<String>();
-		List<String> oldHeader = new ArrayList<String>();
+		final List<String> lines = new ArrayList<String>();
+		final List<String> oldHeader = new ArrayList<String>();
 		
-		BufferedReader reader = new BufferedReader(new FileReader(file));
+		final BufferedReader reader = new BufferedReader(new FileReader(file));
 		String line;
 		found = false;
 		while ((line = reader.readLine()) != null) {
@@ -132,13 +132,13 @@ public class CopyrightFixer {
 		System.out.println("Updating file " + file.getAbsolutePath() + "!");
 		changed++;
 		
-		PrintWriter writer = new PrintWriter(file);
+		final PrintWriter writer = new PrintWriter(file);
 		
-		for (String s : newHeader) {
+		for (final String s : newHeader) {
 			writer.println(s);
 		}
 		
-		for (String s : lines) {
+		for (final String s : lines) {
 			writer.println(s);
 		}
 		

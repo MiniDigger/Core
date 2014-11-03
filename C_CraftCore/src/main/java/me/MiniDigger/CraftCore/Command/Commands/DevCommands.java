@@ -44,30 +44,22 @@ import net.minecraft.server.v1_7_R4.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 import org.json.simple.JSONObject;
-import org.spigotmc.AsyncCatcher;
 
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3BasicRecorder;
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3CameraClip;
-import eu.matejkormuth.pexel.PexelCore.cinematics.V3CameraFrame;
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3CompiledReader;
-import eu.matejkormuth.pexel.PexelCore.cinematics.V3Generator;
 import eu.matejkormuth.pexel.PexelCore.cinematics.V3Player;
-import eu.matejkormuth.pexel.PexelCore.cinematics.v3meta.V3MetaEntityMove;
-import eu.matejkormuth.pexel.PexelCore.cinematics.v3meta.V3MetaEntitySpawn;
 
 public class DevCommands {
 	
@@ -311,8 +303,8 @@ public class DevCommands {
 	public void cinematic(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
 			try {
-				V3CameraClip clip = V3CompiledReader.loadFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), "test.dat").getAbsolutePath());
-				V3Player p = new V3Player(args.getUser().getPlayer(), clip);
+				final V3CameraClip clip = V3CompiledReader.loadFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), "test.dat").getAbsolutePath());
+				final V3Player p = new V3Player(args.getUser().getPlayer(), clip);
 				p.setOnCompleted(new Runnable() {
 					
 					@Override
@@ -321,7 +313,7 @@ public class DevCommands {
 					}
 				});
 				p.play();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace();
 			}
 			
@@ -333,7 +325,7 @@ public class DevCommands {
 			r.record();
 		} else if (args.getArgs().length == 2) {
 			r.stop();
-			V3Player p = new V3Player(args.getUser().getPlayer(), r.getClip());
+			final V3Player p = new V3Player(args.getUser().getPlayer(), r.getClip());
 			p.setOnCompleted(new Runnable() {
 				
 				@Override

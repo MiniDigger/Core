@@ -116,10 +116,10 @@ public class V3CameraClip {
 		// e.printStackTrace();
 		// }
 		try {
-	        V3CompiledWriter.createFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat").getAbsolutePath()).writeClip(this);
-        } catch (IOException e) {
-	        e.printStackTrace();
-        }
+			V3CompiledWriter.createFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat").getAbsolutePath()).writeClip(this);
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
