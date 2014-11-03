@@ -1,11 +1,28 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.Core.Cinematic.commands;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.UUID;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
 
 import me.MiniDigger.Core.Cinematic.CameraClip;
 import me.MiniDigger.Core.Cinematic.CinematicAddOn;
@@ -16,9 +33,12 @@ import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+
 public class CineCommands {
 	
-	private HashMap<UUID, Recorder>	recs	= new HashMap<UUID, Recorder>();
+	private final HashMap<UUID, Recorder>	recs	= new HashMap<UUID, Recorder>();
 	
 	@Command(name = "cinematic", description = "Macht alles mit Cinematics", permission = "cinematic", aliases = "cine")
 	public void cinematic(final CommandArgs args) {
@@ -38,29 +58,29 @@ public class CineCommands {
 		}
 		
 		if (recs.containsKey(args.getPlayer().getUniqueId())) {
-			Recorder rec = recs.get(args.getPlayer().getUniqueId());
+			final Recorder rec = recs.get(args.getPlayer().getUniqueId());
 			rec.stop();
 			return;
 		}
 		
-		Recorder rec = new Recorder(args.getPlayer(), 12, name);
+		final Recorder rec = new Recorder(args.getPlayer(), 12, name);
 		rec.record();
 		recs.put(args.getPlayer().getUniqueId(), rec);
 	}
 	
 	@Command(name = "cinematic.play", description = "Spielt eine Cinematic ab", permission = "cinematic.play", usage = "<name>", min = 1, consol = false, aliases = "cine.play")
 	public void play(final CommandArgs args) {
-		String name = args.getArgs()[0];
+		final String name = args.getArgs()[0];
 		CameraClip clip;
 		try {
 			clip = CompiledReader.loadFile(new File(CinematicAddOn.INSTANCE.getDataFolder(), name).getAbsolutePath());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Prefix.CINE.getPrefix().then("Fehler beim Laden des Clips: " + e.getLocalizedMessage()).color(ChatColor.RED).send(args.getSender());
 			return;
 		}
 		
 		final Location loc = args.getPlayer().getLocation();
-		CinematicPlayer player = new CinematicPlayer(args.getPlayer(), clip);
+		final CinematicPlayer player = new CinematicPlayer(args.getPlayer(), clip);
 		player.setOnCompleted(new Runnable() {
 			
 			@Override

@@ -42,15 +42,15 @@ import org.bukkit.plugin.Plugin;
  */
 public class CameraClip {
 	
-	List<CameraFrame>	frames	  = Collections.synchronizedList(new ArrayList<CameraFrame>());
-	List<Entity>	    entites	  = Collections.synchronizedList(new ArrayList<Entity>());
+	List<CameraFrame>	frames	= Collections.synchronizedList(new ArrayList<CameraFrame>());
+	List<Entity>	  entites	= Collections.synchronizedList(new ArrayList<Entity>());
 	
 	/**
 	 * Pocet ramov za sekundu v tomto klipe.
 	 */
-	public int	        FPS	      = 20;
-	public int	        verzia	  = 3;
-	public int	        metaCount	= 0;
+	public int	      FPS	    = 20;
+	public int	      verzia	= 3;
+	public int	      metaCount	= 0;
 	
 	/**
 	 * Prida jeden frame do zoznamu frameov.

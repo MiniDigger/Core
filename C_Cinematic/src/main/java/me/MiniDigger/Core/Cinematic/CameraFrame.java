@@ -37,23 +37,23 @@ public class CameraFrame {
 	/**
 	 * Pozicia hraca.
 	 */
-	private Location	 cameraLocation;
+	private Location	cameraLocation;
 	/**
 	 * Specifikuje, ci frame obsahuje iba meta.
 	 */
-	private boolean	     isMetaOnly	= false;
+	private boolean	   isMetaOnly	= false;
 	/**
 	 * Zoznam dalsich extra dat v ramci.
 	 */
-	private List<Meta>	metas	= new ArrayList<Meta>();
+	private List<Meta>	metas	  = new ArrayList<Meta>();
 	/**
 	 * Zoom.
 	 */
-	private float	     zoom;
+	private float	   zoom;
 	/**
 	 * Odkaz na klip, ktoremu ram parti.
 	 */
-	public CameraClip	 clip;
+	public CameraClip	clip;
 	
 	/**
 	 * Vytvori novy frame.

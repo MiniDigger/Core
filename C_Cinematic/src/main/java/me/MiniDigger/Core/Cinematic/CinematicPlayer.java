@@ -73,7 +73,7 @@ public class CinematicPlayer {
 	private final Map<Long, LivingEntity>	entityMapping	= Collections.synchronizedMap(new HashMap<Long, LivingEntity>());
 	private boolean	                      playing;
 	private int	                          currentFrameNum	= 0;
-	private CameraFrame	              currentFrame;
+	private CameraFrame	                  currentFrame;
 	private int	                          syncUpdateTaskId;
 	private final Queue<Runnable>	      syncTasks	      = new LinkedTransferQueue<Runnable>();
 	private int	                          syncTaskCounter	= 0;

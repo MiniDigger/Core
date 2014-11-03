@@ -65,7 +65,7 @@ public class CompiledReader {
 	/**
 	 * Klip.
 	 */
-	private CameraClip	      clip;
+	private CameraClip	          clip;
 	/**
 	 * Svet.
 	 */
