@@ -79,12 +79,6 @@ public class CinematicPlayer {
 	private int	                          syncTaskCounter	= 0;
 	private Runnable	                  onCompleted;
 	
-	// private double lastX;
-	// private double lastY;
-	// private double lastZ;
-	
-	// private int eid = 0;
-	
 	public CinematicPlayer(final Player camera, final CameraClip clip) {
 		player = camera;
 		this.clip = clip;
@@ -241,38 +235,6 @@ public class CinematicPlayer {
 					case V3MetaFallingSand:
 						final MetaFallingSand v3MetaFallingSand = (MetaFallingSand) meta;
 						
-						// Packet rewrite
-						
-						/*
-						 * [13:34:41] [Netty IO #5/DEBUG]: OUT: [PLAY:14]
-						 * net.minecraft
-						 * .server.v1_7_R3.PacketPlayOutSpawnEntity[id=3804,
-						 * type=70, x=9,50, y=64,50, z=549,50] [13:34:41] [Netty
-						 * IO #5/DEBUG]: OUT: [PLAY:28]
-						 * net.minecraft.server.v1_7_R3
-						 * .PacketPlayOutEntityMetadata[] [13:34:41] [Netty IO
-						 * #5/DEBUG]: OUT: [PLAY:18]
-						 * net.minecraft.server.v1_7_R3
-						 * .PacketPlayOutEntityVelocity[id=3804, x=0,00, y=0,00,
-						 * z=0,00] [13:34:41] [Netty IO #5/DEBUG]: OUT:
-						 * [PLAY:25] net.minecraft.server.v1_7_R3.
-						 * PacketPlayOutEntityHeadRotation[id=3804, rot=0]
-						 */
-						
-						/*
-						 * PacketHelper.send( this.player,
-						 * ((PacketPlayOutSpawnEntity) new
-						 * V3PacketPlayOutSpawnEntity(
-						 * Mertexfun.random.nextInt(),
-						 * v3MetaFallingSand.getPosX(),
-						 * v3MetaFallingSand.getPosY(),
-						 * v3MetaFallingSand.getPosZ(), 0, 0, 70,
-						 * v3MetaFallingSand.getMaterial().getId() | (0 <<
-						 * 0x10), v3MetaFallingSand.getVelX(),
-						 * v3MetaFallingSand.getVelY(),
-						 * v3MetaFallingSand.getVelZ())));
-						 */
-						
 						// Musi byt pre bezpocnost synchronne.
 						syncTasks.add(new Runnable() {
 							
@@ -312,14 +274,6 @@ public class CinematicPlayer {
 						        new PacketPlayOutRelEntityMove(CinematicPlayer.this.getEntity(v3MetaEntityMove.getInternalId()).getEntityId(), NMS
 						                .fixedPointNumByte(v3MetaEntityMove.getMovX()), NMS.fixedPointNumByte(v3MetaEntityMove.getMovY()), NMS
 						                .fixedPointNumByte(v3MetaEntityMove.getMovZ()), false));
-						
-						/*
-						 * NMS.relMoveEntity(
-						 * V3Player.this.getEntity(v3MetaEntityMove
-						 * .getInternalId()), v3MetaEntityMove.getMovX(),
-						 * v3MetaEntityMove.getMovY(),
-						 * v3MetaEntityMove.getMovZ());
-						 */
 						
 						// Synchronizovane.
 						syncTasks.add(new Runnable() {

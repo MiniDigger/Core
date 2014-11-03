@@ -39,7 +39,8 @@ public enum Prefix {
 	VOTE(ChatColor.AQUA, ChatColor.BLUE, "Vote", GameType.NOTHING),
 	SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY),
 	ADDON(ChatColor.RESET, ChatColor.AQUA, "AddOn>", GameType.NOTHING),
-	BEDWARS(ChatColor.AQUA, ChatColor.BLUE, "GetTheDrop", GameType.BEDWARS);
+	BEDWARS(ChatColor.AQUA, ChatColor.BLUE, "BedWars", GameType.BEDWARS),
+	CINE(ChatColor.RESET, ChatColor.AQUA, "Cinematic>", GameType.NOTHING);
 	
 	private ChatColor	klammer;
 	private ChatColor	color;

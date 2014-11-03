@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.Core.Cinematic;
 
+import me.MiniDigger.Core.Prefix.Prefix;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -30,22 +32,28 @@ import org.bukkit.entity.Player;
  * @author Mato Kormuth
  * 
  */
-public class BasicRecorder{
+public class Recorder {
 	
-	private Player	     player;
-	private boolean	     recording;
+	private Player	   player;
+	private boolean	   recording;
 	private CameraClip	clip;
-	private long	     frames	= 0;
-	private int	         ID	    = 0;
+	private long	   frames	= 0;
+	private int	       ID	  = 0;
+	private String	   name;
 	
 	/**
 	 * Pocet FPS v tomto nahravaci.
 	 */
-	public int	         FPS	= 20;
+	public int	       FPS	  = 20;
 	
-	public BasicRecorder(final Player p, final int fps) {
+	public Recorder(final Player p, final int fps) {
 		player = p;
 		FPS = fps;
+	}
+	
+	public Recorder(final Player p, final int fps, final String name) {
+		this(p, fps);
+		this.name = name;
 	}
 	
 	/**
@@ -64,13 +72,16 @@ public class BasicRecorder{
 	@SuppressWarnings("deprecation")
 	public void record() {
 		if (player == null) {
-			System.out.println("cmon");
+			System.out.println("cmon");// TODO Fuck ya bukkit
 			player = Bukkit.getServer().getOnlinePlayers().clone()[0];
 		}
-		player.sendMessage("Recording " + ChatColor.RED + "[ID " + ID + "] " + ChatColor.YELLOW + " (" + FPS + "fps) " + ChatColor.GREEN + " has started...");
+		
+		Prefix.CINE.getPrefix().then("Aufnahme " + ChatColor.RED + "[ID " + ID + "] " + ChatColor.YELLOW + " (" + FPS + "fps) " + ChatColor.GREEN + " hat gestartet...")
+		        .send(player);
 		
 		if (FPS > 20) {
-			player.sendMessage(ChatColor.RED + "Nahravanie na VIAC AKO 20 FPS nema vyznam! Vysledny zaznam bude rovnaky pri pouziti 20 aj 60 fps.");
+			Prefix.CINE.getPrefix().then("Eine Aufnahme mit mehr als 20 FPS is irelevant! Es gibt keinen Unterschied zwichen 20 und 60").color(ChatColor.RED)
+			        .send(player);
 		}
 		
 		recording = true;
@@ -81,7 +92,7 @@ public class BasicRecorder{
 			
 			@Override
 			public void run() {
-				BasicRecorder.this._record();
+				Recorder.this._record();
 			}
 		}).start();
 	}
@@ -90,11 +101,16 @@ public class BasicRecorder{
 	 * Zastavi nahravanie.
 	 */
 	public void stop() {
-		player.sendMessage("Stopped! Recorded " + frames + " frames (" + (frames / FPS) + " seconds)...");
+		
+		Prefix.CINE.getPrefix().then("Aufnahme gestoppt! Es wurden " + frames + " Frames aufgenommen (" + (frames / FPS) + " Sekunden)").send(player);
 		recording = false;
-		clip.save("advrecording" + System.currentTimeMillis());
-		player.sendMessage("Saved as: advrecording" + System.currentTimeMillis() + ".dat");
-		// clip = null;
+		
+		if (name == null) {
+			name = "cinematic_" + player.getName() + "_" + System.currentTimeMillis();
+		}
+		
+		clip.save(name);
+		Prefix.CINE.getPrefix().then("Cinematic wurde als " + name + ".dat gespeichert").send(player);
 	}
 	
 	/**
@@ -104,19 +120,18 @@ public class BasicRecorder{
 		while (recording) {
 			if ((frames % 100) == 0) {
 				if (FPS > 20) {
-					player.sendMessage(ChatColor.RED + "Nahravanie na VIAC AKO 20 FPS nema vyznam! Vysledny zaznam bude rovnaky pri pouziti 20 aj 60 fps.");
+					Prefix.CINE.getPrefix().then("Eine Aufnahme mit mehr als 20 FPS is irelevant! Es gibt keinen Unterschied zwichen 20 und 60").color(ChatColor.RED)
+					        .send(player);
 				}
-				player.sendMessage("Recorded " + frames + " frames (" + (frames / FPS) + " seconds)");
+				Prefix.CINE.getPrefix().then("Es wurden " + frames + " Frames aufgenommen (" + (frames / FPS) + " Sekunden)").send(player);
 			}
 			
-			// Pridaj frame.
 			clip.addFrame(new CameraFrame(player.getEyeLocation(), false)); // was
-			                                                                  // player.getLocation()
+			                                                                // player.getLocation()
 			frames++;
 			
 			if (frames > 30000) {
-				// prekrocene maximum
-				player.sendMessage("Zastavujem nahravanie. Prekrocene maximum frameov.");
+				Prefix.CINE.getPrefix().then("Aufnahme gestoppen! Framelimit überschritten!").color(ChatColor.RED).send(player);
 				stop();
 			}
 			
@@ -128,21 +143,10 @@ public class BasicRecorder{
 		}
 	}
 	
-	/**
-	 * Vrati player.
-	 * 
-	 * @return player
-	 */
 	public Player getPlayer() {
 		return player;
 	}
 	
-	/**
-	 * Nastavi hraca.
-	 * 
-	 * @param player
-	 *            hrac
-	 */
 	public void setPlayer(final Player player) {
 		this.player = player;
 	}

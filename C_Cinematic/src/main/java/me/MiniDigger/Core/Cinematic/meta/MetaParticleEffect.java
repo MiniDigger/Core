@@ -110,7 +110,6 @@ public class MetaParticleEffect implements Meta {
 	 * @return
 	 */
 	public float getOffsetX() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -118,7 +117,6 @@ public class MetaParticleEffect implements Meta {
 	 * @return
 	 */
 	public float getOffsetY() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -126,7 +124,6 @@ public class MetaParticleEffect implements Meta {
 	 * @return
 	 */
 	public float getOffsetZ() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -134,7 +131,6 @@ public class MetaParticleEffect implements Meta {
 	 * @return
 	 */
 	public float getSpeed() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 	
@@ -142,7 +138,6 @@ public class MetaParticleEffect implements Meta {
 	 * @return
 	 */
 	public int getAmount() {
-		// TODO Auto-generated method stub
 		return 20;
 	}
 	

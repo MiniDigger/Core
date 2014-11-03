@@ -98,23 +98,6 @@ public class CameraClip {
 	 *            suboru.
 	 */
 	public void save(final String name) {
-		// PrintWriter writer = null;
-		// try {
-		// writer = new PrintWriter(new File(((Plugin)
-		// Core.getCore().getInstance()).getDataFolder(), name + ".dat"));
-		// writer.println("#mertex-fun | CameraClip | v 1.2.1");
-		// writer.println("#{fsavetime=" + System.currentTimeMillis() +
-		// ",fcount=" + frames.size() + ",ver=1}");
-		// writer.println("#{FPS=" + FPS + "}");
-		// writer.println("#{VERSION3}");
-		//
-		// for (final V3CameraFrame cframe : frames) {
-		// writer.println(cframe.serialize());
-		// }
-		// writer.close();
-		// } catch (final FileNotFoundException e) {
-		// e.printStackTrace();
-		// }
 		try {
 			CompiledWriter.createFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat").getAbsolutePath()).writeClip(this);
 		} catch (final IOException e) {
@@ -130,7 +113,6 @@ public class CameraClip {
 	 * @return klip.
 	 */
 	public static CameraClip load(final String name) {
-		System.out.println("Nacitavam subor " + name);
 		final CameraClip clip = new CameraClip();
 		clip.verzia = 3;
 		BufferedReader reader = null;
@@ -174,7 +156,6 @@ public class CameraClip {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Nacitanych " + clip.getFrames().size() + " frameov.");
 		return clip;
 	}
 	

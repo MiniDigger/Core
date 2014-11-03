@@ -91,11 +91,6 @@ public class CameraFrame {
 	public float	yaw;
 	public float	pitch;
 	
-	public String serialize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	/**
 	 * Prida zaznam o pozicii entity.
 	 * 
