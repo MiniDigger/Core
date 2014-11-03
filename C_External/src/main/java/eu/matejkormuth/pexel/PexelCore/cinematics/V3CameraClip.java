@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -97,21 +96,28 @@ public class V3CameraClip {
 	 *            suboru.
 	 */
 	public void save(final String name) {
-		PrintWriter writer = null;
+		// PrintWriter writer = null;
+		// try {
+		// writer = new PrintWriter(new File(((Plugin)
+		// Core.getCore().getInstance()).getDataFolder(), name + ".dat"));
+		// writer.println("#mertex-fun | CameraClip | v 1.2.1");
+		// writer.println("#{fsavetime=" + System.currentTimeMillis() +
+		// ",fcount=" + frames.size() + ",ver=1}");
+		// writer.println("#{FPS=" + FPS + "}");
+		// writer.println("#{VERSION3}");
+		//
+		// for (final V3CameraFrame cframe : frames) {
+		// writer.println(cframe.serialize());
+		// }
+		// writer.close();
+		// } catch (final FileNotFoundException e) {
+		// e.printStackTrace();
+		// }
 		try {
-			writer = new PrintWriter(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat"));
-			writer.println("#mertex-fun | CameraClip | v 1.2.1");
-			writer.println("#{fsavetime=" + System.currentTimeMillis() + ",fcount=" + frames.size() + ",ver=1}");
-			writer.println("#{FPS=" + FPS + "}");
-			writer.println("#{VERSION3}");
-			
-			for (final V3CameraFrame cframe : frames) {
-				writer.println(cframe.serialize());
-			}
-			writer.close();
-		} catch (final FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	        V3CompiledWriter.createFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), name + ".dat").getAbsolutePath()).writeClip(this);
+        } catch (IOException e) {
+	        e.printStackTrace();
+        }
 	}
 	
 	/**

@@ -94,7 +94,7 @@ public class V3BasicRecorder extends BasicRecorder {
 		recording = false;
 		clip.save("advrecording" + System.currentTimeMillis());
 		player.sendMessage("Saved as: advrecording" + System.currentTimeMillis() + ".dat");
-		clip = null;
+//		clip = null;
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class V3BasicRecorder extends BasicRecorder {
 			}
 			
 			// Pridaj frame.
-			clip.addFrame(new V3CameraFrame(player.getLocation(), false));
+			clip.addFrame(new V3CameraFrame(player.getEyeLocation(), false)); // was player.getLocation()
 			frames++;
 			
 			if (frames > 30000) {
@@ -146,5 +146,9 @@ public class V3BasicRecorder extends BasicRecorder {
 	@Override
 	public void setPlayer(final Player player) {
 		this.player = player;
+	}
+	
+	public V3CameraClip getClip() {
+		return clip;
 	}
 }
