@@ -29,7 +29,7 @@ import me.MiniDigger.Core.Command.Completer;
 
 public class CineCompleter {
 	
-	@Completer(name = "cinematic")
+	@Completer(name = "cinematic", aliases = "cine")
 	public List<String> cinematic(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		

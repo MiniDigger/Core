@@ -86,7 +86,7 @@ public class MetaEntityTeleport implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntityTeleport;
+		return MetaType.ENTITY_TELEPORT;
 	}
 	
 	/**

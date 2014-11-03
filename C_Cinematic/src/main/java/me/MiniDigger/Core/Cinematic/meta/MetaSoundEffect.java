@@ -89,7 +89,7 @@ public class MetaSoundEffect implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaSoundEffect;
+		return MetaType.SOUND_EFFECT;
 	}
 	
 	/**

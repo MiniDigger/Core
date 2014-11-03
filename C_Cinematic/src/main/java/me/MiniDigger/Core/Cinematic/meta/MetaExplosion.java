@@ -38,7 +38,7 @@ public class MetaExplosion implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaExplosion;
+		return MetaType.EXPLOSION;
 	}
 	
 	@Override

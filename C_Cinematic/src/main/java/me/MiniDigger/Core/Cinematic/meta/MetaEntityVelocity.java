@@ -76,7 +76,7 @@ public class MetaEntityVelocity implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntityVelocity;
+		return MetaType.ENTITY_VELOCITY;
 	}
 	
 	/**

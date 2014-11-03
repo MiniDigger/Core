@@ -22,7 +22,6 @@ package me.MiniDigger.Core.Cinematic;
 
 import me.MiniDigger.Core.Prefix.Prefix;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -69,13 +68,7 @@ public class Recorder {
 	/**
 	 * Zacne nahravat.
 	 */
-	@SuppressWarnings("deprecation")
 	public void record() {
-		if (player == null) {
-			System.out.println("cmon");// TODO Fuck ya bukkit
-			player = Bukkit.getServer().getOnlinePlayers().clone()[0];
-		}
-		
 		Prefix.CINE.getPrefix().then("Aufnahme " + ChatColor.RED + "[ID " + ID + "] " + ChatColor.YELLOW + " (" + FPS + "fps) " + ChatColor.GREEN + " hat gestartet...")
 		        .send(player);
 		
@@ -110,7 +103,7 @@ public class Recorder {
 		}
 		
 		clip.save(name);
-		Prefix.CINE.getPrefix().then("Cinematic wurde als " + name + ".dat gespeichert").send(player);
+		Prefix.CINE.getPrefix().then("Cinematic wurde als " + name + ".cine gespeichert").send(player);
 	}
 	
 	/**

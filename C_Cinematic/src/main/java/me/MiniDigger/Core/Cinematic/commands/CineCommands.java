@@ -63,7 +63,7 @@ public class CineCommands {
 			return;
 		}
 		
-		final Recorder rec = new Recorder(args.getPlayer(), 12, name);
+		final Recorder rec = new Recorder(args.getPlayer(), 20, name);
 		rec.record();
 		recs.put(args.getPlayer().getUniqueId(), rec);
 	}
@@ -73,7 +73,7 @@ public class CineCommands {
 		final String name = args.getArgs()[0];
 		CameraClip clip;
 		try {
-			clip = CompiledReader.loadFile(new File(CinematicAddOn.INSTANCE.getDataFolder(), name).getAbsolutePath());
+			clip = CompiledReader.loadFile(new File(CinematicAddOn.INSTANCE.getDataFolder(), name + ".cine").getAbsolutePath());
 		} catch (final Exception e) {
 			Prefix.CINE.getPrefix().then("Fehler beim Laden des Clips: " + e.getLocalizedMessage()).color(ChatColor.RED).send(args.getSender());
 			return;

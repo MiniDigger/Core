@@ -94,7 +94,7 @@ public class MetaFallingSand implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaFallingSand;
+		return MetaType.ENTITY_FALLING_SAND;
 	}
 	
 	/**

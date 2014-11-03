@@ -96,6 +96,7 @@ public class CameraFrame {
 	 * 
 	 * @param e
 	 */
+	// UNUSED
 	public void addEntityLocation(final Entity e) {
 		if (clip.entites.contains(e)) {
 			// this.clip.entites.

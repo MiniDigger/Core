@@ -71,7 +71,7 @@ public class MetaEntityInventory implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntityInventory;
+		return MetaType.ENTITY_INVENTORY;
 	}
 	
 	/**

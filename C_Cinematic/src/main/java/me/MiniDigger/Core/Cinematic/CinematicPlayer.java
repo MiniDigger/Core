@@ -131,7 +131,7 @@ public class CinematicPlayer {
 				// Spracuj meta.
 				for (final Meta meta : frame.getMetas()) {
 					switch (meta.getMetaType()) {
-					case V3MetaEntityDamage:
+					case ENTITY_DAMAGE:
 						final MetaEntityDamage v3MetaEntityDamage = ((MetaEntityDamage) meta);
 						
 						// Bezpecne
@@ -143,7 +143,7 @@ public class CinematicPlayer {
 							}
 						});
 						break;
-					case V3MetaEntityInventory:
+					case ENTITY_INVENTORY:
 						final MetaEntityInventory v3MetaEntityInventory = (MetaEntityInventory) meta;
 						
 						// Bezpecne.
@@ -173,7 +173,7 @@ public class CinematicPlayer {
 							}
 						});
 						break;
-					case V3MetaEntityRemove:
+					case ENTITY_REMOVE:
 						final MetaEntityRemove v3MetaEntityRemove = (MetaEntityRemove) meta;
 						
 						// Bezpecne.
@@ -185,7 +185,7 @@ public class CinematicPlayer {
 							}
 						});
 						break;
-					case V3MetaEntitySpawn:
+					case ENTITY_SPAWN:
 						final MetaEntitySpawn v3MetaEntitySpawn = (MetaEntitySpawn) meta;
 						
 						// Pre bezpocnost mudi byt synchronne.
@@ -204,7 +204,7 @@ public class CinematicPlayer {
 							}
 						});
 						break;
-					case V3MetaEntityTeleport:
+					case ENTITY_TELEPORT:
 						final MetaEntityTeleport v3MetaEntityTeleport = (MetaEntityTeleport) meta;
 						
 						// Musi byt synchronne pre bezpecnost.
@@ -218,7 +218,7 @@ public class CinematicPlayer {
 						});
 						
 						break;
-					case V3MetaEntityVelocity:
+					case ENTITY_VELOCITY:
 						final MetaEntityVelocity v3MetaEntityVelocity = (MetaEntityVelocity) meta;
 						
 						// Musi byt synchronne pre bezpocnost.
@@ -232,7 +232,7 @@ public class CinematicPlayer {
 						});
 						;
 						break;
-					case V3MetaFallingSand:
+					case ENTITY_FALLING_SAND:
 						final MetaFallingSand v3MetaFallingSand = (MetaFallingSand) meta;
 						
 						// Musi byt pre bezpocnost synchronne.
@@ -250,7 +250,7 @@ public class CinematicPlayer {
 						});
 						
 						break;
-					case V3MetaParticleEffect:
+					case PARTICLE_EFFECT:
 						final MetaParticleEffect v3MetaParticleEffect = (MetaParticleEffect) meta;
 						
 						ParticleEffect.fromId(v3MetaParticleEffect.getParticle()).display(
@@ -258,15 +258,15 @@ public class CinematicPlayer {
 						        v3MetaParticleEffect.getOffsetX(), v3MetaParticleEffect.getOffsetY(), v3MetaParticleEffect.getOffsetZ(), v3MetaParticleEffect.getSpeed(),
 						        v3MetaParticleEffect.getAmount());
 						break;
-					case V3MetaSoundEffect:
+					case SOUND_EFFECT:
 						final MetaSoundEffect v3MetaSoundEffect = (MetaSoundEffect) meta;
 						
 						SoundUtility.playCustomSound(player, v3MetaSoundEffect.getName(), v3MetaSoundEffect.getVolume(), v3MetaSoundEffect.getPitch());
 						break;
-					case V3MetaExplosion:
+					case EXPLOSION:
 						
 						break;
-					case V3MetaEntityMove:
+					case ENTITY_MOVE:
 						final MetaEntityMove v3MetaEntityMove = (MetaEntityMove) meta;
 						
 						PacketHelper.send(

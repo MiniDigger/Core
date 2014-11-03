@@ -60,7 +60,7 @@ public class MetaEntityMove implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntityMove;
+		return MetaType.ENTITY_MOVE;
 	}
 	
 	@Override

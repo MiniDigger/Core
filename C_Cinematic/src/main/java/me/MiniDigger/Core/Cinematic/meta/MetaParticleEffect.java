@@ -75,7 +75,7 @@ public class MetaParticleEffect implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaParticleEffect;
+		return MetaType.PARTICLE_EFFECT;
 	}
 	
 	/**

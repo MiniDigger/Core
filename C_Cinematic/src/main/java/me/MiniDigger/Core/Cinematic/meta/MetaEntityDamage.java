@@ -67,7 +67,7 @@ public class MetaEntityDamage implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntityDamage;
+		return MetaType.ENTITY_DAMAGE;
 	}
 	
 	/**

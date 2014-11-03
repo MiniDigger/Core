@@ -99,7 +99,7 @@ public class MetaEntitySpawn implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntitySpawn;
+		return MetaType.ENTITY_SPAWN;
 	}
 	
 	/**

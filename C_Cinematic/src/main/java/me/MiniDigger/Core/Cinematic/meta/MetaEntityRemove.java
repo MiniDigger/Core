@@ -60,7 +60,7 @@ public class MetaEntityRemove implements Meta {
 	
 	@Override
 	public MetaType getMetaType() {
-		return MetaType.V3MetaEntityRemove;
+		return MetaType.ENTITY_REMOVE;
 	}
 	
 	/**
