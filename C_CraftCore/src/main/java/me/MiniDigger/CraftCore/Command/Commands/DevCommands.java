@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -55,11 +54,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
-
-import eu.matejkormuth.pexel.PexelCore.cinematics.V3BasicRecorder;
-import eu.matejkormuth.pexel.PexelCore.cinematics.V3CameraClip;
-import eu.matejkormuth.pexel.PexelCore.cinematics.V3CompiledReader;
-import eu.matejkormuth.pexel.PexelCore.cinematics.V3Player;
 
 public class DevCommands {
 	
@@ -295,45 +289,5 @@ public class DevCommands {
 		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
 		        .lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
 		args.getPlayer().getInventory().addItem(is);
-	}
-	
-	V3BasicRecorder	r;
-	
-	@Command(name = "dev.cinematic", description = "DEV!", usage = "", permission = "dev", sync = true)
-	public void cinematic(final CommandArgs args) {
-		if (args.getArgs().length == 1) {
-			try {
-				final V3CameraClip clip = V3CompiledReader.loadFile(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), "test.dat").getAbsolutePath());
-				final V3Player p = new V3Player(args.getUser().getPlayer(), clip);
-				p.setOnCompleted(new Runnable() {
-					
-					@Override
-					public void run() {
-						System.out.println("DONE");
-					}
-				});
-				p.play();
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
-			
-		} else if (args.getArgs().length == 0) {
-			if (args.getSender() == null) {
-				System.out.println("wait, whut?");
-			}
-			r = new V3BasicRecorder((Player) args.getSender(), 20);
-			r.record();
-		} else if (args.getArgs().length == 2) {
-			r.stop();
-			final V3Player p = new V3Player(args.getUser().getPlayer(), r.getClip());
-			p.setOnCompleted(new Runnable() {
-				
-				@Override
-				public void run() {
-					System.out.println("DONE");
-				}
-			});
-			p.play();
-		}
 	}
 }

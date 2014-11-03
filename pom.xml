@@ -55,6 +55,7 @@
 		<module>C_TicTacToe</module>
 		<module>C_GrablingHook</module>
 		<module>C_BedWars</module>
+		<module>C_Cinematic</module>
 	</modules>
 
 	<build>
