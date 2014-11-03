@@ -1,3 +1,6 @@
+/*******************************************************************************
+ * Test
+ *******************************************************************************/
 package me.MiniDigger.CraftCore.Event.Events;
 
 import me.MiniDigger.Core.Event.Events.UserDeathEvent;
