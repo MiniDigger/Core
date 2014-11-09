@@ -30,7 +30,11 @@ import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Holo.HoloList;
+import me.MiniDigger.Core.Item.ItemMenu;
+import me.MiniDigger.Core.Item.ItemMenu.onClick;
+import me.MiniDigger.Core.Item.ItemMenu.Row;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
+import me.MiniDigger.CraftCore.Item.CoreItemMenu;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
@@ -289,5 +293,29 @@ public class DevCommands {
 		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
 		        .lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
 		args.getPlayer().getInventory().addItem(is);
+	}
+	
+	@Command(name = "dev.menu", description = "DEV!", usage = "", permission = "dev")
+	public void menu(final CommandArgs args) {
+		ItemMenu menu = new CoreItemMenu("ItemMenu", 2, new onClick() {
+			
+			@Override
+			public boolean click(Player p, ItemMenu menu, Row row, int slot, ItemStack item) {
+				if (row.getRow() == 1) {
+					System.out.println(row.getRowItem(slot).getType().name());
+				}
+				return true;
+			}
+		});
+		menu.addButton(menu.getRow(1), 0, new ItemStack(Material.STONE), "Stone Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 1, new ItemStack(Material.WOOD), "Wood Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 2, new ItemStack(Material.DIAMOND), "Diamond Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 3, new ItemStack(Material.GOLD_BLOCK), "Gold Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 4, new ItemStack(Material.IRON_BLOCK), "Iron Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 5, new ItemStack(Material.OBSIDIAN), "Obby Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 6, new ItemStack(Material.ANVIL), "Anvil Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 7, new ItemStack(Material.STONE_BUTTON), "Button Button ;)", "1", "2");
+		menu.addButton(menu.getRow(1), 8, new ItemStack(Material.PORTAL), "Portal Button ;)", "1", "2");
+		menu.open(args.getPlayer().getPlayer());
 	}
 }
