@@ -124,14 +124,15 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		});
 		// Zensor
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.CHAT) {
+		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Client.CHAT) {
 			
 			@Override
 			public void onPacketSending(final PacketEvent event) {
 				final WrappedChatComponent chat = event.getPacket().getChatComponents().read(0);
 				
-				if (chat.getJson().contains("Unable to locate")) {
-					event.setCancelled(true);
+				if (chat.getJson().contains("%name%")) {
+					chat.setJson(chat.getJson().replaceAll("%name%", event.getPlayer().getDisplayName() + " der Ideot"));
+					event.getPacket().getChatComponents().write(0, chat);
 				}
 			}
 		});
