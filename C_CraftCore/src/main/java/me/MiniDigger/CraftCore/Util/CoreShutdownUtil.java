@@ -20,6 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Util;
 
+import java.io.File;
+import java.util.List;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.ShutdownUtil;
@@ -27,6 +30,8 @@ import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
 import mkremins.fanciful.FancyMessage;
+import net.minecraft.server.v1_7_R4.EntityPlayer;
+import net.minecraft.server.v1_7_R4.MinecraftServer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -38,6 +43,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.spigotmc.AsyncCatcher;
 import org.spigotmc.RestartCommand;
+import org.spigotmc.SpigotConfig;
+import org.spigotmc.WatchdogThread;
 
 public class CoreShutdownUtil implements ShutdownUtil {
 	
@@ -60,6 +67,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		
 		initShutdown();
+		Bukkit.getScheduler().cancelTasks((Plugin) Core.getCore().getInstance());
 		
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!", 100F);
@@ -77,6 +85,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}, 10 * 20);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void shutdown() {
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			FancyMessage msg = Prefix.CORE.getPrefix().then("Der Server wird neugestartet!").color(ChatColor.RED).style(ChatColor.BOLD);
@@ -100,13 +109,78 @@ public class CoreShutdownUtil implements ShutdownUtil {
 			w.save();
 		}
 		
-		Bukkit.getScheduler().runTaskLater((Plugin) Core.getCore().getInstance(), new Runnable() {
+		WatchdogThread.doStop();
+		for (final EntityPlayer p : (List<EntityPlayer>) MinecraftServer.getServer().getPlayerList().players) {
+			p.playerConnection.disconnect(SpigotConfig.restartMessage);
+		}
+		
+		try {
+			Thread.sleep(100L);
+		} catch (InterruptedException ex2) {}
+		
+		MinecraftServer.getServer().getServerConnection().b();
+		
+		try {
+			Thread.sleep(100L);
+		} catch (InterruptedException ex3) {}
+		
+		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				// Bukkit.shutdown();
-				RestartCommand.restart();
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}
-		}, 2 * 20);
+		}, "backupstopper");
+		
+		try {
+			MinecraftServer.getServer().stop();
+		} catch (Throwable t) {}
+		
+		try {
+			Thread.sleep(1000L);
+		} catch (InterruptedException ex3) {}
+		// Bukkit.shutdown();
+		RestartCommand.restart();
+	}
+	
+	public void restart() {
+		restart(new File(SpigotConfig.restartScript));
+	}
+	
+	public void restart(final File script) {
+		AsyncCatcher.enabled = false;
+		try {
+			if (script.isFile()) {
+				System.out.println("Attempting to restart with " + SpigotConfig.restartScript);
+				final Thread shutdownHook = new Thread() {
+					
+					@Override
+					public void run() {
+						try {
+							final String os = System.getProperty("os.name").toLowerCase();
+							if (os.contains("win")) {
+								Runtime.getRuntime().exec("cmd /c start " + script.getPath());
+							} else {
+								Runtime.getRuntime().exec(new String[] { "sh", script.getPath() });
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				};
+				shutdownHook.setDaemon(true);
+				Runtime.getRuntime().addShutdownHook(shutdownHook);
+			} else {
+				System.out.println("Startup script '" + SpigotConfig.restartScript + "' does not exist! Stopping server.");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		System.exit(0);
 	}
 }
