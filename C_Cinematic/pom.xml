@@ -42,7 +42,7 @@
 									classpathref="jsch.class.path" />
 
 								<scp
-									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/addons"
+									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons"
 									trust="true">
 									<fileset dir="target">
 										<include name="*.jar" />
