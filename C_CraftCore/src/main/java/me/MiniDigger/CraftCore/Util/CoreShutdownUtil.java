@@ -34,6 +34,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.spigotmc.AsyncCatcher;
 import org.spigotmc.RestartCommand;
@@ -99,7 +100,13 @@ public class CoreShutdownUtil implements ShutdownUtil {
 			w.save();
 		}
 		
-		// Bukkit.shutdown();
-		RestartCommand.restart();
+		Bukkit.getScheduler().runTaskLater((Plugin) Core.getCore().getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				// Bukkit.shutdown();
+				RestartCommand.restart();
+			}
+		}, 2 * 20);
 	}
 }

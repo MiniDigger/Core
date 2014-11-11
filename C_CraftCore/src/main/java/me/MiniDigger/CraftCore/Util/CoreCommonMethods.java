@@ -49,6 +49,7 @@ import com.bobacadodl.imgmessage.ImageMessage;
 public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
+	@Deprecated
 	public void stopServer() {
 		Core.getCore().getInstance().info("Shutting down...");
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
