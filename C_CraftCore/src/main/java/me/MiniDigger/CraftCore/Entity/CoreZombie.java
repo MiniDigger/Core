@@ -1,10 +1,7 @@
 package me.MiniDigger.CraftCore.Entity;
 
-import java.util.List;
-
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 
-import me.MiniDigger.Core.Core;
 import net.minecraft.server.v1_7_R4.EntityHuman;
 import net.minecraft.server.v1_7_R4.EntitySheep;
 import net.minecraft.server.v1_7_R4.EntityVillager;
