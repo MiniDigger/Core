@@ -35,6 +35,7 @@ import me.MiniDigger.Core.Util.EntityUtil.Type;
 import me.MiniDigger.Core.Villager.VillagerTrade;
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
+import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
 import me.MiniDigger.CraftCore.Feature.Features.DropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
@@ -109,6 +110,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamFeature(this, 4, 4));
 		addFeature(new TeamDeathMatchFeature(this));
 		addFeature(new VillagerFeature(this));
+		addFeature(new BuildFeature(this, Material.values()));
 		
 		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 		

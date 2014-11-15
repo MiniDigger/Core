@@ -48,7 +48,8 @@ public enum FeatureType {
 	TEAM_BED,
 	TEAM_DEATH_MATCH,
 	VILLAGER,
-	TEAM_SPAWN;
+	TEAM_SPAWN,
+	BUILD;
 	
 	/**
 	 * @return A human readable name for the feature

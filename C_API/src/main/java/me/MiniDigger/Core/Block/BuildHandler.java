@@ -20,6 +20,9 @@
  */
 package me.MiniDigger.Core.Block;
 
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+
 import me.MiniDigger.Core.User.User;
 
 public interface BuildHandler {
@@ -41,4 +44,29 @@ public interface BuildHandler {
 	 *            The new status
 	 */
 	public void setBuilder(final User user, final boolean builder);
+	
+	/**
+	 * Allows the user the break that type of block IF BUILDER
+	 * 
+	 * @param u
+	 * @param mat
+	 */
+	void allow(User u, Material... mat);
+	
+	/**
+	 * Removes the block types for the whitelist
+	 * 
+	 * @param u
+	 * @param mat
+	 */
+	void disallow(User u, Material... mat);
+	
+	/**
+	 * checks if that user if allowed to break that block
+	 * 
+	 * @param u
+	 * @param b
+	 * @return
+	 */
+	boolean allow(User u, Block b);
 }
