@@ -100,7 +100,9 @@ public class MobFeature extends CoreFeature {
 	public void onEntitySpawn(final CreatureSpawnEvent e) {
 		if (e.getLocation().getWorld().getName().equals(world)) {
 			if (!allowed.contains(e.getEntityType()) && e.getSpawnReason() != SpawnReason.CUSTOM) {
-				e.setCancelled(true);
+				if (!e.getEntity().hasMetadata("spawn")) {
+					e.setCancelled(true);
+				}
 			}
 		}
 	}

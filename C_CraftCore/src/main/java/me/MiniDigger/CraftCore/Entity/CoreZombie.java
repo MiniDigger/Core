@@ -18,14 +18,14 @@ import net.minecraft.server.v1_7_R4.PathfinderGoalRandomStroll;
 
 public class CoreZombie extends EntityZombie {
 	
-	private CoreEntity	entity;
+	private CoreEntity	entity	= new CoreEntity();
 	
 	public CoreZombie(org.bukkit.World world) {
 		super(((CraftWorld) world).getHandle());
 		
-		clearGoals();
-//		addDefaultGoals();
-		addCustomGoals();
+		// clearGoals();
+		// addDefaultGoals();
+		// addCustomGoals();
 	}
 	
 	public void clearGoals() {

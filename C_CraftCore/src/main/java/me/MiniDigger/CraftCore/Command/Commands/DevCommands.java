@@ -33,6 +33,7 @@ import me.MiniDigger.Core.Holo.HoloList;
 import me.MiniDigger.Core.Item.ItemMenu;
 import me.MiniDigger.Core.Item.ItemMenu.onClick;
 import me.MiniDigger.Core.Item.ItemMenu.Row;
+import me.MiniDigger.CraftCore.Entity.CoreZombie;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
@@ -40,6 +41,7 @@ import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 import mkremins.fanciful.FancyMessage;
+import net.minecraft.server.v1_7_R4.Entity;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
 import net.minecraft.server.v1_7_R4.TileEntityMobSpawner;
@@ -55,6 +57,7 @@ import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
@@ -288,7 +291,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.itemBuilder", description = "DEV!", usage = "", permission = "dev")
 	public void itemBuilder(final CommandArgs args) {
-		final ItemStack is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
+		final ItemStack is = new CoreItemBuilder(Material.MONSTER_EGG).durability(95).data(95).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
 		        .effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2).effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20)
 		        .effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
 		        .lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
@@ -317,5 +320,15 @@ public class DevCommands {
 		menu.addButton(menu.getRow(1), 7, new ItemStack(Material.STONE_BUTTON), "Button Button ;)", "1", "2");
 		menu.addButton(menu.getRow(1), 8, new ItemStack(Material.PORTAL), "Portal Button ;)", "1", "2");
 		menu.open(args.getPlayer().getPlayer());
+	}
+	
+	@Command(name = "dev.mob", description = "DEV!", usage = "", permission = "dev", sync = true)
+	public void mob(final CommandArgs args) {
+		// CoreEntityType.ZOMBIE.spawnEntity(args.getPlayer().getLocation());
+		Entity entity = new CoreZombie(args.getPlayer().getWorld());
+		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(), args.getPlayer().getLocation().getZ(), args.getPlayer()
+		        .getLocation().getYaw(), args.getPlayer().getLocation().getPitch());
+		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), true));
+		((CraftWorld) args.getPlayer().getLocation().getWorld()).getHandle().addEntity(entity);
 	}
 }

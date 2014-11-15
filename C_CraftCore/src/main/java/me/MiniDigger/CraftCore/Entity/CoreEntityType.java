@@ -8,9 +8,10 @@ import net.minecraft.server.v1_7_R4.EntityTypes;
 
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 public enum CoreEntityType {
-	ZOMBIE("Zombie", 54, CoreZombie.class);
+	ZOMBIE("CoreZombie", 54, CoreZombie.class);
 	
 	private String	                name;
 	private int	                    id;
@@ -32,7 +33,7 @@ public enum CoreEntityType {
 			return;
 		}
 		entity.setLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
-		((CraftWorld) loc.getWorld()).getHandle().addEntity(entity);
+		((CraftWorld) loc.getWorld()).getHandle().addEntity(entity, SpawnReason.CUSTOM);
 	}
 	
 	@SuppressWarnings("unchecked")
