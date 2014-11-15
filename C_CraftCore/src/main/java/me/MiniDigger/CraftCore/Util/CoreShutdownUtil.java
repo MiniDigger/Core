@@ -164,7 +164,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 						try {
 							final String os = System.getProperty("os.name").toLowerCase();
 							if (os.contains("win")) {
-								Runtime.getRuntime().exec("cmd /c start " + script.getPath());
+								Runtime.getRuntime().exec("cmd /c title TEST \nstart " + script.getPath());
 							} else {
 								Runtime.getRuntime().exec(new String[] { "sh", script.getPath() });
 							}
