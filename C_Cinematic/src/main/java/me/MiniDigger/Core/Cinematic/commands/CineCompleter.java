@@ -51,7 +51,7 @@ public class CineCompleter {
 		final List<String> files = new ArrayList<String>();
 		
 		if (args.getArgs().length == 1) {
-			for (File f : CinematicAddOn.INSTANCE.getDataFolder().listFiles()) {
+			for (final File f : CinematicAddOn.INSTANCE.getDataFolder().listFiles()) {
 				if (f.getName().endsWith(".cine")) {
 					files.add(f.getName().replace(".cine", ""));
 				}

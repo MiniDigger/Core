@@ -104,17 +104,17 @@ public class CineCommands {
 	
 	@Command(name = "cinematic.list", description = "Listet alle Cinematics auf", permission = "cinematic.list", aliases = "cine.list")
 	public void list(final CommandArgs args) {
-		List<String> files = new ArrayList<String>();
+		final List<String> files = new ArrayList<String>();
 		
-		for (File f : CinematicAddOn.INSTANCE.getDataFolder().listFiles()) {
+		for (final File f : CinematicAddOn.INSTANCE.getDataFolder().listFiles()) {
 			if (f.getName().endsWith(".cine")) {
 				files.add(f.getName().replace(".cine", ""));
 			}
 		}
 		
-		FancyMessage msg = Prefix.CINE.getPrefix();
+		final FancyMessage msg = Prefix.CINE.getPrefix();
 		boolean b = true;
-		for (String s : files) {
+		for (final String s : files) {
 			msg.then(s + " ").command("/cine play " + s).tooltip("Klick um abzuspielen").color(b ? ChatColor.AQUA : ChatColor.BLUE);
 			b = !b;
 		}

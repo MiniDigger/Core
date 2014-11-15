@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Entity;
 
 import java.util.Map;
@@ -17,18 +37,18 @@ public enum CoreEntityType {
 	private int	                    id;
 	private Class<? extends Entity>	clazz;
 	
-	private CoreEntityType(String name, int id, Class<? extends Entity> clazz) {
+	private CoreEntityType(final String name, final int id, final Class<? extends Entity> clazz) {
 		this.name = name;
 		this.id = id;
 		this.clazz = clazz;
 		addToMaps();
 	}
 	
-	public void spawnEntity(Location loc) {
+	public void spawnEntity(final Location loc) {
 		Entity entity;
 		try {
 			entity = clazz.getConstructor(org.bukkit.World.class).newInstance(loc.getWorld());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return;
 		}
@@ -38,13 +58,15 @@ public enum CoreEntityType {
 	
 	@SuppressWarnings("unchecked")
 	private void addToMaps() {
-		Map<String, Class<? extends Entity>> c = (Map<String, Class<? extends Entity>>) Core.getCore().getReflectionUtil().getPrivateField("c", EntityTypes.class, null);
-		Map<Class<? extends Entity>, String> d = (Map<Class<? extends Entity>, String>) Core.getCore().getReflectionUtil().getPrivateField("d", EntityTypes.class, null);
-		Map<Integer, Class<? extends Entity>> e = (Map<Integer, Class<? extends Entity>>) Core.getCore().getReflectionUtil()
+		final Map<String, Class<? extends Entity>> c = (Map<String, Class<? extends Entity>>) Core.getCore().getReflectionUtil()
+		        .getPrivateField("c", EntityTypes.class, null);
+		final Map<Class<? extends Entity>, String> d = (Map<Class<? extends Entity>, String>) Core.getCore().getReflectionUtil()
+		        .getPrivateField("d", EntityTypes.class, null);
+		final Map<Integer, Class<? extends Entity>> e = (Map<Integer, Class<? extends Entity>>) Core.getCore().getReflectionUtil()
 		        .getPrivateField("e", EntityTypes.class, null);
-		Map<Class<? extends Entity>, Integer> f = (Map<Class<? extends Entity>, Integer>) Core.getCore().getReflectionUtil()
+		final Map<Class<? extends Entity>, Integer> f = (Map<Class<? extends Entity>, Integer>) Core.getCore().getReflectionUtil()
 		        .getPrivateField("f", EntityTypes.class, null);
-		Map<String, Integer> g = (Map<String, Integer>) Core.getCore().getReflectionUtil().getPrivateField("g", EntityTypes.class, null);
+		final Map<String, Integer> g = (Map<String, Integer>) Core.getCore().getReflectionUtil().getPrivateField("g", EntityTypes.class, null);
 		
 		if (c.containsKey(name)) {
 			c.remove(name);

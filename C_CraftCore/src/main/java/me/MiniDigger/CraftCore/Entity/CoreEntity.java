@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Entity;
 
 import java.util.List;
@@ -7,14 +27,14 @@ import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
 
 public class CoreEntity {
 	
-	public void clearGoals(PathfinderGoalSelector goalSelector, PathfinderGoalSelector targetSelector) {
-		List<?> goalB = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+	public void clearGoals(final PathfinderGoalSelector goalSelector, final PathfinderGoalSelector targetSelector) {
+		final List<?> goalB = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
 		goalB.clear();
-		List<?> goalC = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+		final List<?> goalC = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
 		goalC.clear();
-		List<?> targetB = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+		final List<?> targetB = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
 		targetB.clear();
-		List<?> targetC = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+		final List<?> targetC = (List<?>) Core.getCore().getReflectionUtil().getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
 		targetC.clear();
 	}
 }

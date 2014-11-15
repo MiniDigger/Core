@@ -132,10 +132,10 @@ public class BedFeature extends CoreFeature {
 			final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			user.sendMessage(getPhase().getGame().getPrefix().then("Du bist draußen, weil dein Bett kaputt ist!"));
 			try {
-				TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-				Team t = tf.getTeam(user);
+				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+				final Team t = tf.getTeam(user);
 				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName()).color(t.getColor()).then(" ist draußen!"));
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				System.out.println("bed not team: " + ex.getMessage());
 				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName() + " ist draußen!"));
 			}
@@ -145,10 +145,10 @@ public class BedFeature extends CoreFeature {
 			e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
 		} else {
 			try {
-				TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
+				final TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
 				tdm.setRespawns(e.getPlayer().getUniqueId(), tdm.getRespawns(e.getPlayer().getUniqueId()) + 1);
 				System.out.println("reset");
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				System.out.println("tdm respawn bed error: " + ex.getMessage());
 			}
 			e.setRespawnLocation(bed.add(0.5, 1, 0.5));

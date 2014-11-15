@@ -31,8 +31,8 @@ import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Holo.HoloList;
 import me.MiniDigger.Core.Item.ItemMenu;
-import me.MiniDigger.Core.Item.ItemMenu.onClick;
 import me.MiniDigger.Core.Item.ItemMenu.Row;
+import me.MiniDigger.Core.Item.ItemMenu.onClick;
 import me.MiniDigger.CraftCore.Entity.CoreZombie;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
@@ -300,10 +300,10 @@ public class DevCommands {
 	
 	@Command(name = "dev.menu", description = "DEV!", usage = "", permission = "dev")
 	public void menu(final CommandArgs args) {
-		ItemMenu menu = new CoreItemMenu("ItemMenu", 2, new onClick() {
+		final ItemMenu menu = new CoreItemMenu("ItemMenu", 2, new onClick() {
 			
 			@Override
-			public boolean click(Player p, ItemMenu menu, Row row, int slot, ItemStack item) {
+			public boolean click(final Player p, final ItemMenu menu, final Row row, final int slot, final ItemStack item) {
 				if (row.getRow() == 1) {
 					System.out.println(row.getRowItem(slot).getType().name());
 				}
@@ -325,7 +325,7 @@ public class DevCommands {
 	@Command(name = "dev.mob", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void mob(final CommandArgs args) {
 		// CoreEntityType.ZOMBIE.spawnEntity(args.getPlayer().getLocation());
-		Entity entity = new CoreZombie(args.getPlayer().getWorld());
+		final Entity entity = new CoreZombie(args.getPlayer().getWorld());
 		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(), args.getPlayer().getLocation().getZ(), args.getPlayer()
 		        .getLocation().getYaw(), args.getPlayer().getLocation().getPitch());
 		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), true));

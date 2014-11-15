@@ -33,12 +33,12 @@ import me.MiniDigger.Core.Cinematic.MetaType;
  */
 public class MetaSoundEffect implements Meta {
 	
-	private final double	 posX;
-	private final double	 posY;
-	private final double	 posZ;
-	private final float	     pitch;
-	private final float	     volume;
-	private final String	 name;
+	private final double	posX;
+	private final double	posY;
+	private final double	posZ;
+	private final float	 pitch;
+	private final float	 volume;
+	private final String	name;
 	
 	/**
 	 * Vytvori novy V3MetaSoundEffect so specifikovanymi udajmi.

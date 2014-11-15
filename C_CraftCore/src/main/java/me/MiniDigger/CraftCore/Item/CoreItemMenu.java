@@ -1,10 +1,30 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Item;
-
-import me.MiniDigger.Core.Item.ItemMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import me.MiniDigger.Core.Item.ItemMenu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -20,14 +40,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class CoreItemMenu implements ItemMenu {
 	
-	private String	    name;
-	private int	        size;
-	private onClick	    click;
-	List<String>	    viewing	= new ArrayList<String>();
+	private final String	  name;
+	private final int	      size;
+	private final onClick	  click;
+	List<String>	          viewing	= new ArrayList<String>();
 	
-	private ItemStack[]	items;
+	private final ItemStack[]	items;
 	
-	public CoreItemMenu(String name, int size, onClick click) {
+	public CoreItemMenu(final String name, final int size, final onClick click) {
 		this.name = name;
 		this.size = size * 9;
 		items = new ItemStack[this.size];
@@ -37,21 +57,21 @@ public class CoreItemMenu implements ItemMenu {
 	
 	@Override
 	@EventHandler
-	public void onPluginDisable(PluginDisableEvent event) {
-		for (Player p : this.getViewers()) {
+	public void onPluginDisable(final PluginDisableEvent event) {
+		for (final Player p : getViewers()) {
 			close(p);
 		}
 	}
 	
 	@Override
-	public ItemMenu open(Player p) {
+	public ItemMenu open(final Player p) {
 		p.openInventory(getInventory(p));
 		viewing.add(p.getName());
 		return this;
 	}
 	
-	private Inventory getInventory(Player p) {
-		Inventory inv = Bukkit.createInventory(p, size, name);
+	private Inventory getInventory(final Player p) {
+		final Inventory inv = Bukkit.createInventory(p, size, name);
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] != null) {
 				inv.setItem(i, items[i]);
@@ -61,7 +81,7 @@ public class CoreItemMenu implements ItemMenu {
 	}
 	
 	@Override
-	public ItemMenu close(Player p) {
+	public ItemMenu close(final Player p) {
 		if (p.getOpenInventory().getTitle().equals(name)) {
 			p.closeInventory();
 		}
@@ -70,8 +90,8 @@ public class CoreItemMenu implements ItemMenu {
 	
 	@Override
 	public List<Player> getViewers() {
-		List<Player> viewers = new ArrayList<Player>();
-		for (String s : viewing) {
+		final List<Player> viewers = new ArrayList<Player>();
+		for (final String s : viewing) {
 			viewers.add(Bukkit.getPlayer(s));
 		}
 		return viewers;
@@ -79,15 +99,15 @@ public class CoreItemMenu implements ItemMenu {
 	
 	@Override
 	@EventHandler
-	public void onInventoryClick(InventoryClickEvent event) {
+	public void onInventoryClick(final InventoryClickEvent event) {
 		if (viewing.contains(event.getWhoClicked().getName())) {
 			event.setCancelled(true);
-			Player p = (Player) event.getWhoClicked();
+			final Player p = (Player) event.getWhoClicked();
 			if (event.getClickedInventory() == null || !event.getClickedInventory().getName().equals(name) || event.getSlot() == -999) {
 				p.updateInventory();
 				return;
 			}
-			Row row = getRowFromSlot(event.getSlot());
+			final Row row = getRowFromSlot(event.getSlot());
 			if (!click.click(p, this, row, event.getSlot() - row.getRow() * 9, event.getCurrentItem())) {
 				close(p);
 			}
@@ -97,7 +117,7 @@ public class CoreItemMenu implements ItemMenu {
 	
 	@Override
 	@EventHandler
-	public void onInventoryDrag(InventoryDragEvent event) {
+	public void onInventoryDrag(final InventoryDragEvent event) {
 		if (viewing.contains(event.getWhoClicked().getName())) {
 			event.setCancelled(true);
 			((Player) event.getWhoClicked()).updateInventory();
@@ -106,30 +126,30 @@ public class CoreItemMenu implements ItemMenu {
 	
 	@Override
 	@EventHandler
-	public void onInventoryClose(InventoryCloseEvent event) {
+	public void onInventoryClose(final InventoryCloseEvent event) {
 		if (viewing.contains(event.getPlayer().getName())) {
 			viewing.remove(event.getPlayer().getName());
 		}
 	}
 	
 	@Override
-	public ItemMenu addButton(Row row, int position, ItemStack item, String name, String... lore) {
+	public ItemMenu addButton(final Row row, final int position, final ItemStack item, final String name, final String... lore) {
 		items[row.getRow() * 9 + position] = getItem(item, name, lore);
 		return this;
 	}
 	
 	@Override
-	public Row getRowFromSlot(int slot) {
+	public Row getRowFromSlot(final int slot) {
 		return new CoreRow(slot / 9, items);
 	}
 	
 	@Override
-	public Row getRow(int row) {
+	public Row getRow(final int row) {
 		return new CoreRow(row, items);
 	}
 	
-	private ItemStack getItem(ItemStack item, String name, String... lore) {
-		ItemMeta im = item.getItemMeta();
+	private ItemStack getItem(final ItemStack item, final String name, final String... lore) {
+		final ItemMeta im = item.getItemMeta();
 		im.setDisplayName(name);
 		im.setLore(Arrays.asList(lore));
 		item.setItemMeta(im);
@@ -138,10 +158,10 @@ public class CoreItemMenu implements ItemMenu {
 	
 	public class CoreRow implements Row {
 		
-		private ItemStack[]	rowItems	= new ItemStack[9];
-		int		            row;
+		private final ItemStack[]	rowItems	= new ItemStack[9];
+		int		                  row;
 		
-		public CoreRow(int row, ItemStack[] items) {
+		public CoreRow(final int row, final ItemStack[] items) {
 			this.row = row;
 			int j = 0;
 			for (int i = (row * 9); i < (row * 9) + 9; i++) {
@@ -156,7 +176,7 @@ public class CoreItemMenu implements ItemMenu {
 		}
 		
 		@Override
-		public ItemStack getRowItem(int item) {
+		public ItemStack getRowItem(final int item) {
 			return rowItems[item] == null ? new ItemStack(Material.AIR) : rowItems[item];
 		}
 		

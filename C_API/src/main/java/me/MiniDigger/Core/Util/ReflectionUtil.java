@@ -88,7 +88,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public boolean ClassListEqual(final Class<?>[] l1, final Class<?>[] l2);
-
+	
 	/**
 	 * 
 	 * returns the value of an private field
@@ -98,5 +98,5 @@ public interface ReflectionUtil {
 	 * @param object
 	 * @return
 	 */
-	Object getPrivateField(String fieldName, Class<?> clazz, Object object);
+	Object getPrivateField(final String fieldName, final Class<?> clazz, final Object object);
 }

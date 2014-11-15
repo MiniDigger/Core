@@ -41,7 +41,7 @@ public enum MetaType {
 	
 	private int	id;
 	
-	private MetaType(int id) {
+	private MetaType(final int id) {
 		this.id = id;
 	}
 	

@@ -39,12 +39,12 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class TeamDeathMatchFeature extends CoreFeature {
 	
-	private int	                   respawnCount;
-	private HashMap<UUID, Integer>	respawns	= new HashMap<UUID, Integer>();
+	private final int	                 respawnCount;
+	private final HashMap<UUID, Integer>	respawns	= new HashMap<UUID, Integer>();
 	
-	public TeamDeathMatchFeature(final Phase phase, int respawns) {
+	public TeamDeathMatchFeature(final Phase phase, final int respawns) {
 		super(phase);
-		this.respawnCount = respawns;
+		respawnCount = respawns;
 	}
 	
 	@Override
@@ -69,7 +69,7 @@ public class TeamDeathMatchFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			respawns.put(id, respawnCount);
 		}
 	}
@@ -79,27 +79,27 @@ public class TeamDeathMatchFeature extends CoreFeature {
 		
 	}
 	
-	public int getRespawns(UUID id) {
-		Integer i = respawns.get(id);
+	public int getRespawns(final UUID id) {
+		final Integer i = respawns.get(id);
 		return i == null ? -1 : i;
 	}
 	
-	public void setRespawns(UUID id, int count) {
+	public void setRespawns(final UUID id, final int count) {
 		respawns.remove(id);
 		respawns.put(id, count);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onDeath(PlayerRespawnEvent e) {
+	public void onDeath(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
-			Integer count = respawns.remove(e.getPlayer().getUniqueId());
+			final Integer count = respawns.remove(e.getPlayer().getUniqueId());
 			if (count == null) {
 				System.out.println(e.getPlayer().getName() + " died again!");
 			} else {
 				if (count == 0) {
 					if (!isTeamAlive(e.getPlayer())) {
-						TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-						Team t = tf.getTeam(e.getPlayer());
+						final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+						final Team t = tf.getTeam(e.getPlayer());
 						System.out.println(t.getName() + "d raußen");
 						getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(t.getName()).color(t.getColor()).then(" ist draußen!"));
 						checkEnd();
@@ -114,10 +114,10 @@ public class TeamDeathMatchFeature extends CoreFeature {
 		}
 	}
 	
-	private boolean isTeamAlive(Player p) {
-		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		Team t = tf.getTeam(p);
-		for (UUID id : t.getPlayers()) {
+	private boolean isTeamAlive(final Player p) {
+		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final Team t = tf.getTeam(p);
+		for (final UUID id : t.getPlayers()) {
 			if (respawns.containsKey(id)) {
 				return true;
 			}
@@ -126,10 +126,10 @@ public class TeamDeathMatchFeature extends CoreFeature {
 	}
 	
 	private void checkEnd() {
-		TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		List<String> alive = new ArrayList<String>();
-		for (Team t : tf.getTeams()) {
-			for (UUID id : t.getPlayers()) {
+		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final List<String> alive = new ArrayList<String>();
+		for (final Team t : tf.getTeams()) {
+			for (final UUID id : t.getPlayers()) {
 				if (respawns.containsKey(id)) {
 					if (!alive.contains(t.getName())) {
 						alive.add(t.getName());
@@ -139,8 +139,8 @@ public class TeamDeathMatchFeature extends CoreFeature {
 		}
 		
 		if (alive.size() < 2) {
-			List<User> user = new ArrayList<User>();
-			for (UUID id : tf.getTeam(alive.get(0)).getPlayers()) {
+			final List<User> user = new ArrayList<User>();
+			for (final UUID id : tf.getTeam(alive.get(0)).getPlayers()) {
 				user.add(Core.getCore().getUserHandler().get(id));
 			}
 			

@@ -111,7 +111,7 @@ public class CoreReflectionUtil implements ReflectionUtil {
 	}
 	
 	@Override
-	public Object getPrivateField(String fieldName, @SuppressWarnings("rawtypes") Class clazz, Object object) {
+	public Object getPrivateField(final String fieldName, @SuppressWarnings("rawtypes") final Class clazz, final Object object) {
 		Field field;
 		Object o = null;
 		
@@ -121,9 +121,9 @@ public class CoreReflectionUtil implements ReflectionUtil {
 			field.setAccessible(true);
 			
 			o = field.get(object);
-		} catch (NoSuchFieldException e) {
+		} catch (final NoSuchFieldException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (final IllegalAccessException e) {
 			e.printStackTrace();
 		}
 		

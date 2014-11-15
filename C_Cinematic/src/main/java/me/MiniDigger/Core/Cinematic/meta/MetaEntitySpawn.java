@@ -89,7 +89,7 @@ public class MetaEntitySpawn implements Meta {
 		
 		return new MetaEntitySpawn(x, y, z, yaw, pitch, type, internalId);
 	}
-
+	
 	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_SPAWN;

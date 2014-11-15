@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.Core.Item;
 
 import java.util.List;
@@ -29,7 +49,7 @@ public interface ItemMenu extends Listener {
 		 *            the item which was clicked
 		 * @return
 		 */
-		public abstract boolean click(Player clicker, ItemMenu menu, Row row, int slot, ItemStack item);
+		public abstract boolean click(final Player clicker, final ItemMenu menu, final Row row, final int slot, final ItemStack item);
 	}
 	
 	public interface Row {
@@ -44,7 +64,7 @@ public interface ItemMenu extends Listener {
 		 *            the column
 		 * @return the item in that column
 		 */
-		ItemStack getRowItem(int item);
+		ItemStack getRowItem(final int item);
 		
 		/**
 		 * @return the row #
@@ -56,17 +76,17 @@ public interface ItemMenu extends Listener {
 	/**
 	 * Closes the menu for all players
 	 */
-	void onPluginDisable(PluginDisableEvent event);
+	void onPluginDisable(final PluginDisableEvent event);
 	
 	/**
 	 * Opens this menu for the player p
 	 */
-	ItemMenu open(Player p);
+	ItemMenu open(final Player p);
 	
 	/**
 	 * Opens this menu for the player p
 	 */
-	ItemMenu close(Player p);
+	ItemMenu close(final Player p);
 	
 	/**
 	 * @return all viewers
@@ -76,17 +96,17 @@ public interface ItemMenu extends Listener {
 	/**
 	 * handles clicks
 	 */
-	void onInventoryClick(InventoryClickEvent event);
+	void onInventoryClick(final InventoryClickEvent event);
 	
 	/**
 	 * prevents draging
 	 */
-	void onInventoryDrag(InventoryDragEvent event);
+	void onInventoryDrag(final InventoryDragEvent event);
 	
 	/**
 	 * remove the player from viewing
 	 */
-	void onInventoryClose(InventoryCloseEvent event);
+	void onInventoryClose(final InventoryCloseEvent event);
 	
 	/**
 	 * Add a new option
@@ -103,7 +123,7 @@ public interface ItemMenu extends Listener {
 	 *            the lore of the item
 	 * @return this menu for chaining
 	 */
-	ItemMenu addButton(Row row, int position, ItemStack item, String name, String... lore);
+	ItemMenu addButton(final Row row, final int position, final ItemStack item, final String name, final String... lore);
 	
 	/**
 	 * Gets the row from a minecraft slot number
@@ -112,7 +132,7 @@ public interface ItemMenu extends Listener {
 	 *            the slot number
 	 * @return the row
 	 */
-	Row getRowFromSlot(int slot);
+	Row getRowFromSlot(final int slot);
 	
 	/**
 	 * Gets the row with that number
@@ -121,5 +141,5 @@ public interface ItemMenu extends Listener {
 	 *            the number
 	 * @return the row
 	 */
-	Row getRow(int row);
+	Row getRow(final int row);
 }

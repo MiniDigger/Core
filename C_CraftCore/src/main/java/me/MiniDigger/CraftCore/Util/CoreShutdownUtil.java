@@ -116,13 +116,13 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		
 		try {
 			Thread.sleep(100L);
-		} catch (InterruptedException ex2) {}
+		} catch (final InterruptedException ex2) {}
 		
 		MinecraftServer.getServer().getServerConnection().b();
 		
 		try {
 			Thread.sleep(100L);
-		} catch (InterruptedException ex3) {}
+		} catch (final InterruptedException ex3) {}
 		
 		new Thread(new Runnable() {
 			
@@ -130,7 +130,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 			public void run() {
 				try {
 					Thread.sleep(2000);
-				} catch (InterruptedException e) {
+				} catch (final InterruptedException e) {
 					e.printStackTrace();
 				}
 				System.exit(-1);
@@ -139,11 +139,11 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		
 		try {
 			MinecraftServer.getServer().stop();
-		} catch (Throwable t) {}
+		} catch (final Throwable t) {}
 		
 		try {
 			Thread.sleep(1000L);
-		} catch (InterruptedException ex3) {}
+		} catch (final InterruptedException ex3) {}
 		// Bukkit.shutdown();
 		RestartCommand.restart();
 	}
@@ -168,7 +168,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 							} else {
 								Runtime.getRuntime().exec(new String[] { "sh", script.getPath() });
 							}
-						} catch (Exception e) {
+						} catch (final Exception e) {
 							e.printStackTrace();
 						}
 					}
@@ -178,7 +178,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 			} else {
 				System.out.println("Startup script '" + SpigotConfig.restartScript + "' does not exist! Stopping server.");
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 		}
 		System.exit(0);

@@ -26,11 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.User.User;
+
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 public class CoreBuildHandler implements BuildHandler {
 	
@@ -56,23 +56,23 @@ public class CoreBuildHandler implements BuildHandler {
 	}
 	
 	@Override
-	public void allow(User u, Material... mat) {
+	public void allow(final User u, final Material... mat) {
 		if (!blocks.containsKey(u.getUUID())) {
 			blocks.put(u.getUUID(), new ArrayList<Material>());
 		}
 		
-		List<Material> l = blocks.remove(u.getUUID());
+		final List<Material> l = blocks.remove(u.getUUID());
 		l.addAll(Arrays.asList(mat));
 		blocks.put(u.getUUID(), l);
 	}
 	
 	@Override
-	public void disallow(User u, Material... mat) {
+	public void disallow(final User u, final Material... mat) {
 		if (!blocks.containsKey(u.getUUID())) {
 			blocks.put(u.getUUID(), new ArrayList<Material>());
 		}
 		
-		List<Material> l = blocks.remove(u.getUUID());
+		final List<Material> l = blocks.remove(u.getUUID());
 		
 		if (mat == null) {
 			return;
@@ -83,7 +83,7 @@ public class CoreBuildHandler implements BuildHandler {
 	}
 	
 	@Override
-	public boolean allow(User u, Block b) {
+	public boolean allow(final User u, final Block b) {
 		if (!blocks.containsKey(u.getUUID())) {
 			return true;
 		}

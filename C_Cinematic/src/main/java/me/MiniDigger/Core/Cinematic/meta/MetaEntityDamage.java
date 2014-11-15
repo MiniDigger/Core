@@ -33,8 +33,8 @@ import me.MiniDigger.Core.Cinematic.MetaType;
  */
 public class MetaEntityDamage implements Meta {
 	
-	private final long	     internalId;
-	private final float	     damage;
+	private final long	internalId;
+	private final float	damage;
 	
 	/**
 	 * @param internalId
