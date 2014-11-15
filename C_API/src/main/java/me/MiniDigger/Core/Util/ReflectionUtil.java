@@ -98,5 +98,5 @@ public interface ReflectionUtil {
 	 * @param object
 	 * @return
 	 */
-	Object getPrivateField(String fieldName, Class clazz, Object object);
+	Object getPrivateField(String fieldName, Class<?> clazz, Object object);
 }
