@@ -36,7 +36,6 @@ import me.MiniDigger.Core.Villager.VillagerTrade;
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
-import me.MiniDigger.CraftCore.Feature.Features.DropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
@@ -102,7 +101,6 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new MobFeature(this, allowed));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new DropFeature(this));
 		addFeature(new MapFeature(this, getGame().getGameData("VoteWinner")));
 		addFeature(new PvPFeature(this, true));
 		addFeature(new TeamSpawnFeature(this, true, DyeColor.WHITE));

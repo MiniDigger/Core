@@ -42,6 +42,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class BedFeature extends CoreFeature {
 	
@@ -167,6 +168,11 @@ public class BedFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed wurde zerstört!"));
 					bed = null;
 				}
+				
+				e.getBlock().setType(Material.AIR);
+				e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.BED, 1));
+				e.setCancelled(true);
+				System.out.println("BED");
 			} else {
 				System.out.println("Wrong bed? " + (teamName != null ? teamName : "") + " " + bed);
 			}
