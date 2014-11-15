@@ -108,7 +108,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamSpawnFeature(this, true, DyeColor.WHITE));
 		addFeature(new TeamBedFeature(this, 4));
 		addFeature(new TeamFeature(this, 4, 4));
-		addFeature(new TeamDeathMatchFeature(this));
+		addFeature(new TeamDeathMatchFeature(this, 0));
 		addFeature(new VillagerFeature(this));
 		addFeature(new BuildFeature(this, Material.values()));
 		

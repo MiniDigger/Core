@@ -27,8 +27,11 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -123,14 +126,17 @@ public class BedFeature extends CoreFeature {
 		return bed;
 	}
 	
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
 		if (bed == null) {
 			final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			user.sendMessage(getPhase().getGame().getPrefix().then("Du bist draußen, weil dein Bett kaputt ist!"));
-			if (teamName != null) {
-				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(teamName + ": " + user.getDisplayName() + " ist draußen!"));
-			} else {
+			try {
+				TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+				Team t = tf.getTeam(user);
+				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName()).color(t.getColor()).then(" ist draußen!"));
+			} catch (Exception ex) {
+				System.out.println("bed not team: " + ex.getMessage());
 				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName() + " ist draußen!"));
 			}
 		}
@@ -138,6 +144,13 @@ public class BedFeature extends CoreFeature {
 			final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 			e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
 		} else {
+			try {
+				TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
+				tdm.setRespawns(e.getPlayer().getUniqueId(), tdm.getRespawns(e.getPlayer().getUniqueId()) + 1);
+				System.out.println("reset");
+			} catch (Exception ex) {
+				System.out.println("tdm respawn bed error: " + ex.getMessage());
+			}
 			e.setRespawnLocation(bed.add(0.5, 1, 0.5));
 		}
 	}

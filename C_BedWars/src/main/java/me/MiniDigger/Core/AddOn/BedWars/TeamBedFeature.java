@@ -95,7 +95,7 @@ public class TeamBedFeature extends CoreFeature {
 		}
 	}
 	
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
 		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		beds.get(tf.getTeam(e.getPlayer()).getName()).onPlayerRespawn(e);
