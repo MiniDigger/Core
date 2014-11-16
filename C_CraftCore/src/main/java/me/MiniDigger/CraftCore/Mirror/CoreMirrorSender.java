@@ -27,8 +27,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Mirror.MirrorSender;
 import net.minecraft.util.com.google.gson.Gson;
+
+import me.MiniDigger.Core.Mirror.MirrorSender;
 
 public class CoreMirrorSender implements MirrorSender {
 	

@@ -20,11 +20,11 @@
  */
 package me.MiniDigger.Core.Protocol;
 
+import com.comphenix.protocol.events.PacketEvent;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import com.comphenix.protocol.events.PacketEvent;
 
 public interface SignGUI {
 	

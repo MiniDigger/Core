@@ -20,13 +20,13 @@
  */
 package me.MiniDigger.CraftCore.Item;
 
-import me.MiniDigger.Core.Item.Item;
-import me.MiniDigger.Core.Item.ItemType;
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import me.MiniDigger.Core.Item.Item;
+import me.MiniDigger.Core.Item.ItemType;
+import me.MiniDigger.Core.User.User;
 
 public abstract class CoreItem implements Item {
 	

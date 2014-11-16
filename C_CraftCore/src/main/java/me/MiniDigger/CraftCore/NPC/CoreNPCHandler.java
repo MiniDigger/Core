@@ -22,18 +22,18 @@ package me.MiniDigger.CraftCore.NPC;
 
 import java.util.concurrent.ExecutionException;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.NPC.NPCHandler;
+import com.lenis0012.bukkit.npc.NPC;
+import com.lenis0012.bukkit.npc.NPCAnimation;
+import com.lenis0012.bukkit.npc.NPCFactory;
+import com.lenis0012.bukkit.npc.NPCProfile;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
-import com.lenis0012.bukkit.npc.NPC;
-import com.lenis0012.bukkit.npc.NPCAnimation;
-import com.lenis0012.bukkit.npc.NPCFactory;
-import com.lenis0012.bukkit.npc.NPCProfile;
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.NPC.NPCHandler;
 
 public class CoreNPCHandler implements NPCHandler {
 	

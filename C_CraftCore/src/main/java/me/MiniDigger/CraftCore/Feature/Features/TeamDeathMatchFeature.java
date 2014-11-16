@@ -25,17 +25,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerRespawnEvent;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TeamDeathMatchFeature extends CoreFeature {
 	

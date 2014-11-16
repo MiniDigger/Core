@@ -26,10 +26,11 @@ import java.util.Date;
 import java.util.logging.LogRecord;
 import java.util.regex.Pattern;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.CraftCore.Packet.CorePacket;
-
 import org.java_websocket.WebSocket;
+
+import me.MiniDigger.Core.Core;
+
+import me.MiniDigger.CraftCore.Packet.CorePacket;
 
 public class LogRecordPacket extends CorePacket {
 	

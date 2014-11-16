@@ -20,12 +20,12 @@
  */
 package me.MiniDigger.CraftCore.Command;
 
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.User.User;
-
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 public class CoreCommandArgs implements CommandArgs {
 	

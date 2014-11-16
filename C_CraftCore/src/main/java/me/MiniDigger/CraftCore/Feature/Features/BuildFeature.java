@@ -24,13 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Material;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
-import org.bukkit.Material;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class BuildFeature extends CoreFeature {
 	

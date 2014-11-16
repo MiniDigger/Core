@@ -20,12 +20,12 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Item.ItemType;
 import me.MiniDigger.Core.Prefix.Prefix;
-
-import org.bukkit.ChatColor;
 
 public class ItemCommands {
 	

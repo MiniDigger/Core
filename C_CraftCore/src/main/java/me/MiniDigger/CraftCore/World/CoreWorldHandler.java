@@ -25,13 +25,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Map.MapData;
-import me.MiniDigger.Core.World.WorldHandler;
-import me.MiniDigger.CraftCore.CoreMain;
-import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
-import me.MiniDigger.CraftCore.Map.CoreMapData;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -43,6 +36,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Map.MapData;
+import me.MiniDigger.Core.World.WorldHandler;
+
+import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
+import me.MiniDigger.CraftCore.Map.CoreMapData;
 
 public class CoreWorldHandler implements WorldHandler {
 	

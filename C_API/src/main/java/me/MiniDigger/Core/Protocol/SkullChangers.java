@@ -22,10 +22,10 @@ package me.MiniDigger.Core.Protocol;
 
 import java.util.List;
 
+import com.comphenix.protocol.events.PacketEvent;
+
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-
-import com.comphenix.protocol.events.PacketEvent;
 
 public interface SkullChangers {
 	

@@ -23,9 +23,9 @@ package me.MiniDigger.Core.Team;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Game.Game;
-
 import org.bukkit.ChatColor;
+
+import me.MiniDigger.Core.Game.Game;
 
 public interface Team {
 	

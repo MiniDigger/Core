@@ -20,10 +20,11 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
-import me.MiniDigger.Core.Villager.VillagerTrade;
-
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+
 import org.bukkit.inventory.ItemStack;
+
+import me.MiniDigger.Core.Villager.VillagerTrade;
 
 public class CoreVillagerTrade implements VillagerTrade {
 	

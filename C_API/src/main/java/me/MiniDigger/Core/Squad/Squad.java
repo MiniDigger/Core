@@ -25,6 +25,7 @@ import java.util.UUID;
 
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.User.User;
+
 import mkremins.fanciful.FancyMessage;
 
 public interface Squad {

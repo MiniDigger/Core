@@ -20,9 +20,9 @@
  */
 package me.MiniDigger.CraftCore.AddOn;
 
-import me.MiniDigger.Core.AddOn.AddOnBean;
-
 import org.json.simple.JSONObject;
+
+import me.MiniDigger.Core.AddOn.AddOnBean;
 
 public class CoreAddOnBean implements AddOnBean {
 	

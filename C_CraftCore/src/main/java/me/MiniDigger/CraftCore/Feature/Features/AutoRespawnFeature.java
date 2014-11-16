@@ -23,18 +23,21 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.CraftCore.CoreMain;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+
 import net.minecraft.server.v1_7_R4.EnumClientCommand;
 import net.minecraft.server.v1_7_R4.PacketPlayInClientCommand;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.event.EventHandler;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+
+import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class AutoRespawnFeature extends CoreFeature {
 	

@@ -25,16 +25,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Team.CoreTeam;
-
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 
 public class TeamSelectFeature extends CoreFeature {
 	

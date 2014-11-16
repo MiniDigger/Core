@@ -20,10 +20,10 @@
  */
 package me.MiniDigger.Core.Command;
 
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import me.MiniDigger.Core.User.User;
 
 public interface CommandArgs {
 	

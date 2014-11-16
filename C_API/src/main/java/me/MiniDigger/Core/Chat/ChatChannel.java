@@ -22,10 +22,11 @@ package me.MiniDigger.Core.Chat;
 
 import java.util.List;
 
-import me.MiniDigger.Core.User.User;
-import mkremins.fanciful.FancyMessage;
-
 import org.bukkit.ChatColor;
+
+import me.MiniDigger.Core.User.User;
+
+import mkremins.fanciful.FancyMessage;
 
 public interface ChatChannel {
 	

@@ -20,12 +20,12 @@
  */
 package me.MiniDigger.Core.Error;
 
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
+
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 
 public enum Error {
 	

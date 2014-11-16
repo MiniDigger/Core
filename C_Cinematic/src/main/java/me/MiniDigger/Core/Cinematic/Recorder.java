@@ -20,10 +20,10 @@
  */
 package me.MiniDigger.Core.Cinematic;
 
-import me.MiniDigger.Core.Prefix.Prefix;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+import me.MiniDigger.Core.Prefix.Prefix;
 
 /**
  * Nahravac tretej verzie.

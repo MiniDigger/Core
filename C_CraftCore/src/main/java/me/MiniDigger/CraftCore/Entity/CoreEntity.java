@@ -22,8 +22,9 @@ package me.MiniDigger.CraftCore.Entity;
 
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
 import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
+
+import me.MiniDigger.Core.Core;
 
 public class CoreEntity {
 	

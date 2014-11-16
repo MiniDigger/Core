@@ -22,13 +22,14 @@ package me.MiniDigger.CraftCore.Packet.Packets;
 
 import java.util.regex.Pattern;
 
+import org.java_websocket.WebSocket;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Socket.Session;
 import me.MiniDigger.Core.Socket.Client.Client;
+
 import me.MiniDigger.CraftCore.Packet.CorePacket;
 import me.MiniDigger.CraftCore.Socket.Client.CoreClient;
-
-import org.java_websocket.WebSocket;
 
 public class IdentificationPacket extends CorePacket {
 	

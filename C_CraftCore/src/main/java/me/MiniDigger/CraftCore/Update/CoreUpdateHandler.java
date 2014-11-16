@@ -28,12 +28,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.bukkit.Bukkit;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.Update.UpdateType;
-import me.MiniDigger.CraftCore.CoreMain;
 
-import org.bukkit.Bukkit;
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreUpdateHandler implements UpdateHandler {
 	

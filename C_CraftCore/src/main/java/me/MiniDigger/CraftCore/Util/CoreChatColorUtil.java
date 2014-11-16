@@ -20,9 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Util;
 
-import me.MiniDigger.Core.Util.ChatColorUtil;
-
 import org.bukkit.ChatColor;
+
+import me.MiniDigger.Core.Util.ChatColorUtil;
 
 public class CoreChatColorUtil implements ChatColorUtil {
 	

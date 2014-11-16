@@ -20,10 +20,10 @@
  */
 package me.MiniDigger.Core.NPC;
 
-import org.bukkit.Location;
-
 import com.lenis0012.bukkit.npc.NPC;
 import com.lenis0012.bukkit.npc.NPCFactory;
+
+import org.bukkit.Location;
 
 public interface NPCHandler {
 	

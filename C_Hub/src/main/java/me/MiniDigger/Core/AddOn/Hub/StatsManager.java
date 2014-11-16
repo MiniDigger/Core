@@ -22,12 +22,6 @@ package me.MiniDigger.Core.AddOn.Hub;
 
 import java.text.DecimalFormat;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Stats.Stats;
-import me.MiniDigger.Core.Stats.StatsType;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.CoreMain;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -38,6 +32,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Stats.Stats;
+import me.MiniDigger.Core.Stats.StatsType;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class StatsManager implements Listener {
 	

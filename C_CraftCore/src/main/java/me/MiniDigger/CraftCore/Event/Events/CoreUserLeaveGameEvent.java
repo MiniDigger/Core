@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Event.Events;
 import me.MiniDigger.Core.Event.Events.UserLeaveGameEvent;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Event.CoreEvent;
 
 public class CoreUserLeaveGameEvent extends CoreEvent implements UserLeaveGameEvent {

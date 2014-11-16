@@ -24,17 +24,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.Team.Team;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamSpawnFeature;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Team.Team;
+
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamSpawnFeature;
 
 public class TeamBedFeature extends CoreFeature {
 	

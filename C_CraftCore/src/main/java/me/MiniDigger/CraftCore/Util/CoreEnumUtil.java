@@ -31,10 +31,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Material;
+
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Util.EnumUtil;
-
-import org.bukkit.Material;
 
 public class CoreEnumUtil implements EnumUtil {
 	

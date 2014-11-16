@@ -20,9 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Event;
 
-import me.MiniDigger.Core.Event.Event;
-
 import org.bukkit.event.HandlerList;
+
+import me.MiniDigger.Core.Event.Event;
 
 public class CoreEvent extends org.bukkit.event.Event implements Event {
 	

@@ -22,12 +22,12 @@ package me.MiniDigger.CraftCore.Socket;
 
 import java.net.InetSocketAddress;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Socket.SocketServer;
-
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Socket.SocketServer;
 
 public class CoreSocketServer extends WebSocketServer implements SocketServer {
 	

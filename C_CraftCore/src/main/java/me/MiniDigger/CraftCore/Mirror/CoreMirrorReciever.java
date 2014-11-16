@@ -24,12 +24,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.Socket;
 
-import me.MiniDigger.Core.Mirror.MirrorReviever;
-
-import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
 import org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader;
+
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
+
+import me.MiniDigger.Core.Mirror.MirrorReviever;
 
 public class CoreMirrorReciever implements MirrorReviever {
 	

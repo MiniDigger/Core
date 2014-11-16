@@ -26,15 +26,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Villager.VillagerHandler;
-import me.MiniDigger.Core.Villager.VillagerTrade;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+
 import net.minecraft.server.v1_7_R4.EntityVillager;
 import net.minecraft.server.v1_7_R4.MerchantRecipe;
 import net.minecraft.server.v1_7_R4.MerchantRecipeList;
 
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+
+import me.MiniDigger.Core.Villager.VillagerHandler;
+import me.MiniDigger.Core.Villager.VillagerTrade;
 
 public class CoreVillagerHandler implements VillagerHandler {
 	

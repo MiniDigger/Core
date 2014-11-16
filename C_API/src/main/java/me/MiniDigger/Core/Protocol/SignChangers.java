@@ -22,12 +22,12 @@ package me.MiniDigger.Core.Protocol;
 
 import java.util.List;
 
+import com.comphenix.protocol.events.PacketEvent;
+
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-
-import com.comphenix.protocol.events.PacketEvent;
 
 public interface SignChangers extends Listener {
 	

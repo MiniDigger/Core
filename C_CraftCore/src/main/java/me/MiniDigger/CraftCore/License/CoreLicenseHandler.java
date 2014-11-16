@@ -20,11 +20,12 @@
  */
 package me.MiniDigger.CraftCore.License;
 
-import me.MiniDigger.Core.Licence.LicenseHandler;
-import me.MiniDigger.CraftCore.CoreMain;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import me.MiniDigger.Core.Licence.LicenseHandler;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreLicenseHandler implements LicenseHandler {
 	

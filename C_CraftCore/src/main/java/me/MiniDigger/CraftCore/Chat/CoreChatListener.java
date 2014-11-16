@@ -22,16 +22,16 @@ package me.MiniDigger.CraftCore.Chat;
 
 import java.util.HashSet;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Chat.ChatListener;
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChatTabCompleteEvent;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Chat.ChatListener;
+import me.MiniDigger.Core.User.User;
 
 public class CoreChatListener implements ChatListener {
 	

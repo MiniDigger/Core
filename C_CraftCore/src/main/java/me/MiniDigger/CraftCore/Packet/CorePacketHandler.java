@@ -24,15 +24,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+import org.java_websocket.WebSocket;
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.server.WebSocketServer;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Packet.Packet;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Socket.Session;
-import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
 
-import org.java_websocket.WebSocket;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.server.WebSocketServer;
+import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
 
 public class CorePacketHandler implements PacketHandler {
 	

@@ -23,15 +23,16 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.weather.WeatherChangeEvent;
+
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class FixedWeatherFeature extends CoreFeature {
 	

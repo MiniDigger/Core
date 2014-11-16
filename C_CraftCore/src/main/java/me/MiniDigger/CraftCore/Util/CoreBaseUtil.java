@@ -20,8 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Util;
 
-import me.MiniDigger.Core.Util.BaseUtil;
 import net.minecraft.util.org.apache.commons.codec.binary.Base64;
+
+import me.MiniDigger.Core.Util.BaseUtil;
 
 public class CoreBaseUtil implements BaseUtil {
 	

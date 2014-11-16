@@ -20,13 +20,15 @@
  */
 package me.MiniDigger.CraftCore.Chat.Channels;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
+
 import mkremins.fanciful.FancyMessage;
 import mkremins.fanciful.TextualComponent;
-
-import org.bukkit.ChatColor;
 
 public class EmptyChannel extends CoreChatChannel {
 	

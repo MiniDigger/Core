@@ -23,13 +23,14 @@ package me.MiniDigger.CraftCore.Chat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.User.User;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import mkremins.fanciful.FancyMessage;
 
 public class CoreChatChannel implements ChatChannel {
 	

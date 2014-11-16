@@ -23,6 +23,9 @@ package me.MiniDigger.CraftCore.Phase.Phases;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.ChatColor;
+import org.bukkit.WeatherType;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -32,6 +35,7 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+
 import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
@@ -43,9 +47,6 @@ import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.VoteFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
-
-import org.bukkit.ChatColor;
-import org.bukkit.WeatherType;
 
 public class VotePhase extends CoreTimedPhase {
 	

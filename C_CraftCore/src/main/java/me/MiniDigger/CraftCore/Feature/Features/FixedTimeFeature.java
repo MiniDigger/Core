@@ -23,15 +23,16 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class FixedTimeFeature extends CoreFeature {
 	

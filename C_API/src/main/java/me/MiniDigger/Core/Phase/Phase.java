@@ -22,11 +22,11 @@ package me.MiniDigger.Core.Phase;
 
 import java.util.List;
 
+import org.bukkit.event.Listener;
+
 import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
-
-import org.bukkit.event.Listener;
 
 public interface Phase extends Listener {
 	

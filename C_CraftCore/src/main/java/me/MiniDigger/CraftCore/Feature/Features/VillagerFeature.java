@@ -23,18 +23,19 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.Villager.VillagerTrade;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Villager.VillagerTrade;
+
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class VillagerFeature extends CoreFeature {
 	

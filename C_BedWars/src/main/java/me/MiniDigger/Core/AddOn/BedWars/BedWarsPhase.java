@@ -24,6 +24,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.WeatherType;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Sign;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Villager.Profession;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -33,6 +47,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 import me.MiniDigger.Core.Villager.VillagerTrade;
+
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
@@ -50,20 +65,6 @@ import me.MiniDigger.CraftCore.Feature.Features.VillagerFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerTrade;
-
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.WeatherType;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Sign;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Villager.Profession;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffectType;
 
 public class BedWarsPhase extends CorePhase {
 	

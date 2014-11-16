@@ -23,12 +23,12 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
-
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 
 public class WorldCompleter {
 	

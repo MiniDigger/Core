@@ -20,10 +20,11 @@
  */
 package me.MiniDigger.Core.Prefix;
 
-import me.MiniDigger.Core.Game.GameType;
-import mkremins.fanciful.FancyMessage;
-
 import org.bukkit.ChatColor;
+
+import me.MiniDigger.Core.Game.GameType;
+
+import mkremins.fanciful.FancyMessage;
 
 public enum Prefix {
 	ERROR(ChatColor.RED, ChatColor.DARK_RED, "Error", GameType.NOTHING),

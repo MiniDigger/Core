@@ -24,14 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
+
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class FixedHealthFeature extends CoreFeature {
 	

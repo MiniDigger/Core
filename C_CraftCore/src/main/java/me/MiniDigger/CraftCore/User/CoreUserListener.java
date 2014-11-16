@@ -20,12 +20,12 @@
  */
 package me.MiniDigger.CraftCore.User;
 
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.User.UserListener;
-
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
 public class CoreUserListener implements UserListener {
 	

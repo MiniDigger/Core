@@ -22,10 +22,10 @@ package me.MiniDigger.CraftCore.Bar;
 
 import java.lang.reflect.Method;
 
+import org.bukkit.Location;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Bar.FakeDragon;
-
-import org.bukkit.Location;
 
 public class CoreFakeDragon implements FakeDragon {
 	

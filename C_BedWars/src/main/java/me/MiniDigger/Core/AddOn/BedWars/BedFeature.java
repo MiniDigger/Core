@@ -23,16 +23,6 @@ package me.MiniDigger.Core.AddOn.BedWars;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Map.MapData;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.Team.Team;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
-
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -43,6 +33,17 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Map.MapData;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Team.Team;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 
 public class BedFeature extends CoreFeature {
 	

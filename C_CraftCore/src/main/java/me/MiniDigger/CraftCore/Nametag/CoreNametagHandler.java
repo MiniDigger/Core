@@ -27,15 +27,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Nametag.NametagEntity;
-import me.MiniDigger.Core.Nametag.NametagHandler;
 import net.minecraft.server.v1_7_R4.EntityTypes;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Nametag.NametagEntity;
+import me.MiniDigger.Core.Nametag.NametagHandler;
 
 public class CoreNametagHandler implements NametagHandler {
 	

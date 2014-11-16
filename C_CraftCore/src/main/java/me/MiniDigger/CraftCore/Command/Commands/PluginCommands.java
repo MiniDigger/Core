@@ -20,15 +20,16 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.plugin.Plugin;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.plugin.Plugin;
+import mkremins.fanciful.FancyMessage;
 
 public class PluginCommands {
 	

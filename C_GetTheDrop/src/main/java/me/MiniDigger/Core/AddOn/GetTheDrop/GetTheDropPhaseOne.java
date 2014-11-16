@@ -20,11 +20,15 @@
  */
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
+import org.bukkit.ChatColor;
+import org.bukkit.WeatherType;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+
 import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
 import me.MiniDigger.CraftCore.Feature.Features.DropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
@@ -36,9 +40,6 @@ import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
-
-import org.bukkit.ChatColor;
-import org.bukkit.WeatherType;
 
 public class GetTheDropPhaseOne extends CoreTimedPhase {
 	

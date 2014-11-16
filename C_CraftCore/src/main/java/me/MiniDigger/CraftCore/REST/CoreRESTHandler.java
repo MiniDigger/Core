@@ -27,16 +27,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Update.UpdateType;
+
 import me.MiniDigger.CraftCore.AddOn.CoreAddOnBean;
 import me.MiniDigger.CraftCore.Update.CorePluginVersion;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class CoreRESTHandler implements RESTHandler {
 	

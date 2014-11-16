@@ -23,14 +23,15 @@ package me.MiniDigger.CraftCore.Squad;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Squad.Squad;
 import me.MiniDigger.Core.User.User;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.ChatColor;
+import mkremins.fanciful.FancyMessage;
 
 public class CoreSquad implements Squad {
 	

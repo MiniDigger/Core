@@ -20,15 +20,15 @@
  */
 package me.MiniDigger.CraftCore.Achievement;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Achievement.Achievment;
 import me.MiniDigger.Core.Achievement.AchievmentData;
 import me.MiniDigger.Core.Achievement.AchievmentType;
 import me.MiniDigger.Core.User.User;
-
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 
 public class CoreAchievementListener implements Listener {
 	

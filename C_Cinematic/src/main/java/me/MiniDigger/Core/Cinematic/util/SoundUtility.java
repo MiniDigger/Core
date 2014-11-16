@@ -20,9 +20,10 @@
  */
 package me.MiniDigger.Core.Cinematic.util;
 
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+
 import net.minecraft.server.v1_7_R4.PacketPlayOutNamedSoundEffect;
 
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 

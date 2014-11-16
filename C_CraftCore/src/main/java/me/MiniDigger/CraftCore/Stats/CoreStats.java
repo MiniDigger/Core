@@ -26,14 +26,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
+
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
-
-import org.bukkit.Bukkit;
 
 public class CoreStats implements Stats {
 	

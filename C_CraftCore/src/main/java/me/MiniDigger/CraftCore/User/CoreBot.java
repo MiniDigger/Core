@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import me.MiniDigger.Core.User.Bot;
+
 import mkremins.fanciful.FancyMessage;
 
 public class CoreBot extends CoreUser implements Bot {

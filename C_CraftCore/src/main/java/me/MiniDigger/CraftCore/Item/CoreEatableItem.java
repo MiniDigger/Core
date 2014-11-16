@@ -20,11 +20,11 @@
  */
 package me.MiniDigger.CraftCore.Item;
 
-import me.MiniDigger.Core.Item.EatableItem;
-import me.MiniDigger.Core.Item.ItemType;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+
+import me.MiniDigger.Core.Item.EatableItem;
+import me.MiniDigger.Core.Item.ItemType;
 
 public abstract class CoreEatableItem extends CoreItem implements EatableItem {
 	

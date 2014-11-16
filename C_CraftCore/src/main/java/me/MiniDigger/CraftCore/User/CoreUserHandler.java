@@ -27,16 +27,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.User.UserHandler;
+
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 import me.MiniDigger.CraftCore.Stats.CoreStats;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 public class CoreUserHandler implements UserHandler {
 	

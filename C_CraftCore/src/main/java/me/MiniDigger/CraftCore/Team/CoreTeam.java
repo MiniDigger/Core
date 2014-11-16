@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Team.Team;
-
-import org.bukkit.ChatColor;
 
 public class CoreTeam implements Team {
 	

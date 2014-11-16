@@ -23,13 +23,14 @@ package me.MiniDigger.Core.Game;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Location;
+import org.bukkit.Sound;
+
 import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import mkremins.fanciful.FancyMessage;
 
 public interface Game {
 	

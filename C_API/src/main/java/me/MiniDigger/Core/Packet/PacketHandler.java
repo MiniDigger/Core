@@ -20,9 +20,9 @@
  */
 package me.MiniDigger.Core.Packet;
 
-import me.MiniDigger.Core.Socket.Session;
-
 import org.java_websocket.WebSocket;
+
+import me.MiniDigger.Core.Socket.Session;
 
 public interface PacketHandler {
 	

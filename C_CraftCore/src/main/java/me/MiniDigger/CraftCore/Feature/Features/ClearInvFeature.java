@@ -25,16 +25,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
-import me.MiniDigger.CraftCore.Feature.CoreFeature;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.PlayerInventory;
+
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class ClearInvFeature extends CoreFeature {
 	

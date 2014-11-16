@@ -22,25 +22,13 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Chat.ChatChars;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Holo.HoloList;
-import me.MiniDigger.Core.Item.ItemMenu;
-import me.MiniDigger.Core.Item.ItemMenu.Row;
-import me.MiniDigger.Core.Item.ItemMenu.onClick;
-import me.MiniDigger.CraftCore.Entity.CoreZombie;
-import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
-import me.MiniDigger.CraftCore.Item.CoreItemMenu;
-import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
-import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
-import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
-import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
-import mkremins.fanciful.FancyMessage;
+import org.json.simple.JSONObject;
+
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+
 import net.minecraft.server.v1_7_R4.Entity;
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import net.minecraft.server.v1_7_R4.TileEntity;
@@ -53,14 +41,29 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
-import org.json.simple.JSONObject;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Chat.ChatChars;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Item.ItemMenu;
+import me.MiniDigger.Core.Item.ItemMenu.Row;
+import me.MiniDigger.Core.Item.ItemMenu.onClick;
+
+import me.MiniDigger.CraftCore.Entity.CoreZombie;
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
+import me.MiniDigger.CraftCore.Item.CoreItemMenu;
+import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
+import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
+import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
+import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
+
+import mkremins.fanciful.FancyMessage;
 
 public class DevCommands {
 	
@@ -194,15 +197,6 @@ public class DevCommands {
 				System.out.println("TIME PASSED: " + Core.getCore().getTimeUtil().formatTime((int) (time / 1000)));
 			}
 		}, Integer.parseInt(args.getArgs()[0]));
-	}
-	
-	@Command(name = "dev.holoUrl", description = "DEV!", usage = "", permission = "dev")
-	public void holoUrl(final CommandArgs args) {
-		final List<HoloList> holos = Core.getCore().getHoloHandler().loadImage(args.getArgs()[0]);
-		
-		for (final HoloList list : holos) {
-			list.setLocation(args.getUser(), args.getPlayer().getLocation());
-		}
 	}
 	
 	@SuppressWarnings("deprecation")

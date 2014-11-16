@@ -23,10 +23,6 @@ package me.MiniDigger.Core.AddOn.GrablingHook;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Item.ItemType;
-import me.MiniDigger.CraftCore.Item.CoreItem;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -45,6 +41,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Item.ItemType;
+
+import me.MiniDigger.CraftCore.Item.CoreItem;
 
 public class GrablingHook extends CoreItem {
 	

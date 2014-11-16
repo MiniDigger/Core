@@ -22,16 +22,17 @@ package me.MiniDigger.CraftCore.Command;
 
 import java.util.List;
 
-import me.MiniDigger.Core.Command.BukkitCommand;
-import me.MiniDigger.Core.Command.BukkitCompleter;
-
 import org.apache.commons.lang.Validate;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.Plugin;
+
+import me.MiniDigger.Core.Command.BukkitCommand;
+import me.MiniDigger.Core.Command.BukkitCompleter;
 
 public class CoreBukkitCommand extends Command implements BukkitCommand {
 	

@@ -24,12 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Squad.Squad;
-
-import org.bukkit.entity.Player;
 
 public class SquadCompleter {
 	

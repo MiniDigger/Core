@@ -25,9 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Map.MapData;
-
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -37,6 +34,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.Wool;
 import org.bukkit.plugin.Plugin;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Map.MapData;
 
 public class CoreMapData implements MapData {
 	

@@ -20,14 +20,14 @@
  */
 package me.MiniDigger.Core.Protocol;
 
-import me.MiniDigger.Core.Core;
-
 import org.bukkit.Bukkit;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
+
+import me.MiniDigger.Core.Core;
 
 public interface SignListeners extends Listener {
 	

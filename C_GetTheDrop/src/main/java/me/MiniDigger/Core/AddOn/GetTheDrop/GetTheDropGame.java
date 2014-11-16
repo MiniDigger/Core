@@ -20,18 +20,19 @@
  */
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Phase.Phases.CountdownPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
-
-import org.bukkit.ChatColor;
 
 public class GetTheDropGame extends CoreGame {
 	

@@ -22,17 +22,18 @@ package me.MiniDigger.CraftCore.Protocol;
 
 import java.util.ArrayList;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
-import me.MiniDigger.Core.Protocol.SignListeners;
-import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
-
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Protocol.SignListeners;
+
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 
 public class CoreSignListeners implements SignListeners {
 	

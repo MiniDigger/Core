@@ -27,14 +27,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Game.GameType;
-import me.MiniDigger.Core.Map.MapData;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.CraftCore.Map.CoreMapData;
-import mkremins.fanciful.FancyMessage;
+import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+
 import net.minecraft.server.v1_7_R4.ExceptionWorldConflict;
 
 import org.bukkit.Bukkit;
@@ -43,10 +38,19 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Map.MapData;
+import me.MiniDigger.Core.Prefix.Prefix;
+
+import me.MiniDigger.CraftCore.Map.CoreMapData;
+
+import mkremins.fanciful.FancyMessage;
 
 public class WorldCommands {
 	

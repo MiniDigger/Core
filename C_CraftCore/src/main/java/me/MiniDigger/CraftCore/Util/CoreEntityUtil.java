@@ -23,10 +23,10 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.entity.EntityType;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Util.EntityUtil;
-
-import org.bukkit.entity.EntityType;
 
 public class CoreEntityUtil implements EntityUtil {
 	

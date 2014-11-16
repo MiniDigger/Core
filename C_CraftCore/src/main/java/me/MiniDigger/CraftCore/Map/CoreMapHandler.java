@@ -24,15 +24,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.DyeColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Map.MapHandler;
-import me.MiniDigger.CraftCore.CoreMain;
 
-import org.bukkit.DyeColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreMapHandler implements MapHandler {
 	

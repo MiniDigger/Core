@@ -20,12 +20,12 @@
  */
 package me.MiniDigger.Core.Item;
 
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+
+import me.MiniDigger.Core.User.User;
 
 public interface Item extends Listener {
 	

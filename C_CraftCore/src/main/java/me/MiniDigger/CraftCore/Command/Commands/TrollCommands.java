@@ -27,21 +27,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.CoreMain;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class TrollCommands {
 	

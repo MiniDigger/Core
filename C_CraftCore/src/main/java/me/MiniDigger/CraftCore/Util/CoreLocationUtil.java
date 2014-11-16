@@ -23,12 +23,12 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Util.LocationUtil;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Util.LocationUtil;
 
 public class CoreLocationUtil implements LocationUtil {
 	

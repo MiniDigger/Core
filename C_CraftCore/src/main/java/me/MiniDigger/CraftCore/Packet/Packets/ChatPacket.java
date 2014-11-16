@@ -23,10 +23,11 @@ package me.MiniDigger.CraftCore.Packet.Packets;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import me.MiniDigger.CraftCore.Packet.CorePacket;
+import org.java_websocket.WebSocket;
 
 import org.bukkit.Bukkit;
-import org.java_websocket.WebSocket;
+
+import me.MiniDigger.CraftCore.Packet.CorePacket;
 
 public class ChatPacket extends CorePacket {
 	

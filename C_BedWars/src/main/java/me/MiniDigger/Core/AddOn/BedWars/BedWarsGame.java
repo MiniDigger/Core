@@ -20,19 +20,20 @@
  */
 package me.MiniDigger.Core.AddOn.BedWars;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
-
-import org.bukkit.ChatColor;
 
 public class BedWarsGame extends CoreGame {
 	

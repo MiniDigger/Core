@@ -22,11 +22,11 @@ package me.MiniDigger.CraftCore.Generator;
 
 import java.util.Random;
 
-import me.MiniDigger.Core.Generator.CleanroomBlockPopulator;
-
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
+
+import me.MiniDigger.Core.Generator.CleanroomBlockPopulator;
 
 public class CoreCleanroomBlockPopulator extends BlockPopulator implements CleanroomBlockPopulator {
 	

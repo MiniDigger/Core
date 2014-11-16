@@ -25,15 +25,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Packet.Packet;
-import me.MiniDigger.CraftCore.CoreMain;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreAddOn implements AddOn {
 	

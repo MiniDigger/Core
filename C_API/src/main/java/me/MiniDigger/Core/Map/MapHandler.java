@@ -23,9 +23,9 @@ package me.MiniDigger.Core.Map;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Game.GameType;
-
 import org.bukkit.DyeColor;
+
+import me.MiniDigger.Core.Game.GameType;
 
 public interface MapHandler {
 	

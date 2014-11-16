@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import me.MiniDigger.Core.Command.BukkitCompleter;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+
+import me.MiniDigger.Core.Command.BukkitCompleter;
 
 public class CoreBukkitCompleter implements BukkitCompleter {
 	

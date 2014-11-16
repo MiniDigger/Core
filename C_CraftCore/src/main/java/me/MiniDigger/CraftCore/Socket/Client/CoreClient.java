@@ -26,6 +26,7 @@ import java.sql.SQLException;
 
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Socket.Client.Client;
+
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 public class CoreClient implements Client {

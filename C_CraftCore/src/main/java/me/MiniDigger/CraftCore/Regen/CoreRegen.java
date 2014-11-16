@@ -22,12 +22,13 @@ package me.MiniDigger.CraftCore.Regen;
 
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Regen.Regen;
-import me.MiniDigger.CraftCore.CoreMain;
-
 import org.bukkit.Bukkit;
 import org.bukkit.block.BlockState;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Regen.Regen;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreRegen implements Regen {
 	

@@ -24,16 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Event.EventListener;
-import me.MiniDigger.Core.Game.Game;
-import me.MiniDigger.Core.Game.GameType;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -43,6 +33,17 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Event.EventListener;
+import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 
 public class CoreEventListener implements EventListener {
 	

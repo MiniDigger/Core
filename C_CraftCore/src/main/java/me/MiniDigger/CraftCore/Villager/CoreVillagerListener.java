@@ -20,13 +20,13 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Villager.VillagerListener;
-
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Villager.VillagerListener;
 
 public class CoreVillagerListener implements VillagerListener {
 	

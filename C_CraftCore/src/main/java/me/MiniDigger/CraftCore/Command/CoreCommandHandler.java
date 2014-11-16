@@ -29,16 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.BukkitCommand;
-import me.MiniDigger.Core.Command.BukkitCompleter;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
-import me.MiniDigger.Core.Command.CommandHandler;
-import me.MiniDigger.Core.Command.Completer;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.CraftCore.CoreMain;
-import mkremins.fanciful.FancyMessage;
+import com.minnymin.zephyrus.core.util.map.MultiMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -54,7 +45,18 @@ import org.bukkit.help.IndexHelpTopic;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
-import com.minnymin.zephyrus.core.util.map.MultiMap;
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.BukkitCommand;
+import me.MiniDigger.Core.Command.BukkitCompleter;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.CommandHandler;
+import me.MiniDigger.Core.Command.Completer;
+import me.MiniDigger.Core.Prefix.Prefix;
+
+import me.MiniDigger.CraftCore.CoreMain;
+
+import mkremins.fanciful.FancyMessage;
 
 public class CoreCommandHandler implements CommandHandler {
 	

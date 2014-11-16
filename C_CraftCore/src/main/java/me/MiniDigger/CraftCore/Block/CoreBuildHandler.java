@@ -26,11 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import me.MiniDigger.Core.Block.BuildHandler;
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+
+import me.MiniDigger.Core.Block.BuildHandler;
+import me.MiniDigger.Core.User.User;
 
 public class CoreBuildHandler implements BuildHandler {
 	

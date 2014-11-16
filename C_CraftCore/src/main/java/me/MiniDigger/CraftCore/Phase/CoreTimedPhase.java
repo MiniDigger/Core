@@ -22,16 +22,16 @@ package me.MiniDigger.CraftCore.Phase;
 
 import java.util.UUID;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Game.Game;
-import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.Phase.TimedPhase;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Phase.TimedPhase;
 
 public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 	

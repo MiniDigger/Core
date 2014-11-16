@@ -22,11 +22,11 @@ package me.MiniDigger.CraftCore.Socket;
 
 import java.net.URI;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Socket.SocketClient;
-
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Socket.SocketClient;
 
 public class CoreSocketClient extends WebSocketClient implements SocketClient {
 	

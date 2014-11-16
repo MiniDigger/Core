@@ -27,12 +27,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.Core.Util.CommonMethods;
-import me.MiniDigger.CraftCore.CoreMain;
-import mkremins.fanciful.FancyMessage;
+import com.bobacadodl.imgmessage.ImageChar;
+import com.bobacadodl.imgmessage.ImageMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -43,8 +39,14 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import com.bobacadodl.imgmessage.ImageChar;
-import com.bobacadodl.imgmessage.ImageMessage;
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
+import me.MiniDigger.Core.Util.CommonMethods;
+
+import me.MiniDigger.CraftCore.CoreMain;
+
+import mkremins.fanciful.FancyMessage;
 
 public class CoreCommonMethods implements CommonMethods {
 	

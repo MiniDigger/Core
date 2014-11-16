@@ -25,6 +25,9 @@ import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.bukkit.Location;
+import org.bukkit.World;
+
 import me.MiniDigger.Core.Cinematic.meta.MetaEntityDamage;
 import me.MiniDigger.Core.Cinematic.meta.MetaEntityInventory;
 import me.MiniDigger.Core.Cinematic.meta.MetaEntityRemove;
@@ -34,9 +37,6 @@ import me.MiniDigger.Core.Cinematic.meta.MetaEntityVelocity;
 import me.MiniDigger.Core.Cinematic.meta.MetaFallingSand;
 import me.MiniDigger.Core.Cinematic.meta.MetaParticleEffect;
 import me.MiniDigger.Core.Cinematic.meta.MetaSoundEffect;
-
-import org.bukkit.Location;
-import org.bukkit.World;
 
 /**
  * Nacitava skompilovane V3 klipy.

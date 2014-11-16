@@ -20,11 +20,13 @@
  */
 package me.MiniDigger.CraftCore.Chat.Channels;
 
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
-import mkremins.fanciful.FancyMessage;
-
 import org.bukkit.ChatColor;
+
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
+
+import mkremins.fanciful.FancyMessage;
 
 public class NormalChannel extends CoreChatChannel {
 	

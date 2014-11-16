@@ -22,13 +22,15 @@ package me.MiniDigger.CraftCore.Entity;
 
 import java.util.Map;
 
-import me.MiniDigger.Core.Core;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+
 import net.minecraft.server.v1_7_R4.Entity;
 import net.minecraft.server.v1_7_R4.EntityTypes;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+
+import me.MiniDigger.Core.Core;
 
 public enum CoreEntityType {
 	ZOMBIE("CoreZombie", 54, CoreZombie.class);

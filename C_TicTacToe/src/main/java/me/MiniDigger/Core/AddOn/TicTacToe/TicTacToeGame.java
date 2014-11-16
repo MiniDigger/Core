@@ -23,6 +23,14 @@ package me.MiniDigger.Core.AddOn.TicTacToe;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.event.Event;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Event.Events.UserLeaveGameEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -31,18 +39,11 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.Features.TwoPlayerFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.User.CoreBot;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.event.Event;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class TicTacToeGame extends CoreGame {
 	

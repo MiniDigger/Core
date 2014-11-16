@@ -20,11 +20,16 @@
  */
 package me.MiniDigger.CraftCore.Phase.Phases;
 
+import org.bukkit.ChatColor;
+import org.bukkit.WeatherType;
+import org.bukkit.event.EventHandler;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
@@ -36,11 +41,8 @@ import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.ChatColor;
-import org.bukkit.WeatherType;
-import org.bukkit.event.EventHandler;
+import mkremins.fanciful.FancyMessage;
 
 public class LobbyPhase extends CorePhase {
 	

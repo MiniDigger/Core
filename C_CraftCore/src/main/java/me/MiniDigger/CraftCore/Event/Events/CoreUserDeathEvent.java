@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Event.Events;
 import me.MiniDigger.Core.Event.Events.UserDeathEvent;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Event.CoreEvent;
 
 public class CoreUserDeathEvent extends CoreEvent implements UserDeathEvent {

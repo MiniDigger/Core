@@ -22,15 +22,17 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.util.HashMap;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.CraftCore.AddOn.CoreAddOnBean;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.ChatColor;
+import me.MiniDigger.CraftCore.AddOn.CoreAddOnBean;
+
+import mkremins.fanciful.FancyMessage;
 
 public class AddOnCommands {
 	

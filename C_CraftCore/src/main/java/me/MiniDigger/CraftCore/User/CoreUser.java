@@ -28,18 +28,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
+import mkremins.fanciful.FancyMessage;
 
 public class CoreUser implements User {
 	

@@ -24,12 +24,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.SQL.Saveable;
 import me.MiniDigger.Core.Stats.Stats;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.entity.Player;
+import mkremins.fanciful.FancyMessage;
 
 public interface User extends Saveable {
 	

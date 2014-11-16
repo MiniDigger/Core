@@ -27,6 +27,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
+
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class Basic extends CoreAddOn {

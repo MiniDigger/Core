@@ -20,12 +20,13 @@
  */
 package me.MiniDigger.Core.AddOn.Hub;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
+
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
-
-import org.bukkit.ChatColor;
 
 public class HubGame extends CoreGame {
 	

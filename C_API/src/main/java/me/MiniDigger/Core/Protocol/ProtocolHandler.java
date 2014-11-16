@@ -20,11 +20,11 @@
  */
 package me.MiniDigger.Core.Protocol;
 
+import com.comphenix.protocol.ProtocolManager;
+
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import com.comphenix.protocol.ProtocolManager;
 
 public interface ProtocolHandler extends Listener {
 	

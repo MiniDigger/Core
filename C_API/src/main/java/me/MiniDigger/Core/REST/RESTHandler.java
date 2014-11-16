@@ -23,9 +23,9 @@ package me.MiniDigger.Core.REST;
 import java.net.URL;
 import java.util.List;
 
-import me.MiniDigger.Core.AddOn.AddOnBean;
-
 import org.json.simple.JSONObject;
+
+import me.MiniDigger.Core.AddOn.AddOnBean;
 
 public interface RESTHandler {
 	

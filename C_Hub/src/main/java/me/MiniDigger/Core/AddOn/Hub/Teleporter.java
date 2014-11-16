@@ -23,10 +23,6 @@ package me.MiniDigger.Core.AddOn.Hub;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Map.MapData;
-import me.MiniDigger.CraftCore.CoreMain;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -41,6 +37,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Map.MapData;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class Teleporter implements Listener {
 	

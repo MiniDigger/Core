@@ -20,14 +20,14 @@
  */
 package me.MiniDigger.CraftCore.Block;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Block.BlockListener;
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Block.BlockListener;
+import me.MiniDigger.Core.User.User;
 
 public class CoreBlockListener implements BlockListener {
 	

@@ -26,10 +26,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Bar.BarHandler;
-
-import org.bukkit.entity.Player;
 
 public class CoreBarHandler implements BarHandler {
 	

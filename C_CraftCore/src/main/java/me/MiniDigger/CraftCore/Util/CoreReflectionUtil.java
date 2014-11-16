@@ -23,11 +23,11 @@ package me.MiniDigger.CraftCore.Util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import me.MiniDigger.Core.Util.ReflectionUtil;
-
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+
+import me.MiniDigger.Core.Util.ReflectionUtil;
 
 public class CoreReflectionUtil implements ReflectionUtil {
 	

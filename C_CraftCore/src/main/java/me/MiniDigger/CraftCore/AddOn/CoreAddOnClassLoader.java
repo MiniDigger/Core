@@ -27,11 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.bukkit.plugin.InvalidPluginException;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnClassLoader;
-
-import org.bukkit.plugin.InvalidPluginException;
 
 /**
  * A ClassLoader for plugins, to allow shared classes across multiple plugins

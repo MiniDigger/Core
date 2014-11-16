@@ -20,11 +20,10 @@
  */
 package me.MiniDigger.Core;
 
-import mkremins.fanciful.FancyMessage;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import mkremins.fanciful.FancyMessage;
 import ru.tehkode.permissions.PermissionManager;
 
 public interface Main {

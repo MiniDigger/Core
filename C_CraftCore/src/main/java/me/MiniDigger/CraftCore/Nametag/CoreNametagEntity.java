@@ -22,15 +22,17 @@ package me.MiniDigger.CraftCore.Nametag;
 
 import java.lang.reflect.Field;
 
-import me.MiniDigger.Core.Nametag.NametagEntity;
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+
 import net.minecraft.server.v1_7_R4.Entity;
 import net.minecraft.server.v1_7_R4.EntityAmbient;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+
+import me.MiniDigger.Core.Nametag.NametagEntity;
 
 public class CoreNametagEntity extends EntityAmbient implements NametagEntity {
 	

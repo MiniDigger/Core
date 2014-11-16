@@ -22,9 +22,9 @@ package me.MiniDigger.Core.Util;
 
 import java.util.List;
 
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.command.CommandSender;
+
+import me.MiniDigger.Core.User.User;
 
 public interface CommonMethods {
 	

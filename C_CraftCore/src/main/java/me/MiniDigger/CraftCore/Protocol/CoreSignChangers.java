@@ -24,13 +24,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.Protocol.SignChangers;
-import me.MiniDigger.Core.Protocol.SignGUI;
-import me.MiniDigger.Core.Stats.StatsType;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.CoreMain;
+import com.comphenix.packetwrapper.WrapperPlayServerUpdateSign;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.reflect.FieldAccessException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,11 +40,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import com.comphenix.packetwrapper.WrapperPlayServerUpdateSign;
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.reflect.FieldAccessException;
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Protocol.SignChangers;
+import me.MiniDigger.Core.Protocol.SignGUI;
+import me.MiniDigger.Core.Stats.StatsType;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreSignChangers implements SignChangers {
 	

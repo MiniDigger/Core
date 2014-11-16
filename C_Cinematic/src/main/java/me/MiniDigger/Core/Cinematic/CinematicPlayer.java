@@ -26,6 +26,26 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.LinkedTransferQueue;
 
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+
+import net.minecraft.server.v1_7_R4.EntityPlayer;
+import net.minecraft.server.v1_7_R4.PacketPlayOutPosition;
+import net.minecraft.server.v1_7_R4.PacketPlayOutRelEntityMove;
+
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Cinematic.meta.MetaEntityDamage;
 import me.MiniDigger.Core.Cinematic.meta.MetaEntityInventory;
@@ -41,24 +61,6 @@ import me.MiniDigger.Core.Cinematic.util.NMS;
 import me.MiniDigger.Core.Cinematic.util.PacketHelper;
 import me.MiniDigger.Core.Cinematic.util.ParticleEffect;
 import me.MiniDigger.Core.Cinematic.util.SoundUtility;
-import net.minecraft.server.v1_7_R4.EntityPlayer;
-import net.minecraft.server.v1_7_R4.PacketPlayOutPosition;
-import net.minecraft.server.v1_7_R4.PacketPlayOutRelEntityMove;
-
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 
 /**
  * Prehravac V3 klipov.

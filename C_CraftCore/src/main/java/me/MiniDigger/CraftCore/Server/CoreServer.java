@@ -22,13 +22,14 @@ package me.MiniDigger.CraftCore.Server;
 
 import java.util.regex.Pattern;
 
+import org.bukkit.Bukkit;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Server.Server;
-import me.MiniDigger.CraftCore.CoreMain;
 
-import org.bukkit.Bukkit;
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreServer implements Server {
 	

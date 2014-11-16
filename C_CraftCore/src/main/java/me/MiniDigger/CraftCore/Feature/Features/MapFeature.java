@@ -27,6 +27,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class MapFeature extends CoreFeature {

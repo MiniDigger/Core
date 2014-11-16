@@ -24,13 +24,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Mirror.MirrorHandler;
-import me.MiniDigger.Core.Mirror.MirrorReviever;
-import me.MiniDigger.Core.Mirror.MirrorSender;
-
-import org.bukkit.plugin.Plugin;
-
 import com.comphenix.net.sf.cglib.proxy.Factory;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -44,6 +37,13 @@ import com.comphenix.protocol.reflect.PrettyPrinter;
 import com.comphenix.protocol.reflect.PrettyPrinter.ObjectPrinter;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.comphenix.protocol.wrappers.BukkitConverters;
+
+import org.bukkit.plugin.Plugin;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Mirror.MirrorHandler;
+import me.MiniDigger.Core.Mirror.MirrorReviever;
+import me.MiniDigger.Core.Mirror.MirrorSender;
 
 public class CoreMirrorHandler implements MirrorHandler {
 	

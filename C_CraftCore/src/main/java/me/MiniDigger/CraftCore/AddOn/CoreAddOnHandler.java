@@ -34,17 +34,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.AddOn.AddOnClassLoader;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
-import me.MiniDigger.CraftCore.CoreMain;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreAddOnHandler implements AddOnHandler {
 	

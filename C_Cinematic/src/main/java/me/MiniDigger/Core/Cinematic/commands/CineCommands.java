@@ -26,6 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+
 import me.MiniDigger.Core.Cinematic.CameraClip;
 import me.MiniDigger.Core.Cinematic.CinematicAddOn;
 import me.MiniDigger.Core.Cinematic.CinematicPlayer;
@@ -34,10 +37,8 @@ import me.MiniDigger.Core.Cinematic.Recorder;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
+import mkremins.fanciful.FancyMessage;
 
 public class CineCommands {
 	

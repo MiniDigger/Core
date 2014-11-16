@@ -22,9 +22,9 @@ package me.MiniDigger.Core.Feature;
 
 import java.util.List;
 
-import me.MiniDigger.Core.Phase.Phase;
-
 import org.bukkit.event.Listener;
+
+import me.MiniDigger.Core.Phase.Phase;
 
 public interface Feature extends Listener {
 	

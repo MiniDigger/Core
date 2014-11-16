@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.SQL;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLHandler;
+
 import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreSQLHandler implements SQLHandler {

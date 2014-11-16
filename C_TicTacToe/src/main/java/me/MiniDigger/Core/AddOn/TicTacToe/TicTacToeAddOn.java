@@ -25,6 +25,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
+import org.bukkit.inventory.Inventory;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -35,13 +39,10 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.Features.TwoPlayerFeature;
-
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
-import org.bukkit.inventory.Inventory;
 
 public class TicTacToeAddOn extends CoreAddOn {
 	

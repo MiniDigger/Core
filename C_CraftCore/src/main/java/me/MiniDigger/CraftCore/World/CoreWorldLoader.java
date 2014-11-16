@@ -22,8 +22,8 @@ package me.MiniDigger.CraftCore.World;
 
 import java.io.File;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.World.WorldLoader;
+import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
+
 import net.minecraft.server.v1_7_R4.ConvertProgressUpdater;
 import net.minecraft.server.v1_7_R4.Convertable;
 import net.minecraft.server.v1_7_R4.EntityTracker;
@@ -35,11 +35,13 @@ import net.minecraft.server.v1_7_R4.WorldSettings;
 
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.World.WorldLoader;
 
 public class CoreWorldLoader implements WorldLoader {
 	

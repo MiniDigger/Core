@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.CraftCore.Entity;
 
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+
 import net.minecraft.server.v1_7_R4.EntityHuman;
 import net.minecraft.server.v1_7_R4.EntitySheep;
 import net.minecraft.server.v1_7_R4.EntityVillager;
@@ -33,8 +35,6 @@ import net.minecraft.server.v1_7_R4.PathfinderGoalMoveTowardsRestriction;
 import net.minecraft.server.v1_7_R4.PathfinderGoalNearestAttackableTarget;
 import net.minecraft.server.v1_7_R4.PathfinderGoalRandomLookaround;
 import net.minecraft.server.v1_7_R4.PathfinderGoalRandomStroll;
-
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 
 public class CoreZombie extends EntityZombie {
 	

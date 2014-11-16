@@ -24,9 +24,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Protocol.SkullChangers;
-import me.MiniDigger.Core.Stats.StatsType;
+import com.comphenix.packetwrapper.WrapperPlayServerTileEntityData;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.wrappers.nbt.NbtCompound;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -35,11 +37,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-import com.comphenix.packetwrapper.WrapperPlayServerTileEntityData;
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.wrappers.nbt.NbtCompound;
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Protocol.SkullChangers;
+import me.MiniDigger.Core.Stats.StatsType;
 
 public class CoreSkullChangers implements SkullChangers {
 	

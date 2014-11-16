@@ -20,16 +20,18 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Team.Team;
-import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
-import mkremins.fanciful.FancyMessage;
 
-import org.bukkit.ChatColor;
+import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
+
+import mkremins.fanciful.FancyMessage;
 
 public class TeamCommands {
 	

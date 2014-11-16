@@ -20,10 +20,10 @@
  */
 package me.MiniDigger.Core.Block;
 
-import me.MiniDigger.Core.User.User;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+
+import me.MiniDigger.Core.User.User;
 
 public interface BuildHandler {
 	

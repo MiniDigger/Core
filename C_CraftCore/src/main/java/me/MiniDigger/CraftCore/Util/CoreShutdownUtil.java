@@ -23,13 +23,11 @@ package me.MiniDigger.CraftCore.Util;
 import java.io.File;
 import java.util.List;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.Util.ShutdownUtil;
-import me.MiniDigger.CraftCore.CoreMain;
-import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
-import me.MiniDigger.CraftCore.Server.CoreServer;
-import mkremins.fanciful.FancyMessage;
+import org.spigotmc.AsyncCatcher;
+import org.spigotmc.RestartCommand;
+import org.spigotmc.SpigotConfig;
+import org.spigotmc.WatchdogThread;
+
 import net.minecraft.server.v1_7_R4.EntityPlayer;
 import net.minecraft.server.v1_7_R4.MinecraftServer;
 
@@ -41,10 +39,16 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
-import org.spigotmc.AsyncCatcher;
-import org.spigotmc.RestartCommand;
-import org.spigotmc.SpigotConfig;
-import org.spigotmc.WatchdogThread;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Util.ShutdownUtil;
+
+import me.MiniDigger.CraftCore.CoreMain;
+import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
+import me.MiniDigger.CraftCore.Server.CoreServer;
+
+import mkremins.fanciful.FancyMessage;
 
 public class CoreShutdownUtil implements ShutdownUtil {
 	

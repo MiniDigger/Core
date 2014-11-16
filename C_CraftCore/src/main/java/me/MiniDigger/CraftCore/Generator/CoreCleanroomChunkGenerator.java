@@ -25,14 +25,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Generator.CleanroomChunkGenerator;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Generator.CleanroomChunkGenerator;
 
 public class CoreCleanroomChunkGenerator extends ChunkGenerator implements CleanroomChunkGenerator {
 	

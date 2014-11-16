@@ -24,10 +24,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import org.bukkit.entity.EntityType;
+
 import me.MiniDigger.Core.Cinematic.Meta;
 import me.MiniDigger.Core.Cinematic.MetaType;
-
-import org.bukkit.entity.EntityType;
 
 /**
  * 

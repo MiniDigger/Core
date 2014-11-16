@@ -27,21 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Protocol.ProtocolHandler;
-import me.MiniDigger.Core.Protocol.SignChangers;
-import me.MiniDigger.Core.Protocol.SignListeners;
-import me.MiniDigger.Core.Protocol.SkullChangers;
-import me.MiniDigger.Core.User.User;
-import me.MiniDigger.CraftCore.CoreMain;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-
 import com.comphenix.packetwrapper.WrapperHandshakeClientSetProtocol;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -53,6 +38,22 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Protocol.ProtocolHandler;
+import me.MiniDigger.Core.Protocol.SignChangers;
+import me.MiniDigger.Core.Protocol.SignListeners;
+import me.MiniDigger.Core.Protocol.SkullChangers;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreProtocolHandler implements ProtocolHandler {
 	

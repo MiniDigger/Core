@@ -22,6 +22,9 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.util.List;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -29,9 +32,6 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.Core.User.User;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 
 public class StatsCommands {
 	
