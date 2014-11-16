@@ -20,6 +20,7 @@
  */
 package me.MiniDigger.CraftCore.Util;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -92,6 +93,8 @@ public class CoreCommonMethods implements CommonMethods {
 			@Override
 			public void run() {
 				try {
+					ImageIO.setUseCache(true);// TODO cache für alle server
+					ImageIO.setCacheDirectory(new File(((Plugin) Core.getCore().getInstance()).getDataFolder(), "cache"));
 					final ImageMessage msg = new ImageMessage(ImageIO.read(new URL("https://minotar.net/avatar/" + user.getRealName() + "/200.png")), 8,
 					        ImageChar.DARK_SHADE.getChar());
 					msg.appendCenteredText("", "", ChatColor.GOLD + "Willkommen", ChatColor.YELLOW + user.getDisplayName(), ChatColor.GOLD + "Du bist auf Server:",
