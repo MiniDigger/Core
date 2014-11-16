@@ -56,6 +56,7 @@
 		<module>C_GrablingHook</module>
 		<module>C_BedWars</module>
 		<module>C_Cinematic</module>
+		<module>C_Crank</module>
 	</modules>
 
 	<profiles>
