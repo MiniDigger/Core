@@ -26,7 +26,8 @@ public enum GameType {
 	LOBBY("Lobby", "Lobby", null),
 	GETTHEDROP("GetTheDrop", "GTD", null),
 	NOTHING("Nothing", "", null),
-	BEDWARS("BedWars", "BW", null);
+	BEDWARS("BedWars", "BW", null),
+	CRANK("Crank", "Crank", null);
 	
 	private String	    name;
 	private String	    abk;
