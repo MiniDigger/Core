@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Util;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -38,6 +39,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
@@ -87,6 +89,7 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void printJoinMessage(final User user) {
+		final Date d1 = new Date();
 		Bukkit.getScheduler().runTaskAsynchronously((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
@@ -98,23 +101,37 @@ public class CoreCommonMethods implements CommonMethods {
 					        ChatColor.YELLOW + ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
 					msg.sendToPlayer(user.getPlayer());
 				} catch (final IOException e) {
-					e.printStackTrace();
+					// e.printStackTrace();
 					// Fallback
 					
-					user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
-					user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
-					user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
-					user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name")).color(ChatColor.YELLOW));
-				}
-				
-				if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
-					Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
-					        .send(user.getPlayer());
-					Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen (danke Mojang fürs neue Protocol...").color(ChatColor.GOLD)
-					        .style(ChatColor.BOLD).send(user.getPlayer());
+					Date d2 = new Date();
+					if (d2.getTime() - d1.getTime() > 1000 * 5) {
+						System.out.println("fuck that");
+					} else {
+						user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
+						user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
+						user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
+						user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"))
+						        .color(ChatColor.YELLOW));
+					}
 				}
 			}
 		});
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
+					Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
+					        .send(user.getPlayer());
+					Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen").color(ChatColor.GOLD).style(ChatColor.BOLD).send(user.getPlayer());
+				}
+				
+				Core.getCore().getHoloHandler().createSpawnHolo(user.getPlayer().getEyeLocation(), user);
+			}
+		}.runTaskLater((Plugin) Core.getCore().getInstance(), 20 * 2);
+		
 	}
 	
 	@Override

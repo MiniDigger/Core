@@ -20,6 +20,18 @@
  */
 package me.MiniDigger.Core.Holo;
 
+import org.bukkit.Location;
+
+import me.MiniDigger.Core.User.User;
+
 public interface HoloHandler {
+	
+	/**
+	 * Create the holo displayed on player join
+	 * 
+	 * @param loc
+	 * @param user
+	 */
+	void createSpawnHolo(Location loc, User user);
 	
 }
