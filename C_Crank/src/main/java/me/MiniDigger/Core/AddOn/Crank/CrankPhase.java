@@ -5,6 +5,7 @@ import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
@@ -20,6 +21,10 @@ import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class CrankPhase extends CorePhase {
+	
+	public CrankPhase(Game game) {
+		super(game, null);
+	}
 	
 	@Override
 	public String getName() {
@@ -58,9 +63,9 @@ public class CrankPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Zweite Phase hat begonnen!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Töte deine Gegner!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Achte auf die Drops an den Altaren!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Dir wurde ein Gift injeziert!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Töten Gegner, um deinen Adrenalinspiegel hoch zu halten!!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Wer er zu tieft singt stribst du!").color(ChatColor.AQUA));
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);

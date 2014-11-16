@@ -32,7 +32,7 @@ public class CrankGame extends CoreGame {
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
 		grace = new GracePhase(this, null, 15);
-		crank = new CrankPhase();
+		crank = new CrankPhase(this);
 		
 		grace.setNextPhase(crank);
 		vote.setNextPhase(grace);
