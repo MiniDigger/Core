@@ -50,7 +50,8 @@ public enum FeatureType {
 	VILLAGER,
 	TEAM_SPAWN,
 	BUILD,
-	CRANK;
+	CRANK,
+	LIVES;
 	
 	/**
 	 * @return A human readable name for the feature

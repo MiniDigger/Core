@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -73,16 +75,24 @@ public class CrankFeature extends CoreFeature {
 					cancel();
 				} else {
 					user.getPlayer().setLevel(time);
-					user.getPlayer().setExp(crankTime / time);
+					user.getPlayer().setExp(time / 100);
 				}
 			}
 		};
-		timer.runTaskTimer((Plugin) Core.getCore().getInstance(), 1, 1);
+		timer.runTaskTimer((Plugin) Core.getCore().getInstance(), 1 * 20, 1 * 20);
 		timers.put(id, timer);
 	}
 	
 	public void explode(UUID id) {
+		
 		System.out.println("boom");
+	}
+	
+	@EventHandler
+	public void onDeath(PlayerDeathEvent e) {
+		if (getPhase().getGame().getPlayers().contains(e.getEntity().getUniqueId())) {
+			User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
+		}
 	}
 	
 	@Override

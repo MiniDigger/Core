@@ -57,7 +57,7 @@ public class CrankPhase extends CorePhase {
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, null));
 		addFeature(new PvPFeature(this, true));
-		addFeature(new SpawnFeature(this, true));
+		addFeature(new SpawnFeature(this, false));
 		addFeature(new CrankFeature(this, 30));
 	}
 	
@@ -65,7 +65,7 @@ public class CrankPhase extends CorePhase {
 	public void startPhase() {
 		getGame().broadCastMessage(game.getPrefix().then("Dir wurde ein Gift injeziert!").color(ChatColor.AQUA));
 		getGame().broadCastMessage(game.getPrefix().then("Töten Gegner, um deinen Adrenalinspiegel hoch zu halten!!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Wer er zu tieft singt stribst du!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Wenn er zu tieft singt stribst du!").color(ChatColor.AQUA));
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
