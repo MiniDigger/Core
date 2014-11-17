@@ -5,9 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Achievement;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -59,6 +66,8 @@ public class CrankFeature extends CoreFeature {
 	}
 	
 	public void reset(final UUID id) {
+		Bukkit.getPlayer(id).getActivePotionEffects().clear();
+		Bukkit.getPlayer(id).addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 30, 1));
 		try {
 			timers.get(id).cancel();
 		} catch (Exception ex) {}
@@ -84,14 +93,17 @@ public class CrankFeature extends CoreFeature {
 	}
 	
 	public void explode(UUID id) {
-		
-		System.out.println("boom");
+		Player p = Bukkit.getPlayer(id);
+		p.getWorld().playEffect(p.getLocation(), Effect.EXPLOSION_LARGE, 2);
+		p.getWorld().playSound(p.getLocation(), Sound.EXPLODE, 10, 1);
+		p.setHealth(0D);
 	}
 	
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getEntity().getUniqueId())) {
 			User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
+			
 		}
 	}
 	
