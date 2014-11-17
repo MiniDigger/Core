@@ -92,7 +92,6 @@ public class CrankFeature extends CoreFeature {
 	public void onDeath(PlayerDeathEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getEntity().getUniqueId())) {
 			User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
-			//TEST
 		}
 	}
 	
