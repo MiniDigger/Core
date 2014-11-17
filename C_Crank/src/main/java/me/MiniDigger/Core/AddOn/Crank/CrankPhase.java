@@ -14,6 +14,7 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LastManStandingFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
@@ -59,6 +60,7 @@ public class CrankPhase extends CorePhase {
 		addFeature(new PvPFeature(this, true));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new CrankFeature(this, 30));
+		addFeature(new LivesFeature(this, 3));
 	}
 	
 	@Override
