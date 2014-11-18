@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Sound;
@@ -103,7 +102,7 @@ public class CrankFeature extends CoreFeature {
 	public void onDeath(PlayerDeathEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getEntity().getUniqueId())) {
 			User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
-			
+			reset(user.getUUID());
 		}
 	}
 	
