@@ -139,6 +139,18 @@
                 <echo>Move it!</echo>
                 <copy />
                 <copy />
+                <available />
+                <fail />
+                <path>
+                  <pathelement />
+                  <pathelement />
+                </path>
+                <taskdef />
+                <scp>
+                  <fileset>
+                    <include />
+                  </fileset>
+                </scp>
               </tasks>
             </configuration>
           </execution>
