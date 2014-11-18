@@ -78,6 +78,9 @@ public class CrankFeature extends CoreFeature {
 			public void run() {
 				time--;
 				User user = Core.getCore().getUserHandler().get(id);
+				if (user == null) {
+					return;
+				}
 				if (time == 0) {
 					explode(id);
 					cancel();

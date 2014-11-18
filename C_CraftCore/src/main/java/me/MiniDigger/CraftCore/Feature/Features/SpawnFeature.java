@@ -30,6 +30,8 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -130,7 +132,21 @@ public class SpawnFeature extends CoreFeature {
 				continue;
 			}
 			usedSpawns.add(loc);
-			user.getPlayer().teleport(loc);
+			try {
+				user.getPlayer().teleport(loc);
+			} catch (Exception ex) {
+				new BukkitRunnable() {
+					
+					@Override
+					public void run() {
+						try {
+							user.getPlayer().teleport(loc);
+						} catch (Exception ex) {
+							System.out.println("respawn failed after second try");
+						}
+					}
+				}.runTaskLater((Plugin) Core.getCore().getInstance(), 20 * 2);
+			}
 			return loc;
 		}
 	}
