@@ -13,7 +13,6 @@ import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
-import me.MiniDigger.CraftCore.Feature.Features.LastManStandingFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
@@ -51,7 +50,6 @@ public class CrankPhase extends CorePhase {
 	public void init() {
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
-		addFeature(new LastManStandingFeature(this));
 		addFeature(new FixedFoodFeature(this));
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY)));
 		addFeature(new FixedTimeFeature(this, 12000));
