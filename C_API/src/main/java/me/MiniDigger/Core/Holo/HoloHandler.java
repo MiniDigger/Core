@@ -32,6 +32,6 @@ public interface HoloHandler {
 	 * @param loc
 	 * @param user
 	 */
-	void createSpawnHolo(Location loc, User user);
+	void createSpawnHolo(final Location loc, final User user);
 	
 }

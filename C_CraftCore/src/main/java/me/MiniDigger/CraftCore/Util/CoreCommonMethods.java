@@ -104,7 +104,7 @@ public class CoreCommonMethods implements CommonMethods {
 					// e.printStackTrace();
 					// Fallback
 					
-					Date d2 = new Date();
+					final Date d2 = new Date();
 					if (d2.getTime() - d1.getTime() > 1000 * 5) {
 						System.out.println("fuck that");
 					} else {

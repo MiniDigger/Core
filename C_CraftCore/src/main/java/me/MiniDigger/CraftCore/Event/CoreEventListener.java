@@ -86,7 +86,7 @@ public class CoreEventListener implements EventListener {
 	
 	private static final HashMap<UUID, UUID>	lastDamaged	= new HashMap<>();
 	
-	public static void clearLastDmg(UUID id) {
+	public static void clearLastDmg(final UUID id) {
 		lastDamaged.remove(id);
 	}
 	

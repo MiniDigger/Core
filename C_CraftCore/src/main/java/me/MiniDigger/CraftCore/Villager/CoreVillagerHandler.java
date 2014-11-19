@@ -46,20 +46,6 @@ public class CoreVillagerHandler implements VillagerHandler {
 	public boolean clearTrades(final Villager villager) {
 		this.villager.remove(villager.getUniqueId());
 		return true;
-		// Bye bye nms
-		// final EntityVillager entityVillager = ((CraftVillager)
-		// villager).getHandle();
-		// try {
-		// final Field recipes =
-		// entityVillager.getClass().getDeclaredField("bu");
-		// recipes.setAccessible(true);
-		// final MerchantRecipeList list = new MerchantRecipeList();
-		// recipes.set(entityVillager, list);
-		// return true;
-		// } catch (final Exception exc) {
-		// exc.printStackTrace();
-		// return false;
-		// }
 	}
 	
 	@Override
@@ -71,63 +57,11 @@ public class CoreVillagerHandler implements VillagerHandler {
 		l.add(villagerTrade);
 		this.villager.put(villager.getUniqueId(), l);
 		return true;
-		// Bye bye nms
-		// final EntityVillager entityVillager = ((CraftVillager)
-		// villager).getHandle();
-		// try {
-		// final Field recipes =
-		// entityVillager.getClass().getDeclaredField("bu");
-		// recipes.setAccessible(true);
-		// final MerchantRecipeList list = (MerchantRecipeList)
-		// recipes.get(entityVillager);
-		// if (villagerTrade.hasItem2()) {
-		// final ItemStack item1 =
-		// CraftItemStack.asNMSCopy(villagerTrade.getItem1());
-		// final ItemStack item2 =
-		// CraftItemStack.asNMSCopy(villagerTrade.getItem2());
-		// final ItemStack rewardItem =
-		// CraftItemStack.asNMSCopy(villagerTrade.getRewardItem());
-		// list.a(new MerchantRecipe(item1, item2, rewardItem));
-		// } else {
-		// final ItemStack item1 =
-		// CraftItemStack.asNMSCopy(villagerTrade.getItem1());
-		// final ItemStack rewardItem =
-		// CraftItemStack.asNMSCopy(villagerTrade.getRewardItem());
-		// list.a(new MerchantRecipe(item1, rewardItem));
-		// }
-		// recipes.set(entityVillager, list);
-		// return true;
-		// } catch (final Exception exc) {
-		// exc.printStackTrace();
-		// return false;
-		// }
 	}
 	
 	@Override
 	public List<VillagerTrade> getTrades(final Villager villager) {
 		return this.villager.get(villager.getUniqueId());
-		// Bye bye nms
-		// final List<VillagerTrade> result = new ArrayList<VillagerTrade>();
-		// final EntityVillager entityVillager = ((CraftVillager)
-		// villager).getHandle();
-		// try {
-		// final Field recipes =
-		// entityVillager.getClass().getDeclaredField("bu");
-		// recipes.setAccessible(true);
-		// final MerchantRecipeList list = (MerchantRecipeList)
-		// recipes.get(entityVillager);
-		//
-		// for (int i = 0; i < list.size(); i++) {
-		// final MerchantRecipe r = (MerchantRecipe) list.get(i);
-		// result.add(new CoreVillagerTrade(r.getBuyItem1(), r.getBuyItem2(),
-		// r.getBuyItem3()));
-		// }
-		//
-		// return result;
-		// } catch (final Exception exc) {
-		// exc.printStackTrace();
-		// return result;
-		// }
 	}
 	
 	@Override
@@ -135,37 +69,6 @@ public class CoreVillagerHandler implements VillagerHandler {
 		this.villager.remove(villager.getUniqueId());
 		this.villager.put(villager.getUniqueId(), trades);
 		return true;
-		// final EntityVillager entityVillager = ((CraftVillager)
-		// villager).getHandle();
-		// try {
-		// final Field recipes =
-		// entityVillager.getClass().getDeclaredField("bu");
-		// recipes.setAccessible(true);
-		// final MerchantRecipeList list = new MerchantRecipeList();
-		//
-		// for (final VillagerTrade villagerTrade : trades) {
-		// if (villagerTrade.hasItem2()) {
-		// final ItemStack item1 =
-		// CraftItemStack.asNMSCopy(villagerTrade.getItem1());
-		// final ItemStack item2 =
-		// CraftItemStack.asNMSCopy(villagerTrade.getItem2());
-		// final ItemStack rewardItem =
-		// CraftItemStack.asNMSCopy(villagerTrade.getRewardItem());
-		// list.a(new MerchantRecipe(item1, item2, rewardItem));
-		// } else {
-		// final ItemStack item1 =
-		// CraftItemStack.asNMSCopy(villagerTrade.getItem1());
-		// final ItemStack rewardItem =
-		// CraftItemStack.asNMSCopy(villagerTrade.getRewardItem());
-		// list.a(new MerchantRecipe(item1, rewardItem));
-		// }
-		// }
-		//
-		// return true;
-		// } catch (final Exception exc) {
-		// exc.printStackTrace();
-		// return false;
-		// }
 	}
 	
 	@Override

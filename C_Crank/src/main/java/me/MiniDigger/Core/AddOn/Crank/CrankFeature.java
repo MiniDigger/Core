@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.Core.AddOn.Crank;
 
 import java.util.ArrayList;
@@ -27,10 +47,10 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class CrankFeature extends CoreFeature {
 	
-	private int	                          crankTime;
+	private final int	                  crankTime;
 	private HashMap<UUID, BukkitRunnable>	timers	= new HashMap<UUID, BukkitRunnable>();
 	
-	public CrankFeature(Phase phase, int crankTime) {
+	public CrankFeature(final Phase phase, final int crankTime) {
 		super(phase);
 		this.crankTime = crankTime;
 	}
@@ -71,15 +91,15 @@ public class CrankFeature extends CoreFeature {
 		Bukkit.getPlayer(id).addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 30, 1));
 		try {
 			timers.get(id).cancel();
-		} catch (Exception ex) {}
-		BukkitRunnable timer = new BukkitRunnable() {
+		} catch (final Exception ex) {}
+		final BukkitRunnable timer = new BukkitRunnable() {
 			
 			private int	time	= crankTime;
 			
 			@Override
 			public void run() {
 				time--;
-				User user = Core.getCore().getUserHandler().get(id);
+				final User user = Core.getCore().getUserHandler().get(id);
 				if (user == null) {
 					return;
 				}
@@ -96,16 +116,16 @@ public class CrankFeature extends CoreFeature {
 		timers.put(id, timer);
 	}
 	
-	public void explode(UUID id) {
+	public void explode(final UUID id) {
 		CoreEventListener.clearLastDmg(id);
-		Player p = Bukkit.getPlayer(id);
+		final Player p = Bukkit.getPlayer(id);
 		p.getWorld().playEffect(p.getLocation(), Effect.EXPLOSION_LARGE, 2);
 		p.getWorld().playSound(p.getLocation(), Sound.EXPLODE, 10, 1);
 		p.setHealth(0D);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onDeath(CoreUserDeathEvent e) {
+	public void onDeath(final CoreUserDeathEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getUser().getUUID())) {
 			reset(e.getUser().getUUID());
 			if (e.getKiller() != null) {

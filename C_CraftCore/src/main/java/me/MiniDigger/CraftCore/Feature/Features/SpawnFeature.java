@@ -134,14 +134,14 @@ public class SpawnFeature extends CoreFeature {
 			usedSpawns.add(loc);
 			try {
 				user.getPlayer().teleport(loc);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				new BukkitRunnable() {
 					
 					@Override
 					public void run() {
 						try {
 							user.getPlayer().teleport(loc);
-						} catch (Exception ex) {
+						} catch (final Exception ex) {
 							System.out.println("respawn failed after second try");
 						}
 					}
