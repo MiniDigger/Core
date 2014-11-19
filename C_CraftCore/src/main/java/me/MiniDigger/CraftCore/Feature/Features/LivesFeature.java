@@ -5,12 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LivesFeature extends CoreFeature {
@@ -64,14 +72,39 @@ public class LivesFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDeath(PlayerDeathEvent e) {
-		if (getPhase().getGame().getPlayers().contains(e.getEntity().getUniqueId())) {
-			int lives = this.lives.remove(e.getEntity().getUniqueId());
+	public void onDeath(final CoreUserDeathEvent e) {
+		if (getPhase().getGame().getPlayers().contains(e.getUser().getUUID())) {
+			int lives = this.lives.remove(e.getUser().getUUID());
 			if (lives == 1) {
-				System.out.println("out!");
-				// TODO Handle if a player has 0 lives
+				e.setShouldRespawn(false);
+				final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+				final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
+				final Location loc = locs.get(locs.keySet().iterator().next());
+				e.getUser().getPlayer().teleport(loc);
+				
+				new BukkitRunnable() {
+					
+					@Override
+					public void run() {
+						e.getUser().getPlayer().teleport(loc);
+					}
+				}.runTaskLater((Plugin) Core.getCore().getInstance(), 20);
+				
+				getPhase().getGame().broadCastMessage(
+				        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)
+				                .then(" ist draußen!").color(ChatColor.AQUA));
+				
+				getPhase().getGame().leave(e.getUser());
+				
+				if (getPhase().getGame().getPlayers().size() < 2) {
+					try {
+						getPhase().getGame().end(Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0)));
+					} catch (Exception ex) {
+						getPhase().getGame().end(new User[] { null });
+					}
+				}
 			} else {
-				this.lives.put(e.getEntity().getUniqueId(), lives - 1);
+				this.lives.put(e.getUser().getUUID(), lives - 1);
 			}
 		}
 	}

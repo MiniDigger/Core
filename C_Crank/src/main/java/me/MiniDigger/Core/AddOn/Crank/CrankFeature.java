@@ -10,7 +10,7 @@ import org.bukkit.Effect;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -21,6 +21,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class CrankFeature extends CoreFeature {
@@ -101,11 +102,15 @@ public class CrankFeature extends CoreFeature {
 		p.setHealth(0D);
 	}
 	
-	@EventHandler
-	public void onDeath(PlayerDeathEvent e) {
-		if (getPhase().getGame().getPlayers().contains(e.getEntity().getUniqueId())) {
-			User user = Core.getCore().getUserHandler().get(e.getEntity().getUniqueId());
-			reset(user.getUUID());
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onDeath(CoreUserDeathEvent e) {
+		if (getPhase().getGame().getPlayers().contains(e.getUser().getUUID())) {
+			reset(e.getUser().getUUID());
+			if (e.getKiller() != null) {
+				reset(e.getKiller().getUUID());
+			}
+		} else if (timers.containsKey(e.getUser().getUUID())) {
+			timers.get(e.getUser().getUUID()).cancel();
 		}
 	}
 	
