@@ -21,6 +21,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
@@ -96,6 +97,7 @@ public class CrankFeature extends CoreFeature {
 	}
 	
 	public void explode(UUID id) {
+		CoreEventListener.clearLastDmg(id);
 		Player p = Bukkit.getPlayer(id);
 		p.getWorld().playEffect(p.getLocation(), Effect.EXPLOSION_LARGE, 2);
 		p.getWorld().playSound(p.getLocation(), Sound.EXPLODE, 10, 1);
