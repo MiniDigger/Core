@@ -42,6 +42,7 @@ import me.MiniDigger.CraftCore.Chat.CoreChatListener;
 import me.MiniDigger.CraftCore.Command.Commands.AddOnCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ChatCommands;
 import me.MiniDigger.CraftCore.Command.Commands.DevCommands;
+import me.MiniDigger.CraftCore.Command.Commands.EffectsCommands;
 import me.MiniDigger.CraftCore.Command.Commands.EssentialCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ItemCommands;
 import me.MiniDigger.CraftCore.Command.Commands.KitCommands;
@@ -57,6 +58,7 @@ import me.MiniDigger.CraftCore.Command.Commands.WorldCommands;
 import me.MiniDigger.CraftCore.Command.Completer.AddOnCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.ChatCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.DevCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.EffectsCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.EssentialCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.ItemCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.KitCompleter;
@@ -342,14 +344,14 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void registerCommands() {
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands(), new AddOnCommands(),
-		        new EssentialCommands(), new TeamCommands(), new KitCommands() };
+		        new EssentialCommands(), new TeamCommands(), new KitCommands(), new EffectsCommands() };
 		for (final Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
 		
 		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
 		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new NPCCompleter(), new AddOnCompleter(),
-		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter() };
+		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(),new EffectsCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
