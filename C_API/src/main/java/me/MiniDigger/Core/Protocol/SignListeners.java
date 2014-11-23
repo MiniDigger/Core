@@ -28,6 +28,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.User.User;
 
 public interface SignListeners extends Listener {
 	
@@ -56,6 +57,7 @@ public interface SignListeners extends Listener {
 		
 		private Sign	sign;
 		private Player	player;
+		private User	user;
 		
 		/**
 		 * @param sign
@@ -85,6 +87,21 @@ public interface SignListeners extends Listener {
 		 */
 		public Player getPlayer() {
 			return player;
+		}
+		
+		/**
+		 * @param user
+		 *            the user to set
+		 */
+		public void setUser(User user) {
+			this.user = user;
+		}
+		
+		/**
+		 * @return the user
+		 */
+		public User getUser() {
+			return user;
 		}
 	}
 	

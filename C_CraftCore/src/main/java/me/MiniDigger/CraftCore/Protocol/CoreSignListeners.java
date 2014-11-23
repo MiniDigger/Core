@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.Protocol;
 
 import java.util.ArrayList;
 
+import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
@@ -30,6 +31,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Kit.Kit;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Protocol.SignListeners;
 
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
@@ -69,6 +72,19 @@ public class CoreSignListeners implements SignListeners {
 				System.out.println("Player " + getPlayer().getName() + " punshed sign with lines: " + Core.getCore().getStringUtil().toString(getSign().getLines()));
 			}
 		}, false));
+		
+		register(new SignListener("[Kit]", new SignAction() {
+			
+			@Override
+			public void run() {
+				Kit k = Core.getCore().getKitHandler().getKit(getSign().getLine(1));
+				if (k == null) {
+					getUser().sendMessage(Prefix.API.getPrefix().then("Dieses Schild ist kaputt! Bitte berichte einem Teammitglied!").color(ChatColor.RED));
+					return;
+				}
+				Core.getCore().getKitHandler().give(getPlayer(), k);
+			}
+		}, false));
 	}
 	
 	@Override
@@ -87,6 +103,7 @@ public class CoreSignListeners implements SignListeners {
 								if (l.getKey().equalsIgnoreCase(line)) {
 									l.getAction().setSign(sign);
 									l.getAction().setPlayer(e.getPlayer());
+									l.getAction().setUser(Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId()));
 									l.doAction(sign);
 									if (l.isFinal()) {
 										return;

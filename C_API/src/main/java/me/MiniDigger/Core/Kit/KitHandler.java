@@ -1,6 +1,7 @@
 package me.MiniDigger.Core.Kit;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
@@ -49,5 +50,11 @@ public interface KitHandler {
 	 * @return a list with all kits
 	 */
 	public List<Kit> getKits();
+
+	/**
+	 * @param id the user id
+	 * @return the kit the user has aquiped
+	 */
+	String getActivKit(UUID id);
 	
 }
