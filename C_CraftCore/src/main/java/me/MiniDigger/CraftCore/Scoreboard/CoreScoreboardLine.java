@@ -29,11 +29,33 @@ public class CoreScoreboardLine implements ScoreboardLine {
 	private int	        id;
 	private String	    content;
 	private DisplaySlot	slot;
+	private boolean	    scrolling;
+	private String	    orig;
 	
 	public CoreScoreboardLine(final int id, final String content, final DisplaySlot slot) {
 		this.id = id;
 		this.content = content;
 		this.slot = slot;
+		if (content.length() > 14) {
+			scrolling = true;
+			orig = content;
+		}
+	}
+	
+	@Override
+	public String getOrig() {
+		return orig;
+	}
+	
+	@Override
+	public void scroll() {
+		// TODO Scoll
+		getContent().replaceAll(getContent(), "newcontent");
+	}
+	
+	@Override
+	public boolean scorlling() {
+		return scrolling;
 	}
 	
 	@Override

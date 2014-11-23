@@ -24,19 +24,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Scoreboard.ScoreboardLine;
 
 public class CoreScoreboard implements Scoreboard {
 	
-	private final List<ScoreboardLine>	lines	= new ArrayList<ScoreboardLine>();
+	private final List<ScoreboardLine>	lines	 = new ArrayList<ScoreboardLine>();
+	private final List<ScoreboardLine>	scolling	= new ArrayList<ScoreboardLine>();
 	private String	                   title;
+	private BukkitRunnable	           task;
 	
 	public CoreScoreboard(final String title) {
 		this.title = title;
+		task = new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (ScoreboardLine line : scolling) {
+					line.scroll();
+				}
+			}
+		};
+		task.runTaskTimer((Plugin) Core.getCore().getInstance(), 1 * 20, 1 * 20);
 	}
 	
 	@Override
@@ -106,18 +121,27 @@ public class CoreScoreboard implements Scoreboard {
 		final Objective tab = sb.registerNewObjective("tab", "dummy");
 		tab.setDisplaySlot(DisplaySlot.PLAYER_LIST);
 		for (final ScoreboardLine line : getLines(DisplaySlot.PLAYER_LIST)) {
+			if (line.scorlling()) {
+				scolling.add(line);
+			}
 			tab.getScore(line.getContent()).setScore(line.getId());
 		}
 		
 		final Objective name = sb.registerNewObjective("name", "dummy");
 		name.setDisplaySlot(DisplaySlot.BELOW_NAME);
 		for (final ScoreboardLine line : getLines(DisplaySlot.BELOW_NAME)) {
+			if (line.scorlling()) {
+				scolling.add(line);
+			}
 			name.getScore(line.getContent()).setScore(line.getId());
 		}
 		
 		final Objective side = sb.registerNewObjective(title, "dummy");
 		side.setDisplaySlot(DisplaySlot.SIDEBAR);
 		for (final ScoreboardLine line : getLines(DisplaySlot.SIDEBAR)) {
+			if (line.scorlling()) {
+				scolling.add(line);
+			}
 			side.getScore(line.getContent()).setScore(line.getId());
 		}
 		

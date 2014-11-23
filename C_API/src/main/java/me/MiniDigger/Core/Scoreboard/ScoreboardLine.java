@@ -57,4 +57,19 @@ public interface ScoreboardLine {
 	 */
 	void setSlot(final DisplaySlot slot);
 	
+	/**
+	 * @return if the line should scroll
+	 */
+	boolean scorlling();
+	
+	/**
+	 * if scolling is activated this will scroll the text by one
+	 */
+	void scroll();
+	
+	/**
+	 * @return the orig msg
+	 */
+	String getOrig();
+	
 }
