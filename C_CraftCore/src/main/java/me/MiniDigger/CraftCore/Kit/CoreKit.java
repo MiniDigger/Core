@@ -4,8 +4,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import me.MiniDigger.Core.Kit.Kit;
+import me.MiniDigger.Core.SQL.Saveable;
 
-public class CoreKit implements Kit {
+public class CoreKit implements Kit, Saveable {
 	
 	private String	    name;
 	private String	    perm;
@@ -97,4 +98,22 @@ public class CoreKit implements Kit {
 	public void setArmor(ItemStack[] armor) {
 		this.armor = armor;
 	}
+
+	@Override
+    public boolean save() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public boolean load() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public boolean createTable() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
 }

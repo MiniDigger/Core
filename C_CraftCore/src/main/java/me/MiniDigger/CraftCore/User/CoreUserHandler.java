@@ -46,7 +46,7 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public boolean loadAll() {
-		Core.getCore().getInstance().info("Erstelle Tabelle f�r User...");
+		Core.getCore().getInstance().info("Erstelle Tabelle für User...");
 		if (!new CoreUser(null).createTable()) {
 			Core.getCore().getInstance().info("Tabelle wurde nicht erstellt!");
 		}

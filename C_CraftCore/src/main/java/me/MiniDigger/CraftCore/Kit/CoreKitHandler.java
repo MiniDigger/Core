@@ -9,12 +9,13 @@ import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Kit.Kit;
 import me.MiniDigger.Core.Kit.KitHandler;
+import me.MiniDigger.Core.SQL.SaveHandler;
 import me.MiniDigger.Core.User.User;
 
-public class CoreKitHandler implements KitHandler {
+public class CoreKitHandler implements KitHandler, SaveHandler {
 	
-	private List<Kit>	kits	= new ArrayList<Kit>();
-	private HashMap<UUID,String> activKits = new HashMap<UUID, String>();
+	private List<Kit>	          kits	      = new ArrayList<Kit>();
+	private HashMap<UUID, String>	activKits	= new HashMap<UUID, String>();
 	
 	@Override
 	public Kit createKit(String name) {
@@ -68,7 +69,7 @@ public class CoreKitHandler implements KitHandler {
 	
 	@Override
 	public void give(Player p, Kit kit) {
-		if(activKits.containsKey(p.getUniqueId())){
+		if (activKits.containsKey(p.getUniqueId())) {
 			activKits.remove(p.getUniqueId());
 		}
 		activKits.put(p.getUniqueId(), kit.getName());
@@ -88,7 +89,19 @@ public class CoreKitHandler implements KitHandler {
 	}
 	
 	@Override
-	public String getActivKit(UUID id){
+	public String getActivKit(UUID id) {
 		return activKits.get(id);
 	}
+
+	@Override
+    public boolean loadAll() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public boolean saveAll() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
 }
