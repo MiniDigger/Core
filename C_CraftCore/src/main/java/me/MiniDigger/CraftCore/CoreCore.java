@@ -441,8 +441,8 @@ public class CoreCore extends Core {
 	}
 	
 	@Override
-	public ScoreboardHandler getScoreboardHandler(){
-		if(scoreboardHandler == null){
+	public ScoreboardHandler getScoreboardHandler() {
+		if (scoreboardHandler == null) {
 			scoreboardHandler = new CoreScoreboardHandler();
 		}
 		return scoreboardHandler;

@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Scoreboard;
 
 import java.util.ArrayList;
@@ -12,15 +32,15 @@ import me.MiniDigger.Core.Scoreboard.ScoreboardLine;
 
 public class CoreScoreboard implements Scoreboard {
 	
-	private List<ScoreboardLine>	lines	= new ArrayList<ScoreboardLine>();
-	private String	             title;
+	private final List<ScoreboardLine>	lines	= new ArrayList<ScoreboardLine>();
+	private String	                   title;
 	
-	public CoreScoreboard(String title) {
+	public CoreScoreboard(final String title) {
 		this.title = title;
 	}
 	
 	@Override
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 	
@@ -30,27 +50,27 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public void addLine(ScoreboardLine line) {
+	public void addLine(final ScoreboardLine line) {
 		lines.add(line);
 	}
 	
 	@Override
-	public void removeLine(String content) {
+	public void removeLine(final String content) {
 		if (getLine(content) != null) {
 			lines.remove(getLine(content));
 		}
 	}
 	
 	@Override
-	public void removeLine(int id) {
+	public void removeLine(final int id) {
 		if (getLine(id) != null) {
 			lines.remove(getLine(id));
 		}
 	}
 	
 	@Override
-	public ScoreboardLine getLine(int id) {
-		for (ScoreboardLine line : lines) {
+	public ScoreboardLine getLine(final int id) {
+		for (final ScoreboardLine line : lines) {
 			if (line.getId() == id) {
 				return line;
 			}
@@ -59,8 +79,8 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public ScoreboardLine getLine(String content) {
-		for (ScoreboardLine line : lines) {
+	public ScoreboardLine getLine(final String content) {
+		for (final ScoreboardLine line : lines) {
 			if (line.getContent().equals(content)) {
 				return line;
 			}
@@ -69,9 +89,9 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public List<ScoreboardLine> getLines(DisplaySlot slot) {
-		List<ScoreboardLine> lines = new ArrayList<ScoreboardLine>();
-		for (ScoreboardLine line : this.lines) {
+	public List<ScoreboardLine> getLines(final DisplaySlot slot) {
+		final List<ScoreboardLine> lines = new ArrayList<ScoreboardLine>();
+		for (final ScoreboardLine line : this.lines) {
 			if (line.getSlot() == slot) {
 				lines.add(line);
 			}
@@ -81,23 +101,23 @@ public class CoreScoreboard implements Scoreboard {
 	
 	@Override
 	public org.bukkit.scoreboard.Scoreboard toBukkitScoreboard() {
-		org.bukkit.scoreboard.Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
+		final org.bukkit.scoreboard.Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 		
-		Objective tab = sb.registerNewObjective("tab", "dummy");
+		final Objective tab = sb.registerNewObjective("tab", "dummy");
 		tab.setDisplaySlot(DisplaySlot.PLAYER_LIST);
-		for (ScoreboardLine line : getLines(DisplaySlot.PLAYER_LIST)) {
+		for (final ScoreboardLine line : getLines(DisplaySlot.PLAYER_LIST)) {
 			tab.getScore(line.getContent()).setScore(line.getId());
 		}
 		
-		Objective name = sb.registerNewObjective("name", "dummy");
+		final Objective name = sb.registerNewObjective("name", "dummy");
 		name.setDisplaySlot(DisplaySlot.BELOW_NAME);
-		for (ScoreboardLine line : getLines(DisplaySlot.BELOW_NAME)) {
+		for (final ScoreboardLine line : getLines(DisplaySlot.BELOW_NAME)) {
 			name.getScore(line.getContent()).setScore(line.getId());
 		}
 		
-		Objective side = sb.registerNewObjective(title, "dummy");
+		final Objective side = sb.registerNewObjective(title, "dummy");
 		side.setDisplaySlot(DisplaySlot.SIDEBAR);
-		for (ScoreboardLine line : getLines(DisplaySlot.SIDEBAR)) {
+		for (final ScoreboardLine line : getLines(DisplaySlot.SIDEBAR)) {
 			side.getScore(line.getContent()).setScore(line.getId());
 		}
 		

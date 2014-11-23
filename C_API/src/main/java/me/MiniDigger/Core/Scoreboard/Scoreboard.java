@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.Core.Scoreboard;
 
 import java.util.List;
@@ -10,19 +30,19 @@ public interface Scoreboard {
 	 * @param line
 	 *            the line to add to the board
 	 */
-	void addLine(ScoreboardLine line);
+	void addLine(final ScoreboardLine line);
 	
 	/**
 	 * @param content
 	 *            the content of the line to remove
 	 */
-	void removeLine(String content);
+	void removeLine(final String content);
 	
 	/**
 	 * @param id
 	 *            the id of the line to remove
 	 */
-	void removeLine(int id);
+	void removeLine(final int id);
 	
 	/**
 	 * @param id
@@ -30,7 +50,7 @@ public interface Scoreboard {
 	 * @return the line with that id<br>
 	 *         MAY BE NULL
 	 */
-	ScoreboardLine getLine(int id);
+	ScoreboardLine getLine(final int id);
 	
 	/**
 	 * @param content
@@ -38,7 +58,7 @@ public interface Scoreboard {
 	 * @return the line with that content <br>
 	 *         MAY BE NULL
 	 */
-	ScoreboardLine getLine(String content);
+	ScoreboardLine getLine(final String content);
 	
 	/**
 	 * @return this scoreboard as org.bukkit.scoreboard.Scoreboard
@@ -50,15 +70,15 @@ public interface Scoreboard {
 	 *            the slot
 	 * @return all lines in that slot
 	 */
-	List<ScoreboardLine> getLines(DisplaySlot slot);
+	List<ScoreboardLine> getLines(final DisplaySlot slot);
 	
 	/**
 	 * @param title
 	 *            the new title to set
 	 */
-	void setTitle(String title);
+	void setTitle(final String title);
 	
-	/** 
+	/**
 	 * @return the title
 	 */
 	String getTitle();
