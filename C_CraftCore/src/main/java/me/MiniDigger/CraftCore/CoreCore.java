@@ -44,6 +44,7 @@ import me.MiniDigger.Core.Protocol.ProtocolHandler;
 import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Regen.RegenHandler;
 import me.MiniDigger.Core.SQL.SQLHandler;
+import me.MiniDigger.Core.Scoreboard.ScoreboardHandler;
 import me.MiniDigger.Core.Server.ServerHandler;
 import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.Client.ClientHandler;
@@ -92,6 +93,7 @@ import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Regen.CoreRegenHandler;
 import me.MiniDigger.CraftCore.SQL.CoreSQLHandler;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardHandler;
 import me.MiniDigger.CraftCore.Server.CoreServerHandler;
 import me.MiniDigger.CraftCore.Socket.CoreSocketHandler;
 import me.MiniDigger.CraftCore.Socket.Client.CoreClientHandler;
@@ -154,6 +156,7 @@ public class CoreCore extends Core {
 	private LicenseHandler	   licenseHandler;
 	private VillagerHandler	   villagerHandler;
 	private KitHandler	       kitHandler;
+	private ScoreboardHandler	scoreboardHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -435,6 +438,14 @@ public class CoreCore extends Core {
 			kitHandler = new CoreKitHandler();
 		}
 		return kitHandler;
+	}
+	
+	@Override
+	public ScoreboardHandler getScoreboardHandler(){
+		if(scoreboardHandler == null){
+			scoreboardHandler = new CoreScoreboardHandler();
+		}
+		return scoreboardHandler;
 	}
 	
 	/***********/

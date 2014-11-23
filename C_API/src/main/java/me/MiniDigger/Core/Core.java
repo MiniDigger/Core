@@ -42,6 +42,7 @@ import me.MiniDigger.Core.Protocol.ProtocolHandler;
 import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Regen.RegenHandler;
 import me.MiniDigger.Core.SQL.SQLHandler;
+import me.MiniDigger.Core.Scoreboard.ScoreboardHandler;
 import me.MiniDigger.Core.Server.ServerHandler;
 import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.Client.ClientHandler;
@@ -166,6 +167,8 @@ public abstract class Core {
 	
 	public abstract KitHandler getKitHandler();
 	
+	public abstract ScoreboardHandler getScoreboardHandler();
+	
 	/*
 	 * #################### UTILS ####################
 	 */
@@ -199,4 +202,5 @@ public abstract class Core {
 	public abstract BaseUtil getBaseUtil();
 	
 	public abstract EnumUtil getEnumUtil();
+	
 }
