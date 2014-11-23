@@ -31,6 +31,7 @@ import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.Item.ItemHandler;
+import me.MiniDigger.Core.Kit.KitHandler;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
@@ -162,7 +163,8 @@ public abstract class Core {
 	public abstract LicenseHandler getLicenseHandler();
 	
 	public abstract VillagerHandler getVillagerHandler();
-	
+
+	public abstract KitHandler getKitHandler();
 	/*
 	 * #################### UTILS ####################
 	 */

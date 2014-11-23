@@ -33,6 +33,7 @@ import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.Item.ItemHandler;
+import me.MiniDigger.Core.Kit.KitHandler;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
@@ -80,6 +81,7 @@ import me.MiniDigger.CraftCore.Command.CoreCommandHandler;
 import me.MiniDigger.CraftCore.Game.CoreGameHandler;
 import me.MiniDigger.CraftCore.Holo.CoreHoloHandler;
 import me.MiniDigger.CraftCore.Item.CoreItemHandler;
+import me.MiniDigger.CraftCore.Kit.CoreKitHandler;
 import me.MiniDigger.CraftCore.License.CoreLicenseHandler;
 import me.MiniDigger.CraftCore.Map.CoreMapHandler;
 import me.MiniDigger.CraftCore.Mirror.CoreMirrorHandler;
@@ -151,6 +153,7 @@ public class CoreCore extends Core {
 	private MirrorHandler	   mirrorHandler;
 	private LicenseHandler	   licenseHandler;
 	private VillagerHandler	   villagerHandler;
+	private KitHandler	       kitHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -424,6 +427,14 @@ public class CoreCore extends Core {
 			villagerHandler = new CoreVillagerHandler();
 		}
 		return villagerHandler;
+	}
+	
+	@Override
+	public KitHandler getKitHandler() {
+		if (kitHandler == null) {
+			kitHandler = new CoreKitHandler();
+		}
+		return kitHandler;
 	}
 	
 	/***********/

@@ -1,5 +1,11 @@
 package me.MiniDigger.Core.Kit;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+
+import me.MiniDigger.Core.User.User;
+
 public interface KitHandler {
 	
 	/**
@@ -30,5 +36,18 @@ public interface KitHandler {
 	 * @param name
 	 */
 	public void removeKit(String name);
+	
+	void give(User user, String kit);
+	
+	void give(User user, Kit kit);
+	
+	void give(Player p, String kit);
+	
+	void give(Player p, Kit kit);
+	
+	/**
+	 * @return a list with all kits
+	 */
+	public List<Kit> getKits();
 	
 }
