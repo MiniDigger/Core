@@ -163,8 +163,9 @@ public abstract class Core {
 	public abstract LicenseHandler getLicenseHandler();
 	
 	public abstract VillagerHandler getVillagerHandler();
-
+	
 	public abstract KitHandler getKitHandler();
+	
 	/*
 	 * #################### UTILS ####################
 	 */

@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Kit;
 
 import org.bukkit.Material;
@@ -15,15 +35,15 @@ public class CoreKit implements Kit, Saveable {
 	private ItemStack[]	content;
 	private ItemStack[]	armor;
 	
-	public CoreKit(String name) {
+	public CoreKit(final String name) {
 		this(name, "");
 	}
 	
-	public CoreKit(String name, String perm) {
+	public CoreKit(final String name, final String perm) {
 		this(name, perm, 0);
 	}
 	
-	public CoreKit(String name, String perm, int charge) {
+	public CoreKit(final String name, final String perm, final int charge) {
 		this.name = name;
 		this.perm = perm;
 		this.charge = charge;
@@ -40,12 +60,12 @@ public class CoreKit implements Kit, Saveable {
 	}
 	
 	@Override
-	public void setArmor(int slot, ItemStack is) {
+	public void setArmor(final int slot, final ItemStack is) {
 		armor[slot] = is;
 	}
 	
 	@Override
-	public void setContent(int slot, ItemStack is) {
+	public void setContent(final int slot, final ItemStack is) {
 		content[slot] = is;
 	}
 	
@@ -55,7 +75,7 @@ public class CoreKit implements Kit, Saveable {
 	}
 	
 	@Override
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
@@ -65,7 +85,7 @@ public class CoreKit implements Kit, Saveable {
 	}
 	
 	@Override
-	public void setPerm(String perm) {
+	public void setPerm(final String perm) {
 		this.perm = perm;
 	}
 	
@@ -75,7 +95,7 @@ public class CoreKit implements Kit, Saveable {
 	}
 	
 	@Override
-	public void setCharge(int charge) {
+	public void setCharge(final int charge) {
 		this.charge = charge;
 	}
 	
@@ -85,7 +105,7 @@ public class CoreKit implements Kit, Saveable {
 	}
 	
 	@Override
-	public void setContent(ItemStack[] content) {
+	public void setContent(final ItemStack[] content) {
 		this.content = content;
 	}
 	
@@ -95,25 +115,25 @@ public class CoreKit implements Kit, Saveable {
 	}
 	
 	@Override
-	public void setArmor(ItemStack[] armor) {
+	public void setArmor(final ItemStack[] armor) {
 		this.armor = armor;
 	}
-
+	
 	@Override
-    public boolean save() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
-
+	public boolean save() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	@Override
-    public boolean load() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
-
+	public boolean load() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	@Override
-    public boolean createTable() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
+	public boolean createTable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

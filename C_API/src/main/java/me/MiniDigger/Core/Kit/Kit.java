@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.Core.Kit;
 
 import org.bukkit.inventory.ItemStack;
@@ -8,7 +28,7 @@ public interface Kit {
 	 * @param armor
 	 *            the new armor to set (length needs to be 8, 5-8 are the slots)
 	 */
-	public void setArmor(ItemStack[] armor);
+	public void setArmor(final ItemStack[] armor);
 	
 	/**
 	 * @return the armor
@@ -20,7 +40,7 @@ public interface Kit {
 	 *            the new content to set (length needs to be 44,9-44 are the
 	 *            slots)
 	 */
-	public void setContent(ItemStack[] content);
+	public void setContent(final ItemStack[] content);
 	
 	/**
 	 * @return the content
@@ -31,7 +51,7 @@ public interface Kit {
 	 * @param charge
 	 *            how much a use of this kit should cost
 	 */
-	public void setCharge(int charge);
+	public void setCharge(final int charge);
 	
 	/**
 	 * @return how much a use of this kit costs
@@ -42,7 +62,7 @@ public interface Kit {
 	 * @param perm
 	 *            the permission to use this kit
 	 */
-	public void setPerm(String perm);
+	public void setPerm(final String perm);
 	
 	/**
 	 * @return the permission to use this kit
@@ -53,7 +73,7 @@ public interface Kit {
 	 * @param name
 	 *            the new name of this kit
 	 */
-	public void setName(String name);
+	public void setName(final String name);
 	
 	/**
 	 * @return the name of this kit
@@ -66,7 +86,7 @@ public interface Kit {
 	 * @param is
 	 *            the new itemstack to set into the slot
 	 */
-	public void setArmor(int slot, ItemStack is);
+	public void setArmor(final int slot, final ItemStack is);
 	
 	/**
 	 * @param slot
@@ -74,6 +94,6 @@ public interface Kit {
 	 * @param is
 	 *            the new itemstack to set into the slot
 	 */
-	public void setContent(int slot, ItemStack is);
+	public void setContent(final int slot, final ItemStack is);
 	
 }

@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Command.Completer;
 
 import java.util.ArrayList;
@@ -12,7 +32,7 @@ import me.MiniDigger.Core.User.User;
 public class KitCompleter {
 	
 	@Completer(name = "kit")
-	public List<String> kit(CommandArgs args) {
+	public List<String> kit(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
@@ -28,7 +48,7 @@ public class KitCompleter {
 	}
 	
 	@Completer(name = "kit.create")
-	public List<String> create(CommandArgs args) {
+	public List<String> create(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		result.add("");
@@ -37,17 +57,17 @@ public class KitCompleter {
 	}
 	
 	@Completer(name = "kit.give")
-	public List<String> give(CommandArgs args) {
+	public List<String> give(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (User user : Core.getCore().getUserHandler().getOnlineUsers()) {
+			for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
 				result.add(user.getDisplayName());
 			}
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else if (args.getArgs().length == 2) {
-			for (Kit k : Core.getCore().getKitHandler().getKits()) {
+			for (final Kit k : Core.getCore().getKitHandler().getKits()) {
 				result.add(k.getName());
 			}
 			
@@ -58,11 +78,11 @@ public class KitCompleter {
 	}
 	
 	@Completer(name = "kit.modify")
-	public List<String> modify(CommandArgs args) {
+	public List<String> modify(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (Kit k : Core.getCore().getKitHandler().getKits()) {
+			for (final Kit k : Core.getCore().getKitHandler().getKits()) {
 				result.add(k.getName());
 			}
 			
@@ -73,11 +93,11 @@ public class KitCompleter {
 	}
 	
 	@Completer(name = "kit.delete")
-	public List<String> delete(CommandArgs args) {
+	public List<String> delete(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (Kit k : Core.getCore().getKitHandler().getKits()) {
+			for (final Kit k : Core.getCore().getKitHandler().getKits()) {
 				result.add(k.getName());
 			}
 			

@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Command.Commands;
 
 import org.bukkit.Bukkit;
@@ -14,7 +34,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 public class KitCommands {
 	
 	@Command(name = "kit", permission = "kit", usage = "", description = "Macht alles mit Kits")
-	public void kit(CommandArgs args) {
+	public void kit(final CommandArgs args) {
 		Prefix.KIT.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/kit create").then("um ein neues Kit zu erzeugen").color(ChatColor.GOLD)
 		        .send(args.getSender());
 		Prefix.KIT.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/kit give ").then("um ein Kit zu vergeben").color(ChatColor.GOLD)
@@ -26,19 +46,19 @@ public class KitCommands {
 	}
 	
 	@Command(name = "kit.create", permission = "kit.create", usage = "", description = "Macht alles mit Kits", min = 1, consol = false)
-	public void create(CommandArgs args) {
+	public void create(final CommandArgs args) {
 		if (Core.getCore().getKitHandler().getKit(args.getArgs()[0]) != null) {
 			args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Diese Kit gibt es bereits!").color(ChatColor.RED));
 		}
 		
-		Kit k = Core.getCore().getKitHandler().createKit(args.getArgs()[0]);
+		final Kit k = Core.getCore().getKitHandler().createKit(args.getArgs()[0]);
 		int i = 9;
-		for (ItemStack is : args.getPlayer().getInventory().getContents()) {
+		for (final ItemStack is : args.getPlayer().getInventory().getContents()) {
 			k.setContent(i, is);
 			i++;
 		}
 		i = 4;
-		for (ItemStack is : args.getPlayer().getInventory().getArmorContents()) {
+		for (final ItemStack is : args.getPlayer().getInventory().getArmorContents()) {
 			k.setContent(i, is);
 			i++;
 		}
@@ -46,7 +66,7 @@ public class KitCommands {
 	}
 	
 	@Command(name = "kit.give", permission = "kit.give", usage = "<name> [player]", description = "Macht alles mit Kits", min = 1, max = 2, consol = false)
-	public void give(CommandArgs args) {
+	public void give(final CommandArgs args) {
 		if (Core.getCore().getKitHandler().getKit(args.getArgs()[0]) == null) {
 			args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Unbekanntes Kit!").color(ChatColor.RED));
 			return;
@@ -55,7 +75,7 @@ public class KitCommands {
 		if (args.getArgs().length == 1) {
 			Core.getCore().getKitHandler().give(args.getPlayer(), args.getArgs()[0]);
 		} else {
-			Player p = Bukkit.getPlayer(args.getArgs()[1]);
+			final Player p = Bukkit.getPlayer(args.getArgs()[1]);
 			if (p == null) {
 				args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Unbekannter Spieler!").color(ChatColor.RED));
 				return;
@@ -67,12 +87,12 @@ public class KitCommands {
 	}
 	
 	@Command(name = "kit.modify", permission = "kit.modify", usage = "<name>", description = "Macht alles mit Kits", min = 1, consol = false)
-	public void modify(CommandArgs args) {
+	public void modify(final CommandArgs args) {
 		
 	}
 	
 	@Command(name = "kit.delete", permission = "kit.delete", usage = "<name>", description = "Macht alles mit Kits", min = 1)
-	public void delete(CommandArgs args) {
+	public void delete(final CommandArgs args) {
 		
 	}
 }

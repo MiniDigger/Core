@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.Kit;
 
 import java.util.ArrayList;
@@ -14,18 +34,18 @@ import me.MiniDigger.Core.User.User;
 
 public class CoreKitHandler implements KitHandler, SaveHandler {
 	
-	private List<Kit>	          kits	      = new ArrayList<Kit>();
-	private HashMap<UUID, String>	activKits	= new HashMap<UUID, String>();
+	private final List<Kit>	            kits	  = new ArrayList<Kit>();
+	private final HashMap<UUID, String>	activKits	= new HashMap<UUID, String>();
 	
 	@Override
-	public Kit createKit(String name) {
-		Kit k = new CoreKit(name);
+	public Kit createKit(final String name) {
+		final Kit k = new CoreKit(name);
 		
 		return createKit(k);
 	}
 	
 	@Override
-	public Kit createKit(Kit kit) {
+	public Kit createKit(final Kit kit) {
 		if (getKit(kit.getName()) == null) {
 			kits.add(kit);
 			return kit;
@@ -36,8 +56,8 @@ public class CoreKitHandler implements KitHandler, SaveHandler {
 	}
 	
 	@Override
-	public Kit getKit(String name) {
-		for (Kit k : kits) {
+	public Kit getKit(final String name) {
+		for (final Kit k : kits) {
 			if (k.getName().equalsIgnoreCase(name)) {
 				return k;
 			}
@@ -46,29 +66,29 @@ public class CoreKitHandler implements KitHandler, SaveHandler {
 	}
 	
 	@Override
-	public void removeKit(String name) {
+	public void removeKit(final String name) {
 		if (getKit(name) != null) {
 			kits.remove(getKit(name));
 		}
 	}
 	
 	@Override
-	public void give(User user, String kit) {
+	public void give(final User user, final String kit) {
 		give(user, getKit(kit));
 	}
 	
 	@Override
-	public void give(User user, Kit kit) {
+	public void give(final User user, final Kit kit) {
 		give(user.getPlayer(), kit);
 	}
 	
 	@Override
-	public void give(Player p, String kit) {
+	public void give(final Player p, final String kit) {
 		give(p, getKit(kit));
 	}
 	
 	@Override
-	public void give(Player p, Kit kit) {
+	public void give(final Player p, final Kit kit) {
 		if (activKits.containsKey(p.getUniqueId())) {
 			activKits.remove(p.getUniqueId());
 		}
@@ -89,19 +109,19 @@ public class CoreKitHandler implements KitHandler, SaveHandler {
 	}
 	
 	@Override
-	public String getActivKit(UUID id) {
+	public String getActivKit(final UUID id) {
 		return activKits.get(id);
 	}
-
+	
 	@Override
-    public boolean loadAll() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
-
+	public boolean loadAll() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 	@Override
-    public boolean saveAll() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
+	public boolean saveAll() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

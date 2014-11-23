@@ -351,7 +351,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
 		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new NPCCompleter(), new AddOnCompleter(),
-		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(),new EffectsCompleter() };
+		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}

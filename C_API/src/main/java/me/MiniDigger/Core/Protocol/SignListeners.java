@@ -93,7 +93,7 @@ public interface SignListeners extends Listener {
 		 * @param user
 		 *            the user to set
 		 */
-		public void setUser(User user) {
+		public void setUser(final User user) {
 			this.user = user;
 		}
 		
