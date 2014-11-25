@@ -160,11 +160,14 @@ public class SpawnerFeature extends CoreFeature {
 	@EventHandler
 	public void onEntitySpawn(final EntitySpawnEvent event) {
 		if (event.getEntityType() == EntityType.DROPPED_ITEM) {
+			final Item item = (Item) event.getEntity();
+			if(item.getItemStack().getType() != this.item.getType()){
+				return;
+			}
 			if (event.getEntity().hasMetadata("doNotRemove")) {
 				return;
 			}
 			event.setCancelled(true);
-			final Item item = (Item) event.getEntity();
 			final EntityItem e = new EntityItem(((CraftWorld) event.getLocation().getWorld()).getHandle(), event.getLocation().getX(), event.getLocation().getY(), event
 			        .getLocation().getZ()) {
 				
@@ -179,7 +182,6 @@ public class SpawnerFeature extends CoreFeature {
 			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
 			ee.setMetadata("doNotRemove", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), "true"));
 			ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
-			if (ee.hasMetadata("doNotRemove")) {}
 			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}
 	}

@@ -23,8 +23,6 @@ package me.MiniDigger.Core.AddOn.BedWars;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.ls.LSInput;
-
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,13 +30,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredListener;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
@@ -162,6 +156,7 @@ public class BedFeature extends CoreFeature {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBedDestory(final BlockBreakEvent e) {
 		if (e.getBlock().getType() == Material.BED_BLOCK) {
@@ -176,14 +171,12 @@ public class BedFeature extends CoreFeature {
 				}
 				
 				e.getBlock().setType(Material.AIR);
-				e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.BED, 1));
-				e.setCancelled(true);
-				
-				for (RegisteredListener l : HandlerList.getRegisteredListeners((Plugin) Core.getCore().getInstance())) {
-					System.out.println(l.getListener().getClass().getName());
+				e.getBlock().getState().update(true, true);
+				if (e.getBlock().getState().getData().getData() < 8) {
+					e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.BED, 1));
 				}
 				
-				System.out.println("BED");
+				e.setCancelled(true);
 			} else {
 				System.out.println("Wrong bed? " + (teamName != null ? teamName : "") + " " + bed);
 			}

@@ -146,11 +146,6 @@
                   <pathelement />
                 </path>
                 <taskdef />
-                <scp>
-                  <fileset>
-                    <include />
-                  </fileset>
-                </scp>
               </tasks>
             </configuration>
           </execution>
