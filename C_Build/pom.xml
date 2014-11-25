@@ -135,13 +135,13 @@
 									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
 									classpathref="jsch.class.path" />
 
-								<scp
-									todir="minecraft:hercules12345+x@144.76.142.163:/home/minecraft/bgc/minigames1/plugins"
-									trust="true">
-									<fileset dir="target">
-										<include name="Core.jar" />
-									</fileset>
-								</scp>
+<!-- 								<scp -->
+<!-- 									todir="minecraft:hercules12345+x@144.76.142.163:/home/minecraft/bgc/minigames1/plugins" -->
+<!-- 									trust="true"> -->
+<!-- 									<fileset dir="target"> -->
+<!-- 										<include name="Core.jar" /> -->
+	<!-- </fileset> -->
+	<!-- </scp> -->
 							</tasks>
 						</configuration>
 					</execution>
