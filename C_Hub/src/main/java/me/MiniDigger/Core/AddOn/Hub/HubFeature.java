@@ -30,6 +30,7 @@ import org.bukkit.Sound;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -46,9 +47,9 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class HubFeature extends CoreFeature {
 	
-	private final StatsManager	        stats	  = new StatsManager();
-	private final Teleporter	        tp	      = new Teleporter();
-	private final TokenShop	            shop	  = new TokenShop();
+	private StatsManager	            stats;
+	private Teleporter	                tp;
+	private TokenShop	                shop;
 	private final HashMap<String, Long>	cooldowns	= new HashMap<>();
 	
 	public HubFeature(final Phase phase) {
@@ -89,12 +90,16 @@ public class HubFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+		stats = new StatsManager();
+		tp = new Teleporter();
+		shop = new TokenShop();
 	}
 	
 	@Override
 	public void end() {
-		
+		HandlerList.unregisterAll(shop);
+		HandlerList.unregisterAll(tp);
+		HandlerList.unregisterAll(stats);
 	}
 	
 	@EventHandler

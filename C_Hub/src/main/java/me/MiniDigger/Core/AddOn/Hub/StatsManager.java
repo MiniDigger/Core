@@ -32,7 +32,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
@@ -48,6 +47,9 @@ public class StatsManager implements Listener {
 	
 	@EventHandler
 	public void handleCLick(final InventoryClickEvent event) {
+		if (event.isCancelled()) {
+			return;
+		}
 		final Player p = (Player) event.getWhoClicked();
 		final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 		if (event.getInventory().getTitle().equals("§a§lGame-Statistiken")) {
