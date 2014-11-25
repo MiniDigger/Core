@@ -46,6 +46,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChars;
@@ -54,12 +55,15 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Item.ItemMenu;
 import me.MiniDigger.Core.Item.ItemMenu.Row;
 import me.MiniDigger.Core.Item.ItemMenu.onClick;
+import me.MiniDigger.Core.Scoreboard.Scoreboard;
 
 import me.MiniDigger.CraftCore.Entity.CoreZombie;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 
@@ -324,5 +328,14 @@ public class DevCommands {
 		        .getLocation().getYaw(), args.getPlayer().getLocation().getPitch());
 		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), true));
 		((CraftWorld) args.getPlayer().getLocation().getWorld()).getHandle().addEntity(entity);
+	}
+	
+	@Command(name = "dev.sb", description = "DEV!", usage = "", permission = "dev", sync = true)
+	public void sb(final CommandArgs args) {
+		Scoreboard sb = new CoreScoreboard("TEST");
+		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.SIDEBAR));
+		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.BELOW_NAME));
+		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.PLAYER_LIST));
+		Core.getCore().getScoreboardHandler().addToPlayer(sb, args.getPlayer());
 	}
 }
