@@ -32,6 +32,10 @@ public class CoreAchievementHandler implements AchievementHandler {
 	
 	private final List<Achievment>	achievments	= new ArrayList<Achievment>();
 	
+	public CoreAchievementHandler(){
+		registerAchievments();
+	}
+	
 	@Override
 	public void register(final Achievment a) {
 		achievments.add(a);
@@ -45,6 +49,7 @@ public class CoreAchievementHandler implements AchievementHandler {
 		joins.addLevel(new CoreAchievmentLevel(3, 50, 50));
 		joins.addLevel(new CoreAchievmentLevel(4, 100, 100));
 		joins.addLevel(new CoreAchievmentLevel(5, 200, 200));
+		register(joins);
 		// TODO Moar achievements
 	}
 	
