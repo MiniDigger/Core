@@ -78,7 +78,7 @@ public class CoreKit implements Kit {
 		// Try insertion
 		SQLQuery query = null;
 		try {
-			query = new CoreSQLQuery("DELETE FROM `system`.`kits` WHERE `kits`.`id` = ?");
+			query = new CoreSQLQuery("DELETE FROM `kits` WHERE `kits`.`id` = ?");
 			final PreparedStatement stmt = query.getStatement();
 			
 			stmt.setInt(1, id);
@@ -95,7 +95,7 @@ public class CoreKit implements Kit {
 		// Try insertion
 		SQLQuery query = null;
 		try {
-			query = new CoreSQLQuery("INSERT INTO `system`.`kits` (`id`, `name`, `perm`, `charge`, `content`, `armor`) VALUES (?,?,?,?,?,?);)");
+			query = new CoreSQLQuery("INSERT INTO `kits` (`id`, `name`, `perm`, `charge`, `content`, `armor`) VALUES (?,?,?,?,?,?);)");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setInt(1, id);
 			stmt.setString(2, name);
@@ -138,9 +138,9 @@ public class CoreKit implements Kit {
 	public boolean load() {
 		SQLQuery query = null;
 		try {
-			query = new CoreSQLQuery("SELECT * FROM `external_users` WHERE `name` LIKE ?");
+			query = new CoreSQLQuery("SELECT * FROM `kits` WHERE `id` LIKE ?");
 			final PreparedStatement stmt = query.getStatement();
-			stmt.setString(1, name);
+			stmt.setInt(1, id);
 			
 			final ResultSet r = stmt.executeQuery();
 			if (r == null) {
