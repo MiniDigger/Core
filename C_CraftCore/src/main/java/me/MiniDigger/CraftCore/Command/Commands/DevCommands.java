@@ -341,8 +341,8 @@ public class DevCommands {
 	
 	@Command(name = "dev.inv", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void inv(final CommandArgs args) {
-		String data = Core.getCore().getItemUtil().toBase64(args.getPlayer().getInventory());
+		String data = Core.getCore().getItemUtil().invToBase64(args.getPlayer().getInventory());
 		System.out.println("data!: " + data);
-		args.getPlayer().openInventory(Core.getCore().getItemUtil().fromBase64(data));
+		args.getPlayer().openInventory(Core.getCore().getItemUtil().invFromBase64(data));
 	}
 }
