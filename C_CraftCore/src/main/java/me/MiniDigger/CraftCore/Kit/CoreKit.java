@@ -74,6 +74,23 @@ public class CoreKit implements Kit {
 	}
 	
 	@Override
+	public void remove() {
+		// Try insertion
+		SQLQuery query = null;
+		try {
+			query = new CoreSQLQuery("DELETE FROM `system`.`kits` WHERE `kits`.`id` = ?");
+			final PreparedStatement stmt = query.getStatement();
+			
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+			query.kill();
+		} catch (Exception ex) {
+			System.out.println("Failed to delete kit");
+		}
+	}
+	
+	@Override
 	public boolean save() {
 		// Try insertion
 		SQLQuery query = null;

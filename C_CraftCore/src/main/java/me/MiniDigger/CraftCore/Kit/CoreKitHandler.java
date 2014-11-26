@@ -48,6 +48,7 @@ public class CoreKitHandler implements KitHandler {
 	public Kit createKit(final Kit kit) {
 		if (getKit(kit.getName()) == null) {
 			kits.add(kit);
+			kit.save();
 			return kit;
 		} else {
 			System.out.println("A kit named " + kit.getName() + " already exists!");
@@ -68,6 +69,7 @@ public class CoreKitHandler implements KitHandler {
 	@Override
 	public void removeKit(final String name) {
 		if (getKit(name) != null) {
+			getKit(name).remove();
 			kits.remove(getKit(name));
 		}
 	}

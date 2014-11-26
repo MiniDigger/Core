@@ -97,5 +97,10 @@ public interface Kit extends Saveable{
 	 *            the new itemstack to set into the slot
 	 */
 	public void setContent(final int slot, final ItemStack is);
+
+	/**
+	 * Delets itselv in db
+	 */
+	public void remove();
 	
 }

@@ -93,6 +93,12 @@ public class KitCommands {
 	
 	@Command(name = "kit.delete", permission = "kit.delete", usage = "<name>", description = "Macht alles mit Kits", min = 1)
 	public void delete(final CommandArgs args) {
-		
+		if (Core.getCore().getKitHandler().getKit(args.getArgs()[0]) == null) {
+			args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Unbekanntes Kit!").color(ChatColor.RED));
+			return;
+		}
+		Core.getCore().getKitHandler().removeKit(args.getArgs()[0]);
+
+		args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Kit gelöscht!").color(ChatColor.GREEN));
 	}
 }
