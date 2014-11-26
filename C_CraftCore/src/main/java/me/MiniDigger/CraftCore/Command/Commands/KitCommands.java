@@ -52,12 +52,14 @@ public class KitCommands {
 		}
 		
 		final Kit k = Core.getCore().getKitHandler().createKit(args.getArgs()[0]);
-		int i = 9;
+		int i = 0;
+		System.out.println("size: " + args.getPlayer().getInventory().getContents().length);
 		for (final ItemStack is : args.getPlayer().getInventory().getContents()) {
 			k.setContent(i, is);
 			i++;
 		}
-		i = 4;
+		i = 0;
+		System.out.println("size: " + args.getPlayer().getInventory().getArmorContents().length);
 		for (final ItemStack is : args.getPlayer().getInventory().getArmorContents()) {
 			k.setContent(i, is);
 			i++;
@@ -98,7 +100,7 @@ public class KitCommands {
 			return;
 		}
 		Core.getCore().getKitHandler().removeKit(args.getArgs()[0]);
-
+		
 		args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Kit gelöscht!").color(ChatColor.GREEN));
 	}
 }

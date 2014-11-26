@@ -62,13 +62,13 @@ public class CoreKit implements Kit {
 		this.perm = perm;
 		this.charge = charge;
 		
-		armor = new ItemStack[8];
-		for (int i = 5; i < armor.length; i++) {
+		armor = new ItemStack[4];
+		for (int i = 0; i < armor.length; i++) {
 			armor[i] = new ItemStack(Material.AIR);
 		}
 		
-		content = new ItemStack[44];
-		for (int i = 9; i < content.length; i++) {
+		content = new ItemStack[36];
+		for (int i = 0; i < content.length; i++) {
 			content[i] = new ItemStack(Material.AIR);
 		}
 	}

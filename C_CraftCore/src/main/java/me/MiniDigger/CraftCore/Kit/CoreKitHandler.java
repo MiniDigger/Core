@@ -97,12 +97,11 @@ public class CoreKitHandler implements KitHandler {
 		activKits.put(p.getUniqueId(), kit.getName());
 		
 		p.getInventory().clear();
-		for (int i = 0; i < p.getInventory().getContents().length; i++) {
-			p.getInventory().getContents()[i] = kit.getContent()[i];
-		}
-		for (int i = 0; i < p.getInventory().getArmorContents().length; i++) {
-			p.getInventory().getArmorContents()[i] = kit.getArmor()[i];
-		}
+		
+		p.getInventory().setContents(kit.getContent());
+		p.getInventory().setArmorContents(kit.getArmor());
+		
+		p.updateInventory();
 	}
 	
 	@Override
