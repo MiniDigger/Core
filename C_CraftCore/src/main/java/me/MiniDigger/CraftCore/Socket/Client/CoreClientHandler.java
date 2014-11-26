@@ -32,7 +32,7 @@ public class CoreClientHandler implements ClientHandler {
 	
 	@Override
 	public boolean loadAll() {
-		Core.getCore().getInstance().info("Erstelle Tabelle f�r Externe User...");
+		Core.getCore().getInstance().info("Erstelle Tabelle für Externe User...");
 		if (!new CoreClient(null).createTable()) {
 			Core.getCore().getInstance().error("Tabelle wurde nicht erstellt!");
 		}

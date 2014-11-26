@@ -22,7 +22,9 @@ package me.MiniDigger.Core.Kit;
 
 import org.bukkit.inventory.ItemStack;
 
-public interface Kit {
+import me.MiniDigger.Core.SQL.Saveable;
+
+public interface Kit extends Saveable{
 	
 	/**
 	 * @param armor

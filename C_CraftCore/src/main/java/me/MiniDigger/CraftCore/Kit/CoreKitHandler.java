@@ -27,19 +27,19 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Kit.Kit;
 import me.MiniDigger.Core.Kit.KitHandler;
-import me.MiniDigger.Core.SQL.SaveHandler;
 import me.MiniDigger.Core.User.User;
 
-public class CoreKitHandler implements KitHandler, SaveHandler {
+public class CoreKitHandler implements KitHandler {
 	
 	private final List<Kit>	            kits	  = new ArrayList<Kit>();
 	private final HashMap<UUID, String>	activKits	= new HashMap<UUID, String>();
 	
 	@Override
 	public Kit createKit(final String name) {
-		final Kit k = new CoreKit(name);
+		final Kit k = new CoreKit(kits.size() + 1, name);
 		
 		return createKit(k);
 	}
@@ -115,13 +115,15 @@ public class CoreKitHandler implements KitHandler, SaveHandler {
 	
 	@Override
 	public boolean loadAll() {
-		// TODO Auto-generated method stub
-		return false;
+		Core.getCore().getInstance().info("Erstelle Tabelle für Kits...");
+		if (!new CoreKit(-1).createTable()) {
+			Core.getCore().getInstance().error("Tabelle wurde nicht erstellt!");
+		}
+		return true;
 	}
 	
 	@Override
 	public boolean saveAll() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }

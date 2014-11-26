@@ -338,4 +338,11 @@ public class DevCommands {
 		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.PLAYER_LIST));
 		Core.getCore().getScoreboardHandler().addToPlayer(sb, args.getPlayer());
 	}
+	
+	@Command(name = "dev.inv", description = "DEV!", usage = "", permission = "dev", sync = true)
+	public void inv(final CommandArgs args) {
+		String data = Core.getCore().getItemUtil().toBase64(args.getPlayer().getInventory());
+		System.out.println("data!: " + data);
+		args.getPlayer().openInventory(Core.getCore().getItemUtil().fromBase64(data));
+	}
 }

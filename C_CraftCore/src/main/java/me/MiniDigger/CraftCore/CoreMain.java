@@ -398,6 +398,10 @@ public class CoreMain extends JavaPlugin implements Main {
 		if (!Core.getCore().getClientHandler().loadAll()) {
 			error("Clients wurden nicht geladen!");
 		}
+		info("Lade Kits...");
+		if (!Core.getCore().getKitHandler().loadAll()) {
+			error("Kits wurden nicht geladen!");
+		}
 	}
 	
 	@Override

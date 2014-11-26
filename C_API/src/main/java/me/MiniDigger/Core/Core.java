@@ -58,6 +58,7 @@ import me.MiniDigger.Core.Util.DeZipUtil;
 import me.MiniDigger.Core.Util.EntityUtil;
 import me.MiniDigger.Core.Util.EnumUtil;
 import me.MiniDigger.Core.Util.FileUtil;
+import me.MiniDigger.Core.Util.ItemUtil;
 import me.MiniDigger.Core.Util.LocationUtil;
 import me.MiniDigger.Core.Util.PlayerUtil;
 import me.MiniDigger.Core.Util.RandomUtil;
@@ -202,5 +203,7 @@ public abstract class Core {
 	public abstract BaseUtil getBaseUtil();
 	
 	public abstract EnumUtil getEnumUtil();
+	
+	public abstract ItemUtil getItemUtil();
 	
 }

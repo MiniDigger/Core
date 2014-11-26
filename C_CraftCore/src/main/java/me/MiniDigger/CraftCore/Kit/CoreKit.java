@@ -20,13 +20,22 @@
  */
 package me.MiniDigger.CraftCore.Kit;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Kit.Kit;
-import me.MiniDigger.Core.SQL.Saveable;
+import me.MiniDigger.Core.SQL.SQLQuery;
 
-public class CoreKit implements Kit, Saveable {
+import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
+
+public class CoreKit implements Kit {
+	
+	private int	        id;
 	
 	private String	    name;
 	private String	    perm;
@@ -35,15 +44,20 @@ public class CoreKit implements Kit, Saveable {
 	private ItemStack[]	content;
 	private ItemStack[]	armor;
 	
-	public CoreKit(final String name) {
-		this(name, "");
+	public CoreKit(final int id) {
+		this(id, "", "");
 	}
 	
-	public CoreKit(final String name, final String perm) {
-		this(name, perm, 0);
+	public CoreKit(final int id, final String name) {
+		this(id, name, "");
 	}
 	
-	public CoreKit(final String name, final String perm, final int charge) {
+	public CoreKit(final int id, final String name, final String perm) {
+		this(id, name, perm, 0);
+	}
+	
+	public CoreKit(final int id, final String name, final String perm, final int charge) {
+		this.id = id;
 		this.name = name;
 		this.perm = perm;
 		this.charge = charge;
@@ -56,6 +70,97 @@ public class CoreKit implements Kit, Saveable {
 		content = new ItemStack[44];
 		for (int i = 9; i < content.length; i++) {
 			content[i] = new ItemStack(Material.AIR);
+		}
+	}
+	
+	@Override
+	public boolean save() {
+		// Try insertion
+		SQLQuery query = null;
+		try {
+			query = new CoreSQLQuery("INSERT INTO `system`.`kits` (`id`, `name`, `perm`, `charge`, `content`, `armor`) VALUES (?,?,?,?,?,?);)");
+			final PreparedStatement stmt = query.getStatement();
+			stmt.setInt(1, id);
+			stmt.setString(2, name);
+			stmt.setString(3, perm);
+			stmt.setInt(4, charge);
+			stmt.setString(5, Core.getCore().getItemUtil().itemArrayToBase64(content));
+			stmt.setString(6, Core.getCore().getItemUtil().itemArrayToBase64(armor));
+			
+			stmt.execute();
+			query.kill();
+		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (final Exception exe) {}
+			try {
+				query = new CoreSQLQuery("UPDATE `kits` SET `id`=?,`name`=?,`perm`=?,`charge`=?,`content`=?,`armor`=? WHERE `id` LIKE ?");
+				final PreparedStatement stmt = query.getStatement();
+				stmt.setInt(1, id);
+				stmt.setString(2, name);
+				stmt.setString(3, perm);
+				stmt.setInt(4, charge);
+				stmt.setString(5, Core.getCore().getItemUtil().itemArrayToBase64(content));
+				stmt.setString(6, Core.getCore().getItemUtil().itemArrayToBase64(armor));
+				
+				stmt.setInt(7, id);
+				
+				stmt.execute();
+				query.kill();
+			} catch (final Exception e) {
+				try {
+					query.kill();
+				} catch (final Exception exe) {}
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean load() {
+		SQLQuery query = null;
+		try {
+			query = new CoreSQLQuery("SELECT * FROM `external_users` WHERE `name` LIKE ?");
+			final PreparedStatement stmt = query.getStatement();
+			stmt.setString(1, name);
+			
+			final ResultSet r = stmt.executeQuery();
+			if (r == null) {
+				throw new NullPointerException("ResultSet returned by query can not be null!");
+			}
+			
+			r.next();
+			id = r.getInt("id");
+			name = r.getString("name");
+			perm = r.getString("perm");
+			charge = r.getInt("charge");
+			content = Core.getCore().getItemUtil().itemArrayFromBase64(r.getString("content"));
+			armor = Core.getCore().getItemUtil().itemArrayFromBase64(r.getString("armor"));
+			query.kill();
+		} catch (final Exception ex) {
+			try {
+				query.kill();
+			} catch (final Exception exe) {}
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean createTable() {
+		final SQLQuery q = new CoreSQLQuery(
+		        "CREATE TABLE IF NOT EXISTS `kits` ( `id` int(11) NOT NULL, `name` varchar(40) NOT NULL, `perm` varchar(40) NOT NULL, `charge` int(11) NOT NULL, `content` varchar(10000) NOT NULL, `armor` varchar(5000) NOT NULL, UNIQUE (`id`) , PRIMARY KEY (`id`))");
+		try {
+			q.getStatement().execute();
+			q.kill();
+			return true;
+		} catch (final SQLException e) {
+			try {
+				q.kill();
+			} catch (final Exception exe) {}
+			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -117,23 +222,5 @@ public class CoreKit implements Kit, Saveable {
 	@Override
 	public void setArmor(final ItemStack[] armor) {
 		this.armor = armor;
-	}
-	
-	@Override
-	public boolean save() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public boolean load() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public boolean createTable() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }
