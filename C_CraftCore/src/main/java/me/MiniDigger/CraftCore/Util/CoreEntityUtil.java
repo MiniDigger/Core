@@ -222,6 +222,18 @@ public class CoreEntityUtil implements EntityUtil {
 			case ZOMBIE:
 				entitys.put(type, Type.ANGRY);
 				break;
+			case ARMOR_STAND:
+				entitys.put(type, Type.UTILITY);
+				break;
+			case ENDERMITE:
+				entitys.put(type, Type.ANGRY);
+				break;
+			case GUARDIAN:
+				entitys.put(type, Type.ANGRY);
+				break;
+			case RABBIT:
+				entitys.put(type, Type.FRIENDLY);
+				break;
 			}
 		}
 	}

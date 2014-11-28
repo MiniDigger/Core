@@ -28,8 +28,8 @@ import org.spigotmc.RestartCommand;
 import org.spigotmc.SpigotConfig;
 import org.spigotmc.WatchdogThread;
 
-import net.minecraft.server.v1_7_R4.EntityPlayer;
-import net.minecraft.server.v1_7_R4.MinecraftServer;
+import net.minecraft.server.v1_8_R1.EntityPlayer;
+import net.minecraft.server.v1_8_R1.MinecraftServer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

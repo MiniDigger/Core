@@ -20,17 +20,21 @@
  */
 package me.MiniDigger.Core.Cinematic;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.LinkedTransferQueue;
 
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 
-import net.minecraft.server.v1_7_R4.EntityPlayer;
-import net.minecraft.server.v1_7_R4.PacketPlayOutPosition;
-import net.minecraft.server.v1_7_R4.PacketPlayOutRelEntityMove;
+import net.minecraft.server.v1_8_R1.EntityPlayer;
+import net.minecraft.server.v1_8_R1.EnumPlayerTeleportFlags;
+import net.minecraft.server.v1_8_R1.PacketPlayOutPosition;
+import net.minecraft.server.v1_8_R1.PacketPlayOutRelEntityMove;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -126,7 +130,9 @@ public class CinematicPlayer {
 				
 				// Hracovi posli paketu o teleportacii. Server aktualizuje
 				// hracovu polohu v synUpdate, aby sa necrashoval.
-				PacketHelper.send(player, new PacketPlayOutPosition(frame.camX, frame.camY, frame.camZ, frame.yaw, frame.pitch, true));
+				Set<EnumPlayerTeleportFlags> set = new HashSet<EnumPlayerTeleportFlags>();
+				set.addAll(Arrays.asList(EnumPlayerTeleportFlags.values()));
+				PacketHelper.send(player, new PacketPlayOutPosition(frame.camX, frame.camY, frame.camZ, frame.yaw, frame.pitch, set));
 				
 				// Spracuj zoom.
 				

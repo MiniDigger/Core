@@ -20,14 +20,11 @@
  */
 package me.MiniDigger.CraftCore.Mirror;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.util.com.google.gson.Gson;
+//import net.minecraft.util.com.google.gson.Gson;
 
 import me.MiniDigger.Core.Mirror.MirrorSender;
 
@@ -78,26 +75,28 @@ public class CoreMirrorSender implements MirrorSender {
 	
 	private class ClientThread extends Thread {
 		
-		private final Socket	client;
+//		private final Socket	client;
 		
 		/**
 		 * @param accept
 		 */
 		public ClientThread(final Socket accept) {
 			setName("MirrorClientThread");
-			client = accept;
+//			client = accept;
 		}
 		
 		/**
 		 * @param event
 		 */
 		public void send(final Object event) {
-			try {
-				final ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
-				out.writeObject(new Gson().toJson(event));
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
+			// try {
+			// TODO Reenable gson
+			// final ObjectOutputStream out = new
+			// ObjectOutputStream(client.getOutputStream());
+			// out.writeObject(new Gson().toJson(event));
+			// } catch (final IOException e) {
+			// e.printStackTrace();
+			// }
 		}
 		
 	}

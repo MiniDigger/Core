@@ -24,16 +24,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftItem;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftItem;
+import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 
-import net.minecraft.server.v1_7_R4.EntityItem;
-import net.minecraft.server.v1_7_R4.NBTTagCompound;
-import net.minecraft.server.v1_7_R4.TileEntity;
-import net.minecraft.server.v1_7_R4.TileEntityMobSpawner;
-import net.minecraft.server.v1_7_R4.World;
+import net.minecraft.server.v1_8_R1.BlockPosition;
+import net.minecraft.server.v1_8_R1.EntityItem;
+import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R1.TileEntity;
+import net.minecraft.server.v1_8_R1.TileEntityMobSpawner;
+import net.minecraft.server.v1_8_R1.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
@@ -117,7 +118,7 @@ public class SpawnerFeature extends CoreFeature {
 				if (item != null) {
 					System.out.println("create spawner: " + locKey.name());
 					final World world = ((CraftWorld) b.getWorld()).getHandle();
-					final TileEntity tileEntity = world.getTileEntity(b.getX(), b.getY(), b.getZ());
+					final TileEntity tileEntity = world.getTileEntity(new BlockPosition(b.getX(), b.getY(), b.getZ()));
 					if ((tileEntity instanceof TileEntityMobSpawner)) {
 						final TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
 						final NBTTagCompound spawnerTag = new NBTTagCompound();
@@ -127,7 +128,7 @@ public class SpawnerFeature extends CoreFeature {
 						final NBTTagCompound itemTag = new NBTTagCompound();
 						itemTag.setShort("Health", (short) 1);
 						itemTag.setShort("Age", (short) 0);
-						final net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+						final net.minecraft.server.v1_8_R1.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
 						final NBTTagCompound itemStackTag = new NBTTagCompound();
 						itemStack.save(itemStackTag);
 						itemStackTag.setByte("Count", (byte) 1);
@@ -161,22 +162,15 @@ public class SpawnerFeature extends CoreFeature {
 	public void onEntitySpawn(final EntitySpawnEvent event) {
 		if (event.getEntityType() == EntityType.DROPPED_ITEM) {
 			final Item item = (Item) event.getEntity();
-			if(item.getItemStack().getType() != this.item.getType()){
+			if (item.getItemStack().getType() != this.item.getType()) {
 				return;
 			}
 			if (event.getEntity().hasMetadata("doNotRemove")) {
 				return;
 			}
 			event.setCancelled(true);
-			final EntityItem e = new EntityItem(((CraftWorld) event.getLocation().getWorld()).getHandle(), event.getLocation().getX(), event.getLocation().getY(), event
-			        .getLocation().getZ()) {
-				
-				@Override
-				public boolean a(final EntityItem entityitem) {
-					// DO NOT merge items
-					return false;
-				}
-			};
+			final EntityItem e = new CoreEntityItem(((CraftWorld) event.getLocation().getWorld()).getHandle(), event.getLocation().getX(), event.getLocation().getY(),
+			        event.getLocation().getZ());
 			e.setItemStack(CraftItemStack.asNMSCopy(item.getItemStack()));
 			e.fromMobSpawner = true;
 			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
@@ -188,6 +182,19 @@ public class SpawnerFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
+		
+	}
+	
+	public class CoreEntityItem extends EntityItem {
+		
+		public CoreEntityItem(World world, double d0, double d1, double d2) {
+			super(world, d0, d1, d2);
+		}
+		
+		@SuppressWarnings("unused")
+		private boolean a(final EntityItem entity) {
+			return false;
+		}
 		
 	}
 }

@@ -26,14 +26,15 @@ import java.util.UUID;
 
 import org.json.simple.JSONObject;
 
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 
-import net.minecraft.server.v1_7_R4.Entity;
-import net.minecraft.server.v1_7_R4.NBTTagCompound;
-import net.minecraft.server.v1_7_R4.TileEntity;
-import net.minecraft.server.v1_7_R4.TileEntityMobSpawner;
-import net.minecraft.server.v1_7_R4.World;
+import net.minecraft.server.v1_8_R1.BlockPosition;
+import net.minecraft.server.v1_8_R1.Entity;
+import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R1.TileEntity;
+import net.minecraft.server.v1_8_R1.TileEntityMobSpawner;
+import net.minecraft.server.v1_8_R1.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -256,7 +257,7 @@ public class DevCommands {
 		}
 		final int delay = 20;
 		final World world = ((CraftWorld) target.getWorld()).getHandle();
-		final TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
+		final TileEntity tileEntity = world.getTileEntity(new BlockPosition(target.getX(), target.getY(), target.getZ()));
 		if ((tileEntity instanceof TileEntityMobSpawner)) {
 			final TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
 			final NBTTagCompound spawnerTag = new NBTTagCompound();
@@ -266,7 +267,7 @@ public class DevCommands {
 			final NBTTagCompound itemTag = new NBTTagCompound();
 			itemTag.setShort("Health", (short) 5);
 			itemTag.setShort("Age", (short) 0);
-			final net.minecraft.server.v1_7_R4.ItemStack itemStack = CraftItemStack.asNMSCopy(args.getPlayer().getItemInHand());
+			final net.minecraft.server.v1_8_R1.ItemStack itemStack = CraftItemStack.asNMSCopy(args.getPlayer().getItemInHand());
 			final NBTTagCompound itemStackTag = new NBTTagCompound();
 			itemStack.save(itemStackTag);
 			itemStackTag.setByte("Count", (byte) 1);

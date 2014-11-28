@@ -20,21 +20,23 @@
  */
 package me.MiniDigger.CraftCore.Entity;
 
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
 
-import net.minecraft.server.v1_7_R4.EntityHuman;
-import net.minecraft.server.v1_7_R4.EntitySheep;
-import net.minecraft.server.v1_7_R4.EntityVillager;
-import net.minecraft.server.v1_7_R4.EntityZombie;
-import net.minecraft.server.v1_7_R4.PathfinderGoalFloat;
-import net.minecraft.server.v1_7_R4.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_7_R4.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_7_R4.PathfinderGoalMeleeAttack;
-import net.minecraft.server.v1_7_R4.PathfinderGoalMoveThroughVillage;
-import net.minecraft.server.v1_7_R4.PathfinderGoalMoveTowardsRestriction;
-import net.minecraft.server.v1_7_R4.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_7_R4.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_7_R4.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_8_R1.EntityHuman;
+import net.minecraft.server.v1_8_R1.EntityIronGolem;
+import net.minecraft.server.v1_8_R1.EntityPigZombie;
+import net.minecraft.server.v1_8_R1.EntitySheep;
+import net.minecraft.server.v1_8_R1.EntityVillager;
+import net.minecraft.server.v1_8_R1.EntityZombie;
+import net.minecraft.server.v1_8_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_8_R1.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_8_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_8_R1.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_8_R1.PathfinderGoalMoveThroughVillage;
+import net.minecraft.server.v1_8_R1.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_8_R1.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_8_R1.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_8_R1.PathfinderGoalRandomStroll;
 
 public class CoreZombie extends EntityZombie {
 	
@@ -61,9 +63,10 @@ public class CoreZombie extends EntityZombie {
 		goalSelector.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
 		goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntitySheep.class, 8.0F));
 		goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
-		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 0, true));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, 0, false));
+		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true, new Class[] { EntityPigZombie.class }));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, true));
 	}
 	
 	public void addCustomGoals() {
@@ -76,8 +79,10 @@ public class CoreZombie extends EntityZombie {
 		goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntitySheep.class, 8.0F));
 		goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
 		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntitySheep.class, 0, true));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, 0, false));
+		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true, new Class[] { EntityPigZombie.class }));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntitySheep.class, true));
 	}
 	
 }

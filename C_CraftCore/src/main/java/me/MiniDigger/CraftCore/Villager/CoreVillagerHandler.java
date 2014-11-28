@@ -26,11 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 
-import net.minecraft.server.v1_7_R4.EntityVillager;
-import net.minecraft.server.v1_7_R4.MerchantRecipe;
-import net.minecraft.server.v1_7_R4.MerchantRecipeList;
+import net.minecraft.server.v1_8_R1.EntityVillager;
+import net.minecraft.server.v1_8_R1.MerchantRecipe;
+import net.minecraft.server.v1_8_R1.MerchantRecipeList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -122,10 +122,10 @@ public class CoreVillagerHandler implements VillagerHandler {
 		return recipe;
 	}
 	
-	private net.minecraft.server.v1_7_R4.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
+	private net.minecraft.server.v1_8_R1.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
 		if (item == null) {
 			return null;
 		}
-		return org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack.asNMSCopy(item);
+		return org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack.asNMSCopy(item);
 	}
 }

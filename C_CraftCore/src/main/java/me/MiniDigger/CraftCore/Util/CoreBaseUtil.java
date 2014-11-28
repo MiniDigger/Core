@@ -20,7 +20,7 @@
  */
 package me.MiniDigger.CraftCore.Util;
 
-import net.minecraft.util.org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 import me.MiniDigger.Core.Util.BaseUtil;
 
@@ -28,7 +28,7 @@ public class CoreBaseUtil implements BaseUtil {
 	
 	@Override
 	public String encode(final String s) {
-		final byte[] b = Base64.encodeBase64(s.getBytes());
+		final byte[] b = org.apache.commons.codec.binary.Base64.encodeBase64(s.getBytes());
 		return new String(b);
 	}
 	
