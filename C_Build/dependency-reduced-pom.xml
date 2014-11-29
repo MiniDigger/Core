@@ -139,6 +139,7 @@
                 <echo>Move it!</echo>
                 <copy />
                 <copy />
+                <copy />
                 <available />
                 <fail />
                 <path>
@@ -167,22 +168,6 @@
         <exclusion>
           <artifactId>commons-dbcp</artifactId>
           <groupId>commons-dbcp</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.comphenix.protocol</groupId>
-      <artifactId>ProtocolLib</artifactId>
-      <version>3.3.1</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>cglib-nodep</artifactId>
-          <groupId>cglib</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>BukkitExecutors</artifactId>
-          <groupId>com.comphenix.executors</groupId>
         </exclusion>
       </exclusions>
     </dependency>

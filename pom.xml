@@ -149,6 +149,10 @@
 			<id>comphenix-repo2</id><!-- PacketWrapper, ProtocolLib -->
 			<url>http://repo.comphenix.net/content/groups/public</url>
 		</repository>
+		<repository>
+			<id>shadowvolt-repo</id><!--  New  ProtocolLib -->
+			<url>http://ci.shadowvolt.com/plugin/repository/everything/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -190,8 +194,7 @@
 		<dependency>
 			<groupId>com.comphenix.protocol</groupId>
 			<artifactId>ProtocolLib</artifactId>
-			<scope>provided</scope>
-			<version>3.3.1</version>
+			<version>3.6.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.comphenix.packetwrapper</groupId>
