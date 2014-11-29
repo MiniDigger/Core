@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.comphenix.packetwrapper.WrapperHandshakeClientSetProtocol;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -198,10 +197,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			
 			@Override
 			public void onPacketReceiving(final PacketEvent event) {
-				final WrapperHandshakeClientSetProtocol p = new WrapperHandshakeClientSetProtocol(event.getPacket());
-				// System.out.println(event.getPlayer().getName() +
-				// "'s protocol version: " + p.getProtocolVersion());
-				protocolVersions.put(event.getPlayer().getName(), p.getProtocolVersion());
+				protocolVersions.put(event.getPlayer().getName(), event.getPacket().getIntegers().read(0));
 			}
 		});
 	}
@@ -245,7 +241,8 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		return protocolVersions.get(name);
 	}
 	
-	private void handlePing(final WrappedServerPing ping) {
+	@SuppressWarnings("deprecation")
+    private void handlePing(final WrappedServerPing ping) {
 		ping.setPlayers(Arrays.asList(new WrappedGameProfile("1", ChatColor.RED + "Hallo und willkommen"), new WrappedGameProfile("2", "auf Zone-Games.eu!"),
 		        new WrappedGameProfile("3", "Hier findest du vieles.")));
 		ping.setVersionName("Please use 1.7.10");

@@ -24,11 +24,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.comphenix.packetwrapper.WrapperPlayServerTileEntityData;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.wrappers.nbt.NbtCompound;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -45,7 +43,8 @@ public class CoreSkullChangers implements SkullChangers {
 	
 	private final ArrayList<SkullChanger>	           skullchangers	= new ArrayList<>();
 	private final ArrayList<Location>	               last_seen_skulls	= new ArrayList<>();
-	private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
+	@SuppressWarnings("unused")
+    private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
 	
 	@Override
 	public void update() {
@@ -105,35 +104,40 @@ public class CoreSkullChangers implements SkullChangers {
 	}
 	
 	private PacketContainer modifySkull(final PacketContainer pa, final Player player) {
-		final String SKULL_NICK_KEY = "SkullOwner";
-		final WrapperPlayServerTileEntityData p = new WrapperPlayServerTileEntityData(pa);
-		final boolean forceMatch = false;
-		final Location loc = new Location(player.getWorld(), p.getX(), p.getY(), p.getZ());
-		final NbtCompound nbtc = (NbtCompound) p.getNbtData();
-		if (nbtc.containsKey(SKULL_NICK_KEY)) {
-			final String skullName = nbtc.getString(SKULL_NICK_KEY);
-			
-			for (final SkullChanger c : skullchangers) {
-				if (forceMatch || skullName.equalsIgnoreCase(c.getKey())) {
-					if (!last_seen_skulls.contains(loc)) {
-						last_seen_skulls.add(loc);
-					}
-					ArrayList<String> players = players_skulls.get(loc);
-					if (players == null) {
-						players = new ArrayList<>();
-					}
-					if (!players.contains(player.getName())) {
-						players.add(player.getName());
-					}
-					players_skulls.remove(loc);
-					players_skulls.put(loc, players);
-					
-					nbtc.put(SKULL_NICK_KEY, c.getValue(player, new Location(player.getWorld(), p.getX(), p.getY(), p.getZ())));
-				}
-			}
-		}
-		
-		return p.getHandle();
+		// final String SKULL_NICK_KEY = "SkullOwner";
+		// final WrapperPlayServerTileEntityData p = new
+		// WrapperPlayServerTileEntityData(pa);
+		// final boolean forceMatch = false;
+		// final Location loc = new Location(player.getWorld(), p.getX(),
+		// p.getY(), p.getZ());
+		// final NbtCompound nbtc = (NbtCompound) p.getNbtData();
+		// if (nbtc.containsKey(SKULL_NICK_KEY)) {
+		// final String skullName = nbtc.getString(SKULL_NICK_KEY);
+		//
+		// for (final SkullChanger c : skullchangers) {
+		// if (forceMatch || skullName.equalsIgnoreCase(c.getKey())) {
+		// if (!last_seen_skulls.contains(loc)) {
+		// last_seen_skulls.add(loc);
+		// }
+		// ArrayList<String> players = players_skulls.get(loc);
+		// if (players == null) {
+		// players = new ArrayList<>();
+		// }
+		// if (!players.contains(player.getName())) {
+		// players.add(player.getName());
+		// }
+		// players_skulls.remove(loc);
+		// players_skulls.put(loc, players);
+		//
+		// nbtc.put(SKULL_NICK_KEY, c.getValue(player, new
+		// Location(player.getWorld(), p.getX(), p.getY(), p.getZ())));
+		// }
+		// }
+		// }
+		//
+		// return p.getHandle();
+		// TODO Disabled skullchangers
+		return pa;
 	}
 	
 	private void sendSkullChange(final Player player, final Location loc) {
