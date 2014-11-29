@@ -125,6 +125,7 @@ public class CoreWorldLoader implements WorldLoader {
 		// internal.difficulty = EnumDifficulty.HARD;
 		internal.setSpawnFlags(true, true);
 		internal.savingDisabled = true;
+		internal.b();
 		server.getServer().worlds.add(internal);
 		
 		if (generator != null) {

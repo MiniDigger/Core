@@ -89,6 +89,10 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void printJoinMessage(final User user) {
+		if (user.getPlayer() == null) {
+			System.out.println("no join msg for you, sir!");
+			return;
+		}
 		final Date d1 = new Date();
 		Bukkit.getScheduler().runTaskAsynchronously((Plugin) Core.getCore().getInstance(), new Runnable() {
 			
@@ -122,13 +126,18 @@ public class CoreCommonMethods implements CommonMethods {
 			
 			@Override
 			public void run() {
-				if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
-					Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
-					        .send(user.getPlayer());
-					Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen").color(ChatColor.GOLD).style(ChatColor.BOLD).send(user.getPlayer());
+				try {
+					if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
+						Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
+						        .send(user.getPlayer());
+						Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen").color(ChatColor.GOLD).style(ChatColor.BOLD)
+						        .send(user.getPlayer());
+					}
+					
+					Core.getCore().getHoloHandler().createSpawnHolo(user.getPlayer().getEyeLocation(), user);
+				} catch (Exception ex) {
+					
 				}
-				
-				Core.getCore().getHoloHandler().createSpawnHolo(user.getPlayer().getEyeLocation(), user);
 			}
 		}.runTaskLater((Plugin) Core.getCore().getInstance(), 20 * 2);
 		

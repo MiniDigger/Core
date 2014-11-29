@@ -22,6 +22,9 @@ package me.MiniDigger.CraftCore.Server;
 
 import java.util.ArrayList;
 
+import net.minecraft.server.v1_8_R1.ChatSerializer;
+import net.minecraft.server.v1_8_R1.IChatBaseComponent;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitTask;
@@ -32,6 +35,8 @@ import me.MiniDigger.Core.Server.ServerHandler;
 
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
+
+import mkremins.fanciful.FancyMessage;
 
 public class CoreServerHandler implements ServerHandler {
 	
@@ -55,40 +60,65 @@ public class CoreServerHandler implements ServerHandler {
 	}
 	
 	@Override
-	public String[] getServerInfo(final String[] lines) {
-		final String[] newLines = new String[4];
+	public IChatBaseComponent[] getServerInfo(final IChatBaseComponent[] lines) {
+		final IChatBaseComponent[] newLines = new IChatBaseComponent[4];
 		
-		final Server server = getServerInfo(lines[1]);
+		FancyMessage msg;
+		final Server server = getServerInfo(lines[1].getText());
 		if (server == null || !server.isOnline()) {
-			newLines[0] = ChatColor.DARK_RED + "██████████";
-			newLines[1] = ChatColor.RED + " " + ChatColor.BOLD + ChatColor.UNDERLINE + "RESTART";
-			newLines[2] = ChatColor.RED + "Bitte warten!";
-			newLines[3] = ChatColor.DARK_RED + "██████████";
+			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
+			newLines[0] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage("RESTART").color(ChatColor.RED).style(ChatColor.BOLD, ChatColor.UNDERLINE);
+			newLines[1] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage("Bitte warten!").color(ChatColor.RED);
+			newLines[2] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
+			newLines[3] = ChatSerializer.a(msg.toJSONString());
 		} else if (server.getName().contains("lobby")) {
-			newLines[0] = ChatColor.DARK_GREEN + "██████████";
-			newLines[1] = ChatColor.GREEN + "Back to";
-			newLines[2] = ChatColor.GREEN + "Hub!";
-			newLines[3] = ChatColor.DARK_GREEN + "██████████";
+			msg = new FancyMessage("██████████").color(ChatColor.DARK_GREEN);
+			newLines[0] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage("Back to").color(ChatColor.GREEN);
+			newLines[1] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage("Hub!").color(ChatColor.GREEN);
+			newLines[2] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage("██████████").color(ChatColor.DARK_GREEN);
+			newLines[3] = ChatSerializer.a(msg.toJSONString());
 		} else if (server.isFull() && !server.isJoin()) {
-			newLines[0] = ChatColor.DARK_RED + "[Full]";
-			newLines[1] = ChatColor.DARK_BLUE + server.getPhase();
-			newLines[2] = ChatColor.DARK_BLUE + "" + server.getNumPlayers() + "/" + server.getMaxPlayers();
-			newLines[3] = ChatColor.DARK_BLUE + server.getName();
+			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
+			newLines[0] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_BLUE);
+			newLines[1] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
+			newLines[2] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getName()).color(ChatColor.DARK_BLUE);
+			newLines[3] = ChatSerializer.a(msg.toJSONString());
 		} else if (server.isFull()) {
-			newLines[0] = ChatColor.RED + "[Full]";
-			newLines[1] = ChatColor.BLUE + server.getPhase();
-			newLines[2] = ChatColor.BLUE + "" + server.getNumPlayers() + "/" + server.getMaxPlayers();
-			newLines[3] = ChatColor.BLUE + server.getName();
+			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
+			newLines[0] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_BLUE);
+			newLines[1] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
+			newLines[2] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getName()).color(ChatColor.DARK_BLUE);
+			newLines[3] = ChatSerializer.a(msg.toJSONString());
 		} else if (server.isJoin()) {
-			newLines[0] = ChatColor.AQUA + "[Join]";
-			newLines[1] = ChatColor.DARK_GREEN + server.getPhase();
-			newLines[2] = ChatColor.DARK_GREEN + "" + server.getNumPlayers() + "/" + server.getMaxPlayers();
-			newLines[3] = ChatColor.DARK_GREEN + server.getName();
+			msg = new FancyMessage("[Join]").color(ChatColor.AQUA);
+			newLines[0] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_GREEN);
+			newLines[1] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_GREEN);
+			newLines[2] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getName()).color(ChatColor.DARK_GREEN);
+			newLines[3] = ChatSerializer.a(msg.toJSONString());
 		} else if (server.isSpectate()) {
-			newLines[0] = ChatColor.YELLOW + "[Spectate]";
-			newLines[1] = ChatColor.GOLD + server.getPhase();
-			newLines[2] = ChatColor.GOLD + "" + server.getNumPlayers() + "/" + server.getMaxPlayers();
-			newLines[3] = ChatColor.GOLD + server.getName();
+			msg = new FancyMessage("[Specatete]").color(ChatColor.YELLOW);
+			newLines[0] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getPhase()).color(ChatColor.GOLD);
+			newLines[1] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.GOLD);
+			newLines[2] = ChatSerializer.a(msg.toJSONString());
+			msg = new FancyMessage(server.getName()).color(ChatColor.GOLD);
+			newLines[3] = ChatSerializer.a(msg.toJSONString());
 		}
 		
 		return newLines;
