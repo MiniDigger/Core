@@ -24,7 +24,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.comphenix.net.sf.cglib.proxy.Factory;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
@@ -42,6 +41,8 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Mirror.MirrorReviever;
 import me.MiniDigger.Core.Mirror.MirrorSender;
+
+import net.sf.cglib.proxy.Factory;
 
 public class CoreMirrorHandler implements MirrorHandler {
 	

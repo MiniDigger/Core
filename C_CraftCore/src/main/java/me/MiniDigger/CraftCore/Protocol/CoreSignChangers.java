@@ -373,10 +373,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		}
 		
-		final WrappedChatComponent[] lines = new WrappedChatComponent[4];
-		for (int i = 0; i < 4; i++) {
-			lines[i] = psign.getChatComponents().read(i);
-		}
+		final WrappedChatComponent[] lines = psign.getChatComponentArrays().read(0);
 		
 		WrappedChatComponent[] newLines = { lines[0], lines[1], lines[2], lines[3] };
 		
@@ -444,20 +441,22 @@ public class CoreSignChangers implements SignChangers {
 		
 		final PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
 		out.getBlockPositionModifier().write(0, pos);
-		for (int i = 0; i < 4; i++) {
-			out.getChatComponents().write(i, newLines[i]);
-		}
+		out.getChatComponentArrays().write(0, lines);
 		return out;
 	}
 	
 	private void sendSignChange(final Player player, final Sign sign) {
 		final String[] lin = sign.getLines();
 		final PacketContainer result = Core.getCore().getProtocolHandler().getManager().createPacket(PacketType.Play.Server.UPDATE_SIGN);
+		final BlockPosition pos = new BlockPosition(sign.getX(), sign.getY(), sign.getZ());
+		final WrappedChatComponent[] lines = new WrappedChatComponent[4];
+		for (int i = 0; i < 4; i++) {
+			lines[i] = WrappedChatComponent.fromText(lin[i]);
+		}
+		
 		try {
-			result.getSpecificModifier(Integer.TYPE).write(0, Integer.valueOf(sign.getX()));
-			result.getSpecificModifier(Integer.TYPE).write(1, Integer.valueOf(sign.getY()));
-			result.getSpecificModifier(Integer.TYPE).write(2, Integer.valueOf(sign.getZ()));
-			result.getStringArrays().write(0, lin);
+			result.getBlockPositionModifier().write(0, pos);
+			result.getChatComponentArrays().write(0, lines);
 			Core.getCore().getProtocolHandler().getManager().sendServerPacket(player, result);
 		} catch (final Exception e) {
 			e.printStackTrace();
