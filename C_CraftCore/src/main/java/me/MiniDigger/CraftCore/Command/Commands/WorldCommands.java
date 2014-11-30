@@ -111,7 +111,7 @@ public class WorldCommands {
 		}
 	}
 	
-	@Command(name = "world.info", description = "Macht alles mit Welten", usage = "", permission = "world")
+	@Command(name = "world", description = "Macht alles mit Welten", usage = "", permission = "world")
 	public void worldC(final CommandArgs args) {
 		Prefix.API.getPrefix().then("Macht alles mit Welten").send(args.getSender());
 		Prefix.API.getPrefix().then("Sub-Commands: info, load, unload, tp, list, create").send(args.getSender());

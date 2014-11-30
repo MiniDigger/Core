@@ -30,7 +30,7 @@ import me.MiniDigger.Core.Game.GameType;
 
 public class SettingCompleter {
 	
-	@Completer(name = "setting.gamemode")
+	@Completer(name = "")
 	public List<String> settingC(final CommandArgs args) {
 		final List<String> result = new ArrayList<String>();
 		

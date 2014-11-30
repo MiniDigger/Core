@@ -37,7 +37,7 @@ public class PluginCommands {
 	public void pluginCommand(final CommandArgs args) {
 		final FancyMessage msg = Prefix.CORE
 		        .getPrefix()
-		        .then("Dieser Server benutzt " + (Core.getCore().getInstance()).getDescription().getFullName() + " by MiniDigger zusammen mit "
+		        .then("Dieser Server benutzt " + (Core.getCore().getInstance()).getDescription().getFullName() + " by MiniDigger zusammen mit CoreBukkit v"
 		                + Bukkit.getBukkitVersion()).color(ChatColor.GRAY);
 		msg.send(args.getSender());
 	}
@@ -55,8 +55,9 @@ public class PluginCommands {
 			msg.then(p.getName())
 			        .color(c)
 			        .tooltip(
-			                p.getDescription().getFullName() + " by " + Core.getCore().getStringUtil().listToString(p.getDescription().getAuthors()) + " Info: "
-			                        + p.getDescription().getDescription() + " More Infos:" + p.getDescription().getWebsite()).then(" ");
+			                p.getDescription().getFullName() + " by " + Core.getCore().getStringUtil().listToString(p.getDescription().getAuthors())
+			                        + System.getProperty("line.separator") + " Info: " + p.getDescription().getDescription() + System.getProperty("line.separator")
+			                        + " More Infos:" + p.getDescription().getWebsite()).then(" ");
 		}
 		msg.send(args.getSender());
 	}

@@ -38,6 +38,9 @@ public class ChatCompleter {
 			result.add("join");
 			result.add("leave");
 			result.add("list");
+			result.add("switch");
+			result.add("ban");
+			result.add("mute");
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else {

@@ -43,6 +43,7 @@ public class SquadCompleter {
 			result.add("join");
 			result.add("leave");
 			result.add("invite");
+			result.add("kick");
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else {

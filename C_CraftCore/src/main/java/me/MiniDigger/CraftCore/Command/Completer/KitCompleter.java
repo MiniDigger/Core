@@ -39,7 +39,7 @@ public class KitCompleter {
 			result.add("create");
 			result.add("give");
 			result.add("modify");
-			result.add("delet");
+			result.add("delete");
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else {
@@ -86,7 +86,7 @@ public class KitCompleter {
 				result.add(k.getName());
 			}
 			
-			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		}
 		
 		return result;
@@ -101,7 +101,7 @@ public class KitCompleter {
 				result.add(k.getName());
 			}
 			
-			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		}
 		
 		return result;

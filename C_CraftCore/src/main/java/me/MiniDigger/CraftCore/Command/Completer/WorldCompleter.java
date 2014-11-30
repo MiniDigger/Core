@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -77,7 +78,15 @@ public class WorldCompleter {
 	
 	@Completer(name = "tp")
 	public List<String> tpC(final CommandArgs args) {
-		return new ArrayList<String>();
+		final List<String> result = new ArrayList<String>();
+		if (args.getArgs().length == 1) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getDisplayName());
+			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		}
+		return result;
 	}
 	
 	@Completer(name = "world.load")
