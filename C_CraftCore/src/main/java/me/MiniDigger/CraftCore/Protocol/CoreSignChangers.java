@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.CraftCore.Protocol;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +30,9 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.FieldAccessException;
+import com.comphenix.protocol.reflect.StructureModifier;
+import com.comphenix.protocol.wrappers.BlockPosition;
 
-import net.minecraft.server.v1_8_R1.BlockPosition;
 import net.minecraft.server.v1_8_R1.ChatComponentText;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
 import net.minecraft.server.v1_8_R1.IChatBaseComponent;
@@ -330,7 +333,8 @@ public class CoreSignChangers implements SignChangers {
 	}
 	
 	private PacketContainer modifySign(final PacketContainer psign, final Player player, final boolean edit) {
-		BlockPosition pos = BlockPosition.fromLong(psign.getLongs().read(0));
+		// BlockPosition pos = BlockPosition.fromLong(psign.getLongs().read(0));
+		BlockPosition pos = psign.getBlockPositionModifier().read(0);
 		final Location location = new Location(player.getWorld(), pos.getX(), pos.getY(), pos.getZ());
 		
 		if (!(location.getBlock().getState() instanceof Sign)) {
@@ -340,6 +344,7 @@ public class CoreSignChangers implements SignChangers {
 		if (!last_seen_signs.contains(location)) {
 			last_seen_signs.add(location);
 		}
+		
 		ArrayList<String> players = players_signs.get(location);
 		if (players == null) {
 			players = new ArrayList<>();
@@ -350,6 +355,25 @@ public class CoreSignChangers implements SignChangers {
 		
 		players_signs.remove(location);
 		players_signs.put(location, players);
+		
+		for (Method m : psign.getClass().getMethods()) {
+			if (m.getName().startsWith("get")) {
+				if (m.getReturnType().getName().startsWith("com.comphenix.protocol.reflect.StructureModifier")) {
+					try {
+						StructureModifier<?> mod = (StructureModifier<?>) m.invoke(psign);
+						if (mod.size() == 0) continue;
+						System.out.println(m.getName() + ": " + mod.size());
+					} catch (Exception e) {
+						if (e.getMessage() != null && e.getMessage().contains("wrong number of arguments")) {
+							System.out.println("wron nums");
+						} else {
+							System.out.println("oh noes");
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
 		
 		final IChatBaseComponent[] lines = new IChatBaseComponent[4];
 		for (int i = 0; i < 4; i++) {
@@ -418,7 +442,7 @@ public class CoreSignChangers implements SignChangers {
 		}
 		
 		PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
-		out.getLongs().write(0, pos.asLong());
+		out.getBlockPositionModifier().write(0, pos);
 		for (int i = 0; i < 4; i++) {
 			out.getStrings().write(i, ChatSerializer.a(newLines[i]));
 		}
