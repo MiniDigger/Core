@@ -361,7 +361,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void enableHandler() {
 		Core.getCore().getAddOnHandler().load();
-		Core.getCore().getProtocolHandler().init();
+//		Core.getCore().getProtocolHandler().init(); //TODO Diable ALL protocol thinks for now
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
 		Core.getCore().getNametagHandler().enable();

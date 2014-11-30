@@ -65,11 +65,11 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	@Override
 	public void init() {
-		// signChangers = new CoreSignChangers();
+		signChangers = new CoreSignChangers();
 		skullChangers = new CoreSkullChangers();
 		signListeners = new CoreSignListeners();
 		
-		// signChangers.init(); TODO Disabled signchangers for now
+		signChangers.init();
 		skullChangers.init();
 		signListeners.init();
 		
@@ -92,7 +92,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			
 			@Override
 			public void run() {
-				// signChangers.update();
+				signChangers.update();
 				skullChangers.update();
 			}
 		}, 2 * 20, 2 * 20);
