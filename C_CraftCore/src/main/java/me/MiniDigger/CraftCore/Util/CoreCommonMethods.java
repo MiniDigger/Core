@@ -33,11 +33,7 @@ import com.bobacadodl.imgmessage.ImageMessage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -45,38 +41,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.CommonMethods;
 
-import mkremins.fanciful.FancyMessage;
-
 public class CoreCommonMethods implements CommonMethods {
-	
-	@Override
-	@Deprecated
-	public void stopServer() {
-		Core.getCore().getInstance().info("Shutting down...");
-		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			FancyMessage msg = Prefix.CORE.getPrefix().then("Der Server wird neugestartet!").color(ChatColor.RED).style(ChatColor.BOLD);
-			msg.send(p);
-			msg = Prefix.CORE.getPrefix().then("Er wird gleich wieder da sein!").color(ChatColor.AQUA).style(ChatColor.BOLD);
-			msg.send(p);
-		}
-		
-		for (final World w : Bukkit.getWorlds()) {
-			for (final Entity e : w.getEntities()) {
-				if (e.getType() != EntityType.PLAYER && e.getType() != EntityType.ENDER_CRYSTAL && e.getType() != EntityType.ITEM_FRAME
-				        && e.getType() != EntityType.LEASH_HITCH && e.getType() != EntityType.PAINTING) {
-					e.eject();
-					e.remove();
-				}
-			}
-			w.save();
-		}
-		
-		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			p.kickPlayer(ChatColor.RED + "Der Server wird neugestartet! \n " + ChatColor.AQUA + " Er wird gleich wieder da sein!");
-		}
-		
-		Bukkit.shutdown();
-	}
 	
 	@Override
 	public void onlyPlayer(final CommandSender sender, final String command) {

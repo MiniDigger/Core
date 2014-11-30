@@ -50,12 +50,10 @@ import mkremins.fanciful.FancyMessage;
 
 public class CoreShutdownUtil implements ShutdownUtil {
 	
-	private BukkitTask	task;
+	private static BukkitTask	task;
 	
-	@Override
-	public void initShutdown() {
-		Core.getCore().getServerHandler().stopTask();
-		Core.getCore().getPacketHandler().sendPacket(new ServerPacket(CoreServer.getForThis(false)));
+	public static boolean isShuttingDown() {
+		return task != null;
 	}
 	
 	@Override
@@ -68,8 +66,8 @@ public class CoreShutdownUtil implements ShutdownUtil {
 			return;
 		}
 		
-		initShutdown();
-		Bukkit.getScheduler().cancelTasks(Core.getCore().getInstance());
+		Bukkit.getScheduler().cancelAllTasks();
+		Core.getCore().getPacketHandler().sendPacket(new ServerPacket(CoreServer.getForThis(false)));
 		
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!", 100F);

@@ -29,13 +29,6 @@ import me.MiniDigger.Core.User.User;
 public interface CommonMethods {
 	
 	/**
-	 * Stops the sever<br>
-	 * <b>DEPRECATED: Use {@link ShutdownUtil} instead</b>
-	 */
-	@Deprecated()
-	public void stopServer();
-	
-	/**
 	 * Informs the consol, that this command can only be used ingame
 	 * 
 	 * @param sender

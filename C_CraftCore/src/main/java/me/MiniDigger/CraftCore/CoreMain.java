@@ -280,13 +280,6 @@ public class CoreMain extends JavaPlugin implements Main {
 		}
 		info("Deaktivere...");
 		
-		info("Vorbereitung...");
-		try {
-			Core.getCore().getShutdownUtil().initShutdown();
-		} catch (final Exception ex) {
-			error("Fehler: " + ex.getMessage());
-		}
-		
 		info("Stoppe Client...");
 		try {
 			((CoreSocketClient) Core.getCore().getSocketHandler().getClient()).close();
@@ -310,7 +303,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		info("Stoppe Tasks...");
 		try {
-			Bukkit.getScheduler().cancelTasks(this);
+			Bukkit.getScheduler().cancelAllTasks();
 		} catch (final Exception ex) {
 			error("Fehler: " + ex.getMessage());
 		}

@@ -185,7 +185,7 @@ public class CoreGame implements Game {
 			f.end();
 		}
 		
-		Core.getCore().getShutdownUtil().initShutdown();
+		Core.getCore().getShutdownUtil().doShutdown();
 		
 		try {
 			finalize();
