@@ -247,22 +247,22 @@ public class CoreMain extends JavaPlugin implements Main {
 		d1 = new Date();
 		info("Websocket Stuff...");
 		try {
-//			Core.getCore().getSocketHandler().registerPackets();
-//			final String server = System.getProperty("server");
-//			if (server != null && server.equalsIgnoreCase("true")) {
-//				info("Starting server...");
-//				Core.getCore().getSocketHandler().startServer();
-//				info("Server gestartet!");
-//			}
-//			
-//			Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-//				
-//				@Override
-//				public void run() {
-//					info("Starting Client...");
-//					Core.getCore().getSocketHandler().startClient();
-//				}
-//			}, 10);
+			Core.getCore().getSocketHandler().registerPackets();
+			final String server = System.getProperty("server");
+			if (server != null && server.equalsIgnoreCase("true")) {
+				info("Starting server...");
+				Core.getCore().getSocketHandler().startServer();
+				info("Server gestartet!");
+			}
+			
+			Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+				
+				@Override
+				public void run() {
+					info("Starting Client...");
+					Core.getCore().getSocketHandler().startClient();
+				}
+			}, 10);
 			final Date d2 = new Date();
 			info("Done (" + (d2.getTime() - d1.getTime()) + "ms)");
 		} catch (final Exception ex) {
