@@ -37,8 +37,11 @@ import me.MiniDigger.Core.User.User;
 public class CoreChatListener implements ChatListener {
 	
 	@Override
-	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = false)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerChat(final AsyncPlayerChatEvent e) {
+		if (e.isCancelled()) {
+			return;
+		}
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		Core.getCore().getChatHandler().handleChat(user, e.getMessage());
 		e.setCancelled(true);
