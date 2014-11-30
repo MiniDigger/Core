@@ -48,7 +48,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -174,7 +173,7 @@ public class SpawnerFeature extends CoreFeature {
 			e.setItemStack(CraftItemStack.asNMSCopy(item.getItemStack()));
 			e.fromMobSpawner = true;
 			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
-			ee.setMetadata("doNotRemove", new FixedMetadataValue( Core.getCore().getInstance(), "true"));
+			ee.setMetadata("doNotRemove", new FixedMetadataValue(Core.getCore().getInstance(), "true"));
 			ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
 			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}
@@ -187,7 +186,7 @@ public class SpawnerFeature extends CoreFeature {
 	
 	public class CoreEntityItem extends EntityItem {
 		
-		public CoreEntityItem(World world, double d0, double d1, double d2) {
+		public CoreEntityItem(final World world, final double d0, final double d1, final double d2) {
 			super(world, d0, d1, d2);
 		}
 		

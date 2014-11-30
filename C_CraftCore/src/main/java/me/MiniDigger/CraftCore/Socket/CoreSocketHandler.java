@@ -35,7 +35,6 @@ import me.MiniDigger.Core.Socket.SocketClient;
 import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.SocketServer;
 
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.LogRecordPacket;
@@ -59,13 +58,13 @@ public class CoreSocketHandler implements SocketHandler {
 			client = new CoreSocketClient(new URI("ws://localhost:33333"));
 			((CoreSocketClient) client).connect();
 			
-			Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+			Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {
 					final IdentificationPacket packet = new IdentificationPacket();
-					packet.setClientName(( Core.getCore().getInstance()).getConfig().getString("ws-user"));
-					packet.setPass(( Core.getCore().getInstance()).getConfig().getString("ws-pass"));
+					packet.setClientName((Core.getCore().getInstance()).getConfig().getString("ws-user"));
+					packet.setPass((Core.getCore().getInstance()).getConfig().getString("ws-pass"));
 					Core.getCore().getPacketHandler().sendPacket(packet);
 				}
 			}, 10);

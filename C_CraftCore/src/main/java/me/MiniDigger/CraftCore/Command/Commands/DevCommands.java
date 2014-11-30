@@ -332,7 +332,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.sb", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void sb(final CommandArgs args) {
-		Scoreboard sb = new CoreScoreboard("TEST");
+		final Scoreboard sb = new CoreScoreboard("TEST");
 		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.SIDEBAR));
 		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.BELOW_NAME));
 		sb.addLine(new CoreScoreboardLine(1, "HEY", DisplaySlot.PLAYER_LIST));
@@ -341,7 +341,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.inv", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void inv(final CommandArgs args) {
-		String data = Core.getCore().getItemUtil().invToBase64(args.getPlayer().getInventory());
+		final String data = Core.getCore().getItemUtil().invToBase64(args.getPlayer().getInventory());
 		System.out.println("data!: " + data);
 		args.getPlayer().openInventory(Core.getCore().getItemUtil().invFromBase64(data));
 	}

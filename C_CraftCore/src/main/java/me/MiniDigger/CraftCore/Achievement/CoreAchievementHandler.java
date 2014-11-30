@@ -32,7 +32,7 @@ public class CoreAchievementHandler implements AchievementHandler {
 	
 	private final List<Achievment>	achievments	= new ArrayList<Achievment>();
 	
-	public CoreAchievementHandler(){
+	public CoreAchievementHandler() {
 		registerAchievments();
 	}
 	

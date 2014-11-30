@@ -33,7 +33,6 @@ import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
 
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 public class CoreStats implements Stats {
@@ -194,7 +193,7 @@ public class CoreStats implements Stats {
 			stats.put(type, type.getDefaultValue());
 		}
 		
-		Bukkit.getScheduler().runTaskLaterAsynchronously( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLaterAsynchronously(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

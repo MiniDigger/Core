@@ -41,15 +41,13 @@ import org.bukkit.inventory.meta.SkullMeta;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Map.MapData;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class Teleporter implements Listener {
 	
 	private MapData	map;
 	String	        prefix	= ChatColor.GRAY + "[" + ChatColor.RED + "Teleporter" + ChatColor.GRAY + "]" + ChatColor.RESET;
 	
 	public Teleporter() {
-		Bukkit.getServer().getPluginManager().registerEvents(this,  Core.getCore().getInstance());
+		Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 	}
 	
 	public Inventory QuickTP(final boolean staff) {
@@ -284,7 +282,7 @@ public class Teleporter implements Listener {
 			}
 			
 			event.setCancelled(true);
-			Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+			Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {

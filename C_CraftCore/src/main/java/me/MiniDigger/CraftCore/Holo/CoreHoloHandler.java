@@ -27,22 +27,19 @@ import com.gmail.filoghost.holograms.api.TouchHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.User.User;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreHoloHandler implements HoloHandler {
 	
 	@Override
 	public void createSpawnHolo(final Location loc, final User user) {
-		final Hologram hologram = HolographicDisplaysAPI.createIndividualHologram( Core.getCore().getInstance(), loc, user.getPlayer(), ChatColor.GOLD + ""
+		final Hologram hologram = HolographicDisplaysAPI.createIndividualHologram(Core.getCore().getInstance(), loc, user.getPlayer(), ChatColor.GOLD + ""
 		        + ChatColor.BOLD + "Willkommen", ChatColor.GOLD + user.getDisplayName(), ChatColor.GOLD + "" + ChatColor.BOLD + "Du bist auf Server", ChatColor.GOLD
-		        + ( Core.getCore().getInstance()).getConfig().getString("server-name"));
+		        + (Core.getCore().getInstance()).getConfig().getString("server-name"));
 		hologram.setTouchHandler(new TouchHandler() {
 			
 			@Override
@@ -66,6 +63,6 @@ public class CoreHoloHandler implements HoloHandler {
 					cancel();
 				}
 			}
-		}.runTaskTimer( Core.getCore().getInstance(), 1L, 1L);
+		}.runTaskTimer(Core.getCore().getInstance(), 1L, 1L);
 	}
 }

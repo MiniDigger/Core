@@ -42,8 +42,6 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class TrollCommands {
 	
 	static {
@@ -111,7 +109,7 @@ public class TrollCommands {
 		
 		public static void enable() {
 			ProtocolLibrary.getProtocolManager().addPacketListener(
-			        new PacketAdapter( Core.getCore().getInstance(), PacketType.Play.Server.MAP_CHUNK, PacketType.Play.Server.MAP_CHUNK_BULK) {
+			        new PacketAdapter(Core.getCore().getInstance(), PacketType.Play.Server.MAP_CHUNK, PacketType.Play.Server.MAP_CHUNK_BULK) {
 				        
 				        @Override
 				        public void onPacketSending(final PacketEvent event) {

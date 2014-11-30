@@ -41,10 +41,9 @@ import me.MiniDigger.Core.Stats.StatsType;
 
 public class CoreSkullChangers implements SkullChangers {
 	
-	private final ArrayList<SkullChanger>	           skullchangers	= new ArrayList<>();
-	private final ArrayList<Location>	               last_seen_skulls	= new ArrayList<>();
-	@SuppressWarnings("unused")
-    private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
+	private final ArrayList<SkullChanger>	                                       skullchangers	= new ArrayList<>();
+	private final ArrayList<Location>	                                           last_seen_skulls	= new ArrayList<>();
+	@SuppressWarnings("unused") private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
 	
 	@Override
 	public void update() {

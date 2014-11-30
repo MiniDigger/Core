@@ -29,7 +29,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -108,7 +107,7 @@ public class LivesFeature extends CoreFeature {
 					public void run() {
 						e.getUser().getPlayer().teleport(loc);
 					}
-				}.runTaskLater( Core.getCore().getInstance(), 20);
+				}.runTaskLater(Core.getCore().getInstance(), 20);
 				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)

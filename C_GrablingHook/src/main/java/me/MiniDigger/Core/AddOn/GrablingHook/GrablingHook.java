@@ -39,7 +39,6 @@ import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import me.MiniDigger.Core.Core;
@@ -128,7 +127,7 @@ public class GrablingHook extends CoreItem {
 		p.setVelocity(vector);
 		
 		noFallDmg.add(p.getUniqueId());
-		Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -158,7 +157,7 @@ public class GrablingHook extends CoreItem {
 		e.setFallDistance(0);
 		
 		noFallDmg.add(e.getUniqueId());
-		Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

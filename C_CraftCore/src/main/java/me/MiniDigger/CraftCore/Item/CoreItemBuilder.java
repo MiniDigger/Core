@@ -53,7 +53,7 @@ import me.MiniDigger.Core.Core;
  */
 public class CoreItemBuilder implements Listener {
 	
-	private static final Plugin	                       plugin	=  Core.getCore().getInstance();
+	private static final Plugin	                       plugin	= Core.getCore().getInstance();
 	private static boolean	                           listener	= false;
 	private static final HashMap<String, PotionEffect>	effects	= new HashMap<String, PotionEffect>();
 	

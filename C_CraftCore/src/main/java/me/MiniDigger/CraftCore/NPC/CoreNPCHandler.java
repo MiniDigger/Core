@@ -30,7 +30,6 @@ import com.lenis0012.bukkit.npc.NPCProfile;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.NPC.NPCHandler;
@@ -67,7 +66,7 @@ public class CoreNPCHandler implements NPCHandler {
 		if (b) {
 			return;
 		}
-		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

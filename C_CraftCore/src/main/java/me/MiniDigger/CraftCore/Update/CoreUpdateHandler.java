@@ -34,8 +34,6 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.Update.UpdateType;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreUpdateHandler implements UpdateHandler {
 	
 	private static final int	BYTE_SIZE	 = 1024;
@@ -45,7 +43,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 	private UpdateType	        type;
 	
 	public CoreUpdateHandler() {
-		type = UpdateType.valueOf(( Core.getCore().getInstance()).getConfig().getString("update-type"));
+		type = UpdateType.valueOf((Core.getCore().getInstance()).getConfig().getString("update-type"));
 		if (type == null) {
 			type = UpdateType.FORCE;
 		}
@@ -59,8 +57,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 				
 				@Override
 				public void run() {
-					saveFile(new File(( Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "TheCore.jar",
-					        JAR_URL);
+					saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "TheCore.jar", JAR_URL);
 				}
 				
 			}).start();
@@ -71,7 +68,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 	}
 	
 	private PluginVersion getVersion() {
-		return new CorePluginVersion(( Core.getCore().getInstance()).getDescription().getVersion());
+		return new CorePluginVersion((Core.getCore().getInstance()).getDescription().getVersion());
 	}
 	
 	private PluginVersion getLatestVersion() {

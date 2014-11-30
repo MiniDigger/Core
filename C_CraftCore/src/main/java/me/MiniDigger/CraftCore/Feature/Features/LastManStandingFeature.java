@@ -37,7 +37,6 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
@@ -90,7 +89,7 @@ public class LastManStandingFeature extends CoreFeature {
 			getPhase().getGame().leave(e.getUser());
 			
 			if (getPhase().getGame().getPlayers().size() < 2) {
-				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {

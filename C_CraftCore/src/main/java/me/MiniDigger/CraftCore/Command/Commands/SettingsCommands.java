@@ -28,8 +28,6 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 import mkremins.fanciful.FancyMessage;
 
 public class SettingsCommands {
@@ -55,8 +53,8 @@ public class SettingsCommands {
 			return;
 		}
 		
-		( Core.getCore().getInstance()).getConfig().set("server-type", type.name());
-		( Core.getCore().getInstance()).saveConfig();
+		(Core.getCore().getInstance()).getConfig().set("server-type", type.name());
+		(Core.getCore().getInstance()).saveConfig();
 		
 		Prefix.API.getPrefix().then("Modi geändert!").color(ChatColor.GREEN).send(args.getSender());
 	}

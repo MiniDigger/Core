@@ -129,7 +129,7 @@ public class CinematicPlayer {
 				
 				// Hracovi posli paketu o teleportacii. Server aktualizuje
 				// hracovu polohu v synUpdate, aby sa necrashoval.
-				Set<EnumPlayerTeleportFlags> set = new HashSet<EnumPlayerTeleportFlags>();
+				final Set<EnumPlayerTeleportFlags> set = new HashSet<EnumPlayerTeleportFlags>();
 				set.addAll(Arrays.asList(EnumPlayerTeleportFlags.values()));
 				PacketHelper.send(player, new PacketPlayOutPosition(frame.camX, frame.camY, frame.camZ, frame.yaw, frame.pitch, set));
 				

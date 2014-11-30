@@ -34,8 +34,6 @@ import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Packet.Packet;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreAddOn implements AddOn {
 	
 	private String	          name;
@@ -108,7 +106,7 @@ public class CoreAddOn implements AddOn {
 	
 	@Override
 	public void loadConfig() {
-		dataFolder = new File(( Core.getCore().getInstance()).getDataFolder(), name);
+		dataFolder = new File((Core.getCore().getInstance()).getDataFolder(), name);
 		if (!dataFolder.exists()) {
 			Core.getCore().getInstance().info("Creating DataFolder for AddOn " + name);
 			dataFolder.mkdir();

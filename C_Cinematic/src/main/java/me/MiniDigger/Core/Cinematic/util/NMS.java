@@ -128,7 +128,7 @@ public class NMS {
 		if (!(en instanceof EntityLiving)) {
 			return;
 		}
-//		final EntityLiving handle = (EntityLiving) en;
+		// final EntityLiving handle = (EntityLiving) en;
 		while (yaw < -180.0F) {
 			yaw += 360.0F;
 		}
@@ -136,12 +136,12 @@ public class NMS {
 		while (yaw >= 180.0F) {
 			yaw -= 360.0F;
 		}
-//		handle.aO = yaw;
-//		if (!(handle instanceof EntityHuman)) {
-//			handle.aM = yaw;
-//		}
-//		handle.aP = yaw;
-		//TODO Disabled ;D
+		// handle.aO = yaw;
+		// if (!(handle instanceof EntityHuman)) {
+		// handle.aM = yaw;
+		// }
+		// handle.aP = yaw;
+		// TODO Disabled ;D
 	}
 	
 	/**

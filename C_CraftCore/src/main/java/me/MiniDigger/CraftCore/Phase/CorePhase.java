@@ -26,7 +26,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
@@ -63,10 +62,10 @@ public abstract class CorePhase implements Phase {
 			f.init(this);
 		}
 		// System.out.println("register cmds");
-		Bukkit.getServer().getPluginManager().registerEvents(this,  Core.getCore().getInstance());
+		Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 		Core.getCore().getCommandHandler().registerCommands(this);
 		for (final Feature f : features) {
-			Bukkit.getServer().getPluginManager().registerEvents(f,  Core.getCore().getInstance());
+			Bukkit.getServer().getPluginManager().registerEvents(f, Core.getCore().getInstance());
 			Core.getCore().getCommandHandler().registerCommands(f);
 			f.start();
 		}
@@ -171,7 +170,7 @@ public abstract class CorePhase implements Phase {
 	
 	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip", max = 0)
 	public void skip(final CommandArgs args) {
-		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

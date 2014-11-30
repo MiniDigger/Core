@@ -23,7 +23,6 @@ package me.MiniDigger.CraftCore.Command.Commands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
@@ -54,7 +53,7 @@ public class EssentialCommands {
 		}
 		
 		final int fC = c;
-		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

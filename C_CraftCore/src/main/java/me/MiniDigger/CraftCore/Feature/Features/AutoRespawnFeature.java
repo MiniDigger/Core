@@ -35,7 +35,6 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
@@ -79,7 +78,7 @@ public class AutoRespawnFeature extends CoreFeature {
 	public void onDeath(final CoreUserDeathEvent e) {
 		final PacketPlayInClientCommand packet = new PacketPlayInClientCommand(EnumClientCommand.PERFORM_RESPAWN);
 		final CraftPlayer craftPlayer = (CraftPlayer) e.getUser().getPlayer();
-		Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

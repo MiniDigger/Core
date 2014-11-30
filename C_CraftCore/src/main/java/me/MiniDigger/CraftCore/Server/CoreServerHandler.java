@@ -35,7 +35,6 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.Core.Server.ServerHandler;
 
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
 import mkremins.fanciful.FancyMessage;
@@ -47,7 +46,7 @@ public class CoreServerHandler implements ServerHandler {
 	
 	@Override
 	public void startTask() {
-		task = Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -66,14 +65,14 @@ public class CoreServerHandler implements ServerHandler {
 		FancyMessage msg;
 		String name = null;
 		try {
-			JSONObject obj = (JSONObject) new JSONParser().parse(lines[1].getJson());
+			final JSONObject obj = (JSONObject) new JSONParser().parse(lines[1].getJson());
 			if (obj.containsKey("text")) {
 				name = (String) obj.get("text");
 			}
 			if (name == null) {
 				System.out.println("No name in line 1? " + lines[1].getJson());
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("could not read name from " + lines[1].getJson());
 			return lines;
 		}

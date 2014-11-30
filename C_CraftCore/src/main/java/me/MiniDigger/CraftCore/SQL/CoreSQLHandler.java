@@ -23,8 +23,6 @@ package me.MiniDigger.CraftCore.SQL;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLHandler;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreSQLHandler implements SQLHandler {
 	
 	private String	user;
@@ -48,7 +46,7 @@ public class CoreSQLHandler implements SQLHandler {
 	}
 	
 	private String get(final String s) {
-		return ( Core.getCore().getInstance()).getConfig().getString(s);
+		return (Core.getCore().getInstance()).getConfig().getString(s);
 	}
 	
 	private void generateURL() {

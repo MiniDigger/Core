@@ -33,7 +33,6 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.Wool;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Map.MapData;
@@ -191,7 +190,7 @@ public class CoreMapData implements MapData {
 			}
 			CoreMapData.this.locs.put(color, l);
 		}
-		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), finished);
+		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), finished);
 		// }
 		// });
 		//

@@ -38,15 +38,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.CommonMethods;
-
-import me.MiniDigger.CraftCore.CoreMain;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -94,7 +91,7 @@ public class CoreCommonMethods implements CommonMethods {
 			return;
 		}
 		final Date d1 = new Date();
-		Bukkit.getScheduler().runTaskAsynchronously( Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskAsynchronously(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -102,7 +99,7 @@ public class CoreCommonMethods implements CommonMethods {
 					final ImageMessage msg = new ImageMessage(ImageIO.read(new URL("https://minotar.net/avatar/" + user.getRealName() + "/200.png")), 8,
 					        ImageChar.DARK_SHADE.getChar());
 					msg.appendCenteredText("", "", ChatColor.GOLD + "Willkommen", ChatColor.YELLOW + user.getDisplayName(), ChatColor.GOLD + "Du bist auf Server:",
-					        ChatColor.YELLOW + ( Core.getCore().getInstance()).getConfig().getString("server-name"));
+					        ChatColor.YELLOW + (Core.getCore().getInstance()).getConfig().getString("server-name"));
 					msg.sendToPlayer(user.getPlayer());
 				} catch (final IOException e) {
 					// e.printStackTrace();
@@ -115,8 +112,7 @@ public class CoreCommonMethods implements CommonMethods {
 						user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
 						user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
 						user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
-						user.sendMessage(Prefix.API.getPrefix().then(( Core.getCore().getInstance()).getConfig().getString("server-name"))
-						        .color(ChatColor.YELLOW));
+						user.sendMessage(Prefix.API.getPrefix().then((Core.getCore().getInstance()).getConfig().getString("server-name")).color(ChatColor.YELLOW));
 					}
 				}
 			}
@@ -135,11 +131,11 @@ public class CoreCommonMethods implements CommonMethods {
 					}
 					
 					Core.getCore().getHoloHandler().createSpawnHolo(user.getPlayer().getEyeLocation(), user);
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					
 				}
 			}
-		}.runTaskLater( Core.getCore().getInstance(), 20 * 2);
+		}.runTaskLater(Core.getCore().getInstance(), 20 * 2);
 		
 	}
 	

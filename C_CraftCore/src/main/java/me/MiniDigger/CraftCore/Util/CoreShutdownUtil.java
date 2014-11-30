@@ -37,14 +37,12 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.ShutdownUtil;
 
-import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
 
@@ -71,7 +69,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		
 		initShutdown();
-		Bukkit.getScheduler().cancelTasks( Core.getCore().getInstance());
+		Bukkit.getScheduler().cancelTasks(Core.getCore().getInstance());
 		
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!", 100F);
@@ -80,7 +78,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED).send(Bukkit.getConsoleSender());
 		
-		task = Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

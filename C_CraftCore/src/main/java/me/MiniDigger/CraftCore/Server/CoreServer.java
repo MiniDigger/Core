@@ -29,8 +29,6 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Server.Server;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreServer implements Server {
 	
 	private GameType	primaryGameType;
@@ -86,7 +84,7 @@ public class CoreServer implements Server {
 			server.setSpectate(false);
 		}
 		
-		server.setName(( Core.getCore().getInstance()).getConfig().getString("server-name"));
+		server.setName((Core.getCore().getInstance()).getConfig().getString("server-name"));
 		server.setMaxPlayers(Bukkit.getMaxPlayers());
 		server.setNumPlayers(Core.getCore().getUserHandler().getOnlinePlayers().size());
 		

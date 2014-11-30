@@ -32,17 +32,16 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.Core.User.User;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class StatsManager implements Listener {
 	
 	public StatsManager() {
-		Bukkit.getPluginManager().registerEvents(this,  Core.getCore().getInstance());
+		Bukkit.getPluginManager().registerEvents(this, Core.getCore().getInstance());
 	}
 	
 	@EventHandler

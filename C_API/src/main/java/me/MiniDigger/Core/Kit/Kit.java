@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemStack;
 
 import me.MiniDigger.Core.SQL.Saveable;
 
-public interface Kit extends Saveable{
+public interface Kit extends Saveable {
 	
 	/**
 	 * @param armor
@@ -97,7 +97,7 @@ public interface Kit extends Saveable{
 	 *            the new itemstack to set into the slot
 	 */
 	public void setContent(final int slot, final ItemStack is);
-
+	
 	/**
 	 * Delets itselv in db
 	 */

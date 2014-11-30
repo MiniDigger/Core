@@ -29,7 +29,7 @@ import me.MiniDigger.CraftCore.CoreMain;
 
 public class CoreLicenseHandler implements LicenseHandler {
 	
-	@SuppressWarnings("deprecation") private final String	licence	   = ( CoreMain.getCore().getInstance()).getConfig().getString("licence");
+	@SuppressWarnings("deprecation") private final String	licence	   = (CoreMain.getCore().getInstance()).getConfig().getString("licence");
 	private final String	                              sessionToken	= generateToken();
 	
 	private boolean	                                      failed	   = false;
@@ -40,7 +40,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 		if (licence == null) {
 			CoreMain.getCore().getInstance().error("Du hast keine Lizenz angegeben!");
 			CoreMain.getCore().getInstance()
-			        .error("Trage deine Lizenz in " + ( CoreMain.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
+			        .error("Trage deine Lizenz in " + (CoreMain.getCore().getInstance()).getDataFolder().getAbsolutePath() + "/config.yml unter licence: ein");
 			CoreMain.getCore().getCommonMethods().killPlugin();
 			return false;
 		}

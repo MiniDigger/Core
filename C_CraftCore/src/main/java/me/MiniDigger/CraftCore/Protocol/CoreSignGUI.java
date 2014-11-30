@@ -43,8 +43,6 @@ import org.bukkit.util.Vector;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Protocol.SignGUI;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreSignGUI implements SignGUI, Listener {
 	
 	protected ProtocolManager	           protocolManager;

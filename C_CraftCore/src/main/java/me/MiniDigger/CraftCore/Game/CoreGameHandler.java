@@ -29,8 +29,6 @@ import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreGameHandler implements GameHandler {
 	
 	private boolean	              mainGameStarted	= false;
@@ -54,7 +52,7 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void searchMainGame() {
-		final String game = ( Core.getCore().getInstance()).getConfig().getString("server-type");
+		final String game = (Core.getCore().getInstance()).getConfig().getString("server-type");
 		if (game != null) {
 			try {
 				final GameType type = GameType.valueOf(game);

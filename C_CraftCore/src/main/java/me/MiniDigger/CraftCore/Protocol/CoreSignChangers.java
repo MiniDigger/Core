@@ -50,8 +50,6 @@ import me.MiniDigger.Core.Protocol.SignGUI;
 import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.Core.User.User;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreSignChangers implements SignChangers {
@@ -332,7 +330,7 @@ public class CoreSignChangers implements SignChangers {
 	
 	private PacketContainer modifySign(final PacketContainer psign, final Player player, final boolean edit) {
 		// BlockPosition pos = BlockPosition.fromLong(psign.getLongs().read(0));
-		BlockPosition pos = psign.getBlockPositionModifier().read(0);
+		final BlockPosition pos = psign.getBlockPositionModifier().read(0);
 		final Location location = new Location(player.getWorld(), pos.getX(), pos.getY(), pos.getZ());
 		
 		if (!(location.getBlock().getState() instanceof Sign)) {
@@ -354,14 +352,16 @@ public class CoreSignChangers implements SignChangers {
 		players_signs.remove(location);
 		players_signs.put(location, players);
 		
-		for (Method m : psign.getClass().getMethods()) {
+		for (final Method m : psign.getClass().getMethods()) {
 			if (m.getName().startsWith("get")) {
 				if (m.getReturnType().getName().startsWith("com.comphenix.protocol.reflect.StructureModifier")) {
 					try {
-						StructureModifier<?> mod = (StructureModifier<?>) m.invoke(psign);
-						if (mod.size() == 0) continue;
+						final StructureModifier<?> mod = (StructureModifier<?>) m.invoke(psign);
+						if (mod.size() == 0) {
+							continue;
+						}
 						System.out.println(m.getName() + ": " + mod.size());
-					} catch (Exception e) {
+					} catch (final Exception e) {
 						if (e.getMessage() != null && e.getMessage().contains("wrong number of arguments")) {
 							System.out.println("wron nums");
 						} else {
@@ -384,7 +384,7 @@ public class CoreSignChangers implements SignChangers {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
-				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {
@@ -430,16 +430,19 @@ public class CoreSignChangers implements SignChangers {
 			}
 		}
 		// shorten //TODO Renabled sign shortening
-//		for (int i = 0; i < newLines.length; i++) {
-//			if (newLines[i].getText().length() > 15) {
-//				if ((i < newLines.length - 1) && (newLines[(i + 1)].getText().isEmpty())) {
-//					newLines[(i + 1)] = new ChatComponentText(newLines[i].getText().substring(15));
-//				}
-//				newLines[i] = new ChatComponentText(newLines[i].getText().substring(0, 15));
-//			}
-//		}
+		// for (int i = 0; i < newLines.length; i++) {
+		// if (newLines[i].getText().length() > 15) {
+		// if ((i < newLines.length - 1) && (newLines[(i +
+		// 1)].getText().isEmpty())) {
+		// newLines[(i + 1)] = new
+		// ChatComponentText(newLines[i].getText().substring(15));
+		// }
+		// newLines[i] = new
+		// ChatComponentText(newLines[i].getText().substring(0, 15));
+		// }
+		// }
 		
-		PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
+		final PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
 		out.getBlockPositionModifier().write(0, pos);
 		for (int i = 0; i < 4; i++) {
 			out.getChatComponents().write(i, newLines[i]);

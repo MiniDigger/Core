@@ -30,7 +30,6 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
@@ -286,7 +285,7 @@ public class CoreUser implements User {
 					System.out.println("giving up...");
 					return;
 				}
-				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {

@@ -54,8 +54,6 @@ import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Prefix.Prefix;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreCommandHandler implements CommandHandler {
@@ -117,7 +115,7 @@ public class CoreCommandHandler implements CommandHandler {
 	/* Core End */
 	
 	public CoreCommandHandler() {
-		plugin =  Core.getCore().getInstance();
+		plugin = Core.getCore().getInstance();
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
 			final SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
 			try {

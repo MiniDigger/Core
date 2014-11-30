@@ -75,14 +75,14 @@ public class CoreMirrorSender implements MirrorSender {
 	
 	private class ClientThread extends Thread {
 		
-//		private final Socket	client;
+		// private final Socket client;
 		
 		/**
 		 * @param accept
 		 */
 		public ClientThread(final Socket accept) {
 			setName("MirrorClientThread");
-//			client = accept;
+			// client = accept;
 		}
 		
 		/**

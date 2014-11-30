@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
@@ -82,7 +81,7 @@ public class FixedTimeFeature extends CoreFeature {
 		world = m.getMap().getName();
 		
 		final World w = Bukkit.getWorld(world);
-		task = Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

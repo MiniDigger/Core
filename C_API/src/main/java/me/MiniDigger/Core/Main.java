@@ -27,16 +27,18 @@ import org.bukkit.plugin.Plugin;
 import mkremins.fanciful.FancyMessage;
 import ru.tehkode.permissions.PermissionManager;
 
-public interface Main extends Plugin{
+public interface Main extends Plugin {
 	
 	/**
 	 * Gets called, when Bukkit enables the framework
 	 */
+	@Override
 	public void onEnable();
 	
 	/**
 	 * Gets called, when Bukkit disables the framework
 	 */
+	@Override
 	public void onDisable();
 	
 	/**
@@ -52,6 +54,7 @@ public interface Main extends Plugin{
 	 *            The given arguments
 	 * @return If the Command was executed by the framework
 	 */
+	@Override
 	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args);
 	
 	/**

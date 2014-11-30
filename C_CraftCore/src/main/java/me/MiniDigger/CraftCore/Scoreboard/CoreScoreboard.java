@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -38,7 +37,7 @@ public class CoreScoreboard implements Scoreboard {
 	private final List<ScoreboardLine>	lines	 = new ArrayList<ScoreboardLine>();
 	private final List<ScoreboardLine>	scolling	= new ArrayList<ScoreboardLine>();
 	private String	                   title;
-	private BukkitRunnable	           task;
+	private final BukkitRunnable	   task;
 	
 	public CoreScoreboard(final String title) {
 		this.title = title;
@@ -46,12 +45,12 @@ public class CoreScoreboard implements Scoreboard {
 			
 			@Override
 			public void run() {
-				for (ScoreboardLine line : scolling) {
+				for (final ScoreboardLine line : scolling) {
 					line.scroll();
 				}
 			}
 		};
-		task.runTaskTimer( Core.getCore().getInstance(), 1 * 20, 1 * 20);
+		task.runTaskTimer(Core.getCore().getInstance(), 1 * 20, 1 * 20);
 	}
 	
 	@Override

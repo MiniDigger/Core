@@ -28,7 +28,7 @@ import org.bukkit.entity.Player;
 import me.MiniDigger.Core.SQL.SaveHandler;
 import me.MiniDigger.Core.User.User;
 
-public interface KitHandler extends SaveHandler{
+public interface KitHandler extends SaveHandler {
 	
 	/**
 	 * Creates an empty kit with that name

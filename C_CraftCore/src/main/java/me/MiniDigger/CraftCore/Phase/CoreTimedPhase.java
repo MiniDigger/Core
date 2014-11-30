@@ -25,7 +25,6 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
@@ -60,7 +59,7 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 		subbed = 100;
 		sub = subbed / secs;
 		
-		timer = Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
+		timer = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
 			
 			int	passed	= 0;
 			

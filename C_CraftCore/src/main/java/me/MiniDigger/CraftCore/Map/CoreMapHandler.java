@@ -33,8 +33,6 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Map.MapHandler;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreMapHandler implements MapHandler {
 	
 	private final ArrayList<MapData>	maps	= new ArrayList<>();
@@ -45,7 +43,7 @@ public class CoreMapHandler implements MapHandler {
 	private final FileConfiguration	 con;
 	
 	public CoreMapHandler() {
-		mapFolder = new File(( Core.getCore().getInstance()).getConfig().getString("mapFolder"));
+		mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		mapConfig = new File(mapFolder, "maps.yml");
 		con = YamlConfiguration.loadConfiguration(mapConfig);
 		mapNames = con.getStringList("maps");

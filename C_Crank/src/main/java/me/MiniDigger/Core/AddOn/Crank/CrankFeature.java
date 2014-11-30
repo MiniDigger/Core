@@ -31,7 +31,6 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -112,7 +111,7 @@ public class CrankFeature extends CoreFeature {
 				}
 			}
 		};
-		timer.runTaskTimer( Core.getCore().getInstance(), 1 * 20, 1 * 20);
+		timer.runTaskTimer(Core.getCore().getInstance(), 1 * 20, 1 * 20);
 		timers.put(id, timer);
 	}
 	

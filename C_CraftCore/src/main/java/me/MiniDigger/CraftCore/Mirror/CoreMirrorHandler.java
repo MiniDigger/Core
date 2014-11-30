@@ -38,8 +38,6 @@ import com.comphenix.protocol.reflect.PrettyPrinter.ObjectPrinter;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.comphenix.protocol.wrappers.BukkitConverters;
 
-import org.bukkit.plugin.Plugin;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Mirror.MirrorReviever;
@@ -85,7 +83,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 		for (final PacketType type : PacketType.values()) {
 			types.add(type);
 		}
-		params.gamePhase(GamePhase.PLAYING).optionAsync().plugin( Core.getCore().getInstance()).serverSide().types(types);
+		params.gamePhase(GamePhase.PLAYING).optionAsync().plugin(Core.getCore().getInstance()).serverSide().types(types);
 		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(params) {
 			
 			@Override
