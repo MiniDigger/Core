@@ -20,7 +20,7 @@
  */
 package me.MiniDigger.Core.Server;
 
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 public interface ServerHandler {
 	
@@ -41,7 +41,7 @@ public interface ServerHandler {
 	 *            The sign lines
 	 * @return The lines with data
 	 */
-	public IChatBaseComponent[] getServerInfo(final IChatBaseComponent[] lines);
+	public WrappedChatComponent[] getServerInfo(final WrappedChatComponent[] lines);
 	
 	/**
 	 * Gets the ServerData by a name

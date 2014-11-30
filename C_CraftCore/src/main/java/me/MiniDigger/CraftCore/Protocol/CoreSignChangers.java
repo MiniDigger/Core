@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.CraftCore.Protocol;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,10 +31,7 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.FieldAccessException;
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.wrappers.BlockPosition;
-
-import net.minecraft.server.v1_8_R1.ChatComponentText;
-import net.minecraft.server.v1_8_R1.ChatSerializer;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -55,6 +51,8 @@ import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.CoreMain;
+
+import mkremins.fanciful.FancyMessage;
 
 public class CoreSignChangers implements SignChangers {
 	
@@ -375,14 +373,14 @@ public class CoreSignChangers implements SignChangers {
 			}
 		}
 		
-		final IChatBaseComponent[] lines = new IChatBaseComponent[4];
+		final WrappedChatComponent[] lines = new WrappedChatComponent[4];
 		for (int i = 0; i < 4; i++) {
-			lines[i] = ChatSerializer.a(psign.getStrings().read(i));
+			lines[i] = psign.getChatComponents().read(i);
 		}
 		
-		IChatBaseComponent[] newLines = { lines[0], lines[1], lines[2], lines[3] };
+		WrappedChatComponent[] newLines = { lines[0], lines[1], lines[2], lines[3] };
 		
-		if (newLines[0].getText().contains("[Teleport]") && edit) {
+		if (newLines[0].getJson().contains("[Teleport]") && edit) {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
@@ -403,9 +401,9 @@ public class CoreSignChangers implements SignChangers {
 			key = c.getKey();
 			if (key != null) {
 				for (int i = 0; i < newLines.length; i++) {
-					if (newLines[i].getText().contains(key)) {
+					if (newLines[i].getJson().contains(key)) {
 						boolean clear = false;
-						if (key.startsWith("&y") || newLines[i].getText().startsWith("&y") || key.startsWith("[S_") || key.startsWith("[R_") || key.startsWith("[T_")) {
+						if (key.startsWith("&y") || newLines[i].getJson().contains("&y") || key.startsWith("[S_") || key.startsWith("[R_") || key.startsWith("[T_")) {
 							clear = true;
 						}
 						
@@ -418,33 +416,33 @@ public class CoreSignChangers implements SignChangers {
 						if (!edit) {
 							break;
 						}
-						if (newLines[i].getText().contains("&z" + key)) {
-							newLines[i] = ChatSerializer.a(ChatSerializer.a(newLines[i]).replace("&z", ""));
+						if (newLines[i].getJson().contains("&z" + key)) {
+							newLines[i].setJson(newLines[i].getJson().replace("&z", ""));
 						} else {
 							if (clear) {
-								newLines[i] = new ChatComponentText(value);
+								newLines[i].setJson(new FancyMessage(value).toJSONString());
 							} else {
-								newLines[i] = ChatSerializer.a(ChatSerializer.a(newLines[i]).replace(key, value));
+								newLines[i].setJson(newLines[i].getJson().replace(key, value));
 							}
 						}
 					}
 				}
 			}
 		}
-		// shorten
-		for (int i = 0; i < newLines.length; i++) {
-			if (newLines[i].getText().length() > 15) {
-				if ((i < newLines.length - 1) && (newLines[(i + 1)].getText().isEmpty())) {
-					newLines[(i + 1)] = new ChatComponentText(newLines[i].getText().substring(15));
-				}
-				newLines[i] = new ChatComponentText(newLines[i].getText().substring(0, 15));
-			}
-		}
+		// shorten //TODO Renabled sign shortening
+//		for (int i = 0; i < newLines.length; i++) {
+//			if (newLines[i].getText().length() > 15) {
+//				if ((i < newLines.length - 1) && (newLines[(i + 1)].getText().isEmpty())) {
+//					newLines[(i + 1)] = new ChatComponentText(newLines[i].getText().substring(15));
+//				}
+//				newLines[i] = new ChatComponentText(newLines[i].getText().substring(0, 15));
+//			}
+//		}
 		
 		PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
 		out.getBlockPositionModifier().write(0, pos);
 		for (int i = 0; i < 4; i++) {
-			out.getStrings().write(i, ChatSerializer.a(newLines[i]));
+			out.getChatComponents().write(i, newLines[i]);
 		}
 		return out;
 	}
