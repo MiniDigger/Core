@@ -45,7 +45,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 	private UpdateType	        type;
 	
 	public CoreUpdateHandler() {
-		type = UpdateType.valueOf(((CoreMain) Core.getCore().getInstance()).getConfig().getString("update-type"));
+		type = UpdateType.valueOf(( Core.getCore().getInstance()).getConfig().getString("update-type"));
 		if (type == null) {
 			type = UpdateType.FORCE;
 		}
@@ -59,7 +59,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 				
 				@Override
 				public void run() {
-					saveFile(new File(((CoreMain) Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "TheCore.jar",
+					saveFile(new File(( Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "TheCore.jar",
 					        JAR_URL);
 				}
 				
@@ -71,7 +71,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 	}
 	
 	private PluginVersion getVersion() {
-		return new CorePluginVersion(((CoreMain) Core.getCore().getInstance()).getDescription().getVersion());
+		return new CorePluginVersion(( Core.getCore().getInstance()).getDescription().getVersion());
 	}
 	
 	private PluginVersion getLatestVersion() {

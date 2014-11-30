@@ -42,7 +42,7 @@ import me.MiniDigger.CraftCore.CoreMain;
 public class StatsManager implements Listener {
 	
 	public StatsManager() {
-		Bukkit.getPluginManager().registerEvents(this, (CoreMain) Core.getCore().getInstance());
+		Bukkit.getPluginManager().registerEvents(this,  Core.getCore().getInstance());
 	}
 	
 	@EventHandler

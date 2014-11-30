@@ -45,7 +45,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -97,7 +96,7 @@ public class CinematicPlayer {
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0));
 		
 		// Schedule sync updates.
-		syncUpdateTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask((Plugin) Core.getCore().getInstance(), new Runnable() {
+		syncUpdateTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -253,7 +252,7 @@ public class CinematicPlayer {
 								        v3MetaFallingSand.getMaterial(), (byte) 0);
 								fb.setVelocity(new Vector(v3MetaFallingSand.getVelX(), v3MetaFallingSand.getVelY(), v3MetaFallingSand.getVelZ()));
 								fb.setDropItem(false);
-								fb.setMetadata("isV3", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), true));
+								fb.setMetadata("isV3", new FixedMetadataValue(Core.getCore().getInstance(), true));
 							}
 						});
 						

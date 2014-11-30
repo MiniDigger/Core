@@ -111,7 +111,7 @@ public class TrollCommands {
 		
 		public static void enable() {
 			ProtocolLibrary.getProtocolManager().addPacketListener(
-			        new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.MAP_CHUNK, PacketType.Play.Server.MAP_CHUNK_BULK) {
+			        new PacketAdapter( Core.getCore().getInstance(), PacketType.Play.Server.MAP_CHUNK, PacketType.Play.Server.MAP_CHUNK_BULK) {
 				        
 				        @Override
 				        public void onPacketSending(final PacketEvent event) {

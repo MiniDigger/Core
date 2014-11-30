@@ -194,7 +194,7 @@ public class CoreStats implements Stats {
 			stats.put(type, type.getDefaultValue());
 		}
 		
-		Bukkit.getScheduler().runTaskLaterAsynchronously((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLaterAsynchronously( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

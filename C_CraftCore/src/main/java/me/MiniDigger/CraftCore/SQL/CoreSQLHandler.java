@@ -48,7 +48,7 @@ public class CoreSQLHandler implements SQLHandler {
 	}
 	
 	private String get(final String s) {
-		return ((CoreMain) Core.getCore().getInstance()).getConfig().getString(s);
+		return ( Core.getCore().getInstance()).getConfig().getString(s);
 	}
 	
 	private void generateURL() {

@@ -108,7 +108,7 @@ public class LivesFeature extends CoreFeature {
 					public void run() {
 						e.getUser().getPlayer().teleport(loc);
 					}
-				}.runTaskLater((Plugin) Core.getCore().getInstance(), 20);
+				}.runTaskLater( Core.getCore().getInstance(), 20);
 				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)

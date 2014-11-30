@@ -191,7 +191,7 @@ public class CoreMapData implements MapData {
 			}
 			CoreMapData.this.locs.put(color, l);
 		}
-		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), finished);
+		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), finished);
 		// }
 		// });
 		//

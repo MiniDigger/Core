@@ -138,7 +138,7 @@ public class ToggleCommands implements Listener {
 		public HomingTask(final Arrow arrow, final LivingEntity target) {
 			this.arrow = arrow;
 			this.target = target;
-			runTaskTimer((Plugin) Core.getCore().getInstance(), 1L, 1L);
+			runTaskTimer( Core.getCore().getInstance(), 1L, 1L);
 		}
 		
 		@Override

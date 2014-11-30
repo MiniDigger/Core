@@ -174,7 +174,7 @@ public class SpawnerFeature extends CoreFeature {
 			e.setItemStack(CraftItemStack.asNMSCopy(item.getItemStack()));
 			e.fromMobSpawner = true;
 			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
-			ee.setMetadata("doNotRemove", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), "true"));
+			ee.setMetadata("doNotRemove", new FixedMetadataValue( Core.getCore().getInstance(), "true"));
 			ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
 			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}

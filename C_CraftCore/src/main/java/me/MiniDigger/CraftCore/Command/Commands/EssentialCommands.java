@@ -54,7 +54,7 @@ public class EssentialCommands {
 		}
 		
 		final int fC = c;
-		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

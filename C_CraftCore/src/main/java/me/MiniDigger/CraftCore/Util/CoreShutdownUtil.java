@@ -71,7 +71,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		
 		initShutdown();
-		Bukkit.getScheduler().cancelTasks((Plugin) Core.getCore().getInstance());
+		Bukkit.getScheduler().cancelTasks( Core.getCore().getInstance());
 		
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			Core.getCore().getBarHandler().setBar(p, ChatColor.RED + "Der Server wird nun neugestartet!", 100F);
@@ -80,7 +80,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED).send(Bukkit.getConsoleSender());
 		
-		task = Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

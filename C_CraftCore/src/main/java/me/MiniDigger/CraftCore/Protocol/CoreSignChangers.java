@@ -384,7 +384,7 @@ public class CoreSignChangers implements SignChangers {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
-				Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {

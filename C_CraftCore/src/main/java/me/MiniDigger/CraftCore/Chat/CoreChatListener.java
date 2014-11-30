@@ -28,7 +28,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChatTabCompleteEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -67,7 +66,7 @@ public class CoreChatListener implements ChatListener {
 			public void run() {
 				Bukkit.getPluginManager().callEvent(event); // für bender
 			}
-		}.runTaskAsynchronously((Plugin) Core.getCore().getInstance());
+		}.runTaskAsynchronously(Core.getCore().getInstance());
 		
 		e.getPlayer().closeInventory();
 	}

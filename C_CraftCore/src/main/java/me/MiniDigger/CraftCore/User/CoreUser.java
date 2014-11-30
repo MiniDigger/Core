@@ -286,7 +286,7 @@ public class CoreUser implements User {
 					System.out.println("giving up...");
 					return;
 				}
-				Bukkit.getScheduler().runTaskLater((Plugin) Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {

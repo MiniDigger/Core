@@ -46,7 +46,7 @@ public class CoreRegen implements Regen {
 		if (fancy) {
 			while (!blocks.isEmpty()) {
 				final BlockState state = blocks.get(Core.getCore().getRandomUtil().nextInt(blocks.size()));
-				Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {
@@ -58,7 +58,7 @@ public class CoreRegen implements Regen {
 			}
 		} else {
 			for (final BlockState block : blocks) {
-				Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {

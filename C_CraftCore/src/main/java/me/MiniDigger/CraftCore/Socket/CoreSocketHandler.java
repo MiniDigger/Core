@@ -59,13 +59,13 @@ public class CoreSocketHandler implements SocketHandler {
 			client = new CoreSocketClient(new URI("ws://localhost:33333"));
 			((CoreSocketClient) client).connect();
 			
-			Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+			Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {
 					final IdentificationPacket packet = new IdentificationPacket();
-					packet.setClientName(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-user"));
-					packet.setPass(((CoreMain) Core.getCore().getInstance()).getConfig().getString("ws-pass"));
+					packet.setClientName(( Core.getCore().getInstance()).getConfig().getString("ws-user"));
+					packet.setPass(( Core.getCore().getInstance()).getConfig().getString("ws-pass"));
 					Core.getCore().getPacketHandler().sendPacket(packet);
 				}
 			}, 10);

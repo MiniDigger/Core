@@ -32,7 +32,7 @@ public class CoreItemHandler implements ItemHandler {
 	@Override
 	public void register(final Item item) {
 		item.getType().setItem(item);
-		Bukkit.getPluginManager().registerEvents(item, (Plugin) Core.getCore().getInstance());
+		Bukkit.getPluginManager().registerEvents(item,  Core.getCore().getInstance());
 	}
 	
 }

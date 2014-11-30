@@ -25,7 +25,6 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.plugin.Plugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.User.User;
@@ -137,9 +136,9 @@ public interface SignListeners extends Listener {
 		 */
 		public void doAction(final Sign sign) {
 			if (isAsync()) {
-				Bukkit.getScheduler().runTaskAsynchronously((Plugin) Core.getCore().getInstance(), action);
+				Bukkit.getScheduler().runTaskAsynchronously(Core.getCore().getInstance(), action);
 			} else {
-				Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), action);
+				Bukkit.getScheduler().runTask(Core.getCore().getInstance(), action);
 			}
 		}
 		

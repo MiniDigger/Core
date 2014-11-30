@@ -145,7 +145,7 @@ public class SpawnFeature extends CoreFeature {
 							System.out.println("respawn failed after second try");
 						}
 					}
-				}.runTaskLater((Plugin) Core.getCore().getInstance(), 20 * 2);
+				}.runTaskLater( Core.getCore().getInstance(), 20 * 2);
 			}
 			return loc;
 		}

@@ -47,7 +47,7 @@ public class CoreServerHandler implements ServerHandler {
 	
 	@Override
 	public void startTask() {
-		task = Bukkit.getScheduler().runTaskTimer((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

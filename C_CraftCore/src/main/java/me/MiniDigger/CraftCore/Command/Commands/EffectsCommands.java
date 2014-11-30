@@ -81,7 +81,7 @@ public class EffectsCommands {
 	        "cylinder", "discoball", "dna", "donut", "dragon", "earth", "explode", "flame", "fountain", "grid", "heart", "helix", "hill", "icon", "image", "jump",
 	        "line", "love", "music", "shield", "skyrocket", "smoke", "sphere", "star", "text", "tornado", "trace", "turn", "vortex", "warp", "wave" };
 	
-	private final EffectManager	 effectManager	= new EffectManager((Plugin) Core.getCore().getInstance());
+	private final EffectManager	 effectManager	= new EffectManager( Core.getCore().getInstance());
 	
 	@Command(name = "effect", permission = "effect", usage = "", description = "Macht alles mit effects")
 	public void effect(final CommandArgs args) {

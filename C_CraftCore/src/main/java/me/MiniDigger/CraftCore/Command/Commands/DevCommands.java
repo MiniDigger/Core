@@ -45,7 +45,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.DisplaySlot;
 
@@ -193,7 +192,7 @@ public class DevCommands {
 	@Command(name = "Dev.timeTest", description = "DEV!", usage = "", permission = "dev")
 	public void timeTest(final CommandArgs args) {
 		final Date d1 = new Date();
-		Bukkit.getScheduler().runTaskLater((Plugin) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -327,7 +326,7 @@ public class DevCommands {
 		final Entity entity = new CoreZombie(args.getPlayer().getWorld());
 		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(), args.getPlayer().getLocation().getZ(), args.getPlayer()
 		        .getLocation().getYaw(), args.getPlayer().getLocation().getPitch());
-		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue((Plugin) Core.getCore().getInstance(), true));
+		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue(Core.getCore().getInstance(), true));
 		((CraftWorld) args.getPlayer().getLocation().getWorld()).getHandle().addEntity(entity);
 	}
 	

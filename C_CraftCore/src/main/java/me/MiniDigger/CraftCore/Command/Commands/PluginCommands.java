@@ -37,7 +37,7 @@ public class PluginCommands {
 	public void pluginCommand(final CommandArgs args) {
 		final FancyMessage msg = Prefix.CORE
 		        .getPrefix()
-		        .then("Dieser Server benutzt " + ((Plugin) Core.getCore().getInstance()).getDescription().getFullName() + " by MiniDigger zusammen mit "
+		        .then("Dieser Server benutzt " + ( Core.getCore().getInstance()).getDescription().getFullName() + " by MiniDigger zusammen mit "
 		                + Bukkit.getBukkitVersion()).color(ChatColor.GRAY);
 		msg.send(args.getSender());
 	}

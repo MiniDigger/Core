@@ -86,7 +86,7 @@ public class CoreServer implements Server {
 			server.setSpectate(false);
 		}
 		
-		server.setName(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
+		server.setName(( Core.getCore().getInstance()).getConfig().getString("server-name"));
 		server.setMaxPlayers(Bukkit.getMaxPlayers());
 		server.setNumPlayers(Core.getCore().getUserHandler().getOnlinePlayers().size());
 		

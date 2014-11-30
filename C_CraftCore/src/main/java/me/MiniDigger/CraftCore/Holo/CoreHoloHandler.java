@@ -40,9 +40,9 @@ public class CoreHoloHandler implements HoloHandler {
 	
 	@Override
 	public void createSpawnHolo(final Location loc, final User user) {
-		final Hologram hologram = HolographicDisplaysAPI.createIndividualHologram((Plugin) Core.getCore().getInstance(), loc, user.getPlayer(), ChatColor.GOLD + ""
+		final Hologram hologram = HolographicDisplaysAPI.createIndividualHologram( Core.getCore().getInstance(), loc, user.getPlayer(), ChatColor.GOLD + ""
 		        + ChatColor.BOLD + "Willkommen", ChatColor.GOLD + user.getDisplayName(), ChatColor.GOLD + "" + ChatColor.BOLD + "Du bist auf Server", ChatColor.GOLD
-		        + ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
+		        + ( Core.getCore().getInstance()).getConfig().getString("server-name"));
 		hologram.setTouchHandler(new TouchHandler() {
 			
 			@Override
@@ -66,6 +66,6 @@ public class CoreHoloHandler implements HoloHandler {
 					cancel();
 				}
 			}
-		}.runTaskTimer((Plugin) Core.getCore().getInstance(), 1L, 1L);
+		}.runTaskTimer( Core.getCore().getInstance(), 1L, 1L);
 	}
 }

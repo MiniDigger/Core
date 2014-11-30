@@ -37,6 +37,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import me.MiniDigger.Core.Core;
@@ -50,10 +51,10 @@ public class CoreSignGUI implements SignGUI, Listener {
 	protected PacketAdapter	               packetListener;
 	protected Map<String, SignGUIListener>	listeners;
 	protected Map<String, Vector>	       signLocations;
-	protected CoreMain	                   plugin;
+	protected Plugin	                   plugin;
 	
 	public CoreSignGUI() {
-		plugin = (CoreMain) Core.getCore().getInstance();
+		plugin = Core.getCore().getInstance();
 		init();
 	}
 	

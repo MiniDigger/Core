@@ -82,7 +82,7 @@ public class FixedTimeFeature extends CoreFeature {
 		world = m.getMap().getName();
 		
 		final World w = Bukkit.getWorld(world);
-		task = Bukkit.getScheduler().runTaskTimer((Plugin) Core.getCore().getInstance(), new Runnable() {
+		task = Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

@@ -60,7 +60,7 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 		subbed = 100;
 		sub = subbed / secs;
 		
-		timer = Bukkit.getScheduler().runTaskTimer((Plugin) Core.getCore().getInstance(), new Runnable() {
+		timer = Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
 			
 			int	passed	= 0;
 			

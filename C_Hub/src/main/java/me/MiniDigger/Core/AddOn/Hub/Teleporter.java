@@ -49,7 +49,7 @@ public class Teleporter implements Listener {
 	String	        prefix	= ChatColor.GRAY + "[" + ChatColor.RED + "Teleporter" + ChatColor.GRAY + "]" + ChatColor.RESET;
 	
 	public Teleporter() {
-		Bukkit.getServer().getPluginManager().registerEvents(this, (CoreMain) Core.getCore().getInstance());
+		Bukkit.getServer().getPluginManager().registerEvents(this,  Core.getCore().getInstance());
 	}
 	
 	public Inventory QuickTP(final boolean staff) {
@@ -284,7 +284,7 @@ public class Teleporter implements Listener {
 			}
 			
 			event.setCancelled(true);
-			Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+			Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {

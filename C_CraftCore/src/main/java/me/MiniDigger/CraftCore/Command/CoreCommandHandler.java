@@ -117,7 +117,7 @@ public class CoreCommandHandler implements CommandHandler {
 	/* Core End */
 	
 	public CoreCommandHandler() {
-		plugin = (CoreMain) Core.getCore().getInstance();
+		plugin =  Core.getCore().getInstance();
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
 			final SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();
 			try {

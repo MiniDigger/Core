@@ -38,7 +38,7 @@ import me.MiniDigger.Core.NPC.NPCHandler;
 public class CoreNPCHandler implements NPCHandler {
 	
 	private final NPCFactory	factory	= null/*
-											 * = new NPCFactory((Plugin)
+											 * = new NPCFactory(
 											 * Core.getCore().getInstance())
 											 */;
 	private NPC	             bender;
@@ -67,7 +67,7 @@ public class CoreNPCHandler implements NPCHandler {
 		if (b) {
 			return;
 		}
-		Bukkit.getScheduler().runTask((Plugin) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTask( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

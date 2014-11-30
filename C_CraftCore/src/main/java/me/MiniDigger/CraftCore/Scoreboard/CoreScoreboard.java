@@ -51,7 +51,7 @@ public class CoreScoreboard implements Scoreboard {
 				}
 			}
 		};
-		task.runTaskTimer((Plugin) Core.getCore().getInstance(), 1 * 20, 1 * 20);
+		task.runTaskTimer( Core.getCore().getInstance(), 1 * 20, 1 * 20);
 	}
 	
 	@Override

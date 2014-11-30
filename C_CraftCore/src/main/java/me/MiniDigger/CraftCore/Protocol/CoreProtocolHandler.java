@@ -75,7 +75,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		skullChangers.init();
 		signListeners.init();
 		
-		Bukkit.getScheduler().runTaskTimer((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskTimer( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -90,7 +90,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		}, 2 * 20, 2 * 20);
 		
-		Bukkit.getScheduler().runTaskTimerAsynchronously((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskTimerAsynchronously( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -99,7 +99,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		}, 2 * 20, 2 * 20);
 		
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.UPDATE_SIGN) {
+		manager.addPacketListener(new PacketAdapter( Core.getCore().getInstance(), PacketType.Play.Server.UPDATE_SIGN) {
 			
 			@Override
 			public void onPacketSending(final PacketEvent event) {
@@ -107,7 +107,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		});
 		// Skulls
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.TILE_ENTITY_DATA) {
+		manager.addPacketListener(new PacketAdapter( Core.getCore().getInstance(), PacketType.Play.Server.TILE_ENTITY_DATA) {
 			
 			@Override
 			public void onPacketSending(final PacketEvent event) {
@@ -115,7 +115,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		});
 		// Ping
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), ListenerPriority.NORMAL, Arrays
+		manager.addPacketListener(new PacketAdapter( Core.getCore().getInstance(), ListenerPriority.NORMAL, Arrays
 		        .asList(PacketType.Status.Server.OUT_SERVER_INFO)) {
 			
 			@Override
@@ -124,7 +124,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		});
 		// Zensor
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Server.CHAT) {
+		manager.addPacketListener(new PacketAdapter( Core.getCore().getInstance(), PacketType.Play.Server.CHAT) {
 			
 			@Override
 			public void onPacketSending(final PacketEvent event) {
@@ -137,7 +137,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			}
 		});
 		// TabBlocker
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Play.Client.TAB_COMPLETE) {
+		manager.addPacketListener(new PacketAdapter( Core.getCore().getInstance(), PacketType.Play.Client.TAB_COMPLETE) {
 			
 			@Override
 			@SuppressWarnings("unchecked")
@@ -193,7 +193,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		});
 		
 		// Protocol verison
-		manager.addPacketListener(new PacketAdapter((CoreMain) Core.getCore().getInstance(), PacketType.Handshake.Client.SET_PROTOCOL) {
+		manager.addPacketListener(new PacketAdapter( Core.getCore().getInstance(), PacketType.Handshake.Client.SET_PROTOCOL) {
 			
 			@Override
 			public void onPacketReceiving(final PacketEvent event) {

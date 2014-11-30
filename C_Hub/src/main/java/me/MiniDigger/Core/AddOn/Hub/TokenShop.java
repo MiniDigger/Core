@@ -51,7 +51,7 @@ public class TokenShop implements Listener {
 	private final HashMap<String, ArrayList<ItemStack>>	all_items	= new HashMap<String, ArrayList<ItemStack>>();
 	
 	public TokenShop() {
-		Bukkit.getServer().getPluginManager().registerEvents(this, (CoreMain) Core.getCore().getInstance());
+		Bukkit.getServer().getPluginManager().registerEvents(this,  Core.getCore().getInstance());
 	}
 	
 	private Inventory setupHeader(final Inventory inv, final String name) {
@@ -247,7 +247,7 @@ public class TokenShop implements Listener {
 		}
 		if (event.getInventory().getTitle().equalsIgnoreCase(title)) {
 			Inventory inv = null;
-			Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+			Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {
@@ -264,7 +264,7 @@ public class TokenShop implements Listener {
 			
 			p.closeInventory();
 			final Inventory fInv = inv;
-			Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+			Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {
@@ -321,7 +321,7 @@ public class TokenShop implements Listener {
 		event.setCancelled(true);
 		event.setResult(Result.DENY);
 		event.setCurrentItem(null);
-		Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

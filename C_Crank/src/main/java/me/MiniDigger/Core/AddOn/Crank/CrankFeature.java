@@ -112,7 +112,7 @@ public class CrankFeature extends CoreFeature {
 				}
 			}
 		};
-		timer.runTaskTimer((Plugin) Core.getCore().getInstance(), 1 * 20, 1 * 20);
+		timer.runTaskTimer( Core.getCore().getInstance(), 1 * 20, 1 * 20);
 		timers.put(id, timer);
 	}
 	

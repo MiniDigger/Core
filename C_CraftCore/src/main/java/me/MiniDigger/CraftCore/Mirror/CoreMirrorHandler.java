@@ -85,7 +85,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 		for (final PacketType type : PacketType.values()) {
 			types.add(type);
 		}
-		params.gamePhase(GamePhase.PLAYING).optionAsync().plugin((Plugin) Core.getCore().getInstance()).serverSide().types(types);
+		params.gamePhase(GamePhase.PLAYING).optionAsync().plugin( Core.getCore().getInstance()).serverSide().types(types);
 		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(params) {
 			
 			@Override

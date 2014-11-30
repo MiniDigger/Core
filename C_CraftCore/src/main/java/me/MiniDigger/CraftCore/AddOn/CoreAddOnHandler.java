@@ -45,11 +45,9 @@ import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.AddOn.AddOnClassLoader;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 
-import me.MiniDigger.CraftCore.CoreMain;
-
 public class CoreAddOnHandler implements AddOnHandler {
 	
-	private final File	                        addOnFile	= new File(((CoreMain) Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
+	private final File	                        addOnFile	= new File((Core.getCore().getInstance()).getDataFolder(), "DO_NOT_EDIT");
 	private JSONArray	                        addOns;
 	private ArrayList<AddOn>	                active;
 	

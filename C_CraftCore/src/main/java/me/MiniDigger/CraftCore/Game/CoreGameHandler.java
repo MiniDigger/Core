@@ -54,7 +54,7 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void searchMainGame() {
-		final String game = ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-type");
+		final String game = ( Core.getCore().getInstance()).getConfig().getString("server-type");
 		if (game != null) {
 			try {
 				final GameType type = GameType.valueOf(game);

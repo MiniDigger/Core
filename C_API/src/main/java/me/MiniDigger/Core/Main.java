@@ -22,11 +22,12 @@ package me.MiniDigger.Core;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
 
 import mkremins.fanciful.FancyMessage;
 import ru.tehkode.permissions.PermissionManager;
 
-public interface Main {
+public interface Main extends Plugin{
 	
 	/**
 	 * Gets called, when Bukkit enables the framework

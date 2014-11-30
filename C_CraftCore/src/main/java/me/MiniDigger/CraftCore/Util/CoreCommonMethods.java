@@ -94,7 +94,7 @@ public class CoreCommonMethods implements CommonMethods {
 			return;
 		}
 		final Date d1 = new Date();
-		Bukkit.getScheduler().runTaskAsynchronously((Plugin) Core.getCore().getInstance(), new Runnable() {
+		Bukkit.getScheduler().runTaskAsynchronously( Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -102,7 +102,7 @@ public class CoreCommonMethods implements CommonMethods {
 					final ImageMessage msg = new ImageMessage(ImageIO.read(new URL("https://minotar.net/avatar/" + user.getRealName() + "/200.png")), 8,
 					        ImageChar.DARK_SHADE.getChar());
 					msg.appendCenteredText("", "", ChatColor.GOLD + "Willkommen", ChatColor.YELLOW + user.getDisplayName(), ChatColor.GOLD + "Du bist auf Server:",
-					        ChatColor.YELLOW + ((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"));
+					        ChatColor.YELLOW + ( Core.getCore().getInstance()).getConfig().getString("server-name"));
 					msg.sendToPlayer(user.getPlayer());
 				} catch (final IOException e) {
 					// e.printStackTrace();
@@ -115,7 +115,7 @@ public class CoreCommonMethods implements CommonMethods {
 						user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
 						user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
 						user.sendMessage(Prefix.API.getPrefix().then("Du bist auf Server").color(ChatColor.GOLD));
-						user.sendMessage(Prefix.API.getPrefix().then(((CoreMain) Core.getCore().getInstance()).getConfig().getString("server-name"))
+						user.sendMessage(Prefix.API.getPrefix().then(( Core.getCore().getInstance()).getConfig().getString("server-name"))
 						        .color(ChatColor.YELLOW));
 					}
 				}
@@ -139,7 +139,7 @@ public class CoreCommonMethods implements CommonMethods {
 					
 				}
 			}
-		}.runTaskLater((Plugin) Core.getCore().getInstance(), 20 * 2);
+		}.runTaskLater( Core.getCore().getInstance(), 20 * 2);
 		
 	}
 	
@@ -148,7 +148,7 @@ public class CoreCommonMethods implements CommonMethods {
 		System.out.println("Licene check failed but I don't care as long as you registered it at startup");
 		// System.out.println("The Plugin decided to kill itselve");
 		// System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
-		// Bukkit.getPluginManager().disablePlugin((CoreMain)
+		// Bukkit.getPluginManager().disablePlugin(
 		// Core.getCore().getInstance());
 	}
 	

@@ -92,7 +92,7 @@ public class CoreEventHandler implements Listener, org.bukkit.plugin.EventExecut
 		
 		final PluginManager manager = Bukkit.getServer().getPluginManager();
 		for (final Class<? extends Event> clazz : events) {
-			manager.registerEvent(clazz, this, EventPriority.NORMAL, this, (Plugin) Core.getCore().getInstance(), true);
+			manager.registerEvent(clazz, this, EventPriority.NORMAL, this,  Core.getCore().getInstance(), true);
 		}
 	}
 	

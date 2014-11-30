@@ -90,7 +90,7 @@ public class LastManStandingFeature extends CoreFeature {
 			getPhase().getGame().leave(e.getUser());
 			
 			if (getPhase().getGame().getPlayers().size() < 2) {
-				Bukkit.getScheduler().runTaskLater((CoreMain) Core.getCore().getInstance(), new Runnable() {
+				Bukkit.getScheduler().runTaskLater( Core.getCore().getInstance(), new Runnable() {
 					
 					@Override
 					public void run() {

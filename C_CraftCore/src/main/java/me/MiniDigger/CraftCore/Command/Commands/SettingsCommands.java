@@ -55,8 +55,8 @@ public class SettingsCommands {
 			return;
 		}
 		
-		((CoreMain) Core.getCore().getInstance()).getConfig().set("server-type", type.name());
-		((CoreMain) Core.getCore().getInstance()).saveConfig();
+		( Core.getCore().getInstance()).getConfig().set("server-type", type.name());
+		( Core.getCore().getInstance()).saveConfig();
 		
 		Prefix.API.getPrefix().then("Modi geändert!").color(ChatColor.GREEN).send(args.getSender());
 	}
