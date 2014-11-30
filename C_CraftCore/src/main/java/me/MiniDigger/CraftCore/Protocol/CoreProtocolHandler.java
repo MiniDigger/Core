@@ -67,11 +67,11 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	@Override
 	public void init() {
-		signChangers = new CoreSignChangers();
+		// signChangers = new CoreSignChangers();
 		skullChangers = new CoreSkullChangers();
 		signListeners = new CoreSignListeners();
 		
-		signChangers.init();
+		// signChangers.init(); TODO Disabled signchangers for now
 		skullChangers.init();
 		signListeners.init();
 		
@@ -94,7 +94,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			
 			@Override
 			public void run() {
-				signChangers.update();
+//				signChangers.update();
 				skullChangers.update();
 			}
 		}, 2 * 20, 2 * 20);
@@ -242,7 +242,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	}
 	
 	@SuppressWarnings("deprecation")
-    private void handlePing(final WrappedServerPing ping) {
+	private void handlePing(final WrappedServerPing ping) {
 		ping.setPlayers(Arrays.asList(new WrappedGameProfile("1", ChatColor.RED + "Hallo und willkommen"), new WrappedGameProfile("2", "auf Zone-Games.eu!"),
 		        new WrappedGameProfile("3", "Hier findest du vieles.")));
 		ping.setVersionName("Please use 1.7.10");
