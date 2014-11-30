@@ -127,13 +127,6 @@
 			</snapshots>
 		</repository>
 		<repository>
-			<id>fanciful-mvn-repo</id>
-			<url>https://raw.github.com/mkremins/fanciful/mvn-repo/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
 			<id>carrade-repo</id>
 			<url>http://depot.carrade.eu/maven2/</url>
 		</repository>
@@ -170,12 +163,6 @@
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot</artifactId>
 			<version>1.8-R0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>mkremins</groupId>
-			<artifactId>fanciful</artifactId>
-			<version>0.2.0-SNAPSHOT</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>ru.tehkode</groupId>

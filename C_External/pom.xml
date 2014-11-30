@@ -11,10 +11,6 @@
 	<description>All foreign ressources</description>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
-		<dependency>
-			<groupId>me.MiniDigger.Core</groupId>
-			<artifactId>C_API</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 	</dependencies>
 </project>
