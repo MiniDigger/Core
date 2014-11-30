@@ -28,6 +28,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChatTabCompleteEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatListener;
@@ -58,7 +60,14 @@ public class CoreChatListener implements ChatListener {
 		final AsyncPlayerChatEvent event = new AsyncPlayerChatEvent(true, user.getPlayer(), e.getChatMessage(), new HashSet<Player>(Core.getCore().getUserHandler()
 		        .getOnlinePlayers()));
 		event.setCancelled(true);
-		Bukkit.getPluginManager().callEvent(event); // für bender
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				Bukkit.getPluginManager().callEvent(event); // für bender
+			}
+		}.runTaskAsynchronously((Plugin) Core.getCore().getInstance());
 		
 		e.getPlayer().closeInventory();
 	}
