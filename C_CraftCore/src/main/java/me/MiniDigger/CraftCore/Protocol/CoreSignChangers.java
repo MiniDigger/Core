@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.CraftCore.Protocol;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +28,6 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.FieldAccessException;
-import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
@@ -352,26 +350,26 @@ public class CoreSignChangers implements SignChangers {
 		players_signs.remove(location);
 		players_signs.put(location, players);
 		
-		for (final Method m : psign.getClass().getMethods()) {
-			if (m.getName().startsWith("get")) {
-				if (m.getReturnType().getName().startsWith("com.comphenix.protocol.reflect.StructureModifier")) {
-					try {
-						final StructureModifier<?> mod = (StructureModifier<?>) m.invoke(psign);
-						if (mod.size() == 0) {
-							continue;
-						}
-						System.out.println(m.getName() + ": " + mod.size());
-					} catch (final Exception e) {
-						if (e.getMessage() != null && e.getMessage().contains("wrong number of arguments")) {
-							System.out.println("wron nums");
-						} else {
-							System.out.println("oh noes");
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-		}
+//		for (final Method m : psign.getClass().getMethods()) {
+//			if (m.getName().startsWith("get")) {
+//				if (m.getReturnType().getName().startsWith("com.comphenix.protocol.reflect.StructureModifier")) {
+//					try {
+//						final StructureModifier<?> mod = (StructureModifier<?>) m.invoke(psign);
+//						if (mod.size() == 0) {
+//							continue;
+//						}
+//						System.out.println(m.getName() + ": " + mod.size());
+//					} catch (final Exception e) {
+//						if (e.getMessage() != null && e.getMessage().contains("wrong number of arguments")) {
+//							System.out.println("wron nums");
+//						} else {
+//							System.out.println("oh noes");
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//			}
+//		}
 		
 		final WrappedChatComponent[] lines = psign.getChatComponentArrays().read(0);
 		
