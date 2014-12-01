@@ -5,8 +5,16 @@
 </head>
 <body>
 	<form name="session">
-		<input type="hidden" name="name" size="35"></input>
+		<input type="hidden" name="name" size="35" />
 	</form>
+	<p id="console"></p>
 	<script language="javascript" type="text/javascript" src="socket.js"></script>
+	<form name="cmd" action="" onsubmit="send">
+		<p>
+			Cmd:<input name="cmd" type="text" size="100" maxlength="100" /><input
+				type="button" name="button" value="Click"
+				onclick="send(this.form.cmd.value)" />
+		</p>
+	</form>
 </body>
 </html>
