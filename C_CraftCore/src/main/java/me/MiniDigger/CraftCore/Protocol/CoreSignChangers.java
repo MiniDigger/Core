@@ -350,32 +350,36 @@ public class CoreSignChangers implements SignChangers {
 		players_signs.remove(location);
 		players_signs.put(location, players);
 		
-//		for (final Method m : psign.getClass().getMethods()) {
-//			if (m.getName().startsWith("get")) {
-//				if (m.getReturnType().getName().startsWith("com.comphenix.protocol.reflect.StructureModifier")) {
-//					try {
-//						final StructureModifier<?> mod = (StructureModifier<?>) m.invoke(psign);
-//						if (mod.size() == 0) {
-//							continue;
-//						}
-//						System.out.println(m.getName() + ": " + mod.size());
-//					} catch (final Exception e) {
-//						if (e.getMessage() != null && e.getMessage().contains("wrong number of arguments")) {
-//							System.out.println("wron nums");
-//						} else {
-//							System.out.println("oh noes");
-//							e.printStackTrace();
-//						}
-//					}
-//				}
-//			}
-//		}
+		// for (final Method m : psign.getClass().getMethods()) {
+		// if (m.getName().startsWith("get")) {
+		// if
+		// (m.getReturnType().getName().startsWith("com.comphenix.protocol.reflect.StructureModifier"))
+		// {
+		// try {
+		// final StructureModifier<?> mod = (StructureModifier<?>)
+		// m.invoke(psign);
+		// if (mod.size() == 0) {
+		// continue;
+		// }
+		// System.out.println(m.getName() + ": " + mod.size());
+		// } catch (final Exception e) {
+		// if (e.getMessage() != null &&
+		// e.getMessage().contains("wrong number of arguments")) {
+		// System.out.println("wron nums");
+		// } else {
+		// System.out.println("oh noes");
+		// e.printStackTrace();
+		// }
+		// }
+		// }
+		// }
+		// }
 		
 		final WrappedChatComponent[] lines = psign.getChatComponentArrays().read(0);
 		
 		WrappedChatComponent[] newLines = { lines[0], lines[1], lines[2], lines[3] };
 		
-		if (newLines[0].getJson().contains("[Teleport]") && edit) {
+		if (newLines[0] != null && newLines[0].getJson() != null && newLines[0].getJson().contains("[Teleport]") && edit) {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
@@ -396,6 +400,9 @@ public class CoreSignChangers implements SignChangers {
 			key = c.getKey();
 			if (key != null) {
 				for (int i = 0; i < newLines.length; i++) {
+					if (newLines[i] == null || newLines[i].getJson() == null) {
+						continue;
+					}
 					if (newLines[i].getJson().contains(key)) {
 						boolean clear = false;
 						if (key.startsWith("&y") || newLines[i].getJson().contains("&y") || key.startsWith("[S_") || key.startsWith("[R_") || key.startsWith("[T_")) {

@@ -336,6 +336,8 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void registerCommands() {
+		Core.getCore().getCommandHandler().addRelocation("dd", "dd");
+		
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new NPCCommands(), new AddOnCommands(),
 		        new EssentialCommands(), new TeamCommands(), new KitCommands(), new EffectsCommands() };
@@ -355,7 +357,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void enableHandler() {
 		Core.getCore().getAddOnHandler().load();
-		// Core.getCore().getProtocolHandler().init(); //TODO Diable ALL
+		Core.getCore().getProtocolHandler().init(); // TODO Diable ALL
 		// protocol thinks for now
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
