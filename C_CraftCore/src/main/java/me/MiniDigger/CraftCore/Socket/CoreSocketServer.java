@@ -49,7 +49,9 @@ public class CoreSocketServer extends WebSocketServer implements SocketServer {
 	
 	@Override
 	public void onMessage(final WebSocket conn, final String message) {
-		Core.getCore().getPacketHandler().handleIncome(message, conn);
+		if (!Core.getCore().getPacketHandler().handleIncome(message, conn)) {
+			conn.close(3333, "Sorry, but your message was not accepted or an error occoured!");
+		}
 	}
 	
 	@Override

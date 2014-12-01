@@ -77,18 +77,18 @@ public class CorePacketHandler implements PacketHandler {
 	}
 	
 	@Override
-	public void handleIncome(final String msg, final WebSocket con) {
+	public boolean handleIncome(final String msg, final WebSocket con) {
 		Class<? extends Packet> packet;
 		try {
 			final String[] s = msg.split(Pattern.quote("|"));
 			packet = getPacket(s[0]);
 			if (packet == null) {
 				Core.getCore().getInstance().error("[Server] Could not parse msg = " + msg + ". Packet " + s[0] + " not found!");
-				return;
+				return false;
 			}
 		} catch (final Exception ex) {
 			Core.getCore().getInstance().error("[Server] Could not parse msg = " + msg + ". Error: " + ex.getMessage());
-			return;
+			return false;
 		}
 		try {
 			final Packet pa = packet.getConstructor().newInstance();
@@ -96,11 +96,14 @@ public class CorePacketHandler implements PacketHandler {
 			final Session s = Core.getCore().getSocketHandler().getSession(con.getRemoteSocketAddress());
 			if (s.isIdentified() || pa instanceof IdentificationPacket) {
 				pa.handle(con);
+				return true;
 			} else {
 				Core.getCore().getInstance().error("[Server] " + con.getRemoteSocketAddress().toString() + " tryed to send packet without beeing identified!");
+				return false;
 			}
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	

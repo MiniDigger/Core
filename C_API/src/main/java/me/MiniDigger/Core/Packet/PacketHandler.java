@@ -78,8 +78,9 @@ public interface PacketHandler {
 	 *            The data
 	 * @param con
 	 *            The client
+	 * @return if the msg was valid
 	 */
-	public void handleIncome(final String msg, final WebSocket con);
+	public boolean handleIncome(final String msg, final WebSocket con);
 	
 	/**
 	 * Handles income from the server
