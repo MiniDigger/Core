@@ -5,16 +5,18 @@
 </head>
 <body>
 	<form name="session">
-		<input type="hidden" name="name" size="35" />
+		<input type="hidden" name="name" size="35" /><input type="hidden"
+			name="pw" size="35" />
 	</form>
 	<script language="javascript" type="text/javascript" src="socket.js"></script>
-	<form name="cmd" action="" onsubmit="send">
+<!-- 	<form name="cmd"> -->
 		<p>
-			Cmd:<input name="cmd" type="text" size="100" maxlength="100" /><input
-				type="button" name="button" value="Click"
-				onclick="send(this.form.cmd.value)" />
+			Cmd:<input id="cmd" name="cmd" type="text" size="100" maxlength="100"
+				onkeydown="if (event.keyCode == 13) document.getElementById('button').click();" /><input
+				type="button" id="button" name="button" value="Send"
+				onclick="send(document.getElementById('cmd').value)" />
 		</p>
-	</form>
+	<!-- 	</form> -->
 	<p id="console"></p>
 </body>
 </html>
