@@ -129,5 +129,4 @@ public class CorePacketHandler implements PacketHandler {
 			e.printStackTrace();
 		}
 	}
-	
 }
