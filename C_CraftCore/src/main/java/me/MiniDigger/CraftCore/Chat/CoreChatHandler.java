@@ -83,6 +83,7 @@ public class CoreChatHandler implements ChatHandler {
 		if (user.getSpeakChannel() == null) {
 			user.joinChannel(getChannel("Default"));
 		}
+		
 		user.getSpeakChannel().chat(user, message);
 		
 		ChatPacket packet = new ChatPacket();

@@ -118,4 +118,9 @@ public interface ChatChannel {
 	 * @return the chat prefix
 	 */
 	public FancyMessage getPrefix();
+	
+	/**
+	 * @return if the channel should display msgs from other servers
+	 */
+	public boolean isGlobal();
 }

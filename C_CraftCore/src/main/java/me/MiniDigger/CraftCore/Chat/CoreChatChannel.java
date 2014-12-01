@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -39,6 +40,7 @@ public class CoreChatChannel implements ChatChannel {
 	protected String	   hearPerm;
 	protected String	   speakPerm;
 	protected FancyMessage	prefix;
+	protected boolean	   global;
 	
 	@Override
 	public void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
@@ -89,11 +91,20 @@ public class CoreChatChannel implements ChatChannel {
 			color = this.color;
 		}
 		
+		String server = "";
+		if (message.contains("|") && message.split(Pattern.quote("|")).length >= 2) {
+			if (Bukkit.getPlayer(chatUser.getUUID()) == null || chatUser.hasPermission("chat.spoof")) {
+				server = message.split(Pattern.quote("|"))[0];
+				message = message.replace(server + "|", "");
+				server = "<" + server + ">";
+			}
+		}
+		
 		if (chatUser.hasPermission("chat.color")) {
 			message = Core.getCore().getChatColorUtil().replaceAndToMc(message);
 		}
 		
-		broadcast(getPrefix().then(chatUser.getPrefix() + chatUser.getDisplayName())
+		broadcast(getPrefix().then(chatUser.getPrefix() + server + chatUser.getDisplayName())
 		        .tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + chatUser.getDisplayName()).then("> " + message)
 		        .color(color));
 		
@@ -148,4 +159,8 @@ public class CoreChatChannel implements ChatChannel {
 		return null;
 	}
 	
+	@Override
+	public boolean isGlobal() {
+		return global;
+	}
 }

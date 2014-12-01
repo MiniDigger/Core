@@ -32,6 +32,7 @@ public class GlobalChannel extends CoreChatChannel {
 	
 	public GlobalChannel(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
 		init(name, color, hearPerm, speakPerm, prefix);
+		global = true;
 	}
 	
 	@Override

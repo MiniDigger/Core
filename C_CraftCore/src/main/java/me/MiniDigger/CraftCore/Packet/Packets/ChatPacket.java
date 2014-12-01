@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import org.java_websocket.WebSocket;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Chat.ChatChannel;
 
 import me.MiniDigger.CraftCore.Packet.CorePacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
@@ -59,7 +60,10 @@ public class ChatPacket extends CorePacket {
 			return;
 		}
 		try {
-			Core.getCore().getChatHandler().getChannel(channel).chat(Core.getCore().getUserHandler().get(user), msg);
+			ChatChannel c = Core.getCore().getChatHandler().getChannel(channel);
+			if (c.isGlobal()) {
+				c.chat(Core.getCore().getUserHandler().get(user), server + "|" + msg);
+			}
 		} catch (Exception ex) {
 			System.out.println("No channel called " + channel + " at this server!");
 		}
