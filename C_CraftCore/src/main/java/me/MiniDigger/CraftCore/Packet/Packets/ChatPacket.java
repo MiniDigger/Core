@@ -25,9 +25,10 @@ import java.util.regex.Pattern;
 
 import org.java_websocket.WebSocket;
 
-import org.bukkit.Bukkit;
+import me.MiniDigger.Core.Core;
 
 import me.MiniDigger.CraftCore.Packet.CorePacket;
+import me.MiniDigger.CraftCore.Server.CoreServer;
 
 public class ChatPacket extends CorePacket {
 	
@@ -35,9 +36,11 @@ public class ChatPacket extends CorePacket {
 	private String	server;
 	private String	msg;
 	
+	private String	channel;
+	
 	@Override
 	public String toString() {
-		return getName() + "|" + user.toString() + "|" + server + "|" + msg;
+		return getName() + "|" + user.toString() + "|" + server + "|" + channel + "|" + msg;
 	}
 	
 	@Override
@@ -46,23 +49,25 @@ public class ChatPacket extends CorePacket {
 		
 		user = UUID.fromString(ss[1]);
 		server = ss[2];
-		msg = ss[3];
+		channel = ss[3];
+		msg = ss[4];
 	}
 	
 	@Override
 	public void handle() {
-		System.out.println("Beim Client Packet angekommen!");
-		System.out.println("User " + user.toString() + "(" + Bukkit.getOfflinePlayer(user).getName() + ")");
-		System.out.println("Server " + server);
-		System.out.println("Msg " + msg);
+		if (CoreServer.getForThis(true).getName().equalsIgnoreCase(server)) {
+			return;
+		}
+		try {
+			Core.getCore().getChatHandler().getChannel(channel).chat(Core.getCore().getUserHandler().get(user), msg);
+		} catch (Exception ex) {
+			System.out.println("No channel called " + channel + " at this server!");
+		}
 	}
 	
 	@Override
 	public void handle(final WebSocket con) {
-		System.out.println("Beim Server Packet angekommen! (sender " + con.getRemoteSocketAddress().toString() + ")");
-		System.out.println("User " + user.toString() + "(" + Bukkit.getOfflinePlayer(user).getName() + ")");
-		System.out.println("Server " + server);
-		System.out.println("Msg " + msg);
+		Core.getCore().getPacketHandler().sendBroadcast(this);
 	}
 	
 	@Override
@@ -92,5 +97,13 @@ public class ChatPacket extends CorePacket {
 	
 	public void setMessage(final String msg) {
 		this.msg = msg;
+	}
+	
+	public String getChannel() {
+		return channel;
+	}
+	
+	public void setChannel(String channel) {
+		this.channel = channel;
 	}
 }

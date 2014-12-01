@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Chat.ChatHandler;
 import me.MiniDigger.Core.User.User;
@@ -34,6 +35,8 @@ import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
 import me.MiniDigger.CraftCore.Chat.Channels.GlobalChannel;
 import me.MiniDigger.CraftCore.Chat.Channels.NormalChannel;
 import me.MiniDigger.CraftCore.Chat.Channels.PremiumChannel;
+import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
+import me.MiniDigger.CraftCore.Server.CoreServer;
 
 import mkremins.fanciful.FancyMessage;
 import mkremins.fanciful.TextualComponent;
@@ -73,7 +76,6 @@ public class CoreChatHandler implements ChatHandler {
 		        TextualComponent.rawText(ChatColor.COLOR_CHAR + "" + ChatColor.RESET.getChar()))));
 		registerChannel(new PremiumChannel("Premium", ChatColor.GOLD, "chat.hear.premium", "chat.speak.premium", new FancyMessage("[").color(ChatColor.GOLD)
 		        .then("Premium").color(ChatColor.YELLOW).then("]").color(ChatColor.GOLD)));
-		
 	}
 	
 	@Override
@@ -82,6 +84,14 @@ public class CoreChatHandler implements ChatHandler {
 			user.joinChannel(getChannel("Default"));
 		}
 		user.getSpeakChannel().chat(user, message);
+		
+		ChatPacket packet = new ChatPacket();
+		packet.setUser(user.getUUID());
+		packet.setServer(CoreServer.getForThis(true).getName());
+		packet.setMessage(message);
+		packet.setChannel(user.getSpeakChannel().getName());
+		
+		Core.getCore().getPacketHandler().sendPacket(packet);
 	}
 	
 	@Override
