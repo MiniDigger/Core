@@ -41,6 +41,7 @@ import me.MiniDigger.Core.NPC.NPCHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
+import me.MiniDigger.Core.REST.DashingHandler;
 import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Regen.RegenHandler;
 import me.MiniDigger.Core.SQL.SQLHandler;
@@ -91,6 +92,7 @@ import me.MiniDigger.CraftCore.NPC.CoreNPCHandler;
 import me.MiniDigger.CraftCore.Nametag.CoreNametagHandler;
 import me.MiniDigger.CraftCore.Packet.CorePacketHandler;
 import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
+import me.MiniDigger.CraftCore.REST.CoreDashingHandler;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Regen.CoreRegenHandler;
 import me.MiniDigger.CraftCore.SQL.CoreSQLHandler;
@@ -159,6 +161,7 @@ public class CoreCore extends Core {
 	private VillagerHandler	   villagerHandler;
 	private KitHandler	       kitHandler;
 	private ScoreboardHandler	scoreboardHandler;
+	private DashingHandler	   dashingHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -449,6 +452,14 @@ public class CoreCore extends Core {
 			scoreboardHandler = new CoreScoreboardHandler();
 		}
 		return scoreboardHandler;
+	}
+	
+	@Override
+	public DashingHandler getDashingHandler() {
+		if (dashingHandler == null) {
+			dashingHandler = new CoreDashingHandler();
+		}
+		return dashingHandler;
 	}
 	
 	/***********/

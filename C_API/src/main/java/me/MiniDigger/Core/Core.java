@@ -39,6 +39,7 @@ import me.MiniDigger.Core.NPC.NPCHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
+import me.MiniDigger.Core.REST.DashingHandler;
 import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Regen.RegenHandler;
 import me.MiniDigger.Core.SQL.SQLHandler;
@@ -170,6 +171,8 @@ public abstract class Core {
 	
 	public abstract ScoreboardHandler getScoreboardHandler();
 	
+	public abstract DashingHandler getDashingHandler();
+	
 	/*
 	 * #################### UTILS ####################
 	 */
@@ -205,5 +208,4 @@ public abstract class Core {
 	public abstract EnumUtil getEnumUtil();
 	
 	public abstract ItemUtil getItemUtil();
-	
 }

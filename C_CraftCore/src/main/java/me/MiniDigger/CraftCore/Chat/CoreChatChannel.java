@@ -100,6 +100,8 @@ public class CoreChatChannel implements ChatChannel {
 			}
 		}
 		
+		Core.getCore().getDashingHandler().say(message);
+		
 		if (chatUser.hasPermission("chat.color")) {
 			message = Core.getCore().getChatColorUtil().replaceAndToMc(message);
 		}
