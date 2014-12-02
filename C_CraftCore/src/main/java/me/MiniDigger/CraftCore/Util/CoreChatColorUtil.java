@@ -27,22 +27,24 @@ import me.MiniDigger.Core.Util.ChatColorUtil;
 public class CoreChatColorUtil implements ChatColorUtil {
 	
 	final String	possibleColours	= "0123456789abcdefklmnor";
+	final char	 and	            = Character.valueOf((char) 38);
+	final char	 mc	                = Character.valueOf((char) 167);
 	
 	@Override
 	public String[] replaceMcToAnd(final String[] lines) {
-		return replaceColorChars(lines, "\u00A7", "&");
+		return replaceColorChars(lines, mc, and);
 	}
 	
 	@Override
 	public String[] replaceAndToMc(final String[] lines) {
-		return replaceColorChars(lines, "&", "\u00A7");
+		return replaceColorChars(lines, and, mc);
 	}
 	
 	@Override
 	public ChatColor toChatColor(final String s) {
 		for (int i = 0; i < s.length(); i++) {
 			final char c = s.charAt(i);
-			if (c != '&' && c != '�') {
+			if (c != and && c != mc) {
 				continue;
 			}
 			
@@ -63,8 +65,8 @@ public class CoreChatColorUtil implements ChatColorUtil {
 	}
 	
 	@Override
-	public String[] replaceColorChars(final String[] lines, final String old, final String neu) {
-		final String colourChar = old;
+	public String[] replaceColorChars(final String[] lines, final char mc, final char and) {
+		final String colourChar = mc + "";
 		
 		for (int forInt = 0; forInt < 4; forInt++) {
 			if (lines[forInt].isEmpty()) {
@@ -76,7 +78,7 @@ public class CoreChatColorUtil implements ChatColorUtil {
 				if (splitLine[i].length() == 0 || (possibleColours.indexOf(splitLine[i].toLowerCase().charAt(0))) == -1 || splitLine[i].length() <= 1) {
 					newLine += colourChar;
 				} else {
-					newLine += neu;
+					newLine += and;
 				}
 				newLine += splitLine[i];
 			}
@@ -87,18 +89,18 @@ public class CoreChatColorUtil implements ChatColorUtil {
 	
 	@Override
 	public String replaceMcToAnd(final String msg) {
-		return replaceColorChars(msg, "\u00A7", "&");
+		return replaceColorChars(msg, mc, and);
 	}
 	
 	@Override
 	public String replaceAndToMc(final String msg) {
-		return replaceColorChars(msg, "&", "\u00A7");
+		return replaceColorChars(msg, and, mc);
 	}
 	
 	@Override
-	public String replaceColorChars(final String msg, final String old, final String neu) {
-		final String colourChar = old;
-		final String[] splitLine = msg.split(colourChar);
+	public String replaceColorChars(final String msg, final char old, final char neu) {
+		final char colourChar = old;
+		final String[] splitLine = msg.split(colourChar + "");
 		String newLine = splitLine[0];
 		for (int i = 1; i < splitLine.length; i++) {
 			if (splitLine[i].length() == 0 || (possibleColours.indexOf(splitLine[i].toLowerCase().charAt(0))) == -1 || splitLine[i].length() <= 1) {

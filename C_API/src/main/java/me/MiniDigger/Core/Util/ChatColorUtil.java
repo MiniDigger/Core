@@ -65,7 +65,7 @@ public interface ChatColorUtil {
 	 *            The new char
 	 * @return The lines with replaced chars
 	 */
-	public String[] replaceColorChars(final String[] lines, final String old, final String neu);
+	public String[] replaceColorChars(final String[] lines, final char old, final char neu);
 	
 	/**
 	 * 
@@ -98,5 +98,5 @@ public interface ChatColorUtil {
 	 * @return The String with replaced chars
 	 */
 	
-	public String replaceColorChars(final String msg, final String old, final String neu);
+	public String replaceColorChars(final String msg, final char old, final char neu);
 }
