@@ -73,7 +73,7 @@ import me.MiniDigger.Core.World.WorldHandler;
 public abstract class Core {
 	
 	private static Core	     core;
-	private static final int	max	= 10;
+	private static final int	max	= 100;
 	private static int	     i	    = max + 1;
 	
 	public Core() {
