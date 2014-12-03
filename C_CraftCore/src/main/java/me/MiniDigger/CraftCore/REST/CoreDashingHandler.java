@@ -118,7 +118,6 @@ public class CoreDashingHandler implements DashingHandler {
 			obj.add(o);
 		}
 		
-		System.out.println("send");
 		final JSONObject o = new JSONObject();
 		o.put("items", obj);
 		
@@ -133,11 +132,8 @@ public class CoreDashingHandler implements DashingHandler {
 			final HttpPost post = new HttpPost("http://minidigger.me:3030/widgets/" + widget);
 			content.put("auth_token", "YOUR_AUTH_TOKEN");
 			String j = content.toJSONString();
-			System.out.println("string: " + content.toString());
-			System.out.println("json: " + j);
 			j = j.replaceAll(Pattern.quote("\\"), "");
 			j = new String(j.getBytes(), "UTF-8");
-			System.out.println("new j: " + j);
 			
 			final StringEntity se = new StringEntity(j);
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
