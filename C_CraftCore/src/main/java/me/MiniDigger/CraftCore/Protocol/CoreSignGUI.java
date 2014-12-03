@@ -163,7 +163,7 @@ public class CoreSignGUI implements SignGUI, Listener {
 						// lines[i] = "{\"text\":\"" + lines[i] +
 						// "\",\"color\":\"" + color + "\"}";
 						lines[i] = ChatColor.translateAlternateColorCodes('&', lines[i]);
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						System.out.println("error while reading default text?");
 						ex.printStackTrace();
 						lines[i] = "fail";

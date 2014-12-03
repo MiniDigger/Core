@@ -59,7 +59,7 @@ public class CommandPacket extends CorePacket {
 		if (toServer.equalsIgnoreCase("all")) {
 			Core.getCore().getPacketHandler().sendBroadcast(this);
 		} else {
-			Session s = Core.getCore().getSocketHandler().getSession(toServer);
+			final Session s = Core.getCore().getSocketHandler().getSession(toServer);
 			if (s == null) {
 				System.out.println("no client called " + toServer);
 				return;

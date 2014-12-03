@@ -22,8 +22,6 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.json.simple.JSONObject;
@@ -220,7 +218,7 @@ public class DevCommands {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		p.setResourcePack(args.getArgs()[1]);
 	}
-
+	
 	@Command(name = "dev.hideTag", description = "DEV!", usage = "", permission = "dev")
 	public void hideTag(final CommandArgs args) {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);

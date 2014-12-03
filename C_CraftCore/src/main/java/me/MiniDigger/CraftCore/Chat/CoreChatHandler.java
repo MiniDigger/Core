@@ -86,7 +86,7 @@ public class CoreChatHandler implements ChatHandler {
 		
 		user.getSpeakChannel().chat(user, message);
 		
-		ChatPacket packet = new ChatPacket();
+		final ChatPacket packet = new ChatPacket();
 		packet.setUser(user.getUUID());
 		packet.setServer(CoreServer.getForThis(true).getName());
 		packet.setMessage(message);

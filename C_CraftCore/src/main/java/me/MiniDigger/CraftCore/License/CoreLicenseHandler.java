@@ -24,6 +24,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import me.MiniDigger.Core.Licence.LicenseHandler;
+
 import me.MiniDigger.CraftCore.CoreMain;
 import me.MiniDigger.CraftCore.Util.CoreShutdownUtil;
 
@@ -52,7 +53,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 	
 	@Override
 	public void performCheckAsync() {
-		if(CoreShutdownUtil.isShuttingDown()) {
+		if (CoreShutdownUtil.isShuttingDown()) {
 			return;
 		}
 		

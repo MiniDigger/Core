@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ */
 package me.MiniDigger.CraftCore.REST;
 
 import java.io.BufferedReader;
@@ -10,8 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Pattern;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -23,10 +43,6 @@ import org.apache.http.protocol.HTTP;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import org.bukkit.craftbukkit.libs.com.google.gson.JsonObject;
-
-import net.minecraft.server.v1_8_R1.JsonList;
-
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -34,7 +50,7 @@ import me.MiniDigger.Core.REST.DashingHandler;
 
 public class CoreDashingHandler implements DashingHandler {
 	
-	private Map<String, List<Date>>	words	= new HashMap<String, List<Date>>();
+	private final Map<String, List<Date>>	words	= new HashMap<String, List<Date>>();
 	
 	@Override
 	public void init() {
@@ -48,14 +64,14 @@ public class CoreDashingHandler implements DashingHandler {
 	}
 	
 	@Override
-	public void say(String msg) {
-		String[] split = msg.split(" ");
+	public void say(final String msg) {
+		final String[] split = msg.split(" ");
 		for (String word : split) {
 			word = word.toLowerCase();
 			if (words.containsKey(word)) {
-				List<Date> dates = new ArrayList<Date>();
-				Date now = new Date();
-				for (Date d : words.remove(word)) {
+				final List<Date> dates = new ArrayList<Date>();
+				final Date now = new Date();
+				for (final Date d : words.remove(word)) {
 					if ((now.getTime() - d.getTime()) < (60 * 60 * 1000)) {
 						dates.add(d);
 					}
@@ -63,7 +79,7 @@ public class CoreDashingHandler implements DashingHandler {
 				dates.add(now);
 				words.put(word, dates);
 			} else {
-				List<Date> dates = new ArrayList<Date>();
+				final List<Date> dates = new ArrayList<Date>();
 				dates.add(new Date());
 				words.put(word, dates);
 			}
@@ -73,16 +89,17 @@ public class CoreDashingHandler implements DashingHandler {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void mostWords() {
-		Map<String, Integer> count = new HashMap<String, Integer>();
-		for (String s : words.keySet()) {
+		final Map<String, Integer> count = new HashMap<String, Integer>();
+		for (final String s : words.keySet()) {
 			count.put(s, words.get(s).size());
 		}
 		
-		Set<Entry<String, Integer>> set = count.entrySet();
-		List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
+		final Set<Entry<String, Integer>> set = count.entrySet();
+		final List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
 		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
 			
-			public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+			@Override
+			public int compare(final Map.Entry<String, Integer> o1, final Map.Entry<String, Integer> o2) {
 				return (o2.getValue()).compareTo(o1.getValue());
 			}
 		});
@@ -92,38 +109,40 @@ public class CoreDashingHandler implements DashingHandler {
 			max = list.size();
 		}
 		
-		JSONArray obj = new JSONArray();
+		final JSONArray obj = new JSONArray();
 		for (int i = 0; i < max; i++) {
-			Entry<String, Integer> entry = list.get(i);
-			JSONObject o = new JSONObject();
+			final Entry<String, Integer> entry = list.get(i);
+			final JSONObject o = new JSONObject();
 			o.put("label", entry.getKey());
 			o.put("value", entry.getValue());
 			obj.add(o);
 		}
 		
 		System.out.println("send");
-		JSONObject o = new JSONObject();
+		final JSONObject o = new JSONObject();
 		o.put("items", obj);
 		
 		go("mostwords", o);
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
-	public void go(String widget, JSONObject content) {
-		HttpClient client = HttpClients.createDefault();
+	public void go(final String widget, final JSONObject content) {
+		final HttpClient client = HttpClients.createDefault();
 		try {
-			HttpPost post = new HttpPost("http://minidigger.me:3030/widgets/" + widget);
+			final HttpPost post = new HttpPost("http://minidigger.me:3030/widgets/" + widget);
 			content.put("auth_token", "YOUR_AUTH_TOKEN");
 			String j = content.toJSONString();
 			System.out.println("string: " + content.toString());
 			System.out.println("json: " + j);
 			j = j.replaceAll(Pattern.quote("\\"), "");
+			j = new String(j.getBytes(), "UTF-8");
 			System.out.println("new j: " + j);
-		
-			StringEntity se = new StringEntity(j);
+			
+			final StringEntity se = new StringEntity(j);
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 			post.setEntity(se);
-			HttpResponse r = client.execute(post);
+			final HttpResponse r = client.execute(post);
 			if (r == null) {
 				System.out.println("r == null");
 				return;
@@ -136,14 +155,14 @@ public class CoreDashingHandler implements DashingHandler {
 				System.out.println("content == null");
 				return;
 			}
-			BufferedReader reader = new BufferedReader(new InputStreamReader(r.getEntity().getContent()));
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(r.getEntity().getContent()));
 			String buffer;
 			String complete = "";
 			while ((buffer = reader.readLine()) != null) {
 				complete += " " + buffer;
 			}
 			System.out.println("complete respons: " + complete);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}

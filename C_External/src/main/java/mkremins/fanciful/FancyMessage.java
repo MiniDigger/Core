@@ -910,7 +910,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	public static FancyMessage deserialize(final String json) {
 		final JsonObject serialized = _stringParser.parse(json).getAsJsonObject();
 		final JsonArray extra = serialized.getAsJsonArray("extra"); // Get the
-																	// extra
+		                                                            // extra
 		// component
 		final FancyMessage returnVal = new FancyMessage();
 		returnVal.messageParts.clear();

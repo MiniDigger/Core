@@ -60,11 +60,11 @@ public class ChatPacket extends CorePacket {
 			return;
 		}
 		try {
-			ChatChannel c = Core.getCore().getChatHandler().getChannel(channel);
+			final ChatChannel c = Core.getCore().getChatHandler().getChannel(channel);
 			if (c.isGlobal()) {
 				c.chat(Core.getCore().getUserHandler().get(user), server + "|" + msg);
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("No channel called " + channel + " at this server!");
 		}
 	}
@@ -107,7 +107,7 @@ public class ChatPacket extends CorePacket {
 		return channel;
 	}
 	
-	public void setChannel(String channel) {
+	public void setChannel(final String channel) {
 		this.channel = channel;
 	}
 }
