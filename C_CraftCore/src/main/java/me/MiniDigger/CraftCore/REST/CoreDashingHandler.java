@@ -47,10 +47,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.REST.DashingHandler;
+import me.MiniDigger.Core.Server.Server;
 
 public class CoreDashingHandler implements DashingHandler {
 	
 	private final Map<String, List<Date>>	words	= new HashMap<String, List<Date>>();
+	private final List<Integer>	          players	= new ArrayList<Integer>();
+	private int	                          playerX	= 1;
 	
 	@Override
 	public void init() {
@@ -61,6 +64,14 @@ public class CoreDashingHandler implements DashingHandler {
 				mostWords();
 			}
 		}.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 60 * 1 * 20);
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				totalPlayers();
+			}
+		}.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 10 * 1 * 20);
 	}
 	
 	@Override
@@ -122,6 +133,39 @@ public class CoreDashingHandler implements DashingHandler {
 		o.put("items", obj);
 		
 		go("mostwords", o);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void totalPlayers() {
+		int users = 0;
+		for (Server server : Core.getCore().getServerHandler().getServers()) {
+			users += server.getNumPlayers();
+		}
+		
+		while (players.size() < 10) {
+			players.add(0);
+		}
+		
+		players.remove(0);
+		players.add(users);
+		
+		int x = playerX;
+		playerX++;
+		
+		JSONArray array = new JSONArray();
+		for (int i : players) {
+			JSONObject obj = new JSONObject();
+			obj.put("x", x);
+			obj.put("y", i);
+			array.add(obj);
+			x++;
+		}
+		
+		final JSONObject o = new JSONObject();
+		o.put("points", array);
+		
+		go("player", o);
 	}
 	
 	@Override

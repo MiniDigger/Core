@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.Core.Server;
 
+import java.util.List;
+
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 public interface ServerHandler {
@@ -59,4 +61,9 @@ public interface ServerHandler {
 	 *            The server data to save
 	 */
 	public void gotServerInfo(final Server server);
+
+	/**
+	 *  @return hopefully all servers connected to this socket network
+	 */
+	public List<Server> getServers();
 }

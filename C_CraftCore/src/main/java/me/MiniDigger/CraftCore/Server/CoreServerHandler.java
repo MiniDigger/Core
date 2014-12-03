@@ -21,6 +21,7 @@
 package me.MiniDigger.CraftCore.Server;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -58,6 +59,11 @@ public class CoreServerHandler implements ServerHandler {
 	@Override
 	public void stopTask() {
 		task.cancel();
+	}
+	
+	@Override
+	public List<Server> getServers(){
+		return servers;
 	}
 	
 	@Override
@@ -154,7 +160,7 @@ public class CoreServerHandler implements ServerHandler {
 		if (getServerInfo(server.getName()) == null) {
 			servers.add(server);
 		} else {
-			servers.remove(server);
+			servers.remove(getServerInfo(server.getName()));
 			servers.add(server);
 		}
 	}
