@@ -1,6 +1,6 @@
 package me.MiniDigger.Core.REST;
 
-import java.util.Map;
+import org.json.simple.JSONObject;
 
 
 public interface DashingHandler {
@@ -11,7 +11,7 @@ public interface DashingHandler {
 	 * @param widget 
 	 * @param content
 	 */
-	void go(String widget, Map<String, String> content);
+	void go(String widget, JSONObject content);
 
 	/**
 	 * Sends to 10 most speaked words

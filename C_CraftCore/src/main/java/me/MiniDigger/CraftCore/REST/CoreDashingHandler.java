@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 import java.util.Set;
 
 import org.apache.http.HttpResponse;
@@ -19,7 +20,12 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import org.bukkit.craftbukkit.libs.com.google.gson.JsonObject;
+
+import net.minecraft.server.v1_8_R1.JsonList;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -86,31 +92,35 @@ public class CoreDashingHandler implements DashingHandler {
 			max = list.size();
 		}
 		
-		Map<String, String> content = new HashMap<String, String>();
-		JSONObject obj = new JSONObject();
+		JSONArray obj = new JSONArray();
 		for (int i = 0; i < max; i++) {
 			Entry<String, Integer> entry = list.get(i);
-			obj.put(entry.getKey(), entry.getValue() + "");
+			JSONObject o = new JSONObject();
+			o.put("label", entry.getKey());
+			o.put("value", entry.getValue());
+			obj.add(o);
 		}
 		
 		System.out.println("send");
+		JSONObject o = new JSONObject();
+		o.put("items", obj);
 		
-		content.put("items", obj.toJSONString());
-		go("mostwords", content);
+		go("mostwords", o);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void go(String widget, Map<String, String> content) {
+	public void go(String widget, JSONObject content) {
 		HttpClient client = HttpClients.createDefault();
-		JSONObject json = new JSONObject();
 		try {
 			HttpPost post = new HttpPost("http://minidigger.me:3030/widgets/" + widget);
-			json.put("auth_token", "YOUR_AUTH_TOKEN");
-			for (String s : content.keySet()) {
-				json.put(s, content.get(s));
-			}
-			System.out.println("json: " + json.toJSONString());
-			StringEntity se = new StringEntity(json.toJSONString());
+			content.put("auth_token", "YOUR_AUTH_TOKEN");
+			String j = content.toJSONString();
+			System.out.println("string: " + content.toString());
+			System.out.println("json: " + j);
+			j = j.replaceAll(Pattern.quote("\\"), "");
+			System.out.println("new j: " + j);
+		
+			StringEntity se = new StringEntity(j);
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 			post.setEntity(se);
 			HttpResponse r = client.execute(post);

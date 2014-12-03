@@ -220,14 +220,7 @@ public class DevCommands {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		p.setResourcePack(args.getArgs()[1]);
 	}
-	
-	@Command(name = "dev.dash", description = "DEV!", usage = "", permission = "dev")
-	public void dash(CommandArgs args) {
-		Map<String, String> content = new HashMap<String, String>();
-		content.put("text", "TEST");
-		Core.getCore().getDashingHandler().go("news", content);
-	}
-	
+
 	@Command(name = "dev.hideTag", description = "DEV!", usage = "", permission = "dev")
 	public void hideTag(final CommandArgs args) {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
