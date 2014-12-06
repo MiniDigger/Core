@@ -126,9 +126,9 @@ public class CoreFakeDragon implements FakeDragon {
 	public Object getTeleportPacket(final Location loc) {
 		try {
 			final Class<?> packetClass = Core.getCore().getReflectionUtil().getCraftClass("PacketPlayOutEntityTeleport");
-			return packetClass.getConstructor(new Class<?>[] { int.class, int.class, int.class, int.class, byte.class, byte.class, boolean.class, boolean.class })
-			        .newInstance(id, loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360),
-			                (byte) ((int) loc.getPitch() * 256 / 360), false, false);
+			return packetClass.getConstructor(new Class<?>[] { int.class, int.class, int.class, int.class, byte.class, byte.class, boolean.class }).newInstance(id,
+			        loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360),
+			        false);
 		} catch (final Exception e) {
 			e.printStackTrace();
 			return null;
