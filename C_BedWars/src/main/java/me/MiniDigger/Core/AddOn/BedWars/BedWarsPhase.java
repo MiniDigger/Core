@@ -166,7 +166,7 @@ public class BedWarsPhase extends CorePhase {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Potion Trader", true);
@@ -222,7 +222,7 @@ public class BedWarsPhase extends CorePhase {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Block Trader", true);
@@ -269,7 +269,7 @@ public class BedWarsPhase extends CorePhase {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Weapon Trader", true);
@@ -319,7 +319,7 @@ public class BedWarsPhase extends CorePhase {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Bow Trader", true);
@@ -376,7 +376,7 @@ public class BedWarsPhase extends CorePhase {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Armor Trader", true);
@@ -422,7 +422,7 @@ public class BedWarsPhase extends CorePhase {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Villager]")) {
+				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
 					if (i == id) {
 						f.createVillager(loc, trades, Profession.BUTCHER, "Food Trader", true);

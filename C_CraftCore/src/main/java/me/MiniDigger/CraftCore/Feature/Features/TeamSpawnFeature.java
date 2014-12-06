@@ -104,7 +104,7 @@ public class TeamSpawnFeature extends CoreFeature {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
 			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
-				if (s.getLine(0).equalsIgnoreCase("[Team]")) {
+				if (s.getLine(0).equalsIgnoreCase("Team")) {
 					final String name = s.getLine(1);
 					List<Location> spawn = this.spawns.remove(name);
 					if (spawn == null) {
