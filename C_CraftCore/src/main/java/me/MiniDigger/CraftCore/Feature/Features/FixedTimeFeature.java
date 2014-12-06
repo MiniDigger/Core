@@ -93,7 +93,9 @@ public class FixedTimeFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		task.cancel();
+		if (task != null) {
+			task.cancel();
+		}
 	}
 	
 }
