@@ -183,16 +183,7 @@ public class CoreDashingHandler implements DashingHandler {
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 			post.setEntity(se);
 			final HttpResponse r = client.execute(post);
-			if (r == null) {
-				System.out.println("r == null");
-				return;
-			}
-			if (r.getEntity() == null) {
-				System.out.println("entity == null");
-				return;
-			}
-			if (r.getEntity().getContent() == null) {
-				System.out.println("content == null");
+			if (r == null || r.getEntity() == null || r.getEntity().getContent() == null) {
 				return;
 			}
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(r.getEntity().getContent()));
@@ -201,7 +192,7 @@ public class CoreDashingHandler implements DashingHandler {
 			while ((buffer = reader.readLine()) != null) {
 				complete += " " + buffer;
 			}
-			System.out.println("complete respons: " + complete);
+			System.out.println("error in dashing handler: " + complete);
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
