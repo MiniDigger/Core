@@ -27,16 +27,29 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R1.event.CraftEventFactory;
 
+import net.minecraft.server.v1_8_R1.Container;
+import net.minecraft.server.v1_8_R1.ContainerMerchant;
+import net.minecraft.server.v1_8_R1.EntityHuman;
+import net.minecraft.server.v1_8_R1.EntityPlayer;
 import net.minecraft.server.v1_8_R1.EntityVillager;
+import net.minecraft.server.v1_8_R1.IChatBaseComponent;
+import net.minecraft.server.v1_8_R1.IMerchant;
+import net.minecraft.server.v1_8_R1.InventoryMerchant;
 import net.minecraft.server.v1_8_R1.MerchantRecipe;
 import net.minecraft.server.v1_8_R1.MerchantRecipeList;
+import net.minecraft.server.v1_8_R1.PacketDataSerializer;
+import net.minecraft.server.v1_8_R1.PacketPlayOutCustomPayload;
+import net.minecraft.server.v1_8_R1.PacketPlayOutOpenWindow;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
 import me.MiniDigger.Core.Villager.VillagerHandler;
 import me.MiniDigger.Core.Villager.VillagerTrade;
+
+import io.netty.buffer.Unpooled;
 
 public class CoreVillagerHandler implements VillagerHandler {
 	
@@ -84,7 +97,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 				villager.setCustomName(name);
 			}
 			
-			final Field recipeListField = EntityVillager.class.getDeclaredField("bu");
+			final Field recipeListField = EntityVillager.class.getDeclaredField("bp");
 			recipeListField.setAccessible(true);
 			MerchantRecipeList recipeList = (MerchantRecipeList) recipeListField.get(villager);
 			if (recipeList == null) {
@@ -96,18 +109,35 @@ public class CoreVillagerHandler implements VillagerHandler {
 				recipeList.add(createMerchantRecipe(recipe.getItem1(), recipe.getItem2(), recipe.getRewardItem()));
 			}
 			
-			// this will trigger the "create child" code of minecraft when the
-			// player is holding a spawn egg in his hands,
-			// but bypasses craftbukkits interact events and therefore removes
-			// the spawn egg from the players hands
-			// result: we have to prevent openTradeWindow if the shopkeeper
-			// entity is being clicking with a spawn egg in hands
-			villager.a(((CraftPlayer) player).getHandle());
+			openTrade(((CraftPlayer) player).getHandle(),villager);
 			
 			return true;
 		} catch (final Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	private void openTrade(EntityPlayer h, IMerchant m) {
+		final Container container = CraftEventFactory.callInventoryOpenEvent(h, new ContainerMerchant(h.inventory, m, h.world));
+		if (container == null) {
+			System.out.println("määh");
+			return;
+		}
+		int i = h.nextContainerCounter();
+		h.activeContainer = container;
+		h.activeContainer.windowId = i;
+		h.activeContainer.addSlotListener(h);
+		final InventoryMerchant inventorymerchant = ((ContainerMerchant) h.activeContainer).e();
+		final IChatBaseComponent ichatbasecomponent = m.getScoreboardDisplayName();
+		h.playerConnection.sendPacket(new PacketPlayOutOpenWindow(i, "minecraft:villager", ichatbasecomponent, inventorymerchant.getSize()));
+		final MerchantRecipeList merchantrecipelist = m.getOffers(h);
+		if (merchantrecipelist != null) {
+			final PacketDataSerializer packetdataserializer = new PacketDataSerializer(Unpooled.buffer());
+			packetdataserializer.writeInt(i);
+			merchantrecipelist.a(packetdataserializer);
+			h.playerConnection.sendPacket(new PacketPlayOutCustomPayload("MC|TrList", packetdataserializer));
+			System.out.println("jey");
 		}
 	}
 	

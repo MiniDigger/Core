@@ -33,6 +33,7 @@ public class CoreVillagerListener implements VillagerListener {
 	@EventHandler
 	public void onPlayerInteract(final PlayerInteractEntityEvent e) {
 		if (e.getRightClicked().getType() == EntityType.VILLAGER) {
+			System.out.println("open");
 			e.setCancelled(Core.getCore().getVillagerHandler().open((Villager) e.getRightClicked(), e.getPlayer()));
 		}
 	}
