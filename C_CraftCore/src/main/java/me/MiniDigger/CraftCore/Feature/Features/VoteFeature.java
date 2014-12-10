@@ -25,17 +25,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class VoteFeature extends CoreFeature {
 	
@@ -54,6 +60,8 @@ public class VoteFeature extends CoreFeature {
 	private int	            mapCount;
 	
 	private ArrayList<UUID>	voted;
+	
+	private Scoreboard	    board;
 	
 	@Override
 	public FeatureType getType() {
@@ -92,13 +100,27 @@ public class VoteFeature extends CoreFeature {
 			mapThree = maps.get(2);
 		} catch (final Exception ex) {}
 		
+		board = new CoreScoreboard(ChatColor.GOLD + "Votes");
+		
 		if (mapOne == null) {
 			mapCount = 0;
 		} else if (mapTwo == null) {
+			board.addLine(new CoreScoreboardLine(5, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(4, "O Votes" + ChatColor.AQUA, DisplaySlot.SIDEBAR));
 			mapCount = 1;
 		} else if (mapThree == null) {
+			board.addLine(new CoreScoreboardLine(3, Core.getCore().getMapHandler().getName(mapTwo), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, "O Votes" + ChatColor.BLACK, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(5, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(4, "O Votes" + ChatColor.AQUA, DisplaySlot.SIDEBAR));
 			mapCount = 2;
 		} else {
+			board.addLine(new CoreScoreboardLine(1, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(0, "O Votes", DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(3, Core.getCore().getMapHandler().getName(mapTwo), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, "O Votes" + ChatColor.BLACK, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(5, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(4, "O Votes" + ChatColor.AQUA, DisplaySlot.SIDEBAR));
 			mapCount = 3;
 		}
 	}
@@ -108,6 +130,7 @@ public class VoteFeature extends CoreFeature {
 		mapOne = null;
 		mapTwo = null;
 		mapThree = null;
+		Core.getCore().getScoreboardHandler().clearAll();
 	}
 	
 	public String getWinner() {
@@ -134,16 +157,32 @@ public class VoteFeature extends CoreFeature {
 		switch (id) {
 		case 3:
 			votesThree++;
+			board.getLine(0).setContent(votesThree + " Vote" + (votesThree != 1 ? "s" : ""));
 			break;
 		case 2:
 			votesTwo++;
+			board.getLine(2).setContent(votesTwo + " Vote" + (votesTwo != 1 ? "s" : "") + ChatColor.BLACK);
 			break;
 		case 1:
 			votesOne++;
+			board.getLine(4).setContent(votesOne + " Vote" + (votesOne != 1 ? "s" : "") + ChatColor.AQUA);
 			break;
 		default:
 			return false;
 		}
+		
+		BukkitRunnable r = new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				
+				for (UUID uuid : getPhase().getGame().getPlayers()) {
+					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+				}
+			}
+		};
+		
+		r.runTask(Core.getCore().getInstance());
 		
 		return true;
 	}
@@ -153,6 +192,8 @@ public class VoteFeature extends CoreFeature {
 			user.sendMessage(Prefix.VOTE.getPrefix().then("Keine Map gefunden! Breche ab...").color(ChatColor.RED));
 			return;
 		}
+		
+		Core.getCore().getScoreboardHandler().addToPlayer(board, user.getPlayer());
 		
 		user.sendMessage(Prefix.VOTE.getPrefix().then("========").color(ChatColor.GOLD).then("Voting").color(ChatColor.YELLOW).then("========").color(ChatColor.GOLD));
 		user.sendMessage(Prefix.VOTE.getPrefix().then("Klicke auf die Map für die du abstimmen willst!").color(ChatColor.YELLOW));

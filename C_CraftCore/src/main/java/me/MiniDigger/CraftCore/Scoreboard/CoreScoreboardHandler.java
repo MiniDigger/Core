@@ -25,6 +25,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Scoreboard.ScoreboardHandler;
 
@@ -47,5 +48,15 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 			boards.remove(p.getUniqueId());
 		}
 		boards.put(p.getUniqueId(), b);
+	}
+	
+	@Override
+	public void clearAll() {
+		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (String s : p.getPlayer().getScoreboard().getEntries()) {
+				p.getPlayer().getScoreboard().resetScores(s);
+			}
+			boards.clear();
+		}
 	}
 }

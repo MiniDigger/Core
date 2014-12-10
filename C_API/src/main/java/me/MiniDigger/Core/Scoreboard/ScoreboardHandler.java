@@ -43,4 +43,9 @@ public interface ScoreboardHandler {
 	 */
 	void addToPlayer(final Scoreboard b, final Player p);
 	
+	/**
+	 * Clears the sb of all players
+	 */
+	void clearAll();
+	
 }
