@@ -51,7 +51,8 @@ public enum FeatureType {
 	TEAM_SPAWN,
 	BUILD,
 	CRANK,
-	LIVES;
+	LIVES,
+	SPEC;
 	
 	/**
 	 * @return A human readable name for the feature

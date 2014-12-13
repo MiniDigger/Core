@@ -168,4 +168,24 @@ public interface Game {
 	 *            A list with all winners
 	 */
 	public void end(final User... winner);
+	
+	/**
+	 * adds a player to he list of specs
+	 * 
+	 * @param id
+	 */
+	public void addSpec(UUID id);
+	
+	/**
+	 * removes the player from the list of specs
+	 * 
+	 * @param id
+	 */
+	public void remSpec(UUID id);
+	
+	/**
+	 * 
+	 * @return a list with all spectators for the current game
+	 */
+	public List<UUID> getSpecs();
 }

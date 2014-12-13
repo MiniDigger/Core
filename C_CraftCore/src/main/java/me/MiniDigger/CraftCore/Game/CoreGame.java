@@ -48,6 +48,7 @@ public class CoreGame implements Game {
 	
 	private final UUID	                  id	     = UUID.randomUUID();
 	private final List<UUID>	          users	     = new ArrayList<>();
+	private final List<UUID>	          specs	     = new ArrayList<UUID>();
 	private final HashMap<String, String>	gameData	= new HashMap<>();
 	private Phase	                      phase;
 	private GameType	                  type;
@@ -96,6 +97,9 @@ public class CoreGame implements Game {
 		for (final UUID id : users) {
 			Core.getCore().getUserHandler().get(id).sendMessage(msg);
 		}
+		for (final UUID id : specs) {
+			Core.getCore().getUserHandler().get(id).sendMessage(msg);
+		}
 	}
 	
 	@Override
@@ -103,11 +107,17 @@ public class CoreGame implements Game {
 		for (final UUID id : users) {
 			Bukkit.getPlayer(id).playSound(Bukkit.getPlayer(id).getLocation(), sound, volume, pitch);
 		}
+		for (final UUID id : specs) {
+			Bukkit.getPlayer(id).playSound(Bukkit.getPlayer(id).getLocation(), sound, volume, pitch);
+		}
 	}
 	
 	@Override
 	public void broadCastSoundAtLocation(final Sound sound, final float volume, final float pitch, final Location loc) {
 		for (final UUID id : users) {
+			Bukkit.getPlayer(id).playSound(loc, sound, volume, pitch);
+		}
+		for (final UUID id : specs) {
 			Bukkit.getPlayer(id).playSound(loc, sound, volume, pitch);
 		}
 	}
@@ -192,6 +202,23 @@ public class CoreGame implements Game {
 		} catch (final Throwable e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void addSpec(UUID id) {
+		if (!specs.contains(id)) {
+			specs.add(id);
+		}
+	}
+	
+	@Override
+	public void remSpec(UUID id) {
+		specs.remove(id);
+	}
+	
+	@Override
+	public List<UUID> getSpecs() {
+		return specs;
 	}
 	
 }
