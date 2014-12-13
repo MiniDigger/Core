@@ -171,12 +171,12 @@ public class VoteFeature extends CoreFeature {
 			return false;
 		}
 		
-		BukkitRunnable r = new BukkitRunnable() {
+		final BukkitRunnable r = new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				
-				for (UUID uuid : getPhase().getGame().getPlayers()) {
+				for (final UUID uuid : getPhase().getGame().getPlayers()) {
 					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
 				}
 			}

@@ -52,8 +52,8 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	
 	@Override
 	public void clearAll() {
-		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			for (String s : p.getPlayer().getScoreboard().getEntries()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final String s : p.getPlayer().getScoreboard().getEntries()) {
 				p.getPlayer().getScoreboard().resetScores(s);
 			}
 			boards.clear();

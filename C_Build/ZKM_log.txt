@@ -1,0 +1,252 @@
+[2014.12.13 18:02:01] Zelix KlassMaster 5.5.8 - License #14948
+                      Single - Small Developer 
+                      (company of less than 3 people)
+                      Whitney Levens
+                      6206 Broadwater Dr Kernersville, NC USA
+                      Copyright 1997-2013 Zelix Pty Ltd (ABN 47 078 740 093)
+                      All rights reserved
+[2014.12.13 18:02:01] Preprocessing ZKM Script file "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\src\main\resources\zkm.txt"
+[2014.12.13 18:02:01] Parsing ZKM Script file "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\src\main\resources\zkm.txt"
+ERROR: Invalid classpath in "classpath" statement at line 5 : "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\ZKM.jar" is not a valid path.
+[2014.12.13 18:02:01] Setting classpath to "C:\Users\Martin\.m2\repository\.cache;C:\Users\Martin\.m2\repository\.meta;C:\Users\Martin\.m2\repository\aopalliance;C:\Users\Martin\.m2\repository\asm;C:\Users\Martin\.m2\repository\backport-util-concurrent;C:\Users\Martin\.m2\repository\cglib;C:\Users\Martin\.m2\repository\classworlds;C:\Users\Martin\.m2\repository\com;C:\Users\Martin\.m2\repository\commons-beanutils;C:\Users\Martin\.m2\repository\commons-cli;C:\Users\Martin\.m2\repository\commons-codec;C:\Users\Martin\.m2\repository\commons-collections;C:\Users\Martin\.m2\repository\commons-dbcp;C:\Users\Martin\.m2\repository\commons-digester;C:\Users\Martin\.m2\repository\commons-httpclient;C:\Users\Martin\.m2\repository\commons-io;C:\Users\Martin\.m2\repository\commons-lang;C:\Users\Martin\.m2\repository\commons-logging;C:\Users\Martin\.m2\repository\commons-net;C:\Users\Martin\.m2\repository\commons-pool;C:\Users\Martin\.m2\repository\commons-validator;C:\Users\Martin\.m2\repository\de;C:\Users\Martin\.m2\repository\dom4j;C:\Users\Martin\.m2\repository\doxia;C:\Users\Martin\.m2\repository\freemarker;C:\Users\Martin\.m2\repository\info;C:\Users\Martin\.m2\repository\io;C:\Users\Martin\.m2\repository\jakarta-regexp;C:\Users\Martin\.m2\repository\javax;C:\Users\Martin\.m2\repository\jaxen;C:\Users\Martin\.m2\repository\jdom;C:\Users\Martin\.m2\repository\jline;C:\Users\Martin\.m2\repository\joda-time;C:\Users\Martin\.m2\repository\junit;C:\Users\Martin\.m2\repository\log4j;C:\Users\Martin\.m2\repository\me;C:\Users\Martin\.m2\repository\mkremins;C:\Users\Martin\.m2\repository\mysql;C:\Users\Martin\.m2\repository\net;C:\Users\Martin\.m2\repository\or;C:\Users\Martin\.m2\repository\org;C:\Users\Martin\.m2\repository\oro;C:\Users\Martin\.m2\repository\p2;C:\Users\Martin\.m2\repository\pircbot;C:\Users\Martin\.m2\repository\rhino;C:\Users\Martin\.m2\repository\ru;C:\Users\Martin\.m2\repository\stax;C:\Users\Martin\.m2\repository\uk;C:\Users\Martin\.m2\repository\xalan;C:\Users\Martin\.m2\repository\xerces;C:\Users\Martin\.m2\repository\xml-apis;C:\Users\Martin\.m2\repository\xom;C:\Program Files\Java\jdk1.7.0_55\jre\lib;C:\Program Files\Java\jdk1.7.0_55\jre\lib\rt.jar;C:\Users\Martin\.m2\repository\org\spigotmc\spigot\1.8-R0.1-SNAPSHOT\spigot-1.8-R0.1-SNAPSHOT.jar"
+[2014.12.13 18:02:01] Opening classes...
+WARNING: Class 'net.minecraft.util.io.netty.channel.AbstractChannel' not found while looking for method '<init>(net.minecraft.util.io.netty.channel.Channel)' in class 'net.minecraft.util.io.netty.channel.AbstractChannel' which is referenced in class 'F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar!com/lenis0012/bukkit/npc/NPCChannel.class'. Check the classpath option and reopen classes. (1a)
+API calls detected that may not be handled automatically...
+In class com.google.common.base.Objects
+    in method private static java.lang.String simpleName(java.lang.Class) 
+        java.lang.Class.getName()
+In class com.google.common.base.Predicates$AssignableFromPredicate
+    in method public java.lang.String toString() 
+        java.lang.Class.getName()
+In class com.google.common.base.Predicates$InstanceOfPredicate
+    in method public java.lang.String toString() 
+        java.lang.Class.getName()
+In class com.google.common.cache.CacheBuilder
+    in method static 
+        java.lang.Class.getName()
+In class com.google.common.cache.LocalCache
+    in method static 
+        java.lang.Class.getName()
+In class com.google.common.collect.MapMakerInternalMap
+    in method static 
+        java.lang.Class.getName()
+In class com.google.common.collect.Serialization
+    in method static com.google.common.collect.Serialization$FieldSetter getFieldSetter(java.lang.Class, java.lang.String) 
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class com.google.common.util.concurrent.ExecutionList
+    in method static 
+        java.lang.Class.getName()
+In class com.google.common.util.concurrent.Futures
+    in method private static java.lang.Exception newWithCause(java.lang.Class, java.lang.Throwable) 
+        java.lang.Class.getConstructors()
+In class me.MiniDigger.CraftCore.AddOn.CoreAddOnClassLoader
+    in method public CoreAddOnClassLoader(java.lang.ClassLoader, java.lang.String, java.net.URL) 
+        java.lang.Class.newInstance()
+In class me.MiniDigger.CraftCore.Bar.CoreBarHandler
+    in method private static void sendPacket(org.bukkit.entity.Player, java.lang.Object) 
+        java.lang.Class.getField(java.lang.String)
+In class me.MiniDigger.CraftCore.Bar.CoreFakeDragon
+    in method public java.lang.Object getSpawnPacket() 
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public java.lang.Object getDestroyPacket() 
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public java.lang.Object getMetaPacket(java.lang.Object) 
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public java.lang.Object getTeleportPacket(org.bukkit.Location) 
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public java.lang.Object getWatcher() 
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class me.MiniDigger.CraftCore.Class.CoreClassLoader
+    in method public java.lang.Class load(java.net.URL, java.lang.String) 
+        java.lang.Package.getName()
+In class me.MiniDigger.CraftCore.Command.Commands.ForceCredits
+    in method static 
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+        java.lang.Class.getDeclaredField(java.lang.String)
+    in method private static java.lang.Class getMCClass(java.lang.String) 
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Package.getName()
+    in method private static java.lang.Class getCraftClass(java.lang.String) 
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Package.getName()
+In class me.MiniDigger.CraftCore.Command.CoreCommandHandler
+    in method public void unregisterCommands(java.lang.Object) 
+        java.lang.reflect.Method.getName()
+    in method public void registerCommands(java.lang.Object) 
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+        java.lang.reflect.Method.getName()
+    in method private void registerCompleter(java.lang.String, java.lang.reflect.Method, java.lang.Object) 
+        java.lang.Class.getDeclaredField(java.lang.String)
+        java.lang.reflect.Method.getName()
+In class me.MiniDigger.CraftCore.Entity.CoreEntityType
+    in method public void spawnEntity(org.bukkit.Location) 
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class me.MiniDigger.CraftCore.Game.CoreGameHandler
+    in method public void searchMainGame() 
+        java.lang.Class.newInstance()
+In class me.MiniDigger.CraftCore.Packet.CorePacketHandler
+    in method public boolean handleIncome(java.lang.String, org.java_websocket.WebSocket) 
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public void handleIncome(java.lang.String) 
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler$7
+    in method public void onPacketReceiving(com.comphenix.protocol.events.PacketEvent) 
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+In class me.MiniDigger.CraftCore.Socket.CoreSocketHandler
+    in method public void registerPackets() 
+        java.lang.Class.newInstance()
+In class me.MiniDigger.CraftCore.Util.CoreEnumUtil
+    in method public static me.MiniDigger.Core.Feature.FeatureType addFeatureType(java.lang.String, int) 
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class me.MiniDigger.CraftCore.Util.CoreEnumUtil$DynamicEnumType
+    in method private static void blankField(java.lang.Class, java.lang.String) 
+        java.lang.reflect.Field.getName()
+    in method public static java.lang.Enum addEnum(java.lang.Class, java.lang.String, java.lang.Class[], java.lang.Object[]) 
+        java.lang.reflect.Field.getName()
+In class me.MiniDigger.CraftCore.Util.CoreReflectionUtil
+    in method public java.lang.Class getCraftClass(java.lang.String) 
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Package.getName()
+    in method public java.lang.reflect.Field getField(java.lang.Class, java.lang.String) 
+        java.lang.Class.getDeclaredField(java.lang.String)
+    in method public java.lang.reflect.Method getMethod(java.lang.Class, java.lang.String, java.lang.Class[]) 
+        java.lang.reflect.Method.getName()
+    in method public java.lang.reflect.Method getMethod(java.lang.Class, java.lang.String) 
+        java.lang.reflect.Method.getName()
+    in method public java.lang.Object getPrivateField(java.lang.String, java.lang.Class, java.lang.Object) 
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class mkremins.fanciful.FancyMessage
+    in method public mkremins.fanciful.FancyMessage itemTooltip(org.bukkit.inventory.ItemStack) 
+        java.lang.Class.newInstance()
+In class net.amoebaman.util.Reflection
+    in method public static synchronized java.lang.String getVersion() 
+        java.lang.Package.getName()
+    in method public static synchronized java.lang.Class getNMSClass(java.lang.String) 
+        java.lang.Class.forName(java.lang.String)
+    in method public static synchronized java.lang.Class getOBCClass(java.lang.String) 
+        java.lang.Class.forName(java.lang.String)
+    in method public static synchronized java.lang.reflect.Field getField(java.lang.Class, java.lang.String) 
+        java.lang.Class.getDeclaredField(java.lang.String)
+    in method public static synchronized java.lang.reflect.Method getMethod(java.lang.Class, java.lang.String, java.lang.Class[]) 
+        java.lang.reflect.Method.getName()
+In class org.apache.commons.codec.language.ColognePhonetic
+    in method public java.lang.Object encode(java.lang.Object) 
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+In class org.apache.commons.codec.net.BCodec
+    in method public java.lang.Object encode(java.lang.Object) 
+        java.lang.Class.getName()
+    in method public java.lang.Object decode(java.lang.Object) 
+        java.lang.Class.getName()
+In class org.apache.commons.codec.net.QCodec
+    in method public java.lang.Object encode(java.lang.Object) 
+        java.lang.Class.getName()
+    in method public java.lang.Object decode(java.lang.Object) 
+        java.lang.Class.getName()
+In class org.apache.commons.codec.net.QuotedPrintableCodec
+    in method public java.lang.Object encode(java.lang.Object) 
+        java.lang.Class.getName()
+    in method public java.lang.Object decode(java.lang.Object) 
+        java.lang.Class.getName()
+In class org.apache.commons.codec.net.URLCodec
+    in method public java.lang.Object encode(java.lang.Object) 
+        java.lang.Class.getName()
+    in method public java.lang.Object decode(java.lang.Object) 
+        java.lang.Class.getName()
+In class org.apache.commons.logging.LogFactory
+    in method private static final java.util.Hashtable createFactoryStore() 
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.newInstance()
+    in method protected static java.lang.ClassLoader directGetContextClassLoader() 
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+    in method protected static java.lang.Object createFactory(java.lang.String, java.lang.ClassLoader) 
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+    in method private static boolean implementsLogFactory(java.lang.Class) 
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+    in method private static void logClassLoaderEnvironment(java.lang.Class) 
+        java.lang.Class.getName()
+    in method public static java.lang.String objectId(java.lang.Object) 
+        java.lang.Class.getName()
+In class org.apache.commons.logging.LogSource
+    in method public static void setLogImplementation(java.lang.Class) 
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method public static org.apache.commons.logging.Log getInstance(java.lang.Class) 
+        java.lang.Class.getName()
+In class org.apache.commons.logging.impl.Jdk13LumberjackLogger
+    in method private void getClassAndMethod() 
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+In class org.apache.commons.logging.impl.Log4JLogger
+    in method static 
+        java.lang.Class.getName()
+        java.lang.Class.getDeclaredField(java.lang.String)
+In class org.apache.commons.logging.impl.LogFactoryImpl
+    in method public org.apache.commons.logging.Log getInstance(java.lang.Class) 
+        java.lang.Class.getName()
+    in method protected java.lang.String getLogClassName() 
+        java.lang.Class.getName()
+    in method protected java.lang.reflect.Constructor getLogConstructor() 
+        java.lang.Class.getName()
+    in method private boolean isLogLibraryAvailable(java.lang.String, java.lang.String) 
+        java.lang.Class.getName()
+    in method private org.apache.commons.logging.Log createLogFromClass(java.lang.String, java.lang.String, boolean) 
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+        java.lang.Class.getConstructor(java.lang.Class[])
+    in method private void handleFlawedDiscovery(java.lang.String, java.lang.ClassLoader, java.lang.Throwable) 
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+    in method private void handleFlawedHierarchy(java.lang.ClassLoader, java.lang.Class) 
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+        java.lang.Class.getName()
+In class org.apache.commons.logging.impl.ServletContextCleaner
+    in method public void contextDestroyed(javax.servlet.ServletContextEvent) 
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+In class org.apache.commons.logging.impl.SimpleLog
+    in method private static java.lang.ClassLoader getContextClassLoader() 
+        java.lang.Class.getMethod(java.lang.String, java.lang.Class[])
+In class org.apache.http.impl.auth.NTLMScheme
+    in method public org.apache.http.Header authenticate(org.apache.http.auth.Credentials, org.apache.http.HttpRequest) 
+        java.lang.Class.getName()
+In class org.apache.http.impl.client.AbstractHttpClient
+    in method protected org.apache.http.conn.ClientConnectionManager createClientConnectionManager() 
+        java.lang.Class.forName(java.lang.String)
+        java.lang.Class.newInstance()
+In class org.apache.http.impl.client.CloseableHttpResponseProxy
+    in method public java.lang.Object invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[]) 
+        java.lang.reflect.Method.getName()
+    in method static 
+        java.lang.Class.getConstructor(java.lang.Class[])
+In class org.apache.http.impl.client.DefaultRequestDirector
+    in method private void tryConnect(org.apache.http.impl.client.RoutedRequest, org.apache.http.protocol.HttpContext) 
+        java.lang.Class.getName()
+    in method private org.apache.http.HttpResponse tryExecute(org.apache.http.impl.client.RoutedRequest, org.apache.http.protocol.HttpContext) 
+        java.lang.Class.getName()
+In class org.apache.http.impl.execchain.RetryExec
+    in method public org.apache.http.client.methods.CloseableHttpResponse execute(org.apache.http.conn.routing.HttpRoute, org.apache.http.client.methods.HttpRequestWrapper, org.apache.http.client.protocol.HttpClientContext, org.apache.http.client.methods.HttpExecutionAware) 
+        java.lang.Class.getName()
+In class org.java_websocket.server.WebSocketServer
+    in method public void start() 
+        java.lang.Class.getName()
+    in method public void run() 
+        java.lang.Class.getName()
+In class org.java_websocket.util.Base64$1
+    in method public java.lang.Class resolveClass(java.io.ObjectStreamClass) 
+        java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader)
+
+2147 classes opened in 2 seconds. 102191K of memory used. 143056K of memory free.
+
+[2014.12.13 18:02:04] Setting trim exclusions...
+FATAL ERROR: Attempt to use "trim" statement at line 15 with unusable classes : Class 'net.minecraft.util.io.netty.channel.AbstractChannel' not found while looking for method '<init>(net.minecraft.util.io.netty.channel.Channel)' in class 'net.minecraft.util.io.netty.channel.AbstractChannel' which is referenced in class 'F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar!com/lenis0012/bukkit/npc/NPCChannel.class'. Check the classpath option and reopen classes. (1a)

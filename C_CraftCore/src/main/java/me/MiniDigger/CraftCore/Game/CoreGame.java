@@ -205,14 +205,14 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public void addSpec(UUID id) {
+	public void addSpec(final UUID id) {
 		if (!specs.contains(id)) {
 			specs.add(id);
 		}
 	}
 	
 	@Override
-	public void remSpec(UUID id) {
+	public void remSpec(final UUID id) {
 		specs.remove(id);
 	}
 	

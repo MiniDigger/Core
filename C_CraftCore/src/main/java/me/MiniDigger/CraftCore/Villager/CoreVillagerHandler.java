@@ -31,7 +31,6 @@ import org.bukkit.craftbukkit.v1_8_R1.event.CraftEventFactory;
 
 import net.minecraft.server.v1_8_R1.Container;
 import net.minecraft.server.v1_8_R1.ContainerMerchant;
-import net.minecraft.server.v1_8_R1.EntityHuman;
 import net.minecraft.server.v1_8_R1.EntityPlayer;
 import net.minecraft.server.v1_8_R1.EntityVillager;
 import net.minecraft.server.v1_8_R1.IChatBaseComponent;
@@ -109,7 +108,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 				recipeList.add(createMerchantRecipe(recipe.getItem1(), recipe.getItem2(), recipe.getRewardItem()));
 			}
 			
-			openTrade(((CraftPlayer) player).getHandle(),villager);
+			openTrade(((CraftPlayer) player).getHandle(), villager);
 			
 			return true;
 		} catch (final Exception e) {
@@ -118,13 +117,13 @@ public class CoreVillagerHandler implements VillagerHandler {
 		}
 	}
 	
-	private void openTrade(EntityPlayer h, IMerchant m) {
+	private void openTrade(final EntityPlayer h, final IMerchant m) {
 		final Container container = CraftEventFactory.callInventoryOpenEvent(h, new ContainerMerchant(h.inventory, m, h.world));
 		if (container == null) {
 			System.out.println("määh");
 			return;
 		}
-		int i = h.nextContainerCounter();
+		final int i = h.nextContainerCounter();
 		h.activeContainer = container;
 		h.activeContainer.windowId = i;
 		h.activeContainer.addSlotListener(h);

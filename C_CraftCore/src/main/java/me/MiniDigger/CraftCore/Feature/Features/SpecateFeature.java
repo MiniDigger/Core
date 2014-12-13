@@ -15,7 +15,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpecateFeature extends CoreFeature {
 	
-	public SpecateFeature(Phase phase) {
+	public SpecateFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -49,21 +49,21 @@ public class SpecateFeature extends CoreFeature {
 		
 	}
 	
-	public boolean isSpec(UUID id) {
+	public boolean isSpec(final UUID id) {
 		return getPhase().getGame().getSpecs().contains(id);
 	}
 	
-	public void spec(UUID id) {
+	public void spec(final UUID id) {
 		getPhase().getGame().addSpec(id);
 	}
 	
 	@EventHandler
-	public void onJoin(CoreUserJoinGameEvent e) {
+	public void onJoin(final CoreUserJoinGameEvent e) {
 		
 	}
 	
 	@EventHandler
-	public void onLeave(CoreUserLeaveGameEvent e) {
+	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (isSpec(e.getUser().getUUID())) {
 			getPhase().getGame().remSpec(e.getUser().getUUID());
 		}

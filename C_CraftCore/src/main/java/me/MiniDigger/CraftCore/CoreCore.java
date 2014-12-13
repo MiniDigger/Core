@@ -37,7 +37,6 @@ import me.MiniDigger.Core.Kit.KitHandler;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
-import me.MiniDigger.Core.NPC.NPCHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
@@ -88,7 +87,6 @@ import me.MiniDigger.CraftCore.Kit.CoreKitHandler;
 import me.MiniDigger.CraftCore.License.CoreLicenseHandler;
 import me.MiniDigger.CraftCore.Map.CoreMapHandler;
 import me.MiniDigger.CraftCore.Mirror.CoreMirrorHandler;
-import me.MiniDigger.CraftCore.NPC.CoreNPCHandler;
 import me.MiniDigger.CraftCore.Nametag.CoreNametagHandler;
 import me.MiniDigger.CraftCore.Packet.CorePacketHandler;
 import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
@@ -139,7 +137,6 @@ public class CoreCore extends Core {
 	private HoloHandler	       holoHandler;
 	private MapHandler	       mapHandler;
 	private NametagHandler	   nametagHandler;
-	private NPCHandler	       npcHandler;
 	private PacketHandler	   packetHandler;
 	private ProtocolHandler	   protocolHandler;
 	private RegenHandler	   regenHandler;
@@ -276,14 +273,6 @@ public class CoreCore extends Core {
 			nametagHandler = new CoreNametagHandler();
 		}
 		return nametagHandler;
-	}
-	
-	@Override
-	public NPCHandler getNPCHandler() {
-		if (npcHandler == null) {
-			npcHandler = new CoreNPCHandler();
-		}
-		return npcHandler;
 	}
 	
 	@Override

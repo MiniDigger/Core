@@ -174,14 +174,14 @@ public interface Game {
 	 * 
 	 * @param id
 	 */
-	public void addSpec(UUID id);
+	public void addSpec(final UUID id);
 	
 	/**
 	 * removes the player from the list of specs
 	 * 
 	 * @param id
 	 */
-	public void remSpec(UUID id);
+	public void remSpec(final UUID id);
 	
 	/**
 	 * 

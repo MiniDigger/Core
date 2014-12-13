@@ -51,9 +51,7 @@ public class CoreSkullChangers implements SkullChangers {
 			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 				if (e != null && e.getType() == EntityType.PLAYER) {
 					if (loc.getBlock().getState() instanceof Skull) {
-						if (!Core.getCore().getNPCHandler().getFactory().isNPC(e)) {
-							sendSkullChange((Player) e, loc);
-						}
+						sendSkullChange((Player) e, loc);
 					}
 				}
 			}

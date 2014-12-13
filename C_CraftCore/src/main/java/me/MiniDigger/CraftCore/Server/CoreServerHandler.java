@@ -62,7 +62,7 @@ public class CoreServerHandler implements ServerHandler {
 	}
 	
 	@Override
-	public List<Server> getServers(){
+	public List<Server> getServers() {
 		return servers;
 	}
 	

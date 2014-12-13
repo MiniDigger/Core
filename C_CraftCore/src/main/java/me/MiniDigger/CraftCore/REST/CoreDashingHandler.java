@@ -139,7 +139,7 @@ public class CoreDashingHandler implements DashingHandler {
 	@Override
 	public void totalPlayers() {
 		int users = 0;
-		for (Server server : Core.getCore().getServerHandler().getServers()) {
+		for (final Server server : Core.getCore().getServerHandler().getServers()) {
 			users += server.getNumPlayers();
 		}
 		
@@ -153,9 +153,9 @@ public class CoreDashingHandler implements DashingHandler {
 		int x = playerX;
 		playerX++;
 		
-		JSONArray array = new JSONArray();
-		for (int i : players) {
-			JSONObject obj = new JSONObject();
+		final JSONArray array = new JSONArray();
+		for (final int i : players) {
+			final JSONObject obj = new JSONObject();
 			obj.put("x", x);
 			obj.put("y", i);
 			array.add(obj);

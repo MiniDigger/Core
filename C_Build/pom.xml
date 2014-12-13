@@ -90,35 +90,27 @@
 						</goals>
 						<configuration>
 							<tasks>
+								<exec executable="java">
+									<arg value="-jar" />
+									<arg value="${basedir}\libs\ZKM.jar" />
+									<arg value="${basedir}\src\main\resources\zkm.txt" />
+								</exec>
 								<echo>Move it!
 								</echo>
-								<copy file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
-									todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
-								<copy file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
-									todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
-								<copy file="F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar"
-									todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" />
+								<copy file="${basedir}\target\Core.jar" todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
+								<copy file="${basedir}\target\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
+								<copy file="${basedir}\target\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" />
 								<!-- Load the jsch lib -->
 								<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
 								<fail if="ant-jsch.present"
 									message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
 								<path id="jsch.class.path">
-									<pathelement
-										location="C:\Program Files (x86)\Eclipse\plugins\org.apache.ant_1.8.4.v201303080030\lib\ant-jsch.jar" />
-									<pathelement
-										location="C:\Program Files (x86)\Eclipse\plugins\org.apache.ant_1.8.4.v201303080030\lib\jsch-0.1.51.jar" />
+									<pathelement location="${basedir}\libs\ant-jsch.jar" />
+									<pathelement location="${basedir}\libs\jsch-0.1.51.jar" />
 								</path>
 								<taskdef name="scp"
 									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
 									classpathref="jsch.class.path" />
-
-								<!-- <scp -->
-								<!-- todir="minecraft:hercules12345+x@144.76.142.163:/home/minecraft/bgc/minigames1/plugins" -->
-								<!-- trust="true"> -->
-								<!-- <fileset dir="target"> -->
-								<!-- <include name="Core.jar" /> -->
-								<!-- </fileset> -->
-								<!-- </scp> -->
 							</tasks>
 						</configuration>
 					</execution>

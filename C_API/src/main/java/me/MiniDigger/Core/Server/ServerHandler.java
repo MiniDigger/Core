@@ -61,9 +61,9 @@ public interface ServerHandler {
 	 *            The server data to save
 	 */
 	public void gotServerInfo(final Server server);
-
+	
 	/**
-	 *  @return hopefully all servers connected to this socket network
+	 * @return hopefully all servers connected to this socket network
 	 */
 	public List<Server> getServers();
 }

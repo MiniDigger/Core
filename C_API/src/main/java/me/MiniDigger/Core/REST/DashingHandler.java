@@ -48,7 +48,7 @@ public interface DashingHandler {
 	 * inits everything
 	 */
 	void init();
-
+	
 	/**
 	 * sends to user count
 	 */

@@ -113,6 +113,11 @@
             </goals>
             <configuration>
               <tasks>
+                <exec>
+                  <arg />
+                  <arg />
+                  <arg />
+                </exec>
                 <echo>Move it!</echo>
                 <copy />
                 <copy />
@@ -133,6 +138,12 @@
   </build>
   <dependencies>
     <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot</artifactId>
+      <version>1.8-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>ru.tehkode</groupId>
       <artifactId>PermissionsEx</artifactId>
       <version>1.21.2-SNAPSHOT</version>
@@ -149,10 +160,38 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>com.comphenix.protocol</groupId>
+      <artifactId>ProtocolLib</artifactId>
+      <version>3.6.3-SNAPSHOT</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>cglib-nodep</artifactId>
+          <groupId>cglib</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>BukkitExecutors</artifactId>
+          <groupId>com.comphenix.executors</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>de.slikey</groupId>
       <artifactId>EffectLib</artifactId>
       <version>2.4-SNAPSHOT</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.8.2</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>ant-launcher</artifactId>
+          <groupId>org.apache.ant</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 </project>
