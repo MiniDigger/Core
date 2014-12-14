@@ -43,8 +43,6 @@ import org.apache.http.protocol.HTTP;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import org.bukkit.scheduler.BukkitRunnable;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.REST.DashingHandler;
 import me.MiniDigger.Core.Server.Server;
@@ -57,21 +55,22 @@ public class CoreDashingHandler implements DashingHandler {
 	
 	@Override
 	public void init() {
-		new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				mostWords();
-			}
-		}.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 60 * 1 * 20);
-		
-		new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				totalPlayers();
-			}
-		}.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 10 * 1 * 20);
+		// new BukkitRunnable() {
+		//
+		// @Override
+		// public void run() {
+		// mostWords();
+		// }
+		// }.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 60 * 1 *
+		// 20);
+		//
+		// new BukkitRunnable() {
+		//
+		// @Override
+		// public void run() {
+		// totalPlayers();
+		// }
+		// }.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 10 * 1 * 20);
 	}
 	
 	@Override
