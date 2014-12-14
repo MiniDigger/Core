@@ -188,6 +188,7 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.4-beta1</version>
+			<scope>complile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ant</groupId>

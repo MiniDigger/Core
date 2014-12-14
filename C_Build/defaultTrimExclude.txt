@@ -1,0 +1,4 @@
+trimExclude *.* extends JavaPlugin and
+			*.* onEnable(*) and
+			*.* onDisable(*) and
+			me.MiniDigger.*.*;
