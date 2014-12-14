@@ -14,7 +14,7 @@ classpath   "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\libs\*"
 
 open        "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\Core.jar";
 
-trimExclude *.* extends JavaPlugin and
+trimExclude *.* extends org.bukkit.plugin.java.JavaPlugin and
 			*.* onEnable(*) and
 			*.* onDisable(*);
 
@@ -23,6 +23,9 @@ trim        deleteSourceFileAttributes=true
             deleteAnnotationAttributes=false
             deleteExceptionAttributes=false
             deleteUnknownAttributes=false;
+
+exclude     *.* extends org.bukkit.plugin.java.JavaPlugin and
+			*.* extends me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 obfuscate   changeLogFileIn=""
             changeLogFileOut="ChangeLog.txt"
