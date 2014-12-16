@@ -119,6 +119,9 @@
 									tofile="${basedir}\src\main\resources\zkm.txt" />
 								<replace file="${basedir}\src\main\resources\zkm.txt"
 									token="%cp%" value="${path}" />
+								<copy file="${basedir}\src\main\resources\zkm.txt" tofile="${basedir}\src\main\resources\zkm1.txt" />
+								<replace file="${basedir}\src\main\resources\zkm.txt"
+									token="%path%" value="${basedir}" />
 							</tasks>
 						</configuration>
 					</execution>

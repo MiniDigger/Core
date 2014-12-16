@@ -2,6 +2,8 @@
 	<target name="buildAddOn">
 		<echo>ZKM AddOn
 		</echo>
+		<copy file="..\C_Build\src\main\resources\zkm1.txt" tofile="..\C_Build\src\main\resources\zkm.txt" />
+		<replace file="..\C_Build\src\main\resources\zkm.txt" token="%path%" value=".." />
 		<exec executable="java">
 			<arg value="-jar" />
 			<arg value="..\C_Build\libs\ZKM.jar" />
@@ -9,17 +11,13 @@
 		</exec>
 		<!-- Load the jsch lib -->
 		<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
-		<fail if="ant-jsch.present"
-			message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
+		<fail if="ant-jsch.present" message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
 		<path id="jsch.class.path">
 			<pathelement location="..\C_Build\libs\ant-jsch.jar" />
 			<pathelement location="..\C_Build\libs\jsch-0.1.51.jar" />
 		</path>
-		<taskdef name="scp" classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
-			classpathref="jsch.class.path" />
-		<scp
-			todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons"
-			trust="true">
+		<taskdef name="scp" classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp" classpathref="jsch.class.path" />
+		<scp todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons" trust="true">
 			<fileset dir="target">
 				<include name="*.jar" />
 			</fileset>

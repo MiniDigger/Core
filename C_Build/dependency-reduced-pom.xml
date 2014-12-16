@@ -118,6 +118,8 @@
                 <delete />
                 <copy />
                 <replace />
+                <copy />
+                <replace />
               </tasks>
             </configuration>
           </execution>
