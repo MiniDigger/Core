@@ -42,14 +42,15 @@
 		<bukkit.version>1.7.9-R0.3-SNAPSHOT</bukkit.version>
 		<api.version>0.0.1-SNAPSHOT</api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<rootPath>${basedir}</rootPath>
 	</properties>
 
 	<modules>
 		<module>C_External</module>
 		<module>C_API</module>
-		<module>C_Basic</module>
 		<module>C_CraftCore</module>
 		<module>C_Build</module>
+		<module>C_Basic</module>
 		<module>C_GetTheDrop</module>
 		<module>C_Hub</module>
 		<module>C_TicTacToe</module>
@@ -188,7 +189,7 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.4-beta1</version>
-			<scope>complile</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ant</groupId>

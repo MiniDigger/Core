@@ -112,7 +112,7 @@
 						<configuration>
 							<tasks>
 								<echo>
-									Copy it! ${spigot.path}
+									Copy it!
 								</echo>
 								<delete file="${basedir}\src\main\resources\zkm.txt" />
 								<copy file="${basedir}\src\main\resources\zkm_orig.txt"

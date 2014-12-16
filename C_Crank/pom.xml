@@ -28,27 +28,12 @@
 						</goals>
 						<configuration>
 							<target>
-								<!-- Load the jsch lib -->
-								<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
-								<fail if="ant-jsch.present"
-									message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
-								<path id="jsch.class.path">
-									<pathelement
-										location="C:\Program Files (x86)\Eclipse\plugins\org.apache.ant_1.8.4.v201303080030\lib\ant-jsch.jar" />
-									<pathelement
-										location="C:\Program Files (x86)\Eclipse\plugins\org.apache.ant_1.8.4.v201303080030\lib\jsch-0.1.51.jar" />
-								</path>
-								<taskdef name="scp"
-									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
-									classpathref="jsch.class.path" />
-
-								<scp
-									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons"
-									trust="true">
-									<fileset dir="target">
-										<include name="*.jar" />
-									</fileset>
-								</scp>
+								<property name="compile_classpath" refid="maven.compile.classpath" />
+								<property name="outputDir" value="${project.build.outputDirectory}" />
+								<property name="sourceDir" value="${project.build.sourceDirectory}" />
+								<property name="path"
+									value="..\src\main\resources\addon_build.xml" />
+								<ant antfile="${path}" target="buildAddOn" />
 							</target>
 						</configuration>
 					</execution>

@@ -37,4 +37,4 @@ obfuscate   changeLogFileIn=""
             exceptionObfuscation=heavy
             autoReflectionHandling=normal;
 
-saveAll     archiveCompression=all "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target\obfuscated";
+saveAll     archiveCompression=all "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\target";
