@@ -118,8 +118,6 @@
                 <delete />
                 <copy />
                 <replace />
-                <copy />
-                <replace />
               </tasks>
             </configuration>
           </execution>
@@ -144,7 +142,6 @@
                   <arg />
                   <arg />
                   <arg />
-                  <arg />
                 </exec>
                 <echo>Move it!</echo>
                 <copy />
@@ -157,6 +154,7 @@
                   <pathelement />
                 </path>
                 <taskdef />
+                <echo>Cleanup</echo>
               </tasks>
             </configuration>
           </execution>

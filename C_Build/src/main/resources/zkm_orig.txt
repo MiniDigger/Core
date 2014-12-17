@@ -4,13 +4,11 @@
 
 classpath   "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\libs\*"
             "C:\Program Files\Java\jdk1.7.0_55\jre\lib\*"
-            "%cp%"
-            "%cp2%";
+            "%cp%";
 
 open        "%input%";
 
-obfuscate   changeLogFileIn="%changelog%"
-            changeLogFileOut="ChangeLog.txt"
+obfuscate   changeLogFileOut="ChangeLog.txt"
             aggressiveMethodRenaming=true
             obfuscateFlow=aggressive
             encryptStringLiterals=aggressive

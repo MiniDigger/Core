@@ -49,7 +49,6 @@
 		<module>C_External</module>
 		<module>C_API</module>
 		<module>C_CraftCore</module>
-		<module>C_Build</module>
 		<module>C_Basic</module>
 		<module>C_GetTheDrop</module>
 		<module>C_Hub</module>
@@ -58,6 +57,7 @@
 		<module>C_BedWars</module>
 		<module>C_Cinematic</module>
 		<module>C_Crank</module>
+		<module>C_Build</module>
 	</modules>
 
 	<profiles>

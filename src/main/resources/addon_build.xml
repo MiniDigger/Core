@@ -1,6 +1,6 @@
 <project name="MyProject" basedir=".">
 	<target name="buildAddOn">
-		<echo>ZKM AddOn
+		<!--	<echo>ZKM AddOn
 		</echo>
 		<copy file="..\C_Build\src\main\resources\zkm1.txt" tofile="..\C_Build\src\main\resources\zkm.txt" />
 		<replace file="..\C_Build\src\main\resources\zkm.txt" token="%path%" value=".." />
@@ -9,12 +9,12 @@
 			<arg value="-Dinput=target\*.jar" />
 			<arg value="-Doutput=target" />
 			<arg value="-Dcp2=..\C_Build\target\Core.jar" />
-			<arg value="-Dchangelog=..\C_Build\ChangeLog.txt" />
+			<arg value="-Dchangelog=..\C_Build" />
 			<arg value="..\C_Build\libs\ZKM.jar" />
 			<arg value="..\C_Build\src\main\resources\zkm.txt" />
-		</exec>
+		</exec>-->
 		<!-- Load the jsch lib -->
-		<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
+		<!--<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
 		<fail if="ant-jsch.present" message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
 		<path id="jsch.class.path">
 			<pathelement location="..\C_Build\libs\ant-jsch.jar" />
@@ -25,6 +25,12 @@
 			<fileset dir="target">
 				<include name="*.jar" />
 			</fileset>
-		</scp>
+		</scp>-->
+
+		<copy todir="..\C_Build\build" flatten="true">
+			<fileset dir="target">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
 	</target>
 </project>

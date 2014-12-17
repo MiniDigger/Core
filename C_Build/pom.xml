@@ -31,7 +31,6 @@
 	</reporting>
 
 	<build>
-		<!-- TODO Add proguard to build -->
 		<finalName>Core</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
@@ -119,9 +118,6 @@
 									tofile="${basedir}\src\main\resources\zkm.txt" />
 								<replace file="${basedir}\src\main\resources\zkm.txt"
 									token="%cp%" value="${path}" />
-								<copy file="${basedir}\src\main\resources\zkm.txt" tofile="${basedir}\src\main\resources\zkm1.txt" />
-								<replace file="${basedir}\src\main\resources\zkm.txt"
-									token="%path%" value="${basedir}" />
 							</tasks>
 						</configuration>
 					</execution>
@@ -144,9 +140,8 @@
 								</echo>
 								<exec executable="java">
 									<arg value="-jar" />
-									<arg value="-Dinput=${basedir}\target\Core.jar" />
-									<arg value="-Doutput=${basedir}\target" />
-									<arg value="-Dchangelog=" />
+									<arg value="-Dinput=${basedir}\build\*.jar" />
+									<arg value="-Doutput=${basedir}\build-out" />
 									<arg value="${basedir}\libs\ZKM.jar" />
 									<arg value="${basedir}\src\main\resources\zkm.txt" />
 								</exec>
@@ -166,6 +161,12 @@
 								<taskdef name="scp"
 									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
 									classpathref="jsch.class.path" />
+
+								<echo>Cleanup</echo>
+	<!-- <delete> -->
+	<!-- <fileset dir="${basedir}\build\" includes="*.jar" /> -->
+	<!-- <fileset dir="${basedir}\build-out\" includes="*.jar" /> -->
+	<!-- </delete> -->
 							</tasks>
 						</configuration>
 					</execution>
