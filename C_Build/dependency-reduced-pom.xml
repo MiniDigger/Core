@@ -142,6 +142,9 @@
                   <arg />
                   <arg />
                   <arg />
+                  <arg />
+                  <arg />
+                  <arg />
                 </exec>
                 <echo>Move it!</echo>
                 <copy />

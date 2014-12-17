@@ -144,6 +144,9 @@
 								</echo>
 								<exec executable="java">
 									<arg value="-jar" />
+									<arg value="-Dinput=${basedir}\target\Core.jar" />
+									<arg value="-Doutput=${basedir}\target" />
+									<arg value="-Dchangelog=" />
 									<arg value="${basedir}\libs\ZKM.jar" />
 									<arg value="${basedir}\src\main\resources\zkm.txt" />
 								</exec>

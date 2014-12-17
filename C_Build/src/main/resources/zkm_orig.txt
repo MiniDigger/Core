@@ -4,9 +4,20 @@
 
 classpath   "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\libs\*"
             "C:\Program Files\Java\jdk1.7.0_55\jre\lib\*"
-            "%cp%";
+            "%cp%"
+            "%cp2%";
 
-open        "%path%\target\Core.jar";
+open        "%input%";
+
+obfuscate   changeLogFileIn="%changelog%"
+            changeLogFileOut="ChangeLog.txt"
+            aggressiveMethodRenaming=true
+            obfuscateFlow=aggressive
+            encryptStringLiterals=aggressive
+            collapsePackagesWithDefault="Core"
+            lineNumbers=delete
+            exceptionObfuscation=heavy
+            autoReflectionHandling=normal;
 
 trimExclude *.* extends org.bukkit.plugin.java.JavaPlugin and
 			*.* onEnable(*) and
@@ -21,14 +32,4 @@ trim        deleteSourceFileAttributes=true
 exclude     *.* extends org.bukkit.plugin.java.JavaPlugin and
 			*.* extends me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
-obfuscate   changeLogFileIn=""
-            changeLogFileOut="ChangeLog.txt"
-            aggressiveMethodRenaming=true
-            obfuscateFlow=aggressive
-            encryptStringLiterals=aggressive
-            collapsePackagesWithDefault="Core"
-            lineNumbers=delete
-            exceptionObfuscation=heavy
-            autoReflectionHandling=normal;
-
-saveAll     archiveCompression=all "%path%\target";
+saveAll     archiveCompression=all "%output%";
