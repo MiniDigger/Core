@@ -70,7 +70,8 @@ public class CoreDashingHandler implements DashingHandler {
 		// public void run() {
 		// totalPlayers();
 		// }
-		// }.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 10 * 1 * 20);
+		// }.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 10 * 1 *
+		// 20);
 	}
 	
 	@Override
