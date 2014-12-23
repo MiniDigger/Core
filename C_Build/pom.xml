@@ -136,6 +136,7 @@
 						</goals>
 						<configuration>
 							<tasks>
+								<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
 								<echo>ZKM
 								</echo>
 								<exec executable="java">
@@ -143,6 +144,7 @@
 									<arg value="-Dinput=${basedir}\build\*.jar" />
 									<arg value="-Doutput=${basedir}\build-out" />
 									<arg value="${basedir}\libs\ZKM.jar" />
+									<arg value="-v" />
 									<arg value="${basedir}\src\main\resources\zkm.txt" />
 								</exec>
 								<echo>Move it!
@@ -162,11 +164,11 @@
 									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
 									classpathref="jsch.class.path" />
 
-								<echo>Cleanup</echo>
-	<!-- <delete> -->
-	<!-- <fileset dir="${basedir}\build\" includes="*.jar" /> -->
-	<!-- <fileset dir="${basedir}\build-out\" includes="*.jar" /> -->
-	<!-- </delete> -->
+								<echo>Delete Backups</echo>
+								<delete includeemptydirs="true">
+									<fileset dir="${basedir}\build-out" includes="*.BACKUP"
+										defaultexcludes="false" />
+								</delete>
 							</tasks>
 						</configuration>
 					</execution>

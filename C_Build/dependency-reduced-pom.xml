@@ -135,8 +135,10 @@
             </goals>
             <configuration>
               <tasks>
+                <copy />
                 <echo>ZKM</echo>
                 <exec>
+                  <arg />
                   <arg />
                   <arg />
                   <arg />
@@ -154,7 +156,10 @@
                   <pathelement />
                 </path>
                 <taskdef />
-                <echo>Cleanup</echo>
+                <echo>Delete Backups</echo>
+                <delete>
+                  <fileset />
+                </delete>
               </tasks>
             </configuration>
           </execution>
