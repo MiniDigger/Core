@@ -149,9 +149,9 @@
 								</exec>
 								<echo>Move it!
 								</echo>
-								<copy file="${basedir}\target\Core.jar" todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
-								<copy file="${basedir}\target\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
-								<copy file="${basedir}\target\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" />
+								<copy file="${basedir}\build-out\Core.jar" todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
+								<copy file="${basedir}\build-out\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
+								<copy file="${basedir}\build-out\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" />
 								<!-- Load the jsch lib -->
 								<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
 								<fail if="ant-jsch.present"
@@ -169,6 +169,15 @@
 									<fileset dir="${basedir}\build-out" includes="*.BACKUP"
 										defaultexcludes="false" />
 								</delete>
+
+								<scp
+									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons"
+									trust="true">
+									<fileset dir="${basedir}\build-out">
+										<include name="*.jar" />
+										<exclude name="Core.jar" />
+									</fileset>
+								</scp>
 							</tasks>
 						</configuration>
 					</execution>

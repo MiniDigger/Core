@@ -160,6 +160,12 @@
                 <delete>
                   <fileset />
                 </delete>
+                <scp>
+                  <fileset>
+                    <include />
+                    <exclude />
+                  </fileset>
+                </scp>
               </tasks>
             </configuration>
           </execution>
