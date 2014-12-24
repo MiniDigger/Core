@@ -23,6 +23,9 @@ package me.MiniDigger.Core.AddOn.Basic;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerInteractEvent;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -57,5 +60,13 @@ public class Basic extends CoreAddOn {
 		final List<String> list = new ArrayList<String>();
 		list.add("Hello");
 		return list;
+	}
+	
+	@EventHandler
+	public void test(PlayerInteractEvent e) {
+		boolean b = true;
+		if ((b = false)) {
+			System.out.println("hey" +b);
+		}
 	}
 }

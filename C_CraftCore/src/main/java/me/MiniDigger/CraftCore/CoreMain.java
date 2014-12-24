@@ -109,8 +109,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			} else {
 				final Date d2 = new Date();
 				info("Lizenz nicht ok! (" + (d2.getTime() - d1.getTime()) + "ms)");
-				// core.getCommonMethods().killPlugin();
-				// return;
+				core.getCommonMethods().killPlugin();
+				return;
 			}
 		} catch (final Exception ex) {
 			ex.printStackTrace();
@@ -355,8 +355,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void enableHandler() {
 		Core.getCore().getAddOnHandler().load();
-		Core.getCore().getProtocolHandler().init(); // TODO Diable ALL
-		// protocol thinks for now
+		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
 		Core.getCore().getNametagHandler().enable();

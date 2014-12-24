@@ -11,9 +11,9 @@ trimExclude public *.* extends org.bukkit.plugin.java.JavaPlugin and
 			*.* enable(*) and
 			*.* disable(*) and
 			*.* @org.bukkit.event.EventHandler *(*) and
-			*.* @Command *(*) and
-			*.* @Completer *(*) and
-			*.* *(me.MiniDigger.Core.Command.CommandArgs);
+			*.* *(me.MiniDigger.Core.Command.CommandArgs) and
+			*.* public static getHandlerList() and
+			*.* public static getHandlers();
 
 trim        deleteSourceFileAttributes=true
             deleteDeprecatedAttributes=true
@@ -28,9 +28,9 @@ exclude     public *.* extends org.bukkit.plugin.java.JavaPlugin and
 			*.* enable(*) and
 			*.* disable(*) and
 			*.* @org.bukkit.event.EventHandler *(*) and
-			*.* @Command *(*) and
-			*.* @Completer *(*) and
-			*.* *(me.MiniDigger.Core.Command.CommandArgs);
+			*.* *(me.MiniDigger.Core.Command.CommandArgs) and
+			*.* public static getHandlerList() and
+			*.* public static getHandlers();
             
 obfuscate   changeLogFileIn=""
             changeLogFileOut="ChangeLog.txt"

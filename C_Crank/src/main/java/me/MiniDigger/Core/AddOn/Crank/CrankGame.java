@@ -86,7 +86,6 @@ public class CrankGame extends CoreGame {
 		}
 		Core.getCore().getInstance().broadcast(getPrefix().then("Das Spiel ist vorbei!").color(ChatColor.GOLD));
 		super.end(winner);
-		Core.getCore().getShutdownUtil().doShutdown();
 	}
 	
 	@Override
