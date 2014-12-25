@@ -32,7 +32,11 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.Chat.ChatChannel;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Packet.Packet;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 public class CoreAddOn implements AddOn {
 	
@@ -51,7 +55,7 @@ public class CoreAddOn implements AddOn {
 	public void checkUpdate() {
 		final AddOnBean bean = Core.getCore().getRESTHandler().checkUpdate(this.bean);
 		if (bean.getVersion() != null) {
-			Core.getCore().getInstance().info("Found update for AddOn " + name + ": " + this.bean.getVersion() + " -> " + bean.getVersion());
+			_.log(LogLevel.INFO, LangKeyType.AddOn.FOUND_UPDATE, name, this.bean.getVersion(), bean.getVersion());
 		}
 	}
 	
@@ -99,7 +103,7 @@ public class CoreAddOn implements AddOn {
 		try {
 			config.save(configFile);
 		} catch (final IOException e) {
-			Core.getCore().getInstance().error("Error while saving ConfigFile for AddOn " + name);
+			_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_SAVE_CONFIG, name);
 			e.printStackTrace();
 		}
 	}
@@ -108,17 +112,17 @@ public class CoreAddOn implements AddOn {
 	public void loadConfig() {
 		dataFolder = new File((Core.getCore().getInstance()).getDataFolder(), name);
 		if (!dataFolder.exists()) {
-			Core.getCore().getInstance().info("Creating DataFolder for AddOn " + name);
+			_.log(LogLevel.INFO, LangKeyType.AddOn.CREATE_FOLDER, name);
 			dataFolder.mkdir();
 		}
 		
 		configFile = new File(dataFolder, name + ".yml");
 		if (!configFile.exists()) {
-			Core.getCore().getInstance().info("Creating ConfigFile for AddOn " + name);
+			_.log(LogLevel.INFO, LangKeyType.AddOn.CREATE_CONFIG, name);
 			try {
 				configFile.createNewFile();
 			} catch (final IOException e) {
-				Core.getCore().getInstance().error("Error while creating ConfigFile for AddOn " + name);
+				_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_CREATE_CONFIG, name);
 				e.printStackTrace();
 			}
 		}

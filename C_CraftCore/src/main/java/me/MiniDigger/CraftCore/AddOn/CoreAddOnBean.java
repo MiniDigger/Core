@@ -26,27 +26,32 @@ import me.MiniDigger.Core.AddOn.AddOnBean;
 
 public class CoreAddOnBean implements AddOnBean {
 	
-	private String	name;
-	private String	author;
-	private String	version;
-	private String	classPackage;
+	private String	     name;
+	private String	     author;
+	private String	     version;
+	private String	     classPackage;
+	
+	private final String	NAME	= "name";
+	private final String	AUTHOR	= "author";
+	private final String	VERSION	= "version";
+	private final String	PACKAGE	= "package";
 	
 	public CoreAddOnBean() {
 		
 	}
 	
 	public CoreAddOnBean(final JSONObject obj) {
-		if (obj.containsKey("name")) {
-			name = (String) obj.get("name");
+		if (obj.containsKey(NAME)) {
+			name = (String) obj.get(NAME);
 		}
-		if (obj.containsKey("author")) {
-			author = (String) obj.get("author");
+		if (obj.containsKey(AUTHOR)) {
+			author = (String) obj.get(AUTHOR);
 		}
-		if (obj.containsKey("version")) {
-			version = (String) obj.get("version");
+		if (obj.containsKey(VERSION)) {
+			version = (String) obj.get(VERSION);
 		}
-		if (obj.containsKey("package")) {
-			classPackage = (String) obj.get("package");
+		if (obj.containsKey(PACKAGE)) {
+			classPackage = (String) obj.get(PACKAGE);
 		}
 	}
 	
@@ -95,10 +100,10 @@ public class CoreAddOnBean implements AddOnBean {
 	public JSONObject toJson() {
 		final JSONObject obj = new JSONObject();
 		
-		obj.put("name", name);
-		obj.put("version", version);
-		obj.put("author", author);
-		obj.put("package", classPackage);
+		obj.put(NAME, name);
+		obj.put(VERSION, version);
+		obj.put(AUTHOR, author);
+		obj.put(PACKAGE, classPackage);
 		
 		return obj;
 	}

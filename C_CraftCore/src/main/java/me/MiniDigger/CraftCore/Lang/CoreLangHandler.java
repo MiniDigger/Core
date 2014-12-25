@@ -19,14 +19,14 @@ public class CoreLangHandler implements LangHandler {
 	}
 	
 	@Override
-	public LangStorage getStorage(LangType type) {
+	public LangStorage getStorage(final LangType type) {
 		if (type == null) {
 			if (defaultLang == null) {
 				return langs.get(0);
 			}
 			return getStorage(defaultLang);
 		}
-		for (LangStorage s : langs) {
+		for (final LangStorage s : langs) {
 			if (s.getLangType().equals(type)) {
 				return s;
 			}

@@ -32,9 +32,13 @@ import org.bukkit.plugin.InvalidPluginException;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnClassLoader;
+import me.MiniDigger.Core.Lang.LangKeyType;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 /**
- * A ClassLoader for plugins, to allow shared classes across multiple plugins
+ * A ClassLoader for plugins, to allow shared classes across multiple plugins<br>
+ * Idea copied from the bukkit project at bukkit.org
  */
 public class CoreAddOnClassLoader extends URLClassLoader implements AddOnClassLoader {
 	
@@ -49,21 +53,21 @@ public class CoreAddOnClassLoader extends URLClassLoader implements AddOnClassLo
 			try {
 				jarClass = Class.forName(main, true, this);
 			} catch (final ClassNotFoundException ex) {
-				throw new InvalidPluginException("Cannot find main class `" + main + "'", ex);
+				throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_NO_MAIN, main), ex);
 			}
 			
 			Class<? extends CoreAddOn> pluginClass;
 			try {
 				pluginClass = jarClass.asSubclass(CoreAddOn.class);
 			} catch (final ClassCastException ex) {
-				throw new InvalidPluginException("main class `" + main + "' does not extend CoreAddOn", ex);
+				throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_NO_EXTEND, main), ex);
 			}
 			
 			plugin = pluginClass.newInstance();
 		} catch (final IllegalAccessException ex) {
-			throw new InvalidPluginException("No public constructor", ex);
+			throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_NO_CONSTRUCTOR, main), ex);
 		} catch (final InstantiationException ex) {
-			throw new InvalidPluginException("Abnormal plugin type", ex);
+			throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_ABNORMAL_TYPE, main), ex);
 		}
 	}
 	

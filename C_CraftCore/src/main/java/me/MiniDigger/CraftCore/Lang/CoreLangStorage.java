@@ -9,8 +9,8 @@ import me.MiniDigger.Core.Lang.LangType;
 
 public class CoreLangStorage implements LangStorage {
 	
-	private LangType	                 lang;
-	private HashMap<LangKeyType, String>	values	= new HashMap<>();
+	private LangType	                       lang;
+	private final HashMap<LangKeyType, String>	values	= new HashMap<>();
 	
 	@Override
 	public LangType getLangType() {
@@ -18,7 +18,7 @@ public class CoreLangStorage implements LangStorage {
 	}
 	
 	@Override
-	public String get(LangKeyType type) {
+	public String get(final LangKeyType type) {
 		if (values.containsKey(type)) {
 			return values.get(type);
 		} else {
@@ -27,12 +27,12 @@ public class CoreLangStorage implements LangStorage {
 	}
 	
 	@Override
-	public void load(File file) {
+	public void load(final File file) {
 		
 	}
 	
 	@Override
-	public void save(File file) {
+	public void save(final File file) {
 		
 	}
 }
