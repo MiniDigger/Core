@@ -7,30 +7,45 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.Lang.LogLevel;
+import me.MiniDigger.Core.Lang.MsgType;
+import me.MiniDigger.Core.Prefix.Prefix;
 
 public class _ {
 	
 	@SuppressWarnings("all")
-	public static String _(LangKeyType type) {
-		return Core.getCore().getLangHandler().getStorage().get(type);
+	public static String _(LangKeyType type, String... args) {
+		return _(Core.getCore().getLangHandler().getDefaultLang(), type, args);
 	}
 	
 	@SuppressWarnings("all")
-	public static String _(LangType lang, LangKeyType type) {
-		return Core.getCore().getLangHandler().getStorage(lang).get(type);
-	}
-	
-	public static void log(LogLevel lvl, LangKeyType type) {
-		log(lvl, type, Core.getCore().getLangHandler().getDefaultLang());
-	}
-	
-	public static void log(LogLevel lvl, LangKeyType type, LangType lang) {
-		log(lvl, type, lang, Bukkit.getConsoleSender());
-	}
-	
-	public static void log(LogLevel lvl, LangKeyType type, LangType lang, CommandSender sender) {
-		if (Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)) {
-			lvl.getMsg(_(lang, type)).send(sender);
+	public static String _(LangType lang, LangKeyType type, String... args) {
+		String result = Core.getCore().getLangHandler().getStorage(lang).get(type);
+		for (int i = 0; i < args.length; i++) {
+			result = result.replaceAll("%" + i + "%", args[i]);
 		}
+		return result;
+	}
+	
+	public static void log(LogLevel lvl, LangKeyType type, String... args) {
+		log(lvl, type, Core.getCore().getLangHandler().getDefaultLang(), args);
+	}
+	
+	public static void log(LogLevel lvl, LangKeyType type, LangType lang, String... args) {
+		log(lvl, type, lang, Bukkit.getConsoleSender(), args);
+	}
+	
+	public static void log(LogLevel lvl, LangKeyType type, LangType lang, CommandSender sender, String... args) {
+		if (Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)) {
+			lvl.getMsg(_(lang, type, args)).send(sender);
+		}
+	}
+	
+	public static void msg(Prefix prefix, LangKeyType key, MsgType type, CommandSender sender, String... args) {
+		msg(prefix, key, type, sender, Core.getCore().getLangHandler().getDefaultLang(), args);
+	}
+	
+	public static void msg(Prefix prefix, LangKeyType key, MsgType type, CommandSender sender, LangType lang, String... args) {
+		String msg = _(lang, key, args);
+		prefix.getPrefix().then(msg).color(type.getColor()).send(sender);
 	}
 }
