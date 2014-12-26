@@ -30,4 +30,9 @@ public interface LangStorage {
 	 */
 	LangType getLangType();
 	
+	/**
+	 * @return the translator of this file
+	 */
+	String getAuthor();
+	
 }

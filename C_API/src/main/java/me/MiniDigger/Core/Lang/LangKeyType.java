@@ -5,6 +5,33 @@ import java.util.List;
 
 public class LangKeyType {
 	
+	public static class Lang {
+		
+		protected static String		    type		           = "lang";
+		public static LangKeyType		LOAD		           = new LangKeyType("load", type, "Lang `%0%`, translated by `%1%`, loaded!");
+		public static final LangKeyType	ERROR_LOAD		       = new LangKeyType("error_load", type, "Failed to load translation file `%0%`!");
+		public static final LangKeyType	ERROR_NO_DESCRIPTION	= new LangKeyType("error_no_description", type, "Desription missing for translation file `%0%`!");
+		public static final LangKeyType	ERROR_NO_AUTHOR		   = new LangKeyType("error_no_author", type, "Looked for author in file `%0%` but found `%1%`!");
+		public static final LangKeyType	ERROR_NO_LANG_KEY		= new LangKeyType("error_no_lang_key", type, "Looked for lang_key in file `%0%` but found `%1%`!");
+		public static final LangKeyType	WARNING_NOT_MATCHED		= new LangKeyType("warning_not_matched", type, "Could not find lang key for key `%0%` in file `%1%`");
+		public static final LangKeyType	WARNING_NOT_TRANSLATED	= new LangKeyType("warning_not_translated", type,
+		                                                               "Could not find lang key `%0%` in file `%1%`: Using default value");
+		public static final LangKeyType	ERROR_SAVE		       = new LangKeyType("error_save", type, "Error while saving lang to file `%0%`");
+		
+		public static List<LangKeyType> values() {
+			final List<LangKeyType> values = new ArrayList<>();
+			values.add(LOAD);
+			values.add(ERROR_LOAD);
+			values.add(ERROR_NO_DESCRIPTION);
+			values.add(ERROR_NO_AUTHOR);
+			values.add(ERROR_NO_LANG_KEY);
+			values.add(WARNING_NOT_MATCHED);
+			values.add(WARNING_NOT_TRANSLATED);
+			values.add(ERROR_SAVE);
+			return values;
+		}
+	}
+	
 	public static class Achievment {
 		
 		protected static String		type	= "achievment";
@@ -39,7 +66,22 @@ public class LangKeyType {
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
+			values.add(CREATE_CONFIG);
+			values.add(CREATE_FOLDER);
+			values.add(DISABLE);
+			values.add(ENABLE);
+			values.add(ERROR_ABNORMAL_TYPE);
+			values.add(ERROR_CREATE_CONFIG);
+			values.add(ERROR_ENABLE);
+			values.add(ERROR_FILE_CURRUPTED);
+			values.add(ERROR_LOAD);
+			values.add(ERROR_NO_CONSTRUCTOR);
+			values.add(ERROR_NO_EXTEND);
+			values.add(ERROR_NO_MAIN);
+			values.add(ERROR_RESULT_NULL);
+			values.add(ERROR_SAVE_CONFIG);
 			values.add(FOUND_UPDATE);
+			values.add(LOAD);
 			return values;
 		}
 	}
@@ -55,7 +97,9 @@ public class LangKeyType {
 	
 	public static List<LangKeyType> values() {
 		final List<LangKeyType> values = new ArrayList<>();
+		values.addAll(Lang.values());
 		values.addAll(Achievment.values());
+		values.addAll(AddOn.values());
 		return values;
 	}
 	
