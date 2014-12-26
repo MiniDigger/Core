@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Lang;
 
 import java.io.File;
@@ -41,7 +61,7 @@ public class CoreLangStorage implements LangStorage {
 	@Override
 	public void load(final File file) {
 		try {
-			List<String> lines = Files.readAllLines(Paths.get(file.toURI()), Charset.defaultCharset());
+			final List<String> lines = Files.readAllLines(Paths.get(file.toURI()), Charset.defaultCharset());
 			if (lines.size() < 2) {
 				_.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_DESCRIPTION, file.getAbsolutePath());
 				return;
@@ -78,7 +98,7 @@ public class CoreLangStorage implements LangStorage {
 				if (s.startsWith("#")) {
 					continue;
 				}
-				for (LangKeyType type : LangKeyType.values()) {
+				for (final LangKeyType type : LangKeyType.values()) {
 					if (s.startsWith(type.getFullType())) {
 						s = s.replace(type.getFullType() + "=", "");
 						values.put(type, s);
@@ -88,14 +108,14 @@ public class CoreLangStorage implements LangStorage {
 				_.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_MATCHED, s, file.getAbsolutePath());
 			}
 			
-			for (LangKeyType type : LangKeyType.values()) {
+			for (final LangKeyType type : LangKeyType.values()) {
 				if (!values.containsKey(type)) {
 					values.put(type, type.getDefaultValue());
 					_.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_TRANSLATED, type.getFullType(), file.getAbsolutePath());
 					break;
 				}
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			_.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_LOAD, file.getAbsolutePath());
 			e.printStackTrace();
 		}
@@ -119,10 +139,10 @@ public class CoreLangStorage implements LangStorage {
 				w.println(AUTHOR + "=INSERT YOUR NAME HERE!");
 			}
 			
-			for (LangKeyType type : values.keySet()) {
+			for (final LangKeyType type : values.keySet()) {
 				w.println(type.getFullType() + "=" + values.get(type));
 			}
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			_.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_SAVE, file.getAbsolutePath());
 			e.printStackTrace();
 		}

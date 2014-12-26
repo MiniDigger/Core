@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.Util;
 
 import java.io.BufferedReader;
@@ -14,6 +34,7 @@ public class CopyrightFixer {
 	private static int	              added	      = 0;
 	private static int	              changed	  = 0;
 	private static int	              skipped	  = 0;
+	private static int	              excluded	  = 0;
 	
 	public static void main(final String[] args) throws Exception {
 		newHeader.add("/**");
@@ -34,7 +55,7 @@ public class CopyrightFixer {
 		newHeader.add(" * Copyright © MiniDigger and others - All Rights Reserved");
 		newHeader.add(" * Unauthorized copying of this file, via any medium is strictly prohibited");
 		newHeader.add(" * Proprietary and confidential");
-		newHeader.add(" * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others");
+		newHeader.add(" * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others");
 		newHeader.add(" */");
 		
 		included.add(".java");
@@ -44,10 +65,11 @@ public class CopyrightFixer {
 		
 		System.out.println("************************************");
 		System.out.println("DONE!");
-		System.out.println("Scanned: " + (added + changed + skipped));
+		System.out.println("Scanned: " + (added + changed + skipped) + " (" + (added + changed + skipped + excluded) + ")");
 		System.out.println("Added: " + added);
 		System.out.println("Changed: " + changed);
 		System.out.println("Skipped: " + skipped);
+		System.out.println("Excluded: " + excluded);
 		System.out.println("************************************");
 	}
 	
@@ -68,6 +90,7 @@ public class CopyrightFixer {
 		
 		if (!found) {
 			System.out.println("File " + file.getAbsolutePath() + " is excluded!");
+			excluded++;
 			return;
 		}
 		

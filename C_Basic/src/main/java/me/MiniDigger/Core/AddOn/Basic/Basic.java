@@ -16,7 +16,7 @@
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
- * Written by Martin Benndorf <admin@minidigger.me>, 2013-2014 and others
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
  */
 package me.MiniDigger.Core.AddOn.Basic;
 
@@ -63,10 +63,10 @@ public class Basic extends CoreAddOn {
 	}
 	
 	@EventHandler
-	public void test(PlayerInteractEvent e) {
+	public void test(final PlayerInteractEvent e) {
 		boolean b = true;
 		if ((b = false)) {
-			System.out.println("hey" +b);
+			System.out.println("hey" + b);
 		}
 	}
 }
