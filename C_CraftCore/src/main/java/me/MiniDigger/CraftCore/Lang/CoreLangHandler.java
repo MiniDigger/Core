@@ -13,7 +13,7 @@ import me.MiniDigger.Core.Lang.LogLevel;
 public class CoreLangHandler implements LangHandler {
 	
 	private ArrayList<LangStorage>	langs;
-	private LangType	           defaultLang;
+	private LangType	           defaultLang	= LangType.en_US;
 	private LogLevel	           log;
 	private File	               langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
 	
@@ -32,6 +32,8 @@ public class CoreLangHandler implements LangHandler {
 				}
 			}
 		}
+		
+		defaultLang = LangType.valueOf(Core.getCore().getInstance().getConfig().getString("default-lang"));
 	}
 	
 	@Override

@@ -1,6 +1,8 @@
 # Server Informations
 server-name: unnamed
 server-type: NOTHING
+# Default alnguage for new users
+default-lang: en_US
 # Updater
 update-type: MINOR
 #SQL

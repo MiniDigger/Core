@@ -27,6 +27,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Chat.ChatChannel;
+import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.SQL.Saveable;
 import me.MiniDigger.Core.Stats.Stats;
 
@@ -223,5 +224,17 @@ public interface User extends Saveable {
 	 *            The channel to set
 	 */
 	public void setPrimaryChannel(final ChatChannel ch);
+	
+	/**
+	 * Sets the language of the user
+	 * 
+	 * @param lang
+	 */
+	public void setLanguage(LangType lang);
+	
+	/**
+	 * @return the language the user is speaking
+	 */
+	public LangType getLanguage();
 	
 }

@@ -33,6 +33,7 @@ import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
+import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
@@ -62,6 +63,8 @@ public class CoreUser implements User {
 	protected List<ChatChannel>	listenChannels	= new ArrayList<>();
 	protected ChatChannel	    speakChannel;
 	
+	protected LangType	        language;
+	
 	// PRIVATE
 	protected Date	            sessionStart;
 	private int	                retrys	       = 0;
@@ -76,7 +79,11 @@ public class CoreUser implements User {
 		} else {
 			displayName = Bukkit.getOfflinePlayer(id).getName();
 		}
+		
+		language = Core.getCore().getLangHandler().getDefaultLang();
 	}
+	
+	// TODO Save language of user into sql
 	
 	@Override
 	public boolean save() {
@@ -432,4 +439,13 @@ public class CoreUser implements User {
 		}
 	}
 	
+	@Override
+	public LangType getLanguage() {
+		return language;
+	}
+	
+	@Override
+	public void setLanguage(LangType lang) {
+		this.language = lang;
+	}
 }

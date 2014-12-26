@@ -17,6 +17,8 @@ public class LangKeyType {
 		public static final LangKeyType	WARNING_NOT_TRANSLATED	= new LangKeyType("warning_not_translated", type,
 		                                                               "Could not find lang key `%0%` in file `%1%`: Using default value");
 		public static final LangKeyType	ERROR_SAVE		       = new LangKeyType("error_save", type, "Error while saving lang to file `%0%`");
+		public static final LangKeyType	ERROR_SET		       = new LangKeyType("error_set", type, "Unknown language `%0%`");
+		public static final LangKeyType	SET		               = new LangKeyType("set", type, "Your language was changed to `%0%`!");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -28,6 +30,8 @@ public class LangKeyType {
 			values.add(WARNING_NOT_MATCHED);
 			values.add(WARNING_NOT_TRANSLATED);
 			values.add(ERROR_SAVE);
+			values.add(ERROR_SET);
+			values.add(SET);
 			return values;
 		}
 	}
