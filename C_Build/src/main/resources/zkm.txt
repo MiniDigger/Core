@@ -48,7 +48,6 @@ obfuscate   changeLogFileIn=""
             randomize=true
             collapsePackagesWithDefault="Core"
             localVariables=delete
-            lineNumbers=delete
             autoReflectionHandling=normal;
 
 saveAll     archiveCompression=all "%output%";
