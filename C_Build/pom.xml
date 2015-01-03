@@ -98,44 +98,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>truezip-maven-plugin</artifactId>
-				<version>1.2</version>
-				<executions>
-					<execution>
-						<id>remove-a-file</id>
-						<goals>
-							<goal>remove</goal>
-						</goals>
-						<phase>install</phase>
-						<configuration>
-							<fileset>
-								<directory>${basedir}\build\Core.jar\</directory>
-								<includes>
-									<include>plugin.yml</include>
-								</includes>
-							</fileset>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-into</id>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<phase>install</phase>
-						<configuration>
-							<files>
-								<file>
-									<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-									<outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
-									<destName>plugin.yml</destName>
-								</file>
-							</files>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.7</version>
@@ -159,8 +121,15 @@
 							</tasks>
 						</configuration>
 					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
 					<execution>
-						<id>dostuff</id>
+						<id>copy2</id>
 						<phase>install</phase>
 						<goals>
 							<goal>run</goal>
@@ -180,11 +149,9 @@
 								</exec>
 								<echo>Move it!
 								</echo>
-
-								<copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
-								<copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
-								<copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" />
-
+								<copy file="${basedir}\build-out\Core.jar" todir="F:\DATA\Dev\dev-server\Standalone\plugins" />
+								<copy file="${basedir}\build-out\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" />
+								<copy file="${basedir}\build-out\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" />
 								<!-- Load the jsch lib -->
 								<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
 								<fail if="ant-jsch.present"
@@ -211,22 +178,12 @@
 										<exclude name="Core.jar" />
 									</fileset>
 								</scp>
-
-								<scp
-									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api-dev/htdocs/addons"
-									trust="true">
-									<fileset dir="${basedir}\build">
-										<include name="*.jar" />
-										<exclude name="Core.jar" />
-									</fileset>
-								</scp>
 							</tasks>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
-
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 

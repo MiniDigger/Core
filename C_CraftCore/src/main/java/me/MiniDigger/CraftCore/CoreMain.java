@@ -356,7 +356,6 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void enableHandler() {
-		Core.getCore().getLangHandler().load();
 		Core.getCore().getAddOnHandler().load();
 		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
