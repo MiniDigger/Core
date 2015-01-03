@@ -1,0 +1,8 @@
+name: Core
+version: 0.0.1-SNAPSHOT
+author: MiniDigger
+load: POSTWORLD
+main: me.MiniDigger.CraftCore.CoreMain
+description: The Core
+website: minidigger.me
+depend: [ProtocolLib,PermissionsEx]
