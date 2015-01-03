@@ -47,25 +47,23 @@ public class _ {
 	
 	@SuppressWarnings("all")
 	public static String _(final LangType lang, final LangKeyType type, final ChatColor markup, final String... args) {
-		// String result =
-		// Core.getCore().getLangHandler().getStorage(lang).get(type);
-		return "test";
-		// for (int i = 0; i < args.length; i++) {
-		// result = result.replaceAll("%" + i + "%", args[i]);
-		// }
-		// boolean b = false;
-		// for (int i = 0; i < result.length(); i++) {
-		// if (result.charAt(i) == '`') {
-		// if (!b) {
-		// result.replaceFirst(Pattern.quote("`"), markup + "");
-		// b = true;
-		// } else {
-		// result.replaceFirst(Pattern.quote("`"), ChatColor.RESET + "");
-		// b = false;
-		// }
-		// }
-		// }
-		// return result;
+		String result = Core.getCore().getLangHandler().getStorage(lang).get(type);
+		for (int i = 0; i < args.length; i++) {
+			result = result.replaceAll("%" + i + "%", args[i]);
+		}
+		boolean b = false;
+		for (int i = 0; i < result.length(); i++) {
+			if (result.charAt(i) == '`') {
+				if (!b) {
+					result.replaceFirst(Pattern.quote("`"), markup + "");
+					b = true;
+				} else {
+					result.replaceFirst(Pattern.quote("`"), ChatColor.RESET + "");
+					b = false;
+				}
+			}
+		}
+		return result;
 	}
 	
 	public static void log(final LogLevel lvl, final LangKeyType type, final String... args) {
