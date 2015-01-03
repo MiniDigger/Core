@@ -75,19 +75,6 @@ public class _ {
 	}
 	
 	public static void log(final LogLevel lvl, final LangKeyType type, final LangType lang, final CommandSender sender, final String... args) {
-		System.out.println("ds2");
-		if(Core.getCore() == null){
-			System.out.println("core null!?");
-		}
-		if (Core.getCore().getLangHandler() == null) {
-			System.out.println("lang null");
-		}
-		if (Core.getCore().getLangHandler().getLogLevel() == null) {
-			System.out.println("log null");
-		}
-		if (lvl == null) {
-			System.out.println("lvl null");
-		}
 		if (Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)) {
 			lvl.getMsg(_(lang, type, args)).send(sender);
 		}

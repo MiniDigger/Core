@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.Lang;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangHandler;
@@ -32,16 +33,25 @@ import me.MiniDigger.Core.Lang.LogLevel;
 
 public class CoreLangHandler implements LangHandler {
 	
-	private ArrayList<LangStorage>	langs;
-	private LangType	           defaultLang	= LangType.en_US;
-	private LogLevel	           log;
-	private final File	           langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
+	private List<LangStorage>	langs	  = new ArrayList<LangStorage>();
+	private LangType	      defaultLang	= LangType.en_US;
+	private LogLevel	      log;
+	private final File	      langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
 	
 	@Override
 	public void load() {
 		if (!langFolder.exists()) {
 			langFolder.mkdirs();
 		}
+		
+		log = LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level"));
+		if (log == null) {
+			System.out.println(",,,");
+		} else {
+			System.out.println("log: " + log);
+		}
+		defaultLang = LangType.valueOf(Core.getCore().getInstance().getConfig().getString("default-lang"));
+		
 		for (final File f : langFolder.listFiles()) {
 			if (f.isFile()) {
 				if (f.getName().endsWith(".lang")) {
@@ -53,16 +63,27 @@ public class CoreLangHandler implements LangHandler {
 			}
 		}
 		
-		log = LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level"));
-		if (log == null) {
-			System.out.println(",,,");
-			System.out.println(",,,");
+		if (langs.size() == 0) {
+			System.out.println("Saving default lang!");
+			LangStorage s = new CoreLangStorage();
+			s.setAuthor("MiniDigger");
+			s.setLangType(LangType.en_US);
+			s.save(new File(langFolder, "en_US.lang"));
+			System.out.println("reload");
+			load();
 		}
-		defaultLang = LangType.valueOf(Core.getCore().getInstance().getConfig().getString("default-lang"));
 	}
 	
 	@Override
 	public LangStorage getStorage(final LangType type) {
+		if (type == defaultLang) {
+			for (final LangStorage s : langs) {
+				if (s.getLangType().equals(type)) {
+					return s;
+				}
+			}
+			return langs.get(0);
+		}
 		if (type == null) {
 			if (defaultLang == null) {
 				return langs.get(0);

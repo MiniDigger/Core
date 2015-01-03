@@ -55,4 +55,18 @@ public interface LangStorage {
 	 */
 	String getAuthor();
 	
+	/**
+	 * Sets the author of this file
+	 * 
+	 * @param author
+	 */
+	void setAuthor(String author);
+	
+	/**
+	 * Sets the language of this file
+	 * 
+	 * @param type
+	 */
+	void setLangType(LangType type);
+	
 }

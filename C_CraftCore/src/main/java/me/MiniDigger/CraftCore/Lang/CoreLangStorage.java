@@ -50,6 +50,16 @@ public class CoreLangStorage implements LangStorage {
 	}
 	
 	@Override
+	public void setLangType(LangType type) {
+		this.lang = type;
+	}
+	
+	@Override
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	@Override
 	public String get(final LangKeyType type) {
 		if (values.containsKey(type)) {
 			return values.get(type);
@@ -142,6 +152,7 @@ public class CoreLangStorage implements LangStorage {
 			for (final LangKeyType type : values.keySet()) {
 				w.println(type.getFullType() + "=" + values.get(type));
 			}
+			w.close();
 		} catch (final FileNotFoundException e) {
 			_.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_SAVE, file.getAbsolutePath());
 			e.printStackTrace();
