@@ -224,7 +224,7 @@
 								</scp>
 
 								<scp
-									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api-dev/htdocs/addons"
+									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons-dev"
 									trust="true">
 									<fileset dir="${basedir}\build">
 										<include name="*.jar" />

@@ -42,15 +42,8 @@ import me.MiniDigger.CraftCore.Update.CorePluginVersion;
 
 public class CoreRESTHandler implements RESTHandler {
 	
-	private static final String	BASE_URL;
-	
-	static {
-		if (LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level")) == LogLevel.DEBUG) {
-			BASE_URL = "http://api-dev.minidigger.me/";
-		} else {
-			BASE_URL = "http://api.minidigger.me/";
-		}
-	}
+	private static final String	 BASE_URL	= "http://api.minidigger.me/";
+	private final static boolean	debug	= (LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level")) == LogLevel.DEBUG);
 	
 	public CoreRESTHandler() {
 		
@@ -60,7 +53,7 @@ public class CoreRESTHandler implements RESTHandler {
 	public URL showFile(final String name, final String version) {
 		URL classUrl;
 		try {
-			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name + "/" + version);
+			classUrl = new URL(BASE_URL + "/v1/addOns/showFile/" + name + "/" + version + "/" + debug);
 			return classUrl;
 		} catch (final Exception ex) {
 			ex.printStackTrace();
@@ -192,6 +185,9 @@ public class CoreRESTHandler implements RESTHandler {
 					}
 					if (bean.getPackage() == null || bean.getPackage().equals("")) {
 						bean.setPackage(addOn.getPackage());
+					}
+					if (bean.getPackageDev() == null || bean.getPackageDev().equals("")) {
+						bean.setPackageDev(addOn.getPackageDev());
 					}
 				}
 			}

@@ -110,7 +110,15 @@ public class CoreAddOnHandler implements AddOnHandler {
 			CoreAddOnClassLoader loader;
 			try {
 				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
-				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), bean.getPackage(), url);
+				_.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), url.toExternalForm());
+				String pack;
+				if (LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level")) == LogLevel.DEBUG) {
+					pack = bean.getPackageDev();
+				} else {
+					pack = bean.getPackage();
+				}
+				_.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), pack);
+				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), pack, url);
 			} catch (final Exception e) {
 				_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_LOAD, bean.getName(), bean.getVersion(), bean.getAuthor());
 				e.printStackTrace();

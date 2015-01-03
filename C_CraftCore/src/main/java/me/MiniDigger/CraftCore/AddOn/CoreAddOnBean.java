@@ -30,11 +30,13 @@ public class CoreAddOnBean implements AddOnBean {
 	private String	     author;
 	private String	     version;
 	private String	     classPackage;
+	private String	     classPackageDev;
 	
-	private final String	NAME	= "name";
-	private final String	AUTHOR	= "author";
-	private final String	VERSION	= "version";
-	private final String	PACKAGE	= "package";
+	private final String	NAME	   = "name";
+	private final String	AUTHOR	   = "author";
+	private final String	VERSION	   = "version";
+	private final String	PACKAGE	   = "package";
+	private final String	PACKAGEDEV	= "packagedev";
 	
 	public CoreAddOnBean() {
 		
@@ -52,6 +54,9 @@ public class CoreAddOnBean implements AddOnBean {
 		}
 		if (obj.containsKey(PACKAGE)) {
 			classPackage = (String) obj.get(PACKAGE);
+		}
+		if (obj.containsKey(PACKAGEDEV)) {
+			classPackageDev = (String) obj.get(PACKAGEDEV);
 		}
 	}
 	
@@ -95,6 +100,16 @@ public class CoreAddOnBean implements AddOnBean {
 		return classPackage;
 	}
 	
+	@Override
+	public void setPackageDev(final String classPackage) {
+		this.classPackageDev = classPackage;
+	}
+	
+	@Override
+	public String getPackageDev() {
+		return classPackageDev;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject toJson() {
@@ -104,6 +119,7 @@ public class CoreAddOnBean implements AddOnBean {
 		obj.put(VERSION, version);
 		obj.put(AUTHOR, author);
 		obj.put(PACKAGE, classPackage);
+		obj.put(PACKAGEDEV, classPackageDev);
 		
 		return obj;
 	}
