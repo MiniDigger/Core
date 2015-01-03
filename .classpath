@@ -19,6 +19,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="F:/DATA/Dev/dev-server/Standalone/plugins/HolographicDisplays.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

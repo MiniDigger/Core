@@ -1,0 +1,3 @@
+[submodule "HolographicDisplays"]
+	path = HolographicDisplays
+	url = https://github.com/filoghost/HolographicDisplays.git
