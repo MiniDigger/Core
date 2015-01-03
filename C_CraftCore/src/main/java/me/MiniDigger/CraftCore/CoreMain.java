@@ -78,6 +78,8 @@ import me.MiniDigger.CraftCore.User.CoreUserListener;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
 
 import mkremins.fanciful.FancyMessage;
+import ru.tehkode.permissions.PermissionManager;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CoreMain extends JavaPlugin implements Main {
 	
@@ -431,5 +433,10 @@ public class CoreMain extends JavaPlugin implements Main {
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			msg.send(p);
 		}
+	}
+	
+	@Override
+	public PermissionManager getPermissionManager() {
+		return PermissionsEx.getPermissionManager();
 	}
 }
