@@ -33,6 +33,7 @@ import org.json.simple.parser.JSONParser;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOnBean;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.REST.RESTHandler;
 import me.MiniDigger.Core.Update.UpdateType;
 
@@ -41,7 +42,15 @@ import me.MiniDigger.CraftCore.Update.CorePluginVersion;
 
 public class CoreRESTHandler implements RESTHandler {
 	
-	private static final String	BASE_URL	= "http://api.minidigger.me/";
+	private static final String	BASE_URL;
+	
+	static {
+		if (LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level")) == LogLevel.DEBUG) {
+			BASE_URL = "http://api-dev.minidigger.me/";
+		} else {
+			BASE_URL = "http://api.minidigger.me/";
+		}
+	}
 	
 	public CoreRESTHandler() {
 		

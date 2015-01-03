@@ -19,6 +19,7 @@ mapFolder:
 #Licence
 #If you don't have one, visit minidigger.me
 licence: 
+log-level: DEBUG
 # Data - Do not change anything below this point!
 spawn:
     default:

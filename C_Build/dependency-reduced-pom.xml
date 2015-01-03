@@ -103,6 +103,44 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>truezip-maven-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <id>remove-a-file</id>
+            <phase>install</phase>
+            <goals>
+              <goal>remove</goal>
+            </goals>
+            <configuration>
+              <fileset>
+                <directory>${basedir}\build\Core.jar\</directory>
+                <includes>
+                  <include>plugin.yml</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-into</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>
+                  <source>${basedir}\src\main\resources\plugin-debug.yml</source>
+                  <outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
+                  <destName>plugin.yml</destName>
+                </file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.7</version>
         <executions>
@@ -121,14 +159,8 @@
               </tasks>
             </configuration>
           </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
           <execution>
-            <id>copy2</id>
+            <id>dostuff</id>
             <phase>install</phase>
             <goals>
               <goal>run</goal>
@@ -160,6 +192,12 @@
                 <delete>
                   <fileset />
                 </delete>
+                <scp>
+                  <fileset>
+                    <include />
+                    <exclude />
+                  </fileset>
+                </scp>
                 <scp>
                   <fileset>
                     <include />

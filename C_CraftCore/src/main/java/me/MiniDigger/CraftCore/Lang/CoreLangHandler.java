@@ -53,6 +53,11 @@ public class CoreLangHandler implements LangHandler {
 			}
 		}
 		
+		log = LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level"));
+		if(log == null){
+			System.out.println(",,,");
+			System.out.println(",,,");
+		}
 		defaultLang = LangType.valueOf(Core.getCore().getInstance().getConfig().getString("default-lang"));
 	}
 	
