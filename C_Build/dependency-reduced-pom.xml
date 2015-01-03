@@ -227,24 +227,8 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
-      <version>1.8-R0.1-SNAPSHOT</version>
+      <version>1.8-SNAPSHOT</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>ru.tehkode</groupId>
-      <artifactId>PermissionsEx</artifactId>
-      <version>1.21.2-SNAPSHOT</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>updater</artifactId>
-          <groupId>net.gravitydevelopment.updater</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>commons-dbcp</artifactId>
-          <groupId>commons-dbcp</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.comphenix.protocol</groupId>
@@ -265,7 +249,7 @@
     <dependency>
       <groupId>de.slikey</groupId>
       <artifactId>EffectLib</artifactId>
-      <version>2.4-SNAPSHOT</version>
+      <version>2.4</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

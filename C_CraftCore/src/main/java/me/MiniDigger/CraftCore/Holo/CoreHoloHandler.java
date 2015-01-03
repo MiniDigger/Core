@@ -36,7 +36,7 @@ import me.MiniDigger.Core.User.User;
 @SuppressWarnings("deprecation")
 public class CoreHoloHandler implements HoloHandler {
 	
-	//TODO Something is depraced here....
+	// TODO Something is depraced here....
 	@Override
 	public void createSpawnHolo(final Location loc, final User user) {
 		final Hologram hologram = HolographicDisplaysAPI.createIndividualHologram(Core.getCore().getInstance(), loc, user.getPlayer(), ChatColor.GOLD + ""
