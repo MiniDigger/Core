@@ -207,5 +207,10 @@
 			<version>2.4</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>ru.tehkode</groupId>
+			<artifactId>PermissionEx</artifactId>
+			<version>1.23</version>
+		</dependency>
 	</dependencies>
 </project>
