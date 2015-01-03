@@ -75,7 +75,7 @@ public class _ {
 	}
 	
 	public static void log(final LogLevel lvl, final LangKeyType type, final LangType lang, final CommandSender sender, final String... args) {
-		System.out.println("ds");
+		System.out.println("ds2");
 		if(Core.getCore() == null){
 			System.out.println("core null!?");
 		}

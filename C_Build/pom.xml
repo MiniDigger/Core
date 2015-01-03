@@ -160,6 +160,18 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>movecore</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
 						<id>dostuff</id>
 						<phase>install</phase>
 						<goals>
@@ -167,7 +179,6 @@
 						</goals>
 						<configuration>
 							<tasks>
-								<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
 								<echo>ZKM
 								</echo>
 								<exec executable="java">

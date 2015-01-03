@@ -199,7 +199,8 @@
 		<dependency>
 			<groupId>com.gmail.filoghost</groupId>
 			<artifactId>holographicdisplays</artifactId>
-			<version>2.1.1</version>
+			<version>2.1.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>de.slikey</groupId>
@@ -211,6 +212,7 @@
 			<groupId>ru.tehkode</groupId>
 			<artifactId>PermissionEx</artifactId>
 			<version>1.23</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

@@ -160,6 +160,18 @@
             </configuration>
           </execution>
           <execution>
+            <id>movecore</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <copy />
+              </tasks>
+            </configuration>
+          </execution>
+          <execution>
             <id>dostuff</id>
             <phase>install</phase>
             <goals>
@@ -167,7 +179,6 @@
             </goals>
             <configuration>
               <tasks>
-                <copy />
                 <echo>ZKM</echo>
                 <exec>
                   <arg />
@@ -263,6 +274,18 @@
           <groupId>org.apache.ant</groupId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.gmail.filoghost</groupId>
+      <artifactId>holographicdisplays</artifactId>
+      <version>2.1.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>ru.tehkode</groupId>
+      <artifactId>PermissionEx</artifactId>
+      <version>1.23</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
   <reporting>
