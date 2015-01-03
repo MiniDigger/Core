@@ -15,7 +15,7 @@
 			"${maven.dependency.de.slikey.EffectLib.jar.path}"
 			"${maven.dependency.org.java-websocket.Java-WebSocket.jar.path}"
 			"${maven.dependency.com.comphenix.protocol.ProtocolLib.jar.path}"
-			"${maven.dependency.ru.tehkode.PermissionsEx.jar.path}"
+			"${maven.dependency.ru.tehkode.PermissionEx.jar.path}"
 			"${maven.dependency.avalon-framework.avalon-framework.jar.path}"
 			"${maven.dependency.commons-logging.commons-logging.jar.path}</path>
 	</properties>
