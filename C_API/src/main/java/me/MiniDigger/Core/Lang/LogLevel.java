@@ -58,6 +58,6 @@ public enum LogLevel {
 	}
 	
 	public FancyMessage getMsg(final String key) {
-		return new FancyMessage(this.key + " " + key).color(color);
+		return new FancyMessage("[Core] ").then(this.key + " " + key).color(color);
 	}
 }
