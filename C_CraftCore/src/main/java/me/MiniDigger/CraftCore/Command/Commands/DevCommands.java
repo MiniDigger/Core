@@ -21,10 +21,13 @@
 package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.UUID;
 
 import org.json.simple.JSONObject;
+
+import com.comphenix.protocol.utility.MinecraftReflection;
 
 import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
@@ -32,6 +35,8 @@ import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 import net.minecraft.server.v1_8_R1.BlockPosition;
 import net.minecraft.server.v1_8_R1.Entity;
 import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R1.NBTTagList;
+import net.minecraft.server.v1_8_R1.NBTTagString;
 import net.minecraft.server.v1_8_R1.TileEntity;
 import net.minecraft.server.v1_8_R1.TileEntityMobSpawner;
 import net.minecraft.server.v1_8_R1.World;
@@ -44,6 +49,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -344,5 +350,30 @@ public class DevCommands {
 		final String data = Core.getCore().getItemUtil().invToBase64(args.getPlayer().getInventory());
 		System.out.println("data!: " + data);
 		args.getPlayer().openInventory(Core.getCore().getItemUtil().invFromBase64(data));
+	}
+	
+	@Command(name = "dev.book1", description = "DEV!", usage = "", permission = "dev")
+	public void book1(final CommandArgs args) {
+		ItemStack is = args.getPlayer().getItemInHand();
+		BookMeta meta = (BookMeta) is.getItemMeta();
+		FancyMessage msg = new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE);
+		meta.setPage(1, msg.toJSONString());
+		is.setItemMeta(meta);
+	}
+	
+	@Command(name = "dev.book2", description = "DEV!", usage = "", permission = "dev")
+	public void book2(final CommandArgs args) {
+		ItemStack is = args.getPlayer().getItemInHand();
+		net.minecraft.server.v1_8_R1.ItemStack mcStack = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(is));
+		NBTTagCompound tag = mcStack.getTag();
+		NBTTagList pages = tag.getList("pages", 0);
+		pages.a(1, new NBTTagString(new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE).toJSONString()));
+		try {
+			Field f = mcStack.getClass().getDeclaredField("tag");
+			f.setAccessible(true);
+			f.set(mcStack, tag);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
