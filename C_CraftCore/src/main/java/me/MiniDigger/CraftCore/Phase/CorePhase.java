@@ -64,14 +64,11 @@ public abstract class CorePhase implements Phase {
 		// System.out.println("register cmds");
 		Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 		Core.getCore().getCommandHandler().registerCommands(this);
-		System.out.println("=========================================");
 		for (final Feature f : features) {
-			System.out.println("register " + f.getType().name() + " for phase " + getName());
 			Bukkit.getServer().getPluginManager().registerEvents(f, Core.getCore().getInstance());
 			Core.getCore().getCommandHandler().registerCommands(f);
 			f.start();
 		}
-		System.out.println("=========================================");
 	}
 	
 	@Override
@@ -87,7 +84,6 @@ public abstract class CorePhase implements Phase {
 		getNextPhase().init();
 		
 		for (final Feature f : features) {
-			System.out.println("unregister " + f.getType().name() + " for phase " + getName());
 			HandlerList.unregisterAll(f);
 			Core.getCore().getCommandHandler().unregisterCommands(f);
 			f.end();
