@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
@@ -95,7 +96,7 @@ public class PvPFeature extends CoreFeature {
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
 	public void onDeath(final CoreUserDeathEvent e) {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			if (e.getKiller() != null) {
