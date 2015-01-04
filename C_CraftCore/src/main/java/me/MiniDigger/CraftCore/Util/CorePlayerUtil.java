@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -104,6 +105,7 @@ public class CorePlayerUtil implements PlayerUtil {
 		clearArmor(p);
 		clearInv(p);
 		fixHealth(p);
+		p.setGameMode(GameMode.SURVIVAL);
 	}
 	
 }
