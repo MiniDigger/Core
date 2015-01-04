@@ -126,6 +126,10 @@ public class CoreScoreboard implements Scoreboard {
 			tab.getScore(line.getContent()).setScore(line.getId());
 		}
 		
+		if (getLines(DisplaySlot.PLAYER_LIST).size() == 0) {
+			sb.clearSlot(DisplaySlot.PLAYER_LIST);
+		}
+		
 		final Objective name = sb.registerNewObjective("name", "dummy");
 		name.setDisplaySlot(DisplaySlot.BELOW_NAME);
 		for (final ScoreboardLine line : getLines(DisplaySlot.BELOW_NAME)) {
@@ -135,6 +139,10 @@ public class CoreScoreboard implements Scoreboard {
 			name.getScore(line.getContent()).setScore(line.getId());
 		}
 		
+		if (getLines(DisplaySlot.BELOW_NAME).size() == 0) {
+			sb.clearSlot(DisplaySlot.BELOW_NAME);
+		}
+		
 		final Objective side = sb.registerNewObjective(title, "dummy");
 		side.setDisplaySlot(DisplaySlot.SIDEBAR);
 		for (final ScoreboardLine line : getLines(DisplaySlot.SIDEBAR)) {
@@ -142,6 +150,10 @@ public class CoreScoreboard implements Scoreboard {
 				scolling.add(line);
 			}
 			side.getScore(line.getContent()).setScore(line.getId());
+		}
+		
+		if (getLines(DisplaySlot.SIDEBAR).size() == 0) {
+			sb.clearSlot(DisplaySlot.SIDEBAR);
 		}
 		
 		return sb;
