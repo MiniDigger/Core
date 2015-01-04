@@ -30,6 +30,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -90,9 +91,16 @@ public class SpecateFeature extends CoreFeature {
 		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 		final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
 		final Location loc = locs.get(locs.keySet().iterator().next());
-		user.getPlayer().teleport(loc);
 		
-		Prefix.SPEC.getPrefix().then("Du bist jetzt Zuschauer!");
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				user.getPlayer().teleport(loc);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
+		
+		Prefix.SPEC.getPrefix().then("Du bist jetzt Zuschauer!").send(user.getPlayer());
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
