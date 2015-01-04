@@ -45,7 +45,7 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void onlyPlayer(final CommandSender sender, final String command) {
-		sender.sendMessage(Prefix.SECURITY.getConsolPrefix() + ChatColor.RED + "Der Command " + command + " kann nur als Spieler ausgef�hrt werden!");
+		sender.sendMessage(Prefix.SECURITY.getConsolPrefix() + ChatColor.RED + "Der Command " + command + " kann nur als Spieler ausgeführt werden!");
 		sender.sendMessage(Prefix.HINT.getConsolPrefix() + ChatColor.GOLD + "Maybe use sudo? ;D");
 	}
 	
@@ -88,12 +88,14 @@ public class CoreCommonMethods implements CommonMethods {
 			@Override
 			public void run() {
 				try {
-					if (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName()) > 5) {
-						Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
-						        .send(user.getPlayer());
-						Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen").color(ChatColor.GOLD).style(ChatColor.BOLD)
-						        .send(user.getPlayer());
-					}
+					// if
+					// (Core.getCore().getProtocolHandler().getProtocolVersion(user.getPlayer().getName())
+					// > 5) {
+					// Prefix.API.getPrefix().then("Es sieht so aus als würdest du 1.8.* oder einen Snapshot benutzen.").color(ChatColor.GOLD).style(ChatColor.BOLD)
+					// .send(user.getPlayer());
+					// Prefix.API.getPrefix().then("Dies kannst du tun, kann aber zu Problemen führen").color(ChatColor.GOLD).style(ChatColor.BOLD)
+					// .send(user.getPlayer());
+					// }
 					
 					Core.getCore().getHoloHandler().createSpawnHolo(user.getPlayer().getEyeLocation(), user);
 				} catch (final Exception ex) {
