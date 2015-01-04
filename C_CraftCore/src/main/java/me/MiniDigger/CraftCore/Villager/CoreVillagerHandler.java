@@ -20,42 +20,24 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import com.comphenix.protocol.wrappers.nbt.NbtBase;
-import com.comphenix.protocol.wrappers.nbt.NbtCompound;
-import com.comphenix.protocol.wrappers.nbt.NbtFactory;
-import com.comphenix.protocol.wrappers.nbt.NbtVisitor;
-import com.comphenix.protocol.wrappers.nbt.NbtWrapper;
+import com.comphenix.protocol.utility.MinecraftReflection;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftVillager;
-import org.bukkit.craftbukkit.v1_8_R1.event.CraftEventFactory;
 
-import net.minecraft.server.v1_8_R1.Container;
-import net.minecraft.server.v1_8_R1.ContainerMerchant;
-import net.minecraft.server.v1_8_R1.EntityPlayer;
 import net.minecraft.server.v1_8_R1.EntityVillager;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
-import net.minecraft.server.v1_8_R1.IMerchant;
-import net.minecraft.server.v1_8_R1.InventoryMerchant;
-import net.minecraft.server.v1_8_R1.MerchantRecipe;
-import net.minecraft.server.v1_8_R1.MerchantRecipeList;
-import net.minecraft.server.v1_8_R1.PacketDataSerializer;
-import net.minecraft.server.v1_8_R1.PacketPlayOutCustomPayload;
-import net.minecraft.server.v1_8_R1.PacketPlayOutOpenWindow;
+import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R1.NBTTagList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
 import me.MiniDigger.Core.Villager.VillagerHandler;
 import me.MiniDigger.Core.Villager.VillagerTrade;
-
-import io.netty.buffer.Unpooled;
 
 public class CoreVillagerHandler implements VillagerHandler {
 	
@@ -90,20 +72,42 @@ public class CoreVillagerHandler implements VillagerHandler {
 		return true;
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public boolean open(final Villager v, final Player p) {
-		NbtWrapper<EntityVillager> nbt = NbtFactory.fromNMS(((CraftVillager) v).getHandle(), "Test");
-		NbtBase<EntityVillager> base = nbt.deepClone();
-		NbtCompound comp = NbtFactory.asCompound(base);
-//		comp. Lets make a own nbt lib first ;D
+		EntityVillager mcVillager = ((CraftVillager) v).getHandle();
+		NBTTagCompound nbt = new NBTTagCompound();
+		mcVillager.b(nbt);
+		nbt.setInt("Willing", 1);
+		
+		NBTTagList recipes = new NBTTagList();
+		
+		for (VillagerTrade t : getTrades(v)) {
+			NBTTagCompound res = new NBTTagCompound();
+			res.setByte("rewardExp", (byte) 0);
+			res.setInt("maxUses", 10000);
+			res.setInt("uses", 0);
+			
+			NBTTagCompound buy1 = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem1())).getTag();
+			NBTTagCompound buy2 = null;
+			if (t.getItem2() != null) {
+				((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem2())).getTag();
+			}
+			NBTTagCompound sell = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getRewardItem())).getTag();
+			
+			res.set("buy", buy1);
+			if (buy2 != null) {
+				res.set("buyB", buy2);
+			}
+			res.set("sell", sell);
+		}
+		
+		NBTTagCompound offers = new NBTTagCompound();
+		offers.set("Recipes", recipes);
+		
+		nbt.set("Offers", offers);
+		mcVillager.a(nbt);
 		
 		return true;
-	}
-	
-	private net.minecraft.server.v1_8_R1.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
-		if (item == null) {
-			return null;
-		}
-		return org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack.asNMSCopy(item);
 	}
 }

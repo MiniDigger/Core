@@ -23,18 +23,27 @@ package me.MiniDigger.CraftCore.Villager;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Villager.VillagerListener;
 
 public class CoreVillagerListener implements VillagerListener {
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerInteract(final PlayerInteractEntityEvent e) {
 		if (e.getRightClicked().getType() == EntityType.VILLAGER) {
 			System.out.println("open");
-			e.setCancelled(Core.getCore().getVillagerHandler().open((Villager) e.getRightClicked(), e.getPlayer()));
+			Core.getCore().getVillagerHandler().open((Villager) e.getRightClicked(), e.getPlayer());
+			e.setCancelled(false);
+			System.out.println("canceld?: " + e.isCancelled());
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInterac2t(final PlayerInteractEntityEvent e) {
+		if (e.getRightClicked().getType() == EntityType.VILLAGER) {
+			System.out.println("!!canceld?: " + e.isCancelled());
 		}
 	}
 }
