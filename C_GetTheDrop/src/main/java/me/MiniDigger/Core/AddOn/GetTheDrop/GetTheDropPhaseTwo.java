@@ -40,6 +40,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class GetTheDropPhaseTwo extends CoreTimedPhase {
@@ -82,6 +83,7 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 		addFeature(new MapFeature(this, null));
 		addFeature(new PvPFeature(this, true));
 		addFeature(new SpawnFeature(this, false));
+		addFeature(new SpecateFeature(this));
 	}
 	
 	@Override

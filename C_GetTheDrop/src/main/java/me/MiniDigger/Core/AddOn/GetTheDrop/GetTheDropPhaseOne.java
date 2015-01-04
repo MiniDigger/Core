@@ -39,6 +39,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class GetTheDropPhaseOne extends CoreTimedPhase {
@@ -80,6 +81,7 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 		addFeature(new MapFeature(this, "GTD_Arena"));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new SpawnFeature(this, false));
+		addFeature(new SpecateFeature(this));
 	}
 	
 	@Override

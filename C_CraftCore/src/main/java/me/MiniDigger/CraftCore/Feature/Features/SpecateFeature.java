@@ -21,14 +21,24 @@
 package me.MiniDigger.CraftCore.Feature.Features;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.DyeColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
@@ -73,19 +83,43 @@ public class SpecateFeature extends CoreFeature {
 		return getPhase().getGame().getSpecs().contains(id);
 	}
 	
-	public void spec(final UUID id) {
-		getPhase().getGame().addSpec(id);
+	public void spec(final User user) {
+		getPhase().getGame().addSpec(user.getUUID());
+		user.getPlayer().setGameMode(GameMode.SPECTATOR);
+		
+		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+		final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
+		final Location loc = locs.get(locs.keySet().iterator().next());
+		user.getPlayer().teleport(loc);
+		
+		Prefix.SPEC.getPrefix().then("Du bist jetzt Zuschauer!");
+	}
+	
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onDeath(final CoreUserDeathEvent e) {
+		if (!e.shouldRespawn()) {
+			spec(e.getUser());
+		}
+	}
+	
+	public void remSpec(final User user) {
+		getPhase().getGame().remSpec(user.getUUID());
+		user.getPlayer().setGameMode(GameMode.SURVIVAL);
 	}
 	
 	@EventHandler
 	public void onJoin(final CoreUserJoinGameEvent e) {
-		
+		if (!getPhase().getGame().allowJoin()) {
+			spec(e.getUser());
+		} else {
+			remSpec(e.getUser());
+		}
 	}
 	
 	@EventHandler
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (isSpec(e.getUser().getUUID())) {
-			getPhase().getGame().remSpec(e.getUser().getUUID());
+			remSpec(e.getUser());
 		}
 	}
 }
