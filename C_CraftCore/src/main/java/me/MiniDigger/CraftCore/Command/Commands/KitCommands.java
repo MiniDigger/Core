@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -35,7 +36,7 @@ public class KitCommands {
 	
 	@Command(name = "kit", permission = "kit", usage = "", description = "Macht alles mit Kits")
 	public void kit(final CommandArgs args) {
-		Prefix.KIT.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/kit create").then("um ein neues Kit zu erzeugen").color(ChatColor.GOLD)
+		Prefix.KIT.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/kit create ").then("um ein neues Kit zu erzeugen").color(ChatColor.GOLD)
 		        .send(args.getSender());
 		Prefix.KIT.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/kit give ").then("um ein Kit zu vergeben").color(ChatColor.GOLD)
 		        .send(args.getSender());
@@ -53,17 +54,24 @@ public class KitCommands {
 		
 		final Kit k = Core.getCore().getKitHandler().createKit(args.getArgs()[0]);
 		int i = 0;
-		System.out.println("size: " + args.getPlayer().getInventory().getContents().length);
-		for (final ItemStack is : args.getPlayer().getInventory().getContents()) {
+		for (ItemStack is : args.getPlayer().getInventory().getContents()) {
+			if (is == null) {
+				is = new ItemStack(Material.AIR);
+			}
 			k.setContent(i, is);
 			i++;
 		}
+		
 		i = 0;
-		System.out.println("size: " + args.getPlayer().getInventory().getArmorContents().length);
-		for (final ItemStack is : args.getPlayer().getInventory().getArmorContents()) {
-			k.setContent(i, is);
+		for (ItemStack is : args.getPlayer().getInventory().getArmorContents()) {
+			if (is == null) {
+				is = new ItemStack(Material.AIR);
+			}
+			k.setArmor(i, is);
 			i++;
 		}
+		
+		k.save();
 		args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Kit erstellt").color(ChatColor.GREEN));
 	}
 	
@@ -90,7 +98,31 @@ public class KitCommands {
 	
 	@Command(name = "kit.modify", permission = "kit.modify", usage = "<name>", description = "Macht alles mit Kits", min = 1, consol = false)
 	public void modify(final CommandArgs args) {
+		if (Core.getCore().getKitHandler().getKit(args.getArgs()[0]) == null) {
+			args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Diese Kit gibt es nicht!").color(ChatColor.RED));
+		}
 		
+		final Kit k = Core.getCore().getKitHandler().getKit(args.getArgs()[0]);
+		int i = 0;
+		for (ItemStack is : args.getPlayer().getInventory().getContents()) {
+			if (is == null) {
+				is = new ItemStack(Material.AIR);
+			}
+			k.setContent(i, is);
+			i++;
+		}
+		
+		i = 0;
+		for (ItemStack is : args.getPlayer().getInventory().getArmorContents()) {
+			if (is == null) {
+				is = new ItemStack(Material.AIR);
+			}
+			k.setArmor(i, is);
+			i++;
+		}
+		
+		k.save();
+		args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Kit modifiziert!").color(ChatColor.GREEN));
 	}
 	
 	@Command(name = "kit.delete", permission = "kit.delete", usage = "<name>", description = "Macht alles mit Kits", min = 1)

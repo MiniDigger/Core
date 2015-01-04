@@ -95,7 +95,7 @@ public class CoreKit implements Kit {
 		// Try insertion
 		SQLQuery query = null;
 		try {
-			query = new CoreSQLQuery("INSERT INTO `kits` (`id`, `name`, `perm`, `charge`, `content`, `armor`) VALUES (?,?,?,?,?,?);)");
+			query = new CoreSQLQuery("INSERT INTO `kits` (`id`, `name`, `perm`, `charge`, `content`, `armor`) VALUES (?,?,?,?,?,?);");
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setInt(1, id);
 			stmt.setString(2, name);
@@ -154,6 +154,7 @@ public class CoreKit implements Kit {
 			charge = r.getInt("charge");
 			content = Core.getCore().getItemUtil().itemArrayFromBase64(r.getString("content"));
 			armor = Core.getCore().getItemUtil().itemArrayFromBase64(r.getString("armor"));
+			
 			query.kill();
 		} catch (final Exception ex) {
 			try {

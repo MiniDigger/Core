@@ -20,6 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Kit;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +33,10 @@ import org.bukkit.entity.Player;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Kit.Kit;
 import me.MiniDigger.Core.Kit.KitHandler;
+import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 public class CoreKitHandler implements KitHandler {
 	
@@ -99,7 +105,10 @@ public class CoreKitHandler implements KitHandler {
 		p.getInventory().clear();
 		
 		p.getInventory().setContents(kit.getContent());
-		p.getInventory().setArmorContents(kit.getArmor());
+		p.getInventory().setHelmet(kit.getArmor()[0]);
+		p.getInventory().setChestplate(kit.getArmor()[1]);
+		p.getInventory().setLeggings(kit.getArmor()[2]);
+		p.getInventory().setBoots(kit.getArmor()[3]);
 		
 		p.updateInventory();
 	}
@@ -120,6 +129,37 @@ public class CoreKitHandler implements KitHandler {
 		if (!new CoreKit(-1).createTable()) {
 			Core.getCore().getInstance().error("Tabelle wurde nicht erstellt!");
 		}
+		
+		final List<Integer> ids = new ArrayList<Integer>();
+		final SQLQuery q = new CoreSQLQuery("SELECT `id` FROM `kits`");
+		final PreparedStatement stmt = q.getStatement();
+		ResultSet r;
+		try {
+			r = stmt.executeQuery();
+		} catch (final SQLException e) {
+			return false;
+		}
+		
+		try {
+			while (r.next()) {
+				try {
+					ids.add(r.getInt("id"));
+				} catch (final Exception ex) {
+					// skip on single error
+				}
+			}
+		} catch (final SQLException e) {
+			return false;
+		}
+		
+		for (int id : ids) {
+			Kit k = new CoreKit(id);
+			k.load();
+			kits.add(k);
+		}
+		
+		System.out.println(ids.size() + " kits loaded!");
+		
 		return true;
 	}
 	
