@@ -59,7 +59,7 @@ public class OITCPhase extends CorePhase {
 		addFeature(new PvPFeature(this, true));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new OITCFeature(this));
-		addFeature(new LivesFeature(this, 3));
+		addFeature(new LivesFeature(this, 5));
 		addFeature(new SpecateFeature(this));
 	}
 	

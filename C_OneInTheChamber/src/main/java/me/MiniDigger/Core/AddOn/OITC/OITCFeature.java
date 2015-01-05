@@ -6,10 +6,13 @@ import java.util.UUID;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -48,10 +51,16 @@ public class OITCFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
-			User u = Core.getCore().getUserHandler().get(id);
-			giveItems(u);
-		}
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (UUID id : getPhase().getGame().getPlayers()) {
+					User u = Core.getCore().getUserHandler().get(id);
+					giveItems(u.getPlayer());
+				}
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 20);
 	}
 	
 	@Override
@@ -59,26 +68,32 @@ public class OITCFeature extends CoreFeature {
 		
 	}
 	
-	@EventHandler(priority=EventPriority.LOW)
-	public void onDeath(CoreUserDeathEvent e) {
-		if (e.shouldRespawn()) {
-			e.setKeepDrops(true);
-			giveItems(e.getUser());
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onDeath(PlayerRespawnEvent e) {
+		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
+			giveItems(e.getPlayer());
 		}
 	}
 	
 	@EventHandler
-	public void onBowHit(EntityDamageByEntityEvent e){
-		if(e.getEntityType() == EntityType.ARROW){
+	public void onkill(CoreUserDeathEvent e) {
+		giveItems(e.getKiller().getPlayer());
+	}
+	
+	@EventHandler
+	public void onBowHit(EntityDamageByEntityEvent e) {
+		if (e.getDamager().getType() == EntityType.ARROW) {
 			e.setDamage(1000.0);
+			System.out.println("huge dmg!");
 		}
 	}
 	
-	public void giveItems(User u) {
-		int lives = ((LivesFeature) getPhase().getFeature(FeatureType.LIVES)).getLives(u.getUUID());
-		u.getPlayer().getInventory().addItem(new ItemStack(Material.REDSTONE, lives));
-		u.getPlayer().getInventory().addItem(new ItemStack(Material.WOOD_SWORD));
-		u.getPlayer().getInventory().addItem(new ItemStack(Material.BOW));
-		u.getPlayer().getInventory().addItem(new ItemStack(Material.ARROW));
+	public void giveItems(Player p) {
+		int lives = ((LivesFeature) getPhase().getFeature(FeatureType.LIVES)).getLives(p.getUniqueId());
+		p.getInventory().addItem(new ItemStack(Material.REDSTONE, lives));
+		p.getInventory().addItem(new ItemStack(Material.WOOD_SWORD));
+		p.getInventory().addItem(new ItemStack(Material.BOW));
+		p.getInventory().addItem(new ItemStack(Material.ARROW));
+		p.updateInventory();
 	}
 }
