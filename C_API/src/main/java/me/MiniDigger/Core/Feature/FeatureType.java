@@ -52,7 +52,8 @@ public enum FeatureType {
 	BUILD,
 	CRANK,
 	LIVES,
-	SPEC;
+	SPEC,
+	KIT;
 	
 	/**
 	 * @return A human readable name for the feature

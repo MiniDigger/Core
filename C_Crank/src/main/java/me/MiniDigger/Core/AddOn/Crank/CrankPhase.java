@@ -33,6 +33,7 @@ import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
+import me.MiniDigger.CraftCore.Feature.Features.KitFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
@@ -81,6 +82,7 @@ public class CrankPhase extends CorePhase {
 		addFeature(new CrankFeature(this, 30));
 		addFeature(new LivesFeature(this, 3));
 		addFeature(new SpecateFeature(this));
+		addFeature(new KitFeature(this));
 	}
 	
 	@Override

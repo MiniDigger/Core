@@ -1,0 +1,67 @@
+package me.MiniDigger.CraftCore.Feature.Features;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Feature.CoreFeature;
+
+public class KitFeature extends CoreFeature {
+	
+	public KitFeature(Phase phase) {
+		super(phase);
+	}
+	
+	@Override
+	public FeatureType getType() {
+		return FeatureType.KIT;
+	}
+	
+	@Override
+	public List<FeatureType> getDependencies() {
+		return new ArrayList<FeatureType>();
+	}
+	
+	@Override
+	public List<FeatureType> getSoftDependencies() {
+		return new ArrayList<FeatureType>();
+	}
+	
+	@Override
+	public List<FeatureType> getIncompabilities() {
+		return new ArrayList<FeatureType>();
+	}
+	
+	@Override
+	public void start() {
+		for (UUID id : getPhase().getGame().getPlayers()) {
+			User u = Core.getCore().getUserHandler().get(id);
+			Core.getCore().getKitHandler().give(u, Core.getCore().getKitHandler().getActivKit(id));
+		}
+	}
+	
+	@Override
+	public void end() {
+		for (UUID id : getPhase().getGame().getPlayers()) {
+			User u = Core.getCore().getUserHandler().get(id);
+			Core.getCore().getPlayerUtil().prepare(u.getPlayer());
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.LOW)
+	public void onDeath(CoreUserDeathEvent e) {
+		if (e.shouldRespawn()) {
+			Core.getCore().getKitHandler().give(e.getUser(), Core.getCore().getKitHandler().getActivKit(e.getUser().getUUID()));
+			e.setKeepDrops(true);
+		}
+	}
+}

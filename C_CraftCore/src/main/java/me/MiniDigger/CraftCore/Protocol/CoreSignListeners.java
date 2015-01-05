@@ -85,6 +85,19 @@ public class CoreSignListeners implements SignListeners {
 				Core.getCore().getKitHandler().give(getPlayer(), k);
 			}
 		}, false));
+		
+		register(new SignListener("Kit", new SignAction() {
+			
+			@Override
+			public void run() {
+				final Kit k = Core.getCore().getKitHandler().getKit(getSign().getLine(1));
+				if (k == null) {
+					getUser().sendMessage(Prefix.API.getPrefix().then("Dieses Schild ist kaputt! Bitte berichte einem Teammitglied!").color(ChatColor.RED));
+					return;
+				}
+				Core.getCore().getKitHandler().give(getPlayer(), k);
+			}
+		}, false));
 	}
 	
 	@Override
