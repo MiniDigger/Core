@@ -149,7 +149,7 @@ public class WorldCommands {
 		}
 	}
 	
-	@Command(name = "world.load", description = "Läd eine Welt", usage = "<name>", permission = "world.load", consol = false, min = 1)
+	@Command(name = "world.load", description = "Läd eine Welt", usage = "<name>", permission = "world.load", consol = false, min = 1, sync = true)
 	public void load(final CommandArgs args) {
 		final String map = args.getArgs()[0];
 		
