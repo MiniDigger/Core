@@ -22,7 +22,7 @@ public class OITCGame extends CoreGame {
 	
 	@Override
 	public GameType getType() {
-		return GameType.CRANK;
+		return GameType.OITC;
 	}
 	
 	@Override
