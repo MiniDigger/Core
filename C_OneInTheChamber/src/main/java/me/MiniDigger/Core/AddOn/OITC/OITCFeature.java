@@ -97,6 +97,7 @@ public class OITCFeature extends CoreFeature {
 	
 	@EventHandler
 	public void onkill(final CoreUserDeathEvent e) {
+		e.setKeepDrops(false);
 		try {
 			giveItems(e.getKiller().getPlayer());
 		} catch (final Exception ex) {}
@@ -106,12 +107,12 @@ public class OITCFeature extends CoreFeature {
 	public void onBowHit(final EntityDamageByEntityEvent e) {
 		if (e.getDamager().getType() == EntityType.ARROW) {
 			e.setDamage(1000.0);
-			System.out.println("huge dmg!");
 		}
 	}
 	
 	public void giveItems(final Player p) {
 		final int lives = ((LivesFeature) getPhase().getFeature(FeatureType.LIVES)).getLives(p.getUniqueId());
+		p.getInventory().clear();
 		p.getInventory().addItem(new ItemStack(Material.REDSTONE, lives));
 		p.getInventory().addItem(new ItemStack(Material.WOOD_SWORD));
 		p.getInventory().addItem(new ItemStack(Material.BOW));
