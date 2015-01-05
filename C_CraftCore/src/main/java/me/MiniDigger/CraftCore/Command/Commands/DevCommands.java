@@ -354,25 +354,25 @@ public class DevCommands {
 	
 	@Command(name = "dev.book1", description = "DEV!", usage = "", permission = "dev")
 	public void book1(final CommandArgs args) {
-		ItemStack is = args.getPlayer().getItemInHand();
-		BookMeta meta = (BookMeta) is.getItemMeta();
-		FancyMessage msg = new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE);
+		final ItemStack is = args.getPlayer().getItemInHand();
+		final BookMeta meta = (BookMeta) is.getItemMeta();
+		final FancyMessage msg = new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE);
 		meta.setPage(1, msg.toJSONString());
 		is.setItemMeta(meta);
 	}
 	
 	@Command(name = "dev.book2", description = "DEV!", usage = "", permission = "dev")
 	public void book2(final CommandArgs args) {
-		ItemStack is = args.getPlayer().getItemInHand();
-		net.minecraft.server.v1_8_R1.ItemStack mcStack = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(is));
-		NBTTagCompound tag = mcStack.getTag();
-		NBTTagList pages = tag.getList("pages", 0);
+		final ItemStack is = args.getPlayer().getItemInHand();
+		final net.minecraft.server.v1_8_R1.ItemStack mcStack = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(is));
+		final NBTTagCompound tag = mcStack.getTag();
+		final NBTTagList pages = tag.getList("pages", 0);
 		pages.a(1, new NBTTagString(new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE).toJSONString()));
 		try {
-			Field f = mcStack.getClass().getDeclaredField("tag");
+			final Field f = mcStack.getClass().getDeclaredField("tag");
 			f.setAccessible(true);
 			f.set(mcStack, tag);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}

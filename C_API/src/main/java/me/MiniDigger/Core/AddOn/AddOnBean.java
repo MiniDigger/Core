@@ -73,14 +73,15 @@ public interface AddOnBean {
 	 *            sets the path to the main class in the jar
 	 */
 	public void setPackage(final String classPackage);
-
+	
 	/**
 	 * @return the path to the main class in the jar (debug)
 	 */
 	public String getPackageDev();
+	
 	/**
 	 * @param classPackage
 	 *            sets the path to the main class in the jar (debug)
 	 */
-	public void setPackageDev(String packageDev);
+	public void setPackageDev(final String packageDev);
 }

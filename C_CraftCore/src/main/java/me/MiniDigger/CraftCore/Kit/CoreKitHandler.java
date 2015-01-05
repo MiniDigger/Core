@@ -152,8 +152,8 @@ public class CoreKitHandler implements KitHandler {
 			return false;
 		}
 		
-		for (int id : ids) {
-			Kit k = new CoreKit(id);
+		for (final int id : ids) {
+			final Kit k = new CoreKit(id);
 			k.load();
 			kits.add(k);
 		}

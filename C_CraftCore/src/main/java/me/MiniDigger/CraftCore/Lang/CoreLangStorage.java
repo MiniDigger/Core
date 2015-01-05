@@ -50,12 +50,12 @@ public class CoreLangStorage implements LangStorage {
 	}
 	
 	@Override
-	public void setLangType(LangType type) {
-		this.lang = type;
+	public void setLangType(final LangType type) {
+		lang = type;
 	}
 	
 	@Override
-	public void setAuthor(String author) {
+	public void setAuthor(final String author) {
 		this.author = author;
 	}
 	

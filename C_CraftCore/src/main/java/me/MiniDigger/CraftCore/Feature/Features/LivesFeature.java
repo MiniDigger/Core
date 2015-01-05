@@ -104,8 +104,8 @@ public class LivesFeature extends CoreFeature {
 			return; // Games over, who cares
 		}
 		
-		for (UUID id : lives.keySet()) {
-			User u = Core.getCore().getUserHandler().get(id);
+		for (final UUID id : lives.keySet()) {
+			final User u = Core.getCore().getUserHandler().get(id);
 			board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
 		}
 		

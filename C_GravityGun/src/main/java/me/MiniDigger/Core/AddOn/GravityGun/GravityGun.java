@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.Core.AddOn.GravityGun;
 
 import java.util.ArrayList;
@@ -12,8 +32,8 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Damageable;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Minecart;
@@ -21,11 +41,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -39,7 +59,7 @@ import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 /**
  * 
  * @author LabyStudio, http://www.spigotmc.org/resources/gravitygun.2851/
- *
+ * 
  */
 @SuppressWarnings("deprecation")
 public class GravityGun extends CoreItem {
@@ -64,7 +84,7 @@ public class GravityGun extends CoreItem {
 		GravityGun.flyingBlock = new HashMap<FallingBlock, Player>();
 		GravityGun.flyingBlockList = new ArrayList<FallingBlock>();
 		
-		Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), (Runnable) new Runnable() {
+		Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -76,8 +96,8 @@ public class GravityGun extends CoreItem {
 	
 	public GravityGun() {
 		super(ItemType.GRAVITYGUN);
-		this.permission_give = "GravityGun.give";
-		this.permission_use = "GravityGun.use";
+		permission_give = "GravityGun.give";
+		permission_use = "GravityGun.use";
 	}
 	
 	@Override
@@ -114,7 +134,7 @@ public class GravityGun extends CoreItem {
 			GravityGun.block.remove(e.getPlayer());
 			GravityGun.hold.remove(e.getPlayer());
 			GravityGun.entity.remove(e.getPlayer());
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 	}
 	
 	public static void hit() {
@@ -130,7 +150,7 @@ public class GravityGun extends CoreItem {
 					GravityGun.flyingBlockList.remove(all);
 				}
 			}
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 	}
 	
 	@EventHandler(ignoreCancelled = true)
@@ -139,7 +159,7 @@ public class GravityGun extends CoreItem {
 			GravityGun.block.remove(e.getEntity().getPlayer());
 			GravityGun.hold.remove(e.getEntity().getPlayer());
 			GravityGun.entity.remove(e.getEntity().getPlayer());
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 	}
 	
 	public static void move() {
@@ -172,7 +192,7 @@ public class GravityGun extends CoreItem {
 						fs.setVelocity(loc.toVector().subtract(fs.getLocation().toVector()).normalize().multiply(0.4));
 					}
 					if (fs.getLocation().getBlock().getType() != Material.AIR) {
-						Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), (Runnable) new Runnable() {
+						Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 							
 							@Override
 							public void run() {
@@ -186,7 +206,7 @@ public class GravityGun extends CoreItem {
 					direction2.multiply(4);
 					loc2.add(direction2);
 					loc2.add(0.0, 2.0, 0.0);
-					final FallingBlock fs2 = all.getWorld().spawnFallingBlock(loc2, (Material) GravityGun.block.get(all), (byte) GravityGun.blockByte.get(all));
+					final FallingBlock fs2 = all.getWorld().spawnFallingBlock(loc2, GravityGun.block.get(all), GravityGun.blockByte.get(all));
 					fs2.setDropItem(false);
 					GravityGun.hold.put(all, fs2);
 				}
@@ -228,7 +248,7 @@ public class GravityGun extends CoreItem {
 	public void EntityDamageByEntityEvent(final EntityDamageByEntityEvent e) {
 		if (e.getDamager() instanceof Player) {
 			final Player h = (Player) e.getDamager();
-			if (h.hasPermission(this.permission_use) && h.getItemInHand().getType() == getItem().getType()
+			if (h.hasPermission(permission_use) && h.getItemInHand().getType() == getItem().getType()
 			        && h.getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
 				e.setCancelled(true);
 				e.getEntity().setVelocity(h.getLocation().getDirection().multiply(3));
@@ -240,16 +260,16 @@ public class GravityGun extends CoreItem {
 	}
 	
 	public void setBlock(final int x, final int y, final int z, final Location loc, final Player p) {
-		loc.add((double) x, (double) y, (double) z);
+		loc.add(x, y, z);
 		loc.getBlock().setType(GravityGun.hold.get(p).getMaterial());
 		loc.getBlock().setData(GravityGun.hold.get(p).getBlockData());
 	}
 	
 	@EventHandler(ignoreCancelled = true)
 	@Override
-	public void onUse(PlayerInteractEvent e) {
+	public void onUse(final PlayerInteractEvent e) {
 		try {
-			if (e.getPlayer().hasPermission(this.permission_use) && e.getPlayer().getItemInHand().getType() == getItem().getType()
+			if (e.getPlayer().hasPermission(permission_use) && e.getPlayer().getItemInHand().getType() == getItem().getType()
 			        && e.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
 				e.setCancelled(true);
 				if (!GravityGun.entity.containsKey(e.getPlayer())) {
@@ -266,17 +286,17 @@ public class GravityGun extends CoreItem {
 						}
 						if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 							if (e.getBlockFace() == BlockFace.UP) {
-								this.setBlock(0, 1, 0, e.getClickedBlock().getLocation(), e.getPlayer());
+								setBlock(0, 1, 0, e.getClickedBlock().getLocation(), e.getPlayer());
 							} else if (e.getBlockFace() == BlockFace.DOWN) {
-								this.setBlock(0, -1, 0, e.getClickedBlock().getLocation(), e.getPlayer());
+								setBlock(0, -1, 0, e.getClickedBlock().getLocation(), e.getPlayer());
 							} else if (e.getBlockFace() == BlockFace.NORTH) {
-								this.setBlock(0, 0, -1, e.getClickedBlock().getLocation(), e.getPlayer());
+								setBlock(0, 0, -1, e.getClickedBlock().getLocation(), e.getPlayer());
 							} else if (e.getBlockFace() == BlockFace.EAST) {
-								this.setBlock(1, 0, 0, e.getClickedBlock().getLocation(), e.getPlayer());
+								setBlock(1, 0, 0, e.getClickedBlock().getLocation(), e.getPlayer());
 							} else if (e.getBlockFace() == BlockFace.SOUTH) {
-								this.setBlock(0, 0, 1, e.getClickedBlock().getLocation(), e.getPlayer());
+								setBlock(0, 0, 1, e.getClickedBlock().getLocation(), e.getPlayer());
 							} else if (e.getBlockFace() == BlockFace.WEST) {
-								this.setBlock(-1, 0, 0, e.getClickedBlock().getLocation(), e.getPlayer());
+								setBlock(-1, 0, 0, e.getClickedBlock().getLocation(), e.getPlayer());
 							}
 							for (int i = 0; i <= 10; ++i) {
 								e.getPlayer().getWorld().playSound(GravityGun.hold.get(e.getPlayer()).getLocation(), Sound.ENDERMAN_TELEPORT, 2.0f, 0.0f);
@@ -322,12 +342,12 @@ public class GravityGun extends CoreItem {
 					}
 				}
 			}
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 	}
 	
 	@EventHandler(ignoreCancelled = true)
 	public void PlayerInteractEntityEvent(final PlayerInteractEntityEvent e) {
-		if (e.getPlayer().hasPermission(this.permission_use) && e.getPlayer().getItemInHand().getType() == getItem().getType()
+		if (e.getPlayer().hasPermission(permission_use) && e.getPlayer().getItemInHand().getType() == getItem().getType()
 		        && e.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
 			if (GravityGun.entity.containsKey(e.getPlayer())) {
 				GravityGun.entity.remove(e.getPlayer());
@@ -338,7 +358,7 @@ public class GravityGun extends CoreItem {
 						GravityGun.entity.put(e.getPlayer(), e.getRightClicked());
 						GravityGun.entityList.add(e.getPlayer());
 						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENDERMAN_TELEPORT, 7.0f, 3.0f);
-						Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), (Runnable) new Runnable() {
+						Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 							
 							@Override
 							public void run() {
@@ -346,7 +366,7 @@ public class GravityGun extends CoreItem {
 							}
 						}, 20L);
 					}
-				} catch (Exception ex) {}
+				} catch (final Exception ex) {}
 			}
 		}
 	}

@@ -33,10 +33,10 @@ import me.MiniDigger.Core.Lang.LogLevel;
 
 public class CoreLangHandler implements LangHandler {
 	
-	private List<LangStorage>	langs	  = new ArrayList<LangStorage>();
-	private LangType	      defaultLang	= LangType.en_US;
-	private LogLevel	      log;
-	private final File	      langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
+	private final List<LangStorage>	langs	    = new ArrayList<LangStorage>();
+	private LangType	            defaultLang	= LangType.en_US;
+	private LogLevel	            log;
+	private final File	            langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
 	
 	@Override
 	public void load() {
@@ -63,7 +63,7 @@ public class CoreLangHandler implements LangHandler {
 		
 		if (langs.size() == 0) {
 			System.out.println("Saving default lang!");
-			LangStorage s = new CoreLangStorage();
+			final LangStorage s = new CoreLangStorage();
 			s.setAuthor("MiniDigger");
 			s.setLangType(LangType.en_US);
 			s.save(new File(langFolder, "en_US.lang"));

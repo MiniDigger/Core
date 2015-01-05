@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.Core.AddOn.OITC;
 
 import java.util.ArrayList;
@@ -25,7 +45,7 @@ import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 
 public class OITCFeature extends CoreFeature {
 	
-	public OITCFeature(Phase phase) {
+	public OITCFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -55,8 +75,8 @@ public class OITCFeature extends CoreFeature {
 			
 			@Override
 			public void run() {
-				for (UUID id : getPhase().getGame().getPlayers()) {
-					User u = Core.getCore().getUserHandler().get(id);
+				for (final UUID id : getPhase().getGame().getPlayers()) {
+					final User u = Core.getCore().getUserHandler().get(id);
 					giveItems(u.getPlayer());
 				}
 			}
@@ -69,30 +89,29 @@ public class OITCFeature extends CoreFeature {
 	}
 	
 	@EventHandler(priority = EventPriority.LOWEST)
-	public void onDeath(PlayerRespawnEvent e) {
+	public void onDeath(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			giveItems(e.getPlayer());
 		}
 	}
 	
 	@EventHandler
-	public void onkill(CoreUserDeathEvent e) {
+	public void onkill(final CoreUserDeathEvent e) {
 		try {
 			giveItems(e.getKiller().getPlayer());
-		} catch (Exception ex) {
-		}
+		} catch (final Exception ex) {}
 	}
 	
 	@EventHandler
-	public void onBowHit(EntityDamageByEntityEvent e) {
+	public void onBowHit(final EntityDamageByEntityEvent e) {
 		if (e.getDamager().getType() == EntityType.ARROW) {
 			e.setDamage(1000.0);
 			System.out.println("huge dmg!");
 		}
 	}
 	
-	public void giveItems(Player p) {
-		int lives = ((LivesFeature) getPhase().getFeature(FeatureType.LIVES)).getLives(p.getUniqueId());
+	public void giveItems(final Player p) {
+		final int lives = ((LivesFeature) getPhase().getFeature(FeatureType.LIVES)).getLives(p.getUniqueId());
 		p.getInventory().addItem(new ItemStack(Material.REDSTONE, lives));
 		p.getInventory().addItem(new ItemStack(Material.WOOD_SWORD));
 		p.getInventory().addItem(new ItemStack(Material.BOW));

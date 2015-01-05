@@ -102,7 +102,7 @@ public class CoreAddOnBean implements AddOnBean {
 	
 	@Override
 	public void setPackageDev(final String classPackage) {
-		this.classPackageDev = classPackage;
+		classPackageDev = classPackage;
 	}
 	
 	@Override

@@ -60,13 +60,13 @@ public interface LangStorage {
 	 * 
 	 * @param author
 	 */
-	void setAuthor(String author);
+	void setAuthor(final String author);
 	
 	/**
 	 * Sets the language of this file
 	 * 
 	 * @param type
 	 */
-	void setLangType(LangType type);
+	void setLangType(final LangType type);
 	
 }

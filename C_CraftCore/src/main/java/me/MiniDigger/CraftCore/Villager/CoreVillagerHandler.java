@@ -75,25 +75,25 @@ public class CoreVillagerHandler implements VillagerHandler {
 	@SuppressWarnings("unused")
 	@Override
 	public boolean open(final Villager v, final Player p) {
-		EntityVillager mcVillager = ((CraftVillager) v).getHandle();
-		NBTTagCompound nbt = new NBTTagCompound();
+		final EntityVillager mcVillager = ((CraftVillager) v).getHandle();
+		final NBTTagCompound nbt = new NBTTagCompound();
 		mcVillager.b(nbt);
 		nbt.setInt("Willing", 1);
 		
-		NBTTagList recipes = new NBTTagList();
+		final NBTTagList recipes = new NBTTagList();
 		
-		for (VillagerTrade t : getTrades(v)) {
-			NBTTagCompound res = new NBTTagCompound();
+		for (final VillagerTrade t : getTrades(v)) {
+			final NBTTagCompound res = new NBTTagCompound();
 			res.setByte("rewardExp", (byte) 0);
 			res.setInt("maxUses", 10000);
 			res.setInt("uses", 0);
 			
-			NBTTagCompound buy1 = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem1())).getTag();
-			NBTTagCompound buy2 = null;
+			final NBTTagCompound buy1 = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem1())).getTag();
+			final NBTTagCompound buy2 = null;
 			if (t.getItem2() != null) {
 				((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem2())).getTag();
 			}
-			NBTTagCompound sell = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getRewardItem())).getTag();
+			final NBTTagCompound sell = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getRewardItem())).getTag();
 			
 			res.set("buy", buy1);
 			if (buy2 != null) {
@@ -102,7 +102,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 			res.set("sell", sell);
 		}
 		
-		NBTTagCompound offers = new NBTTagCompound();
+		final NBTTagCompound offers = new NBTTagCompound();
 		offers.set("Recipes", recipes);
 		
 		nbt.set("Offers", offers);

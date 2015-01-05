@@ -33,8 +33,8 @@ import me.MiniDigger.Core.User.UserHandler;
 
 public class CoreUserHandler implements UserHandler {
 	
-	private List<User>	users	= new ArrayList<>();
-	private User	   bot;
+	private final List<User>	users	= new ArrayList<>();
+	private User	         bot;
 	
 	@Override
 	public boolean loadAll() {

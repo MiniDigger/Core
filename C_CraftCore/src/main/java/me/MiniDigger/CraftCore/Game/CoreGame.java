@@ -185,20 +185,20 @@ public class CoreGame implements Game {
 			@Override
 			public void run() {
 				for (final UUID w : specs) {
-					Player p = Bukkit.getPlayer(w);
+					final Player p = Bukkit.getPlayer(w);
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
 					}
 				}
 				
 				for (final UUID w : users) {
-					Player p = Bukkit.getPlayer(w);
+					final Player p = Bukkit.getPlayer(w);
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
 					}
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 10);//Wait for respawn
+		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
 		
 		Core.getCore().getGameHandler().removeGame(this);
 		HandlerList.unregisterAll(getPhase());

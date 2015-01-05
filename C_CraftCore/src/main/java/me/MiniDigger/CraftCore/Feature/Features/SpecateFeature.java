@@ -112,7 +112,7 @@ public class SpecateFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void respawn(PlayerRespawnEvent e) {
+	public void respawn(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getSpecs().contains(e.getPlayer().getUniqueId())) {
 			e.setRespawnLocation(loc);
 			e.getPlayer().teleport(loc);
