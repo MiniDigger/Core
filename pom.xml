@@ -58,6 +58,7 @@
 		<!-- <module>C_Cinematic</module> -->
 		<module>C_Crank</module>
 		<module>C_Build</module>
+		<module>C_OneInTheChamber</module>
 	</modules>
 
 	<profiles>

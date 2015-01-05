@@ -53,7 +53,8 @@ public enum FeatureType {
 	CRANK,
 	LIVES,
 	SPEC,
-	KIT;
+	KIT,
+	OITC;
 	
 	/**
 	 * @return A human readable name for the feature

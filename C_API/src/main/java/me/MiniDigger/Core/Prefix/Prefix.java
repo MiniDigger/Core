@@ -45,7 +45,8 @@ public enum Prefix {
 	CRANK(ChatColor.AQUA, ChatColor.BLUE, "Crank", GameType.CRANK),
 	KIT(ChatColor.RED, ChatColor.GREEN, "Kit", GameType.NOTHING),
 	LANG(ChatColor.AQUA, ChatColor.BLUE, "Lang", GameType.NOTHING),
-	SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING);
+	SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING),
+	OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC", GameType.OITC);
 	
 	private ChatColor	klammer;
 	private ChatColor	color;
