@@ -31,6 +31,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Error.Error;
@@ -179,11 +180,25 @@ public class CoreGame implements Game {
 			}
 		}
 		
-		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			if (!p.getLocation().getWorld().getName().equalsIgnoreCase(lobby.getName())) {
-				p.teleport(loc);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID w : specs) {
+					Player p = Bukkit.getPlayer(w);
+					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+						p.teleport(loc);
+					}
+				}
+				
+				for (final UUID w : users) {
+					Player p = Bukkit.getPlayer(w);
+					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+						p.teleport(loc);
+					}
+				}
 			}
-		}
+		}.runTaskLater(Core.getCore().getInstance(), 10);//Wait for respawn
 		
 		Core.getCore().getGameHandler().removeGame(this);
 		HandlerList.unregisterAll(getPhase());

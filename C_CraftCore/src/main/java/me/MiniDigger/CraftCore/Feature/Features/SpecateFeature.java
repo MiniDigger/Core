@@ -30,6 +30,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -45,6 +46,8 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpecateFeature extends CoreFeature {
+	
+	private Location	loc;
 	
 	public SpecateFeature(final Phase phase) {
 		super(phase);
@@ -72,7 +75,9 @@ public class SpecateFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+		final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
+		loc = locs.get(locs.keySet().iterator().next());
 	}
 	
 	@Override
@@ -87,10 +92,6 @@ public class SpecateFeature extends CoreFeature {
 	public void spec(final User user) {
 		getPhase().getGame().addSpec(user.getUUID());
 		user.getPlayer().setGameMode(GameMode.SPECTATOR);
-		
-		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
-		final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
-		final Location loc = locs.get(locs.keySet().iterator().next());
 		
 		new BukkitRunnable() {
 			
@@ -107,6 +108,15 @@ public class SpecateFeature extends CoreFeature {
 	public void onDeath(final CoreUserDeathEvent e) {
 		if (!e.shouldRespawn()) {
 			spec(e.getUser());
+		}
+	}
+	
+	@EventHandler
+	public void respawn(PlayerRespawnEvent e) {
+		if (getPhase().getGame().getSpecs().contains(e.getPlayer().getUniqueId())) {
+			e.setRespawnLocation(loc);
+			e.getPlayer().teleport(loc);
+			System.out.println("set respawn loc");
 		}
 	}
 	

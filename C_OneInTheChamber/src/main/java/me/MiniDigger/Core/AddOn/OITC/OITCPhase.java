@@ -16,6 +16,7 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
@@ -61,13 +62,14 @@ public class OITCPhase extends CorePhase {
 		addFeature(new OITCFeature(this));
 		addFeature(new LivesFeature(this, 5));
 		addFeature(new SpecateFeature(this));
+		addFeature(new NoFallDmgFeature(this));
 	}
 	
 	@Override
 	public void startPhase() {
 		getGame().broadCastMessage(game.getPrefix().then("Du hast nur noch einen Pfeil!").color(ChatColor.AQUA));
 		getGame().broadCastMessage(game.getPrefix().then("Töten Gegner, um neue zu bekommen!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Du hast nur drei Leben!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Du hast nur fünf Leben!").color(ChatColor.AQUA));
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);

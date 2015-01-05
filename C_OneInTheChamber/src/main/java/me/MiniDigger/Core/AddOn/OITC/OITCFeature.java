@@ -77,7 +77,10 @@ public class OITCFeature extends CoreFeature {
 	
 	@EventHandler
 	public void onkill(CoreUserDeathEvent e) {
-		giveItems(e.getKiller().getPlayer());
+		try {
+			giveItems(e.getKiller().getPlayer());
+		} catch (Exception ex) {
+		}
 	}
 	
 	@EventHandler

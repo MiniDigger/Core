@@ -54,7 +54,8 @@ public enum FeatureType {
 	LIVES,
 	SPEC,
 	KIT,
-	OITC;
+	OITC,
+	NOFALLDMG;
 	
 	/**
 	 * @return A human readable name for the feature
