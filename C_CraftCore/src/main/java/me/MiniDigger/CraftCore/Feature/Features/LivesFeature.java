@@ -100,10 +100,16 @@ public class LivesFeature extends CoreFeature {
 	public void showLives() {
 		final Scoreboard board = new CoreScoreboard(ChatColor.GOLD + "Lives");
 		
+		if (lives == null) {
+			return; // Games over, who cares
+		}
+		
 		for (UUID id : lives.keySet()) {
 			User u = Core.getCore().getUserHandler().get(id);
 			board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
 		}
+		
+		final List<UUID> retry = new ArrayList<UUID>();
 		
 		new BukkitRunnable() {
 			
@@ -111,10 +117,27 @@ public class LivesFeature extends CoreFeature {
 			public void run() {
 				
 				for (final UUID uuid : getPhase().getGame().getPlayers()) {
+					if (Bukkit.getPlayer(uuid) == null) {
+						retry.add(uuid);
+						continue;
+					}
 					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
 				}
 			}
 		}.runTask(Core.getCore().getInstance());
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID uuid : retry) {
+					if (Bukkit.getPlayer(uuid) == null) {
+						continue;// Fuck you
+					}
+					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+				}
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
 	}
 	
 	@EventHandler
