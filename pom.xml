@@ -57,8 +57,8 @@
 		<module>C_BedWars</module>
 		<!-- <module>C_Cinematic</module> -->
 		<module>C_Crank</module>
-		<module>C_Build</module>
 		<module>C_OneInTheChamber</module>
+		<module>C_Build</module>
 	</modules>
 
 	<profiles>

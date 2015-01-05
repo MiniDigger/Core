@@ -8,9 +8,10 @@
   <artifactId>C_OneInTheChamber</artifactId>
   <name>C_OneIneTheChamber</name>
   <description>A CoD mod like minecraft minigames</description>
+  <version>1.0</version>
   
   <build>
-		<finalName>Crank-${project.version}</finalName>
+		<finalName>OITC-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
