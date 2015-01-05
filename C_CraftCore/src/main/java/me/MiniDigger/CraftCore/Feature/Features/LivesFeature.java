@@ -25,20 +25,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class LivesFeature extends CoreFeature {
 	
@@ -83,11 +88,33 @@ public class LivesFeature extends CoreFeature {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			lives.put(id, max);
 		}
+		
+		showLives();
 	}
 	
 	@Override
 	public void end() {
 		lives = null;
+	}
+	
+	public void showLives() {
+		final Scoreboard board = new CoreScoreboard(ChatColor.GOLD + "Lives");
+		
+		for (UUID id : lives.keySet()) {
+			User u = Core.getCore().getUserHandler().get(id);
+			board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
+		}
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				
+				for (final UUID uuid : getPhase().getGame().getPlayers()) {
+					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+				}
+			}
+		}.runTask(Core.getCore().getInstance());
 	}
 	
 	@EventHandler
@@ -125,6 +152,8 @@ public class LivesFeature extends CoreFeature {
 			} else {
 				this.lives.put(e.getUser().getUUID(), lives - 1);
 			}
+			
+			showLives();
 		}
 	}
 }
