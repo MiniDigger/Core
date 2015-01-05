@@ -64,13 +64,13 @@ public class GracePhase extends CoreTimedPhase {
 	public void startPhase() {
 		final String winner = getGame().getGameData("VoteWinner");
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
-		getGame().broadCastMessage(game.getPrefix().then("Die Fiedensphase hat begonnen!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Die Friedensphase hat begonnen!").color(ChatColor.AQUA));
 		super.startPhase();
 	}
 	
 	@Override
 	public void endPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Fiedensphase ist vorbei!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(game.getPrefix().then("Die Friedensphase ist vorbei!").color(ChatColor.AQUA));
 		super.endPhase();
 	}
 	
