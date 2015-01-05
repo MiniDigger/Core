@@ -38,13 +38,13 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Item.ItemType;
 
 import me.MiniDigger.CraftCore.Item.CoreItem;
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
 public class GrablingHook extends CoreItem {
 	
@@ -56,12 +56,7 @@ public class GrablingHook extends CoreItem {
 	
 	@Override
 	public ItemStack getItem() {
-		final ItemStack is = new ItemStack(Material.FISHING_ROD);
-		is.setAmount(1);
-		final ItemMeta meta = is.getItemMeta();
-		meta.setDisplayName(ChatColor.RED + "Grappling" + ChatColor.BLUE + "Hook");
-		is.setItemMeta(meta);
-		return is;
+		return new CoreItemBuilder(Material.FISHING_ROD).name(ChatColor.RED + "Grappling" + ChatColor.BLUE + "Hook").amount(1).build();
 	}
 	
 	@Override

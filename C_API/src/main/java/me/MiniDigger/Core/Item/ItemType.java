@@ -21,7 +21,7 @@
 package me.MiniDigger.Core.Item;
 
 public enum ItemType {
-	GRABLING_HOOK(null);
+	GRABLING_HOOK(null), GRAVITYGUN(null);
 	
 	private Item	item;
 	
