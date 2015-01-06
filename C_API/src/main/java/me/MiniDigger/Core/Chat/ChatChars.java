@@ -151,5 +151,6 @@ public class ChatChars {
 		public final static String	skrillex	= "ϟƘƦƖןןΣx";
 		public final static String	coffee		= "c[_]";
 		public final static String	rifle		= "︻╦╤─";
+		public final static String  ameno       = "༼ つ ◕_◕ ༽つ";
 	}
 }
