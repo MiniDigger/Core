@@ -55,7 +55,8 @@ public enum FeatureType {
 	SPEC,
 	KIT,
 	OITC,
-	NOFALLDMG;
+	NOFALLDMG,
+	MAPINFO;
 	
 	/**
 	 * @return A human readable name for the feature

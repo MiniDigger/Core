@@ -86,4 +86,11 @@ public interface MapHandler {
 	 * @return a list with all map names installed
 	 */
 	public List<String> getMapNames();
+	
+	/**
+	 * @param name
+	 *            the name of the map
+	 * @return a list with all gametypes that map is configured for
+	 */
+	public List<GameType> getGameTypes(String name);
 }
