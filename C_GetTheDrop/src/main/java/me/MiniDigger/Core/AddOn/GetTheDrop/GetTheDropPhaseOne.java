@@ -123,6 +123,9 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 		getGame().broadCastMessage(game.getPrefix().then("Sammle deine Items und crafte deine Waffen!").color(ChatColor.AQUA));
 		Core.getCore().getWorldHandler().copyWorld("GTD_Arena");
 		Core.getCore().getWorldHandler().loadWorld("GTD_Arena");
+		
+		scoreboard();
+		
 		super.startPhase();
 	}
 	
