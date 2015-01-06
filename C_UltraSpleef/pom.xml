@@ -1,17 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>me.MiniDigger.Core</groupId>
-    <artifactId>C_Core</artifactId>
-    <version>parent</version>
-  </parent>
-  <artifactId>C_OneInTheChamber</artifactId>
-  <name>C_OneIneTheChamber</name>
-  <description>A CoD mod like minecraft minigames</description>
-  <version>1.0</version>
-  
-  <build>
-		<finalName>OITC-${project.version}</finalName>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>me.MiniDigger.Core</groupId>
+		<artifactId>C_Core</artifactId>
+		<version>parent</version>
+	</parent>
+	<artifactId>C_UltraSpleef</artifactId>
+	<name>C_UltraSpleef</name>
+	<description>The ultimate spleef experience</description>
+
+	<build>
+		<finalName>UltraSpleef-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -29,8 +29,7 @@
 								<property name="compile_classpath" refid="maven.compile.classpath" />
 								<property name="outputDir" value="${project.build.outputDirectory}" />
 								<property name="sourceDir" value="${project.build.sourceDirectory}" />
-								<property name="path"
-									value="..\src\main\resources\addon_build.xml" />
+								<property name="path" value="..\src\main\resources\addon_build.xml" />
 								<ant antfile="${path}" target="buildAddOn" />
 							</target>
 						</configuration>

@@ -28,7 +28,8 @@ public enum GameType {
 	NOTHING("Nothing", "", null),
 	BEDWARS("BedWars", "BW", null),
 	CRANK("Crank", "Crank", null),
-	OITC("OneInTheChamber", "OITC", null);
+	OITC("OneInTheChamber", "OITC", null),
+	ULTRASPLEEF("UltraSpleef", "UltraSpleef", null);
 	
 	private String	    name;
 	private String	    abk;

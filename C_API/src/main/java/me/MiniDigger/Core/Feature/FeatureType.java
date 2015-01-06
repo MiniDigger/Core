@@ -57,7 +57,8 @@ public enum FeatureType {
 	OITC,
 	NOFALLDMG,
 	MAPINFO,
-	SHOWDROPS;
+	SHOWDROPS,
+	ULTRASPLEEF;
 	
 	/**
 	 * @return A human readable name for the feature
