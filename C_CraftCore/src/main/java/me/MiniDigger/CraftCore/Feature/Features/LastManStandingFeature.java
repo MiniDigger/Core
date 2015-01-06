@@ -23,22 +23,28 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class LastManStandingFeature extends CoreFeature {
 	
@@ -70,11 +76,53 @@ public class LastManStandingFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
+		showLives();
 	}
 	
 	@Override
 	public void end() {
+		Core.getCore().getScoreboardHandler().clearAll();
+	}
+	
+	public void showLives() {
+		final Scoreboard board = new CoreScoreboard(ChatColor.GOLD + "Noch da");
 		
+		int i = 0;
+		for (final UUID id : getPhase().getGame().getPlayers()) {
+			final User u = Core.getCore().getUserHandler().get(id);
+			board.addLine(new CoreScoreboardLine(i, u.getDisplayName(), DisplaySlot.SIDEBAR));
+			i++;
+		}
+		
+		final List<UUID> retry = new ArrayList<UUID>();
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				
+				for (final UUID uuid : getPhase().getGame().getPlayers()) {
+					if (Bukkit.getPlayer(uuid) == null) {
+						retry.add(uuid);
+						continue;
+					}
+					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+				}
+			}
+		}.runTask(Core.getCore().getInstance());
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID uuid : retry) {
+					if (Bukkit.getPlayer(uuid) == null) {
+						continue;// Fuck you
+					}
+					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+				}
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
 	}
 	
 	@EventHandler
@@ -106,5 +154,6 @@ public class LastManStandingFeature extends CoreFeature {
 				                .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
 			}
 		}
+		showLives();
 	}
 }
