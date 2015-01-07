@@ -27,7 +27,7 @@ public class UltraSpleefGame extends CoreGame {
 	
 	@Override
 	public void init() {
-		setGameData("Lobby", "OITC_Lobby");
+		setGameData("Lobby", "UltraSpleef_Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
