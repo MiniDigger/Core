@@ -206,13 +206,11 @@
                 <scp>
                   <fileset>
                     <include />
-                    <exclude />
                   </fileset>
                 </scp>
                 <scp>
                   <fileset>
                     <include />
-                    <exclude />
                   </fileset>
                 </scp>
               </tasks>

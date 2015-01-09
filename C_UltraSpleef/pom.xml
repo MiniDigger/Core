@@ -9,6 +9,7 @@
 	<artifactId>C_UltraSpleef</artifactId>
 	<name>C_UltraSpleef</name>
 	<description>The ultimate spleef experience</description>
+	<version>1.0</version>
 
 	<build>
 		<finalName>UltraSpleef-${project.version}</finalName>
