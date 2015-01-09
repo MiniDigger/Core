@@ -37,7 +37,7 @@ import me.MiniDigger.Core.Update.UpdateType;
 public class CoreUpdateHandler implements UpdateHandler {
 	
 	private static final int	BYTE_SIZE	 = 1024;
-	private static final String	JAR_URL	     = "http://game-repo.minidigger.me/TheCore/TheCore.jar";
+	private static final String	JAR_URL	     = "http://api.minidigger.me/addons-dev/Core.jar";
 	private static final String	VERSIONS_URL	= "http://game-repo.minidigger.me/TheCore/version.txt";
 	
 	private UpdateType	        type;
@@ -57,7 +57,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 				
 				@Override
 				public void run() {
-					saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "TheCore.jar", JAR_URL);
+					update();
 				}
 				
 			}).start();
@@ -90,6 +90,11 @@ public class CoreUpdateHandler implements UpdateHandler {
 		return null;
 	}
 	
+	@Override
+	public void update(){
+		saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "Core.jar", JAR_URL);
+	}
+	
 	private void saveFile(final File folder, final String file, final String link) {
 		if (!folder.exists()) {
 			folder.mkdir();
@@ -116,14 +121,14 @@ public class CoreUpdateHandler implements UpdateHandler {
 				}
 			}
 			
-			Core.getCore().getInstance().info("Finished updating. Shutting down");
+			Core.getCore().getInstance().info("Finished updating.");
 			if (in != null) {
 				in.close();
 			}
 			if (fout != null) {
 				fout.close();
 			}
-			Bukkit.getServer().shutdown();
+//			Bukkit.getServer().shutdown();
 		} catch (final Exception ex) {
 			Core.getCore().getInstance().error("The auto-updater tried to download a new update, but was unsuccessful. " + ex.getMessage());
 		} finally {

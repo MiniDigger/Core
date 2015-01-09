@@ -76,6 +76,8 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		Prefix.API.getPrefix().then("Der Server wird in 10 Sekunden neugestartet!").color(ChatColor.RED).send(Bukkit.getConsoleSender());
 		
+		Core.getCore().getUpdateHandler().update();
+				
 		task = Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 			
 			@Override

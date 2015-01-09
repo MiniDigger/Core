@@ -22,6 +22,11 @@ package me.MiniDigger.Core.Update;
 
 public interface UpdateHandler {
 	
+	/**
+	 * Check if there is a version and updates the plugin if there is
+	 * 
+	 * @return
+	 */
 	public boolean updateCheck();
 	
 	public interface PluginVersion {
@@ -104,4 +109,9 @@ public interface UpdateHandler {
 		 */
 		public boolean isNewerOrEqual(final PluginVersion other, final UpdateType type);
 	}
+
+	/**
+	 * Downloads the newest version
+	 */
+	void update();
 }
