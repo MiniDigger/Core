@@ -59,7 +59,9 @@ public enum FeatureType {
 	MAPINFO,
 	SHOWDROPS,
 	ULTRASPLEEF,
-	LOBBYFEATURE;
+	LOBBYFEATURE,
+	NODROP,
+	NOPICKUP;
 	
 	/**
 	 * @return A human readable name for the feature

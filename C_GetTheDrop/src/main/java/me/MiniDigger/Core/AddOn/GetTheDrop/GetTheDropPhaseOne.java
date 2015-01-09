@@ -22,6 +22,7 @@ package me.MiniDigger.Core.AddOn.GetTheDrop;
 
 import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
@@ -36,6 +37,8 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
@@ -82,6 +85,8 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SpecateFeature(this));
 		addFeature(new ShowDropsFeature(this));
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
 	}
 	
 	@Override

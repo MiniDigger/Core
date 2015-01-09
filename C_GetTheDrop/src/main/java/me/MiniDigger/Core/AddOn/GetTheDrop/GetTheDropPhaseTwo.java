@@ -38,6 +38,8 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LastManStandingFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
@@ -84,6 +86,8 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 		addFeature(new PvPFeature(this, true));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SpecateFeature(this));
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
 	}
 	
 	@Override

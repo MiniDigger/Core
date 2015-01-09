@@ -37,6 +37,8 @@ import me.MiniDigger.CraftCore.Feature.Features.KitFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
@@ -83,6 +85,8 @@ public class CrankPhase extends CorePhase {
 		addFeature(new LivesFeature(this, 3));
 		addFeature(new SpecateFeature(this));
 		addFeature(new KitFeature(this));
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
 	}
 	
 	@Override

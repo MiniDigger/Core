@@ -36,6 +36,8 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapInfoFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
@@ -60,6 +62,8 @@ public class GracePhase extends CoreTimedPhase {
 		addFeature(new SpawnFeature(this, true));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new MapInfoFeature(this));
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
 	}
 	
 	@Override

@@ -5,6 +5,8 @@ import org.bukkit.ChatColor;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class UltraSpleefPhase extends CorePhase {
@@ -35,6 +37,8 @@ public class UltraSpleefPhase extends CorePhase {
 	
 	@Override
 	public void init() {
-		
+
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
 	}	
 }

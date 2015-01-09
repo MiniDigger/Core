@@ -36,7 +36,9 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
@@ -83,6 +85,8 @@ public class OITCPhase extends CorePhase {
 		addFeature(new LivesFeature(this, 5));
 		addFeature(new SpecateFeature(this));
 		addFeature(new NoFallDmgFeature(this));
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
 	}
 	
 	@Override
