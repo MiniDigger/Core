@@ -75,7 +75,7 @@ public class SpecateFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("VoteWinner"));
 		final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
 		loc = locs.get(locs.keySet().iterator().next());
 	}
