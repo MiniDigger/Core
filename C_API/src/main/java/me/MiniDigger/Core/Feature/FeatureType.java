@@ -58,7 +58,8 @@ public enum FeatureType {
 	NOFALLDMG,
 	MAPINFO,
 	SHOWDROPS,
-	ULTRASPLEEF;
+	ULTRASPLEEF,
+	LOBBYFEATURE;
 	
 	/**
 	 * @return A human readable name for the feature

@@ -36,6 +36,7 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LobbyFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
@@ -73,6 +74,7 @@ public class LobbyPhase extends CorePhase {
 		addFeature(new MapFeature(this, getGame().getGameData("Lobby")));
 		addFeature(new SpawnFeature(this, true));
 		addFeature(new PvPFeature(this, false));
+		addFeature(new LobbyFeature(this));
 	}
 	
 	@Override
