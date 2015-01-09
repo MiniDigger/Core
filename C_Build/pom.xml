@@ -219,7 +219,6 @@
 									trust="true">
 									<fileset dir="${basedir}\build-out">
 										<include name="*.jar" />
-										<exclude name="Core.jar" />
 									</fileset>
 								</scp>
 
@@ -228,7 +227,6 @@
 									trust="true">
 									<fileset dir="${basedir}\build">
 										<include name="*.jar" />
-										<exclude name="Core.jar" />
 									</fileset>
 								</scp>
 							</tasks>
