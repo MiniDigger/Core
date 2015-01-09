@@ -106,7 +106,9 @@ public class LivesFeature extends CoreFeature {
 		
 		for (final UUID id : lives.keySet()) {
 			final User u = Core.getCore().getUserHandler().get(id);
-			board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
+			if (lives.get(id) != 0) {
+				board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
+			}
 		}
 		
 		final List<UUID> retry = new ArrayList<UUID>();
@@ -145,6 +147,8 @@ public class LivesFeature extends CoreFeature {
 		if (getPhase().getGame().getPlayers().contains(e.getUser().getUUID())) {
 			final int lives = this.lives.remove(e.getUser().getUUID());
 			if (lives == 1) {
+				this.lives.put(e.getUser().getUUID(), 0);
+				
 				e.setShouldRespawn(false);
 				final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 				final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
