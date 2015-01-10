@@ -12,7 +12,9 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Phase.Phase;
@@ -50,69 +52,75 @@ public class LobbyFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		int down = 3;
-		int side = 4;
-		
-		text1 = SignStorage.getOne(getPhase().getGame().getType());
-		text2 = SignStorage.getTwo(getPhase().getGame().getType());
+		new BukkitRunnable() {
 			
-		World w = Bukkit.getWorld(getPhase().getGame().getGameData("Lobby"));
-		Location origin = new Location(w, -48, 4, -51);
-		Block blockOrigion = origin.getBlock();
-		
-		Block start = blockOrigion.getRelative(BlockFace.SOUTH, 5);
-		start = start.getRelative(BlockFace.UP, 3);
-		
-		// Wall 1
-		for (int x = 0; x < down; x++) {
-			for (int i = 0; i < side; i++) {
-				start.setType(Material.AIR);
-				start.setType(Material.WALL_SIGN);
+			@Override
+			public void run() {
+				int down = 3;
+				int side = 4;
 				
-				Sign sign = (Sign) start.getState();
-				org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
-				mat.setFacingDirection(BlockFace.EAST);
-				sign.setData(mat);
+				text1 = SignStorage.getOne(getPhase().getGame().getType());
+				text2 = SignStorage.getTwo(getPhase().getGame().getType());
 				
-				sign.setLine(0, text1.get(x).get(i)[0]);
-				sign.setLine(1, text1.get(x).get(i)[1]);
-				sign.setLine(2, text1.get(x).get(i)[2]);
-				sign.setLine(3, text1.get(x).get(i)[3]);
+				World w = Bukkit.getWorld(getPhase().getGame().getGameData("Lobby"));
+				Location origin = new Location(w, -48, 4, -51);
+				Block blockOrigion = origin.getBlock();
 				
-				sign.update();
+				Block start = blockOrigion.getRelative(BlockFace.SOUTH, 5);
+				start = start.getRelative(BlockFace.UP, 3);
 				
-				start = start.getRelative(BlockFace.NORTH, 1);
+				// Wall 1
+				for (int x = 0; x < down; x++) {
+					for (int i = 0; i < side; i++) {
+						start.setType(Material.AIR);
+						start.setType(Material.WALL_SIGN);
+						
+						Sign sign = (Sign) start.getState();
+						org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
+						mat.setFacingDirection(BlockFace.EAST);
+						sign.setData(mat);
+						
+						sign.setLine(0, text1.get(x).get(i)[0]);
+						sign.setLine(1, text1.get(x).get(i)[1]);
+						sign.setLine(2, text1.get(x).get(i)[2]);
+						sign.setLine(3, text1.get(x).get(i)[3]);
+						
+						sign.update();
+						
+						start = start.getRelative(BlockFace.NORTH, 1);
+					}
+					start = start.getRelative(BlockFace.DOWN);
+					start = start.getRelative(BlockFace.SOUTH, side);
+				}
+				
+				start = blockOrigion.getRelative(BlockFace.EAST, 2);
+				start = start.getRelative(BlockFace.UP, 3);
+				
+				// Wall 2
+				for (int x = 0; x < down; x++) {
+					for (int i = 0; i < side; i++) {
+						start.setType(Material.AIR);
+						start.setType(Material.WALL_SIGN);
+						
+						Sign sign = (Sign) start.getState();
+						org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
+						mat.setFacingDirection(BlockFace.SOUTH);
+						sign.setData(mat);
+						
+						sign.setLine(0, text2.get(x).get(i)[0]);
+						sign.setLine(1, text2.get(x).get(i)[1]);
+						sign.setLine(2, text2.get(x).get(i)[2]);
+						sign.setLine(3, text2.get(x).get(i)[3]);
+						
+						sign.update();
+						
+						start = start.getRelative(BlockFace.EAST, 1);
+					}
+					start = start.getRelative(BlockFace.DOWN);
+					start = start.getRelative(BlockFace.WEST, side);
+				}
 			}
-			start = start.getRelative(BlockFace.DOWN);
-			start = start.getRelative(BlockFace.SOUTH, side);
-		}
-		
-		start = blockOrigion.getRelative(BlockFace.EAST, 2);
-		start = start.getRelative(BlockFace.UP, 3);
-		
-		// Wall 2
-		for (int x = 0; x < down; x++) {
-			for (int i = 0; i < side; i++) {
-				start.setType(Material.AIR);
-				start.setType(Material.WALL_SIGN);
-				
-				Sign sign = (Sign) start.getState();
-				org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
-				mat.setFacingDirection(BlockFace.SOUTH);
-				sign.setData(mat);
-				
-				sign.setLine(0, text2.get(x).get(i)[0]);
-				sign.setLine(1, text2.get(x).get(i)[1]);
-				sign.setLine(2, text2.get(x).get(i)[2]);
-				sign.setLine(3, text2.get(x).get(i)[3]);
-				
-				sign.update();
-				
-				start = start.getRelative(BlockFace.EAST, 1);
-			}
-			start = start.getRelative(BlockFace.DOWN);
-			start = start.getRelative(BlockFace.WEST, side);
-		}
+		}.runTaskLater(Core.getCore().getInstance(), 20);//wait for chunks loaded
 	}
 	
 	@Override
