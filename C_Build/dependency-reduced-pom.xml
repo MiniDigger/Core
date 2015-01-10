@@ -190,9 +190,6 @@
                 </exec>
                 <echo>Move it!</echo>
                 <copy />
-                <copy />
-                <copy />
-                <copy />
                 <available />
                 <fail />
                 <path>
