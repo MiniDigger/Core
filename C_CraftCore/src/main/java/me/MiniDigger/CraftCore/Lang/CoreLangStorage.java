@@ -177,7 +177,7 @@ public class CoreLangStorage implements LangStorage {
 	}
 	
 	@Override
-	public void setValues(Map<LangKeyType, String> values) {
+	public void setValues(final Map<LangKeyType, String> values) {
 		this.values = (HashMap<LangKeyType, String>) values;
 	}
 }

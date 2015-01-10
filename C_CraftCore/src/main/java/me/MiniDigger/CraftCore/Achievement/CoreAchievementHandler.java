@@ -26,6 +26,7 @@ import java.util.List;
 import me.MiniDigger.Core.Achievement.AchievementHandler;
 import me.MiniDigger.Core.Achievement.Achievment;
 import me.MiniDigger.Core.Achievement.AchievmentType;
+import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.User.User;
 
 public class CoreAchievementHandler implements AchievementHandler {
@@ -43,7 +44,7 @@ public class CoreAchievementHandler implements AchievementHandler {
 	
 	@Override
 	public void registerAchievments() {
-		final Achievment joins = new CoreAchievement("Joins", "Du bist bereits %s% mal gejoint!", AchievmentType.JOINS);
+		final Achievment joins = new CoreAchievement(LangKeyType.Achievment.TITLE_JOIN, LangKeyType.Achievment.MSG_JOIN, AchievmentType.JOINS);
 		joins.addLevel(new CoreAchievmentLevel(1, 1, 1));
 		joins.addLevel(new CoreAchievmentLevel(2, 10, 10));
 		joins.addLevel(new CoreAchievmentLevel(3, 50, 50));

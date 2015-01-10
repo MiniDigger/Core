@@ -28,17 +28,18 @@ import me.MiniDigger.Core.Achievement.Achievment;
 import me.MiniDigger.Core.Achievement.AchievmentData;
 import me.MiniDigger.Core.Achievement.AchievmentLevel;
 import me.MiniDigger.Core.Achievement.AchievmentType;
+import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.User.User;
 
 public class CoreAchievement implements Achievment {
 	
-	private final String	            name;
-	private final String	            msg;
+	private final LangKeyType	        name;
+	private final LangKeyType	        msg;
 	private final List<AchievmentLevel>	levels;
 	private final List<AchievmentData>	data;
 	private final AchievmentType	    type;
 	
-	public CoreAchievement(final String name, final String msg, final AchievmentType type) {
+	public CoreAchievement(final LangKeyType name, final LangKeyType msg, final AchievmentType type) {
 		this.name = name;
 		this.msg = msg;
 		levels = new ArrayList<AchievmentLevel>();
@@ -56,7 +57,7 @@ public class CoreAchievement implements Achievment {
 			}
 		}
 		
-		final AchievmentData d = new CoreAchievmentData(name, user.getUUID(), 0, 0);
+		final AchievmentData d = new CoreAchievmentData(type, user.getUUID(), 0, 0);
 		data.add(d);
 		return d;
 	}
@@ -67,12 +68,12 @@ public class CoreAchievement implements Achievment {
 	}
 	
 	@Override
-	public String getName() {
+	public LangKeyType getName() {
 		return name;
 	}
 	
 	@Override
-	public String getMsg() {
+	public LangKeyType getMsg() {
 		return msg;
 	}
 	

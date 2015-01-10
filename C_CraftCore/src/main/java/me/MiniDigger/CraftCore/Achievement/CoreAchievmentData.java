@@ -23,24 +23,25 @@ package me.MiniDigger.CraftCore.Achievement;
 import java.util.UUID;
 
 import me.MiniDigger.Core.Achievement.AchievmentData;
+import me.MiniDigger.Core.Achievement.AchievmentType;
 
 public class CoreAchievmentData implements AchievmentData {
 	
-	private final String	achievmentName;
-	private final UUID	 user;
-	private int	         data;
-	private int	         level;
+	private final AchievmentType	type;
+	private final UUID	         user;
+	private int	                 data;
+	private int	                 level;
 	
-	public CoreAchievmentData(final String name, final UUID user, final int data, final int level) {
-		achievmentName = name;
+	public CoreAchievmentData(final AchievmentType type, final UUID user, final int data, final int level) {
+		this.type = type;
 		this.user = user;
 		this.data = data;
 		this.level = level;
 	}
 	
 	@Override
-	public String getAchievmentName() {
-		return achievmentName;
+	public AchievmentType getType() {
+		return type;
 	}
 	
 	@Override

@@ -17,7 +17,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class UltraSpleefFeature extends CoreFeature {
 	
-	public UltraSpleefFeature(Phase phase) {
+	public UltraSpleefFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -43,8 +43,8 @@ public class UltraSpleefFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
-			Player p = Bukkit.getPlayer(id);
+		for (final UUID id : getPhase().getGame().getPlayers()) {
+			final Player p = Bukkit.getPlayer(id);
 			p.getInventory().addItem(ItemType.GRAVITYGUN.getItem().getItem());
 			p.updateInventory();
 		}
@@ -56,7 +56,7 @@ public class UltraSpleefFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onMove(PlayerMoveEvent e) {
+	public void onMove(final PlayerMoveEvent e) {
 		if (e.getFrom().getBlockY() >= 130 && e.getTo().getBlockY() <= 130) {
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 				e.getPlayer().damage(1000.0);

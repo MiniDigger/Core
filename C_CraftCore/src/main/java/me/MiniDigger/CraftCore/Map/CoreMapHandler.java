@@ -158,13 +158,13 @@ public class CoreMapHandler implements MapHandler {
 	}
 	
 	@Override
-	public List<GameType> getGameTypes(String name) {
-		List<GameType> result = new ArrayList<GameType>();
+	public List<GameType> getGameTypes(final String name) {
+		final List<GameType> result = new ArrayList<GameType>();
 		
-		for (String s : con.getStringList(name + ".gametypes")) {
+		for (final String s : con.getStringList(name + ".gametypes")) {
 			try {
 				result.add(GameType.valueOf(s));
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				
 			}
 		}

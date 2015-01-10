@@ -28,7 +28,6 @@ import me.MiniDigger.Core.Bar.BarHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
 import me.MiniDigger.Core.Chat.ChatHandler;
-import me.MiniDigger.Core.Class.ClassHandler;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
@@ -79,7 +78,6 @@ import me.MiniDigger.CraftCore.Bar.CoreBarHandler;
 import me.MiniDigger.CraftCore.Block.CoreBuildHandler;
 import me.MiniDigger.CraftCore.Booster.CoreBoosterHandler;
 import me.MiniDigger.CraftCore.Chat.CoreChatHandler;
-import me.MiniDigger.CraftCore.Class.CoreClassHandler;
 import me.MiniDigger.CraftCore.Command.CoreCommandHandler;
 import me.MiniDigger.CraftCore.Game.CoreGameHandler;
 import me.MiniDigger.CraftCore.Holo.CoreHoloHandler;
@@ -132,7 +130,6 @@ public class CoreCore extends Core {
 	private AchievementHandler	achievementHandler;
 	private BuildHandler	   buildHandler;
 	private BoosterHandler	   boosterHandler;
-	private ClassHandler	   classHandler;
 	private ChatHandler	       chatHandler;
 	private CommandHandler	   commandHandler;
 	private GameHandler	       gameHandler;
@@ -228,14 +225,6 @@ public class CoreCore extends Core {
 			chatHandler = new CoreChatHandler();
 		}
 		return chatHandler;
-	}
-	
-	@Override
-	public ClassHandler getClassHandler() {
-		if (classHandler == null) {
-			classHandler = new CoreClassHandler();
-		}
-		return classHandler;
 	}
 	
 	@Override

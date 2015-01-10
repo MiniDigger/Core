@@ -92,5 +92,5 @@ public interface MapHandler {
 	 *            the name of the map
 	 * @return a list with all gametypes that map is configured for
 	 */
-	public List<GameType> getGameTypes(String name);
+	public List<GameType> getGameTypes(final String name);
 }

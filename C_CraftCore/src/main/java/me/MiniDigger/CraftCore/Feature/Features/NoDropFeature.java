@@ -13,7 +13,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class NoDropFeature extends CoreFeature {
 	
-	public NoDropFeature(Phase phase) {
+	public NoDropFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -48,7 +48,7 @@ public class NoDropFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDrop(PlayerDropItemEvent e) {
+	public void onDrop(final PlayerDropItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			e.setCancelled(true);
 		}

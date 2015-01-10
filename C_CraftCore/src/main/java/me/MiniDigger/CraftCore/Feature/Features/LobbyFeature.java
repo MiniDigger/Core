@@ -26,7 +26,7 @@ public class LobbyFeature extends CoreFeature {
 	private Map<Integer, Map<Integer, String[]>>	text1	= new HashMap<Integer, Map<Integer, String[]>>();
 	private Map<Integer, Map<Integer, String[]>>	text2	= new HashMap<Integer, Map<Integer, String[]>>();
 	
-	public LobbyFeature(Phase phase) {
+	public LobbyFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -56,15 +56,15 @@ public class LobbyFeature extends CoreFeature {
 			
 			@Override
 			public void run() {
-				int down = 3;
-				int side = 4;
+				final int down = 3;
+				final int side = 4;
 				
 				text1 = SignStorage.getOne(getPhase().getGame().getType());
 				text2 = SignStorage.getTwo(getPhase().getGame().getType());
 				
-				World w = Bukkit.getWorld(getPhase().getGame().getGameData("Lobby"));
-				Location origin = new Location(w, -48, 4, -51);
-				Block blockOrigion = origin.getBlock();
+				final World w = Bukkit.getWorld(getPhase().getGame().getGameData("Lobby"));
+				final Location origin = new Location(w, -48, 4, -51);
+				final Block blockOrigion = origin.getBlock();
 				
 				Block start = blockOrigion.getRelative(BlockFace.SOUTH, 5);
 				start = start.getRelative(BlockFace.UP, 3);
@@ -75,8 +75,8 @@ public class LobbyFeature extends CoreFeature {
 						start.setType(Material.AIR);
 						start.setType(Material.WALL_SIGN);
 						
-						Sign sign = (Sign) start.getState();
-						org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
+						final Sign sign = (Sign) start.getState();
+						final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
 						mat.setFacingDirection(BlockFace.EAST);
 						sign.setData(mat);
 						
@@ -102,8 +102,8 @@ public class LobbyFeature extends CoreFeature {
 						start.setType(Material.AIR);
 						start.setType(Material.WALL_SIGN);
 						
-						Sign sign = (Sign) start.getState();
-						org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
+						final Sign sign = (Sign) start.getState();
+						final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
 						mat.setFacingDirection(BlockFace.SOUTH);
 						sign.setData(mat);
 						
@@ -120,7 +120,8 @@ public class LobbyFeature extends CoreFeature {
 					start = start.getRelative(BlockFace.WEST, side);
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 20);//wait for chunks loaded
+		}.runTaskLater(Core.getCore().getInstance(), 20);// wait for chunks
+		                                                 // loaded
 	}
 	
 	@Override
@@ -131,7 +132,7 @@ public class LobbyFeature extends CoreFeature {
 	private static class SignStorage {
 		
 		private static Map<Integer, Map<Integer, String[]>> bedwarsOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -161,7 +162,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> bedwarsTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -191,7 +192,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> crankOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -221,7 +222,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> crankTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -251,7 +252,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> getthedropOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -281,7 +282,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> getthedropTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -311,7 +312,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> oitcOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -341,7 +342,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> oitcTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -371,7 +372,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -401,7 +402,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -431,10 +432,10 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> placeholder() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			for (int x = 0; x < 3; x++) {
-				Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+				final Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
 				for (int i = 0; i < 4; i++) {
 					temp.put(i, new String[] { "", "", "", "" });
 				}
@@ -444,7 +445,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
-		public static Map<Integer, Map<Integer, String[]>> getOne(GameType type) {
+		public static Map<Integer, Map<Integer, String[]>> getOne(final GameType type) {
 			switch (type) {
 			case BEDWARS:
 				return bedwarsOne();
@@ -467,7 +468,7 @@ public class LobbyFeature extends CoreFeature {
 			return placeholder();
 		}
 		
-		public static Map<Integer, Map<Integer, String[]>> getTwo(GameType type) {
+		public static Map<Integer, Map<Integer, String[]>> getTwo(final GameType type) {
 			switch (type) {
 			case BEDWARS:
 				return bedwarsTwo();

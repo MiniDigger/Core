@@ -58,8 +58,8 @@ public class CoreLangHandler implements LangHandler {
 		
 		fallbackStorage = new CoreLangStorage();
 		fallbackStorage.setLangType(defaultLang);
-		Map<LangKeyType, String> values = new HashMap<LangKeyType, String>();
-		for (LangKeyType type : LangKeyType.values()) {
+		final Map<LangKeyType, String> values = new HashMap<LangKeyType, String>();
+		for (final LangKeyType type : LangKeyType.values()) {
 			values.put(type, type.getDefaultValue());
 		}
 		fallbackStorage.setValues(values);

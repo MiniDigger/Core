@@ -27,7 +27,7 @@ import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class UltraSpleefPhase extends CorePhase {
 	
-	public UltraSpleefPhase(Game game, Phase next) {
+	public UltraSpleefPhase(final Game game, final Phase next) {
 		super(game, next);
 	}
 	

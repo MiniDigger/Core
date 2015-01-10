@@ -22,6 +22,7 @@ package me.MiniDigger.Core.Achievement;
 
 import java.util.List;
 
+import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.User.User;
 
 public interface Achievment {
@@ -42,12 +43,12 @@ public interface Achievment {
 	/**
 	 * @return the name of the achievement
 	 */
-	public String getName();
+	public LangKeyType getName();
 	
 	/**
 	 * @return the msg which gets displayed, when the achievement is rewarded
 	 */
-	public String getMsg();
+	public LangKeyType getMsg();
 	
 	/**
 	 * @return all levels of this achievement

@@ -21,7 +21,7 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class MapInfoFeature extends CoreFeature {
 	
-	public MapInfoFeature(Phase phase) {
+	public MapInfoFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -32,7 +32,7 @@ public class MapInfoFeature extends CoreFeature {
 	
 	@Override
 	public List<FeatureType> getDependencies() {
-		List<FeatureType> result = new ArrayList<FeatureType>();
+		final List<FeatureType> result = new ArrayList<FeatureType>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
@@ -49,12 +49,12 @@ public class MapInfoFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		Scoreboard b = new CoreScoreboard(ChatColor.GOLD + "MapInfo");
+		final Scoreboard b = new CoreScoreboard(ChatColor.GOLD + "MapInfo");
 		
-		MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
+		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		int i = 1;
 		
-		for (GameType t : Core.getCore().getMapHandler().getGameTypes(m.getMap().getName())) {
+		for (final GameType t : Core.getCore().getMapHandler().getGameTypes(m.getMap().getName())) {
 			b.addLine(new CoreScoreboardLine(i, ChatColor.AQUA + ChatChars.Misc.bullet + " " + t.getName(), DisplaySlot.SIDEBAR));
 			i++;
 		}
@@ -71,10 +71,10 @@ public class MapInfoFeature extends CoreFeature {
 		i++;
 		b.addLine(new CoreScoreboardLine(i, ChatColor.GOLD + "Name: ", DisplaySlot.SIDEBAR));
 		
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			try {
 				Core.getCore().getScoreboardHandler().addToPlayer(b, Bukkit.getPlayer(id));
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				
 			}
 		}

@@ -75,6 +75,6 @@ public interface LangStorage {
 	 * 
 	 * @param values
 	 */
-	void setValues(Map<LangKeyType, String> values);
+	void setValues(final Map<LangKeyType, String> values);
 	
 }

@@ -26,7 +26,6 @@ import me.MiniDigger.Core.Bar.BarHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
 import me.MiniDigger.Core.Chat.ChatHandler;
-import me.MiniDigger.Core.Class.ClassHandler;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
@@ -114,8 +113,6 @@ public abstract class Core {
 	public abstract BoosterHandler getBoosterHandler();
 	
 	public abstract ChatHandler getChatHandler();
-	
-	public abstract ClassHandler getClassHandler();
 	
 	public abstract CommandHandler getCommandHandler();
 	

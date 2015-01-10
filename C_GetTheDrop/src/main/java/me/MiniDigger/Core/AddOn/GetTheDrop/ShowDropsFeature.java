@@ -25,10 +25,10 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class ShowDropsFeature extends CoreFeature {
 	
-	private BukkitTask	       task;
-	private Map<UUID, Integer>	drops	= new HashMap<UUID, Integer>();
+	private BukkitTask	             task;
+	private final Map<UUID, Integer>	drops	= new HashMap<UUID, Integer>();
 	
-	public ShowDropsFeature(Phase phase) {
+	public ShowDropsFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -68,7 +68,7 @@ public class ShowDropsFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onPickup(PlayerPickupItemEvent e) {
+	public void onPickup(final PlayerPickupItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			int i = 0;
 			if (drops.containsKey(e.getPlayer().getUniqueId())) {
@@ -90,17 +90,17 @@ public class ShowDropsFeature extends CoreFeature {
 			
 			@Override
 			public void run() {
-				for (UUID id : drops.keySet()) {
+				for (final UUID id : drops.keySet()) {
 					try {
 						b.addLine(new CoreScoreboardLine(drops.get(id).intValue(), Core.getCore().getUserHandler().get(id).getDisplayName(), DisplaySlot.SIDEBAR));
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						
 					}
 				}
-				for (UUID id : getPhase().getGame().getPlayers()) {
+				for (final UUID id : getPhase().getGame().getPlayers()) {
 					try {
 						Core.getCore().getScoreboardHandler().addToPlayer(b, Bukkit.getPlayer(id));
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						
 					}
 				}

@@ -25,11 +25,6 @@ import java.util.UUID;
 public interface AchievmentData {
 	
 	/**
-	 * @return the name of the corresponding achievement
-	 */
-	public String getAchievmentName();
-	
-	/**
 	 * @return the user who belongs to this data
 	 */
 	public UUID getUser();
@@ -60,5 +55,10 @@ public interface AchievmentData {
 	 *            the new level to set
 	 */
 	void setLevel(final int level);
+	
+	/**
+	 * @return the type of the corresponding achievement
+	 */
+	AchievmentType getType();
 	
 }

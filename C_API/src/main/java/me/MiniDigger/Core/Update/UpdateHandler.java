@@ -109,7 +109,7 @@ public interface UpdateHandler {
 		 */
 		public boolean isNewerOrEqual(final PluginVersion other, final UpdateType type);
 	}
-
+	
 	/**
 	 * Downloads the newest version
 	 */

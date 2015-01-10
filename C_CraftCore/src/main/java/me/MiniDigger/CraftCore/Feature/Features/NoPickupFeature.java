@@ -13,7 +13,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class NoPickupFeature extends CoreFeature {
 	
-	public NoPickupFeature(Phase phase) {
+	public NoPickupFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -48,7 +48,7 @@ public class NoPickupFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onPickup(PlayerPickupItemEvent e) {
+	public void onPickup(final PlayerPickupItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			e.setCancelled(true);
 		}
