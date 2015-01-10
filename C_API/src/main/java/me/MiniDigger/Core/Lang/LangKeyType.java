@@ -39,6 +39,8 @@ public class LangKeyType {
 		public static final LangKeyType	ERROR_SAVE		       = new LangKeyType("error_save", type, "Error while saving lang to file `%0%`");
 		public static final LangKeyType	ERROR_SET		       = new LangKeyType("error_set", type, "Unknown language `%0%`");
 		public static final LangKeyType	SET		               = new LangKeyType("set", type, "Your language was changed to `%0%`!");
+		public static final LangKeyType	ERROR_NO_ARG		   = new LangKeyType("no_arg", type, "Failed to translate `%%0%%`, no arg provided... (`%1%`)");
+		public static final LangKeyType ERROR_NO_LANGS = new LangKeyType("no_langs", type, "No langs loaded!");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -52,6 +54,7 @@ public class LangKeyType {
 			values.add(ERROR_SAVE);
 			values.add(ERROR_SET);
 			values.add(SET);
+			values.add(ERROR_NO_ARG);
 			return values;
 		}
 	}
@@ -73,7 +76,7 @@ public class LangKeyType {
 		protected static String		    type		         = "addon";
 		public static final LangKeyType	CREATE_CONFIG		 = new LangKeyType("create_config", type, "Creating ConfigFile for AddOn `%0%`");
 		public static final LangKeyType	CREATE_FOLDER		 = new LangKeyType("create_folder", type, "Creating DataFolder for AddOn `%0%`");
-		public static final LangKeyType	DISABLE		         = new LangKeyType("disable", type, "Disabling Addon `%0%` v`%1%` by `%2%`");
+		public static final LangKeyType	DISABLE		         = new LangKeyType("disable", type, "Disabling Addon `%0%` v`%1% by `%2%`");
 		public static final LangKeyType	ENABLE		         = new LangKeyType("enable", type, "Enabling Addon `%0%` v`%1%` by `%2%`");
 		public static final LangKeyType	ERROR_ABNORMAL_TYPE		= new LangKeyType("error_abnormal_type", type, "Abnormal plugin type for main class `%0%`");
 		public static final LangKeyType	ERROR_CREATE_CONFIG		= new LangKeyType("error_create_config", type, "Error while creating ConfigFile for AddOn `%0%`");

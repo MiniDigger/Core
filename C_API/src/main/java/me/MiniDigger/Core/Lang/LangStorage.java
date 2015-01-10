@@ -21,6 +21,7 @@
 package me.MiniDigger.Core.Lang;
 
 import java.io.File;
+import java.util.Map;
 
 public interface LangStorage {
 	
@@ -68,5 +69,12 @@ public interface LangStorage {
 	 * @param type
 	 */
 	void setLangType(final LangType type);
+	
+	/**
+	 * For fallback lang
+	 * 
+	 * @param values
+	 */
+	void setValues(Map<LangKeyType, String> values);
 	
 }

@@ -29,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LangStorage;
@@ -37,12 +38,12 @@ import me.MiniDigger.Core.Lang.LogLevel;
 
 public class CoreLangStorage implements LangStorage {
 	
-	private LangType	                       lang;
-	private String	                           author;
-	private final HashMap<LangKeyType, String>	values	= new HashMap<>();
+	private LangType	                 lang;
+	private String	                     author;
+	private HashMap<LangKeyType, String>	values	= new HashMap<>();
 	
-	private static final String	               LANG_KEY	= "LANG_KEY";
-	private static final String	               AUTHOR	= "AUTHOR";
+	private static final String	         LANG_KEY	= "LANG_KEY";
+	private static final String	         AUTHOR	   = "AUTHOR";
 	
 	@Override
 	public LangType getLangType() {
@@ -91,6 +92,7 @@ public class CoreLangStorage implements LangStorage {
 			}
 			
 			x++;
+			s = lines.get(x);
 			while (s.startsWith("#")) {
 				s = lines.get(x);
 				x++;
@@ -108,14 +110,20 @@ public class CoreLangStorage implements LangStorage {
 				if (s.startsWith("#")) {
 					continue;
 				}
+				
+				boolean found = false;
 				for (final LangKeyType type : LangKeyType.values()) {
 					if (s.startsWith(type.getFullType())) {
 						s = s.replace(type.getFullType() + "=", "");
 						values.put(type, s);
-						continue;
+						found = true;
+						break;
 					}
 				}
-				_.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_MATCHED, s, file.getAbsolutePath());
+				
+				if (!found) {
+					_.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_MATCHED, s, file.getAbsolutePath());
+				}
 			}
 			
 			for (final LangKeyType type : LangKeyType.values()) {
@@ -149,8 +157,12 @@ public class CoreLangStorage implements LangStorage {
 				w.println(AUTHOR + "=INSERT YOUR NAME HERE!");
 			}
 			
-			for (final LangKeyType type : values.keySet()) {
-				w.println(type.getFullType() + "=" + values.get(type));
+			for (final LangKeyType type : LangKeyType.values()) {
+				if (values.containsKey(type)) {
+					w.println(type.getFullType() + "=" + values.get(type));
+				} else {
+					w.println(type.getFullType() + "=" + type.getDefaultValue());
+				}
 			}
 			w.close();
 		} catch (final FileNotFoundException e) {
@@ -162,5 +174,10 @@ public class CoreLangStorage implements LangStorage {
 	@Override
 	public String getAuthor() {
 		return author;
+	}
+	
+	@Override
+	public void setValues(Map<LangKeyType, String> values) {
+		this.values = (HashMap<LangKeyType, String>) values;
 	}
 }

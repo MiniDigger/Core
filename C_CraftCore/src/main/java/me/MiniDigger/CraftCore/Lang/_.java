@@ -53,7 +53,7 @@ public class _ {
 			try {
 				result = result.replaceAll("%" + i + "%", args[i]);
 			} catch (Exception ex) {
-				System.out.println("failed to translate %" + i + "%, no arg provided... (" + type.getFullType() + ")");
+				log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_ARG, i + "", type.getFullType());
 			}
 		}
 		
@@ -81,7 +81,7 @@ public class _ {
 	}
 	
 	public static void log(final LogLevel lvl, final LangKeyType type, final LangType lang, final CommandSender sender, final String... args) {
-		if (Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)) {
+		if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
 			lvl.getMsg(_(lang, type, args)).send(sender);
 		}
 	}

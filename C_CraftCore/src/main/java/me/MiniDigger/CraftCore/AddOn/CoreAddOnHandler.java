@@ -147,7 +147,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	@Override
 	public void disableAddOns() {
 		for (final AddOn addon : active) {
-			_.log(LogLevel.INFO, LangKeyType.AddOn.DISABLE, addon.getName(), addon.getBean().getVersion(), addon.getBean().getAuthor());
+			_.log(LogLevel.INFO, LangKeyType.AddOn.DISABLE, addon.getName(), addon.getBean().getVersion() + "`", addon.getBean().getAuthor());
 			addon.disable();
 			final AddOnClassLoader loader = loaders.get(addon.getName());
 			loaders.remove(addon.getName());
