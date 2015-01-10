@@ -47,7 +47,7 @@ public class CrankGame extends CoreGame {
 	
 	@Override
 	public void init() {
-		setGameData("Lobby", "Crank_Lobby");
+		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
@@ -58,8 +58,8 @@ public class CrankGame extends CoreGame {
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
 		
-		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Crank_Lobby");
-		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Crank_Lobby");
+		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
 		super.init();

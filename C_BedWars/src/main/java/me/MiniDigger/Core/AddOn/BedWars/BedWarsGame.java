@@ -48,7 +48,7 @@ public class BedWarsGame extends CoreGame {
 	
 	@Override
 	public void init() {
-		setGameData("Lobby", "BW_Lobby");
+		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 4);
 		vote = new VotePhase(this, null, 60);
@@ -59,8 +59,8 @@ public class BedWarsGame extends CoreGame {
 		vote.setNextPhase(bw);
 		lobby.setNextPhase(vote);
 		
-		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("BW_Lobby");
-		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("BW_Lobby");
+		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
 	}

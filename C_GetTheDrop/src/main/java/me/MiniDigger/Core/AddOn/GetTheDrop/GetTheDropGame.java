@@ -50,7 +50,7 @@ public class GetTheDropGame extends CoreGame {
 	
 	@Override
 	public void init() {
-		setGameData("Lobby", "GTD_Lobby");
+		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
@@ -66,8 +66,8 @@ public class GetTheDropGame extends CoreGame {
 		vote.setNextPhase(countdown);
 		lobby.setNextPhase(vote);
 		
-		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("GTD_Lobby");
-		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("GTD_Lobby");
+		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) countdown.getFeature(FeatureType.MAP)).setMap("GTD_Arena");
 		((MapFeature) one.getFeature(FeatureType.MAP)).setMap("GTD_Arena");
 		
