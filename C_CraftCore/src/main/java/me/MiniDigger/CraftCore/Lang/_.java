@@ -48,9 +48,15 @@ public class _ {
 	@SuppressWarnings("all")
 	public static String _(final LangType lang, final LangKeyType type, final ChatColor markup, final String... args) {
 		String result = Core.getCore().getLangHandler().getStorage(lang).get(type);
+		
 		for (int i = 0; i < args.length; i++) {
-			result = result.replaceAll("%" + i + "%", args[i]);
+			try {
+				result = result.replaceAll("%" + i + "%", args[i]);
+			} catch (Exception ex) {
+				System.out.println("failed to translate %" + i + "%, no arg provided... (" + type.getFullType() + ")");
+			}
 		}
+		
 		boolean b = false;
 		for (int i = 0; i < result.length(); i++) {
 			if (result.charAt(i) == '`') {
