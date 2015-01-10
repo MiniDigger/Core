@@ -115,7 +115,7 @@
             </goals>
             <configuration>
               <fileset>
-                <directory>${basedir}\build\Core.jar\</directory>
+                <directory>${basedir}\target\Core.jar\</directory>
                 <includes>
                   <include>plugin.yml</include>
                 </includes>
@@ -132,7 +132,7 @@
               <files>
                 <file>
                   <source>${basedir}\src\main\resources\plugin-debug.yml</source>
-                  <outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
+                  <outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
                   <destName>plugin.yml</destName>
                 </file>
               </files>
@@ -189,6 +189,7 @@
                   <arg />
                 </exec>
                 <echo>Move it!</echo>
+                <copy />
                 <copy />
                 <copy />
                 <copy />
