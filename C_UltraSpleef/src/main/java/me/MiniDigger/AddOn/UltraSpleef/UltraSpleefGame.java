@@ -22,24 +22,24 @@ public class UltraSpleefGame extends CoreGame {
 	
 	@Override
 	public GameType getType() {
-		return GameType.OITC;
+		return GameType.ULTRASPLEEF;
 	}
 	
 	@Override
 	public void init() {
-		setGameData("Lobby", "UltraSpleef_Lobby");
+		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
-		grace = new GracePhase(this, null, 15);
+		grace = new GracePhase(this, null, 5);
 		spleef = new UltraSpleefPhase(this, null);
 		
 		grace.setNextPhase(spleef);
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
 		
-		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("OITC_Lobby");
-		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("OITC_Lobby");
+		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
 		super.init();

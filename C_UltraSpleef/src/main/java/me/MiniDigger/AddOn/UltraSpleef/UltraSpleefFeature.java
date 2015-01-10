@@ -2,8 +2,15 @@ package me.MiniDigger.AddOn.UltraSpleef;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Item.ItemType;
 import me.MiniDigger.Core.Phase.Phase;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
@@ -36,7 +43,11 @@ public class UltraSpleefFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+		for (UUID id : getPhase().getGame().getPlayers()) {
+			Player p = Bukkit.getPlayer(id);
+			p.getInventory().addItem(ItemType.GRAVITYGUN.getItem().getItem());
+			p.updateInventory();
+		}
 	}
 	
 	@Override
@@ -44,4 +55,12 @@ public class UltraSpleefFeature extends CoreFeature {
 		
 	}
 	
+	@EventHandler
+	public void onMove(PlayerMoveEvent e) {
+		if (e.getFrom().getBlockY() >= 130 && e.getTo().getBlockY() <= 130) {
+			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
+				e.getPlayer().damage(1000.0);
+			}
+		}
+	}
 }
