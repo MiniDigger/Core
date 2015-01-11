@@ -256,15 +256,15 @@ public class LobbyFeature extends CoreFeature {
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "&5&l<><><><><>", "", "&6&lBUFF'S", "&5&l<><><><><>" });
-			temp.put(1, new String[] { "&5&l<><><><><>", "Get The", "Drop", "&5&l<><><><><>" });
-			temp.put(2, new String[] { "&5&l<><><><><>", "Get The", "Drop", "&5&l<><><><><>" });
-			temp.put(3, new String[] { "&5&l<><><><><>", "", "&6&lBUFF'S", "&5&l<><><><><>" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "&4&lGet The", "&4&lDrop", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "&4&lGet The", "&4&lDrop", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "In &4&lGET THE", "&5&lDROP", "gibt es zwei", "&6Phasen&r. In" });
+			temp.put(0, new String[] { "In &4&lGET THE", "&4&lDROP", "gibt es zwei", "&6Phasen&r. In" });
 			temp.put(1, new String[] { "der &61. Phase", "musst du so", "viele &aItems", "wie möglich" });
 			temp.put(2, new String[] { "einsammeln. In", "dieser &6Phase", "muss du auch", "deine &1Rüstung" });
 			temp.put(3, new String[] { "und &cWaffen", "bauen. In der", "&62. Phase", "musst du" });
@@ -286,10 +286,10 @@ public class LobbyFeature extends CoreFeature {
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "&6&lBUFF'S", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "&4&lGet The", "&4&lDrop", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "&4&lGet The", "&4&lDrop", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "&6&lBUFF'S", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
