@@ -80,10 +80,10 @@ public class LobbyFeature extends CoreFeature {
 						mat.setFacingDirection(BlockFace.EAST);
 						sign.setData(mat);
 						
-						sign.setLine(0, text1.get(x).get(i)[0]);
-						sign.setLine(1, text1.get(x).get(i)[1]);
-						sign.setLine(2, text1.get(x).get(i)[2]);
-						sign.setLine(3, text1.get(x).get(i)[3]);
+						sign.setLine(0, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[0]));
+						sign.setLine(1, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[1]));
+						sign.setLine(2, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[2]));
+						sign.setLine(3, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[3]));
 						
 						sign.update();
 						
@@ -107,10 +107,10 @@ public class LobbyFeature extends CoreFeature {
 						mat.setFacingDirection(BlockFace.SOUTH);
 						sign.setData(mat);
 						
-						sign.setLine(0, text2.get(x).get(i)[0]);
-						sign.setLine(1, text2.get(x).get(i)[1]);
-						sign.setLine(2, text2.get(x).get(i)[2]);
-						sign.setLine(3, text2.get(x).get(i)[3]);
+						sign.setLine(0, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[0]));
+						sign.setLine(1, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[1]));
+						sign.setLine(2, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[2]));
+						sign.setLine(3, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[3]));
 						
 						sign.update();
 						
@@ -132,14 +132,14 @@ public class LobbyFeature extends CoreFeature {
 	private static class SignStorage {
 		
 		private static Map<Integer, Map<Integer, String[]>> bedwarsOne() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "", "&4&BEDWARS", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "", "&4&BEDWARS", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
@@ -162,7 +162,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> bedwarsTwo() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -192,97 +192,97 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> crankOne() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "", "&4&lCRANK", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "", "&4&lCRANK", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "In &4&lCrank", "ist es die", "Aufgabe, alle", "&4Gegner&r zu" });
+			temp.put(1, new String[] { "töten. Jedoch", "hast du nur", "&a30 Sekunden", "Zeit." });
+			temp.put(2, new String[] { "Fals du es", "in der Zeit", "schaffst einen", "&4Gegner&r zu" });
+			temp.put(3, new String[] { "töten, so", "wird deine Zeit", "wieder auf", "&a30 Sekunden" });
 			result.put(1, temp);
 			
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "resettet.", "Schaffst du es ", "jedoch nicht,", "so heißt es" });
+			temp.put(1, new String[] { "&c&l&oBOOM", "und du", "verlierst", "&2ein Leben." });
+			temp.put(2, new String[] { "Jeder &9Spieler", "besitzt &2fünf", "&2Leben&r. Wenn", "du alle &2Leben" });
+			temp.put(3, new String[] { "verloren hast", "ist das &3Spiel", "für dich", "beendet." });
 			result.put(2, temp);
 			
 			return result;
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> crankTwo() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "&6&lKIT'S", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "", "&4&lCRANK", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "", "&4&lCRANK", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "&6&lKIT'S", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "Kit", "Tank", "---------------", "&9&lUser-Kit" });
+			temp.put(1, new String[] { "Kit", "Soldat", "---------------", "&9&lUser-Kit" });
+			temp.put(2, new String[] { "Kit", "Jäger", "---------------", "&9&lUser-Kit" });
+			temp.put(3, new String[] { "Kit", "Bauer", "---------------", "&9&lUser-Kit" });
 			result.put(1, temp);
 			
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "Kit", "Kleriker", "---------------", "&9&lUser-Kit" });
+			temp.put(1, new String[] { "Kit", "Ice-Man", "---------------", "&a&lToken-Kit" });
+			temp.put(2, new String[] { "Kit", "Runner", "---------------", "&a&lToken-Kit" });
+			temp.put(3, new String[] { "Kit", "Magier", "---------------", "&6&lPremium" });
 			result.put(2, temp);
 			
 			return result;
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> getthedropOne() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "&6&lBUFF'S", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "Get The", "Drop", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "Get The", "Drop", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "&6&lBUFF'S", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "In &4&lGET THE", "&5&lDROP", "gibt es zwei", "&6Phasen&r. In" });
+			temp.put(1, new String[] { "der &61. Phase", "musst du so", "viele &aItems", "wie möglich" });
+			temp.put(2, new String[] { "einsammeln. In", "dieser &6Phase", "muss du auch", "deine &1Rüstung" });
+			temp.put(3, new String[] { "und &cWaffen", "bauen. In der", "&62. Phase", "musst du" });
 			result.put(1, temp);
 			
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "versuchen deine", "&4Gegner&r zu", "töten. Wirst", "jedoch du" });
+			temp.put(1, new String[] { "&4getötet&r so", "scheidest du", "aus. Jede", "&2Minute" });
+			temp.put(2, new String[] { "droppen", "&5Power-Items", "auf den", "&bGolem-Spots." });
+			temp.put(3, new String[] { "Versuche sie", "zu ergattern", "um zu", "&agewinnen." });
 			result.put(2, temp);
 			
 			return result;
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> getthedropTwo() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -303,8 +303,8 @@ public class LobbyFeature extends CoreFeature {
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
 			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "&lCOMING", "", "" });
+			temp.put(2, new String[] { "", "&lSOON", "", "" });
 			temp.put(3, new String[] { "", "", "", "" });
 			result.put(2, temp);
 			
@@ -312,44 +312,44 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> oitcOne() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "&4&lONE IN THE", "&4&lCHAMBER", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "&4&lONE IN THE", "&4&lCHAMBER", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "In diesem", "&5Spiel&r geht", "es darum dein", "&4Gegner&r mit" });
+			temp.put(1, new String[] { "einem &cSchuss", "zu töten.", "Triffst du", "nicht, so muss" });
+			temp.put(2, new String[] { "du deine", "&4Gegner&r mit", "lediglich einem", "&2Holzschwert" });
+			temp.put(3, new String[] { "töten. Tötet", "jedoch jemand", "dich, selbst", "verlierst du" });
 			result.put(1, temp);
 			
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "|", "|", "|", "|" });
+			temp.put(1, new String[] { "ein &aLeben&r.", "Dir stehen", "insgesammt", "&a5 Leben zur" });
+			temp.put(2, new String[] { "verfügung. Der", "jenige mit den", "meisten &4Kills", "gewinnt!" });
+			temp.put(3, new String[] { "|", "|", "|", "|" });
 			result.put(2, temp);
 			
 			return result;
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> oitcTwo() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "&6&lBÖGEN", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "&4&lONE IN THE", "&4&lCHAMBER", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "&4&lONE IN THE", "&4&lCHAMBER", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "&6&lBÖGEN", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
@@ -363,8 +363,8 @@ public class LobbyFeature extends CoreFeature {
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
 			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "&lCOMING", "", "" });
+			temp.put(2, new String[] { "", "&lSOON", "", "" });
 			temp.put(3, new String[] { "", "", "", "" });
 			result.put(2, temp);
 			
@@ -372,14 +372,14 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefOne() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "", "", "", "" });
-			temp.put(1, new String[] { "", "", "", "" });
-			temp.put(2, new String[] { "", "", "", "" });
-			temp.put(3, new String[] { "", "", "", "" });
+			temp.put(0, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
+			temp.put(1, new String[] { "&5&l<><><><><>", "", "&4&UltraSpleef", "&5&l<><><><><>" });
+			temp.put(2, new String[] { "&5&l<><><><><>", "", "&4&UltraSpleef", "&5&l<><><><><>" });
+			temp.put(3, new String[] { "&5&l<><><><><>", "", "", "&5&l<><><><><>" });
 			result.put(0, temp);
 			
 			// Line 2
@@ -402,7 +402,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefTwo() {
-			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
