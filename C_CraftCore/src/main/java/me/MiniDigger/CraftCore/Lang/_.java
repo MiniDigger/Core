@@ -73,7 +73,11 @@ public class _ {
 	}
 	
 	public static void log(final LogLevel lvl, final LangKeyType type, final String... args) {
-		log(lvl, type, Core.getCore().getLangHandler().getDefaultLang(), args);
+		try {
+			log(lvl, type, Core.getCore().getLangHandler().getDefaultLang(), args);
+		} catch (Exception ex) {
+			log(lvl, type,LangType.en_US, args);
+		}
 	}
 	
 	public static void log(final LogLevel lvl, final LangKeyType type, final LangType lang, final String... args) {
