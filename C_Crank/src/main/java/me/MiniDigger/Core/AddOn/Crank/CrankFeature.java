@@ -108,7 +108,6 @@ public class CrankFeature extends CoreFeature {
 				} else {
 					user.getPlayer().setLevel(time);
 					user.getPlayer().setExp((float) (0.3*time)/10);
-					System.out.println("set ex " + time + " : " +  (float)(0.3*time)/10);
 				}
 			}
 		};
