@@ -20,9 +20,11 @@
  */
 package me.MiniDigger.Core.Protocol;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketContainer;
 
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -97,4 +99,9 @@ public interface ProtocolHandler extends Listener {
 	 * @return the new state
 	 */
 	boolean toggleUpdates(UUID id);
+
+	/**
+	 * @return a list with the sizes of all structure modifier
+	 */
+	List<String> packetcontainerToString(PacketContainer c);
 }

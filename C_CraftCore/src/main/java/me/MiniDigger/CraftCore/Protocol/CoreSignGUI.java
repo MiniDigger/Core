@@ -37,7 +37,6 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -82,7 +81,19 @@ public class CoreSignGUI implements SignGUI, Listener {
 			packet53.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet53.getIntegers().write(0,
 			// org.bukkit.Material.SIGN_POST.getId());
-			packet53.getIntegers().write(0, Material.SIGN_POST.getId() << 4 | 0x0);
+			
+			System.out.println("==========" + packet53.getType().name() + "=========");
+			for (String s : Core.getCore().getProtocolHandler().packetcontainerToString(packet53)) {
+//				if (s.endsWith("0")) {
+//					continue;
+//				}
+				System.out.println(s);
+			}
+			System.out.println("=========================================");
+			
+//			packet53.getBlocks().write(0, Material.SIGN_POST);
+			// packet53.getIntegers().write(0, Material.SIGN_POST.getId() << 4 |
+			// 0x0);
 			packets.add(packet53);
 			
 			final PacketContainer packet130 = protocolManager.createPacket(PacketType.Play.Server.UPDATE_SIGN);
@@ -90,10 +101,6 @@ public class CoreSignGUI implements SignGUI, Listener {
 			packet130.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet130.getStringArrays().write(0, defaultText);
 			packet130.getChatComponentArrays().write(0, lines);
-			packet130.getChatComponents().write(0, lines[0]);
-			packet130.getChatComponents().write(1, lines[1]);
-			packet130.getChatComponents().write(2, lines[2]);
-			packet130.getChatComponents().write(3, lines[3]);
 			packets.add(packet130);
 		}
 		
@@ -106,7 +113,7 @@ public class CoreSignGUI implements SignGUI, Listener {
 			final PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
 			packet53.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet53.getBlocks().write(0, org.bukkit.Material.BEDROCK);
-			packet53.getIntegers().write(0, Material.BEDROCK.getId() << 4 | 0x0);
+//			packet53.getIntegers().write(0, Material.BEDROCK.getId() << 4 | 0x0);
 			packets.add(packet53);
 		}
 		

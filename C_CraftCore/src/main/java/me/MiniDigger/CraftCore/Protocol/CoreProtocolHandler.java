@@ -21,6 +21,7 @@
 package me.MiniDigger.CraftCore.Protocol;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
@@ -299,5 +301,25 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			noUpdates.add(id);
 			return true;
 		}
+	}
+	
+	@Override
+	public List<String> packetcontainerToString(PacketContainer c) {
+		List<String> result = new ArrayList<String>();
+		
+		for (Method m : c.getClass().getMethods()) {
+			if (m.getName().startsWith("get")) {
+				if (m.getReturnType().getName().contains("StructureModifier")) {
+					try {
+						StructureModifier<?> mod = (StructureModifier<?>) m.invoke(c);
+						result.add(m.getName() + ": " + mod.size());
+					} catch (Exception e) {
+//						e.printStackTrace();
+					}
+				}
+			}
+		}
+		
+		return result;
 	}
 }
