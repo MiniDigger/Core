@@ -169,6 +169,8 @@ public class LivesFeature extends CoreFeature {
 				
 				getPhase().getGame().leave(e.getUser());
 				
+				Core.getCore().getScoreboardHandler().clear(e.getUser().getUUID());
+				
 				if (getPhase().getGame().getPlayers().size() < 2) {
 					try {
 						getPhase().getGame().end(Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0)));

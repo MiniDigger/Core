@@ -23,7 +23,9 @@ package me.MiniDigger.CraftCore.Scoreboard;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
@@ -56,7 +58,19 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 			for (final String s : p.getPlayer().getScoreboard().getEntries()) {
 				p.getPlayer().getScoreboard().resetScores(s);
 			}
-			boards.clear();
 		}
+		boards.clear();
+	}
+	
+	@Override
+	public void clear(UUID id) {
+		Player p = Bukkit.getPlayer(id);
+		for (final String s : p.getPlayer().getScoreboard().getEntries()) {
+			p.getPlayer().getScoreboard().resetScores(s);
+		}
+		p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+		p.getScoreboard().clearSlot(DisplaySlot.PLAYER_LIST);
+		p.getScoreboard().clearSlot(DisplaySlot.BELOW_NAME);
+		boards.remove(id);
 	}
 }

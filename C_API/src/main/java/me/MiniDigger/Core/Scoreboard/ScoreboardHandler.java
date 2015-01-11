@@ -48,4 +48,9 @@ public interface ScoreboardHandler {
 	 */
 	void clearAll();
 	
+	/**
+	 * Clears the board of a player
+	 */
+	void clear(UUID id);
+	
 }
