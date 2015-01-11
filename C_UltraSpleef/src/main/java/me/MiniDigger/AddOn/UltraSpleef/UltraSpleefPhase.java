@@ -14,7 +14,7 @@ import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
-import me.MiniDigger.CraftCore.Feature.Features.LastManStandingFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
@@ -62,7 +62,7 @@ public class UltraSpleefPhase extends CorePhase {
 		addFeature(new MapFeature(this, null));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new SpawnFeature(this, false));
-		addFeature(new LastManStandingFeature(this));
+		addFeature(new LivesFeature(this, 3));
 		addFeature(new SpecateFeature(this));
 		addFeature(new NoFallDmgFeature(this));
 		addFeature(new NoPickupFeature(this));
