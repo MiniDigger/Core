@@ -54,7 +54,7 @@ public class ChatCompleter {
 		
 		if (args.getArgs().length == 1) {
 			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
-				if (args.getSender().hasPermission(c.getHearPerm()) || args.getSender().hasPermission(c.getSpeakPerm())) {
+				if (args.getUser().hasPermission(c.getHearPerm()) || args.getUser().hasPermission(c.getSpeakPerm())) {
 					result.add(c.getName());
 				}
 			}
@@ -138,7 +138,7 @@ public class ChatCompleter {
 		
 		if (args.getArgs().length == 1) {
 			for (final ChatChannel c : Core.getCore().getChatHandler().getChannels()) {
-				if (args.getSender().hasPermission(c.getSpeakPerm())) {
+				if (args.getUser().hasPermission(c.getSpeakPerm())) {
 					result.add(c.getName());
 				}
 			}

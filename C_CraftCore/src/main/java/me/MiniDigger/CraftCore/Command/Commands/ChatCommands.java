@@ -181,7 +181,7 @@ public class ChatCommands {
 			return;
 		}
 		
-		if (!args.getSender().hasPermission(ch.getSpeakPerm())) {
+		if (!args.getUser().hasPermission(ch.getSpeakPerm())) {
 			args.getUser().sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst in diesem Channel nicht reden!").color(ChatColor.RED));
 		}
 		

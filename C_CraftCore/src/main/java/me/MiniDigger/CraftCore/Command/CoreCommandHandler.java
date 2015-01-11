@@ -53,6 +53,7 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -168,6 +169,15 @@ public class CoreCommandHandler implements CommandHandler {
 				/* Core Start */
 				final Command command = method.getAnnotation(Command.class);
 				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
+				
+				if(sender instanceof Player){
+					User user = Core.getCore().getUserHandler().get(((Player) sender).getUniqueId());
+					if (!user.hasPermission(command.permission())) {
+						final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
+						msg.send(sender);
+						return true;
+					}
+				}
 				
 				if (!sender.hasPermission(command.permission())) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);

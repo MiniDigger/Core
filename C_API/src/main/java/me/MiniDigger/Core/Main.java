@@ -25,7 +25,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 import mkremins.fanciful.FancyMessage;
-import ru.tehkode.permissions.PermissionManager;
 
 public interface Main extends Plugin {
 	
@@ -88,10 +87,4 @@ public interface Main extends Plugin {
 	 *            The message
 	 */
 	public void broadcast(final FancyMessage msg);
-	
-	/**
-	 * 
-	 * @return PEX PermissionManager
-	 */
-	public PermissionManager getPermissionManager();
 }
