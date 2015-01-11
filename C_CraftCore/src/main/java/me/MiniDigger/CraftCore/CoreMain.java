@@ -102,9 +102,11 @@ public class CoreMain extends JavaPlugin implements Main {
 	@Override
 	public void onEnable() {
 		final Date start = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
 		core = new CoreCore(this);
+		Core.getCore().getLangHandler().load();
 		
+		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
+				
 		Date d1 = new Date();
 		_.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE);
 		try {
@@ -368,7 +370,6 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void enableHandler() {
-		Core.getCore().getLangHandler().load();
 		Core.getCore().getAddOnHandler().load();
 		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
