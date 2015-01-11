@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Protocol;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
@@ -46,12 +47,14 @@ public class CoreSkullChangers implements SkullChangers {
 	@SuppressWarnings("unused") private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
 	
 	@Override
-	public void update() {
+	public void update(List<UUID> noUpdates) {
 		for (final Location loc : last_seen_skulls) {
 			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 				if (e != null && e.getType() == EntityType.PLAYER) {
 					if (loc.getBlock().getState() instanceof Skull) {
-						sendSkullChange((Player) e, loc);
+						if (!noUpdates.contains(((Player) e).getUniqueId())) {
+							sendSkullChange((Player) e, loc);
+						}
 					}
 				}
 			}

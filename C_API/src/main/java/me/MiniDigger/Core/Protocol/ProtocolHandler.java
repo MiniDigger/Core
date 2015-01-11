@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.Core.Protocol;
 
+import java.util.UUID;
+
 import com.comphenix.protocol.ProtocolManager;
 
 import org.bukkit.event.Listener;
@@ -76,4 +78,23 @@ public interface ProtocolHandler extends Listener {
 	 *            event
 	 */
 	void onQuit(final PlayerQuitEvent e);
+	
+	/**
+	 * Prevent protocollib from sending updates to that player
+	 * 
+	 */
+	void noUpdates(UUID id);
+	
+	/**
+	 * send updates again
+	 * 
+	 */
+	void updates(UUID id);
+	
+	/**
+	 * toogle protovollib updates
+	 * 
+	 * @return the new state
+	 */
+	boolean toggleUpdates(UUID id);
 }

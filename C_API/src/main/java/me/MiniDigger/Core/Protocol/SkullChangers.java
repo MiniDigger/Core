@@ -21,6 +21,7 @@
 package me.MiniDigger.Core.Protocol;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.comphenix.protocol.events.PacketEvent;
 
@@ -31,8 +32,9 @@ public interface SkullChangers {
 	
 	/**
 	 * Updates all the changer
+	 * @param noUpdates a list with uuid not to update
 	 */
-	public void update();
+	public void update(List<UUID> noUpdates);
 	
 	/**
 	 * Adds all the changers

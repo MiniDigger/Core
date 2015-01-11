@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import com.comphenix.protocol.PacketType;
@@ -54,14 +56,16 @@ import me.MiniDigger.Core.User.User;
 
 public class CoreProtocolHandler implements ProtocolHandler {
 	
-	private String	                       fame;
-	private final ProtocolManager	       manager	         = ProtocolLibrary.getProtocolManager();
+	private String	                   fame;
+	private final ProtocolManager	   manager	         = ProtocolLibrary.getProtocolManager();
 	
-	private SignChangers	               signChangers;
-	private SkullChangers	               skullChangers;
-	private SignListeners	               signListeners;
+	private SignChangers	           signChangers;
+	private SkullChangers	           skullChangers;
+	private SignListeners	           signListeners;
 	
-	private final HashMap<String, Integer>	protocolVersions	= new HashMap<>();
+	private final Map<String, Integer>	protocolVersions	= new HashMap<>();
+	
+	private List<UUID>	               noUpdates	     = new ArrayList<UUID>();
 	
 	@Override
 	public void init() {
@@ -92,8 +96,8 @@ public class CoreProtocolHandler implements ProtocolHandler {
 			
 			@Override
 			public void run() {
-				signChangers.update();
-				skullChangers.update();
+				signChangers.update(noUpdates);
+				skullChangers.update(noUpdates);
 			}
 		}, 2 * 20, 2 * 20);
 		
@@ -272,4 +276,28 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		return signListeners;
 	}
 	
+	@Override
+	public void noUpdates(UUID id) {
+		if (!noUpdates.contains(id)) {
+			noUpdates.add(id);
+		}
+	}
+	
+	@Override
+	public void updates(UUID id) {
+		if (noUpdates.contains(id)) {
+			noUpdates.remove(id);
+		}
+	}
+	
+	@Override
+	public boolean toggleUpdates(UUID id) {
+		if (noUpdates.contains(id)) {
+			noUpdates.remove(id);
+			return false;
+		} else {
+			noUpdates.add(id);
+			return true;
+		}
+	}
 }

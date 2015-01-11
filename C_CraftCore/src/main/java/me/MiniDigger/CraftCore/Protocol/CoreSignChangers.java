@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Protocol;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
@@ -60,13 +61,15 @@ public class CoreSignChangers implements SignChangers {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void update() {
+	public void update(List<UUID> noUpdates) {
 		for (final Location loc : (ArrayList<Location>) last_seen_signs.clone()) {
 			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 				if (e != null && e.getType() == EntityType.PLAYER) {
 					if (loc.getBlock().getState() instanceof Sign) {
 						if (!justJoined.contains(((Player) e).getName())) {
-							sendSignChange((Player) e, (Sign) loc.getBlock().getState());
+							if (!noUpdates.contains(((Player) e).getUniqueId())) {
+								sendSignChange((Player) e, (Sign) loc.getBlock().getState());
+							}
 						} else {
 							justJoined.remove(((Player) e).getName());
 						}

@@ -21,6 +21,7 @@
 package me.MiniDigger.Core.Protocol;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.comphenix.protocol.events.PacketEvent;
 
@@ -33,8 +34,9 @@ public interface SignChangers extends Listener {
 	
 	/**
 	 * Updates all the signs
+	 * @param noUpdates a list with uuid not to update
 	 */
-	public void update();
+	public void update(List<UUID> noUpdates);
 	
 	/**
 	 * handles the PacketEvent, modifying the sign packet, if the player doesn't

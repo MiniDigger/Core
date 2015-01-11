@@ -79,12 +79,17 @@ public class CoreServerHandler implements ServerHandler {
 				System.out.println("No name in line 1? " + lines[1].getJson());
 			}
 		} catch (final Exception ex) {
-			System.out.println("could not read name from " + lines[1].getJson());
-			return lines;
+			name = lines[1].getJson();
+			name = name.replaceAll("\"", "");
+			// System.out.println("could not read name from " +
+			// lines[1].getJson());
+			// _.stacktrace(LogLevel.DEBUG, ex);
+			// return lines;
 		}
 		
 		final Server server = getServerInfo(name);
 		if (server == null || !server.isOnline()) {
+			System.out.println("null or offline " + name);
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
 			msg = new FancyMessage("RESTART").color(ChatColor.RED).style(ChatColor.BOLD, ChatColor.UNDERLINE);
@@ -138,6 +143,8 @@ public class CoreServerHandler implements ServerHandler {
 			lines[2].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getName()).color(ChatColor.GOLD);
 			lines[3].setJson(msg.toJSONString());
+		} else {
+			System.out.println("no option for " + server.toString());
 		}
 		
 		return lines;
