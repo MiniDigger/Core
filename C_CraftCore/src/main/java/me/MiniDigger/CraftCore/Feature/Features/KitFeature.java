@@ -24,12 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Kit.Kit;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
@@ -65,6 +69,12 @@ public class KitFeature extends CoreFeature {
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
+			if(Core.getCore().getKitHandler().getActivKit(id) == null){
+				Kit k = Core.getCore().getKitHandler().getKits().get(0);
+				Core.getCore().getKitHandler().give(u, k.getName());
+				Prefix.API.getPrefix().then("Du hast kein Kit ausgewählt, nimm " + k.getName() + "!").color(ChatColor.AQUA).send(Bukkit.getPlayer(id));
+				continue;
+			}
 			Core.getCore().getKitHandler().give(u, Core.getCore().getKitHandler().getActivKit(id));
 		}
 	}
