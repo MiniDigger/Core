@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.License;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 
 import me.MiniDigger.CraftCore.CoreMain;
@@ -31,7 +32,7 @@ import me.MiniDigger.CraftCore.Util.CoreShutdownUtil;
 public class CoreLicenseHandler implements LicenseHandler {
 	
 	@SuppressWarnings("deprecation") private final String	licence	   = (CoreMain.getCore().getInstance()).getConfig().getString("licence");
-	private final String	                              sessionToken	= generateToken();
+	private final String	                              sessionToken	= "SESSION" + Core.getCore().getRandomUtil().nextInt(10000)/*generateToken()*/;
 	
 	private boolean	                                      failed	   = false;
 	
@@ -71,11 +72,16 @@ public class CoreLicenseHandler implements LicenseHandler {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void performCheckSync() {
-		final String token = generateToken();
+		final String token = "TOKEN"+Core.getCore().getRandomUtil().nextInt(10000)/*generateToken()*/;
 		
 		final String s = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
 		
 		if (s == null) {
+			if (!failed) {
+				failed = true;
+				CoreMain.getCore().getInstance().error("Licence check failed! Try again!");
+				performCheckAsync();
+			}
 			CoreMain.getCore().getCommonMethods().killPlugin();
 			return;
 		}
@@ -113,7 +119,7 @@ public class CoreLicenseHandler implements LicenseHandler {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unused" })
 	private String generateToken() {
 		final String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		String token = "";
