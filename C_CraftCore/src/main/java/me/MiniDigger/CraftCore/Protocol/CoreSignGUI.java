@@ -37,6 +37,7 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -76,20 +77,23 @@ public class CoreSignGUI implements SignGUI, Listener {
 				lines[i] = WrappedChatComponent.fromText(defaultText[i]);
 			}
 			
-			// final PacketContainer packet53 =
-			// protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
-			// // packet53.getIntegers().write(0, x).write(1, y).write(2, z);
-			// packet53.getBlockPositionModifier().write(0, new BlockPosition(x,
-			// y, z));
+			final PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
+			// packet53.getIntegers().write(0, x).write(1, y).write(2, z);
+			packet53.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet53.getIntegers().write(0,
 			// org.bukkit.Material.SIGN_POST.getId());
-			// packets.add(packet53);
+			packet53.getIntegers().write(0, Material.SIGN_POST.getId() << 4 | 0x0);
+			packets.add(packet53);
 			
 			final PacketContainer packet130 = protocolManager.createPacket(PacketType.Play.Server.UPDATE_SIGN);
 			// packet130.getIntegers().write(0, x).write(1, y).write(2, z);
 			packet130.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet130.getStringArrays().write(0, defaultText);
 			packet130.getChatComponentArrays().write(0, lines);
+			packet130.getChatComponents().write(0, lines[0]);
+			packet130.getChatComponents().write(1, lines[1]);
+			packet130.getChatComponents().write(2, lines[2]);
+			packet130.getChatComponents().write(3, lines[3]);
 			packets.add(packet130);
 		}
 		
@@ -99,13 +103,11 @@ public class CoreSignGUI implements SignGUI, Listener {
 		packets.add(packet133);
 		
 		if (defaultText != null) {
-			// final PacketContainer packet53 =
-			// protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
-			// // packet53.getIntegers().write(0, x).write(1, 0).write(2, z);
-			// packet53.getBlockPositionModifier().write(0, new BlockPosition(x,
-			// y, z));
+			final PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
+			packet53.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet53.getBlocks().write(0, org.bukkit.Material.BEDROCK);
-			// packets.add(packet53);
+			packet53.getIntegers().write(0, Material.BEDROCK.getId() << 4 | 0x0);
+			packets.add(packet53);
 		}
 		
 		try {
