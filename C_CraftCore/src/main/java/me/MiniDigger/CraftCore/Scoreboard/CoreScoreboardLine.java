@@ -50,7 +50,6 @@ public class CoreScoreboardLine implements ScoreboardLine {
 	@Override
 	public void scroll() {
 		// TODO Scoll
-		getContent().replaceAll(getContent(), "newcontent");
 	}
 	
 	@Override

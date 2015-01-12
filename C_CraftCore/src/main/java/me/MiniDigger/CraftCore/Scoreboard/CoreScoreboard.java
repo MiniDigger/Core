@@ -31,16 +31,20 @@ import org.bukkit.scoreboard.Objective;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Scoreboard.ScoreboardLine;
+import me.MiniDigger.Core.Scoreboard.ScoreboardTitle;
 
 public class CoreScoreboard implements Scoreboard {
 	
 	private final List<ScoreboardLine>	lines	 = new ArrayList<ScoreboardLine>();
 	private final List<ScoreboardLine>	scolling	= new ArrayList<ScoreboardLine>();
-	private String	                   title;
+	
+	private ScoreboardTitle	           sidebar;
+	private ScoreboardTitle	           belowname;
+	private ScoreboardTitle	           playerlist;
+	
 	private final BukkitRunnable	   task;
 	
-	public CoreScoreboard(final String title) {
-		this.title = title;
+	public CoreScoreboard() {
 		task = new BukkitRunnable() {
 			
 			@Override
@@ -54,13 +58,32 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public void setTitle(final String title) {
-		this.title = title;
+	public void setTitle(final ScoreboardTitle title) {
+		switch (title.getSlot()) {
+		case BELOW_NAME:
+			belowname = title;
+			return;
+		case PLAYER_LIST:
+			playerlist = title;
+			return;
+		case SIDEBAR:
+			sidebar = title;
+			return;
+		}
+		sidebar = title;
 	}
 	
 	@Override
-	public String getTitle() {
-		return title;
+	public ScoreboardTitle getTitle(DisplaySlot slot) {
+		switch (slot) {
+		case BELOW_NAME:
+			return belowname;
+		case PLAYER_LIST:
+			return playerlist;
+		case SIDEBAR:
+			return sidebar;
+		}
+		return sidebar;
 	}
 	
 	@Override
@@ -117,7 +140,12 @@ public class CoreScoreboard implements Scoreboard {
 	public org.bukkit.scoreboard.Scoreboard toBukkitScoreboard() {
 		final org.bukkit.scoreboard.Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 		
-		final Objective tab = sb.registerNewObjective("tab", "dummy");
+		String add = "";
+		if (sb.getObjective(playerlist.getTitle()) != null) {
+			add += " ";
+		}
+		
+		final Objective tab = sb.registerNewObjective(playerlist.getTitle() + add, "dummy");
 		tab.setDisplaySlot(DisplaySlot.PLAYER_LIST);
 		for (final ScoreboardLine line : getLines(DisplaySlot.PLAYER_LIST)) {
 			if (line.scorlling()) {
@@ -130,7 +158,12 @@ public class CoreScoreboard implements Scoreboard {
 			sb.clearSlot(DisplaySlot.PLAYER_LIST);
 		}
 		
-		final Objective name = sb.registerNewObjective("name", "dummy");
+		add = "";
+		if (sb.getObjective(belowname.getTitle()) != null) {
+			add += " ";
+		}
+		
+		final Objective name = sb.registerNewObjective(belowname.getTitle() + add, "dummy");
 		name.setDisplaySlot(DisplaySlot.BELOW_NAME);
 		for (final ScoreboardLine line : getLines(DisplaySlot.BELOW_NAME)) {
 			if (line.scorlling()) {
@@ -143,7 +176,12 @@ public class CoreScoreboard implements Scoreboard {
 			sb.clearSlot(DisplaySlot.BELOW_NAME);
 		}
 		
-		final Objective side = sb.registerNewObjective(title, "dummy");
+		add = "";
+		if (sb.getObjective(sidebar.getTitle()) != null) {
+			add += " ";
+		}
+		
+		final Objective side = sb.registerNewObjective(sidebar.getTitle() + add, "dummy");
 		side.setDisplaySlot(DisplaySlot.SIDEBAR);
 		for (final ScoreboardLine line : getLines(DisplaySlot.SIDEBAR)) {
 			if (line.scorlling()) {

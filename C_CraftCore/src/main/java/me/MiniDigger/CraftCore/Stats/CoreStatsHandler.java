@@ -41,7 +41,7 @@ public class CoreStatsHandler implements StatsHandler {
 	
 	@Override
 	public boolean loadAll() {
-		Core.getCore().getInstance().info("Erstelle Tabelle f�r Stats...");
+		Core.getCore().getInstance().info("Erstelle Tabelle für Stats...");
 		if (!new CoreStats(null).createTable()) {
 			Core.getCore().getInstance().error("Tabelle wurde nicht erstellt!");
 		}
@@ -73,7 +73,7 @@ public class CoreStatsHandler implements StatsHandler {
 		boolean b = true;
 		for (final String s : uuids) {
 			final Stats stat = new CoreStats(UUID.fromString(s));
-			System.out.println("load " + s);
+//			System.out.println("load " + s);
 			if (!stat.load()) {
 				b = false;
 			}
@@ -137,5 +137,4 @@ public class CoreStatsHandler implements StatsHandler {
 		s.save();
 		return s;
 	}
-	
 }

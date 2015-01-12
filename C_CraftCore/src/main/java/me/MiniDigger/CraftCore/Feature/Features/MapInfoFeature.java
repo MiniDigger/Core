@@ -18,6 +18,7 @@ import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class MapInfoFeature extends CoreFeature {
 	
@@ -49,7 +50,8 @@ public class MapInfoFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		final Scoreboard b = new CoreScoreboard(ChatColor.GOLD + "MapInfo");
+		final Scoreboard b = new CoreScoreboard();
+		b.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "MapInfo", DisplaySlot.SIDEBAR));
 		
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		int i = 1;

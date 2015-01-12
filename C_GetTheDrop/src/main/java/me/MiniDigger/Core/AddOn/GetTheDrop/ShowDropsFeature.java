@@ -22,6 +22,7 @@ import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class ShowDropsFeature extends CoreFeature {
 	
@@ -84,7 +85,8 @@ public class ShowDropsFeature extends CoreFeature {
 			task.cancel();
 			task = null;
 		}
-		final Scoreboard b = new CoreScoreboard(ChatColor.GOLD + "Items");
+		final Scoreboard b = new CoreScoreboard();
+		b.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Items", DisplaySlot.SIDEBAR));
 		
 		task = new BukkitRunnable() {
 			

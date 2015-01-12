@@ -29,6 +29,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsType;
@@ -175,8 +176,18 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
+	public void set(GameType game, StatsType type, int value) {
+		set(StatsType.valueOf(game.getName() + "." + type.getStats()), value);
+	}
+	
+	@Override
 	public void add(final StatsType type, final int value) {
 		set(type, get(type) + value);
+	}
+	
+	@Override
+	public void add(GameType game, StatsType type, int value) {
+		add(StatsType.valueOf(game.getName() + "." + type.getStats()), value);
 	}
 	
 	@Override
@@ -185,9 +196,14 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
+	public void remove(GameType game, StatsType type, int value) {
+		remove(StatsType.valueOf(game.getName() + "." + type.getStats()), value);
+	}
+	
+	@Override
 	public int get(final StatsType type) {
 		if (type == null) {
-			return 0;
+			return -1;
 		}
 		if (stats.get(type) == null) {
 			stats.put(type, type.getDefaultValue());
@@ -205,8 +221,12 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
+	public int get(GameType game, StatsType type) {
+		return get(StatsType.valueOf(game.getName() + "." + type.getStats()));
+	}
+	
+	@Override
 	public void init() {
 		stats = new HashMap<>();
 	}
-	
 }

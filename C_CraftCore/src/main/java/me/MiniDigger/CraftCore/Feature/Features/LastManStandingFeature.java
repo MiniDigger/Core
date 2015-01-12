@@ -45,6 +45,7 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class LastManStandingFeature extends CoreFeature {
 	
@@ -85,7 +86,8 @@ public class LastManStandingFeature extends CoreFeature {
 	}
 	
 	public void showLives() {
-		final Scoreboard board = new CoreScoreboard(ChatColor.GOLD + "Noch da");
+		final Scoreboard board = new CoreScoreboard();
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Noch da", DisplaySlot.SIDEBAR));
 		
 		int i = 0;
 		for (final UUID id : getPhase().getGame().getPlayers()) {

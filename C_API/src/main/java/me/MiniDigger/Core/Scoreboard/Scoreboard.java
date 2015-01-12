@@ -71,16 +71,18 @@ public interface Scoreboard {
 	 * @return all lines in that slot
 	 */
 	List<ScoreboardLine> getLines(final DisplaySlot slot);
-	
+
 	/**
-	 * @param title
-	 *            the new title to set
+	 * 
+	 * @param title the new title
 	 */
-	void setTitle(final String title);
-	
+	void setTitle(ScoreboardTitle title);
+
 	/**
-	 * @return the title
+	 * 
+	 * @param slot the slot the title is title of
+	 * @return
 	 */
-	String getTitle();
+	ScoreboardTitle getTitle(DisplaySlot slot);
 	
 }

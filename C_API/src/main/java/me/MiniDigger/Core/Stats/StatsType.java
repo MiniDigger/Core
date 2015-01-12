@@ -70,7 +70,7 @@ public class StatsType {
 		}
 	}
 	
-	private static class StatsGame {
+	public static class StatsGame {
 		
 		protected static String	gameName	= "";
 		
@@ -78,6 +78,7 @@ public class StatsType {
 		public static StatsType	DEATHS		= new StatsType(gameName, "deaths");
 		public static StatsType	GAMES		= new StatsType(gameName, "games");
 		public static StatsType	KILLS		= new StatsType(gameName, "kills");
+		public static StatsType	JOINS		= new StatsType(gameName, "joins");
 		
 		public static List<StatsType> values(final String gameName) {
 			final List<StatsType> values = new ArrayList<>();
@@ -85,6 +86,7 @@ public class StatsType {
 			values.add(DEATHS);
 			values.add(GAMES);
 			values.add(KILLS);
+			values.add(JOINS);
 			return values;
 		}
 		

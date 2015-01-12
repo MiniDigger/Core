@@ -61,7 +61,8 @@ public enum FeatureType {
 	ULTRASPLEEF,
 	LOBBYFEATURE,
 	NODROP,
-	NOPICKUP;
+	NOPICKUP,
+	KILLS;
 	
 	/**
 	 * @return A human readable name for the feature

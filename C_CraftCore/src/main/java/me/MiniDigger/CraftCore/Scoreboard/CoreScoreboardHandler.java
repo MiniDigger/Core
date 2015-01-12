@@ -38,7 +38,7 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	@Override
 	public Scoreboard getBoard(final UUID id) {
 		if (boards.get(id) == null) {
-			boards.put(id, new CoreScoreboard("dummy"));
+			boards.put(id, new CoreScoreboard());
 		}
 		return boards.get(id);
 	}

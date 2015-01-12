@@ -44,6 +44,7 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class LivesFeature extends CoreFeature {
 	
@@ -98,7 +99,8 @@ public class LivesFeature extends CoreFeature {
 	}
 	
 	public void showLives() {
-		final Scoreboard board = new CoreScoreboard(ChatColor.GOLD + "Lives");
+		final Scoreboard board = new CoreScoreboard();
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Lives", DisplaySlot.SIDEBAR));
 		
 		if (lives == null) {
 			return; // Games over, who cares

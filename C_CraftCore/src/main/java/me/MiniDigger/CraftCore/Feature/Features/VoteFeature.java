@@ -42,6 +42,7 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class VoteFeature extends CoreFeature {
 	
@@ -100,7 +101,8 @@ public class VoteFeature extends CoreFeature {
 			mapThree = maps.get(2);
 		} catch (final Exception ex) {}
 		
-		board = new CoreScoreboard(ChatColor.GOLD + "Votes");
+		board = new CoreScoreboard();
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Votes", DisplaySlot.SIDEBAR));
 		
 		if (mapOne == null) {
 			mapCount = 0;

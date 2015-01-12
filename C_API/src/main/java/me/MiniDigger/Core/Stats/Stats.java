@@ -22,6 +22,7 @@ package me.MiniDigger.Core.Stats;
 
 import java.util.UUID;
 
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.SQL.Saveable;
 
 public interface Stats extends Saveable {
@@ -40,7 +41,7 @@ public interface Stats extends Saveable {
 	public void set(final StatsType type, final int value);
 	
 	/**
-	 * Addts the value to the current value
+	 * Adds the value to the current value
 	 * 
 	 * @param type
 	 * @param value
@@ -63,5 +64,16 @@ public interface Stats extends Saveable {
 	 */
 	public int get(final StatsType type);
 	
+	/**
+	 * inits the stat instance
+	 */
 	public void init();
+	
+	void set(GameType game, StatsType type, int value);
+	
+	void add(GameType game, StatsType type, int value);
+	
+	void remove(GameType game, StatsType type, int value);
+	
+	int get(GameType game, StatsType type);
 }
