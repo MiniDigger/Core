@@ -25,7 +25,7 @@ public class TagCommands {
 		        .color(ChatColor.GOLD).send(args.getSender());
 	}
 	
-	@Command(name = "tag.show", description = "Zeigt den Nametag von einem Spieler oder dir wieder", permission = "tag.show", max = 1)
+	@Command(name = "tag.show", description = "Zeigt den Nametag von einem Spieler oder dir wieder", permission = "tag.show", max = 1,sync=true)
 	public void show(CommandArgs args) {
 		if (args.getArgs().length == 0) {
 			Core.getCore().getNametagHandler().showTag(args.getPlayer());
@@ -37,7 +37,7 @@ public class TagCommands {
 		}
 	}
 	
-	@Command(name = "tag.hide", description = "Versteckt den Nametag von einem Spieler oder dir", permission = "tag.show", max = 1)
+	@Command(name = "tag.hide", description = "Versteckt den Nametag von einem Spieler oder dir", permission = "tag.show", max = 1,sync=true)
 	public void hide(CommandArgs args) {
 		if (args.getArgs().length == 0) {
 			Core.getCore().getNametagHandler().hideTag(args.getPlayer());
@@ -49,7 +49,7 @@ public class TagCommands {
 		}
 	}
 	
-	@Command(name = "tag.change", description = "Verändert den Namen von einem Spieler", permission = "tag.change", min = 1, max = 2, string = 1)
+	@Command(name = "tag.change", description = "Verändert den Namen von einem Spieler", permission = "tag.change", min = 1, max = 2, string = 1,sync=true)
 	public void change(CommandArgs args) {
 		if (args.getArgs().length == 1) {
 			Core.getCore().getNametagHandler().setTag(args.getPlayer().getUniqueId(), args.getArgs()[0]);
