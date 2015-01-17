@@ -55,6 +55,10 @@ public class CoreScoreboard implements Scoreboard {
 			}
 		};
 		task.runTaskTimer(Core.getCore().getInstance(), 1 * 20, 1 * 20);
+		
+		sidebar = new CoreScoreboardTitle("", DisplaySlot.SIDEBAR);
+		belowname = new CoreScoreboardTitle("", DisplaySlot.BELOW_NAME);
+		playerlist = new CoreScoreboardTitle("", DisplaySlot.PLAYER_LIST);
 	}
 	
 	@Override
