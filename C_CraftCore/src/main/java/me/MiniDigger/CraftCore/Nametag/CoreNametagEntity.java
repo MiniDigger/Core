@@ -22,59 +22,61 @@ package me.MiniDigger.CraftCore.Nametag;
 
 import java.lang.reflect.Field;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 
-import net.minecraft.server.v1_8_R1.Entity;
-import net.minecraft.server.v1_8_R1.EntityAmbient;
-
 import org.bukkit.Location;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+
+import net.minecraft.server.v1_8_R1.Entity;
+import net.minecraft.server.v1_8_R1.World;
+
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+
+import net.minecraft.server.v1_8_R1.EntityAmbient;
 
 import me.MiniDigger.Core.Nametag.NametagEntity;
 
 public class CoreNametagEntity extends EntityAmbient implements NametagEntity {
 	
 	public CoreNametagEntity(final Player player) {
-		super(((CraftWorld) player.getWorld()).getHandle());
-		
+		super((World) ((CraftWorld) player.getWorld()).getHandle());
 		final Location location = player.getLocation();
-		
-		setInvisible(true);
-		setPosition(location.getX(), location.getY(), location.getZ());
+		this.setInvisible(true);
+		this.setPosition(location.getX(), location.getY(), location.getZ());
 		try {
 			final Field invulnerable = Entity.class.getDeclaredField("invulnerable");
 			invulnerable.setAccessible(true);
 			invulnerable.setBoolean(this, true);
-		} catch (final Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		world.addEntity(this, SpawnReason.CUSTOM);
-		
-		persistent = true;
-		
-		hideTag(player);
+		this.world.addEntity((Entity) this, CreatureSpawnEvent.SpawnReason.CUSTOM);
+		this.persistent = true;
+		this.hideTag(player);
 	}
 	
 	@Override
 	public void hideTag(final Player player) {
-		setPassengerOf(((CraftPlayer) player).getHandle());
+		this.setPassengerOf((Entity) ((CraftPlayer) player).getHandle());
 	}
 	
 	@Override
 	public void showTag() {
-		setPassengerOf(null);
+		this.setPassengerOf((Entity) null);
 	}
 	
 	@Override
-	public void h() {
-		motX = (motY = motZ = 0.0D);
-		a(0.0F, 0.0F);
-		a(0.0F, 0.0F, 0.0F);
+	public void s_() {
+		this.motZ = 0.0;
+		this.motY = 0.0;
+		this.motX = 0.0;
+		this.a(0.0f, 0.0f);
+		this.a(0.0f, 0.0f, 0.0f);
 	}
-	
+
 	@Override
-	public void o(final Entity entity) {
+	public void s(final Entity entity) {
 	}
 }

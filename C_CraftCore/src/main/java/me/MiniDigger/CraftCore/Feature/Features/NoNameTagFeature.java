@@ -71,7 +71,7 @@ public class NoNameTagFeature extends CoreFeature {
 	@Override
 	public void end() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
-			Core.getCore().getNametagHandler().showNametag(Bukkit.getPlayer(id));
+			Core.getCore().getNametagHandler().showTag(Bukkit.getPlayer(id));
 		}
 	}
 	
@@ -85,7 +85,7 @@ public class NoNameTagFeature extends CoreFeature {
 	@EventHandler
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
-			Core.getCore().getNametagHandler().showNametag(Bukkit.getPlayer(e.getUser().getUUID()));
+			Core.getCore().getNametagHandler().showTag(Bukkit.getPlayer(e.getUser().getUUID()));
 		}
 	}
 	

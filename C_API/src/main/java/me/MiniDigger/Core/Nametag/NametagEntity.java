@@ -20,8 +20,6 @@
  */
 package me.MiniDigger.Core.Nametag;
 
-import net.minecraft.server.v1_8_R1.Entity;
-
 import org.bukkit.entity.Player;
 
 public interface NametagEntity {
@@ -37,14 +35,4 @@ public interface NametagEntity {
 	 * Shows the nametag
 	 */
 	public void showTag();
-	
-	/**
-	 * internal overide
-	 */
-	public void h();
-	
-	/**
-	 * internal overide
-	 */
-	public void o(final Entity entity);
 }

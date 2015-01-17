@@ -129,4 +129,11 @@ public @interface Command {
 	 */
 	public boolean sync() default false;
 	
+	/**
+	 * Which argument is encapsulted in quotes and should be treated as one arg
+	 * 
+	 * @return
+	 */
+	public int string() default -1;
+	
 }

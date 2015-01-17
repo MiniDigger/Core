@@ -53,6 +53,7 @@ import me.MiniDigger.CraftCore.Command.Commands.PluginCommands;
 import me.MiniDigger.CraftCore.Command.Commands.SettingsCommands;
 import me.MiniDigger.CraftCore.Command.Commands.SquadCommands;
 import me.MiniDigger.CraftCore.Command.Commands.StatsCommands;
+import me.MiniDigger.CraftCore.Command.Commands.TagCommands;
 import me.MiniDigger.CraftCore.Command.Commands.TeamCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ToggleCommands;
 import me.MiniDigger.CraftCore.Command.Commands.TrollCommands;
@@ -69,6 +70,7 @@ import me.MiniDigger.CraftCore.Command.Completer.PluginCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.SettingCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.SquadCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.StatsCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.TagCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.TeamCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.ToggleCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
@@ -104,7 +106,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getLangHandler().load();
 		
 		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
-				
+		
 		Date d1 = new Date();
 		_.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE);
 		try {
@@ -352,14 +354,14 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(),
-		        new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands() };
+		        new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(), new TagCommands() };
 		for (final Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
 		
 		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
 		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new AddOnCompleter(),
-		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter(), new LangCompleter() };
+		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter(), new LangCompleter(), new TagCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}

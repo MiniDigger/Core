@@ -225,16 +225,16 @@ public class DevCommands {
 		p.setResourcePack(args.getArgs()[1]);
 	}
 	
-	@Command(name = "dev.hideTag", description = "DEV!", usage = "", permission = "dev")
+	@Command(name = "dev.hideTag", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void hideTag(final CommandArgs args) {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		Core.getCore().getNametagHandler().hideTag(p);
 	}
 	
-	@Command(name = "dev.showTag", description = "DEV!", usage = "", permission = "dev")
+	@Command(name = "dev.showTag", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void showTag(final CommandArgs args) {
 		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
-		Core.getCore().getNametagHandler().showNametag(p);
+		Core.getCore().getNametagHandler().showTag(p);
 	}
 	
 	@Command(name = "dev.rest", description = "DEV!", usage = "", permission = "dev")
