@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Command;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,7 +156,7 @@ public class CoreCommandHandler implements CommandHandler {
 	}
 	
 	@Override
-	public boolean handleCommand(final CommandSender sender, final String label, final org.bukkit.command.Command cmd, final String[] args) {
+	public boolean handleCommand(final CommandSender sender, final String label, final org.bukkit.command.Command cmd, String[] args) {
 		for (int i = args.length; i >= 0; i--) {
 			final StringBuffer buffer = new StringBuffer();
 			buffer.append(label.toLowerCase());
@@ -166,11 +167,32 @@ public class CoreCommandHandler implements CommandHandler {
 			if (commandMap.containsKey(cmdLabel)) {
 				final Method method = commandMap.getFirstValue(cmdLabel);
 				final Object methodObject = commandMap.getSecondValue(cmdLabel);
+				
+				List<String> newArgs = new ArrayList<String>();
+				for (int a = 0; a < args.length; a++) {
+					String s = args[a];
+					if (s.startsWith("\"")) {
+						StringBuilder arg = new StringBuilder();
+						while (!s.endsWith("\"")) {
+							arg.append(s.replaceFirst("\"", "") + " ");
+							a++;
+							s = args[a];
+						}
+						arg.append(s.replaceFirst("\"", ""));
+						
+						newArgs.add(arg.toString());
+					} else {
+						newArgs.add(s);
+					}
+				}
+				
+				args = newArgs.toArray(new String[newArgs.size()]);
+				
 				/* Core Start */
 				final Command command = method.getAnnotation(Command.class);
 				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
 				
-				if(sender instanceof Player){
+				if (sender instanceof Player) {
 					User user = Core.getCore().getUserHandler().get(((Player) sender).getUniqueId());
 					if (!user.hasPermission(command.permission())) {
 						final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
