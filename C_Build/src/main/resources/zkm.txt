@@ -43,7 +43,6 @@ obfuscate   changeLogFileIn=""
             obfuscateFlow=aggressive
             exceptionObfuscation=heavy
             encryptStringLiterals=flowObfuscate
-            mixedCaseClassNames=ifInArchive
             aggressiveMethodRenaming=true
             randomize=true
             collapsePackagesWithDefault="Core"

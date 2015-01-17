@@ -97,6 +97,14 @@ public class CoreKitHandler implements KitHandler {
 	
 	@Override
 	public void give(final Player p, final Kit kit) {
+		if (kit == null) {
+			System.out.println("kit is null");
+			return;
+		}
+		if (p == null) {
+			System.out.println("player is null");
+			return;
+		}
 		if (activKits.containsKey(p.getUniqueId())) {
 			activKits.remove(p.getUniqueId());
 		}

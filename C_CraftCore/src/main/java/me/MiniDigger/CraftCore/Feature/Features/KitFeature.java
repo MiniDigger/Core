@@ -29,6 +29,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -100,6 +101,16 @@ public class KitFeature extends CoreFeature {
 	public void onRespawn(PlayerRespawnEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+			if (u.getPlayer() == null) {
+				new BukkitRunnable() {
+					
+					@Override
+					public void run() {
+						Core.getCore().getKitHandler().give(u, Core.getCore().getKitHandler().getActivKit(u.getUUID()));
+					}
+				}.runTaskLater(Core.getCore().getInstance(), 10);
+				return;
+			}
 			Core.getCore().getKitHandler().give(u, Core.getCore().getKitHandler().getActivKit(u.getUUID()));
 		}
 	}
