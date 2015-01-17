@@ -26,24 +26,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.reflect.StructureModifier;
 
 import net.minecraft.server.v1_8_R1.EntityTypes;
 
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
@@ -54,9 +47,6 @@ import me.MiniDigger.Core.Nametag.NametagHandler;
 public class CoreNametagHandler implements NametagHandler {
 	
 	private Map<UUID, NametagEntity>	entities	= new HashMap<UUID, NametagEntity>();
-	private Map<Integer, UUID>	     entityIdMap;
-	private static final int[]	     uuidSplit	 = new int[] { 0, 8, 12, 16, 20, 32 };
-	private Map<UUID, String>	     tags	     = new HashMap<UUID, String>();
 	
 	@Override
 	public void enable() {
@@ -75,22 +65,25 @@ public class CoreNametagHandler implements NametagHandler {
 		
 		Core.getCore().getInstance().getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 		
-		/* ====================== CHANGE TAG ================ */
+	}
+	
+	public List<String> listModifier(PacketContainer c) {
+		List<String> result = new ArrayList<String>();
 		
-		entityIdMap = new HashMap<Integer, UUID>();
-		
-		for (Player player : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			entityIdMap.put(player.getEntityId(), player.getUniqueId());
+		for (Method m : c.getClass().getMethods()) {
+			if (m.getName().startsWith("get")) {
+				if (m.getReturnType().getName().contains("StructureModifier")) {
+					try {
+						StructureModifier<?> mod = (StructureModifier<?>) m.invoke(c);
+						result.add(m.getName() + ": " + mod.size());
+					} catch (Exception e) {
+						// e.printStackTrace();
+					}
+				}
+			}
 		}
 		
-		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(Core.getCore().getInstance(), PacketType.Play.Server.NAMED_ENTITY_SPAWN) {
-			
-			@Override
-			public void onPacketSending(PacketEvent event) {
-				event.getPacket().getGameProfiles()
-				        .write(0, getSentName(event.getPacket().getIntegers().read(0), event.getPacket().getGameProfiles().read(0), event.getPlayer()));
-			}
-		});
+		return result;
 	}
 	
 	@EventHandler
@@ -104,9 +97,6 @@ public class CoreNametagHandler implements NametagHandler {
 	@EventHandler
 	public void onQuit(PlayerQuitEvent event) {
 		entities.remove(event.getPlayer().getUniqueId());
-		
-		/* ============= CHANGE TAG =============== */
-		entityIdMap.remove(event.getPlayer().getEntityId());
 	}
 	
 	@Override
@@ -115,12 +105,6 @@ public class CoreNametagHandler implements NametagHandler {
 			((CoreNametagEntity) entity).die();
 		}
 		entities.clear();
-		
-		/* ================= CHANGE TAG ======= */
-		ProtocolLibrary.getProtocolManager().removePacketListeners(Core.getCore().getInstance());
-		
-		entityIdMap.clear();
-		entityIdMap = null;
 	}
 	
 	private void addCustomEntity(final Class<? extends net.minecraft.server.v1_8_R1.Entity> entityClass, final String name, final int id) {
@@ -178,83 +162,9 @@ public class CoreNametagHandler implements NametagHandler {
 			entity.hideTag(player);
 		}
 	}
-	
-	/* =============== CHANGE TAG ============ */
-	private WrappedGameProfile getSentName(int sentEntityId, WrappedGameProfile sent, Player destinationPlayer) {
-		Player namedPlayer = Bukkit.getPlayer(entityIdMap.get(sentEntityId));
-		if (namedPlayer == null) {
-			// They probably were dead when we reloaded
-			return sent;
-		}
-		
-		StringBuilder builtUUID = new StringBuilder();
-		if (!sent.getId().contains("-")) {
-			for (int i = 0; i < uuidSplit.length - 1; i++) {
-				builtUUID.append(sent.getId().substring(uuidSplit[i], uuidSplit[i + 1])).append("-");
-			}
-		} else {
-			builtUUID.append(sent.getId());
-		}
-		
-		CoreRecieveNametagEvent newEvent = new CoreRecieveNametagEvent(destinationPlayer, namedPlayer, sent.getName(), UUID.fromString(builtUUID.toString()));
-		Core.getCore().getInstance().getServer().getPluginManager().callEvent(newEvent);
-		
-		return new WrappedGameProfile(newEvent.getUUID(), newEvent.getTag().substring(0, Math.min(newEvent.getTag().length(), 16)));
-	}
-	
-	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
-		entityIdMap.put(e.getPlayer().getEntityId(), e.getPlayer().getUniqueId());
-	}
-	
+
 	@Override
-	public void refreshPlayer(Player player) {
-		for (Player playerFor : player.getWorld().getPlayers()) {
-			refreshPlayer(player, playerFor);
-		}
-	}
-	
-	@Override
-	public void refreshPlayer(final Player player, final Player forWhom) {
-		if (player != forWhom && player.getWorld() == forWhom.getWorld() && forWhom.canSee(player)) {
-			forWhom.hidePlayer(player);
-			Core.getCore().getInstance().getServer().getScheduler().scheduleSyncDelayedTask(Core.getCore().getInstance(), new Runnable() {
-				
-				public void run() {
-					forWhom.showPlayer(player);
-				}
-			}, 2);
-		}
-	}
-	
-	@Override
-	public void refreshPlayer(Player player, Set<Player> forWhom) {
-		for (Player playerFor : forWhom) {
-			refreshPlayer(player, playerFor);
-		}
-	}
-	
-	@Override
-	public void setTag(UUID id, String value) {
-		if (tags.containsKey(id)) {
-			tags.remove(id);
-		}
-		tags.put(id, value);
-	}
-	
-	@Override
-	public String getTag(UUID id) {
-		if (!tags.containsKey(id)) {
-			tags.put(id, Bukkit.getPlayer(id).getDisplayName());
-		}
-		return tags.get(id);
-		
-	}
-	
-	@EventHandler(priority=EventPriority.HIGH)
-	public void tag(CoreRecieveNametagEvent e) {
-		if(tags.containsKey(e.getNamedPlayer().getUniqueId())){
-			e.setTag(tags.get(e.getNamedPlayer().getUniqueId()));
-		}
-	}
+    public void setTag(UUID uniqueId, String string) {
+	   
+    }
 }

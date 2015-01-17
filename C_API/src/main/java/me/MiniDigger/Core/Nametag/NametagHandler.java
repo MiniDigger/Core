@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.Core.Nametag;
 
-import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
@@ -70,45 +69,11 @@ public interface NametagHandler extends Listener {
 	 * @return
 	 */
 	NametagEntity getTagEntity(Player player);
-	
-	/**
-	 * Refreshes the tag of player player for player forWhom so that forWhom
-	 * sees right one
-	 * 
-	 * @param player
-	 * @param forWhom
-	 */
-	void refreshPlayer(Player player, Player forWhom);
-	
-	/**
-	 * Refreshes the tag of player player for all players in forWhom so that they
-	 * see right one
-	 * 
-	 * @param player
-	 * @param forWhom
-	 */
-	void refreshPlayer(Player player, Set<Player> forWhom);
-	
-	/**
-	 * Refreshes the tag of player player for all players
-	 * 
-	 * @param player
-	 */
-	void refreshPlayer(Player player);
 
 	/**
-	 * Sets id's tag to value
 	 * 
-	 * @param id
-	 * @param value
+	 * @param uniqueId
+	 * @param string
 	 */
-	void setTag(UUID id, String value);
-
-	/**
-	 *
-	 * 
-	 * @param id
-	 * @return The namtag of id
-	 */
-	String getTag(UUID id);
+	public void setTag(UUID uniqueId, String string);
 }
