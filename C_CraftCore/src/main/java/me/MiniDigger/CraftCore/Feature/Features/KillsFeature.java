@@ -6,21 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apache.commons.lang.NotImplementedException;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Stats.StatsType;
-import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class KillsFeature extends CoreFeature {
@@ -66,11 +60,16 @@ public class KillsFeature extends CoreFeature {
 	}
 	
 	public void updateSb() {
-		Scoreboard sb = new CoreScoreboard();		
+		if (!showScoreboard) {
+			return;
+		}
+		
 		for (UUID id : getPhase().getGame().getPlayers()) {
+			Core.getCore().getScoreboardHandler().getBoard(id).clear(DisplaySlot.BELOW_NAME);
 			for (UUID id2 : kills.keySet()) {
-				Core.getCore().getScoreboardHandler().getBoard(id).addLine(new CoreScoreboardLine(kills.get(id2),"",DisplaySlot.BELOW_NAME));
+				Core.getCore().getScoreboardHandler().getBoard(id).addLine(new CoreScoreboardLine(kills.get(id2), "", DisplaySlot.BELOW_NAME));
 			}
+			Core.getCore().getScoreboardHandler().update(id);
 		}
 	}
 	

@@ -68,7 +68,6 @@ import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
-import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
@@ -339,14 +338,14 @@ public class DevCommands {
 	
 	@Command(name = "dev.sb", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void sb(final CommandArgs args) {
-		final Scoreboard sb = new CoreScoreboard();
+		final Scoreboard sb = Core.getCore().getScoreboardHandler().getBoard(args.getUser().getUUID());
 		sb.setTitle(new CoreScoreboardTitle("SIDE", DisplaySlot.SIDEBAR));
 		sb.setTitle(new CoreScoreboardTitle("BELOW", DisplaySlot.BELOW_NAME));
 		sb.setTitle(new CoreScoreboardTitle("PLAYER", DisplaySlot.PLAYER_LIST));
 		sb.addLine(new CoreScoreboardLine(1, "SIDE", DisplaySlot.SIDEBAR));
 		sb.addLine(new CoreScoreboardLine(1, "BELOW", DisplaySlot.BELOW_NAME));
 		sb.addLine(new CoreScoreboardLine(1, "PLAYER", DisplaySlot.PLAYER_LIST));
-		Core.getCore().getScoreboardHandler().addToPlayer(sb, args.getPlayer());
+		Core.getCore().getScoreboardHandler().update(args.getUser().getUUID());
 	}
 	
 	@Command(name = "dev.inv", description = "DEV!", usage = "", permission = "dev", sync = true)

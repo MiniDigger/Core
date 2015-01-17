@@ -42,7 +42,6 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
@@ -98,19 +97,21 @@ public class LivesFeature extends CoreFeature {
 		lives = null;
 	}
 	
-	public void showLives() {
-		final Scoreboard board = new CoreScoreboard();
+	private void modBoard(Scoreboard board) {
+		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Lives", DisplaySlot.SIDEBAR));
-		
-		if (lives == null) {
-			return; // Games over, who cares
-		}
 		
 		for (final UUID id : lives.keySet()) {
 			final User u = Core.getCore().getUserHandler().get(id);
 			if (lives.get(id) != 0) {
 				board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
 			}
+		}
+	}
+	
+	public void showLives() {
+		if (lives == null) {
+			return; // Games over, who cares
 		}
 		
 		final List<UUID> retry = new ArrayList<UUID>();
@@ -125,7 +126,8 @@ public class LivesFeature extends CoreFeature {
 						retry.add(uuid);
 						continue;
 					}
-					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+					modBoard(Core.getCore().getScoreboardHandler().getBoard(uuid));
+					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
 		}.runTask(Core.getCore().getInstance());
@@ -138,7 +140,8 @@ public class LivesFeature extends CoreFeature {
 					if (Bukkit.getPlayer(uuid) == null) {
 						continue;// Fuck you
 					}
-					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+					modBoard(Core.getCore().getScoreboardHandler().getBoard(uuid));
+					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
@@ -171,7 +174,7 @@ public class LivesFeature extends CoreFeature {
 				
 				getPhase().getGame().leave(e.getUser());
 				
-				Core.getCore().getScoreboardHandler().clear(e.getUser().getUUID());
+				Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()).clear();
 				
 				if (getPhase().getGame().getPlayers().size() < 2) {
 					try {

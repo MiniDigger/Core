@@ -22,7 +22,7 @@ package me.MiniDigger.Core.Scoreboard;
 
 import java.util.UUID;
 
-import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
 
 public interface ScoreboardHandler {
 	
@@ -36,21 +36,22 @@ public interface ScoreboardHandler {
 	Scoreboard getBoard(final UUID id);
 	
 	/**
-	 * @param b
-	 *            the scoreboard
-	 * @param p
-	 *            the player to set the scoreboard for
-	 */
-	void addToPlayer(final Scoreboard b, final Player p);
-	
-	/**
 	 * Clears the sb of all players
 	 */
 	void clearAll();
 	
 	/**
-	 * Clears the board of a player
+	 * Reapplies the board for the user
+	 * 
+	 * @param id
 	 */
-	void clear(UUID id);
+	void update(UUID id);
+	
+	/**
+	 * Clears only one slot of the sb
+	 * 
+	 * @param slot
+	 */
+	void clearAll(DisplaySlot slot);
 	
 }

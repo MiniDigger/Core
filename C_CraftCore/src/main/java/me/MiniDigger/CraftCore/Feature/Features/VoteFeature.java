@@ -25,7 +25,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -61,8 +60,6 @@ public class VoteFeature extends CoreFeature {
 	private int	            mapCount;
 	
 	private ArrayList<UUID>	voted;
-	
-	private Scoreboard	    board;
 	
 	@Override
 	public FeatureType getType() {
@@ -101,28 +98,34 @@ public class VoteFeature extends CoreFeature {
 			mapThree = maps.get(2);
 		} catch (final Exception ex) {}
 		
-		board = new CoreScoreboard();
+		modBoard(new CoreScoreboard());// Cause the map count
+		
+		sendVoteMessages();
+	}
+	
+	private void modBoard(Scoreboard board) {
+		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Votes", DisplaySlot.SIDEBAR));
 		
 		if (mapOne == null) {
 			mapCount = 0;
 		} else if (mapTwo == null) {
-			board.addLine(new CoreScoreboardLine(5, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(4, "O Votes" + ChatColor.AQUA, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(1, votesOne + " Vote" + (votesOne != 1 ? "s" : "") + ChatColor.AQUA, DisplaySlot.SIDEBAR));
 			mapCount = 1;
 		} else if (mapThree == null) {
-			board.addLine(new CoreScoreboardLine(3, Core.getCore().getMapHandler().getName(mapTwo), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(2, "O Votes" + ChatColor.BLACK, DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(5, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(4, "O Votes" + ChatColor.AQUA, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(4, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(3, votesOne + " Vote" + (votesOne != 1 ? "s" : "") + ChatColor.AQUA, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, Core.getCore().getMapHandler().getName(mapTwo), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(1, votesTwo + " Vote" + (votesTwo != 1 ? "s" : "") + ChatColor.BLACK, DisplaySlot.SIDEBAR));
 			mapCount = 2;
 		} else {
-			board.addLine(new CoreScoreboardLine(1, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(0, "O Votes", DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(3, Core.getCore().getMapHandler().getName(mapTwo), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(2, "O Votes" + ChatColor.BLACK, DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(5, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(4, "O Votes" + ChatColor.AQUA, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(6, Core.getCore().getMapHandler().getName(mapOne), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(5, votesOne + " Vote" + (votesOne != 1 ? "s" : ""), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(4, Core.getCore().getMapHandler().getName(mapTwo), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(3, votesTwo + " Vote" + (votesTwo != 1 ? "s " : " ") + ChatColor.BLACK, DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, Core.getCore().getMapHandler().getName(mapThree), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(1, votesThree + " Vote" + (votesThree != 1 ? "s  " : "  ") + ChatColor.AQUA, DisplaySlot.SIDEBAR));
 			mapCount = 3;
 		}
 	}
@@ -132,7 +135,7 @@ public class VoteFeature extends CoreFeature {
 		mapOne = null;
 		mapTwo = null;
 		mapThree = null;
-		Core.getCore().getScoreboardHandler().clearAll();
+		Core.getCore().getScoreboardHandler().clearAll(DisplaySlot.SIDEBAR);
 	}
 	
 	public String getWinner() {
@@ -159,15 +162,12 @@ public class VoteFeature extends CoreFeature {
 		switch (id) {
 		case 3:
 			votesThree++;
-			board.getLine(0).setContent(votesThree + " Vote" + (votesThree != 1 ? "s" : ""));
 			break;
 		case 2:
 			votesTwo++;
-			board.getLine(2).setContent(votesTwo + " Vote" + (votesTwo != 1 ? "s" : "") + ChatColor.BLACK);
 			break;
 		case 1:
 			votesOne++;
-			board.getLine(4).setContent(votesOne + " Vote" + (votesOne != 1 ? "s" : "") + ChatColor.AQUA);
 			break;
 		default:
 			return false;
@@ -179,7 +179,8 @@ public class VoteFeature extends CoreFeature {
 			public void run() {
 				
 				for (final UUID uuid : getPhase().getGame().getPlayers()) {
-					Core.getCore().getScoreboardHandler().addToPlayer(board, Bukkit.getPlayer(uuid));
+					modBoard(Core.getCore().getScoreboardHandler().getBoard(uuid));
+					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
 		};
@@ -195,7 +196,8 @@ public class VoteFeature extends CoreFeature {
 			return;
 		}
 		
-		Core.getCore().getScoreboardHandler().addToPlayer(board, user.getPlayer());
+		modBoard(Core.getCore().getScoreboardHandler().getBoard(user.getUUID()));
+		Core.getCore().getScoreboardHandler().update(user.getUUID());
 		
 		user.sendMessage(Prefix.VOTE.getPrefix().then("========").color(ChatColor.GOLD).then("Voting").color(ChatColor.YELLOW).then("========").color(ChatColor.GOLD));
 		user.sendMessage(Prefix.VOTE.getPrefix().then("Klicke auf die Map für die du abstimmen willst!").color(ChatColor.YELLOW));

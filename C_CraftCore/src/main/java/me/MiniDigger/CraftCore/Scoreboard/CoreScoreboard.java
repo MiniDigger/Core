@@ -196,4 +196,29 @@ public class CoreScoreboard implements Scoreboard {
 		
 		return sb;
 	}
+	
+	@Override
+	public void clear() {
+		lines.clear();
+		scolling.clear();
+	}
+	
+	@Override
+	public void clear(DisplaySlot slot) {
+		List<ScoreboardLine> trash = new ArrayList<ScoreboardLine>();
+		for (ScoreboardLine l : lines) {
+			if (l.getSlot() == slot) {
+				trash.add(l);
+			}
+		}
+		lines.removeAll(trash);
+		trash.clear();
+		
+		for (ScoreboardLine l : scolling) {
+			if (l.getSlot() == slot) {
+				trash.add(l);
+			}
+		}
+		scolling.removeAll(trash);
+	}
 }

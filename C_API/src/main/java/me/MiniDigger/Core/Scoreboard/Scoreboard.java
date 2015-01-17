@@ -71,18 +71,32 @@ public interface Scoreboard {
 	 * @return all lines in that slot
 	 */
 	List<ScoreboardLine> getLines(final DisplaySlot slot);
-
+	
 	/**
 	 * 
-	 * @param title the new title
+	 * @param title
+	 *            the new title
 	 */
 	void setTitle(ScoreboardTitle title);
-
+	
 	/**
 	 * 
-	 * @param slot the slot the title is title of
+	 * @param slot
+	 *            the slot the title is title of
 	 * @return
 	 */
 	ScoreboardTitle getTitle(DisplaySlot slot);
+	
+	/**
+	 * Clears the board
+	 */
+	void clear();
+	
+	/**
+	 * Clears only one slot of the board
+	 * 
+	 * @param slot
+	 */
+	void clear(DisplaySlot slot);
 	
 }

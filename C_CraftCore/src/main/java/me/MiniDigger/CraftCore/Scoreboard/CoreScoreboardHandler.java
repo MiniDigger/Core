@@ -21,6 +21,7 @@
 package me.MiniDigger.CraftCore.Scoreboard;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -33,44 +34,35 @@ import me.MiniDigger.Core.Scoreboard.ScoreboardHandler;
 
 public class CoreScoreboardHandler implements ScoreboardHandler {
 	
-	private final HashMap<UUID, Scoreboard>	boards	= new HashMap<UUID, Scoreboard>();
+	private final Map<UUID, Scoreboard>	boards	= new HashMap<UUID, Scoreboard>();
 	
 	@Override
-	public Scoreboard getBoard(final UUID id) {
-		if (boards.get(id) == null) {
+	public Scoreboard getBoard(UUID id) {
+		if (!boards.containsKey(id)) {
 			boards.put(id, new CoreScoreboard());
 		}
 		return boards.get(id);
 	}
 	
 	@Override
-	public void addToPlayer(final Scoreboard b, final Player p) {
-		p.setScoreboard(b.toBukkitScoreboard());
-		if (boards.containsKey(p.getUniqueId())) {
-			boards.remove(p.getUniqueId());
-		}
-		boards.put(p.getUniqueId(), b);
+	public void update(UUID id) {
+		Player p = Bukkit.getPlayer(id);
+		p.setScoreboard(getBoard(id).toBukkitScoreboard());
 	}
 	
 	@Override
 	public void clearAll() {
-		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			for (final String s : p.getPlayer().getScoreboard().getEntries()) {
-				p.getPlayer().getScoreboard().resetScores(s);
-			}
+		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			getBoard(p.getUniqueId()).clear();
+			update(p.getUniqueId());
 		}
-		boards.clear();
 	}
 	
 	@Override
-	public void clear(UUID id) {
-		Player p = Bukkit.getPlayer(id);
-		for (final String s : p.getPlayer().getScoreboard().getEntries()) {
-			p.getPlayer().getScoreboard().resetScores(s);
+	public void clearAll(DisplaySlot slot) {
+		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			getBoard(p.getUniqueId()).clear(slot);
+			update(p.getUniqueId());
 		}
-		p.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-		p.getScoreboard().clearSlot(DisplaySlot.PLAYER_LIST);
-		p.getScoreboard().clearSlot(DisplaySlot.BELOW_NAME);
-		boards.remove(id);
 	}
 }

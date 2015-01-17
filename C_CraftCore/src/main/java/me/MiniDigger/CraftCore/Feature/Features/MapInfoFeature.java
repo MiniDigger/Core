@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
@@ -16,7 +16,6 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
@@ -50,7 +49,35 @@ public class MapInfoFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		final Scoreboard b = new CoreScoreboard();
+		final List<UUID> retry = new ArrayList<UUID>();
+		
+		for (final UUID id : getPhase().getGame().getPlayers()) {
+			try {
+				modBoard(Core.getCore().getScoreboardHandler().getBoard(id));
+				Core.getCore().getScoreboardHandler().update(id);
+			} catch (final Exception ex) {
+				retry.add(id);
+			}
+		}
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID id : retry) {
+					try {
+						modBoard(Core.getCore().getScoreboardHandler().getBoard(id));
+						Core.getCore().getScoreboardHandler().update(id);
+					} catch (final Exception ex) {
+						retry.add(id);
+					}
+				}
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 10);
+		
+	}
+	
+	private void modBoard(Scoreboard b) {
+		b.clear(DisplaySlot.SIDEBAR);
 		b.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "MapInfo", DisplaySlot.SIDEBAR));
 		
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
@@ -72,14 +99,6 @@ public class MapInfoFeature extends CoreFeature {
 		        DisplaySlot.SIDEBAR));
 		i++;
 		b.addLine(new CoreScoreboardLine(i, ChatColor.GOLD + "Name: ", DisplaySlot.SIDEBAR));
-		
-		for (final UUID id : getPhase().getGame().getPlayers()) {
-			try {
-				Core.getCore().getScoreboardHandler().addToPlayer(b, Bukkit.getPlayer(id));
-			} catch (final Exception ex) {
-				
-			}
-		}
 	}
 	
 	@Override

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -20,7 +19,6 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboard;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
@@ -85,30 +83,26 @@ public class ShowDropsFeature extends CoreFeature {
 			task.cancel();
 			task = null;
 		}
-		final Scoreboard b = new CoreScoreboard();
-		b.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Items", DisplaySlot.SIDEBAR));
-		
 		task = new BukkitRunnable() {
 			
 			@Override
 			public void run() {
-				for (final UUID id : drops.keySet()) {
-					try {
-						b.addLine(new CoreScoreboardLine(drops.get(id).intValue(), Core.getCore().getUserHandler().get(id).getDisplayName(), DisplaySlot.SIDEBAR));
-					} catch (final Exception ex) {
-						
-					}
-				}
 				for (final UUID id : getPhase().getGame().getPlayers()) {
-					try {
-						Core.getCore().getScoreboardHandler().addToPlayer(b, Bukkit.getPlayer(id));
-					} catch (final Exception ex) {
-						
+					
+					final Scoreboard b = Core.getCore().getScoreboardHandler().getBoard(id);
+					b.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Items", DisplaySlot.SIDEBAR));
+					
+					for (final UUID id2 : drops.keySet()) {
+						try {
+							b.addLine(new CoreScoreboardLine(drops.get(id2).intValue(), Core.getCore().getUserHandler().get(id2).getDisplayName(), DisplaySlot.SIDEBAR));
+						} catch (final Exception ex) {
+							
+						}
 					}
+					Core.getCore().getScoreboardHandler().update(id);
 				}
 			}
 		}.runTaskTimer(Core.getCore().getInstance(), 20, 20);
-		
 	}
 	
 }
