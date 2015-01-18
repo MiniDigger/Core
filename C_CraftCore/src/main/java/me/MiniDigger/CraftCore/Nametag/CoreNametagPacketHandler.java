@@ -72,7 +72,7 @@ public class CoreNametagPacketHandler {
 		}
 	}
 	
-	public CoreNametagPacketHandler(String name, String prefix, String suffix, Collection<?> players, int paramInteger, boolean tag) throws ClassNotFoundException,
+	public CoreNametagPacketHandler(String name, String prefix, String suffix, Collection<String> players, int paramInteger, boolean tag) throws ClassNotFoundException,
 	        IllegalAccessException, InstantiationException, NoSuchMethodException, NoSuchFieldException, InvocationTargetException {
 		
 		packet = packetType.newInstance();
@@ -92,7 +92,7 @@ public class CoreNametagPacketHandler {
 		}
 	}
 	
-	public CoreNametagPacketHandler(String name, Collection<?> players, int paramInt) throws ClassNotFoundException, IllegalAccessException, InstantiationException,
+	public CoreNametagPacketHandler(String name, Collection<String> players, int paramInt) throws ClassNotFoundException, IllegalAccessException, InstantiationException,
 	        NoSuchMethodException, NoSuchFieldException, InvocationTargetException {
 		packet = packetType.newInstance();
 		
@@ -125,7 +125,7 @@ public class CoreNametagPacketHandler {
 	}
 	
 	@SuppressWarnings("all")
-	private void addAll(Collection<?> col) throws NoSuchFieldException, IllegalAccessException {
+	private void addAll(Collection<String> col) throws NoSuchFieldException, IllegalAccessException {
 		Field f = packet.getClass().getDeclaredField(fieldPlayers);
 		f.setAccessible(true);
 		((Collection) f.get(packet)).addAll(col);
