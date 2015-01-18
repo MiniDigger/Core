@@ -3,6 +3,7 @@ package me.MiniDigger.CraftCore.Dependencies;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,23 @@ public class CoreDependencyHandler implements DependencyHanlder {
 		dependencies.add(new CoreDependency("PermissionsEx", "1.23.1"));
 		dependencies.add(new CoreDependency("NametagEdit", "3.0"));
 		dependencies.add(new CoreDependency("HolographicDisplays", "2.1.3"));
-		dependencies.add(new CoreDependency("EffectLib", "3.0"));
+		dependencies.add(new CoreDependency("EffectLib", "3.0.1"));
 	}
 	
 	private boolean check(Dependency d) {
-		return false;
+		File f = new File(Core.getCore().getInstance().getDataFolder().getParent());
+		for (File p : f.listFiles(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".jar");
+			}
+		})) {
+			if (p.getName().startsWith(d.getName())) {
+				return p.getName().equals(d.getFullName());
+			}
+		}
+		return true;
 	}
 	
 	@Override

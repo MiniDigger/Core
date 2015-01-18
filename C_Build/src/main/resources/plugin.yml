@@ -5,4 +5,3 @@ load: POSTWORLD
 main: Core.CoreMain
 description: The Core
 website: minidigger.me
-depend: [ProtocolLib,PermissionsEx]
