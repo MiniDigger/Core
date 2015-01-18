@@ -145,12 +145,16 @@
 			<url>http://ci.shadowvolt.com/plugin/repository/everything/</url>
 		</repository>
 		<repository>
-			<id>elmakers-repo</id><!-- EffectLib -->
-			<url>http://maven.elmakers.com/repository/</url>
-		</repository>
-		<repository>
 			<id>fancyfull-repo</id>
 			<url>http://repo.franga2000.com/artifactory/public</url>
+		</repository>
+		<repository>
+			<id>nametagedit-repo</id>
+			<url>http://ci.eyrenetwork.net/plugin/repository/everything/</url>
+		</repository>
+		<repository>
+			<id>elmakers-repo</id><!-- EffectLib -->
+			<url>http://maven.elmakers.com/repository/</url>
 		</repository>
 	</repositories>
 
@@ -219,6 +223,19 @@
 			<groupId>mkremins</groupId>
 			<artifactId>fanciful</artifactId>
 			<version>0.3.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.wacos</groupId>
+			<artifactId>NametagEdit</artifactId>
+			<version>3.0-SNAPSHOT</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>bukkit</artifactId>
+					<groupId>org.bukkit</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 </project>

@@ -32,9 +32,11 @@ public interface SkullChangers {
 	
 	/**
 	 * Updates all the changer
-	 * @param noUpdates a list with uuid not to update
+	 * 
+	 * @param noUpdates
+	 *            a list with uuid not to update
 	 */
-	public void update(List<UUID> noUpdates);
+	public void update(final List<UUID> noUpdates);
 	
 	/**
 	 * Adds all the changers

@@ -78,7 +78,7 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public ScoreboardTitle getTitle(DisplaySlot slot) {
+	public ScoreboardTitle getTitle(final DisplaySlot slot) {
 		switch (slot) {
 		case BELOW_NAME:
 			return belowname;
@@ -208,9 +208,9 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public void clear(DisplaySlot slot) {
-		List<ScoreboardLine> trash = new ArrayList<ScoreboardLine>();
-		for (ScoreboardLine l : lines) {
+	public void clear(final DisplaySlot slot) {
+		final List<ScoreboardLine> trash = new ArrayList<ScoreboardLine>();
+		for (final ScoreboardLine l : lines) {
 			if (l.getSlot() == slot) {
 				trash.add(l);
 			}
@@ -218,7 +218,7 @@ public class CoreScoreboard implements Scoreboard {
 		lines.removeAll(trash);
 		trash.clear();
 		
-		for (ScoreboardLine l : scolling) {
+		for (final ScoreboardLine l : scolling) {
 			if (l.getSlot() == slot) {
 				trash.add(l);
 			}

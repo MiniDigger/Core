@@ -75,7 +75,7 @@ public class _ {
 	public static void log(final LogLevel lvl, final LangKeyType type, final String... args) {
 		try {
 			log(lvl, type, Core.getCore().getLangHandler().getDefaultLang(), args);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			log(lvl, type, LangType.en_US, args);
 		}
 	}
@@ -89,7 +89,7 @@ public class _ {
 			if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
 				lvl.getMsg(_(lang, type, args)).send(sender);
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			lvl.getMsg(_(lang, type, args)).send(sender);
 		}
 	}

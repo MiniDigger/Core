@@ -85,23 +85,23 @@ public interface ProtocolHandler extends Listener {
 	 * Prevent protocollib from sending updates to that player
 	 * 
 	 */
-	void noUpdates(UUID id);
+	void noUpdates(final UUID id);
 	
 	/**
 	 * send updates again
 	 * 
 	 */
-	void updates(UUID id);
+	void updates(final UUID id);
 	
 	/**
 	 * toogle protovollib updates
 	 * 
 	 * @return the new state
 	 */
-	boolean toggleUpdates(UUID id);
-
+	boolean toggleUpdates(final UUID id);
+	
 	/**
 	 * @return a list with the sizes of all structure modifier
 	 */
-	List<String> packetcontainerToString(PacketContainer c);
+	List<String> packetcontainerToString(final PacketContainer c);
 }

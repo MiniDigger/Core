@@ -277,6 +277,34 @@
       <version>2.1.2</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.wacos</groupId>
+      <artifactId>NametagEdit</artifactId>
+      <version>3.0-SNAPSHOT</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>bukkit</artifactId>
+          <groupId>org.bukkit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>metrics</artifactId>
+          <groupId>org.mcstats.bukkit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>HikariCP-java6</artifactId>
+          <groupId>com.zaxxer</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>javassist</artifactId>
+          <groupId>org.javassist</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>slf4j-simple</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
   <reporting>
     <plugins>
@@ -294,7 +322,8 @@
 			"${maven.dependency.com.comphenix.protocol.ProtocolLib.jar.path}"
 			"${maven.dependency.ru.tehkode.PermissionEx.jar.path}"
 			"${maven.dependency.avalon-framework.avalon-framework.jar.path}"
-			"${maven.dependency.commons-logging.commons-logging.jar.path}</path>
+			"${maven.dependency.commons-logging.commons-logging.jar.path}"
+			"${maven.dependency.com.wacos.NametagEdit.jar.path}</path>
   </properties>
 </project>
 

@@ -45,13 +45,13 @@ public interface ScoreboardHandler {
 	 * 
 	 * @param id
 	 */
-	void update(UUID id);
+	void update(final UUID id);
 	
 	/**
 	 * Clears only one slot of the sb
 	 * 
 	 * @param slot
 	 */
-	void clearAll(DisplaySlot slot);
+	void clearAll(final DisplaySlot slot);
 	
 }

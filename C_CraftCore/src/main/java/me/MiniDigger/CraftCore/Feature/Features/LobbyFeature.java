@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Feature.Features;
 
 import java.util.ArrayList;
@@ -132,7 +152,7 @@ public class LobbyFeature extends CoreFeature {
 	private static class SignStorage {
 		
 		private static Map<Integer, Map<Integer, String[]>> bedwarsOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -162,7 +182,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> bedwarsTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -192,7 +212,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> crankOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -222,7 +242,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> crankTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -252,7 +272,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> getthedropOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -282,7 +302,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> getthedropTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -312,7 +332,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> oitcOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -342,7 +362,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> oitcTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -372,7 +392,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefOne() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
@@ -402,7 +422,7 @@ public class LobbyFeature extends CoreFeature {
 		}
 		
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefTwo() {
-			Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
 			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();

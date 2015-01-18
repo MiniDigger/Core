@@ -72,7 +72,7 @@ public class KitFeature extends CoreFeature {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
 			if (Core.getCore().getKitHandler().getActivKit(id) == null) {
-				Kit k = Core.getCore().getKitHandler().getKits().get(0);
+				final Kit k = Core.getCore().getKitHandler().getKits().get(0);
 				Core.getCore().getKitHandler().give(u, k.getName());
 				Prefix.API.getPrefix().then("Du hast kein Kit ausgewählt, nimm " + k.getName() + "!").color(ChatColor.AQUA).send(Bukkit.getPlayer(id));
 				continue;
@@ -98,7 +98,7 @@ public class KitFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onRespawn(PlayerRespawnEvent e) {
+	public void onRespawn(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			if (u.getPlayer() == null) {

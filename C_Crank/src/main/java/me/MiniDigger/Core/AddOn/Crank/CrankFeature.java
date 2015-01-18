@@ -107,7 +107,7 @@ public class CrankFeature extends CoreFeature {
 					cancel();
 				} else {
 					user.getPlayer().setLevel(time);
-					user.getPlayer().setExp((float) (0.3*time)/10);
+					user.getPlayer().setExp((float) (0.3 * time) / 10);
 				}
 			}
 		};

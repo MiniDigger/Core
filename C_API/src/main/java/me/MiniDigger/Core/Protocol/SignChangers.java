@@ -34,9 +34,11 @@ public interface SignChangers extends Listener {
 	
 	/**
 	 * Updates all the signs
-	 * @param noUpdates a list with uuid not to update
+	 * 
+	 * @param noUpdates
+	 *            a list with uuid not to update
 	 */
-	public void update(List<UUID> noUpdates);
+	public void update(final List<UUID> noUpdates);
 	
 	/**
 	 * handles the PacketEvent, modifying the sign packet, if the player doesn't

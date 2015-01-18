@@ -168,11 +168,11 @@ public class CoreCommandHandler implements CommandHandler {
 				final Method method = commandMap.getFirstValue(cmdLabel);
 				final Object methodObject = commandMap.getSecondValue(cmdLabel);
 				
-				List<String> newArgs = new ArrayList<String>();
+				final List<String> newArgs = new ArrayList<String>();
 				for (int a = 0; a < args.length; a++) {
 					String s = args[a];
 					if (s.startsWith("\"")) {
-						StringBuilder arg = new StringBuilder();
+						final StringBuilder arg = new StringBuilder();
 						while (!s.endsWith("\"")) {
 							arg.append(s.replaceFirst("\"", "") + " ");
 							a++;
@@ -193,7 +193,7 @@ public class CoreCommandHandler implements CommandHandler {
 				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
 				
 				if (sender instanceof Player) {
-					User user = Core.getCore().getUserHandler().get(((Player) sender).getUniqueId());
+					final User user = Core.getCore().getUserHandler().get(((Player) sender).getUniqueId());
 					if (!user.hasPermission(command.permission())) {
 						final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
 						msg.send(sender);

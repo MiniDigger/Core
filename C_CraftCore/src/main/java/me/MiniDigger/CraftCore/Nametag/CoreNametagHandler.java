@@ -46,11 +46,11 @@ import me.MiniDigger.Core.Nametag.NametagHandler;
 
 public class CoreNametagHandler implements NametagHandler {
 	
-	private Map<UUID, NametagEntity>	entities	= new HashMap<UUID, NametagEntity>();
+	private final Map<UUID, NametagEntity>	entities	= new HashMap<UUID, NametagEntity>();
 	
 	@Override
 	public void enable() {
-		this.addCustomEntity((Class<? extends net.minecraft.server.v1_8_R1.Entity>) CoreNametagEntity.class, "NametagBat", 65);
+		addCustomEntity(CoreNametagEntity.class, "NametagBat", 65);
 		
 		int count = 0;
 		for (final World world : Core.getCore().getInstance().getServer().getWorlds()) {
@@ -67,16 +67,16 @@ public class CoreNametagHandler implements NametagHandler {
 		
 	}
 	
-	public List<String> listModifier(PacketContainer c) {
-		List<String> result = new ArrayList<String>();
+	public List<String> listModifier(final PacketContainer c) {
+		final List<String> result = new ArrayList<String>();
 		
-		for (Method m : c.getClass().getMethods()) {
+		for (final Method m : c.getClass().getMethods()) {
 			if (m.getName().startsWith("get")) {
 				if (m.getReturnType().getName().contains("StructureModifier")) {
 					try {
-						StructureModifier<?> mod = (StructureModifier<?>) m.invoke(c);
+						final StructureModifier<?> mod = (StructureModifier<?>) m.invoke(c);
 						result.add(m.getName() + ": " + mod.size());
-					} catch (Exception e) {
+					} catch (final Exception e) {
 						// e.printStackTrace();
 					}
 				}
@@ -87,7 +87,7 @@ public class CoreNametagHandler implements NametagHandler {
 	}
 	
 	@EventHandler
-	public void onRespawn(PlayerRespawnEvent event) {
+	public void onRespawn(final PlayerRespawnEvent event) {
 		if (isTagHidden(event.getPlayer())) {
 			showTag(event.getPlayer());
 			hideTag(event.getPlayer());
@@ -95,7 +95,7 @@ public class CoreNametagHandler implements NametagHandler {
 	}
 	
 	@EventHandler
-	public void onQuit(PlayerQuitEvent event) {
+	public void onQuit(final PlayerQuitEvent event) {
 		entities.remove(event.getPlayer().getUniqueId());
 	}
 	
@@ -125,7 +125,7 @@ public class CoreNametagHandler implements NametagHandler {
 			final Method method = EntityTypes.class.getDeclaredMethod("a", Class.class, String.class, Integer.TYPE);
 			method.setAccessible(true);
 			method.invoke(null, entityClass, name, id);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -162,9 +162,9 @@ public class CoreNametagHandler implements NametagHandler {
 			entity.hideTag(player);
 		}
 	}
-
+	
 	@Override
-    public void setTag(UUID uniqueId, String string) {
-	   
-    }
+	public void setTag(final UUID uniqueId, final String string) {
+		
+	}
 }

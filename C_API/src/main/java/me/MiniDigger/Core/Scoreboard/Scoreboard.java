@@ -77,7 +77,7 @@ public interface Scoreboard {
 	 * @param title
 	 *            the new title
 	 */
-	void setTitle(ScoreboardTitle title);
+	void setTitle(final ScoreboardTitle title);
 	
 	/**
 	 * 
@@ -85,7 +85,7 @@ public interface Scoreboard {
 	 *            the slot the title is title of
 	 * @return
 	 */
-	ScoreboardTitle getTitle(DisplaySlot slot);
+	ScoreboardTitle getTitle(final DisplaySlot slot);
 	
 	/**
 	 * Clears the board
@@ -97,6 +97,6 @@ public interface Scoreboard {
 	 * 
 	 * @param slot
 	 */
-	void clear(DisplaySlot slot);
+	void clear(final DisplaySlot slot);
 	
 }

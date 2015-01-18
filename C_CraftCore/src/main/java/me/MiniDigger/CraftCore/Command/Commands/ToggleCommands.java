@@ -75,10 +75,10 @@ public class ToggleCommands implements Listener {
 	}
 	
 	@Command(name = "toggle.updates", description = "Toggelt den Protocollib updates", permission = "toggle.updates", consol = false, min = 0, max = 1)
-	public void updates(CommandArgs args) {
-		boolean b = Core.getCore().getProtocolHandler().toggleUpdates(args.getUser().getUUID());
+	public void updates(final CommandArgs args) {
+		final boolean b = Core.getCore().getProtocolHandler().toggleUpdates(args.getUser().getUUID());
 		
-		Prefix.API.getPrefix().then("Du bekommst nun "+( b==false?"keine":"")+ " Protocol updates");
+		Prefix.API.getPrefix().then("Du bekommst nun " + (b == false ? "keine" : "") + " Protocol updates");
 	}
 	
 	private final List<UUID>	hacks	= new ArrayList<>();

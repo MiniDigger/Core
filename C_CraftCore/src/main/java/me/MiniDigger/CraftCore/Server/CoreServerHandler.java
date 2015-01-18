@@ -89,7 +89,7 @@ public class CoreServerHandler implements ServerHandler {
 		
 		final Server server = getServerInfo(name);
 		if (server == null || !server.isOnline()) {
-//			System.out.println("null or offline " + name);
+			// System.out.println("null or offline " + name);
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
 			msg = new FancyMessage("RESTART").color(ChatColor.RED).style(ChatColor.BOLD, ChatColor.UNDERLINE);

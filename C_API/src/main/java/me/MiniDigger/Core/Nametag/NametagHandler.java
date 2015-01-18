@@ -68,12 +68,12 @@ public interface NametagHandler extends Listener {
 	 * @param player
 	 * @return
 	 */
-	NametagEntity getTagEntity(Player player);
-
+	NametagEntity getTagEntity(final Player player);
+	
 	/**
 	 * 
 	 * @param uniqueId
 	 * @param string
 	 */
-	public void setTag(UUID uniqueId, String string);
+	public void setTag(final UUID uniqueId, final String string);
 }

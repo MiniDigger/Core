@@ -176,7 +176,7 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
-	public void set(GameType game, StatsType type, int value) {
+	public void set(final GameType game, final StatsType type, final int value) {
 		set(StatsType.valueOf(game.getName() + "." + type.getStats()), value);
 	}
 	
@@ -186,7 +186,7 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
-	public void add(GameType game, StatsType type, int value) {
+	public void add(final GameType game, final StatsType type, final int value) {
 		add(StatsType.valueOf(game.getName() + "." + type.getStats()), value);
 	}
 	
@@ -196,7 +196,7 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
-	public void remove(GameType game, StatsType type, int value) {
+	public void remove(final GameType game, final StatsType type, final int value) {
 		remove(StatsType.valueOf(game.getName() + "." + type.getStats()), value);
 	}
 	
@@ -221,7 +221,7 @@ public class CoreStats implements Stats {
 	}
 	
 	@Override
-	public int get(GameType game, StatsType type) {
+	public int get(final GameType game, final StatsType type) {
 		return get(StatsType.valueOf(game.getName() + "." + type.getStats()));
 	}
 	

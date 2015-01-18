@@ -383,7 +383,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.team", description = "DEV!", usage = "", permission = "dev")
 	public void team(final CommandArgs args) {
-		CoreNametagTeamHandler h = new CoreNametagTeamHandler();
+		final CoreNametagTeamHandler h = new CoreNametagTeamHandler();
 		h.update(args.getUser().getUUID(), ChatColor.RED + "!" + ChatColor.GOLD, ChatColor.BLUE + "!", false);
 	}
 }

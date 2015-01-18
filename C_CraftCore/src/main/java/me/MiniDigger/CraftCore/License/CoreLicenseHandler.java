@@ -32,7 +32,11 @@ import me.MiniDigger.CraftCore.Util.CoreShutdownUtil;
 public class CoreLicenseHandler implements LicenseHandler {
 	
 	@SuppressWarnings("deprecation") private final String	licence	   = (CoreMain.getCore().getInstance()).getConfig().getString("licence");
-	private final String	                              sessionToken	= "SESSION" + Core.getCore().getRandomUtil().nextInt(10000)/*generateToken()*/;
+	private final String	                              sessionToken	= "SESSION" + Core.getCore().getRandomUtil().nextInt(10000)/*
+																																	 * generateToken
+																																	 * (
+																																	 * )
+																																	 */;
 	
 	private boolean	                                      failed	   = false;
 	
@@ -72,7 +76,11 @@ public class CoreLicenseHandler implements LicenseHandler {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void performCheckSync() {
-		final String token = "TOKEN"+Core.getCore().getRandomUtil().nextInt(10000)/*generateToken()*/;
+		final String token = "TOKEN" + Core.getCore().getRandomUtil().nextInt(10000)/*
+																					 * generateToken
+																					 * (
+																					 * )
+																					 */;
 		
 		final String s = CoreMain.getCore().getRESTHandler().checkLicence(licence, token, sessionToken);
 		

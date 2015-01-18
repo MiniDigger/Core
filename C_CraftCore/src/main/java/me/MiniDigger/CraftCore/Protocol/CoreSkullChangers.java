@@ -47,7 +47,7 @@ public class CoreSkullChangers implements SkullChangers {
 	@SuppressWarnings("unused") private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
 	
 	@Override
-	public void update(List<UUID> noUpdates) {
+	public void update(final List<UUID> noUpdates) {
 		for (final Location loc : last_seen_skulls) {
 			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 				if (e != null && e.getType() == EntityType.PLAYER) {

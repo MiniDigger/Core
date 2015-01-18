@@ -103,7 +103,7 @@ public class VoteFeature extends CoreFeature {
 		sendVoteMessages();
 	}
 	
-	private void modBoard(Scoreboard board) {
+	private void modBoard(final Scoreboard board) {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Votes", DisplaySlot.SIDEBAR));
 		

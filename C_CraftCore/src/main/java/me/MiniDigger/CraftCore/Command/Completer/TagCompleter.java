@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Command.Completer;
 
 import java.util.ArrayList;
@@ -12,7 +32,7 @@ import me.MiniDigger.Core.Command.Completer;
 public class TagCompleter {
 	
 	@Completer(name = "tag")
-	public List<String> tagC(CommandArgs args) {
+	public List<String> tagC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
@@ -28,7 +48,7 @@ public class TagCompleter {
 	}
 	
 	@Completer(name = "tag.show")
-	public List<String> showC(CommandArgs args) {
+	public List<String> showC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
@@ -43,7 +63,7 @@ public class TagCompleter {
 	}
 	
 	@Completer(name = "tag.hide")
-	public List<String> hideC(CommandArgs args) {
+	public List<String> hideC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
@@ -58,7 +78,7 @@ public class TagCompleter {
 	}
 	
 	@Completer(name = "tag.prefix")
-	public List<String> prefixX(CommandArgs args) {
+	public List<String> prefixX(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
@@ -73,7 +93,7 @@ public class TagCompleter {
 	}
 	
 	@Completer(name = "tag.suffix")
-	public List<String> suffixC(CommandArgs args) {
+	public List<String> suffixC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {

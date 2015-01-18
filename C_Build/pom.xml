@@ -17,7 +17,8 @@
 			"${maven.dependency.com.comphenix.protocol.ProtocolLib.jar.path}"
 			"${maven.dependency.ru.tehkode.PermissionEx.jar.path}"
 			"${maven.dependency.avalon-framework.avalon-framework.jar.path}"
-			"${maven.dependency.commons-logging.commons-logging.jar.path}</path>
+			"${maven.dependency.commons-logging.commons-logging.jar.path}"
+			"${maven.dependency.com.wacos.NametagEdit.jar.path}</path>
 	</properties>
 
 	<reporting>

@@ -301,7 +301,7 @@ public class TokenShop implements Listener {
 						stats.remove(StatsType.Common.TOKENS, (int) preis);
 						stats.add(StatsType.Common.TOKENS_SPEND, (int) preis);
 						// Core.getCore().getInstance().getPermissionManager().getUser(user.getUUID()).addPermission(perm);
-						//TODO Use vault or so for perm stuff
+						// TODO Use vault or so for perm stuff
 						stats.save();
 						make(event);
 						p.closeInventory();

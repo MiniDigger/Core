@@ -52,7 +52,7 @@ public class ServerPacket extends CorePacket {
 			s = s.replaceFirst("|", "");
 		}
 		server = CoreServer.fromString(s);
-//		System.out.println("got server info for server " + server.getName());
+		// System.out.println("got server info for server " + server.getName());
 	}
 	
 	@Override

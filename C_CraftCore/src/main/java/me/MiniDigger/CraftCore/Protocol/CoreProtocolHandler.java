@@ -67,7 +67,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	private final Map<String, Integer>	protocolVersions	= new HashMap<>();
 	
-	private List<UUID>	               noUpdates	     = new ArrayList<UUID>();
+	private final List<UUID>	       noUpdates	     = new ArrayList<UUID>();
 	
 	@Override
 	public void init() {
@@ -279,21 +279,21 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	}
 	
 	@Override
-	public void noUpdates(UUID id) {
+	public void noUpdates(final UUID id) {
 		if (!noUpdates.contains(id)) {
 			noUpdates.add(id);
 		}
 	}
 	
 	@Override
-	public void updates(UUID id) {
+	public void updates(final UUID id) {
 		if (noUpdates.contains(id)) {
 			noUpdates.remove(id);
 		}
 	}
 	
 	@Override
-	public boolean toggleUpdates(UUID id) {
+	public boolean toggleUpdates(final UUID id) {
 		if (noUpdates.contains(id)) {
 			noUpdates.remove(id);
 			return false;
@@ -304,17 +304,17 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	}
 	
 	@Override
-	public List<String> packetcontainerToString(PacketContainer c) {
-		List<String> result = new ArrayList<String>();
+	public List<String> packetcontainerToString(final PacketContainer c) {
+		final List<String> result = new ArrayList<String>();
 		
-		for (Method m : c.getClass().getMethods()) {
+		for (final Method m : c.getClass().getMethods()) {
 			if (m.getName().startsWith("get")) {
 				if (m.getReturnType().getName().contains("StructureModifier")) {
 					try {
-						StructureModifier<?> mod = (StructureModifier<?>) m.invoke(c);
+						final StructureModifier<?> mod = (StructureModifier<?>) m.invoke(c);
 						result.add(m.getName() + ": " + mod.size());
-					} catch (Exception e) {
-//						e.printStackTrace();
+					} catch (final Exception e) {
+						// e.printStackTrace();
 					}
 				}
 			}

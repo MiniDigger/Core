@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Nametag;
 
 import java.lang.reflect.Field;
@@ -11,7 +31,7 @@ import org.bukkit.entity.Player;
 
 public class CoreNametagPacketHandler {
 	
-	private Object	        packet;
+	private final Object	packet;
 	
 	private static Class<?>	packetType;
 	
@@ -33,9 +53,9 @@ public class CoreNametagPacketHandler {
 		try {
 			version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 			
-			Class<?> typeNMSPlayer = Class.forName("net.minecraft.server." + version + ".EntityPlayer");
-			Class<?> typeCraftPlayer = Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer");
-			Class<?> typePlayerConnection = Class.forName("net.minecraft.server." + version + ".PlayerConnection");
+			final Class<?> typeNMSPlayer = Class.forName("net.minecraft.server." + version + ".EntityPlayer");
+			final Class<?> typeCraftPlayer = Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer");
+			final Class<?> typePlayerConnection = Class.forName("net.minecraft.server." + version + ".PlayerConnection");
 			
 			getHandle = typeCraftPlayer.getMethod("getHandle");
 			playerConnection = typeNMSPlayer.getField("playerConnection");
@@ -67,13 +87,14 @@ public class CoreNametagPacketHandler {
 			} else {
 				packetType = Class.forName("net.minecraft.server." + version + ".PacketPlayOutScoreboardTeam");
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public CoreNametagPacketHandler(String name, String prefix, String suffix, Collection<String> players, int paramInteger, boolean tag) throws ClassNotFoundException,
-	        IllegalAccessException, InstantiationException, NoSuchMethodException, NoSuchFieldException, InvocationTargetException {
+	public CoreNametagPacketHandler(final String name, final String prefix, final String suffix, final Collection<String> players, final int paramInteger,
+	        final boolean tag) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, NoSuchFieldException,
+	        InvocationTargetException {
 		
 		packet = packetType.newInstance();
 		setField(fieldTeamName, name);
@@ -92,8 +113,8 @@ public class CoreNametagPacketHandler {
 		}
 	}
 	
-	public CoreNametagPacketHandler(String name, Collection<String> players, int paramInt) throws ClassNotFoundException, IllegalAccessException, InstantiationException,
-	        NoSuchMethodException, NoSuchFieldException, InvocationTargetException {
+	public CoreNametagPacketHandler(final String name, Collection<String> players, final int paramInt) throws ClassNotFoundException, IllegalAccessException,
+	        InstantiationException, NoSuchMethodException, NoSuchFieldException, InvocationTargetException {
 		packet = packetType.newInstance();
 		
 		if (paramInt != 3 && paramInt != 4) {
@@ -109,24 +130,24 @@ public class CoreNametagPacketHandler {
 		addAll(players);
 	}
 	
-	public void sendToPlayer(Player bukkitPlayer) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException,
+	public void sendToPlayer(final Player bukkitPlayer) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException,
 	        NoSuchMethodException, NoSuchFieldException {
-		Object player = getHandle.invoke(bukkitPlayer);
+		final Object player = getHandle.invoke(bukkitPlayer);
 		
-		Object connection = playerConnection.get(player);
+		final Object connection = playerConnection.get(player);
 		
 		sendPacket.invoke(connection, packet);
 	}
 	
-	private void setField(String field, Object value) throws NoSuchFieldException, IllegalAccessException {
-		Field f = packet.getClass().getDeclaredField(field);
+	private void setField(final String field, final Object value) throws NoSuchFieldException, IllegalAccessException {
+		final Field f = packet.getClass().getDeclaredField(field);
 		f.setAccessible(true);
 		f.set(packet, value);
 	}
 	
 	@SuppressWarnings("all")
-	private void addAll(Collection<String> col) throws NoSuchFieldException, IllegalAccessException {
-		Field f = packet.getClass().getDeclaredField(fieldPlayers);
+	private void addAll(final Collection<String> col) throws NoSuchFieldException, IllegalAccessException {
+		final Field f = packet.getClass().getDeclaredField(fieldPlayers);
 		f.setAccessible(true);
 		((Collection) f.get(packet)).addAll(col);
 	}

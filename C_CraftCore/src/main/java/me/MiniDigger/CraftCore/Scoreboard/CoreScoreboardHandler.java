@@ -37,7 +37,7 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	private final Map<UUID, Scoreboard>	boards	= new HashMap<UUID, Scoreboard>();
 	
 	@Override
-	public Scoreboard getBoard(UUID id) {
+	public Scoreboard getBoard(final UUID id) {
 		if (!boards.containsKey(id)) {
 			boards.put(id, new CoreScoreboard());
 		}
@@ -45,22 +45,22 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	}
 	
 	@Override
-	public void update(UUID id) {
-		Player p = Bukkit.getPlayer(id);
+	public void update(final UUID id) {
+		final Player p = Bukkit.getPlayer(id);
 		p.setScoreboard(getBoard(id).toBukkitScoreboard());
 	}
 	
 	@Override
 	public void clearAll() {
-		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			getBoard(p.getUniqueId()).clear();
 			update(p.getUniqueId());
 		}
 	}
 	
 	@Override
-	public void clearAll(DisplaySlot slot) {
-		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+	public void clearAll(final DisplaySlot slot) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			getBoard(p.getUniqueId()).clear(slot);
 			update(p.getUniqueId());
 		}

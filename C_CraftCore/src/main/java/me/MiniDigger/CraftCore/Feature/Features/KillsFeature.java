@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Feature.Features;
 
 import java.util.ArrayList;
@@ -13,17 +33,18 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Stats.StatsType;
+
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
 public class KillsFeature extends CoreFeature {
 	
-	private int	               win	  = -1;
-	private boolean	           showScoreboard;
-	private Map<UUID, Integer>	kills	= new HashMap<UUID, Integer>();
+	private int	                     win	  = -1;
+	private final boolean	         showScoreboard;
+	private final Map<UUID, Integer>	kills	= new HashMap<UUID, Integer>();
 	
-	public KillsFeature(Phase phase, int win, boolean showScoreboard) {
+	public KillsFeature(final Phase phase, final int win, final boolean showScoreboard) {
 		super(phase);
 		this.win = win;
 		this.showScoreboard = showScoreboard;
@@ -64,9 +85,9 @@ public class KillsFeature extends CoreFeature {
 			return;
 		}
 		
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			Core.getCore().getScoreboardHandler().getBoard(id).clear(DisplaySlot.BELOW_NAME);
-			for (UUID id2 : kills.keySet()) {
+			for (final UUID id2 : kills.keySet()) {
 				Core.getCore().getScoreboardHandler().getBoard(id).addLine(new CoreScoreboardLine(kills.get(id2), "", DisplaySlot.BELOW_NAME));
 			}
 			Core.getCore().getScoreboardHandler().update(id);
@@ -74,7 +95,7 @@ public class KillsFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void kill(CoreUserDeathEvent e) {
+	public void kill(final CoreUserDeathEvent e) {
 		if (e.getKiller() != null) {
 			if (kills.containsKey(e.getKiller().getUUID())) {
 				int kills = this.kills.remove(e.getKiller().getUUID());

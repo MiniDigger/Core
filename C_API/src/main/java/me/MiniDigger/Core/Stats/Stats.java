@@ -69,11 +69,11 @@ public interface Stats extends Saveable {
 	 */
 	public void init();
 	
-	void set(GameType game, StatsType type, int value);
+	void set(final GameType game, final StatsType type, final int value);
 	
-	void add(GameType game, StatsType type, int value);
+	void add(final GameType game, final StatsType type, final int value);
 	
-	void remove(GameType game, StatsType type, int value);
+	void remove(final GameType game, final StatsType type, final int value);
 	
-	int get(GameType game, StatsType type);
+	int get(final GameType game, final StatsType type);
 }

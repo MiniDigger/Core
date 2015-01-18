@@ -97,7 +97,7 @@ public class LivesFeature extends CoreFeature {
 		lives = null;
 	}
 	
-	private void modBoard(Scoreboard board) {
+	private void modBoard(final Scoreboard board) {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Lives", DisplaySlot.SIDEBAR));
 		

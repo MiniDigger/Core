@@ -83,15 +83,15 @@ public class CoreSignGUI implements SignGUI, Listener {
 			// org.bukkit.Material.SIGN_POST.getId());
 			
 			System.out.println("==========" + packet53.getType().name() + "=========");
-			for (String s : Core.getCore().getProtocolHandler().packetcontainerToString(packet53)) {
-//				if (s.endsWith("0")) {
-//					continue;
-//				}
+			for (final String s : Core.getCore().getProtocolHandler().packetcontainerToString(packet53)) {
+				// if (s.endsWith("0")) {
+				// continue;
+				// }
 				System.out.println(s);
 			}
 			System.out.println("=========================================");
 			
-//			packet53.getBlocks().write(0, Material.SIGN_POST);
+			// packet53.getBlocks().write(0, Material.SIGN_POST);
 			// packet53.getIntegers().write(0, Material.SIGN_POST.getId() << 4 |
 			// 0x0);
 			packets.add(packet53);
@@ -113,7 +113,8 @@ public class CoreSignGUI implements SignGUI, Listener {
 			final PacketContainer packet53 = protocolManager.createPacket(PacketType.Play.Server.BLOCK_CHANGE);
 			packet53.getBlockPositionModifier().write(0, new BlockPosition(x, y, z));
 			// packet53.getBlocks().write(0, org.bukkit.Material.BEDROCK);
-//			packet53.getIntegers().write(0, Material.BEDROCK.getId() << 4 | 0x0);
+			// packet53.getIntegers().write(0, Material.BEDROCK.getId() << 4 |
+			// 0x0);
 			packets.add(packet53);
 		}
 		

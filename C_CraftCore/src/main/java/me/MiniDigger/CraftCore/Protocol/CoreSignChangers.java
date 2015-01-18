@@ -62,7 +62,7 @@ public class CoreSignChangers implements SignChangers {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void update(List<UUID> noUpdates) {
+	public void update(final List<UUID> noUpdates) {
 		for (final Location loc : (ArrayList<Location>) last_seen_signs.clone()) {
 			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 				if (e != null && e.getType() == EntityType.PLAYER) {
@@ -304,30 +304,31 @@ public class CoreSignChangers implements SignChangers {
 		final User user = Core.getCore().getUserHandler().get(event.getPlayer().getUniqueId());
 		String[] lines = sign.getLines();
 		lines = Core.getCore().getChatColorUtil().replaceMcToAnd(sign.getLines());
-//		new CoreSignGUI().open(event.getPlayer(), lines, new SignGUI.SignGUIListener() {
-//			
-//			@Override
-//			public void onSignDone(final Player player, String[] lines) {
-//				if (user.hasPermission("builder.changesigns")) {
-//					// Color
-//					lines = Core.getCore().getChatColorUtil().replaceAndToMc(lines);
-//					sign.setLine(0, lines[0]);
-//					sign.setLine(1, lines[1]);
-//					sign.setLine(2, lines[2]);
-//					sign.setLine(3, lines[3]);
-//					sign.update();
-//					user.sendMessage(Prefix.API.getPrefix().then("Sign editiert!").color(ChatColor.GREEN));
-//					edit.remove(player.getName());
-//				} else {
-//					user.sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst keine Schilder editieren!").color(ChatColor.RED));
-//				}
-//			}
-//		});
-		if(!user.hasPermission("builder.changesigns")){
+		// new CoreSignGUI().open(event.getPlayer(), lines, new
+		// SignGUI.SignGUIListener() {
+		//
+		// @Override
+		// public void onSignDone(final Player player, String[] lines) {
+		// if (user.hasPermission("builder.changesigns")) {
+		// // Color
+		// lines = Core.getCore().getChatColorUtil().replaceAndToMc(lines);
+		// sign.setLine(0, lines[0]);
+		// sign.setLine(1, lines[1]);
+		// sign.setLine(2, lines[2]);
+		// sign.setLine(3, lines[3]);
+		// sign.update();
+		// user.sendMessage(Prefix.API.getPrefix().then("Sign editiert!").color(ChatColor.GREEN));
+		// edit.remove(player.getName());
+		// } else {
+		// user.sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst keine Schilder editieren!").color(ChatColor.RED));
+		// }
+		// }
+		// });
+		if (!user.hasPermission("builder.changesigns")) {
 			user.sendMessage(Prefix.API.getPrefix().then("Du hast keine Rechte, Schilder zu editieren!").color(ChatColor.RED));
 		}
 		NMSUtils.sendPacket(event.getPlayer(), NMSUtils.getSignChangePacket(sign.getBlock(), lines));
-		NMSUtils.sendEditor(event.getPlayer(),sign.getBlock());
+		NMSUtils.sendEditor(event.getPlayer(), sign.getBlock());
 	}
 	
 	private PacketContainer modifySign(final PacketContainer psign, final Player player, final boolean edit) {

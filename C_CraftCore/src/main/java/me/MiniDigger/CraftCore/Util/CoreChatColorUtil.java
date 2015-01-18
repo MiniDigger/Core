@@ -37,7 +37,7 @@ public class CoreChatColorUtil implements ChatColorUtil {
 	
 	@Override
 	public String[] replaceAndToMc(final String[] lines) {
-		String[] newLines = new String[lines.length];
+		final String[] newLines = new String[lines.length];
 		for (int i = 0; i < lines.length; i++) {
 			newLines[i] = ChatColor.translateAlternateColorCodes(and, lines[i]);
 		}

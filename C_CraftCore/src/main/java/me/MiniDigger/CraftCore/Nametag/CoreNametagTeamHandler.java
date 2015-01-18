@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Nametag;
 
 import java.util.ArrayList;
@@ -27,35 +47,35 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	// Prefix to append to all team names (nothing to do with prefix/suffix)
-	private final String	      TEAM_NAME_PREFIX	= "NTE";
+	private final String	            TEAM_NAME_PREFIX	= "NTE";
 	
-	private List<Integer>	      list	           = new ArrayList<Integer>();
+	private final List<Integer>	        list	         = new ArrayList<Integer>();
 	
-	private Map<Team, List<UUID>>	teams	       = new HashMap<Team, List<UUID>>();
+	private final Map<Team, List<UUID>>	teams	         = new HashMap<Team, List<UUID>>();
 	
-	private void addToTeam(Team team, UUID id) {
+	private void addToTeam(final Team team, final UUID id) {
 		removeFromTeam(id);
-		List<UUID> list = teams.get(team);
+		final List<UUID> list = teams.get(team);
 		if (list != null) {
 			list.add(id);
 			sendPacketsAddToTeam(team, id);
 		}
 	}
 	
-	private void register(Team team) {
+	private void register(final Team team) {
 		teams.put(team, new ArrayList<UUID>());
 		sendPacketsAddTeam(team);
 	}
 	
-	private void removeTeam(Team team) {
+	private void removeTeam(final Team team) {
 		sendPacketsRemoveTeam(team);
 		teams.remove(team);
 	}
 	
-	private Team removeFromTeam(UUID id) {
-		for (Team team : teams.keySet()) {
-			List<UUID> list = teams.get(team);
-			for (UUID id2 : list) {
+	private Team removeFromTeam(final UUID id) {
+		for (final Team team : teams.keySet()) {
+			final List<UUID> list = teams.get(team);
+			for (final UUID id2 : list) {
 				if (id.equals(id2)) {
 					sendPacketsRemoveFromTeam(team, id);
 					list.remove(id);
@@ -66,8 +86,8 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 		return null;
 	}
 	
-	private Team getTeam(String name) {
-		for (Team team : teams.keySet()) {
+	private Team getTeam(final String name) {
+		for (final Team team : teams.keySet()) {
 			if (team.name.equals(name)) {
 				return team;
 			}
@@ -76,17 +96,17 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	private Team[] getTeams() {
-		Team[] list = new Team[teams.size()];
+		final Team[] list = new Team[teams.size()];
 		int at = 0;
-		for (Team team : teams.keySet()) {
+		for (final Team team : teams.keySet()) {
 			list[at] = team;
 			at++;
 		}
 		return list;
 	}
 	
-	private UUID[] getTeamPlayers(Team team) {
-		List<UUID> list = teams.get(team);
+	private UUID[] getTeamPlayers(final Team team) {
+		final List<UUID> list = teams.get(team);
 		if (list != null) {
 			return list.toArray(new UUID[list.size()]);
 		} else {
@@ -94,11 +114,11 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 		}
 	}
 	
-	private String[] getTeamPlayerNames(Team team) {
-		List<UUID> list = teams.get(team);
-		List<String> result = new ArrayList<String>();
+	private String[] getTeamPlayerNames(final Team team) {
+		final List<UUID> list = teams.get(team);
+		final List<String> result = new ArrayList<String>();
 		if (list != null) {
-			for (UUID id : list) {
+			for (final UUID id : list) {
 				result.add(Core.getCore().getUserHandler().get(id).getDisplayName());
 			}
 			return result.toArray(new String[result.size()]);
@@ -109,11 +129,11 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	
 	@Override
 	public void load() {
-		for (Team t : getTeams()) {
+		for (final Team t : getTeams()) {
 			int entry = -1;
 			try {
 				entry = Integer.parseInt(t.name);
-			} catch (Exception e) {}
+			} catch (final Exception e) {}
 			if (entry != -1) {
 				list.add(entry);
 			}
@@ -121,7 +141,7 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	@Override
-	public void update(UUID id, String prefix, String suffix, boolean tag) {
+	public void update(final UUID id, String prefix, String suffix, final boolean tag) {
 		if (prefix == null || prefix.isEmpty()) {
 			prefix = getPrefix(id);
 			
@@ -132,13 +152,13 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 			
 		}
 		
-		Team t = get(prefix, suffix, tag);
+		final Team t = get(prefix, suffix, tag);
 		
 		addToTeam(t, id);
 	}
 	
 	@Override
-	public void overlap(UUID id, String prefix, String suffix, boolean tag) {
+	public void overlap(final UUID id, String prefix, String suffix, final boolean tag) {
 		if (prefix == null) {
 			prefix = "";
 		}
@@ -147,20 +167,20 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 			suffix = "";
 		}
 		
-		Team t = get(prefix, suffix,tag);
+		final Team t = get(prefix, suffix, tag);
 		
 		addToTeam(t, id);
 	}
 	
 	@Override
-	public void clear(UUID id) {
+	public void clear(final UUID id) {
 		removeFromTeam(id);
 	}
 	
 	@Override
-	public boolean getTag(UUID id) {
-		for (Team team : getTeams()) {
-			for (UUID id2 : getTeamPlayers(team)) {
+	public boolean getTag(final UUID id) {
+		for (final Team team : getTeams()) {
+			for (final UUID id2 : getTeamPlayers(team)) {
 				if (id2.equals(id)) {
 					return team.tag;
 				}
@@ -170,9 +190,9 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	@Override
-	public String getPrefix(UUID id) {
-		for (Team team : getTeams()) {
-			for (UUID id2 : getTeamPlayers(team)) {
+	public String getPrefix(final UUID id) {
+		for (final Team team : getTeams()) {
+			for (final UUID id2 : getTeamPlayers(team)) {
 				if (id2.equals(id)) {
 					return team.prefix;
 				}
@@ -182,9 +202,9 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	@Override
-	public String getSuffix(UUID id) {
-		for (Team team : getTeams()) {
-			for (UUID id2 : getTeamPlayers(team)) {
+	public String getSuffix(final UUID id) {
+		for (final Team team : getTeams()) {
+			for (final UUID id2 : getTeamPlayers(team)) {
 				if (id2.equals(id)) {
 					return team.suffix;
 				}
@@ -194,7 +214,7 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	@Override
-	public String getFormattedName(UUID id) {
+	public String getFormattedName(final UUID id) {
 		return getPrefix(id) + Core.getCore().getUserHandler().get(id).getDisplayName() + getSuffix(id);
 	}
 	
@@ -210,13 +230,13 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * @param tag
 	 * @return the created team
 	 */
-	private Team declareTeam(String name, String prefix, String suffix, boolean tag) {
+	private Team declareTeam(final String name, final String prefix, final String suffix, final boolean tag) {
 		if (getTeam(name) != null) {
-			Team team = getTeam(name);
+			final Team team = getTeam(name);
 			removeTeam(team);
 		}
 		
-		Team team = new Team();
+		final Team team = new Team();
 		team.tag = tag;
 		team.name = name;
 		team.prefix = prefix;
@@ -239,12 +259,12 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * @param tag
 	 * @return a team with the corresponding prefix/suffix
 	 */
-	private Team get(String prefix, String suffix, boolean tag) {
+	private Team get(final String prefix, final String suffix, final boolean tag) {
 		update();
 		
-		for (int t : list) {
+		for (final int t : list) {
 			if (getTeam(TEAM_NAME_PREFIX + t) != null) {
-				Team team = getTeam(TEAM_NAME_PREFIX + t);
+				final Team team = getTeam(TEAM_NAME_PREFIX + t);
 				
 				if (team.suffix.equals(suffix) && team.prefix.equals(prefix) && team.tag == tag) {
 					return team;
@@ -265,7 +285,7 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 		boolean cont = true;
 		while (cont) {
 			cont = false;
-			for (int t : list.toArray(new Integer[list.size()])) {
+			for (final int t : list.toArray(new Integer[list.size()])) {
 				if (t == at) {
 					at++;
 					cont = true;
@@ -281,11 +301,11 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * Removes any teams that do not have any players in them.
 	 */
 	private void update() {
-		for (Team team : getTeams()) {
+		for (final Team team : getTeams()) {
 			int entry = -1;
 			try {
 				entry = Integer.parseInt(team.name);
-			} catch (Exception e) {}
+			} catch (final Exception e) {}
 			if (entry != -1) {
 				if (getTeamPlayers(team).length == 0) {
 					removeTeam(team);
@@ -296,15 +316,15 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	}
 	
 	@Override
-	public void sendTeamsToPlayer(Player p) {
+	public void sendTeamsToPlayer(final Player p) {
 		try {
-			for (Team team : getTeams()) {
+			for (final Team team : getTeams()) {
 				CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, team.prefix, team.suffix, new ArrayList<String>(), 0, team.tag);
 				mod.sendToPlayer(p);
 				mod = new CoreNametagPacketHandler(team.name, Arrays.asList(getTeamPlayerNames(team)), 3);
 				mod.sendToPlayer(p);
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -315,15 +335,15 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * @param team
 	 *            the team to add
 	 */
-	private void sendPacketsAddTeam(Team team) {
+	private void sendPacketsAddTeam(final Team team) {
 		try {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				if (p != null) {
-					CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, team.prefix, team.suffix, new ArrayList<String>(), 0, team.tag);
+					final CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, team.prefix, team.suffix, new ArrayList<String>(), 0, team.tag);
 					mod.sendToPlayer(p);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -334,9 +354,9 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * @param team
 	 *            the team to remove
 	 */
-	private void sendPacketsRemoveTeam(Team team) {
+	private void sendPacketsRemoveTeam(final Team team) {
 		boolean cont = false;
-		for (Team t : getTeams()) {
+		for (final Team t : getTeams()) {
 			if (t == team) {
 				cont = true;
 			}
@@ -346,13 +366,13 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 		}
 		
 		try {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				if (p != null) {
-					CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, team.prefix, team.suffix, new ArrayList<String>(), 1, team.tag);
+					final CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, team.prefix, team.suffix, new ArrayList<String>(), 1, team.tag);
 					mod.sendToPlayer(p);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -365,9 +385,9 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * @param player
 	 *            the player to add
 	 */
-	private void sendPacketsAddToTeam(Team team, UUID id) {
+	private void sendPacketsAddToTeam(final Team team, final UUID id) {
 		boolean cont = false;
-		for (Team t : getTeams()) {
+		for (final Team t : getTeams()) {
 			if (t == team) {
 				cont = true;
 			}
@@ -377,13 +397,14 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 		}
 		
 		try {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				if (p != null) {
-					CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, Arrays.asList(Core.getCore().getUserHandler().get(id).getDisplayName()), 3);
+					final CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, Arrays.asList(Core.getCore().getUserHandler().get(id).getDisplayName()),
+					        3);
 					mod.sendToPlayer(p);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -397,11 +418,11 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 	 * @param player
 	 *            the player to remove
 	 */
-	private void sendPacketsRemoveFromTeam(Team team, UUID id) {
+	private void sendPacketsRemoveFromTeam(final Team team, final UUID id) {
 		boolean cont = false;
-		for (Team t : getTeams()) {
+		for (final Team t : getTeams()) {
 			if (t == team) {
-				for (UUID id2 : getTeamPlayers(t)) {
+				for (final UUID id2 : getTeamPlayers(t)) {
 					if (id2.equals(id)) {
 						cont = true;
 					}
@@ -414,27 +435,28 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 		}
 		
 		try {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				if (p != null) {
-					CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, Arrays.asList(Core.getCore().getUserHandler().get(id).getDisplayName()), 4);
+					final CoreNametagPacketHandler mod = new CoreNametagPacketHandler(team.name, Arrays.asList(Core.getCore().getUserHandler().get(id).getDisplayName()),
+					        4);
 					
 					mod.sendToPlayer(p);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@Override
 	public void reset() {
-		for (Team team : getTeams()) {
+		for (final Team team : getTeams()) {
 			removeTeam(team);
 		}
 	}
 	
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
+	public void onJoin(final PlayerJoinEvent e) {
 		final Player p = e.getPlayer();
 		
 		sendTeamsToPlayer(p);
@@ -445,7 +467,7 @@ public class CoreNametagTeamHandler implements NametagTeamHandler {
 			@Override
 			public void run() {
 				clear(p.getUniqueId());
-				User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+				final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
 				overlap(u.getUUID(), u.getPrefix(), u.getSuffix(), true);
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 1);
