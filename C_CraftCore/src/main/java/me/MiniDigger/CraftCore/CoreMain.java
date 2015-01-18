@@ -129,6 +129,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		d1 = new Date();
 		_.log(LogLevel.INFO, LangKeyType.Main.CHECK_UPDATES);
 		try {
+			Core.getCore().getDependencyHanlder().check();
+			
 			if (Core.getCore().getUpdateHandler().updateCheck()) {
 				update = true;
 				return;

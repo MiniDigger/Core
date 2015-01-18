@@ -27,6 +27,7 @@ import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
 import me.MiniDigger.Core.Chat.ChatHandler;
 import me.MiniDigger.Core.Command.CommandHandler;
+import me.MiniDigger.Core.Dependencies.DependencyHanlder;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.Item.ItemHandler;
@@ -172,6 +173,8 @@ public abstract class Core {
 	public abstract LangHandler getLangHandler();
 	
 	public abstract NametagTeamHandler getNametagTeamHandler();
+	
+	public abstract DependencyHanlder getDependencyHanlder();
 	
 	/*
 	 * #################### UTILS ####################
