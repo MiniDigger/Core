@@ -38,6 +38,7 @@ import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
+import me.MiniDigger.Core.Nametag.NametagTeamHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
 import me.MiniDigger.Core.REST.DashingHandler;
@@ -88,6 +89,7 @@ import me.MiniDigger.CraftCore.License.CoreLicenseHandler;
 import me.MiniDigger.CraftCore.Map.CoreMapHandler;
 import me.MiniDigger.CraftCore.Mirror.CoreMirrorHandler;
 import me.MiniDigger.CraftCore.Nametag.CoreNametagHandler;
+import me.MiniDigger.CraftCore.Nametag.CoreNametagTeamHandler;
 import me.MiniDigger.CraftCore.Packet.CorePacketHandler;
 import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
 import me.MiniDigger.CraftCore.REST.CoreDashingHandler;
@@ -159,6 +161,7 @@ public class CoreCore extends Core {
 	private ScoreboardHandler	scoreboardHandler;
 	private DashingHandler	   dashingHandler;
 	private LangHandler	       langHandler;
+	private NametagTeamHandler	teamHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -449,6 +452,14 @@ public class CoreCore extends Core {
 			langHandler = new CoreLangHandler();
 		}
 		return langHandler;
+	}
+	
+	@Override
+	public NametagTeamHandler getNametagTeamHandler() {
+		if (teamHandler == null) {
+			teamHandler = new CoreNametagTeamHandler();
+		}
+		return teamHandler;
 	}
 	
 	/***********/

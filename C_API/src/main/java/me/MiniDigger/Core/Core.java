@@ -36,6 +36,7 @@ import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Nametag.NametagHandler;
+import me.MiniDigger.Core.Nametag.NametagTeamHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
 import me.MiniDigger.Core.REST.DashingHandler;
@@ -169,6 +170,8 @@ public abstract class Core {
 	public abstract DashingHandler getDashingHandler();
 	
 	public abstract LangHandler getLangHandler();
+	
+	public abstract NametagTeamHandler getNametagTeamHandler();
 	
 	/*
 	 * #################### UTILS ####################

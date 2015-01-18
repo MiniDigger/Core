@@ -66,7 +66,7 @@ import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.CraftCore.Entity.CoreZombie;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
-import me.MiniDigger.CraftCore.Nametag.CoreNametagTeams;
+import me.MiniDigger.CraftCore.Nametag.CoreNametagTeamHandler;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
@@ -383,6 +383,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.team", description = "DEV!", usage = "", permission = "dev")
 	public void team(final CommandArgs args) {
-		CoreNametagTeams.create(args.getPlayer().getDisplayName(), ChatColor.RED + "!" + ChatColor.GOLD, ChatColor.BLUE + "!", true);
+		CoreNametagTeamHandler h = new CoreNametagTeamHandler();
+		h.update(args.getUser().getUUID(), ChatColor.RED + "!" + ChatColor.GOLD, ChatColor.BLUE + "!", false);
 	}
 }

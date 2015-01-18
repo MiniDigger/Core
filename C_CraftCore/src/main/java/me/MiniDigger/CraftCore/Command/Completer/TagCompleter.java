@@ -16,7 +16,8 @@ public class TagCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			result.add("change");
+			result.add("prefix");
+			result.add("suffix");
 			result.add("hide");
 			result.add("show");
 			
@@ -56,8 +57,23 @@ public class TagCompleter {
 		}
 	}
 	
-	@Completer(name = "tag.change")
-	public List<String> changeC(CommandArgs args) {
+	@Completer(name = "tag.prefix")
+	public List<String> prefixX(CommandArgs args) {
+		final List<String> result = new ArrayList<>();
+		
+		if (args.getArgs().length == 1) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "tag.suffix")
+	public List<String> suffixC(CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
