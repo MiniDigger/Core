@@ -86,7 +86,6 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 		addFeature(new PvPFeature(this, true));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SpecateFeature(this));
-		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
 	}
 	

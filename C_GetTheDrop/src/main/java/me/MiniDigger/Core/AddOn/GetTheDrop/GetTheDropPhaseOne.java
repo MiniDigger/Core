@@ -85,7 +85,6 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SpecateFeature(this));
 		addFeature(new ShowDropsFeature(this));
-		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
 	}
 	
