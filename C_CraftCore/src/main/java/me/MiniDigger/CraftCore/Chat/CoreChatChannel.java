@@ -118,7 +118,9 @@ public class CoreChatChannel implements ChatChannel {
 		final List<User> result = new ArrayList<>();
 		
 		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
-			result.add(user);
+			if (user.hasPermission(hearPerm)) {
+				result.add(user);
+			}
 		}
 		
 		return result;
