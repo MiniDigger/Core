@@ -63,16 +63,8 @@ public class CoreCommandHandler implements CommandHandler {
 	private final MultiMap<String, Method, Object>	commandMap	= new MultiMap<String, Method, Object>();
 	private CommandMap	                           map;
 	private final Plugin	                       plugin;
-	/* Core Start */
-	private final Map<String, String>	           relocations	= new HashMap<>();
 	
-	@Override
-	public void addRelocation(final String oldCmd, final String newCmd) {
-		if (relocations.containsKey(oldCmd)) {
-			relocations.remove(oldCmd);
-		}
-		relocations.put(oldCmd, oldCmd);
-	}
+	/* Core Start +*/
 	
 	@Override
 	public void unregister(final String command) {
@@ -116,7 +108,7 @@ public class CoreCommandHandler implements CommandHandler {
 	
 	/* Core End */
 	
-	public CoreCommandHandler() {
+	public CoreCommandHandler(Map<String, String> relocations) {
 		plugin = Core.getCore().getInstance();
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
 			final SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();

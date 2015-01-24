@@ -34,5 +34,4 @@ public interface CommandHandler {
 	
 	public void registerHelp();
 	
-	public void addRelocation(final String oldCmd, final String newCmd);
 }

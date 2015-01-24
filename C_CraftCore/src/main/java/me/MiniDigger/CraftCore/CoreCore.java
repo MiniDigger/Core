@@ -235,9 +235,6 @@ public class CoreCore extends Core {
 	
 	@Override
 	public CommandHandler getCommandHandler() {
-		if (commandHandler == null) {
-			commandHandler = new CoreCommandHandler();
-		}
 		return commandHandler;
 	}
 	
@@ -601,5 +598,11 @@ public class CoreCore extends Core {
 			itemUtil = new CoreItemUtil();
 		}
 		return itemUtil;
+	}
+	
+	/* Setter */
+	@Override
+	public void setCommandHandler(CommandHandler c) {
+		commandHandler = c;
 	}
 }

@@ -102,9 +102,11 @@ public class ChatCommands {
 		
 		for (final ChatChannel ch : channel.keySet()) {
 			if (channel.get(ch)) {
-				args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(ch.getName()).color(ch.getColor()));
+				args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(ch.getName()).color(ch.getColor() == ChatColor.RESET ? ChatColor.WHITE : ch.getColor()));
 			} else {
-				args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(ch.getName()).color(ch.getColor()).then(" hear-only").color(ChatColor.RED));
+				args.getUser().sendMessage(
+				        Prefix.CHAT.getPrefix().then(ch.getName()).color(ch.getColor() == ChatColor.RESET ? ChatColor.WHITE : ch.getColor()).then(" hear-only")
+				                .color(ChatColor.RED));
 			}
 		}
 	}

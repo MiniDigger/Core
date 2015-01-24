@@ -22,6 +22,8 @@ package me.MiniDigger.CraftCore;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;
 
@@ -34,6 +36,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
+import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.User.User;
@@ -41,6 +44,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Achievement.CoreAchievementListener;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
+import me.MiniDigger.CraftCore.Command.CoreCommandHandler;
 import me.MiniDigger.CraftCore.Command.Commands.AddOnCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ChatCommands;
 import me.MiniDigger.CraftCore.Command.Commands.DevCommands;
@@ -352,7 +356,9 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void registerCommands() {
-		Core.getCore().getCommandHandler().addRelocation("dd", "dd");
+		Map<String, String> reloc = new HashMap<String, String>();
+		reloc.put("pex", "coreperm");
+		Core.getCore().setCommandHandler(new CoreCommandHandler(reloc));
 		
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(),

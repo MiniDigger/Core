@@ -211,4 +211,6 @@ public abstract class Core {
 	public abstract EnumUtil getEnumUtil();
 	
 	public abstract ItemUtil getItemUtil();
+	
+	public abstract void setCommandHandler(CommandHandler c);
 }
