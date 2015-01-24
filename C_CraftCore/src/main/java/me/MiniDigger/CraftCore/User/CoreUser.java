@@ -33,12 +33,14 @@ import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
+import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
+import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 import mkremins.fanciful.FancyMessage;
@@ -152,7 +154,7 @@ public class CoreUser implements User {
 			
 			final ResultSet r = stmt.executeQuery();
 			if (r == null) {
-				throw new NullPointerException("ResultSet returned by query can not be null!");
+				throw new NullPointerException(_._(LangKeyType.SQL.QUERY_FAILED));
 			}
 			
 			r.next();
@@ -289,7 +291,6 @@ public class CoreUser implements User {
 				retrys++;
 				if (retrys == 10) {
 					retrys = 0;
-					System.out.println("giving up...");
 					return;
 				}
 				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {

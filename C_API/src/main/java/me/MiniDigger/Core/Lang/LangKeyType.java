@@ -99,6 +99,21 @@ public class LangKeyType {
 		}
 	}
 	
+	public static class SQL {
+		
+		protected static String		    type		 = "sql";
+		public static final LangKeyType	QUERY_FAILED	= new LangKeyType("query_failed", type, "ResultSet returned by query can not be null!");
+		public static final LangKeyType	CREATE_TABLE	= new LangKeyType("create_table", type, "Creating table for `%0%`");
+		public static final LangKeyType	CREATE_TABLE_FAILED	= new LangKeyType("create_table_failed", type, "Didn't created table!");
+		
+		
+		public static List<LangKeyType> values() {
+			final List<LangKeyType> values = new ArrayList<>();
+			values.add(QUERY_FAILED);
+			return values;
+		}
+	}
+	
 	public static class World {
 		
 		protected static String		    type		     = "world";
@@ -110,7 +125,7 @@ public class LangKeyType {
 		public static final LangKeyType	LOADING_WORLD		= new LangKeyType("loading_world", type, "Loading world `%0%`...");
 		public static final LangKeyType	FILE_ERROR		 = new LangKeyType("file_error", type, "File exists with the name `%0%` and isn't a folder");
 		public static final LangKeyType	CONVERTING		 = new LangKeyType("converting", type, "Converting world `%0%`...");
-		public static final LangKeyType	CREATED		 = new LangKeyType("created", type, "Created world with dimension `%0%`");
+		public static final LangKeyType	CREATED		     = new LangKeyType("created", type, "Created world with dimension `%0%`");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -122,6 +137,7 @@ public class LangKeyType {
 			values.add(LOADING_WORLD);
 			values.add(FILE_ERROR);
 			values.add(CONVERTING);
+			values.add(CREATED);
 			return values;
 		}
 	}
@@ -270,6 +286,7 @@ public class LangKeyType {
 		values.addAll(Socket.values());
 		values.addAll(Cmd.values());
 		values.addAll(World.values());
+		values.addAll(SQL.values());
 		return values;
 	}
 	

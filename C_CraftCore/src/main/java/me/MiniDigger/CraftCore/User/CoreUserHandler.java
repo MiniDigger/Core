@@ -28,8 +28,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.User.UserHandler;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 public class CoreUserHandler implements UserHandler {
 	
@@ -38,9 +42,9 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public boolean loadAll() {
-		Core.getCore().getInstance().info("Erstelle Tabelle für User...");
+		_.log(LogLevel.INFO, LangKeyType.SQL.CREATE_TABLE, "User");
 		if (!new CoreUser(null).createTable()) {
-			Core.getCore().getInstance().info("Tabelle wurde nicht erstellt!");
+			_.log(LogLevel.INFO, LangKeyType.SQL.CREATE_TABLE_FAILED);
 		}
 		// users = new ArrayList<>();
 		// final ArrayList<String> uuids = new ArrayList<>();
