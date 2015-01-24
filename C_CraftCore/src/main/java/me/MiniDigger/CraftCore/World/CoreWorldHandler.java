@@ -38,10 +38,13 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.World.WorldHandler;
 
 import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
+import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 
 public class CoreWorldHandler implements WorldHandler {
@@ -93,13 +96,14 @@ public class CoreWorldHandler implements WorldHandler {
 		final World w = new CoreWorldLoader().loadWorld(wc);
 		w.setAutoSave(false);
 		
-		Core.getCore().getInstance().info("Loading Chunks");
+		_.log(LogLevel.INFO, LangKeyType.World.LOADING_CHUNKS);
 		try {
 			final MapData data = Core.getCore().getMapHandler().getMap(name);
 			final int i = data.loadChunks();
-			Core.getCore().getInstance().info(i + " chunks loaded!");
+			_.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i);
 		} catch (final Exception ex) {
-			Core.getCore().getInstance().info("Error while loading chunks: " + ex.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.World.CHUNK_LOAD_ERROR, ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		return w;
@@ -113,12 +117,11 @@ public class CoreWorldHandler implements WorldHandler {
 		final File oldMap = new File(out, name);
 		
 		if (oldMap.exists() && oldMap.isDirectory()) {
-			Core.getCore().getInstance().info("old map found, deleting...");
+			_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD);
 			Core.getCore().getFileUtil().deleteDirectory(oldMap);
-			Core.getCore().getInstance().info("finished");
 		}
 		
-		Core.getCore().getInstance().info("UNZIP: " + map.getAbsolutePath() + " to " + out.getAbsolutePath());
+		_.log(LogLevel.DEBUG, LangKeyType.World.UNZIP, map.getAbsolutePath(), out.getAbsolutePath());
 		
 		Core.getCore().getDeZipUtil().extract(new File(map.getAbsolutePath()), out);
 		
@@ -134,7 +137,8 @@ public class CoreWorldHandler implements WorldHandler {
 				dataoutputstream.close();
 			}
 		} catch (final IOException ioexception) {
-			Core.getCore().getInstance().info("ERROR: " + ioexception.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ioexception.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ioexception);
 		}
 		
 		map = new File(Bukkit.getWorldContainer(), name);

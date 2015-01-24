@@ -82,6 +82,50 @@ public class LangKeyType {
 		}
 	}
 	
+	public static class Cmd {
+		
+		protected static String		    type		  = "cmd";
+		public static final LangKeyType	EXCEPTION		= new LangKeyType("exception", type, "Unhandled exception executing command `%0%` in plugin `%1%`!");
+		public static final LangKeyType	EXCEPTION_TAB	= new LangKeyType("exception_tab", type,
+		                                                      "Unhandled exception during tab completion for command `%0%` in plugin `%1%`");
+		public static final LangKeyType	CANNOT_NULL		= new LangKeyType("cannot_null", type, "`%0%` cannot be null");
+		
+		public static List<LangKeyType> values() {
+			final List<LangKeyType> values = new ArrayList<>();
+			values.add(EXCEPTION);
+			values.add(EXCEPTION_TAB);
+			values.add(CANNOT_NULL);
+			return values;
+		}
+	}
+	
+	public static class World {
+		
+		protected static String		    type		     = "world";
+		public static final LangKeyType	LOADING_CHUNKS		= new LangKeyType("loading_chunks", type, "Loading Chunks...");
+		public static final LangKeyType	CHUNKS_LOADED		= new LangKeyType("chunks_loaded", type, "`%0%` chunks loaded!");
+		public static final LangKeyType	CHUNK_LOAD_ERROR	= new LangKeyType("chunk_load_error", type, "Error while loading chunks: `%0%`!");
+		public static final LangKeyType	DELETE_OLD		 = new LangKeyType("delete_old", type, "Old map found, deleting...");
+		public static final LangKeyType	UNZIP		     = new LangKeyType("unzip", type, "Unzipping `%0%` to `%1%`");
+		public static final LangKeyType	LOADING_WORLD		= new LangKeyType("loading_world", type, "Loading world `%0%`...");
+		public static final LangKeyType	FILE_ERROR		 = new LangKeyType("file_error", type, "File exists with the name `%0%` and isn't a folder");
+		public static final LangKeyType	CONVERTING		 = new LangKeyType("converting", type, "Converting world `%0%`...");
+		public static final LangKeyType	CREATED		 = new LangKeyType("created", type, "Created world with dimension `%0%`");
+		
+		public static List<LangKeyType> values() {
+			final List<LangKeyType> values = new ArrayList<>();
+			values.add(LOADING_CHUNKS);
+			values.add(CHUNKS_LOADED);
+			values.add(CHUNK_LOAD_ERROR);
+			values.add(DELETE_OLD);
+			values.add(UNZIP);
+			values.add(LOADING_WORLD);
+			values.add(FILE_ERROR);
+			values.add(CONVERTING);
+			return values;
+		}
+	}
+	
 	public static class Lang {
 		
 		protected static String		    type		           = "lang";
@@ -224,6 +268,8 @@ public class LangKeyType {
 		values.addAll(Main.values());
 		values.addAll(Log.values());
 		values.addAll(Socket.values());
+		values.addAll(Cmd.values());
+		values.addAll(World.values());
 		return values;
 	}
 	

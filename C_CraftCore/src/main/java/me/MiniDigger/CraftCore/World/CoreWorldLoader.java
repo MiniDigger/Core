@@ -40,9 +40,14 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.World.WorldLoader;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 public class CoreWorldLoader implements WorldLoader {
 	
@@ -50,11 +55,11 @@ public class CoreWorldLoader implements WorldLoader {
 	public World loadWorld(final WorldCreator creator) {
 		final CraftServer server = (CraftServer) org.bukkit.Bukkit.getServer();
 		if (creator == null) {
-			throw new IllegalArgumentException("Creator may not be null");
+			throw new IllegalArgumentException(_._(LangKeyType.Cmd.CANNOT_NULL, "Creator"));
 		}
 		
 		final String name = creator.name();
-		Core.getCore().getInstance().info("Loading world '" + name + "'");
+		_.log(LogLevel.INFO, LangKeyType.World.LOADING_WORLD, name);
 		ChunkGenerator generator = creator.generator();
 		final File folder = new File(server.getWorldContainer(), name);
 		final World world = server.getWorld(name);
@@ -66,7 +71,7 @@ public class CoreWorldLoader implements WorldLoader {
 		}
 		
 		if ((folder.exists()) && (!folder.isDirectory())) {
-			throw new IllegalArgumentException("File exists with the name '" + name + "' and isn't a folder");
+			throw new IllegalArgumentException(_._(LangKeyType.World.FILE_ERROR, name));
 		}
 		
 		if (generator == null) {
@@ -75,7 +80,7 @@ public class CoreWorldLoader implements WorldLoader {
 		
 		final Convertable converter = new net.minecraft.server.v1_8_R1.WorldLoaderServer(server.getWorldContainer());
 		if (converter.isConvertable(name)) {
-			Core.getCore().getInstance().info("Converting world '" + name + "'");
+			_.log(LogLevel.INFO, LangKeyType.World.CONVERTING, name);
 			converter.convert(name, new ConvertProgressUpdater(server.getServer()));
 		}
 		
@@ -92,7 +97,7 @@ public class CoreWorldLoader implements WorldLoader {
 		} while (used);
 		final boolean hardcore = false;
 		dimension = dimension + 3;
-		Core.getCore().getInstance().info("Created world with dimension : " + dimension);
+		_.log(LogLevel.INFO, LangKeyType.World.CREATED, dimension);
 		
 		// final WorldServer internal = new WorldServer(server.getServer(), new
 		// net.minecraft.server.v1_8_R1.ServerNBTManager(server.getWorldContainer(),
@@ -137,8 +142,17 @@ public class CoreWorldLoader implements WorldLoader {
 		
 		for (final Entity e : internal.getWorld().getEntities()) {
 			e.remove();
-			System.out.println("remove " + e.getType());
 		}
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final Entity e : internal.getWorld().getEntities()) {
+					e.remove();
+				}
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 10 * 20);
 		
 		return internal.getWorld();
 	}
