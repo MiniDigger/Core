@@ -46,7 +46,7 @@ public class KitCommands {
 		        .send(args.getSender());
 	}
 	
-	@Command(name = "kit.create", permission = "kit.create", usage = "", description = "Macht alles mit Kits", min = 1, consol = false)
+	@Command(name = "kit.create", permission = "kit.create", usage = "", description = "Erstellt ein neues Kit", min = 1, consol = false)
 	public void create(final CommandArgs args) {
 		if (Core.getCore().getKitHandler().getKit(args.getArgs()[0]) != null) {
 			args.getUser().sendMessage(Prefix.KIT.getPrefix().then("Diese Kit gibt es bereits!").color(ChatColor.RED));

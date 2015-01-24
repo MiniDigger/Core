@@ -36,7 +36,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
-import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.User.User;

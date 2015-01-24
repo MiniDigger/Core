@@ -215,28 +215,37 @@ public class StatsCommands {
 		}
 	}
 	
-	@Command(name = "stats.get", description = "Zeigt Stats an", usage = "stats get <spieler> <type>", permission = "stats.get")
+	@Command(name = "stats.get", description = "Zeigt Stats an", usage = "stats get <type> [spieler]", permission = "stats.get", min = 1, max = 2)
 	public void get(final CommandArgs args) {
 		User other;
-		try {
-			other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[0]).getUniqueId());
-		} catch (final Exception ex) {
-			if (args.isUser()) {
-				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[0]).color(ChatColor.RED));
-				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats get <spieler> <type>"));
-			} else {
-				args.getSender().sendMessage("[Stats] Unbekannter Spieler: " + args.getArgs()[0]);
-				args.getSender().sendMessage("[Stats] Richtige Benutzung: stats get <spieler> <type>");
+		if (args.getArgs().length == 2) {
+			if (!args.getUser().hasPermission("stats.get.other")) {
+				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Du darfst dir nicht die Stats von anderen Spielern angucken!").color(ChatColor.RED));
+				return;
 			}
-			return;
+			
+			try {
+				other = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[1]).getUniqueId());
+			} catch (final Exception ex) {
+				if (args.isUser()) {
+					args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter Spieler: " + args.getArgs()[1]).color(ChatColor.RED));
+					args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats get <spieler> <type>"));
+				} else {
+					args.getSender().sendMessage("[Stats] Unbekannter Spieler: " + args.getArgs()[1]);
+					args.getSender().sendMessage("[Stats] Richtige Benutzung: stats get <spieler> <type>");
+				}
+				return;
+			}
+		} else {
+			other = args.getUser();
 		}
 		
 		StatsType type;
 		try {
-			type = StatsType.valueOf(args.getArgs()[1]);
+			type = StatsType.valueOf(args.getArgs()[0]);
 		} catch (final Exception ex) {
 			if (args.isUser()) {
-				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[1]).color(ChatColor.RED));
+				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannter StatsType: " + args.getArgs()[0]).color(ChatColor.RED));
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Richtige Benutzung: stats get <spieler> <type>"));
 			} else {
 				args.getSender().sendMessage("[Stats] Unbekannter StatsType: " + args.getArgs()[1]);
@@ -274,6 +283,9 @@ public class StatsCommands {
 		int top = 5;
 		try {
 			top = Integer.parseInt(args.getArgs()[1]);
+			if (top >= 10) {
+				top = 10;
+			}
 		} catch (final Exception ex) {
 			if (args.isUser()) {
 				args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Unbekannte Zahl: " + args.getArgs()[1]).color(ChatColor.RED));
