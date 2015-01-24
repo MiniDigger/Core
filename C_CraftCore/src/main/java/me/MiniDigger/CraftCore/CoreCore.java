@@ -30,6 +30,7 @@ import me.MiniDigger.Core.Booster.BoosterHandler;
 import me.MiniDigger.Core.Chat.ChatHandler;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Dependencies.DependencyHanlder;
+import me.MiniDigger.Core.Error.ErrorHandler;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Holo.HoloHandler;
 import me.MiniDigger.Core.Item.ItemHandler;
@@ -80,8 +81,8 @@ import me.MiniDigger.CraftCore.Bar.CoreBarHandler;
 import me.MiniDigger.CraftCore.Block.CoreBuildHandler;
 import me.MiniDigger.CraftCore.Booster.CoreBoosterHandler;
 import me.MiniDigger.CraftCore.Chat.CoreChatHandler;
-import me.MiniDigger.CraftCore.Command.CoreCommandHandler;
 import me.MiniDigger.CraftCore.Dependencies.CoreDependencyHandler;
+import me.MiniDigger.CraftCore.Error.CoreErrorHandler;
 import me.MiniDigger.CraftCore.Game.CoreGameHandler;
 import me.MiniDigger.CraftCore.Holo.CoreHoloHandler;
 import me.MiniDigger.CraftCore.Item.CoreItemHandler;
@@ -165,6 +166,7 @@ public class CoreCore extends Core {
 	private LangHandler	       langHandler;
 	private NametagTeamHandler	teamHandler;
 	private DependencyHanlder	dependencyHanlder;
+	private ErrorHandler	   errorHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -468,6 +470,14 @@ public class CoreCore extends Core {
 			dependencyHanlder = new CoreDependencyHandler();
 		}
 		return dependencyHanlder;
+	}
+	
+	@Override
+	public ErrorHandler getErrorHandler() {
+		if (errorHandler == null) {
+			errorHandler = new CoreErrorHandler();
+		}
+		return errorHandler;
 	}
 	
 	/***********/

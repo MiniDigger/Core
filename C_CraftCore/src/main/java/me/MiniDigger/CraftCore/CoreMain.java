@@ -255,6 +255,7 @@ public class CoreMain extends JavaPlugin implements Main {
 					return true;
 				}
 			});
+			Core.getCore().getErrorHandler().init();
 			final Date d2 = new Date();
 			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
