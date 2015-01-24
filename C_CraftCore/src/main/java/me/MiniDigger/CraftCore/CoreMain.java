@@ -240,7 +240,7 @@ public class CoreMain extends JavaPlugin implements Main {
 				
 				@Override
 				public void uncaughtException(final Thread t, final Throwable e) {
-					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", e.getMessage());
+					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", e.getMessage() == null ? "<msg null>" : e.getMessage());
 					_.stacktrace(LogLevel.DEBUG, e);
 				}
 			});
