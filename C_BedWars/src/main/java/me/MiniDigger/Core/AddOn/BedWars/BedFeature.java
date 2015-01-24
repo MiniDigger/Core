@@ -164,8 +164,16 @@ public class BedFeature extends CoreFeature {
 			if (e.getBlock().getLocation().equals(bed) || e.getBlock().getLocation().add(1, 0, 0).equals(bed) || e.getBlock().getLocation().add(-1, 0, 0).equals(bed)
 			        || e.getBlock().getLocation().add(0, 0, 1).equals(bed) || e.getBlock().getLocation().add(0, 0, -1).equals(bed)) {
 				if (teamName != null) {
-					getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed von Team ").then(teamName).then(" wurde zerstört!"));
-					bed = null;
+					final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+					final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+					final Team t = tf.getTeam(user);
+					if (t.getName().equalsIgnoreCase(teamName)) {
+						e.setCancelled(true);
+						return;
+					} else {
+						getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed von Team ").then(teamName).then(" wurde zerstört!"));
+						bed = null;
+					}
 				} else {
 					getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed wurde zerstört!"));
 					bed = null;
