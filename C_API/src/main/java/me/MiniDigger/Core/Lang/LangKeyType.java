@@ -27,9 +27,9 @@ public class LangKeyType {
 	
 	public static class Achievment {
 		
-		protected static String		type		= "achievment";
-		public static LangKeyType	MSG_JOIN	= new LangKeyType("msg_join", type, "You have joined %0% times");
-		public static LangKeyType	TITLE_JOIN	= new LangKeyType("title_join", type, "Joins");
+		protected static String		    type		= "achievment";
+		public static final LangKeyType	MSG_JOIN	= new LangKeyType("msg_join", type, "You have joined %0% times");
+		public static final LangKeyType	TITLE_JOIN	= new LangKeyType("title_join", type, "Joins");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -93,7 +93,7 @@ public class LangKeyType {
 		public static final LangKeyType	ERROR_NO_LANGS		   = new LangKeyType("no_langs", type, "No langs loaded!");
 		public static final LangKeyType	ERROR_SAVE		       = new LangKeyType("error_save", type, "Error while saving lang to file `%0%`");
 		public static final LangKeyType	ERROR_SET		       = new LangKeyType("error_set", type, "Unknown language `%0%`");
-		public static LangKeyType		LOAD		           = new LangKeyType("load", type, "Lang `%0%`, translated by `%1%`, loaded!");
+		public static final LangKeyType	LOAD		           = new LangKeyType("load", type, "Lang `%0%`, translated by `%1%`, loaded!");
 		public static final LangKeyType	SET		               = new LangKeyType("set", type, "Your language was changed to `%0%`!");
 		public static final LangKeyType	WARNING_NOT_MATCHED		= new LangKeyType("warning_not_matched", type, "Could not find lang key for key `%0%` in file `%1%`");
 		public static final LangKeyType	WARNING_NOT_TRANSLATED	= new LangKeyType("warning_not_translated", type,
@@ -116,27 +116,47 @@ public class LangKeyType {
 		}
 	}
 	
+	public static class Log {
+		
+		protected static String		    type	= "log";
+		public static final LangKeyType	CATCHED	= new LangKeyType("catched", type, "Catched an error(`%0%`): `%1%`");
+		
+		public static List<LangKeyType> values() {
+			final List<LangKeyType> values = new ArrayList<>();
+			values.add(CATCHED);
+			return values;
+		}
+	}
+	
 	public static class Main {
 		
-		protected static String		type		         = "main";
-		public static LangKeyType	ACTIVATE		     = new LangKeyType("activate", type, "Activating `%0%` by `%1%`");
-		public static LangKeyType	ACTIVATE_HANDLER		= new LangKeyType("activate_handler", type, "Activateing handler...");
-		public static LangKeyType	ACTIVATE_SOCKET		 = new LangKeyType("activate_socket", type, "Activating sockets...");
-		public static LangKeyType	ACTIVATED		     = new LangKeyType("activated", type, "Activated! (`%0%ms`)");
-		public static LangKeyType	APPLY_FIXES		     = new LangKeyType("apply_fixes", type, "Appling fixes...");
-		public static LangKeyType	CHECK_DONE		     = new LangKeyType("check_done", type, "Check done (`%0%ms`)");
-		public static LangKeyType	CHECK_LICENCE		 = new LangKeyType("check_licence", type, "Checking licence...");
-		public static LangKeyType	CHECK_LICENCE_FAILED	= new LangKeyType("check_licence_failed", type, "Licence check FAILED! (`%0%ms`)");
-		public static LangKeyType	CHECK_LICENCE_PASSED	= new LangKeyType("check_licence_passed", type, "Licence check passed! (`%0%ms`)");
-		public static LangKeyType	CHECK_UPDATES		 = new LangKeyType("check_licence", type, "Checking updater...");
-		public static LangKeyType	ENABLE_LIBS		     = new LangKeyType("enable_libs", type, "Enabling external dependencies...");
-		public static LangKeyType	ENABLE_LOGGING		 = new LangKeyType("enable_logging", type, "Enabling logging...");
-		public static LangKeyType	ERROR		         = new LangKeyType("error", type, "Error: `%0%`");
-		public static LangKeyType	LOAD_DATA		     = new LangKeyType("load_data", type, "Load data...");
-		public static LangKeyType	REGISTER_COMMANDS		= new LangKeyType("register_commands", type, "Registering commands...");
-		public static LangKeyType	REGISTER_LISTENER		= new LangKeyType("register_listener", type, "Registering listener..");
-		public static LangKeyType	SAVE_CONFIG		     = new LangKeyType("save_config", type, "Saving config...");
-		public static LangKeyType	SEARCH_GAME		     = new LangKeyType("search_game", type, "Searching main game...");
+		protected static String		    type		         = "main";
+		public static final LangKeyType	ACTIVATE		     = new LangKeyType("activate", type, "Activating `%0%` by `%1%`");
+		public static final LangKeyType	ACTIVATE_HANDLER		= new LangKeyType("activate_handler", type, "Activateing handler...");
+		public static final LangKeyType	ACTIVATE_SOCKET		 = new LangKeyType("activate_socket", type, "Activating sockets...");
+		public static final LangKeyType	ACTIVATED		     = new LangKeyType("activated", type, "Activated! (`%0%ms`)");
+		public static final LangKeyType	APPLY_FIXES		     = new LangKeyType("apply_fixes", type, "Appling fixes...");
+		public static final LangKeyType	CHECK_DONE		     = new LangKeyType("check_done", type, "Check done (`%0%ms`)");
+		public static final LangKeyType	CHECK_LICENCE		 = new LangKeyType("check_licence", type, "Checking licence...");
+		public static final LangKeyType	CHECK_LICENCE_FAILED	= new LangKeyType("check_licence_failed", type, "Licence check FAILED! (`%0%ms`)");
+		public static final LangKeyType	CHECK_LICENCE_PASSED	= new LangKeyType("check_licence_passed", type, "Licence check passed! (`%0%ms`)");
+		public static final LangKeyType	CHECK_UPDATES		 = new LangKeyType("check_licence", type, "Checking updater...");
+		public static final LangKeyType	ENABLE_LIBS		     = new LangKeyType("enable_libs", type, "Enabling external dependencies...");
+		public static final LangKeyType	ENABLE_LOGGING		 = new LangKeyType("enable_logging", type, "Enabling logging...");
+		public static final LangKeyType	ERROR		         = new LangKeyType("error", type, "Error: `%0%`");
+		public static final LangKeyType	LOAD_DATA		     = new LangKeyType("load_data", type, "Load data...");
+		public static final LangKeyType	REGISTER_COMMANDS		= new LangKeyType("register_commands", type, "Registering commands...");
+		public static final LangKeyType	REGISTER_LISTENER		= new LangKeyType("register_listener", type, "Registering listener...");
+		public static final LangKeyType	SAVE_CONFIG		     = new LangKeyType("save_config", type, "Saving config...");
+		public static final LangKeyType	SEARCH_GAME		     = new LangKeyType("search_game", type, "Searching main game...");
+		public static final LangKeyType	DEACTIVATE		     = new LangKeyType("deactivate", type, "Deactivating");
+		public static final LangKeyType	UNREGISTER_LISTENER		= new LangKeyType("unregister_listener", type, "Unregister listener...");
+		public static final LangKeyType	STOP_TASKS		     = new LangKeyType("stop_tasks", type, "Stopping tasks...");
+		public static final LangKeyType	DEACTIVATE_HANDLER		= new LangKeyType("deactivate_handler", type, "Deaktivating handlers...");
+		public static final LangKeyType	DEACTIVATED		     = new LangKeyType("deactivated", type, "Deactivated!");
+		public static final LangKeyType	NOT_LOADED		     = new LangKeyType("not_loaded", type, "`%0%` not loaded!");
+		public static final LangKeyType	LOAD		         = new LangKeyType("load", type, "Loading `%0%`");
+		public static final LangKeyType	LISTENER_NULL		 = new LangKeyType("listener_null", type, "A listener was null! Skipping...");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -156,27 +176,38 @@ public class LangKeyType {
 			values.add(SEARCH_GAME);
 			values.add(ENABLE_LOGGING);
 			values.add(ACTIVATE_SOCKET);
+			values.add(DEACTIVATE);
+			values.add(UNREGISTER_LISTENER);
+			values.add(STOP_TASKS);
+			values.add(DEACTIVATE_HANDLER);
+			values.add(DEACTIVATED);
+			values.add(LOAD);
+			values.add(LISTENER_NULL);
 			return values;
 		}
 	}
 	
 	public static class Socket {
 		
-		protected static String		type	= "socket";
-		public static LangKeyType	START	= new LangKeyType("start", type, "Starting socket server...");
-		public static LangKeyType	START_C	= new LangKeyType("start-c", type, "Starting socket client...");
-		public static LangKeyType	STARTED	= new LangKeyType("started", type, "Socket server started!");
+		protected static String		    type	= "socket";
+		public static final LangKeyType	START	= new LangKeyType("start", type, "Starting socket server...");
+		public static final LangKeyType	START_C	= new LangKeyType("start-c", type, "Starting socket client...");
+		public static final LangKeyType	STARTED	= new LangKeyType("started", type, "Socket server started!");
+		public static final LangKeyType	STOP	= new LangKeyType("stop", type, "Stopping socket server...");
+		public static final LangKeyType	STOP_C	= new LangKeyType("stop-c", type, "Stopping socket client...");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
 			values.add(START);
 			values.add(START_C);
 			values.add(STARTED);
+			values.add(STOP);
+			values.add(STOP_C);
 			return values;
 		}
 	}
 	
-	public static LangKeyType valueOf(final String s) {
+	public static final LangKeyType valueOf(final String s) {
 		for (final LangKeyType type : values()) {
 			if (type.getFullType().equalsIgnoreCase(s)) {
 				return type;
@@ -190,6 +221,9 @@ public class LangKeyType {
 		values.addAll(Lang.values());
 		values.addAll(Achievment.values());
 		values.addAll(AddOn.values());
+		values.addAll(Main.values());
+		values.addAll(Log.values());
+		values.addAll(Socket.values());
 		return values;
 	}
 	

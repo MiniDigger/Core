@@ -8,6 +8,10 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 import me.MiniDigger.Core.Error.ErrorHandler;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 public class CoreErrorHandler implements ErrorHandler {
 	
@@ -19,18 +23,17 @@ public class CoreErrorHandler implements ErrorHandler {
 			
 			@Override
 			public void flush() {
-				System.out.println("FLUSH");
 			}
 			
 			@Override
 			public void close() throws SecurityException {
-				System.out.println("CLOSE");
 			}
 			
 			@Override
 			public void publish(LogRecord record) {
 				if (record.getLevel() == Level.SEVERE) {
-					System.out.println("CATCH: " + record.getLevel().toString() + " " + record.getMessage());
+					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", record.getThrown().getMessage());
+					_.stacktrace(LogLevel.DEBUG, record.getThrown());
 				}
 			}
 			

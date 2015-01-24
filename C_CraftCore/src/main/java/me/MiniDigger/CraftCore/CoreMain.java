@@ -240,8 +240,8 @@ public class CoreMain extends JavaPlugin implements Main {
 				
 				@Override
 				public void uncaughtException(final Thread t, final Throwable e) {
-					System.out.println("something got thrwon:  " + e.getMessage());
-					e.printStackTrace();
+					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", e.getMessage());
+					_.stacktrace(LogLevel.DEBUG, e);
 				}
 			});
 			
@@ -250,7 +250,8 @@ public class CoreMain extends JavaPlugin implements Main {
 				@Override
 				public boolean isLoggable(final LogRecord record) {
 					if (record.getThrown() != null) {
-						System.out.println("soemtinf got thrown: " + record.getThrown().getMessage());
+						_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", record.getThrown().getMessage());
+						_.stacktrace(LogLevel.DEBUG, record.getThrown());
 					}
 					return true;
 				}
@@ -299,47 +300,53 @@ public class CoreMain extends JavaPlugin implements Main {
 		if (update) {
 			return;
 		}
-		info("Deaktivere...");
 		
-		info("Stoppe Client...");
+		_.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE);
+		
+		_.log(LogLevel.INFO, LangKeyType.Socket.STOP_C);
 		try {
 			((CoreSocketClient) Core.getCore().getSocketHandler().getClient()).close();
 		} catch (final Exception ex) {
-			error("Fehler: " + ex.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		info("Stoppe Server...");
+		_.log(LogLevel.INFO, LangKeyType.Socket.STOP);
 		try {
 			((CoreSocketServer) Core.getCore().getSocketHandler().getServer()).stop(30);
 		} catch (final Exception ex) {
-			error("Fehler: " + ex.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		info("Unregister Listener...");
+		_.log(LogLevel.INFO, LangKeyType.Main.UNREGISTER_LISTENER);
 		try {
 			HandlerList.unregisterAll(this);
 		} catch (final Exception ex) {
-			error("Fehler: " + ex.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		info("Stoppe Tasks...");
+		_.log(LogLevel.INFO, LangKeyType.Main.STOP_TASKS);
 		try {
-			Bukkit.getScheduler().cancelAllTasks();
+			Bukkit.getScheduler().cancelTasks(this);
 		} catch (final Exception ex) {
-			error("Fehler: " + ex.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		info("Deaktiviere Handler...");
+		_.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE_HANDLER);
 		try {
 			disableHandler();
 		} catch (final Exception ex) {
-			error("Fehler: " + ex.getMessage());
+			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		core.disable();
 		core = null;
 		
-		info("Deaktiviert!");
+		_.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATED);
 	}
 	
 	private void disableHandler() {
@@ -401,7 +408,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		        Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
 		for (final Listener listener : listeners) {
 			if (listener == null) {
-				System.out.println("A listener was null!");
+				_.log(LogLevel.DEBUG, LangKeyType.Main.LISTENER_NULL);
 				continue;
 			}
 			Bukkit.getPluginManager().registerEvents(listener, this);
@@ -409,21 +416,21 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void loadStuff() {
-		info("Lade Stats...");
+		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Stats");
 		if (!Core.getCore().getStatsHandler().loadAll()) {
-			error("Stats wurden nicht geladen!");
+			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Stats");
 		}
-		info("Lade User...");
+		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "User");
 		if (!Core.getCore().getUserHandler().loadAll()) {
-			error("User wurden nicht geladen!");
+			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "User");
 		}
-		info("Lade Clients...");
+		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Clients");
 		if (!Core.getCore().getClientHandler().loadAll()) {
-			error("Clients wurden nicht geladen!");
+			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Clients");
 		}
-		info("Lade Kits...");
+		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Kits");
 		if (!Core.getCore().getKitHandler().loadAll()) {
-			error("Kits wurden nicht geladen!");
+			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Kits");
 		}
 	}
 	
