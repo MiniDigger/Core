@@ -25,6 +25,7 @@ import java.util.UUID;
 
 import org.bukkit.ChatColor;
 
+import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Game.Game;
 
 public interface Team {
@@ -110,5 +111,10 @@ public interface Team {
 	 *            the new color to set
 	 */
 	void setColor(final ChatColor color);
+	
+	/**
+	 * @return the chat channel
+	 */
+	ChatChannel getChannel();
 	
 }

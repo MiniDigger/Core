@@ -32,7 +32,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatListener;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 
 public class CoreChatListener implements ChatListener {
 	
@@ -56,8 +61,25 @@ public class CoreChatListener implements ChatListener {
 		if (Core.getCore().getSquadHandler().getSquad(user.getUUID()) != null) {
 			Core.getCore().getSquadHandler().getSquad(user.getUUID()).chat(user, e.getChatMessage());
 		} else {
-			Core.getCore().getChatHandler().handleChat(user, e.getChatMessage());
+			boolean b = false;
+			for (Game game : Core.getCore().getGameHandler().getGames(user)) {
+				if (game != null) {
+					final TeamFeature tf = (TeamFeature) game.getPhase().getFeature(FeatureType.TEAM);
+					if (tf != null) {
+						final Team t = tf.getTeam(user);
+						if (t != null) {
+							t.getChannel().chat(user, e.getChatMessage());
+						}
+					}
+				}
+				
+			}
+			if (!b) {
+				Core.getCore().getChatHandler().handleChat(user, e.getChatMessage());
+			}
 		}
+		
+		e.getPlayer().closeInventory();
 		
 		final AsyncPlayerChatEvent event = new AsyncPlayerChatEvent(true, user.getPlayer(), e.getChatMessage(), new HashSet<Player>(Core.getCore().getUserHandler()
 		        .getOnlinePlayers()));
@@ -70,8 +92,5 @@ public class CoreChatListener implements ChatListener {
 				Bukkit.getPluginManager().callEvent(event); // für bender
 			}
 		}.runTaskAsynchronously(Core.getCore().getInstance());
-		
-		e.getPlayer().closeInventory();
 	}
-	
 }
