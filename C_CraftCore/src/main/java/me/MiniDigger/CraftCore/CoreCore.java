@@ -612,7 +612,7 @@ public class CoreCore extends Core {
 	
 	/* Setter */
 	@Override
-	public void setCommandHandler(CommandHandler c) {
+	public void setCommandHandler(final CommandHandler c) {
 		commandHandler = c;
 	}
 }

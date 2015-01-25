@@ -34,7 +34,6 @@ import org.bukkit.plugin.Plugin;
 import me.MiniDigger.Core.Command.BukkitCommand;
 import me.MiniDigger.Core.Command.BukkitCompleter;
 import me.MiniDigger.Core.Lang.LangKeyType;
-import me.MiniDigger.Core.Lang.LogLevel;
 
 import me.MiniDigger.CraftCore.Lang._;
 

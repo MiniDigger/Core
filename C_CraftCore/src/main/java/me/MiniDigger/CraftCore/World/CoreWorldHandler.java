@@ -100,7 +100,7 @@ public class CoreWorldHandler implements WorldHandler {
 		try {
 			final MapData data = Core.getCore().getMapHandler().getMap(name);
 			final int i = data.loadChunks();
-			_.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i);
+			_.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i + "");
 		} catch (final Exception ex) {
 			_.log(LogLevel.ERROR, LangKeyType.World.CHUNK_LOAD_ERROR, ex.getMessage());
 			_.stacktrace(LogLevel.DEBUG, ex);

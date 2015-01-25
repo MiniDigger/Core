@@ -44,7 +44,7 @@ public class CoreTeam implements Team {
 	private int	                      size;
 	private final List<UUID>	      players	= new ArrayList<UUID>();
 	private final Map<String, String>	data	= new HashMap<>();
-	private ChatChannel	              channel;
+	private final ChatChannel	      channel;
 	
 	public CoreTeam(final int teamSize) {
 		size = teamSize;

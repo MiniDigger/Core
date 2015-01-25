@@ -213,7 +213,7 @@ public abstract class Core {
 	
 	public abstract ItemUtil getItemUtil();
 	
-	public abstract void setCommandHandler(CommandHandler c);
+	public abstract void setCommandHandler(final CommandHandler c);
 	
 	public abstract ErrorHandler getErrorHandler();
 }

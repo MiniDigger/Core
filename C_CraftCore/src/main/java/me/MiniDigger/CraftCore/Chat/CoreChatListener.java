@@ -61,8 +61,8 @@ public class CoreChatListener implements ChatListener {
 		if (Core.getCore().getSquadHandler().getSquad(user.getUUID()) != null) {
 			Core.getCore().getSquadHandler().getSquad(user.getUUID()).chat(user, e.getChatMessage());
 		} else {
-			boolean b = false;
-			for (Game game : Core.getCore().getGameHandler().getGames(user)) {
+			final boolean b = false;
+			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
 				if (game != null) {
 					final TeamFeature tf = (TeamFeature) game.getPhase().getFeature(FeatureType.TEAM);
 					if (tf != null) {

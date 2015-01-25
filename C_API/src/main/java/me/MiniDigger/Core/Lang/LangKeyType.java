@@ -101,11 +101,10 @@ public class LangKeyType {
 	
 	public static class SQL {
 		
-		protected static String		    type		 = "sql";
-		public static final LangKeyType	QUERY_FAILED	= new LangKeyType("query_failed", type, "ResultSet returned by query can not be null!");
-		public static final LangKeyType	CREATE_TABLE	= new LangKeyType("create_table", type, "Creating table for `%0%`");
+		protected static String		    type		        = "sql";
+		public static final LangKeyType	QUERY_FAILED		= new LangKeyType("query_failed", type, "ResultSet returned by query can not be null!");
+		public static final LangKeyType	CREATE_TABLE		= new LangKeyType("create_table", type, "Creating table for `%0%`");
 		public static final LangKeyType	CREATE_TABLE_FAILED	= new LangKeyType("create_table_failed", type, "Didn't created table!");
-		
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();

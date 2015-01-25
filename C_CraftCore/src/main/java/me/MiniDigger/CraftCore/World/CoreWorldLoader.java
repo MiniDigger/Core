@@ -97,7 +97,7 @@ public class CoreWorldLoader implements WorldLoader {
 		} while (used);
 		final boolean hardcore = false;
 		dimension = dimension + 3;
-		_.log(LogLevel.INFO, LangKeyType.World.CREATED, dimension);
+		_.log(LogLevel.INFO, LangKeyType.World.CREATED, dimension + "");
 		
 		// final WorldServer internal = new WorldServer(server.getServer(), new
 		// net.minecraft.server.v1_8_R1.ServerNBTManager(server.getWorldContainer(),

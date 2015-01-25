@@ -64,7 +64,7 @@ public class CoreCommandHandler implements CommandHandler {
 	private CommandMap	                           map;
 	private final Plugin	                       plugin;
 	
-	/* Core Start +*/
+	/* Core Start + */
 	
 	@Override
 	public void unregister(final String command) {
@@ -108,7 +108,7 @@ public class CoreCommandHandler implements CommandHandler {
 	
 	/* Core End */
 	
-	public CoreCommandHandler(Map<String, String> relocations) {
+	public CoreCommandHandler(final Map<String, String> relocations) {
 		plugin = Core.getCore().getInstance();
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
 			final SimplePluginManager manager = (SimplePluginManager) plugin.getServer().getPluginManager();

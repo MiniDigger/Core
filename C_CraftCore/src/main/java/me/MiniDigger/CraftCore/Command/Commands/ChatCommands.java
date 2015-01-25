@@ -64,7 +64,7 @@ public class ChatCommands {
 			return;
 		}
 		
-		if(!args.getUser().hasPermission(ch.getHearPerm())){
+		if (!args.getUser().hasPermission(ch.getHearPerm())) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Du hast keine Permissions diesen Channel zu betreten!").color(ChatColor.RED));
 			return;
 		}
@@ -132,7 +132,7 @@ public class ChatCommands {
 			return;
 		}
 		
-		if(!args.getUser().hasPermission(ch.getSpeakPerm())){
+		if (!args.getUser().hasPermission(ch.getSpeakPerm())) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Du hast keine Permissions in diesen Channel zu reden!").color(ChatColor.RED));
 			return;
 		}

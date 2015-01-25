@@ -363,7 +363,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void registerCommands() {
-		Map<String, String> reloc = new HashMap<String, String>();
+		final Map<String, String> reloc = new HashMap<String, String>();
 		reloc.put("pex", "coreperm");
 		Core.getCore().setCommandHandler(new CoreCommandHandler(reloc));
 		
