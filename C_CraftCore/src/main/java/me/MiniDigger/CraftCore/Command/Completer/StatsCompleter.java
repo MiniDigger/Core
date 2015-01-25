@@ -116,18 +116,18 @@ public class StatsCompleter {
 	public List<String> getC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
-		if (args.getArgs().length == 1) {
+		if (args.getArgs().length == 2) {
 			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			
-			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
-		} else if (args.getArgs().length == 2) {
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+		} else if (args.getArgs().length == 1) {
 			for (final StatsType t : StatsType.values()) {
 				result.add(t.getGame() + "." + t.getStats());
 			}
 			
-			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else {
 			return new ArrayList<String>();
 		}
