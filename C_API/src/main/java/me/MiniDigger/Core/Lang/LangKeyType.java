@@ -280,6 +280,23 @@ public class LangKeyType {
 			
 			public static List<LangKeyType> values() {
 				final List<LangKeyType> values = new ArrayList<>();
+				values.add(START);
+				return values;
+			}
+		}
+		
+		public static class OneInTheChamber {
+			
+			protected static String			type	= "game.oneinthechamber";
+			public static final LangKeyType	START1	= new LangKeyType("start1", type, "You have only one arrow left!");
+			public static final LangKeyType	START2	= new LangKeyType("start2", type, "Kill your enemies to earn new ones!");
+			public static final LangKeyType	START3	= new LangKeyType("start1", type, "You only have five lives!");
+			
+			public static List<LangKeyType> values() {
+				final List<LangKeyType> values = new ArrayList<>();
+				values.add(START1);
+				values.add(START2);
+				values.add(START3);
 				return values;
 			}
 		}
@@ -290,6 +307,7 @@ public class LangKeyType {
 			values.add(WON);
 			values.add(END);
 			values.addAll(UltraSpleef.values());
+			values.addAll(OneInTheChamber.values());
 			return values;
 		}
 	}
