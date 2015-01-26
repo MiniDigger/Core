@@ -38,10 +38,14 @@ import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -104,6 +108,20 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
+	public void broadCastMessage(LangKeyType type, MsgType msg, String... args) {
+		for (final UUID id : users) {
+			if (Bukkit.getPlayer(id) != null) {
+				_.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
+			}
+		}
+		for (final UUID id : specs) {
+			if (Bukkit.getPlayer(id) != null) {
+				_.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
+			}
+		}
+	}
+	
+	@Override
 	public void broadCastSound(final Sound sound, final float volume, final float pitch) {
 		for (final UUID id : users) {
 			Bukkit.getPlayer(id).playSound(Bukkit.getPlayer(id).getLocation(), sound, volume, pitch);
@@ -126,6 +144,11 @@ public class CoreGame implements Game {
 	@Override
 	public FancyMessage getPrefix() {
 		return Prefix.getByGameType(getType()).getPrefix();
+	}
+	
+	@Override
+	public Prefix getGamePrefix() {
+		return Prefix.getByGameType(getType());
 	}
 	
 	@Override

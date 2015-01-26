@@ -58,7 +58,7 @@ public class LangKeyType {
 		public static final LangKeyType	ERROR_SAVE_CONFIG		= new LangKeyType("error_save_config", type, "Error while saving ConfigFile for AddOn `%0%`");
 		public static final LangKeyType	FOUND_UPDATE		 = new LangKeyType("found_update", type, "Found update for AddOn `%0%`: `%1%` -> `%2%`");
 		public static final LangKeyType	LOAD		         = new LangKeyType("load", type, "Loading Addon `%0%` v`%1%` by `%2%`");
-		public static final LangKeyType	SHOW_URL		     = new LangKeyType("load", type, "Url for addon `%0%`: `%1%`");
+		public static final LangKeyType	SHOW_URL		     = new LangKeyType("show_url", type, "Url for addon `%0%`: `%1%`");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -266,6 +266,34 @@ public class LangKeyType {
 		}
 	}
 	
+	public static class Game {
+		
+		protected static String		    type	= "game";
+		public static final LangKeyType	WIN		= new LangKeyType("win", type, "YOu have won!");
+		public static final LangKeyType	WON		= new LangKeyType("won", type, "The player `%0%` has won!");
+		public static final LangKeyType	END		= new LangKeyType("end", type, "The game has ended!");
+		
+		public static class UltraSpleef {
+			
+			protected static String			type	= "game.ultraspleef";
+			public static final LangKeyType	START	= new LangKeyType("start", type, "Use your GravityGun to move blocks and throw your enemies!");
+			
+			public static List<LangKeyType> values() {
+				final List<LangKeyType> values = new ArrayList<>();
+				return values;
+			}
+		}
+		
+		public static List<LangKeyType> values() {
+			final List<LangKeyType> values = new ArrayList<>();
+			values.add(WIN);
+			values.add(WON);
+			values.add(END);
+			values.addAll(UltraSpleef.values());
+			return values;
+		}
+	}
+	
 	public static final LangKeyType valueOf(final String s) {
 		for (final LangKeyType type : values()) {
 			if (type.getFullType().equalsIgnoreCase(s)) {
@@ -286,6 +314,7 @@ public class LangKeyType {
 		values.addAll(Cmd.values());
 		values.addAll(World.values());
 		values.addAll(SQL.values());
+		values.addAll(Game.values());
 		return values;
 	}
 	

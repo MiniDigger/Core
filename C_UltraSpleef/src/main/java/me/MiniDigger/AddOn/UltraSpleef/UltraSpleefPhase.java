@@ -26,6 +26,8 @@ import org.bukkit.WeatherType;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
@@ -92,7 +94,7 @@ public class UltraSpleefPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Benutze deine GravityGun um die Blöcke zu bewegen und deine Feinde runterzuschubsen!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.UltraSpleef.START, MsgType.NORMAL);
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);

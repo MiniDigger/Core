@@ -20,15 +20,15 @@
  */
 package me.MiniDigger.AddOn.UltraSpleef;
 
-import org.bukkit.ChatColor;
-
-import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
+import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
@@ -70,21 +70,13 @@ public class UltraSpleefGame extends CoreGame {
 		if (winner != null && winner.length == 1) {
 			final User w = winner[0];
 			if (w != null) {
+				_.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
+				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
 				
-				w.sendMessage(getPrefix().then("Du hast gewonnen!").color(ChatColor.GOLD));
-				Core.getCore()
-				        .getInstance()
-				        .broadcast(
-				                getPrefix().then("Der Spieler ").color(ChatColor.GOLD).then(w.getDisplayName()).color(ChatColor.AQUA).then(" hat gewonnen!")
-				                        .color(ChatColor.GOLD));
 				leave(w);
-			} else {
-				System.out.println("winner null");
 			}
-		} else {
-			System.out.println("no winner?! " + winner.length);
 		}
-		Core.getCore().getInstance().broadcast(getPrefix().then("Das Spiel ist vorbei!").color(ChatColor.GOLD));
+		broadCastMessage(LangKeyType.Game.END, MsgType.IMPORTANT);
 		super.end(winner);
 	}
 	

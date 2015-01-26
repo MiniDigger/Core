@@ -27,7 +27,10 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 
 import me.MiniDigger.Core.Error.Error;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import mkremins.fanciful.FancyMessage;
@@ -107,6 +110,7 @@ public interface Game {
 	 * 
 	 * @return The chat prefix for the game
 	 */
+	@Deprecated
 	public FancyMessage getPrefix();
 	
 	/**
@@ -188,4 +192,19 @@ public interface Game {
 	 * @return a list with all spectators for the current game
 	 */
 	public List<UUID> getSpecs();
+	
+	/**
+	 * 
+	 * @return the prefix for this game
+	 */
+	Prefix getGamePrefix();
+
+	/**
+	 * sends a msg to all players and sepcs
+	 * 
+	 * @param type
+	 * @param msg
+	 * @param args
+	 */
+	void broadCastMessage(LangKeyType type, MsgType msg, String... args);
 }
