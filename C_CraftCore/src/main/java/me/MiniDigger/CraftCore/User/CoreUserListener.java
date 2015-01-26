@@ -36,7 +36,6 @@ public class CoreUserListener implements UserListener {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		user.startSession();
 		user.getStats();
-		Core.getCore().getCommonMethods().printJoinMessage(user);
 	}
 	
 	@Override
