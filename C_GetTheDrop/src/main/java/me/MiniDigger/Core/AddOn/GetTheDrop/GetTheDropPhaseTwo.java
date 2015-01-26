@@ -20,12 +20,13 @@
  */
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
@@ -90,9 +91,9 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Zweite Phase hat begonnen!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Töte deine Gegner!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Achte auf die Drops an den Altaren!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.START1P2, MsgType.NORMAL);
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.START2P2, MsgType.NORMAL);
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.START3P2, MsgType.NORMAL);
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
@@ -101,7 +102,7 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 	
 	@Override
 	public void endPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Götter haben Items hinterlassen!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.STOP2, MsgType.NORMAL);
 		final DropFeature drop = (DropFeature) getFeature(FeatureType.DROP);
 		drop.drop(true);
 		super.endPhase();

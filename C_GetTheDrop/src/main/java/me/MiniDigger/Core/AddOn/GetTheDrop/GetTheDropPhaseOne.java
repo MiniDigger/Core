@@ -20,12 +20,13 @@
  */
 package me.MiniDigger.Core.AddOn.GetTheDrop;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
@@ -89,7 +90,7 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 	
 	@Override
 	public void endPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Phase ist vorbei!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.STOP1, MsgType.NORMAL);
 		final String winner = getGame().getGameData("VoteWinner");
 		Core.getCore().getWorldHandler().copyWorld(winner);
 		Core.getCore().getWorldHandler().loadWorld(winner);
@@ -99,8 +100,8 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Erste Phase hat begonnen!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Sammle deine Items und crafte deine Waffen!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.START1P1, MsgType.NORMAL);
+		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.START2P1, MsgType.NORMAL);
 		Core.getCore().getWorldHandler().copyWorld("GTD_Arena");
 		Core.getCore().getWorldHandler().loadWorld("GTD_Arena");
 		

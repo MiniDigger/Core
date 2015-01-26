@@ -301,6 +301,30 @@ public class LangKeyType {
 			}
 		}
 		
+		public static class GetTheDrop {
+			
+			protected static String			type		= "game.getthedrop";
+			public static final LangKeyType	START1P1	= new LangKeyType("start1P1", type, "The first phase has started!");
+			public static final LangKeyType	START2P1	= new LangKeyType("start2P1", type, "Collect drops and craft weapons and armor!");
+			public static final LangKeyType	STOP1		= new LangKeyType("stop1", type, "The phase has ended!");
+			public static final LangKeyType	START1P2	= new LangKeyType("start1P2", type, "The second phase has started!");
+			public static final LangKeyType	START2P2	= new LangKeyType("start2P2", type, "Kill your enemies!");
+			public static final LangKeyType	START3P2	= new LangKeyType("start3P2", type, "Keep an eye out for drops on the altars!");
+			public static final LangKeyType	STOP2		= new LangKeyType("stop2", type, "The gods have dropped you some stuff!");
+			
+			public static List<LangKeyType> values() {
+				final List<LangKeyType> values = new ArrayList<>();
+				values.add(START1P1);
+				values.add(START2P1);
+				values.add(STOP1);
+				values.add(START1P2);
+				values.add(START2P2);
+				values.add(START3P2);
+				values.add(STOP2);
+				return values;
+			}
+		}
+		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
 			values.add(WIN);
@@ -308,6 +332,7 @@ public class LangKeyType {
 			values.add(END);
 			values.addAll(UltraSpleef.values());
 			values.addAll(OneInTheChamber.values());
+			values.addAll(GetTheDrop.values());
 			return values;
 		}
 	}
