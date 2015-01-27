@@ -20,14 +20,14 @@
  */
 package me.MiniDigger.CraftCore.Phase.Phases;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
-
 import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
@@ -40,8 +40,6 @@ import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
-
-import mkremins.fanciful.FancyMessage;
 
 public class CountdownPhase extends CoreTimedPhase {
 	
@@ -67,14 +65,14 @@ public class CountdownPhase extends CoreTimedPhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Der Countdown hat gestartet!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Mach dich bereit!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.COUNTDOWN_START1, MsgType.NORMAL);
+		getGame().broadCastMessage(LangKeyType.Game.COUNTDOWN_START2, MsgType.NORMAL);
 		super.startPhase();
 	}
 	
 	@Override
 	public void endPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Der Countdown ist vorbei!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.COUNTDOWN_STOP2, MsgType.IMPORTANT);
 		super.endPhase();
 	}
 	
@@ -96,9 +94,7 @@ public class CountdownPhase extends CoreTimedPhase {
 	@Override
 	public void tickLast5secs(final int secsPassed, final int secsToGo) {
 		super.tickLast5secs(secsPassed, secsToGo);
-		final FancyMessage msg = game.getPrefix().then("Der Countdownt endet in ").color(ChatColor.AQUA).then(secsToGo + "").color(ChatColor.YELLOW).then(" Sekunden!")
-		        .color(ChatColor.AQUA);
-		game.broadCastMessage(msg);
+		getGame().broadCastMessage(LangKeyType.Game.COUNTDOWN_STOP1, MsgType.IMPORTANT, secsToGo + "");
 	}
 	
 }

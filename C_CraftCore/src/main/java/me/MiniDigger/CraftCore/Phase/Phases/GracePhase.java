@@ -20,12 +20,13 @@
  */
 package me.MiniDigger.CraftCore.Phase.Phases;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
@@ -41,8 +42,6 @@ import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
-
-import mkremins.fanciful.FancyMessage;
 
 public class GracePhase extends CoreTimedPhase {
 	
@@ -70,13 +69,13 @@ public class GracePhase extends CoreTimedPhase {
 	public void startPhase() {
 		final String winner = getGame().getGameData("VoteWinner");
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
-		getGame().broadCastMessage(game.getPrefix().then("Die Friedensphase hat begonnen!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.GRACE_START, MsgType.IMPORTANT);
 		super.startPhase();
 	}
 	
 	@Override
 	public void endPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Die Friedensphase ist vorbei!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.GRACE_STOP2, MsgType.IMPORTANT);
 		super.endPhase();
 	}
 	
@@ -98,8 +97,6 @@ public class GracePhase extends CoreTimedPhase {
 	@Override
 	public void tickLast5secs(final int secsPassed, final int secsToGo) {
 		super.tickLast5secs(secsPassed, secsToGo);
-		final FancyMessage msg = game.getPrefix().then("Die Friedensphase endet in ").color(ChatColor.AQUA).then(secsToGo + "").color(ChatColor.YELLOW)
-		        .then(" Sekunden!").color(ChatColor.AQUA);
-		game.broadCastMessage(msg);
+		getGame().broadCastMessage(LangKeyType.Game.GRACE_STOP1, MsgType.IMPORTANT, secsToGo + "");
 	}
 }

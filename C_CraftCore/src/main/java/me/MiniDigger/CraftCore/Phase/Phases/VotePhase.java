@@ -23,7 +23,6 @@ package me.MiniDigger.CraftCore.Phase.Phases;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
@@ -32,6 +31,8 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
@@ -48,6 +49,7 @@ import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.VoteFeature;
+import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class VotePhase extends CoreTimedPhase {
@@ -91,11 +93,8 @@ public class VotePhase extends CoreTimedPhase {
 	@Override
 	public void startPhase() {
 		super.startPhase();
-		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Die Voting Phase hat begonnen!").color(ChatColor.GOLD));
-		
-		getGame().broadCastMessage(
-		        Prefix.getByGameType(getGame().getType()).getPrefix().then("Du hast ").color(ChatColor.GOLD).then(getSecs() + "").color(ChatColor.YELLOW)
-		                .then(" Sekunden Zeit um eine Map auszuwählen.").color(ChatColor.GOLD));
+		getGame().broadCastMessage(LangKeyType.Game.VOTE_START1, MsgType.IMPORTANT);
+		getGame().broadCastMessage(LangKeyType.Game.VOTE_START2, MsgType.IMPORTANT, getSecs() + "");
 		((VoteFeature) getFeature(FeatureType.VOTE)).sendVoteMessages();
 	}
 	
@@ -126,15 +125,14 @@ public class VotePhase extends CoreTimedPhase {
 		try {
 			id = Integer.parseInt(args.getArgs()[0]);
 		} catch (final Exception ex) {
-			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Unbekannte Map!").color(ChatColor.RED));
+			_.msg(Prefix.VOTE, LangKeyType.Game.VOTE_UNKNOWN, MsgType.FAIL, args.getPlayer());
 			return;
 		}
 		
 		if (f.vote(args.getUser(), id)) {
-			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Vote abgeschickt!").color(ChatColor.GREEN));
+			_.msg(Prefix.VOTE, LangKeyType.Game.VOTE_DONE, MsgType.SUCESS, args.getPlayer());
 		} else {
-			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Vote fehlgeschlagen!").color(ChatColor.RED));
-			args.getUser().sendMessage(Prefix.VOTE.getPrefix().then("Hast du bereits gevoted?!").color(ChatColor.RED));
+			_.msg(Prefix.VOTE, LangKeyType.Game.VOTE_FAILED, MsgType.FAIL, args.getPlayer());
 		}
 	}
 	

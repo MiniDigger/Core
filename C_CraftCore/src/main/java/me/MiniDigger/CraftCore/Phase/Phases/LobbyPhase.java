@@ -20,14 +20,14 @@
  */
 package me.MiniDigger.CraftCore.Phase.Phases;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
@@ -44,8 +44,6 @@ import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
-
-import mkremins.fanciful.FancyMessage;
 
 public class LobbyPhase extends CorePhase {
 	
@@ -83,13 +81,10 @@ public class LobbyPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Die Lobby Phase hat begonnen.").color(ChatColor.GOLD));
+		getGame().broadCastMessage(LangKeyType.Game.LOBBY_START1, MsgType.IMPORTANT);
 		final int needed = players - getGame().getPlayers().size();
 		if (needed > 0) {
-			final FancyMessage msg = Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD).then("" + needed)
-			        .color(ChatColor.YELLOW).then(" Spieler zum starten ben").color(ChatColor.GOLD).then("\u00f6").color(ChatColor.GOLD).then("tigt.")
-			        .color(ChatColor.GOLD);
-			getGame().broadCastMessage(msg);
+			getGame().broadCastMessage(LangKeyType.Game.LOBBY_START2, MsgType.IMPORTANT, needed + "");
 		} else {
 			endPhase();
 		}
@@ -103,8 +98,8 @@ public class LobbyPhase extends CorePhase {
 	
 	@Override
 	public void endPhase() {
-		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Es sind genügend Spieler da").color(ChatColor.GOLD));
-		getGame().broadCastMessage(Prefix.getByGameType(getGame().getType()).getPrefix().then("Das Spiel kann nun starten!").color(ChatColor.GOLD));
+		getGame().broadCastMessage(LangKeyType.Game.LOBBY_STOP1, MsgType.IMPORTANT);
+		getGame().broadCastMessage(LangKeyType.Game.LOBBY_STOP2, MsgType.IMPORTANT);
 		super.endPhase();
 	}
 	
@@ -131,12 +126,9 @@ public class LobbyPhase extends CorePhase {
 	@EventHandler
 	public void onUserJoinGame(final CoreUserJoinGameEvent event) {
 		if (game.getIdentifier().equals(event.getGame().getIdentifier())) {
-			getGame().broadCastMessage(
-			        Prefix.getByGameType(getGame().getType()).getPrefix().then(event.getUser().getDisplayName() + " ist dem Spiel beigetreten").color(ChatColor.GOLD));
+			getGame().broadCastMessage(LangKeyType.Game.LOBBY_START3, MsgType.IMPORTANT, event.getUser().getDisplayName());
 			final int needed = players - getGame().getPlayers().size();
-			getGame().broadCastMessage(
-			        Prefix.getByGameType(getGame().getType()).getPrefix().then("Es werden noch ").color(ChatColor.GOLD).then("" + needed).color(ChatColor.YELLOW)
-			                .then(" Spieler zum starten benötigt."));
+			getGame().broadCastMessage(LangKeyType.Game.LOBBY_START2, MsgType.IMPORTANT, needed + "");
 			if (game.getPlayers().size() >= players) {
 				endPhase();
 			}

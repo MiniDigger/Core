@@ -191,12 +191,29 @@ public class LangKeyType {
 			}
 		}
 		
-		protected static String		    type		= "game";
-		public static final LangKeyType	END		 = new LangKeyType("end", type, "The game has ended!");
-		public static final LangKeyType	TEAM_WIN	= new LangKeyType("team_win", type, "Your team has won!");
-		public static final LangKeyType	TEAM_WON	= new LangKeyType("team_won", type, "The Team `%0%` has win!");
-		public static final LangKeyType	WIN		 = new LangKeyType("win", type, "You have won!");
-		public static final LangKeyType	WON		 = new LangKeyType("won", type, "The player `%0%` has won!");
+		protected static String		    type		     = "game";
+		public static final LangKeyType	END		         = new LangKeyType("end", type, "The game has ended!");
+		public static final LangKeyType	TEAM_WIN		 = new LangKeyType("team_win", type, "Your team has won!");
+		public static final LangKeyType	TEAM_WON		 = new LangKeyType("team_won", type, "The Team `%0%` has win!");
+		public static final LangKeyType	WIN		         = new LangKeyType("win", type, "You have won!");
+		public static final LangKeyType	WON		         = new LangKeyType("won", type, "The player `%0%` has won!");
+		public static final LangKeyType	COUNTDOWN_START1	= new LangKeyType("countdown_start1", type, "The countdown has started");
+		public static final LangKeyType	COUNTDOWN_START2	= new LangKeyType("countdown_start2", type, "Get ready!");
+		public static final LangKeyType	COUNTDOWN_STOP1		= new LangKeyType("countdown_stop1", type, "The countdown will end in `%0%` seconds!");
+		public static final LangKeyType	COUNTDOWN_STOP2		= new LangKeyType("countdown_stop2", type, "The countdown has ended!");
+		public static final LangKeyType	GRACE_START		 = new LangKeyType("grace_start", type, "The grace period has started!");
+		public static final LangKeyType	GRACE_STOP1		 = new LangKeyType("grace_stop1", type, "The grace period will end in `%0%` seconds!");
+		public static final LangKeyType	GRACE_STOP2		 = new LangKeyType("grace_stop2", type, "The grace period has ended!");
+		public static final LangKeyType	LOBBY_START1		= new LangKeyType("lobby_start1", type, "The lobby period has started!");
+		public static final LangKeyType	LOBBY_START2		= new LangKeyType("lobby_start2", type, "There a `%0%` players needed to start!");
+		public static final LangKeyType	LOBBY_START3		= new LangKeyType("lobby_start3", type, "`%0%` has joined the game!");
+		public static final LangKeyType	LOBBY_STOP1		 = new LangKeyType("lobby_stop1", type, "There are enough players!");
+		public static final LangKeyType	LOBBY_STOP2		 = new LangKeyType("lobby_stop2", type, "The game can start now!");
+		public static final LangKeyType	VOTE_START1		 = new LangKeyType("vote_start1", type, "The vote phase has started!");
+		public static final LangKeyType	VOTE_START2		 = new LangKeyType("vote_start2", type, "You have `%0%` seconds to vote for a map!");
+		public static final LangKeyType	VOTE_UNKNOWN		= new LangKeyType("vote_unknown", type, "Unknown map!");
+		public static final LangKeyType	VOTE_DONE		 = new LangKeyType("vote_done", type, "Vote done!");
+		public static final LangKeyType	VOTE_FAILED		 = new LangKeyType("vote_failed", type, "You allready have voted!");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
@@ -205,6 +222,23 @@ public class LangKeyType {
 			values.add(END);
 			values.add(TEAM_WIN);
 			values.add(TEAM_WON);
+			values.add(COUNTDOWN_START1);
+			values.add(COUNTDOWN_START2);
+			values.add(COUNTDOWN_STOP1);
+			values.add(COUNTDOWN_STOP2);
+			values.add(GRACE_START);
+			values.add(GRACE_STOP1);
+			values.add(GRACE_STOP2);
+			values.add(LOBBY_START1);
+			values.add(LOBBY_START2);
+			values.add(LOBBY_START3);
+			values.add(LOBBY_STOP1);
+			values.add(LOBBY_STOP2);
+			values.add(VOTE_START1);
+			values.add(VOTE_START2);
+			values.add(VOTE_UNKNOWN);
+			values.add(VOTE_DONE);
+			values.add(VOTE_FAILED);
 			values.addAll(UltraSpleef.values());
 			values.addAll(OneInTheChamber.values());
 			values.addAll(GetTheDrop.values());

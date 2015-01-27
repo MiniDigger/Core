@@ -71,7 +71,6 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 					timer.cancel();
 					endPhase();
 					Core.getCore().getBarHandler().removeAllStatusBars();
-					System.out.println("Clear all bars");
 					return;
 				}
 				
