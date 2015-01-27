@@ -57,11 +57,6 @@ public class CrankPhase extends CorePhase {
 	}
 	
 	@Override
-	public String getBarMessage() {
-		return "You are Cranked! Get adrinaline!";
-	}
-	
-	@Override
 	public boolean displayBar() {
 		return true;
 	}

@@ -53,6 +53,11 @@ public abstract class CorePhase implements Phase {
 	}
 	
 	@Override
+	public String getBarMessage() {
+		return ChatColor.RED + "" + ChatColor.MAGIC + "||" + ChatColor.RESET + "" + ChatColor.GOLD + getName() + ChatColor.RED + "" + ChatColor.MAGIC + "||";
+	}
+	
+	@Override
 	public void startPhase() {
 		if (!checkCombability()) {
 			System.out.println("Incombability found!");

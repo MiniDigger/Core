@@ -81,11 +81,6 @@ public class BedWarsPhase extends CorePhase {
 	}
 	
 	@Override
-	public String getBarMessage() {
-		return ChatColor.RED + "Bed" + ChatColor.BLUE + "Wars";
-	}
-	
-	@Override
 	public boolean displayBar() {
 		return true;
 	}

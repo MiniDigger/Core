@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.AddOn.UltraSpleef;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
@@ -56,11 +55,6 @@ public class UltraSpleefPhase extends CorePhase {
 	@Override
 	public String getName() {
 		return "UltraSpleef";
-	}
-	
-	@Override
-	public String getBarMessage() {
-		return ChatColor.RED + "" + ChatColor.MAGIC + "||" + ChatColor.RESET + "" + ChatColor.GOLD + getName() + ChatColor.RED + "" + ChatColor.MAGIC + "||";
 	}
 	
 	@Override

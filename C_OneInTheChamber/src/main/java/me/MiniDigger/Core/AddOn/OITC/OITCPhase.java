@@ -58,11 +58,6 @@ public class OITCPhase extends CorePhase {
 	}
 	
 	@Override
-	public String getBarMessage() {
-		return ChatColor.RED + "" + ChatColor.MAGIC + "||" + ChatColor.RESET + "" + ChatColor.GOLD + getName() + ChatColor.RED + "" + ChatColor.MAGIC + "||";
-	}
-	
-	@Override
 	public boolean displayBar() {
 		return true;
 	}

@@ -57,11 +57,6 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 	}
 	
 	@Override
-	public String getBarMessage() {
-		return "GetTheDrops!";
-	}
-	
-	@Override
 	public boolean displayBar() {
 		return true;
 	}

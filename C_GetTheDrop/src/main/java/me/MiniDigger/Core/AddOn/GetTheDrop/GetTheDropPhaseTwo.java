@@ -58,11 +58,6 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 	}
 	
 	@Override
-	public String getBarMessage() {
-		return "Kill them ALL!";
-	}
-	
-	@Override
 	public boolean displayBar() {
 		return true;
 	}
