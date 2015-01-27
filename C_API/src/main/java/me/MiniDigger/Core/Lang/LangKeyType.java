@@ -285,6 +285,22 @@ public class LangKeyType {
 			}
 		}
 		
+		public static class Crank {
+			
+			protected static String			type	= "game.crank";
+			public static final LangKeyType	START1	= new LangKeyType("star1", type, "You are posioned!");
+			public static final LangKeyType	START2	= new LangKeyType("start2", type, "Kill enemies, to keep your adraneline high!");
+			public static final LangKeyType	START3	= new LangKeyType("start3", type, "If it falls to low, you will die!");
+			
+			public static List<LangKeyType> values() {
+				final List<LangKeyType> values = new ArrayList<>();
+				values.add(START1);
+				values.add(START2);
+				values.add(START3);
+				return values;
+			}
+		}
+		
 		public static class OneInTheChamber {
 			
 			protected static String			type	= "game.oneinthechamber";
@@ -333,6 +349,7 @@ public class LangKeyType {
 			values.addAll(UltraSpleef.values());
 			values.addAll(OneInTheChamber.values());
 			values.addAll(GetTheDrop.values());
+			values.addAll(Crank.values());
 			return values;
 		}
 	}

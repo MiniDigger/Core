@@ -20,12 +20,13 @@
  */
 package me.MiniDigger.Core.AddOn.Crank;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
@@ -91,9 +92,9 @@ public class CrankPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Dir wurde ein Gift injeziert!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Töten Gegner, um deinen Adrenalinspiegel hoch zu halten!!").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Wenn er zu tieft singt stribst du!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.Crank.START1, MsgType.NORMAL);;
+		getGame().broadCastMessage(LangKeyType.Game.Crank.START2, MsgType.NORMAL);;
+		getGame().broadCastMessage(LangKeyType.Game.Crank.START3, MsgType.NORMAL);;
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
