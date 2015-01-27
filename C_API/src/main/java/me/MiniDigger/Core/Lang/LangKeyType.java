@@ -122,6 +122,7 @@ public class LangKeyType {
 				return values;
 			}
 		}
+		
 		public static class Crank {
 			
 			protected static String			type	= "game.crank";
@@ -137,6 +138,7 @@ public class LangKeyType {
 				return values;
 			}
 		}
+		
 		public static class GetTheDrop {
 			
 			protected static String			type		= "game.getthedrop";
@@ -160,6 +162,7 @@ public class LangKeyType {
 				return values;
 			}
 		}
+		
 		public static class OneInTheChamber {
 			
 			protected static String			type	= "game.oneinthechamber";
@@ -175,6 +178,7 @@ public class LangKeyType {
 				return values;
 			}
 		}
+		
 		public static class UltraSpleef {
 			
 			protected static String			type	= "game.ultraspleef";
@@ -186,16 +190,12 @@ public class LangKeyType {
 				return values;
 			}
 		}
+		
 		protected static String		    type		= "game";
-		
 		public static final LangKeyType	END		 = new LangKeyType("end", type, "The game has ended!");
-		
 		public static final LangKeyType	TEAM_WIN	= new LangKeyType("team_win", type, "Your team has won!");
-		
 		public static final LangKeyType	TEAM_WON	= new LangKeyType("team_won", type, "The Team `%0%` has win!");
-		
 		public static final LangKeyType	WIN		 = new LangKeyType("win", type, "You have won!");
-		
 		public static final LangKeyType	WON		 = new LangKeyType("won", type, "The player `%0%` has won!");
 		
 		public static List<LangKeyType> values() {
