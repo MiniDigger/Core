@@ -37,6 +37,7 @@ import net.minecraft.server.v1_8_R1.WorldSettings;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
@@ -141,7 +142,9 @@ public class CoreWorldLoader implements WorldLoader {
 		server.getPluginManager().callEvent(new WorldLoadEvent(internal.getWorld()));
 		
 		for (final Entity e : internal.getWorld().getEntities()) {
-			e.remove();
+			if (!(e instanceof Player)) {
+				e.remove();
+			}
 		}
 		
 		new BukkitRunnable() {
@@ -149,7 +152,9 @@ public class CoreWorldLoader implements WorldLoader {
 			@Override
 			public void run() {
 				for (final Entity e : internal.getWorld().getEntities()) {
-					e.remove();
+					if (!(e instanceof Player)) {
+						e.remove();
+					}
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10 * 20);
