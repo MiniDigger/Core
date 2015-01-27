@@ -76,7 +76,7 @@ public class CoreLangHandler implements LangHandler {
 			}
 		}
 		
-		if (langs.size() == 0) {
+		if (langs.size() == 1) {
 			System.out.println("Saving default lang!");
 			final LangStorage s = new CoreLangStorage();
 			s.setAuthor("MiniDigger");

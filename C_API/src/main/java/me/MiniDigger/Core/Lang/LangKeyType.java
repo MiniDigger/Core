@@ -86,13 +86,13 @@ public class LangKeyType {
 		
 		public static class Basic {
 			
-			protected static String			type	= "cmd.basic";
+			protected static String			type	= "cmd_basic";
 			public static final LangKeyType	TEST	= new LangKeyType("test", type, "TEST: Your entered: `%0%`!");
 			
 			public static List<LangKeyType> values() {
 				final List<LangKeyType> values = new ArrayList<>();
 				values.add(TEST);
-				return values();
+				return values;
 			}
 			
 		}
@@ -117,7 +117,7 @@ public class LangKeyType {
 		
 		public static class BedWars {
 			
-			protected static String			type			   = "game.bedwars";
+			protected static String			type			   = "game_bedwars";
 			public static final LangKeyType	BED_DESTROYED		= new LangKeyType("bed_destroyed", type, "The bed of team `%0%` was destroyed");
 			public static final LangKeyType	BED_TEAM_DESTROYED	= new LangKeyType("bed_team_destroyed", type, "The bed was destroyed");
 			public static final LangKeyType	OUT			       = new LangKeyType("out", type, "You are out, because your bed was destroyed!");
@@ -139,7 +139,7 @@ public class LangKeyType {
 		
 		public static class Crank {
 			
-			protected static String			type	= "game.crank";
+			protected static String			type	= "game_crank";
 			public static final LangKeyType	START1	= new LangKeyType("star1", type, "You are posioned!");
 			public static final LangKeyType	START2	= new LangKeyType("start2", type, "Kill enemies, to keep your adraneline high!");
 			public static final LangKeyType	START3	= new LangKeyType("start3", type, "If it falls to low, you will die!");
@@ -155,7 +155,7 @@ public class LangKeyType {
 		
 		public static class GetTheDrop {
 			
-			protected static String			type		= "game.getthedrop";
+			protected static String			type		= "game_getthedrop";
 			public static final LangKeyType	START1P1	= new LangKeyType("start1P1", type, "The first phase has started!");
 			public static final LangKeyType	START1P2	= new LangKeyType("start1P2", type, "The second phase has started!");
 			public static final LangKeyType	START2P1	= new LangKeyType("start2P1", type, "Collect drops and craft weapons and armor!");
@@ -179,7 +179,7 @@ public class LangKeyType {
 		
 		public static class OneInTheChamber {
 			
-			protected static String			type	= "game.oneinthechamber";
+			protected static String			type	= "game_oneinthechamber";
 			public static final LangKeyType	START1	= new LangKeyType("start1", type, "You have only one arrow left!");
 			public static final LangKeyType	START2	= new LangKeyType("start2", type, "Kill your enemies to earn new ones!");
 			public static final LangKeyType	START3	= new LangKeyType("start1", type, "You only have five lives!");
@@ -195,7 +195,7 @@ public class LangKeyType {
 		
 		public static class UltraSpleef {
 			
-			protected static String			type	= "game.ultraspleef";
+			protected static String			type	= "game_ultraspleef";
 			public static final LangKeyType	START	= new LangKeyType("start", type, "Use your GravityGun to move blocks and throw your enemies!");
 			
 			public static List<LangKeyType> values() {
