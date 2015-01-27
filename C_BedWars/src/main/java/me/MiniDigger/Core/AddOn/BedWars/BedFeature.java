@@ -36,6 +36,8 @@ import org.bukkit.inventory.ItemStack;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
@@ -44,6 +46,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
+import me.MiniDigger.CraftCore.Lang._;
 
 public class BedFeature extends CoreFeature {
 	
@@ -132,14 +135,13 @@ public class BedFeature extends CoreFeature {
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
 		if (bed == null) {
 			final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-			user.sendMessage(getPhase().getGame().getPrefix().then("Du bist draußen, weil dein Bett kaputt ist!"));
+			_.msg(getPhase().getGame().getGamePrefix(), LangKeyType.Game.BedWars.OUT, MsgType.IMPORTANT, user.getPlayer());
 			try {
 				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				final Team t = tf.getTeam(user);
-				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName()).color(t.getColor()).then(" ist draußen!"));
+				getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.SB_OUT, MsgType.IMPORTANT, t.getColor() + user.getDisplayName());
 			} catch (final Exception ex) {
-				System.out.println("bed not team: " + ex.getMessage());
-				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(user.getDisplayName() + " ist draußen!"));
+				getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.SB_OUT, MsgType.IMPORTANT, user.getDisplayName());
 			}
 		}
 		if (bed == null) {
@@ -149,7 +151,6 @@ public class BedFeature extends CoreFeature {
 			try {
 				final TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
 				tdm.setRespawns(e.getPlayer().getUniqueId(), tdm.getRespawns(e.getPlayer().getUniqueId()) + 1);
-				System.out.println("reset");
 			} catch (final Exception ex) {
 				System.out.println("tdm respawn bed error: " + ex.getMessage());
 			}
@@ -171,11 +172,11 @@ public class BedFeature extends CoreFeature {
 						e.setCancelled(true);
 						return;
 					} else {
-						getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed von Team ").then(teamName).then(" wurde zerstört!"));
+						getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.BED_TEAM_DESTROYED, MsgType.IMPORTANT, teamName);
 						bed = null;
 					}
 				} else {
-					getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Das Bed wurde zerstört!"));
+					getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.BED_DESTROYED, MsgType.IMPORTANT);
 					bed = null;
 				}
 				

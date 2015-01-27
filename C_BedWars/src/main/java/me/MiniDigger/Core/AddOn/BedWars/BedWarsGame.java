@@ -20,11 +20,10 @@
  */
 package me.MiniDigger.Core.AddOn.BedWars;
 
-import org.bukkit.ChatColor;
-
-import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 
@@ -32,6 +31,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
+import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
@@ -70,28 +70,21 @@ public class BedWarsGame extends CoreGame {
 		if (winner != null && winner.length == 1) {
 			final User w = winner[0];
 			if (w != null) {
+				_.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
+				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
 				
-				w.sendMessage(getPrefix().then("Du hast gewonnen!").color(ChatColor.GOLD));
-				Core.getCore()
-				        .getInstance()
-				        .broadcast(
-				                getPrefix().then("Der Spieler ").color(ChatColor.GOLD).then(w.getDisplayName()).color(ChatColor.AQUA).then(" hat gewonnen!")
-				                        .color(ChatColor.GOLD));
 				leave(w);
-			} else {
-				System.out.println("winner null");
 			}
 		} else if (winner.length > 1) {
 			for (final User w : winner) {
-				w.sendMessage(getPrefix().then("Dein Team hat gewonnen!").color(ChatColor.GOLD));
+				_.msg(getGamePrefix(), LangKeyType.Game.TEAM_WIN, MsgType.IMPORTANT, w.getPlayer());
 			}
 			final Team t = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeam(winner[0]);
-			Core.getCore().getInstance().broadcast(getPrefix().then("Das Team ").color(ChatColor.AQUA).then(t.getName()).then(" hat gewonnen").color(ChatColor.AQUA));
-		} else {
-			System.out.println("no winner?! " + winner.length);
+			broadCastMessage(LangKeyType.Game.TEAM_WON, MsgType.IMPORTANT, t.getName());
 		}
-		Core.getCore().getInstance().broadcast(getPrefix().then("Das Spiel ist vorbei!").color(ChatColor.GOLD));
+		broadCastMessage(LangKeyType.Game.END, MsgType.IMPORTANT);
 		super.end(winner);
+		
 	}
 	
 	@Override

@@ -268,10 +268,12 @@ public class LangKeyType {
 	
 	public static class Game {
 		
-		protected static String		    type	= "game";
-		public static final LangKeyType	WIN		= new LangKeyType("win", type, "YOu have won!");
-		public static final LangKeyType	WON		= new LangKeyType("won", type, "The player `%0%` has won!");
-		public static final LangKeyType	END		= new LangKeyType("end", type, "The game has ended!");
+		protected static String		    type		= "game";
+		public static final LangKeyType	WIN		 = new LangKeyType("win", type, "YOu have won!");
+		public static final LangKeyType	WON		 = new LangKeyType("won", type, "The player `%0%` has won!");
+		public static final LangKeyType	END		 = new LangKeyType("end", type, "The game has ended!");
+		public static final LangKeyType	TEAM_WIN	= new LangKeyType("team_win", type, "Your team has won!");
+		public static final LangKeyType	TEAM_WON	= new LangKeyType("team_won", type, "The Team `%0%` has win!");
 		
 		public static class UltraSpleef {
 			
@@ -281,6 +283,28 @@ public class LangKeyType {
 			public static List<LangKeyType> values() {
 				final List<LangKeyType> values = new ArrayList<>();
 				values.add(START);
+				return values;
+			}
+		}
+		
+		public static class BedWars {
+			
+			protected static String			type			   = "game.bedwars";
+			public static final LangKeyType	START1			   = new LangKeyType("start1", type, "The game has started!");
+			public static final LangKeyType	START2			   = new LangKeyType("start2", type, "Collect ressources, trade and destroy the enemies team's bed!");
+			public static final LangKeyType	OUT			       = new LangKeyType("out", type, "You are out, because your bed was destroyed!");
+			public static final LangKeyType	SB_OUT			   = new LangKeyType("sb_out", type, "`%0%` is out!");
+			public static final LangKeyType	BED_DESTROYED		= new LangKeyType("bed_destroyed", type, "The bed of team `%0%` was destroyed");
+			public static final LangKeyType	BED_TEAM_DESTROYED	= new LangKeyType("bed_team_destroyed", type, "The bed was destroyed");
+			
+			public static List<LangKeyType> values() {
+				final List<LangKeyType> values = new ArrayList<>();
+				values.add(START1);
+				values.add(START2);
+				values.add(OUT);
+				values.add(SB_OUT);
+				values.add(BED_DESTROYED);
+				values.add(BED_TEAM_DESTROYED);
 				return values;
 			}
 		}
@@ -346,10 +370,13 @@ public class LangKeyType {
 			values.add(WIN);
 			values.add(WON);
 			values.add(END);
+			values.add(TEAM_WIN);
+			values.add(TEAM_WON);
 			values.addAll(UltraSpleef.values());
 			values.addAll(OneInTheChamber.values());
 			values.addAll(GetTheDrop.values());
 			values.addAll(Crank.values());
+			values.addAll(BedWars.values());
 			return values;
 		}
 	}

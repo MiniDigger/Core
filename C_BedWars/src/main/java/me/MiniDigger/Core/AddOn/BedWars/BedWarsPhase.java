@@ -42,6 +42,8 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
@@ -437,8 +439,8 @@ public class BedWarsPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		getGame().broadCastMessage(game.getPrefix().then("Das Spiel hat begonnen").color(ChatColor.AQUA));
-		getGame().broadCastMessage(game.getPrefix().then("Sammel Ressource, tausche diese und zerstöre die Betten deiner Gegener!").color(ChatColor.AQUA));
+		getGame().broadCastMessage(LangKeyType.Game.BedWars.START1, MsgType.NORMAL);
+		getGame().broadCastMessage(LangKeyType.Game.BedWars.START2, MsgType.NORMAL);
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
