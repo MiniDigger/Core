@@ -205,8 +205,8 @@ public class StatsCommands {
 		
 		final Stats stats = Core.getCore().getStatsHandler().get(other.getUUID());
 		stats.set(type, anzahl);
-		stats.save();
-		stats.load();
+		System.out.println("save: " + stats.save());
+		System.out.println("load: " + stats.load());
 		
 		if (args.isUser()) {
 			args.getUser().sendMessage(Prefix.STATS.getPrefix().then("Der User hat nun " + stats.get(type) + " " + type.getGame() + "." + type.getStats()));

@@ -69,12 +69,18 @@ public class CoreStats implements Stats {
 			final PreparedStatement stmt = query.getStatement();
 			stmt.setString(1, user.toString());
 			int i;
-			for (i = 2; i <= StatsType.values().size() + 1; i++) {
-				stmt.setLong(i, get(StatsType.values().get(i)));
+			for (i = 2; i <= StatsType.values().size() + 2; i++) {
+				try {
+					stmt.setLong(i, get(StatsType.values().get(i - 2)));
+				} catch (Exception ex) {
+					
+				}
 			}
 			stmt.execute();
 			query.kill();
 		} catch (final Exception ex) {
+			// ex.printStackTrace();
+			System.out.println("try update");
 			try {
 				query.kill();
 			} catch (final Exception e) {}
@@ -82,23 +88,27 @@ public class CoreStats implements Stats {
 			try {
 				// create query
 				q = "UPDATE `stats` SET ";
-				q += "`uuid`=?,";
+				// q += "`uuid`=?,";
 				for (final StatsType type : StatsType.values()) {
 					q += "`" + type.getGame() + "." + type.getStats() + "`=?,";
 				}
 				q = Core.getCore().getStringUtil().replaceLast(q, ",", "");
-				q += "WHERE `uuid` LIKE ?";
+				q += " WHERE `uuid` LIKE ?";
+				System.out.println("querry: " + q);
 				query = new CoreSQLQuery(q);
 				final PreparedStatement stmt = query.getStatement();
 				int i;
-				stmt.setString(1, user.toString());
-				for (i = 2; i <= StatsType.values().size() + 1; i++) {
-					stmt.setLong(i, get(StatsType.values().get(i)));
+				// stmt.setString(1, user.toString());
+				for (i = 1; i <= StatsType.values().size() + 1; i++) {
+					try {
+						stmt.setLong(i, get(StatsType.values().get(i - 1)));
+					} catch (Exception ex1) {}
 				}
 				stmt.setString(i + 1, user.toString());
 				stmt.execute();
 				query.kill();
 			} catch (final Exception e) {
+				ex.printStackTrace();
 				try {
 					query.kill();
 				} catch (final Exception exx) {}

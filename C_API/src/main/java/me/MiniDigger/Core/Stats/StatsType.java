@@ -25,19 +25,47 @@ import java.util.List;
 
 public class StatsType {
 	
+	public static class BedWars extends StatsGame {
+		
+		private static String	gameName	= "BedWars";
+		
+		public static StatsType	BEDS		= new StatsType(gameName, "beds");
+		public static StatsType	TRADED		= new StatsType(gameName, "traded");
+		
+		public static List<StatsType> values() {
+			final List<StatsType> values = StatsGame.values(gameName);
+			values.add(TRADED);
+			values.add(BEDS);
+			return values;
+		}
+	}
+	
 	public static class Common {
 		
 		protected static String	gameName		= "common";
+		public static StatsType	PAESSE		 = new StatsType(gameName, "paesse");
+		public static StatsType	SPIELZEIT		= new StatsType(gameName, "spielzeit");
 		public static StatsType	TOKENS		 = new StatsType(gameName, "tokens", 100);
 		public static StatsType	TOKENS_SPEND	= new StatsType(gameName, "tokens_spend", 100);
-		public static StatsType	SPIELZEIT		= new StatsType(gameName, "spielzeit", 0);
-		public static StatsType	PAESSE		 = new StatsType(gameName, "paesse", 0);
 		
 		public static List<StatsType> values() {
 			final List<StatsType> values = new ArrayList<>();
 			values.add(TOKENS);
 			values.add(TOKENS_SPEND);
 			values.add(SPIELZEIT);
+			return values;
+		}
+	}
+	
+	public static class Crank extends StatsGame {
+		
+		private static String	gameName	= "Crank";
+		
+		public static StatsType	EXPLODED	= new StatsType(gameName, "exploded");
+		
+		public static List<StatsType> values() {
+			final List<StatsType> values = StatsGame.values(gameName);
+			values.add(EXPLODED);
 			return values;
 		}
 	}
@@ -57,6 +85,50 @@ public class StatsType {
 		}
 	}
 	
+	public static class OneInTheChamber extends StatsGame {
+		
+		private static String	gameName	= "OneInTheChamber";
+		
+		public static StatsType	BOW		 = new StatsType(gameName, "bow");
+		
+		public static List<StatsType> values() {
+			final List<StatsType> values = StatsGame.values(gameName);
+			values.add(BOW);
+			return values;
+		}
+	}
+	
+	public static class StatsGame {
+		
+		protected static String	gameName	= "";
+		
+		public static StatsType	DEATHS		= new StatsType(gameName, "deaths");
+		public static StatsType	GAMES		= new StatsType(gameName, "games");
+		public static StatsType	JOINS		= new StatsType(gameName, "joins");
+		public static StatsType	KILLS		= new StatsType(gameName, "kills");
+		public static StatsType	WINS		= new StatsType(gameName, "wins");
+		
+		public static List<StatsType> values(final String gameName) {
+			final List<StatsType> values = new ArrayList<>();
+			values.add(new StatsType(gameName, "wins"));
+			values.add(new StatsType(gameName, "deaths"));
+			values.add(new StatsType(gameName, "games"));
+			values.add(new StatsType(gameName, "kills"));
+			values.add(new StatsType(gameName, "joins"));
+			return values;
+		}
+		
+		public static List<StatsType> values(final String gameName, final boolean pvp) {
+			if (pvp) {
+				return values(gameName);
+			}
+			final List<StatsType> values = new ArrayList<>();
+			values.add(new StatsType(gameName, "wins"));
+			values.add(new StatsType(gameName, "games"));
+			return values;
+		}
+	}
+	
 	public static class TicTacToe extends StatsGame {
 		
 		private static String	gameName	= "TicTacToe";
@@ -70,40 +142,41 @@ public class StatsType {
 		}
 	}
 	
-	public static class StatsGame {
+	public static class UltraSpleef extends StatsGame {
 		
-		protected static String	gameName	= "";
+		private static String	gameName	= "UltraSpleef";
 		
-		public static StatsType	WINS		= new StatsType(gameName, "wins");
-		public static StatsType	DEATHS		= new StatsType(gameName, "deaths");
-		public static StatsType	GAMES		= new StatsType(gameName, "games");
-		public static StatsType	KILLS		= new StatsType(gameName, "kills");
-		public static StatsType	JOINS		= new StatsType(gameName, "joins");
-		
-		public static List<StatsType> values(final String gameName) {
-			final List<StatsType> values = new ArrayList<>();
-			values.add(WINS);
-			values.add(DEATHS);
-			values.add(GAMES);
-			values.add(KILLS);
-			values.add(JOINS);
-			return values;
-		}
-		
-		public static List<StatsType> values(final String gameName, final boolean pvp) {
-			if (pvp) {
-				return values(gameName);
-			}
-			final List<StatsType> values = new ArrayList<>();
-			values.add(WINS);
-			values.add(GAMES);
+		public static List<StatsType> values() {
+			final List<StatsType> values = StatsGame.values(gameName);
 			return values;
 		}
 	}
 	
-	private final String	game;
-	private final String	stat;
+	public static StatsType valueOf(final String s) {
+		for (final StatsType type : values()) {
+			if ((type.getGame() + "." + type.getStats()).equalsIgnoreCase(s)) {
+				return type;
+			}
+		}
+		return null;
+	}
+	
+	public static List<StatsType> values() {
+		final List<StatsType> values = new ArrayList<>();
+		values.addAll(GetTheDrop.values());
+		values.addAll(Common.values());
+		values.addAll(Crank.values());
+		values.addAll(BedWars.values());
+		values.addAll(OneInTheChamber.values());
+		values.addAll(UltraSpleef.values());
+		return values;
+	}
+	
 	private int	         defaultValue;
+	
+	private final String	game;
+	
+	private final String	stat;
 	
 	public StatsType(final String game, final String stat) {
 		this.game = game;
@@ -116,31 +189,15 @@ public class StatsType {
 		this.defaultValue = defaultValue;
 	}
 	
+	public int getDefaultValue() {
+		return defaultValue;
+	}
+	
 	public String getGame() {
 		return game;
 	}
 	
 	public String getStats() {
 		return stat;
-	}
-	
-	public int getDefaultValue() {
-		return defaultValue;
-	}
-	
-	public static List<StatsType> values() {
-		final List<StatsType> values = new ArrayList<>();
-		values.addAll(GetTheDrop.values());
-		values.addAll(Common.values());
-		return values;
-	}
-	
-	public static StatsType valueOf(final String s) {
-		for (final StatsType type : values()) {
-			if ((type.getGame() + "." + type.getStats()).equalsIgnoreCase(s)) {
-				return type;
-			}
-		}
-		return null;
 	}
 }
