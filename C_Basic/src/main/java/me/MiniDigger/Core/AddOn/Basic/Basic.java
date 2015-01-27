@@ -30,29 +30,30 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
+import me.MiniDigger.Core.Prefix.Prefix;
 
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
+import me.MiniDigger.CraftCore.Lang._;
 
 public class Basic extends CoreAddOn {
 	
 	@Override
 	public void enable() {
-		Core.getCore().getInstance().info("Hey, I am here!");
-		Core.getCore().getInstance().info("And I am updated!");
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
 	
 	@Override
 	public void disable() {
-		Core.getCore().getInstance().info("Now I am gone ;(");
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.disable();
 	}
 	
-	@Command(name = "basic")
+	@Command(name = "basic", usage = "name", description = "Kurzer test command!", aliases = { "basicv2", "basciv3" }, consol = true, min = 1, max = 1, permission = "basic.use", sync = false)
 	public void yeah(final CommandArgs args) {
-		args.getSender().sendMessage("YEAH!");
+		_.msg(Prefix.API, LangKeyType.Cmd.Basic.TEST, MsgType.NORMAL, args.getSender(), args.getArgs()[0]);
 	}
 	
 	@Completer(name = "basic")

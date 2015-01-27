@@ -84,6 +84,19 @@ public class LangKeyType {
 	
 	public static class Cmd {
 		
+		public static class Basic {
+			
+			protected static String			type	= "cmd.basic";
+			public static final LangKeyType	TEST	= new LangKeyType("test", type, "TEST: Your entered: `%0%`!");
+			
+			public static List<LangKeyType> values() {
+				final List<LangKeyType> values = new ArrayList<>();
+				values.add(TEST);
+				return values();
+			}
+			
+		}
+		
 		protected static String		    type		  = "cmd";
 		public static final LangKeyType	CANNOT_NULL		= new LangKeyType("cannot_null", type, "`%0%` cannot be null");
 		public static final LangKeyType	EXCEPTION		= new LangKeyType("exception", type, "Unhandled exception executing command `%0%` in plugin `%1%`!");
@@ -95,6 +108,7 @@ public class LangKeyType {
 			values.add(EXCEPTION);
 			values.add(EXCEPTION_TAB);
 			values.add(CANNOT_NULL);
+			values.addAll(Basic.values());
 			return values;
 		}
 	}
