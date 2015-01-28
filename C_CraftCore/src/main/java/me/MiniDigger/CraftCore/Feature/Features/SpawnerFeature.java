@@ -20,6 +20,7 @@
  */
 package me.MiniDigger.CraftCore.Feature.Features;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 import net.minecraft.server.v1_8_R1.BlockPosition;
 import net.minecraft.server.v1_8_R1.EntityItem;
 import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R1.RegistryMaterials;
 import net.minecraft.server.v1_8_R1.TileEntity;
 import net.minecraft.server.v1_8_R1.TileEntityMobSpawner;
 import net.minecraft.server.v1_8_R1.World;
@@ -57,6 +59,27 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpawnerFeature extends CoreFeature {
+	
+	static {
+		try {
+			// Get the new registry HashMp from the Item class
+			Field registryField = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("REGISTRY");
+			registryField.setAccessible(true);
+			RegistryMaterials registry = (RegistryMaterials) registryField.get(null);
+			// Get entry of the spawner
+			Object spawnerEntry = registry.a(52);
+			// Set maxStackSize "e(int maxStackSize)"
+			Field maxStackSize = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("maxStackSize");
+			maxStackSize.setAccessible(true);
+			maxStackSize.setInt(spawnerEntry, 1);
+			// Cleanup
+			registryField.setAccessible(false);
+			maxStackSize.setAccessible(false);
+		} catch (Exception ex) {
+			System.out.println("could not set spawner items unstackable");
+			ex.printStackTrace();
+		}
+	}
 	
 	private final int	     interval;
 	private final EntityType	type;
@@ -96,6 +119,7 @@ public class SpawnerFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
+		System.out.println("start spawner search for " + locKey.name());
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		
 		final HashMap<String, Location> n = data.getLocs(locKey);

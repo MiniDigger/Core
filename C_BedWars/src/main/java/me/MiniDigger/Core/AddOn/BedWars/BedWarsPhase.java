@@ -61,6 +61,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnerFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpawnersFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
@@ -111,6 +112,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new BuildFeature(this, Material.values()));
 		addFeature(new SpecateFeature(this));
 		addFeature(new BuildFeature(this, (Material) null));
+		addFeature(new SpawnersFeature(this));
 		
 		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 		
@@ -118,9 +120,9 @@ public class BedWarsPhase extends CorePhase {
 		
 		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 		
-		addFeature(new SpawnerFeature(this, DyeColor.PINK, 20 * 4, null, bronce));
-		addFeature(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 15, null, silver));
-		addFeature(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 60, null, gold));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.PINK, 20 * 1, null, bronce));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 4, null, silver));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 20, null, gold));
 		
 		new BukkitRunnable() {
 			

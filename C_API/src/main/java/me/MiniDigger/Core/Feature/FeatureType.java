@@ -62,7 +62,8 @@ public enum FeatureType {
 	LOBBYFEATURE,
 	NODROP,
 	NOPICKUP,
-	KILLS;
+	KILLS,
+	SPAWNERS;
 	
 	/**
 	 * @return A human readable name for the feature
