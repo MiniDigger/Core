@@ -61,7 +61,6 @@ public class CoreNametagHandler implements NametagHandler {
 				}
 			}
 		}
-		System.out.println(count + " nametag entities removed");
 		
 		Core.getCore().getInstance().getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 		

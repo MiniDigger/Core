@@ -42,12 +42,10 @@ public class CoreServer implements Server {
 	
 	public static Server fromString(String data) {
 		if (data.charAt(0) == '|') {
-			// System.out.println("REPLACE");
 			data = data.replaceFirst(Pattern.quote("|"), "");
 		}
 		final String[] d = data.split(Pattern.quote("|"));
 		final Server server = new CoreServer();
-		// System.out.println("DATA:" + data);
 		
 		server.setName(d[0]);
 		if (d[1] != null && !d[1].equals("null")) {

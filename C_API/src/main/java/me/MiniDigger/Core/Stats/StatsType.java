@@ -23,6 +23,8 @@ package me.MiniDigger.Core.Stats;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.MiniDigger.Core.Game.GameType;
+
 public class StatsType {
 	
 	public static class BedWars extends StatsGame {
