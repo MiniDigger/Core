@@ -129,10 +129,7 @@ public class TeamSelectFeature extends CoreFeature {
 		teamColors.add(ChatColor.BLACK);
 		
 		for (int i = 0; i < teamCount; i++) {
-			final Team t = new CoreTeam(teamSize);
-			t.setGame(getPhase().getGame());
-			t.setName(teamNames.get(i));
-			t.setColor(teamColors.get(i));
+			final Team t = new CoreTeam(teamSize, teamNames.get(i), teamColors.get(i), getPhase().getGame());
 			teams.add(t);
 		}
 	}

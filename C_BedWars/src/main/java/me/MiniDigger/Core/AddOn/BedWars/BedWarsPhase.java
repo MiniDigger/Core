@@ -37,6 +37,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager.Profession;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChars;
@@ -121,12 +122,49 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 15, null, silver));
 		addFeature(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 60, null, gold));
 		
-		genFoodVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 4);
-		genArmorVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 3);
-		genBowVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 1);
-		genWeaponVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 2);
-		genBlockVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 5);
-		genPotionVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 6);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				genBowVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 1);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 6 * 20);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				genWeaponVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 2);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 7 * 20);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				genArmorVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 3);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 8 * 20);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				genFoodVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 4);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 9 * 20);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				genBlockVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 5);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 10 * 20);
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				genPotionVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 6);
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 11 * 20);
+		
 	}
 	
 	private void genPotionVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {

@@ -46,7 +46,10 @@ public class CoreTeam implements Team {
 	private final Map<String, String>	data	= new HashMap<>();
 	private final ChatChannel	      channel;
 	
-	public CoreTeam(final int teamSize) {
+	public CoreTeam(final int teamSize, String name, ChatColor color, Game game) {
+		this.name = name;
+		this.color = color;
+		this.game = game;
 		size = teamSize;
 		channel = new TeamChannel(name, color, "chat.hear.team", "chat.speak.team", new FancyMessage("[").color(ChatColor.DARK_BLUE).then("Team").color(color).then("]")
 		        .color(ChatColor.DARK_BLUE));

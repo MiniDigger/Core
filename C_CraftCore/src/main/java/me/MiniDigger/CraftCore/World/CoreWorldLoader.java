@@ -157,7 +157,7 @@ public class CoreWorldLoader implements WorldLoader {
 					}
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 10 * 20);
+		}.runTaskLater(Core.getCore().getInstance(), 5 * 20);
 		
 		return internal.getWorld();
 	}

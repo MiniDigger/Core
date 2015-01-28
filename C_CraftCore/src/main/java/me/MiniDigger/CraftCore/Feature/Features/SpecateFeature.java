@@ -77,7 +77,9 @@ public class SpecateFeature extends CoreFeature {
 	public void start() {
 		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("VoteWinner"));
 		final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
-		loc = locs.get(locs.keySet().iterator().next());
+		if (locs != null) {
+			loc = locs.get(locs.keySet().iterator().next());
+		}
 	}
 	
 	@Override
@@ -97,7 +99,9 @@ public class SpecateFeature extends CoreFeature {
 			
 			@Override
 			public void run() {
-				user.getPlayer().teleport(loc);
+				if (loc != null) {
+					user.getPlayer().teleport(loc);
+				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
 		
@@ -114,9 +118,13 @@ public class SpecateFeature extends CoreFeature {
 	@EventHandler
 	public void respawn(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getSpecs().contains(e.getPlayer().getUniqueId())) {
-			e.setRespawnLocation(loc);
-			e.getPlayer().teleport(loc);
-			System.out.println("set respawn loc");
+			if (loc != null) {
+				e.setRespawnLocation(loc);
+				e.getPlayer().teleport(loc);
+				System.out.println("set respawn loc");
+			} else {
+				System.out.println("respawn loc = null");
+			}
 		}
 	}
 	
