@@ -194,8 +194,6 @@ public class BedFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.BED_DESTROYED, MsgType.IMPORTANT);
 					bed = null;
 				}
-
-				System.out.println("right bed? " + (teamName != null ? teamName : "") + " " + bed);
 				
 				e.getBlock().setType(Material.AIR);
 				e.getBlock().getState().update(true, true);
@@ -204,8 +202,6 @@ public class BedFeature extends CoreFeature {
 				}
 				
 				e.setCancelled(true);
-			} else {
-				System.out.println("Wrong bed? " + (teamName != null ? teamName : "") + " " + bed);
 			}
 		}
 	}
