@@ -31,6 +31,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -155,6 +156,15 @@ public class BedFeature extends CoreFeature {
 				System.out.println("tdm respawn bed error: " + ex.getMessage());
 			}
 			e.setRespawnLocation(bed.add(0.5, 1, 0.5));
+		}
+	}
+	
+	@EventHandler
+	public void onBlockPlayer(BlockPlaceEvent e) {
+		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
+			if (e.getBlockPlaced().getType() == Material.BED_BLOCK) {
+				e.setCancelled(true);
+			}
 		}
 	}
 	
