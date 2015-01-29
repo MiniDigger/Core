@@ -143,6 +143,7 @@ public class BedFeature extends CoreFeature {
 				final Team t = tf.getTeam(user);
 				getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.SB_OUT, MsgType.IMPORTANT, t.getColor() + user.getDisplayName());
 			} catch (final Exception ex) {
+				ex.printStackTrace();
 				getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.SB_OUT, MsgType.IMPORTANT, user.getDisplayName());
 			}
 		}
@@ -193,6 +194,8 @@ public class BedFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.BED_DESTROYED, MsgType.IMPORTANT);
 					bed = null;
 				}
+
+				System.out.println("right bed? " + (teamName != null ? teamName : "") + " " + bed);
 				
 				e.getBlock().setType(Material.AIR);
 				e.getBlock().getState().update(true, true);

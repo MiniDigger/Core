@@ -118,8 +118,8 @@ public class LangKeyType {
 		public static class BedWars {
 			
 			protected static String			type			   = "game_bedwars";
-			public static final LangKeyType	BED_DESTROYED		= new LangKeyType("bed_destroyed", type, "The bed of team `%0%` was destroyed");
-			public static final LangKeyType	BED_TEAM_DESTROYED	= new LangKeyType("bed_team_destroyed", type, "The bed was destroyed");
+			public static final LangKeyType	BED_TEAM_DESTROYED	= new LangKeyType("bed_team_destroyed", type, "The bed of team `%0%` was destroyed");
+			public static final LangKeyType	BED_DESTROYED		= new LangKeyType("bed_destroyed", type, "The bed was destroyed");
 			public static final LangKeyType	OUT			       = new LangKeyType("out", type, "You are out, because your bed was destroyed!");
 			public static final LangKeyType	SB_OUT			   = new LangKeyType("sb_out", type, "`%0%` is out!");
 			public static final LangKeyType	START1			   = new LangKeyType("start1", type, "The game has started!");

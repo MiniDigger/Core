@@ -27,6 +27,7 @@ import java.util.List;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -89,6 +90,13 @@ public class TeamBedFeature extends CoreFeature {
 		}
 	}
 	
+	@EventHandler
+	public void onBedPlace(final BlockPlaceEvent e) {
+		for (final BedFeature f : beds.values()) {
+			f.onBlockPlayer(e);
+		}
+	}
+	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBedDestory(final BlockBreakEvent e) {
 		for (final BedFeature f : beds.values()) {
@@ -101,5 +109,4 @@ public class TeamBedFeature extends CoreFeature {
 		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		beds.get(tf.getTeam(e.getPlayer()).getName()).onPlayerRespawn(e);
 	}
-	
 }
