@@ -25,7 +25,6 @@ import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Villager.VillagerListener;
 
@@ -36,15 +35,7 @@ public class CoreVillagerListener implements VillagerListener {
 		if (e.getRightClicked().getType() == EntityType.VILLAGER) {
 			System.out.println("open");
 			Core.getCore().getVillagerHandler().open((Villager) e.getRightClicked(), e.getPlayer());
-			e.setCancelled(false);
-			System.out.println("canceld?: " + e.isCancelled());
-		}
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerInterac2t(final PlayerInteractEntityEvent e) {
-		if (e.getRightClicked().getType() == EntityType.VILLAGER) {
-			System.out.println("!!canceld?: " + e.isCancelled());
+			e.setCancelled(true);
 		}
 	}
 }

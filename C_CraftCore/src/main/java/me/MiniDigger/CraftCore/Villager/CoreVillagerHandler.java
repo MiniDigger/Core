@@ -20,18 +20,17 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import com.comphenix.protocol.utility.MinecraftReflection;
-
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftVillager;
-
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import net.minecraft.server.v1_8_R1.EntityVillager;
-import net.minecraft.server.v1_8_R1.NBTTagCompound;
-import net.minecraft.server.v1_8_R1.NBTTagList;
+import net.minecraft.server.v1_8_R1.MerchantRecipe;
+import net.minecraft.server.v1_8_R1.MerchantRecipeList;
+import net.minecraft.server.v1_8_R1.StatisticList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -72,42 +71,79 @@ public class CoreVillagerHandler implements VillagerHandler {
 		return true;
 	}
 	
-	@SuppressWarnings("unused")
 	@Override
 	public boolean open(final Villager v, final Player p) {
-		final EntityVillager mcVillager = ((CraftVillager) v).getHandle();
-		final NBTTagCompound nbt = new NBTTagCompound();
-		mcVillager.b(nbt);
-		nbt.setInt("Willing", 1);
-		
-		final NBTTagList recipes = new NBTTagList();
-		
-		for (final VillagerTrade t : getTrades(v)) {
-			final NBTTagCompound res = new NBTTagCompound();
-			res.setByte("rewardExp", (byte) 0);
-			res.setInt("maxUses", 10000);
-			res.setInt("uses", 0);
-			
-			final NBTTagCompound buy1 = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem1())).getTag();
-			final NBTTagCompound buy2 = null;
-			if (t.getItem2() != null) {
-				((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getItem2())).getTag();
-			}
-			final NBTTagCompound sell = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(t.getRewardItem())).getTag();
-			
-			res.set("buy", buy1);
-			if (buy2 != null) {
-				res.set("buyB", buy2);
-			}
-			res.set("sell", sell);
-		}
-		
-		final NBTTagCompound offers = new NBTTagCompound();
-		offers.set("Recipes", recipes);
-		
-		nbt.set("Offers", offers);
-		mcVillager.a(nbt);
-		
-		return true;
+		return openTradeWindow(v.getCustomName(), getTrades(v), p);
 	}
+	
+	// https://github.com/nisovin/Shopkeepers/blob/master/modules/v1_8_R1/src/main/java/com/nisovin/shopkeepers/compat/v1_8_R1/NMSHandler.java
+	@SuppressWarnings("unchecked")
+	public boolean openTradeWindow(String name, List<VillagerTrade> recipes, Player player) {
+		try {
+			EntityVillager villager = new EntityVillager(((CraftPlayer) player).getHandle().world, 0);
+			// custom name:
+			if (name != null && !name.isEmpty()) {
+				villager.setCustomName(name);
+			}
+			// career level (to prevent trade progression):
+			Field careerLevelField = EntityVillager.class.getDeclaredField("bw");
+			careerLevelField.setAccessible(true);
+			careerLevelField.set(villager, 10);
+			
+			// recipes:
+			Field recipeListField = EntityVillager.class.getDeclaredField("bp");
+			recipeListField.setAccessible(true);
+			MerchantRecipeList recipeList = (MerchantRecipeList) recipeListField.get(villager);
+			if (recipeList == null) {
+				recipeList = new MerchantRecipeList();
+				recipeListField.set(villager, recipeList);
+			}
+			recipeList.clear();
+			for (VillagerTrade recipe : recipes) {
+				recipeList.add(createMerchantRecipe(recipe.getItem1(), recipe.getItem2(), recipe.getRewardItem()));
+			}
+			
+			// this will trigger the "create child" code of minecraft when the
+			// player is holding a spawn egg in his hands,
+			// but bypasses craftbukkits interact events and therefore removes
+			// the spawn egg from the players hands
+			// result: we have to prevent openTradeWindow if the shopkeeper
+			// entity is being clicking with a spawn egg in hands
+			// villager.a(((CraftPlayer) player).getHandle());
+			villager.a_(((CraftPlayer) player).getHandle()); // set trading
+			                                                 // player
+			((CraftPlayer) player).getHandle().openTrade(villager); // open
+			                                                        // trade
+			                                                        // window
+			((CraftPlayer) player).getHandle().b(StatisticList.F); // minecraft
+			                                                       // statistics
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	private MerchantRecipe createMerchantRecipe(org.bukkit.inventory.ItemStack item1, org.bukkit.inventory.ItemStack item2, org.bukkit.inventory.ItemStack item3) {
+		MerchantRecipe recipe = new MerchantRecipe(convertItemStack(item1), convertItemStack(item2), convertItemStack(item3));
+		try {
+			// max uses:
+			Field maxUsesField = MerchantRecipe.class.getDeclaredField("maxUses");
+			maxUsesField.setAccessible(true);
+			maxUsesField.set(recipe, 10000);
+			
+			// reward exp:
+			Field rewardExpField = MerchantRecipe.class.getDeclaredField("rewardExp");
+			rewardExpField.setAccessible(true);
+			rewardExpField.set(recipe, false);
+		} catch (Exception e) {}
+		return recipe;
+	}
+	
+	private net.minecraft.server.v1_8_R1.ItemStack convertItemStack(org.bukkit.inventory.ItemStack item) {
+		if (item == null) return null;
+		return org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack.asNMSCopy(item);
+	}
+	
 }
