@@ -31,7 +31,6 @@ import java.net.URL;
 import org.bukkit.Bukkit;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.Update.UpdateType;
 
@@ -44,7 +43,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 	private UpdateType	        type;
 	
 	static {
-		if (LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level")) == LogLevel.DEBUG) {
+		if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 			JAR_URL = "http://api.minidigger.me/addons-dev/Core.jar";
 		} else {
 			JAR_URL = "http://api.minidigger.me/addons/Core.jar";

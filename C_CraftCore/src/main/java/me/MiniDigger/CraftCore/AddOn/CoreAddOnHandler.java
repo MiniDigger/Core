@@ -112,7 +112,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
 				_.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), url.toExternalForm());
 				String pack;
-				if (LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level")) == LogLevel.DEBUG) {
+				if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 					pack = bean.getPackageDev();
 				} else {
 					pack = bean.getPackage();
