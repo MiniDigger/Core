@@ -45,6 +45,7 @@ import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Lang._;
@@ -134,8 +135,8 @@ public class BedFeature extends CoreFeature {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
+		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (bed == null) {
-			final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			_.msg(getPhase().getGame().getGamePrefix(), LangKeyType.Game.BedWars.OUT, MsgType.IMPORTANT, user.getPlayer());
 			try {
 				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
@@ -148,6 +149,9 @@ public class BedFeature extends CoreFeature {
 		if (bed == null) {
 			final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 			e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
+			final SpecateFeature s = (SpecateFeature) getPhase().getFeature(FeatureType.SPEC);
+			getPhase().getGame().leave(user);
+			s.spec(user);
 		} else {
 			try {
 				final TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
