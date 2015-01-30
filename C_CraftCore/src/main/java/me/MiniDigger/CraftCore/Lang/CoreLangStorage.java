@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LangStorage;
 import me.MiniDigger.Core.Lang.LangType;
@@ -84,8 +85,9 @@ public class CoreLangStorage implements LangStorage {
 				x++;
 			}
 			
-			if (s.startsWith(LANG_KEY + "=")) {
-				s = s.replace(LANG_KEY + "=", "");
+			if (s.startsWith(LANG_KEY + "=\"") && s.endsWith("\"")) {
+				s = s.replace(LANG_KEY + "=\"", "");
+				s = Core.getCore().getStringUtil().replaceLast(s, "\"", "");
 				lang = LangType.valueOf(s);
 			} else {
 				_.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_LANG_KEY, file.getAbsolutePath(), s);
@@ -98,8 +100,9 @@ public class CoreLangStorage implements LangStorage {
 				x++;
 			}
 			
-			if (s.startsWith(AUTHOR + "=")) {
-				s = s.replace(AUTHOR + "=", "");
+			if (s.startsWith(LANG_KEY + "=\"") && s.endsWith("\"")) {
+				s = s.replace(LANG_KEY + "=\"", "");
+				s = Core.getCore().getStringUtil().replaceLast(s, "\"", "");
 				author = s;
 			} else {
 				_.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_AUTHOR, file.getAbsolutePath(), s);
@@ -114,7 +117,8 @@ public class CoreLangStorage implements LangStorage {
 				boolean found = false;
 				for (final LangKeyType type : LangKeyType.values()) {
 					if (s.startsWith(type.getFullType())) {
-						s = s.replace(type.getFullType() + "=", "");
+						s = s.replace(type.getFullType() + "=\"", "");
+						s = Core.getCore().getStringUtil().replaceLast(s, "\"", "");
 						values.put(type, s);
 						found = true;
 						break;
@@ -146,22 +150,22 @@ public class CoreLangStorage implements LangStorage {
 			w = new PrintWriter(file);
 			
 			if (lang != null) {
-				w.println(LANG_KEY + "=" + lang.getCode());
+				w.println(LANG_KEY + "=\"" + lang.getCode() + "\"");
 			} else {
-				w.println(LANG_KEY + "=INSERT LANG CODE HERE!");
+				w.println(LANG_KEY + "=\"INSERT LANG CODE HERE!\"");
 			}
 			
 			if (author != null) {
-				w.println(AUTHOR + "=" + author);
+				w.println(AUTHOR + "=\"" + author + "\"");
 			} else {
-				w.println(AUTHOR + "=INSERT YOUR NAME HERE!");
+				w.println(AUTHOR + "=\"INSERT YOUR NAME HERE!\"");
 			}
 			
 			for (final LangKeyType type : LangKeyType.values()) {
 				if (values.containsKey(type)) {
-					w.println(type.getFullType() + "=" + values.get(type));
+					w.println(type.getFullType() + "=\"" + values.get(type) + "\"");
 				} else {
-					w.println(type.getFullType() + "=" + type.getDefaultValue());
+					w.println(type.getFullType() + "=\"" + type.getDefaultValue() + "\"");
 				}
 			}
 			w.close();
