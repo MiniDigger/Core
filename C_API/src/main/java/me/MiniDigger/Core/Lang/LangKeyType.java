@@ -182,7 +182,7 @@ public class LangKeyType {
 			protected static String			type	= "game_oneinthechamber";
 			public static final LangKeyType	START1	= new LangKeyType("start1", type, "You have only one arrow left!");
 			public static final LangKeyType	START2	= new LangKeyType("start2", type, "Kill your enemies to earn new ones!");
-			public static final LangKeyType	START3	= new LangKeyType("start1", type, "You only have five lives!");
+			public static final LangKeyType	START3	= new LangKeyType("start3", type, "You only have five lives!");
 			
 			public static List<LangKeyType> values() {
 				final List<LangKeyType> values = new ArrayList<>();
@@ -320,7 +320,7 @@ public class LangKeyType {
 		public static final LangKeyType	CHECK_LICENCE		 = new LangKeyType("check_licence", type, "Checking licence...");
 		public static final LangKeyType	CHECK_LICENCE_FAILED	= new LangKeyType("check_licence_failed", type, "Licence check FAILED! (`%0%ms`)");
 		public static final LangKeyType	CHECK_LICENCE_PASSED	= new LangKeyType("check_licence_passed", type, "Licence check passed! (`%0%ms`)");
-		public static final LangKeyType	CHECK_UPDATES		 = new LangKeyType("check_licence", type, "Checking updater...");
+		public static final LangKeyType	CHECK_UPDATES		 = new LangKeyType("check_updates", type, "Checking updater...");
 		public static final LangKeyType	DEACTIVATE		     = new LangKeyType("deactivate", type, "Deactivating");
 		public static final LangKeyType	DEACTIVATE_HANDLER		= new LangKeyType("deactivate_handler", type, "Deaktivating handlers...");
 		public static final LangKeyType	DEACTIVATED		     = new LangKeyType("deactivated", type, "Deactivated!");
