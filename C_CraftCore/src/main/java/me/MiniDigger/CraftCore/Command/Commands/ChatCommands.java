@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.Command.Commands;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import me.MiniDigger.Core.Core;
@@ -29,6 +30,7 @@ import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -203,5 +205,54 @@ public class ChatCommands {
 		}
 		
 		ch.chat(args.getUser(), message);
+	}
+	
+	@Command(name = "name", description = "Ändert den Anzeigenamen", usage = "name <name> [player]", permission = "name", consol = false, min = 1, max = 2)
+	public void name(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			args.getUser().setDisplayName(args.getArgs()[0]);
+			Prefix.CHAT.getPrefix().then("Dein Anzeigename ist nun " + args.getArgs()[0]).send(args.getPlayer());;
+		} else {
+			User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[1]).getUniqueId());
+			user.setDisplayName(args.getArgs()[1]);
+			Prefix.CHAT.getPrefix().then("Dein Anzeigename ist nun " + args.getArgs()[0]).send(user.getPlayer());;
+			Prefix.CHAT.getPrefix().then("Der Anzeigename von " + user.getRealName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());;
+		}
+	}
+	
+	@Command(name = "realname", description = "Zeigt den richtigen Namen von einem Spieler an", usage = "realname <player>", permission = "realname", consol = true, min = 1, max = 1)
+	public void realname(final CommandArgs args) {
+		User user = Core.getCore().getUserHandler().getFromDisplayName(args.getArgs()[0]);
+		if (user == null) {
+			Prefix.CHAT.getPrefix().then("Unbekannter User " + args.getArgs()[0]).send(args.getSender());
+			return;
+		}
+		Prefix.CHAT.getPrefix().then("Der richtige Name von " + user.getDisplayName() + " ist " + user.getRealName()).send(args.getSender());;
+	}
+	
+	@Command(name = "prefix", description = "Ändert das Prefix", usage = "prefix <prefix> [player]", permission = "prefix", consol = false, min = 1, max = 2)
+	public void prefix(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			args.getUser().setPrefix(args.getArgs()[0]);
+			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(args.getPlayer());;
+		} else {
+			User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[1]).getUniqueId());
+			user.setPrefix(args.getArgs()[1]);
+			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(user.getPlayer());;
+			Prefix.CHAT.getPrefix().then("Das Prefix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());;
+		}
+	}
+	
+	@Command(name = "suffix", description = "Ändert das Suffix", usage = "suffix <suffix> [player]", permission = "suffix", consol = false, min = 1, max = 2)
+	public void suffix(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			args.getUser().setSuffix(args.getArgs()[0]);
+			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(args.getPlayer());;
+		} else {
+			User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[1]).getUniqueId());
+			user.setSuffix(args.getArgs()[1]);
+			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(user.getPlayer());;
+			Prefix.CHAT.getPrefix().then("Das Suffix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());;
+		}
 	}
 }

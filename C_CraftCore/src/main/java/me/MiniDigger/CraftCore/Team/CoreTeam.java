@@ -28,9 +28,11 @@ import java.util.UUID;
 
 import org.bukkit.ChatColor;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Team.Team;
+import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Chat.Channels.TeamChannel;
 
@@ -117,12 +119,20 @@ public class CoreTeam implements Team {
 	public void join(final UUID player) {
 		if (!players.contains(player)) {
 			players.add(player);
+			try {
+				User u = Core.getCore().getUserHandler().get(player);
+				u.setPrefix(getColor() + u.getPrefix());
+			} catch (Exception ex) {}
 		}
 	}
 	
 	@Override
 	public void leave(final UUID player) {
 		players.remove(player);
+		try {
+			User u = Core.getCore().getUserHandler().get(player);
+			u.setPrefix(u.getPrefix().replaceFirst(getColor() + "", ""));
+		} catch (Exception ex) {}
 	}
 	
 	@Override

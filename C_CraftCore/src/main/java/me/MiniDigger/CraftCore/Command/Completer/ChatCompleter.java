@@ -23,10 +23,13 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.entity.Player;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
+import me.MiniDigger.Core.User.User;
 
 public class ChatCompleter {
 	
@@ -144,6 +147,58 @@ public class ChatCompleter {
 			}
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "name")
+	public List<String> nameC(final CommandArgs args) {
+		if (args.getArgs().length == 2) {
+			final List<String> result = new ArrayList<>();
+			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "realname")
+	public List<String> realnameC(final CommandArgs args) {
+		if (args.getArgs().length == 2) {
+			final List<String> result = new ArrayList<>();
+			for (User u : Core.getCore().getUserHandler().getOnlineUsers()) {
+				result.add(u.getDisplayName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "prefix")
+	public List<String> prefixC(final CommandArgs args) {
+		if (args.getArgs().length == 2) {
+			final List<String> result = new ArrayList<>();
+			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "suffix")
+	public List<String> suffixC(final CommandArgs args) {
+		if (args.getArgs().length == 2) {
+			final List<String> result = new ArrayList<>();
+			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
 		} else {
 			return new ArrayList<String>();
 		}

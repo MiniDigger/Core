@@ -135,4 +135,14 @@ public class CoreUserHandler implements UserHandler {
 		
 		return players;
 	}
+	
+	@Override
+	public User getFromDisplayName(String name) {
+		for (User u : getOnlineUsers()) {
+			if (u.getDisplayName().equalsIgnoreCase(name)) {
+				return u;
+			}
+		}
+		return null;
+	}
 }

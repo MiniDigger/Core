@@ -52,4 +52,9 @@ public interface UserHandler extends SaveHandler {
 	 * @return the Server-Controlled user
 	 */
 	public User getBot();
+	
+	/**
+	 * @return the user with that displayname
+	 */
+	public User getFromDisplayName(String name);
 }
