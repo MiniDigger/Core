@@ -344,7 +344,7 @@ public class CoreUser implements User {
 	
 	@Override
 	public void setPrefix(final String prefix) {
-		this.prefix = prefix;
+		this.prefix = Core.getCore().getChatColorUtil().replaceAndToMc(prefix);
 	}
 	
 	@Override
@@ -354,7 +354,7 @@ public class CoreUser implements User {
 	
 	@Override
 	public void setSuffix(final String suffix) {
-		this.suffix = suffix;
+		this.suffix = Core.getCore().getChatColorUtil().replaceAndToMc(suffix);
 	}
 	
 	@Override
