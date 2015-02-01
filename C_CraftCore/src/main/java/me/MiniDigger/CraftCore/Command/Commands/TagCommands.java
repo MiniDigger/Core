@@ -88,7 +88,7 @@ public class TagCommands {
 	public void prefix(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
 			System.out.println("args.getPlayer.getName():" + args.getPlayer().getName());
-			Core.getCore().getScoreboardHandler().getTeam(args.getPlayer().getName()).setPrefix(args.getArgs()[0]);
+			Core.getCore().getScoreboardHandler().getTeam(args.getPlayer().getName()).setPrefix(Core.getCore().getChatColorUtil().replaceAndToMc(args.getArgs()[0]));
 			Core.getCore().getScoreboardHandler().updateAll();
 			Prefix.TAG.getPrefix().then("Prefix geändert!").color(ChatColor.GREEN).send(args.getSender());
 		} else {
@@ -97,7 +97,7 @@ public class TagCommands {
 				Prefix.TAG.getPrefix().then("Diesen Spieler gibt es nicht!").color(ChatColor.RED).send(args.getSender());
 				return;
 			}
-			Core.getCore().getScoreboardHandler().getTeam(p.getName()).setPrefix(args.getArgs()[1]);
+			Core.getCore().getScoreboardHandler().getTeam(p.getName()).setPrefix(Core.getCore().getChatColorUtil().replaceAndToMc(args.getArgs()[1]));
 			Core.getCore().getScoreboardHandler().updateAll();
 			Prefix.TAG.getPrefix().then("Prefix geändert!").color(ChatColor.GREEN).send(args.getSender());
 		}
@@ -106,7 +106,7 @@ public class TagCommands {
 	@Command(name = "tag.suffix", description = "Verändert das Suffix von einem Spieler", permission = "tag.suffix", min = 1, max = 2, string = 1, sync = true)
 	public void suffix(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
-			Core.getCore().getScoreboardHandler().getTeam(args.getPlayer().getName()).setSuffix(args.getArgs()[0]);
+			Core.getCore().getScoreboardHandler().getTeam(args.getPlayer().getName()).setSuffix(Core.getCore().getChatColorUtil().replaceAndToMc(args.getArgs()[0]));
 			Core.getCore().getScoreboardHandler().updateAll();
 			Prefix.TAG.getPrefix().then("Suffix geändert!").color(ChatColor.GREEN).send(args.getSender());
 		} else {
@@ -115,7 +115,7 @@ public class TagCommands {
 				Prefix.TAG.getPrefix().then("Diesen Spieler gibt es nicht!").color(ChatColor.RED).send(args.getSender());
 				return;
 			}
-			Core.getCore().getScoreboardHandler().getTeam(p.getName()).setSuffix(args.getArgs()[1]);
+			Core.getCore().getScoreboardHandler().getTeam(p.getName()).setSuffix(Core.getCore().getChatColorUtil().replaceAndToMc(args.getArgs()[1]));
 			Core.getCore().getScoreboardHandler().updateAll();
 			Prefix.TAG.getPrefix().then("Suffix geändert!").color(ChatColor.GREEN).send(args.getSender());
 		}
