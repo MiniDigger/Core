@@ -371,7 +371,6 @@ public class BedWarsPhase extends CorePhase {
 	}
 	
 	private void genArmorVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
-		// TODO Team armor, vlt beim traden erst, oder beim anziehen?
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
