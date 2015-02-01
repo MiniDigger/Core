@@ -21,6 +21,7 @@
 package me.MiniDigger.Core.Util;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 
 public interface ChatColorUtil {
 	
@@ -99,4 +100,10 @@ public interface ChatColorUtil {
 	 */
 	
 	public String replaceColorChars(final String msg, final char old, final char neu);
+	
+	/**
+	 * @param c
+	 * @return a Color object that matches the chatcolor
+	 */
+	Color toColor(ChatColor c);
 }

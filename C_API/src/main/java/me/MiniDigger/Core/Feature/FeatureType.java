@@ -63,7 +63,8 @@ public enum FeatureType {
 	NODROP,
 	NOPICKUP,
 	KILLS,
-	SPAWNERS;
+	SPAWNERS,
+	TEAM_ARMOR;
 	
 	/**
 	 * @return A human readable name for the feature

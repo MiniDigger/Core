@@ -21,6 +21,7 @@
 package me.MiniDigger.CraftCore.Util;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 
 import me.MiniDigger.Core.Util.ChatColorUtil;
 
@@ -67,6 +68,44 @@ public class CoreChatColorUtil implements ChatColorUtil {
 			}
 		}
 		return ChatColor.RESET;
+	}
+	
+	@Override
+	public Color toColor(ChatColor c) {
+		switch (c) {
+		case AQUA:
+			return Color.AQUA;
+		case BLACK:
+			return Color.BLACK;
+		case BLUE:
+			return Color.BLUE;
+		case DARK_AQUA:
+			return Color.AQUA;
+		case DARK_BLUE:
+			return Color.BLUE;
+		case DARK_GRAY:
+			return Color.GRAY;
+		case DARK_GREEN:
+			return Color.GREEN;
+		case DARK_PURPLE:
+			return Color.PURPLE;
+		case DARK_RED:
+			return Color.RED;
+		case GOLD:
+			return Color.ORANGE;
+		case GRAY:
+			return Color.GRAY;
+		case GREEN:
+			return Color.GREEN;
+		case LIGHT_PURPLE:
+			return Color.PURPLE;
+		case RED:
+			return Color.RED;
+		case YELLOW:
+			return Color.YELLOW;
+		default:
+			return Color.WHITE;
+		}
 	}
 	
 	@Override

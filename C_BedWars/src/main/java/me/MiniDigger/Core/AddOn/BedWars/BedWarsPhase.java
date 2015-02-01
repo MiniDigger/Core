@@ -113,6 +113,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new SpecateFeature(this));
 		addFeature(new BuildFeature(this, (Material) null));
 		addFeature(new SpawnersFeature(this));
+		addFeature(new TeamArmorFeature(this));
 		
 		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 		
