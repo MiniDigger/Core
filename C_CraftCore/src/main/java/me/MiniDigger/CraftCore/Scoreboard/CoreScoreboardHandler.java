@@ -20,21 +20,27 @@
  */
 package me.MiniDigger.CraftCore.Scoreboard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.NameTagVisibility;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Scoreboard.ScoreboardHandler;
+import me.MiniDigger.Core.Scoreboard.ScoreboardTeam;
 
 public class CoreScoreboardHandler implements ScoreboardHandler {
 	
 	private final Map<UUID, Scoreboard>	boards	= new HashMap<UUID, Scoreboard>();
+	private final List<ScoreboardTeam>	teams	= new ArrayList<ScoreboardTeam>();
 	
 	@Override
 	public Scoreboard getBoard(final UUID id) {
@@ -45,9 +51,21 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	}
 	
 	@Override
+	public Set<UUID> getIds() {
+		return boards.keySet();
+	}
+	
+	@Override
 	public void update(final UUID id) {
 		final Player p = Bukkit.getPlayer(id);
-		p.setScoreboard(getBoard(id).toBukkitScoreboard());
+		p.setScoreboard(getBoard(id).toBukkitScoreboard(teams));
+	}
+	
+	@Override
+	public void updateAll() {
+		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			update(p.getUniqueId());
+		}
 	}
 	
 	@Override
@@ -64,5 +82,20 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 			getBoard(p.getUniqueId()).clear(slot);
 			update(p.getUniqueId());
 		}
+	}
+	
+	@Override
+	public ScoreboardTeam getTeam(final String name) {
+		for (ScoreboardTeam t : teams) {
+			if (t.getName().equalsIgnoreCase(name)) {
+				return t;
+			}
+		}
+		ScoreboardTeam t = new CoreScoreboardTeam();
+		t.setName(name);
+		t.setNameTagVisibility(NameTagVisibility.ALWAYS);
+		t.addPlayer(Bukkit.getPlayer(name).getUniqueId());
+		teams.add(t);
+		return t;
 	}
 }

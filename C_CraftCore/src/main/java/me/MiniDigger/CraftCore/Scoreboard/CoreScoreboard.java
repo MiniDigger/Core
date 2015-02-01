@@ -22,15 +22,18 @@ package me.MiniDigger.CraftCore.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Team;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Scoreboard.ScoreboardLine;
+import me.MiniDigger.Core.Scoreboard.ScoreboardTeam;
 import me.MiniDigger.Core.Scoreboard.ScoreboardTitle;
 
 public class CoreScoreboard implements Scoreboard {
@@ -141,11 +144,11 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public org.bukkit.scoreboard.Scoreboard toBukkitScoreboard() {
+	public org.bukkit.scoreboard.Scoreboard toBukkitScoreboard(List<ScoreboardTeam> teams) {
 		final org.bukkit.scoreboard.Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 		
 		String add = "";
-		if (sb.getObjective(playerlist.getTitle()) != null) {
+		while (sb.getObjective(playerlist.getTitle() + add) != null) {
 			add += " ";
 		}
 		
@@ -163,7 +166,7 @@ public class CoreScoreboard implements Scoreboard {
 		}
 		
 		add = "";
-		if (sb.getObjective(belowname.getTitle()) != null) {
+		while (sb.getObjective(belowname.getTitle() + add) != null) {
 			add += " ";
 		}
 		
@@ -181,7 +184,7 @@ public class CoreScoreboard implements Scoreboard {
 		}
 		
 		add = "";
-		if (sb.getObjective(sidebar.getTitle()) != null) {
+		while (sb.getObjective(sidebar.getTitle() + add) != null) {
 			add += " ";
 		}
 		
@@ -196,6 +199,20 @@ public class CoreScoreboard implements Scoreboard {
 		
 		if (getLines(DisplaySlot.SIDEBAR).size() == 0) {
 			sb.clearSlot(DisplaySlot.SIDEBAR);
+		}
+		
+		for (ScoreboardTeam team : teams) {
+			Team t = sb.registerNewTeam(team.getName());
+			t.setAllowFriendlyFire(true);
+			t.setCanSeeFriendlyInvisibles(false);
+			t.setDisplayName(team.getName());
+			t.setNameTagVisibility(team.getNameTagVisibility());
+			t.setPrefix(team.getPrefix());
+			t.setSuffix(team.getSuffix());
+			
+			for (UUID id : team.getPlayers()) {
+				t.addPlayer(Bukkit.getOfflinePlayer(id));
+			}
 		}
 		
 		return sb;

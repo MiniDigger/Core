@@ -20,6 +20,7 @@
  */
 package me.MiniDigger.Core.Scoreboard;
 
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.scoreboard.DisplaySlot;
@@ -53,5 +54,21 @@ public interface ScoreboardHandler {
 	 * @param slot
 	 */
 	void clearAll(final DisplaySlot slot);
+	
+	/**
+	 * @return the ideas of all registered players
+	 */
+	Set<UUID> getIds();
+	
+	/**
+	 * @param name
+	 * @return the team of the player with this name
+	 */
+	ScoreboardTeam getTeam(String name);
+
+	/**
+	 * updates the scoreboards of all online players
+	 */
+	void updateAll();
 	
 }

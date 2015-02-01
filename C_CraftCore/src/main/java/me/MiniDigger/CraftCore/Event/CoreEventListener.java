@@ -55,6 +55,7 @@ public class CoreEventListener implements EventListener {
 		e.setJoinMessage(null);
 		Core.getCore().getPlayerUtil().prepare(e.getPlayer());
 		Core.getCore().getCommonMethods().printJoinMessage(user);
+		Core.getCore().getScoreboardHandler().update(e.getPlayer().getUniqueId());
 		
 		if (Core.getCore().getGameHandler().getMainGame() != null && Core.getCore().getGameHandler().getMainGame().getType() != GameType.NOTHING) {
 			final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(Core.getCore().getGameHandler().getMainGame(), user);
@@ -81,7 +82,7 @@ public class CoreEventListener implements EventListener {
 				game.leave(user);
 			}
 		}
-		
+		e.setQuitMessage(null);
 	}
 	
 	private static final HashMap<UUID, UUID>	lastDamaged	= new HashMap<>();
