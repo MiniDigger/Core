@@ -165,7 +165,7 @@ public class BedFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onBlockPlayer(BlockPlaceEvent e) {
+	public void onBlockPlayer(final BlockPlaceEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			if (e.getBlockPlaced().getType() == Material.BED_BLOCK) {
 				e.setCancelled(true);

@@ -137,8 +137,8 @@ public class CoreUserHandler implements UserHandler {
 	}
 	
 	@Override
-	public User getFromDisplayName(String name) {
-		for (User u : getOnlineUsers()) {
+	public User getFromDisplayName(final String name) {
+		for (final User u : getOnlineUsers()) {
 			if (u.getDisplayName().equalsIgnoreCase(name)) {
 				return u;
 			}

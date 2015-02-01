@@ -64,8 +64,8 @@ public interface ScoreboardHandler {
 	 * @param name
 	 * @return the team of the player with this name
 	 */
-	ScoreboardTeam getTeam(String name);
-
+	ScoreboardTeam getTeam(final String name);
+	
 	/**
 	 * updates the scoreboards of all online players
 	 */

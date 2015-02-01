@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+
 import net.minecraft.server.v1_8_R1.EntityVillager;
 import net.minecraft.server.v1_8_R1.MerchantRecipe;
 import net.minecraft.server.v1_8_R1.MerchantRecipeList;
@@ -78,20 +79,20 @@ public class CoreVillagerHandler implements VillagerHandler {
 	
 	// https://github.com/nisovin/Shopkeepers/blob/master/modules/v1_8_R1/src/main/java/com/nisovin/shopkeepers/compat/v1_8_R1/NMSHandler.java
 	@SuppressWarnings("unchecked")
-	public boolean openTradeWindow(String name, List<VillagerTrade> recipes, Player player) {
+	public boolean openTradeWindow(final String name, final List<VillagerTrade> recipes, final Player player) {
 		try {
-			EntityVillager villager = new EntityVillager(((CraftPlayer) player).getHandle().world, 0);
+			final EntityVillager villager = new EntityVillager(((CraftPlayer) player).getHandle().world, 0);
 			// custom name:
 			if (name != null && !name.isEmpty()) {
 				villager.setCustomName(name);
 			}
 			// career level (to prevent trade progression):
-			Field careerLevelField = EntityVillager.class.getDeclaredField("bw");
+			final Field careerLevelField = EntityVillager.class.getDeclaredField("bw");
 			careerLevelField.setAccessible(true);
 			careerLevelField.set(villager, 10);
 			
 			// recipes:
-			Field recipeListField = EntityVillager.class.getDeclaredField("bp");
+			final Field recipeListField = EntityVillager.class.getDeclaredField("bp");
 			recipeListField.setAccessible(true);
 			MerchantRecipeList recipeList = (MerchantRecipeList) recipeListField.get(villager);
 			if (recipeList == null) {
@@ -99,7 +100,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 				recipeListField.set(villager, recipeList);
 			}
 			recipeList.clear();
-			for (VillagerTrade recipe : recipes) {
+			for (final VillagerTrade recipe : recipes) {
 				recipeList.add(createMerchantRecipe(recipe.getItem1(), recipe.getItem2(), recipe.getRewardItem()));
 			}
 			
@@ -119,30 +120,33 @@ public class CoreVillagerHandler implements VillagerHandler {
 			                                                       // statistics
 			
 			return true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 	
-	private MerchantRecipe createMerchantRecipe(org.bukkit.inventory.ItemStack item1, org.bukkit.inventory.ItemStack item2, org.bukkit.inventory.ItemStack item3) {
-		MerchantRecipe recipe = new MerchantRecipe(convertItemStack(item1), convertItemStack(item2), convertItemStack(item3));
+	private MerchantRecipe createMerchantRecipe(final org.bukkit.inventory.ItemStack item1, final org.bukkit.inventory.ItemStack item2,
+	        final org.bukkit.inventory.ItemStack item3) {
+		final MerchantRecipe recipe = new MerchantRecipe(convertItemStack(item1), convertItemStack(item2), convertItemStack(item3));
 		try {
 			// max uses:
-			Field maxUsesField = MerchantRecipe.class.getDeclaredField("maxUses");
+			final Field maxUsesField = MerchantRecipe.class.getDeclaredField("maxUses");
 			maxUsesField.setAccessible(true);
 			maxUsesField.set(recipe, 10000);
 			
 			// reward exp:
-			Field rewardExpField = MerchantRecipe.class.getDeclaredField("rewardExp");
+			final Field rewardExpField = MerchantRecipe.class.getDeclaredField("rewardExp");
 			rewardExpField.setAccessible(true);
 			rewardExpField.set(recipe, false);
-		} catch (Exception e) {}
+		} catch (final Exception e) {}
 		return recipe;
 	}
 	
-	private net.minecraft.server.v1_8_R1.ItemStack convertItemStack(org.bukkit.inventory.ItemStack item) {
-		if (item == null) return null;
+	private net.minecraft.server.v1_8_R1.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
+		if (item == null) {
+			return null;
+		}
 		return org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack.asNMSCopy(item);
 	}
 	

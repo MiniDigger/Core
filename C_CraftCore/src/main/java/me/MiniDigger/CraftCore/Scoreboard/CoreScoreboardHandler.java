@@ -63,7 +63,7 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	
 	@Override
 	public void updateAll() {
-		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			update(p.getUniqueId());
 		}
 	}
@@ -86,12 +86,12 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 	
 	@Override
 	public ScoreboardTeam getTeam(final String name) {
-		for (ScoreboardTeam t : teams) {
+		for (final ScoreboardTeam t : teams) {
 			if (t.getName().equalsIgnoreCase(name)) {
 				return t;
 			}
 		}
-		ScoreboardTeam t = new CoreScoreboardTeam();
+		final ScoreboardTeam t = new CoreScoreboardTeam();
 		t.setName(name);
 		t.setNameTagVisibility(NameTagVisibility.ALWAYS);
 		t.addPlayer(Bukkit.getPlayer(name).getUniqueId());

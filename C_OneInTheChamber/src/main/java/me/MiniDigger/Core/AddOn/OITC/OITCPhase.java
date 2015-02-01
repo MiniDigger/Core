@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.Core.AddOn.OITC;
 
-import org.bukkit.ChatColor;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;

@@ -63,19 +63,19 @@ public class SpawnerFeature extends CoreFeature {
 	static {
 		try {
 			// Get the new registry HashMp from the Item class
-			Field registryField = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("REGISTRY");
+			final Field registryField = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("REGISTRY");
 			registryField.setAccessible(true);
-			RegistryMaterials registry = (RegistryMaterials) registryField.get(null);
+			final RegistryMaterials registry = (RegistryMaterials) registryField.get(null);
 			// Get entry of the spawner
-			Object spawnerEntry = registry.a(52);
+			final Object spawnerEntry = registry.a(52);
 			// Set maxStackSize "e(int maxStackSize)"
-			Field maxStackSize = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("maxStackSize");
+			final Field maxStackSize = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("maxStackSize");
 			maxStackSize.setAccessible(true);
 			maxStackSize.setInt(spawnerEntry, 1);
 			// Cleanup
 			registryField.setAccessible(false);
 			maxStackSize.setAccessible(false);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("could not set spawner items unstackable");
 			ex.printStackTrace();
 		}

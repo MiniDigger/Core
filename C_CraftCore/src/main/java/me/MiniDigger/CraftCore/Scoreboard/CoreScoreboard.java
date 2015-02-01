@@ -144,7 +144,7 @@ public class CoreScoreboard implements Scoreboard {
 	}
 	
 	@Override
-	public org.bukkit.scoreboard.Scoreboard toBukkitScoreboard(List<ScoreboardTeam> teams) {
+	public org.bukkit.scoreboard.Scoreboard toBukkitScoreboard(final List<ScoreboardTeam> teams) {
 		final org.bukkit.scoreboard.Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 		
 		String add = "";
@@ -201,8 +201,8 @@ public class CoreScoreboard implements Scoreboard {
 			sb.clearSlot(DisplaySlot.SIDEBAR);
 		}
 		
-		for (ScoreboardTeam team : teams) {
-			Team t = sb.registerNewTeam(team.getName());
+		for (final ScoreboardTeam team : teams) {
+			final Team t = sb.registerNewTeam(team.getName());
 			t.setAllowFriendlyFire(true);
 			t.setCanSeeFriendlyInvisibles(false);
 			t.setDisplayName(team.getName());
@@ -210,7 +210,7 @@ public class CoreScoreboard implements Scoreboard {
 			t.setPrefix(team.getPrefix());
 			t.setSuffix(team.getSuffix());
 			
-			for (UUID id : team.getPlayers()) {
+			for (final UUID id : team.getPlayers()) {
 				t.addPlayer(Bukkit.getOfflinePlayer(id));
 			}
 		}

@@ -156,7 +156,7 @@ public class ChatCompleter {
 	public List<String> nameC(final CommandArgs args) {
 		if (args.getArgs().length == 2) {
 			final List<String> result = new ArrayList<>();
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
@@ -169,7 +169,7 @@ public class ChatCompleter {
 	public List<String> realnameC(final CommandArgs args) {
 		if (args.getArgs().length == 2) {
 			final List<String> result = new ArrayList<>();
-			for (User u : Core.getCore().getUserHandler().getOnlineUsers()) {
+			for (final User u : Core.getCore().getUserHandler().getOnlineUsers()) {
 				result.add(u.getDisplayName());
 			}
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
@@ -182,7 +182,7 @@ public class ChatCompleter {
 	public List<String> prefixC(final CommandArgs args) {
 		if (args.getArgs().length == 2) {
 			final List<String> result = new ArrayList<>();
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
@@ -195,7 +195,7 @@ public class ChatCompleter {
 	public List<String> suffixC(final CommandArgs args) {
 		if (args.getArgs().length == 2) {
 			final List<String> result = new ArrayList<>();
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				result.add(p.getName());
 			}
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);

@@ -72,7 +72,7 @@ public class CoreStats implements Stats {
 			for (i = 2; i <= StatsType.values().size() + 2; i++) {
 				try {
 					stmt.setLong(i, get(StatsType.values().get(i - 2)));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					
 				}
 			}
@@ -102,7 +102,7 @@ public class CoreStats implements Stats {
 				for (i = 1; i <= StatsType.values().size() + 1; i++) {
 					try {
 						stmt.setLong(i, get(StatsType.values().get(i - 1)));
-					} catch (Exception ex1) {}
+					} catch (final Exception ex1) {}
 				}
 				stmt.setString(i + 1, user.toString());
 				stmt.execute();

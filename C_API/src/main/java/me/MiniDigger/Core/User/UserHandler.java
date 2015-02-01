@@ -56,5 +56,5 @@ public interface UserHandler extends SaveHandler {
 	/**
 	 * @return the user with that displayname
 	 */
-	public User getFromDisplayName(String name);
+	public User getFromDisplayName(final String name);
 }

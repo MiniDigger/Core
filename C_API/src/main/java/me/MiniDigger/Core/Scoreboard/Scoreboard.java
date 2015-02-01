@@ -63,7 +63,7 @@ public interface Scoreboard {
 	/**
 	 * @return this scoreboard as org.bukkit.scoreboard.Scoreboard
 	 */
-	org.bukkit.scoreboard.Scoreboard toBukkitScoreboard(List<ScoreboardTeam> teams);
+	org.bukkit.scoreboard.Scoreboard toBukkitScoreboard(final List<ScoreboardTeam> teams);
 	
 	/**
 	 * @param slot

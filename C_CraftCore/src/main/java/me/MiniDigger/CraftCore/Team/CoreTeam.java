@@ -48,7 +48,7 @@ public class CoreTeam implements Team {
 	private final Map<String, String>	data	= new HashMap<>();
 	private final ChatChannel	      channel;
 	
-	public CoreTeam(final int teamSize, String name, ChatColor color, Game game) {
+	public CoreTeam(final int teamSize, final String name, final ChatColor color, final Game game) {
 		this.name = name;
 		this.color = color;
 		this.game = game;
@@ -120,9 +120,9 @@ public class CoreTeam implements Team {
 		if (!players.contains(player)) {
 			players.add(player);
 			try {
-				User u = Core.getCore().getUserHandler().get(player);
+				final User u = Core.getCore().getUserHandler().get(player);
 				u.setPrefix(getColor() + u.getPrefix());
-			} catch (Exception ex) {}
+			} catch (final Exception ex) {}
 		}
 	}
 	
@@ -130,9 +130,9 @@ public class CoreTeam implements Team {
 	public void leave(final UUID player) {
 		players.remove(player);
 		try {
-			User u = Core.getCore().getUserHandler().get(player);
+			final User u = Core.getCore().getUserHandler().get(player);
 			u.setPrefix(u.getPrefix().replaceFirst(getColor() + "", ""));
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 	}
 	
 	@Override

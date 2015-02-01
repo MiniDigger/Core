@@ -198,7 +198,7 @@ public interface Game {
 	 * @return the prefix for this game
 	 */
 	Prefix getGamePrefix();
-
+	
 	/**
 	 * sends a msg to all players and sepcs
 	 * 
@@ -206,5 +206,5 @@ public interface Game {
 	 * @param msg
 	 * @param args
 	 */
-	void broadCastMessage(LangKeyType type, MsgType msg, String... args);
+	void broadCastMessage(final LangKeyType type, final MsgType msg, final String... args);
 }

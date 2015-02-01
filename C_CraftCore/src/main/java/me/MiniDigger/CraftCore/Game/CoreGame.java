@@ -108,7 +108,7 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
-	public void broadCastMessage(LangKeyType type, MsgType msg, String... args) {
+	public void broadCastMessage(final LangKeyType type, final MsgType msg, final String... args) {
 		for (final UUID id : users) {
 			if (Bukkit.getPlayer(id) != null) {
 				_.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
