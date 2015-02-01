@@ -48,7 +48,7 @@ public enum Prefix {
 	SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING),
 	OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC", GameType.OITC),
 	ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "UltraSpleef", GameType.ULTRASPLEEF),
-	TAG(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING);
+	TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag", GameType.NOTHING);
 	
 	private ChatColor	klammer;
 	private ChatColor	color;
