@@ -76,7 +76,9 @@ public class CopyrightFixer {
 	public static void fix(final File file) throws Exception {
 		if (file.isDirectory()) {
 			for (final File f : file.listFiles()) {
-				fix(f);
+				if (!f.getAbsolutePath().contains(".git") && !f.getAbsolutePath().contains("target")) {
+					fix(f);
+				}
 			}
 			return;
 		}
