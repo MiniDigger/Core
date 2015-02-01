@@ -351,7 +351,6 @@ public class CoreMain extends JavaPlugin implements Main {
 	
 	private void disableHandler() {
 		Core.getCore().getBarHandler();
-		Core.getCore().getNametagHandler().disable();
 		Core.getCore().getAddOnHandler().disableAddOns();
 	}
 	
@@ -389,7 +388,6 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getProtocolHandler().init();
 		Core.getCore().getServerHandler().startTask();
 		Core.getCore().getSqlHandler();
-		Core.getCore().getNametagHandler().enable();
 		Core.getCore().getMirrorHandler().init();
 		Core.getCore().getChatHandler().registerChannels();
 		Core.getCore().getDashingHandler().init();

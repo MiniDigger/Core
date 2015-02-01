@@ -66,7 +66,6 @@ import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.CraftCore.Entity.CoreZombie;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
-import me.MiniDigger.CraftCore.Nametag.CoreNametagTeamHandler;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
@@ -226,18 +225,6 @@ public class DevCommands {
 		p.setResourcePack(args.getArgs()[1]);
 	}
 	
-	@Command(name = "dev.hideTag", description = "DEV!", usage = "", permission = "dev", sync = true)
-	public void hideTag(final CommandArgs args) {
-		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
-		Core.getCore().getNametagHandler().hideTag(p);
-	}
-	
-	@Command(name = "dev.showTag", description = "DEV!", usage = "", permission = "dev", sync = true)
-	public void showTag(final CommandArgs args) {
-		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
-		Core.getCore().getNametagHandler().showTag(p);
-	}
-	
 	@Command(name = "dev.rest", description = "DEV!", usage = "", permission = "dev")
 	public void rest(final CommandArgs args) {
 		final JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
@@ -379,11 +366,5 @@ public class DevCommands {
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	@Command(name = "dev.team", description = "DEV!", usage = "", permission = "dev")
-	public void team(final CommandArgs args) {
-		final CoreNametagTeamHandler h = new CoreNametagTeamHandler();
-		h.update(args.getUser().getUUID(), ChatColor.RED + "!" + ChatColor.GOLD, ChatColor.BLUE + "!", false);
 	}
 }

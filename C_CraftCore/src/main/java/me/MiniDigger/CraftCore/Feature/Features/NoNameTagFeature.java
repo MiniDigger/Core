@@ -26,6 +26,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.scoreboard.NameTagVisibility;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -64,29 +65,33 @@ public class NoNameTagFeature extends CoreFeature {
 	@Override
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
-			Core.getCore().getNametagHandler().hideTag(Bukkit.getPlayer(id));
+			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(id).getName()).setNameTagVisibility(NameTagVisibility.NEVER);
 		}
+		Core.getCore().getScoreboardHandler().updateAll();
 	}
 	
 	@Override
 	public void end() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
-			Core.getCore().getNametagHandler().showTag(Bukkit.getPlayer(id));
+			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(id).getName()).setNameTagVisibility(NameTagVisibility.ALWAYS);
 		}
+		Core.getCore().getScoreboardHandler().updateAll();
 	}
 	
 	@EventHandler
 	public void onJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
-			Core.getCore().getNametagHandler().hideTag(Bukkit.getPlayer(e.getUser().getUUID()));
+			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(e.getUser().getUUID()).getName()).setNameTagVisibility(NameTagVisibility.NEVER);
 		}
+		Core.getCore().getScoreboardHandler().updateAll();
 	}
 	
 	@EventHandler
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
-			Core.getCore().getNametagHandler().showTag(Bukkit.getPlayer(e.getUser().getUUID()));
+			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(e.getUser().getUUID()).getName()).setNameTagVisibility(NameTagVisibility.ALWAYS);
 		}
+		Core.getCore().getScoreboardHandler().updateAll();
 	}
 	
 }
