@@ -51,6 +51,12 @@ public class CoreErrorHandler implements ErrorHandler {
 			
 			@Override
 			public void publish(final LogRecord record) {
+				if (record == null) {
+					return;
+				}
+				if (record.getThrown() == null) {
+					return;
+				}
 				if (record.getLevel() == Level.SEVERE) {
 					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", record.getThrown().getMessage());
 					_.stacktrace(LogLevel.DEBUG, record.getThrown());
