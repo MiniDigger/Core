@@ -19,14 +19,97 @@ mapFolder:
 #Licence
 #If you don't have one, visit minidigger.me
 licence: 
+#Log
 log-level: DEBUG
+#Don't ouch ;D
 debug: false
-# Data - Do not change anything below this point!
-spawn:
-    default:
-    premium:
-    staff:
-otherlocs:
-    holos:
-        1:
-        2:
+#Prefixes
+prefix:
+  ERROR:
+    colorBrackets: RED
+    color: DARK_RED
+    name: Error
+  CORE:
+    colorBrackets: RED
+    color: GRAY
+    name: Core
+  TICTACTOE:
+    colorBrackets: RESET
+    color: BLUE
+    name: 'TicTacToe> '
+  STATS:
+    colorBrackets: RESET
+    color: GOLD
+    name: 'Stats> '
+  API:
+    colorBrackets: GRAY
+    color: RED
+    name: Core
+  SECURITY:
+    colorBrackets: RESET
+    color: AQUA
+    name: 'Security> '
+  CHAT:
+    colorBrackets: RESET
+    color: DARK_GRAY
+    name: 'ChatManagment> '
+  SQUAD:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Squad
+  HINT:
+    colorBrackets: MAGIC
+    color: GOLD
+    name: JustATip
+  GETHEDROP:
+    colorBrackets: AQUA
+    color: BLUE
+    name: GetTheDrop
+  VOTE:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Vote
+  SHOP:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Shop
+  ADDON:
+    colorBrackets: RESET
+    color: AQUA
+    name: AddOn>
+  BEDWARS:
+    colorBrackets: AQUA
+    color: BLUE
+    name: BedWars
+  CINE:
+    colorBrackets: RESET
+    color: AQUA
+    name: Cinematic>
+  CRANK:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Crank
+  KIT:
+    colorBrackets: RED
+    color: GREEN
+    name: Kit
+  LANG:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Lang
+  SPEC:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Spec
+  OITC:
+    colorBrackets: AQUA
+    color: BLUE
+    name: OITC
+  ULTRASPLEEF:
+    colorBrackets: AQUA
+    color: BLUE
+    name: UltraSpleef
+  TAG:
+    colorBrackets: AQUA
+    color: BLUE
+    name: Tag

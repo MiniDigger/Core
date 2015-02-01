@@ -21,7 +21,9 @@
 package me.MiniDigger.Core.Prefix;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.GameType;
 
 import mkremins.fanciful.FancyMessage;
@@ -60,6 +62,57 @@ public enum Prefix {
 		this.color = color;
 		this.name = name;
 		this.type = type;
+	}
+	
+	public static void load() {
+		FileConfiguration c = Core.getCore().getInstance().getConfig();
+		for (Prefix p : values()) {
+			if (c.contains(p.name())) {
+				if (c.getString("prefix." + p.name() + ".colorBrackets") != null) {
+					p.setKlammer(ChatColor.valueOf(c.getString("prefix." + p.name() + ".colorBrackets")));
+				}
+				if (c.getString("prefix." + p.name() + ".color") != null) {
+					p.setColor(ChatColor.valueOf(c.getString("prefix." + p.name() + ".color")));
+				}
+				if (c.getString("prefix." + p.name() + ".name") != null) {
+					p.setName(c.getString("prefix." + p.name() + ".name"));
+				}
+			}
+		}
+	}
+	
+	public static void save() {
+		FileConfiguration c = Core.getCore().getInstance().getConfig();
+		for (Prefix p : values()) {
+			c.set("prefix." + p.name() + ".colorBrackets", p.getBracket().name());
+			c.set("prefix." + p.name() + ".color", p.getColor().name());
+			c.set("prefix." + p.name() + ".name", p.getName());
+		}
+		Core.getCore().getInstance().saveConfig();
+	}
+	
+	/**
+	 * @param klammer
+	 *            the klammer to set
+	 */
+	public void setKlammer(ChatColor klammer) {
+		this.klammer = klammer;
+	}
+	
+	/**
+	 * @param color
+	 *            the color to set
+	 */
+	public void setColor(ChatColor color) {
+		this.color = color;
+	}
+	
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	/**

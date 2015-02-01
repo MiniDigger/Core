@@ -38,6 +38,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Achievement.CoreAchievementListener;
@@ -106,7 +107,9 @@ public class CoreMain extends JavaPlugin implements Main {
 	public void onEnable() {
 		final Date start = new Date();
 		core = new CoreCore(this);
+		
 		Core.getCore().getLangHandler().load();
+		Prefix.load();
 		
 		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
 		
