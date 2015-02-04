@@ -67,7 +67,7 @@ public class CoreErrorHandler implements ErrorHandler {
 		
 		final Enumeration<String> e = LogManager.getLogManager().getLoggerNames();
 		while (e.hasMoreElements()) {
-			final String s = e.nextElement();
+				final String s = e.nextElement();
 			final Logger l = LogManager.getLogManager().getLogger(s);
 			l.addHandler(h);
 		}
