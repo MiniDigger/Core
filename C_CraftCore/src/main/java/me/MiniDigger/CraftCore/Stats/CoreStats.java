@@ -23,7 +23,9 @@ package me.MiniDigger.CraftCore.Stats;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -88,24 +90,22 @@ public class CoreStats implements Stats {
 			try {
 				// create query
 				q = "UPDATE `stats` SET ";
-				// q += "`uuid`=?,";
 				for (final StatsType type : StatsType.values()) {
 					q += "`" + type.getGame() + "." + type.getStats() + "`=?,";
 				}
 				q = Core.getCore().getStringUtil().replaceLast(q, ",", "");
-				q += " WHERE `uuid` LIKE ?";
+				q += " WHERE `uuid` = '" + user.toString() + "'";
 				System.out.println("querry: " + q);
 				query = new CoreSQLQuery(q);
 				final PreparedStatement stmt = query.getStatement();
 				int i;
-				// stmt.setString(1, user.toString());
-				for (i = 1; i <= StatsType.values().size() + 1; i++) {
+				for (i = 0; i < StatsType.values().size(); i++) {
 					try {
-						stmt.setLong(i, get(StatsType.values().get(i - 1)));
+						stmt.setLong(i, get(StatsType.values().get(i)));
 					} catch (final Exception ex1) {}
 				}
-				stmt.setString(i + 1, user.toString());
-				stmt.execute();
+				int count = stmt.executeUpdate();
+				System.out.println("yedah: " + count);
 				query.kill();
 			} catch (final Exception e) {
 				ex.printStackTrace();
@@ -164,13 +164,61 @@ public class CoreStats implements Stats {
 		try {
 			q.getStatement().execute();
 			q.kill();
+			alter();
 			return true;
 		} catch (final SQLException e) {
 			try {
 				q.kill();
 			} catch (final Exception exx) {}
 			e.printStackTrace();
+			alter();
 			return false;
+		}
+	}
+	
+	private void alter() {
+		String query = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='" + Core.getCore().getSqlHandler().getDB()
+		        + "' AND `TABLE_NAME`='stats';";
+		final SQLQuery q = new CoreSQLQuery(query);
+		List<String> types = new ArrayList<String>();
+		try {
+			ResultSet r = q.getStatement().executeQuery();
+			
+			for (final StatsType type : StatsType.values()) {
+				types.add(type.getGame() + "." + type.getStats());
+			}
+			
+			while (r.next()) {
+				types.remove(r.getString("COLUMN_NAME"));
+			}
+			
+			q.kill();
+		} catch (Exception ex) {
+			try {
+				q.kill();
+			} catch (Exception e) {}
+			ex.printStackTrace();
+		}
+		
+		query = "ALTER TABLE `stats` ";
+		for (String s : types) {
+			StatsType type = StatsType.valueOf(s);
+			if (type != null) {
+				query += "ADD COLUMN `" + s + "` bigint(20) NOT NULL DEFAULT " + type.getDefaultValue() + ", ";
+			}
+		}
+		query = Core.getCore().getStringUtil().replaceLast(query, ",", ";");
+		// System.out.println("query: " + query);
+		
+		final SQLQuery q2 = new CoreSQLQuery(query);
+		try {
+			q2.getStatement().execute();
+			q2.kill();
+		} catch (final SQLException e) {
+			try {
+				q2.kill();
+			} catch (final Exception exx) {}
+			e.printStackTrace();
 		}
 	}
 	

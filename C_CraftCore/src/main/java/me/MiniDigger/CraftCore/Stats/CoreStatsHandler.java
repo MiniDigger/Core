@@ -22,7 +22,6 @@ package me.MiniDigger.CraftCore.Stats;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -46,42 +45,43 @@ public class CoreStatsHandler implements StatsHandler {
 			Core.getCore().getInstance().error("Tabelle wurde nicht erstellt!");
 		}
 		stats = new ArrayList<>();
-		final ArrayList<String> uuids = new ArrayList<>();
-		final SQLQuery q = new CoreSQLQuery("SELECT * FROM `stats`");
-		final PreparedStatement stmt = q.getStatement();
-		ResultSet r;
-		try {
-			r = stmt.executeQuery();
-		} catch (final SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-		try {
-			while (r.next()) {
-				try {
-					uuids.add(r.getString("uuid"));
-				} catch (final Exception ex) {
-					// skip on single error
-				}
-			}
-		} catch (final SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-		boolean b = true;
-		for (final String s : uuids) {
-			final Stats stat = new CoreStats(UUID.fromString(s));
-			// System.out.println("load " + s);
-			if (!stat.load()) {
-				b = false;
-			}
-		}
-		
-		q.kill();
-		
-		return b;
+		// final ArrayList<String> uuids = new ArrayList<>();
+		// final SQLQuery q = new CoreSQLQuery("SELECT * FROM `stats`");
+		// final PreparedStatement stmt = q.getStatement();
+		// ResultSet r;
+		// try {
+		// r = stmt.executeQuery();
+		// } catch (final SQLException e) {
+		// e.printStackTrace();
+		// return false;
+		// }
+		//
+		// try {
+		// while (r.next()) {
+		// try {
+		// uuids.add(r.getString("uuid"));
+		// } catch (final Exception ex) {
+		// // skip on single error
+		// }
+		// }
+		// } catch (final SQLException e) {
+		// e.printStackTrace();
+		// return false;
+		// }
+		//
+		// boolean b = true;
+		// for (final String s : uuids) {
+		// final Stats stat = new CoreStats(UUID.fromString(s));
+		// // System.out.println("load " + s);
+		// if (!stat.load()) {
+		// b = false;
+		// }
+		// }
+		//
+		// q.kill();
+		//
+		// return b;
+		return true;
 	}
 	
 	@Override
