@@ -367,6 +367,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void registerCommands() {
 		final Map<String, String> reloc = new HashMap<String, String>();
 		reloc.put("pex", "coreperm");
+		reloc.put("timings", "debug");
 		Core.getCore().setCommandHandler(new CoreCommandHandler(reloc));
 		
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
