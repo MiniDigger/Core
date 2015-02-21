@@ -151,7 +151,7 @@ public class AddOnCommands {
 		if (addOns.containsKey(args.getSender().getName())) {
 			addOns.remove(args.getSender().getName());
 		}
-		List<AddOnBean> beans = new ArrayList<AddOnBean>();
+		final List<AddOnBean> beans = new ArrayList<AddOnBean>();
 		beans.add(bean);
 		addOns.put(args.getSender().getName(), beans);
 		
@@ -166,7 +166,7 @@ public class AddOnCommands {
 	
 	@Command(name = "addon.install.yes", description = "", usage = "", max = 0, permission = "addon.install.yes")
 	public void yes(final CommandArgs args) {
-		for (AddOnBean bean : addOns.get(args.getSender().getName())) {
+		for (final AddOnBean bean : addOns.get(args.getSender().getName())) {
 			addOns.remove(args.getSender().getName());
 			Core.getCore().getAddOnHandler().listAsInstalled(bean);
 		}

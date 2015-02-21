@@ -33,6 +33,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Item.ItemType;
 import me.MiniDigger.Core.Phase.Phase;
+
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class UltraSpleefFeature extends CoreFeature {
@@ -83,8 +84,9 @@ public class UltraSpleefFeature extends CoreFeature {
 			}
 		}
 	}
+	
 	@EventHandler
-	public void onRespawn(final PlayerRespawnEvent e){
+	public void onRespawn(final PlayerRespawnEvent e) {
 		final Player p = e.getPlayer();
 		p.getInventory().addItem(ItemType.GRAVITYGUN.getItem().getItem());
 		p.updateInventory();

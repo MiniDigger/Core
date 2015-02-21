@@ -105,5 +105,5 @@ public interface ChatColorUtil {
 	 * @param c
 	 * @return a Color object that matches the chatcolor
 	 */
-	Color toColor(ChatColor c);
+	Color toColor(final ChatColor c);
 }

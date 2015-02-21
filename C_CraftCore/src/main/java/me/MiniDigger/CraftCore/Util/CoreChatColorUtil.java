@@ -71,7 +71,7 @@ public class CoreChatColorUtil implements ChatColorUtil {
 	}
 	
 	@Override
-	public Color toColor(ChatColor c) {
+	public Color toColor(final ChatColor c) {
 		switch (c) {
 		case AQUA:
 			return Color.AQUA;

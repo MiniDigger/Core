@@ -104,7 +104,7 @@ public class CoreStats implements Stats {
 						stmt.setLong(i, get(StatsType.values().get(i)));
 					} catch (final Exception ex1) {}
 				}
-				int count = stmt.executeUpdate();
+				final int count = stmt.executeUpdate();
 				System.out.println("yedah: " + count);
 				query.kill();
 			} catch (final Exception e) {
@@ -180,9 +180,9 @@ public class CoreStats implements Stats {
 		String query = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='" + Core.getCore().getSqlHandler().getDB()
 		        + "' AND `TABLE_NAME`='stats';";
 		final SQLQuery q = new CoreSQLQuery(query);
-		List<String> types = new ArrayList<String>();
+		final List<String> types = new ArrayList<String>();
 		try {
-			ResultSet r = q.getStatement().executeQuery();
+			final ResultSet r = q.getStatement().executeQuery();
 			
 			for (final StatsType type : StatsType.values()) {
 				types.add(type.getGame() + "." + type.getStats());
@@ -193,16 +193,16 @@ public class CoreStats implements Stats {
 			}
 			
 			q.kill();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			try {
 				q.kill();
-			} catch (Exception e) {}
+			} catch (final Exception e) {}
 			ex.printStackTrace();
 		}
 		
 		query = "ALTER TABLE `stats` ";
-		for (String s : types) {
-			StatsType type = StatsType.valueOf(s);
+		for (final String s : types) {
+			final StatsType type = StatsType.valueOf(s);
 			if (type != null) {
 				query += "ADD COLUMN `" + s + "` bigint(20) NOT NULL DEFAULT " + type.getDefaultValue() + ", ";
 			}

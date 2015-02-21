@@ -65,8 +65,8 @@ public enum Prefix {
 	}
 	
 	public static void load() {
-		FileConfiguration c = Core.getCore().getInstance().getConfig();
-		for (Prefix p : values()) {
+		final FileConfiguration c = Core.getCore().getInstance().getConfig();
+		for (final Prefix p : values()) {
 			if (c.contains(p.name())) {
 				if (c.getString("prefix." + p.name() + ".colorBrackets") != null) {
 					p.setKlammer(ChatColor.valueOf(c.getString("prefix." + p.name() + ".colorBrackets")));
@@ -82,8 +82,8 @@ public enum Prefix {
 	}
 	
 	public static void save() {
-		FileConfiguration c = Core.getCore().getInstance().getConfig();
-		for (Prefix p : values()) {
+		final FileConfiguration c = Core.getCore().getInstance().getConfig();
+		for (final Prefix p : values()) {
 			c.set("prefix." + p.name() + ".colorBrackets", p.getBracket().name());
 			c.set("prefix." + p.name() + ".color", p.getColor().name());
 			c.set("prefix." + p.name() + ".name", p.getName());
@@ -95,7 +95,7 @@ public enum Prefix {
 	 * @param klammer
 	 *            the klammer to set
 	 */
-	public void setKlammer(ChatColor klammer) {
+	public void setKlammer(final ChatColor klammer) {
 		this.klammer = klammer;
 	}
 	
@@ -103,7 +103,7 @@ public enum Prefix {
 	 * @param color
 	 *            the color to set
 	 */
-	public void setColor(ChatColor color) {
+	public void setColor(final ChatColor color) {
 		this.color = color;
 	}
 	
@@ -111,7 +111,7 @@ public enum Prefix {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	

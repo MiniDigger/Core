@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.Core.AddOn.BedWars;
 
 import java.util.ArrayList;
@@ -21,7 +41,7 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 
 public class TeamArmorFeature extends CoreFeature {
 	
-	public TeamArmorFeature(Phase phase) {
+	public TeamArmorFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -54,9 +74,9 @@ public class TeamArmorFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onIvnCLick(InventoryClickEvent e) {
+	public void onIvnCLick(final InventoryClickEvent e) {
 		if (e.getWhoClicked() instanceof Player) {
-			User u = Core.getCore().getUserHandler().get(e.getWhoClicked().getUniqueId());
+			final User u = Core.getCore().getUserHandler().get(e.getWhoClicked().getUniqueId());
 			if (getPhase().getGame().getPlayers().contains(u.getUUID())) {
 				switch (e.getAction()) {
 				case COLLECT_TO_CURSOR:
@@ -69,25 +89,25 @@ public class TeamArmorFeature extends CoreFeature {
 						if (e.getCursor().getType() == Material.LEATHER_BOOTS || e.getCursor().getType() == Material.LEATHER_LEGGINGS
 						        || e.getCursor().getType() == Material.LEATHER_HELMET) {
 							if (e.getCursor().hasItemMeta() && e.getCursor().getItemMeta().hasLore() && e.getCursor().getItemMeta().getLore().contains("TeamArmor")) {
-								LeatherArmorMeta m = (LeatherArmorMeta) e.getCursor().getItemMeta();
+								final LeatherArmorMeta m = (LeatherArmorMeta) e.getCursor().getItemMeta();
 								m.setColor(Color.fromRGB(102, 76, 51));// Standard
 								                                       // brown
 								e.getCursor().setItemMeta(m);
 							}
 						}
-					} catch (Exception ex) {}
+					} catch (final Exception ex) {}
 					try {
 						if (e.getCurrentItem().getType() == Material.LEATHER_BOOTS || e.getCurrentItem().getType() == Material.LEATHER_LEGGINGS
 						        || e.getCurrentItem().getType() == Material.LEATHER_HELMET) {
 							if (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasLore()
 							        && e.getCurrentItem().getItemMeta().getLore().contains("TeamArmor")) {
-								LeatherArmorMeta m = (LeatherArmorMeta) e.getCurrentItem().getItemMeta();
+								final LeatherArmorMeta m = (LeatherArmorMeta) e.getCurrentItem().getItemMeta();
 								m.setColor(Color.fromRGB(102, 76, 51));// Standard
 								                                       // brown
 								e.getCursor().setItemMeta(m);
 							}
 						}
-					} catch (Exception ex) {}
+					} catch (final Exception ex) {}
 					break;
 				case HOTBAR_MOVE_AND_READD:
 				case HOTBAR_SWAP:
@@ -102,31 +122,31 @@ public class TeamArmorFeature extends CoreFeature {
 				case SWAP_WITH_CURSOR:
 				case CLONE_STACK:
 				case UNKNOWN:
-					TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-					Team t = tf.getTeam(u);
-					Color c = Core.getCore().getChatColorUtil().toColor(t.getColor());
+					final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+					final Team t = tf.getTeam(u);
+					final Color c = Core.getCore().getChatColorUtil().toColor(t.getColor());
 					
 					try {
 						if (e.getCursor().getType() == Material.LEATHER_BOOTS || e.getCursor().getType() == Material.LEATHER_LEGGINGS
 						        || e.getCursor().getType() == Material.LEATHER_HELMET) {
 							if (e.getCursor().hasItemMeta() && e.getCursor().getItemMeta().hasLore() && e.getCursor().getItemMeta().getLore().contains("TeamArmor")) {
-								LeatherArmorMeta m = (LeatherArmorMeta) e.getCursor().getItemMeta();
+								final LeatherArmorMeta m = (LeatherArmorMeta) e.getCursor().getItemMeta();
 								m.setColor(c);
 								e.getCursor().setItemMeta(m);
 							}
 						}
-					} catch (Exception ex) {}
+					} catch (final Exception ex) {}
 					try {
 						if (e.getCurrentItem().getType() == Material.LEATHER_BOOTS || e.getCurrentItem().getType() == Material.LEATHER_LEGGINGS
 						        || e.getCurrentItem().getType() == Material.LEATHER_HELMET) {
 							if (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasLore()
 							        && e.getCurrentItem().getItemMeta().getLore().contains("TeamArmor")) {
-								LeatherArmorMeta m = (LeatherArmorMeta) e.getCurrentItem().getItemMeta();
+								final LeatherArmorMeta m = (LeatherArmorMeta) e.getCurrentItem().getItemMeta();
 								m.setColor(c);
 								e.getCursor().setItemMeta(m);
 							}
 						}
-					} catch (Exception ex) {}
+					} catch (final Exception ex) {}
 					break;
 				}
 			}
