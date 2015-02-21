@@ -20,7 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 
@@ -43,6 +45,8 @@ public class AddOnCommands {
 		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon info ").then("um AddonsInfos anzuzeigen").color(ChatColor.GOLD)
 		        .send(args.getSender());
 		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon install ").then("um Addons zu installieren").color(ChatColor.GOLD)
+		        .send(args.getSender());
+		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/addon install all").then("um ALLE Addons zu installieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
 		Prefix.ADDON.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon uninstall ").then("um Addons zu deinstallieren").color(ChatColor.GOLD)
 		        .send(args.getSender());
@@ -110,12 +114,23 @@ public class AddOnCommands {
 		msg1.send(args.getSender());
 	}
 	
-	private final HashMap<String, AddOnBean>	addOns	= new HashMap<>();
+	private final HashMap<String, List<AddOnBean>>	addOns	= new HashMap<>();
 	
 	@Command(name = "addon.install", description = "Installiert ein AddOn", usage = "<name> [version]", min = 1, max = 2, permission = "addon.install")
 	public void install(final CommandArgs args) {
 		final String name = args.getArgs()[0];
 		String version = null;
+		
+		if (name.equalsIgnoreCase("all")) {
+			addOns.put(args.getSender().getName(), Core.getCore().getRESTHandler().getAllAddOns());
+			final FancyMessage msg1 = Prefix.ADDON.getPrefix().then("Du bist dabei ALLLE Addons zu installieren");
+			final FancyMessage msg2 = Prefix.ADDON.getPrefix().then("Drücke hier um fortzufahren,").color(ChatColor.YELLOW).command("/addon install yes")
+			        .then("klicke hier um den Vorgang abzubrechen").color(ChatColor.RED).command("/addon install no");
+			
+			msg1.send(args.getSender());
+			msg2.send(args.getSender());
+			return;
+		}
 		
 		AddOnBean bean = new CoreAddOnBean();
 		bean.setName(name);
@@ -136,7 +151,9 @@ public class AddOnCommands {
 		if (addOns.containsKey(args.getSender().getName())) {
 			addOns.remove(args.getSender().getName());
 		}
-		addOns.put(args.getSender().getName(), bean);
+		List<AddOnBean> beans = new ArrayList<AddOnBean>();
+		beans.add(bean);
+		addOns.put(args.getSender().getName(), beans);
 		
 		final FancyMessage msg1 = Prefix.ADDON.getPrefix().then(
 		        "Du bist dabei " + bean.getName() + " v" + bean.getVersion() + " von " + bean.getAuthor() + " zu installieren");
@@ -149,8 +166,10 @@ public class AddOnCommands {
 	
 	@Command(name = "addon.install.yes", description = "", usage = "", max = 0, permission = "addon.install.yes")
 	public void yes(final CommandArgs args) {
-		final AddOnBean bean = addOns.get(args.getSender().getName());
-		Core.getCore().getAddOnHandler().listAsInstalled(bean);
+		for (AddOnBean bean : addOns.get(args.getSender().getName())) {
+			addOns.remove(args.getSender().getName());
+			Core.getCore().getAddOnHandler().listAsInstalled(bean);
+		}
 		Prefix.ADDON.getPrefix().then("AddOn installiert! Es wird beim nächsten Neustart aktiviert!").color(ChatColor.GREEN).send(args.getSender());
 	}
 	
