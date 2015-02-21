@@ -28,11 +28,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Item.ItemType;
 import me.MiniDigger.Core.Phase.Phase;
-
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class UltraSpleefFeature extends CoreFeature {
@@ -82,5 +82,11 @@ public class UltraSpleefFeature extends CoreFeature {
 				e.getPlayer().damage(1000.0);
 			}
 		}
+	}
+	@EventHandler
+	public void onRespawn(final PlayerRespawnEvent e){
+		final Player p = e.getPlayer();
+		p.getInventory().addItem(ItemType.GRAVITYGUN.getItem().getItem());
+		p.updateInventory();
 	}
 }

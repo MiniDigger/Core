@@ -50,16 +50,16 @@ import me.MiniDigger.CraftCore.Lang._;
 import mkremins.fanciful.FancyMessage;
 
 public class CoreGame implements Game {
-	
-	private final UUID	                  id	     = UUID.randomUUID();
-	private final List<UUID>	          users	     = new ArrayList<>();
-	private final List<UUID>	          specs	     = new ArrayList<UUID>();
-	private final HashMap<String, String>	gameData	= new HashMap<>();
-	private Phase	                      phase;
-	private GameType	                  type;
-	private boolean	                      allowJoin;
-	private boolean	                      allowSpectate;
-	
+
+	private final UUID id = UUID.randomUUID();
+	private final List<UUID> users = new ArrayList<>();
+	private final List<UUID> specs = new ArrayList<UUID>();
+	private final HashMap<String, String> gameData = new HashMap<>();
+	private Phase phase;
+	private GameType type;
+	private boolean allowJoin;
+	private boolean allowSpectate;
+
 	@Override
 	public Error join(final User user) {
 		if (users.contains(user.getUUID())) {
@@ -69,7 +69,7 @@ public class CoreGame implements Game {
 			return Error.NO_ERROR;
 		}
 	}
-	
+
 	@Override
 	public Error leave(final User user) {
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
@@ -82,21 +82,21 @@ public class CoreGame implements Game {
 			return Error.USER_NOT_JOINED;
 		}
 	}
-	
+
 	@Override
 	public void start() {
 	}
-	
+
 	@Override
 	public UUID getIdentifier() {
 		return id;
 	}
-	
+
 	@Override
 	public List<UUID> getPlayers() {
 		return users;
 	}
-	
+
 	@Override
 	public void broadCastMessage(final FancyMessage msg) {
 		for (final UUID id : users) {
@@ -106,7 +106,7 @@ public class CoreGame implements Game {
 			Core.getCore().getUserHandler().get(id).sendMessage(msg);
 		}
 	}
-	
+
 	@Override
 	public void broadCastMessage(final LangKeyType type, final MsgType msg, final String... args) {
 		for (final UUID id : users) {
@@ -120,7 +120,7 @@ public class CoreGame implements Game {
 			}
 		}
 	}
-	
+
 	@Override
 	public void broadCastSound(final Sound sound, final float volume, final float pitch) {
 		for (final UUID id : users) {
@@ -130,7 +130,7 @@ public class CoreGame implements Game {
 			Bukkit.getPlayer(id).playSound(Bukkit.getPlayer(id).getLocation(), sound, volume, pitch);
 		}
 	}
-	
+
 	@Override
 	public void broadCastSoundAtLocation(final Sound sound, final float volume, final float pitch, final Location loc) {
 		for (final UUID id : users) {
@@ -140,51 +140,51 @@ public class CoreGame implements Game {
 			Bukkit.getPlayer(id).playSound(loc, sound, volume, pitch);
 		}
 	}
-	
+
 	@Override
 	public FancyMessage getPrefix() {
 		return Prefix.getByGameType(getType()).getPrefix();
 	}
-	
+
 	@Override
 	public Prefix getGamePrefix() {
 		return Prefix.getByGameType(getType());
 	}
-	
+
 	@Override
 	public void init() {
 	}
-	
+
 	@Override
 	public Phase getPhase() {
 		return phase;
 	}
-	
+
 	@Override
 	public void setPhase(final Phase nextPhase) {
 		phase = nextPhase;
 	}
-	
+
 	@Override
 	public GameType getType() {
 		return type;
 	}
-	
+
 	@Override
 	public boolean allowJoin() {
 		return allowJoin;
 	}
-	
+
 	@Override
 	public boolean allowSpectate() {
 		return allowSpectate;
 	}
-	
+
 	@Override
 	public String getGameData(final String key) {
 		return gameData.get(key);
 	}
-	
+
 	@Override
 	public void setGameData(final String key, final String data) {
 		if (gameData.containsKey(key)) {
@@ -192,7 +192,7 @@ public class CoreGame implements Game {
 		}
 		gameData.put(key, data);
 	}
-	
+
 	@Override
 	public void end(final User... winner) {
 		final MapData lobby = Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
@@ -202,61 +202,63 @@ public class CoreGame implements Game {
 				w.getPlayer().teleport(loc);
 			}
 		}
-		
+
 		new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
 				for (final UUID w : specs) {
 					final Player p = Bukkit.getPlayer(w);
+					p.getInventory().clear();
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
 					}
 				}
-				
+
 				for (final UUID w : users) {
 					final Player p = Bukkit.getPlayer(w);
+					p.getInventory().clear();
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
 					}
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
-		
+
 		Core.getCore().getGameHandler().removeGame(this);
 		HandlerList.unregisterAll(getPhase());
 		Core.getCore().getCommandHandler().unregisterCommands(getPhase());
-		
+
 		for (final Feature f : getPhase().getFeatures()) {
 			HandlerList.unregisterAll(f);
 			Core.getCore().getCommandHandler().unregisterCommands(f);
 			f.end();
 		}
-		
+
 		Core.getCore().getShutdownUtil().doShutdown();
-		
+
 		try {
 			finalize();
 		} catch (final Throwable e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void addSpec(final UUID id) {
 		if (!specs.contains(id)) {
 			specs.add(id);
 		}
 	}
-	
+
 	@Override
 	public void remSpec(final UUID id) {
 		specs.remove(id);
 	}
-	
+
 	@Override
 	public List<UUID> getSpecs() {
 		return specs;
 	}
-	
+
 }
