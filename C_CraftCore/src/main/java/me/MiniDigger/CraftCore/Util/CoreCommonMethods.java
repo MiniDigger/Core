@@ -109,8 +109,9 @@ public class CoreCommonMethods implements CommonMethods {
 	@Override
 	public void killPlugin() {
 		// System.out.println("Licene check failed but I don't care as long as you registered it at startup");
-		System.out.println("The Plugin decided to kill itselve");
-		System.out.println("This mostly happens, if your licence is wrong, or a other server uses the same licence");
+		Bukkit.getConsoleSender().sendMessage("[Core] " + ChatColor.RED + "[Error] The Plugin decided to kill itselve");
+		Bukkit.getConsoleSender().sendMessage(
+		        "[Core] " + ChatColor.RED + "[Error] This mostly happens, if your licence is wrong, or a other server uses the same licence");
 		Bukkit.getPluginManager().disablePlugin(Core.getCore().getInstance());
 	}
 	
