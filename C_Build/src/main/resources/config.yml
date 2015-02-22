@@ -23,6 +23,11 @@ licence:
 log-level: DEBUG
 #Don't ouch ;D
 debug: false
+#External servers
+server:
+  TEST:
+    host: localhost
+    port: 25565
 #Prefixes
 prefix:
   ERROR:

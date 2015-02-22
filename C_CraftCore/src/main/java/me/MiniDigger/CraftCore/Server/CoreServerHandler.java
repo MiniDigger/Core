@@ -30,6 +30,7 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
@@ -44,6 +45,7 @@ public class CoreServerHandler implements ServerHandler {
 	
 	private final ArrayList<Server>	servers	= new ArrayList<>();
 	private BukkitTask	            task;
+	private BukkitTask	            ping;
 	
 	@Override
 	public void startTask() {
@@ -54,11 +56,29 @@ public class CoreServerHandler implements ServerHandler {
 				Core.getCore().getPacketHandler().sendPacket(new ServerPacket(CoreServer.getForThis(true)));
 			}
 		}, 5 * 20, 1 * 20);
+		
+		ping = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				FileConfiguration c = Core.getCore().getInstance().getConfig();
+				for (String name : c.getConfigurationSection("server").getKeys(false)) {
+					String host = c.getString("server." + name + ".host");
+					String port = c.getString("server." + name + ".port");
+					try {
+						gotServerInfo(new CoreServerPing(name, host, Integer.parseInt(port)).getServerInfo());
+					} catch (Exception ex) {
+						System.out.println("could not ping " + name + ", " + host + ", " + port);
+					}
+				}
+			}
+		}, 5 * 20, 10 * 20);
 	}
 	
 	@Override
 	public void stopTask() {
 		task.cancel();
+		ping.cancel();
 	}
 	
 	@Override
@@ -106,6 +126,15 @@ public class CoreServerHandler implements ServerHandler {
 			msg = new FancyMessage("Bitte warten!").color(ChatColor.RED);
 			lines[2].setJson(msg.toJSONString());
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
+			lines[3].setJson(msg.toJSONString());
+		} else if (server.isExternal()) {
+			msg = new FancyMessage("[Join]").color(ChatColor.AQUA);
+			lines[0].setJson(msg.toJSONString());
+			msg = new FancyMessage(server.getName()).color(ChatColor.DARK_GREEN);
+			lines[1].setJson(msg.toJSONString());
+			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_GREEN);
+			lines[2].setJson(msg.toJSONString());
+			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_GREEN);
 			lines[3].setJson(msg.toJSONString());
 		} else if (server.getName().contains("lobby")) {
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_GREEN);

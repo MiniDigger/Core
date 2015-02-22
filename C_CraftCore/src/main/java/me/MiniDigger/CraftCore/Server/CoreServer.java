@@ -39,6 +39,7 @@ public class CoreServer implements Server {
 	private boolean	 join;
 	private boolean	 spectate;
 	private boolean	 online;
+	private boolean	 external;
 	
 	public static Server fromString(String data) {
 		if (data.charAt(0) == '|') {
@@ -174,5 +175,10 @@ public class CoreServer implements Server {
 	@Override
 	public void setOnline(final boolean online) {
 		this.online = online;
+	}
+	
+	@Override
+	public boolean isExternal() {
+		return external;
 	}
 }

@@ -124,4 +124,9 @@ public interface Server {
 	 * @return If the server is full
 	 */
 	public boolean isFull();
+	
+	/**
+	 * @return If the infos where accuired over a awefull querry connection
+	 */
+	public boolean isExternal();
 }
