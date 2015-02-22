@@ -207,4 +207,17 @@ public interface Game {
 	 * @param args
 	 */
 	void broadCastMessage(final LangKeyType type, final MsgType msg, final String... args);
+	
+	/**
+	 * set weather or not players are allowed to join the game
+	 * 
+	 * @param allow
+	 */
+	void setAllowJoin(boolean allow);
+	/**
+	 * set weather or not players are allowed to specatete the game
+	 * 
+	 * @param allow
+	 */
+	void setAllowSpectate(boolean allow);
 }

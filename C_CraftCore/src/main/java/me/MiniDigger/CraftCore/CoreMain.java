@@ -415,6 +415,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			}
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}
+		
+		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}
 	
 	private void loadStuff() {

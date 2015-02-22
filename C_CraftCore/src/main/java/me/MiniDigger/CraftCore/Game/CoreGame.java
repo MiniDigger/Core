@@ -181,6 +181,16 @@ public class CoreGame implements Game {
 	}
 	
 	@Override
+	public void setAllowJoin(boolean allow) {
+		this.allowJoin = allow;
+	}
+	
+	@Override
+	public void setAllowSpectate(boolean allow) {
+		this.allowSpectate = allow;
+	}
+	
+	@Override
 	public String getGameData(final String key) {
 		return gameData.get(key);
 	}

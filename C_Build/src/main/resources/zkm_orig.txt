@@ -6,6 +6,7 @@ open        "%input%";
 
 trimExclude public *.* extends org.bukkit.plugin.java.JavaPlugin and
 	     	public *.* extends me.MiniDigger.CraftCore.AddOn.CoreAddOn and
+			public *.* extends me.MiniDigger.CraftCore.Protocol.SignGUI.NMSCore and
 			*.* onEnable(*) and
 			*.* onDisable(*) and
 			*.* enable(*) and
@@ -23,6 +24,7 @@ trim        deleteSourceFileAttributes=true
             
 exclude     public *.* extends org.bukkit.plugin.java.JavaPlugin and
 			public *.* extends me.MiniDigger.CraftCore.AddOn.CoreAddOn and
+			public *.* extends me.MiniDigger.CraftCore.Protocol.SignGUI.NMSCore and
 			*.* onEnable(*) and
 			*.* onDisable(*) and
 			*.* enable(*) and

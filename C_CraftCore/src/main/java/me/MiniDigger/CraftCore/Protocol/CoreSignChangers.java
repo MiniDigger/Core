@@ -386,6 +386,9 @@ public class CoreSignChangers implements SignChangers {
 		
 		if (newLines[0] != null && newLines[0].getJson() != null && newLines[0].getJson().contains("[Teleport]") && edit) {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
+				for (int i = 0; i < 4; i++) {
+					lines[i].setJson(new FancyMessage(((Sign) location.getBlock().getState()).getLines()[i]).toJSONString());
+				}
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
 				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {

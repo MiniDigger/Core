@@ -22,6 +22,9 @@ package me.MiniDigger.CraftCore.Protocol;
 
 import java.util.ArrayList;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
+
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -96,6 +99,17 @@ public class CoreSignListeners implements SignListeners {
 					return;
 				}
 				Core.getCore().getKitHandler().give(getPlayer(), k);
+			}
+		}, false));
+		
+		register(new SignListener("[Teleport]", new SignAction() {
+			
+			@Override
+			public void run() {
+				ByteArrayDataOutput out = ByteStreams.newDataOutput();
+				out.writeUTF("Connect");
+				out.writeUTF(getSign().getLine(1));
+				getPlayer().sendPluginMessage(Core.getCore().getInstance(), "BungeeCord", out.toByteArray());
 			}
 		}, false));
 	}

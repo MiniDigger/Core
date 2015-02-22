@@ -88,6 +88,10 @@ public class LobbyPhase extends CorePhase {
 		} else {
 			endPhase();
 		}
+		
+		getGame().setAllowJoin(true);
+		getGame().setAllowSpectate(true);
+		
 		super.startPhase();
 	}
 	

@@ -96,6 +96,11 @@ public class VotePhase extends CoreTimedPhase {
 		getGame().broadCastMessage(LangKeyType.Game.VOTE_START1, MsgType.IMPORTANT);
 		getGame().broadCastMessage(LangKeyType.Game.VOTE_START2, MsgType.IMPORTANT, getSecs() + "");
 		((VoteFeature) getFeature(FeatureType.VOTE)).sendVoteMessages();
+		
+		getGame().setAllowJoin(true);
+		getGame().setAllowSpectate(true);
+		
+		super.startPhase();
 	}
 	
 	@Override
@@ -109,6 +114,8 @@ public class VotePhase extends CoreTimedPhase {
 		Core.getCore().getWorldHandler().loadWorld(map);
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(vote.getWinner());
 		
+		getGame().setAllowJoin(false);
+		getGame().setAllowSpectate(true);
 		super.endPhase();
 	}
 	

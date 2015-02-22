@@ -75,21 +75,30 @@ public class CoreServerHandler implements ServerHandler {
 			if (obj.containsKey("text")) {
 				name = (String) obj.get("text");
 			}
-			if (name == null) {
+			if ((name == null || name.equals("")) && obj.containsKey("extra")) {
+				name = (String) obj.get("extra");
+			}
+			if (name == null || name.equals("")) {
 				System.out.println("No name in line 1? " + lines[1].getJson());
 			}
 		} catch (final Exception ex) {
+			// ex.printStackTrace();
 			name = lines[1].getJson();
 			name = name.replaceAll("\"", "");
 			// System.out.println("could not read name from " +
 			// lines[1].getJson());
 			// _.stacktrace(LogLevel.DEBUG, ex);
 			// return lines;
+			// System.out.println("name = " + name);
 		}
 		
 		final Server server = getServerInfo(name);
 		if (server == null || !server.isOnline()) {
-			// System.out.println("null or offline " + name);
+			if (server == null) {
+				System.out.println("idk who " + name + " is!");
+			} else if (!server.isOnline()) {
+				System.out.println(name + " is offline");
+			}
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
 			msg = new FancyMessage("RESTART").color(ChatColor.RED).style(ChatColor.BOLD, ChatColor.UNDERLINE);
@@ -110,7 +119,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isFull() && !server.isJoin()) {
 			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_BLUE);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_BLUE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
 			lines[2].setJson(msg.toJSONString());
@@ -119,7 +128,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isFull()) {
 			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_BLUE);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_BLUE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
 			lines[2].setJson(msg.toJSONString());
@@ -128,7 +137,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isJoin()) {
 			msg = new FancyMessage("[Join]").color(ChatColor.AQUA);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPhase()).color(ChatColor.DARK_GREEN);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_GREEN);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_GREEN);
 			lines[2].setJson(msg.toJSONString());
@@ -137,7 +146,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isSpectate()) {
 			msg = new FancyMessage("[Specatete]").color(ChatColor.YELLOW);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPhase()).color(ChatColor.GOLD);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.GOLD);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.GOLD);
 			lines[2].setJson(msg.toJSONString());
