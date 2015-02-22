@@ -99,8 +99,6 @@ public class VotePhase extends CoreTimedPhase {
 		
 		getGame().setAllowJoin(true);
 		getGame().setAllowSpectate(true);
-		
-		super.startPhase();
 	}
 	
 	@Override
