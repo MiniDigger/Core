@@ -395,6 +395,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getMirrorHandler().init();
 		Core.getCore().getChatHandler().registerChannels();
 		Core.getCore().getDashingHandler().init();
+		Core.getCore().getMenuHandler().load();
 		
 		Core.getCore().getAddOnHandler().enableAddOns();
 	}
