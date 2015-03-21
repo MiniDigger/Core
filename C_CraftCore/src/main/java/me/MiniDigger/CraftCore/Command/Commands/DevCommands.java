@@ -58,12 +58,17 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Item.ItemBarMenu;
+import me.MiniDigger.Core.Item.ItemBarMenu.ClickHandler;
 import me.MiniDigger.Core.Item.ItemMenu;
 import me.MiniDigger.Core.Item.ItemMenu.Row;
 import me.MiniDigger.Core.Item.ItemMenu.onClick;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
+import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Entity.CoreZombie;
+import me.MiniDigger.CraftCore.Item.CoreItemBarMenu;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Item.CoreItemMenu;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
@@ -366,5 +371,52 @@ public class DevCommands {
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	ItemBarMenu	m	= new CoreItemBarMenu();
+	ItemBarMenu	m2	= new CoreItemBarMenu();
+	
+	@Command(name = "dev.iconbar", description = "DEV!", usage = "", permission = "dev")
+	public void iconbar(final CommandArgs args) {
+		m2.setIcon(0, new CoreItemBuilder(Material.BUCKET).name("Test3").build());
+		m2.setAction(0, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				u.sendMessage(Prefix.API.getPrefix().then("test3"));
+			}
+		});
+		m2.setIcon(1, new CoreItemBuilder(Material.WATCH).name("Back").build());
+		m2.setAction(1, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu md, ItemStack is, User u) {
+				u.sendMessage(Prefix.API.getPrefix().then("gooing back"));
+				m2.close(u);
+				m.open(u);
+			}
+		});
+		
+		m.setIcon(0, new CoreItemBuilder(Material.GOLDEN_APPLE).name("Test").build());
+		m.setAction(0, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				u.sendMessage(Prefix.API.getPrefix().then("test"));
+			}
+		});
+		
+		m.setIcon(8, new CoreItemBuilder(Material.APPLE).name("Test2").build());
+		m.setAction(8, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				u.sendMessage(Prefix.API.getPrefix().then("test2"));
+				m.close(u);
+				m2.open(u);
+			}
+		});
+		
+		m.open(args.getUser());
 	}
 }

@@ -68,6 +68,7 @@ public class CoreItemBuilder implements Listener {
 	 */
 	public CoreItemBuilder(final Material mat) {
 		is = new ItemStack(mat);
+		is.setItemMeta(is.hasItemMeta() ? is.getItemMeta() : Bukkit.getItemFactory().getItemMeta(is.getType()));
 	}
 	
 	/**
@@ -103,7 +104,13 @@ public class CoreItemBuilder implements Listener {
 	 * @since 1.0
 	 */
 	public CoreItemBuilder name(final String name) {
-		final ItemMeta meta = is.getItemMeta();
+		ItemMeta meta = is.hasItemMeta() && is.getItemMeta() != null ? is.getItemMeta() : Bukkit.getItemFactory().getItemMeta(is.getType());
+		
+		if (meta == null) {
+//			System.out.println("could not apply name...");
+			return this;
+		}
+		
 		meta.setDisplayName(name);
 		is.setItemMeta(meta);
 		return this;

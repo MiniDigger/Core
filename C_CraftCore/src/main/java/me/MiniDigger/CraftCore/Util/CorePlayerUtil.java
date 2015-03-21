@@ -81,6 +81,7 @@ public class CorePlayerUtil implements PlayerUtil {
 			items[i] = new ItemStack(Material.AIR);
 		}
 		p.getInventory().setArmorContents(items);
+		p.updateInventory();
 	}
 	
 	@Override
@@ -90,6 +91,8 @@ public class CorePlayerUtil implements PlayerUtil {
 			items[i] = new ItemStack(Material.AIR);
 		}
 		p.getInventory().setContents(items);
+		p.getInventory().clear();
+		p.updateInventory();
 	}
 	
 	@Override
