@@ -41,6 +41,7 @@ import org.bukkit.material.MaterialData;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
@@ -113,6 +114,18 @@ public class HubFeature extends CoreFeature {
 	@EventHandler
 	public void handleInteract(final PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
+		final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+		try {
+			Core.getCore().getMenuHandler().getMenu("menu").open(u);
+		} catch (Exception ex) {
+			
+		}
+		@SuppressWarnings("unused")
+        boolean b;
+		if ( (b = true) == true) {
+			return;
+		}
+		// OLD STUFF
 		final int cooldownTime = 5;
 		if ((event.getAction() == Action.RIGHT_CLICK_AIR) || (event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 			if (p.getItemInHand().getType() == Material.SKULL_ITEM && p.getItemInHand().getData().getData() == 3) {

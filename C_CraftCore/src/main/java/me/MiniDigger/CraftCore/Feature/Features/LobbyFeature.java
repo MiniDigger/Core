@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -38,6 +39,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
@@ -76,6 +78,21 @@ public class LobbyFeature extends CoreFeature {
 			
 			@Override
 			public void run() {
+				// Menu Stuff
+				for (UUID id : getPhase().getGame().getPlayers()) {
+					final User u = Core.getCore().getUserHandler().get(id);
+					try {
+						Core.getCore().getMenuHandler().getMenu(getPhase().getGame().getType().getName()).open(u);
+					} catch (Exception ex) {}
+					try {
+						Core.getCore().getMenuHandler().getMenu("game").open(u);
+					} catch (Exception ex) {}
+					try {
+						Core.getCore().getMenuHandler().getMenu("menu").open(u);
+					} catch (Exception ex) {}
+				}
+				
+				// Sign Stuff
 				final int down = 3;
 				final int side = 4;
 				
