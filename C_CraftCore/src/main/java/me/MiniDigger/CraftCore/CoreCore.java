@@ -38,6 +38,7 @@ import me.MiniDigger.Core.Kit.KitHandler;
 import me.MiniDigger.Core.Lang.LangHandler;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
+import me.MiniDigger.Core.Menu.MenuHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
@@ -88,6 +89,7 @@ import me.MiniDigger.CraftCore.Kit.CoreKitHandler;
 import me.MiniDigger.CraftCore.Lang.CoreLangHandler;
 import me.MiniDigger.CraftCore.License.CoreLicenseHandler;
 import me.MiniDigger.CraftCore.Map.CoreMapHandler;
+import me.MiniDigger.CraftCore.Menu.CoreMenuHandler;
 import me.MiniDigger.CraftCore.Mirror.CoreMirrorHandler;
 import me.MiniDigger.CraftCore.Packet.CorePacketHandler;
 import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
@@ -161,6 +163,7 @@ public class CoreCore extends Core {
 	private LangHandler	       langHandler;
 	private DependencyHanlder	dependencyHanlder;
 	private ErrorHandler	   errorHandler;
+	private MenuHandler	       menuHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -456,6 +459,14 @@ public class CoreCore extends Core {
 			errorHandler = new CoreErrorHandler();
 		}
 		return errorHandler;
+	}
+	
+	@Override
+	public MenuHandler getMenuHandler() {
+		if (menuHandler == null) {
+			menuHandler = new CoreMenuHandler();
+		}
+		return menuHandler;
 	}
 	
 	/***********/

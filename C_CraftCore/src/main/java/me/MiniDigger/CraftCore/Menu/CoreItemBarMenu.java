@@ -1,4 +1,4 @@
-package me.MiniDigger.CraftCore.Item;
+package me.MiniDigger.CraftCore.Menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,8 +8,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Item.ItemBarMenu;
+import me.MiniDigger.Core.Menu.ItemBarMenu;
 import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
 public class CoreItemBarMenu implements ItemBarMenu {
 	

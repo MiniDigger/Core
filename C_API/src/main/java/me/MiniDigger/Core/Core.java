@@ -36,6 +36,7 @@ import me.MiniDigger.Core.Kit.KitHandler;
 import me.MiniDigger.Core.Lang.LangHandler;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
+import me.MiniDigger.Core.Menu.MenuHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
@@ -170,6 +171,8 @@ public abstract class Core {
 	public abstract LangHandler getLangHandler();
 	
 	public abstract DependencyHanlder getDependencyHanlder();
+	
+	public abstract MenuHandler getMenuHandler();
 	
 	/*
 	 * #################### UTILS ####################

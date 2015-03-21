@@ -1,4 +1,4 @@
-package me.MiniDigger.Core.Item;
+package me.MiniDigger.Core.Menu;
 
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;

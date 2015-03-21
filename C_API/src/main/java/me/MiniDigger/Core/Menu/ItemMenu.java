@@ -18,171 +18,128 @@
  * Proprietary and confidential
  * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
  */
-package me.MiniDigger.CraftCore.Item;
+package me.MiniDigger.Core.Menu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.server.PluginDisableEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import me.MiniDigger.Core.Item.ItemMenu;
-
-public class CoreItemMenu implements ItemMenu {
+public interface ItemMenu extends Listener {
 	
-	private final String	  name;
-	private final int	      size;
-	private final onClick	  click;
-	List<String>	          viewing	= new ArrayList<String>();
-	
-	private final ItemStack[]	items;
-	
-	public CoreItemMenu(final String name, final int size, final onClick click) {
-		this.name = name;
-		this.size = size * 9;
-		items = new ItemStack[this.size];
-		this.click = click;
-		Bukkit.getPluginManager().registerEvents(this, Bukkit.getPluginManager().getPlugins()[0]);
-	}
-	
-	@Override
-	@EventHandler
-	public void onPluginDisable(final PluginDisableEvent event) {
-		for (final Player p : getViewers()) {
-			close(p);
-		}
-	}
-	
-	@Override
-	public ItemMenu open(final Player p) {
-		p.openInventory(getInventory(p));
-		viewing.add(p.getName());
-		return this;
-	}
-	
-	private Inventory getInventory(final Player p) {
-		final Inventory inv = Bukkit.createInventory(p, size, name);
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] != null) {
-				inv.setItem(i, items[i]);
-			}
-		}
-		return inv;
-	}
-	
-	@Override
-	public ItemMenu close(final Player p) {
-		if (p.getOpenInventory().getTitle().equals(name)) {
-			p.closeInventory();
-		}
-		return this;
-	}
-	
-	@Override
-	public List<Player> getViewers() {
-		final List<Player> viewers = new ArrayList<Player>();
-		for (final String s : viewing) {
-			viewers.add(Bukkit.getPlayer(s));
-		}
-		return viewers;
-	}
-	
-	@Override
-	@EventHandler
-	public void onInventoryClick(final InventoryClickEvent event) {
-		if (viewing.contains(event.getWhoClicked().getName())) {
-			event.setCancelled(true);
-			final Player p = (Player) event.getWhoClicked();
-			if (event.getClickedInventory() == null || !event.getClickedInventory().getName().equals(name) || event.getSlot() == -999) {
-				p.updateInventory();
-				return;
-			}
-			final Row row = getRowFromSlot(event.getSlot());
-			if (!click.click(p, this, row, event.getSlot() - row.getRow() * 9, event.getCurrentItem())) {
-				close(p);
-			}
-			p.updateInventory();
-		}
-	}
-	
-	@Override
-	@EventHandler
-	public void onInventoryDrag(final InventoryDragEvent event) {
-		if (viewing.contains(event.getWhoClicked().getName())) {
-			event.setCancelled(true);
-			((Player) event.getWhoClicked()).updateInventory();
-		}
-	}
-	
-	@Override
-	@EventHandler
-	public void onInventoryClose(final InventoryCloseEvent event) {
-		if (viewing.contains(event.getPlayer().getName())) {
-			viewing.remove(event.getPlayer().getName());
-		}
-	}
-	
-	@Override
-	public ItemMenu addButton(final Row row, final int position, final ItemStack item, final String name, final String... lore) {
-		items[row.getRow() * 9 + position] = getItem(item, name, lore);
-		return this;
-	}
-	
-	@Override
-	public Row getRowFromSlot(final int slot) {
-		return new CoreRow(slot / 9, items);
-	}
-	
-	@Override
-	public Row getRow(final int row) {
-		return new CoreRow(row, items);
-	}
-	
-	private ItemStack getItem(final ItemStack item, final String name, final String... lore) {
-		final ItemMeta im = item.getItemMeta();
-		im.setDisplayName(name);
-		im.setLore(Arrays.asList(lore));
-		item.setItemMeta(im);
-		return item;
-	}
-	
-	public class CoreRow implements Row {
+	public interface onClick {
 		
-		private final ItemStack[]	rowItems	= new ItemStack[9];
-		int		                  row;
-		
-		public CoreRow(final int row, final ItemStack[] items) {
-			this.row = row;
-			int j = 0;
-			for (int i = (row * 9); i < (row * 9) + 9; i++) {
-				rowItems[j] = items[i];
-				j++;
-			}
-		}
-		
-		@Override
-		public ItemStack[] getRowItems() {
-			return rowItems;
-		}
-		
-		@Override
-		public ItemStack getRowItem(final int item) {
-			return rowItems[item] == null ? new ItemStack(Material.AIR) : rowItems[item];
-		}
-		
-		@Override
-		public int getRow() {
-			return row;
-		}
+		/**
+		 * Gets called when an option was clicked
+		 * 
+		 * @param clicker
+		 *            the player who clicked
+		 * @param menu
+		 *            the menu
+		 * @param row
+		 *            the row in which a item was clicked
+		 * @param slot
+		 *            the slot in this row
+		 * @param item
+		 *            the item which was clicked
+		 * @return
+		 */
+		public abstract boolean click(final Player clicker, final ItemMenu menu, final Row row, final int slot, final ItemStack item);
 	}
+	
+	public interface Row {
+		
+		/**
+		 * @return all items in this row
+		 */
+		ItemStack[] getRowItems();
+		
+		/**
+		 * @param item
+		 *            the column
+		 * @return the item in that column
+		 */
+		ItemStack getRowItem(final int item);
+		
+		/**
+		 * @return the row #
+		 */
+		int getRow();
+		
+	}
+	
+	/**
+	 * Closes the menu for all players
+	 */
+	void onPluginDisable(final PluginDisableEvent event);
+	
+	/**
+	 * Opens this menu for the player p
+	 */
+	ItemMenu open(final Player p);
+	
+	/**
+	 * Opens this menu for the player p
+	 */
+	ItemMenu close(final Player p);
+	
+	/**
+	 * @return all viewers
+	 */
+	List<Player> getViewers();
+	
+	/**
+	 * handles clicks
+	 */
+	void onInventoryClick(final InventoryClickEvent event);
+	
+	/**
+	 * prevents draging
+	 */
+	void onInventoryDrag(final InventoryDragEvent event);
+	
+	/**
+	 * remove the player from viewing
+	 */
+	void onInventoryClose(final InventoryCloseEvent event);
+	
+	/**
+	 * Add a new option
+	 * 
+	 * @param row
+	 *            the row
+	 * @param position
+	 *            the position in this row
+	 * @param item
+	 *            the item to add
+	 * @param name
+	 *            the name of the item
+	 * @param lore
+	 *            the lore of the item
+	 * @return this menu for chaining
+	 */
+	ItemMenu addButton(final Row row, final int position, final ItemStack item, final String name, final String... lore);
+	
+	/**
+	 * Gets the row from a minecraft slot number
+	 * 
+	 * @param slot
+	 *            the slot number
+	 * @return the row
+	 */
+	Row getRowFromSlot(final int slot);
+	
+	/**
+	 * Gets the row with that number
+	 * 
+	 * @param row
+	 *            the number
+	 * @return the row
+	 */
+	Row getRow(final int row);
 }
