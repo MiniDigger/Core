@@ -86,4 +86,13 @@ public class CoreItemBarMenu implements ItemBarMenu {
 		HandlerList.unregisterAll(this);
 		Core.getCore().getPlayerUtil().clearInv(u.getPlayer());
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder b = new StringBuilder(this.getClass().toString() + ": ");
+		for (ItemStack is : icons) {
+			b.append("i:" + is.toString() + ",");
+		}
+		return b.toString();
+	}
 }

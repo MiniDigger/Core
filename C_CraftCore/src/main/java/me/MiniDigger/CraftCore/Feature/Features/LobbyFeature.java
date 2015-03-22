@@ -33,6 +33,8 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
@@ -72,6 +74,25 @@ public class LobbyFeature extends CoreFeature {
 		return new ArrayList<FeatureType>();
 	}
 	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e) {
+		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
+			final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+			try {
+				Core.getCore().getMenuHandler().getMenu(getPhase().getGame().getType().getName()).open(u);
+			} catch (Exception ex) {
+				try {
+					Core.getCore().getMenuHandler().getMenu("game").open(u);
+				} catch (Exception ex1) {
+					try {
+						Core.getCore().getMenuHandler().getMenu("menu").open(u);
+					} catch (Exception ex2) {}
+				}
+			}
+			
+		}
+	}
+	
 	@Override
 	public void start() {
 		new BukkitRunnable() {
@@ -83,13 +104,15 @@ public class LobbyFeature extends CoreFeature {
 					final User u = Core.getCore().getUserHandler().get(id);
 					try {
 						Core.getCore().getMenuHandler().getMenu(getPhase().getGame().getType().getName()).open(u);
-					} catch (Exception ex) {}
-					try {
-						Core.getCore().getMenuHandler().getMenu("game").open(u);
-					} catch (Exception ex) {}
-					try {
-						Core.getCore().getMenuHandler().getMenu("menu").open(u);
-					} catch (Exception ex) {}
+					} catch (Exception ex) {
+						try {
+							Core.getCore().getMenuHandler().getMenu("game").open(u);
+						} catch (Exception ex1) {
+							try {
+								Core.getCore().getMenuHandler().getMenu("menu").open(u);
+							} catch (Exception ex2) {}
+						}
+					}
 				}
 				
 				// Sign Stuff

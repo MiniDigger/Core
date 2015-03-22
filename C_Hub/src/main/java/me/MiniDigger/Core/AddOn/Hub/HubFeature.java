@@ -106,7 +106,13 @@ public class HubFeature extends CoreFeature {
 	@EventHandler
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
-			giveStartItems(e.getUser().getPlayer());
+			// giveStartItems(e.getUser().getPlayer());
+			final User u = e.getUser();
+			try {
+				Core.getCore().getMenuHandler().getMenu("menu").open(u);
+			} catch (Exception ex) {
+				
+			}
 		}
 	}
 	
@@ -120,9 +126,8 @@ public class HubFeature extends CoreFeature {
 		} catch (Exception ex) {
 			
 		}
-		@SuppressWarnings("unused")
-        boolean b;
-		if ( (b = true) == true) {
+		@SuppressWarnings("unused") boolean b;
+		if ((b = true) == true) {
 			return;
 		}
 		// OLD STUFF

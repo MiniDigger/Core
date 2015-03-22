@@ -29,20 +29,17 @@ public class CoreMenuHandler implements MenuHandler {
 	@Override
 	public void load() {
 		config = YamlConfiguration.loadConfiguration(configFile);
-		
 		for (final String s : config.getKeys(false)) {
 			try {
 				ItemBarMenu m = new CoreItemBarMenu();
-				for (final int i : config.getIntegerList(s)) {
+				for (String key : config.getConfigurationSection(s).getKeys(false)) {
+					int i = Integer.parseInt(key);
 					Material mat = Material.valueOf(config.getString(s + "." + i + ".mat"));
-					
 					CoreItemBuilder ib = new CoreItemBuilder(mat).name(config.getString(s + "." + i + ".name"));
 					try {
-						int data = config.getInt(s + "." + i + ".data");
+						int data = Integer.parseInt(config.getString(s + "." + i + ".data"));
 						ib.data(data).durability(data);
-					} catch (Exception ex2) {
-						
-					}
+					} catch (Exception ex2) {}
 					
 					for (String ss : config.getStringList(s + "." + i + ".lore")) {
 						ib.lore(ss);
@@ -77,6 +74,7 @@ public class CoreMenuHandler implements MenuHandler {
 						}
 					});
 				}
+				menus.put(s, m);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
