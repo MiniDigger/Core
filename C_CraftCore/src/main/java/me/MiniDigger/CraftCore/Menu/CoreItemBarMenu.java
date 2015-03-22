@@ -2,6 +2,7 @@ package me.MiniDigger.CraftCore.Menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -62,6 +63,9 @@ public class CoreItemBarMenu implements ItemBarMenu {
 				User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 				if (actions[i] != null) {
 					actions[i].click(this, is, u);
+					e.setCancelled(true);
+					e.setUseInteractedBlock(Result.DENY);
+					e.setUseItemInHand(Result.DENY);
 				}
 			}
 		}
