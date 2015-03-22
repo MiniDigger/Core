@@ -3,6 +3,7 @@ package me.MiniDigger.CraftCore.Menu;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -25,25 +26,34 @@ public class CoreMenuHandler implements MenuHandler {
 	private File	                 configFile	= new File(Core.getCore().getInstance().getDataFolder(), "menu.yml");
 	
 	private Map<String, ItemBarMenu>	menus	= new HashMap<String, ItemBarMenu>();
+	private Map<UUID, String>	     selected	= new HashMap<UUID, String>();
 	
 	@Override
 	public void load() {
 		config = YamlConfiguration.loadConfiguration(configFile);
 		for (final String s : config.getKeys(false)) {
 			try {
-				ItemBarMenu m = new CoreItemBarMenu();
+				ItemBarMenu m = new CoreItemBarMenu(s);
 				for (String key : config.getConfigurationSection(s).getKeys(false)) {
 					int i = Integer.parseInt(key);
 					Material mat = Material.valueOf(config.getString(s + "." + i + ".mat"));
-					CoreItemBuilder ib = new CoreItemBuilder(mat).name(config.getString(s + "." + i + ".name"));
+					CoreItemBuilder ib = new CoreItemBuilder(mat);
+					
+					try {
+						ib.name(config.getString(s + "." + i + ".name").replaceAll("&", "§"));
+					} catch (Exception ex) {}
+					
 					try {
 						int data = Integer.parseInt(config.getString(s + "." + i + ".data"));
 						ib.data(data).durability(data);
 					} catch (Exception ex2) {}
 					
 					for (String ss : config.getStringList(s + "." + i + ".lore")) {
-						ib.lore(ss);
+						try {
+							ib.lore(ss.replaceAll("&", "§"));
+						} catch (Exception ex) {}
 					}
+					
 					m.setIcon(i, ib.build());
 					
 					final String msg = config.getString(s + "." + i + ".action.msg");
@@ -59,11 +69,7 @@ public class CoreMenuHandler implements MenuHandler {
 								u.sendMessage(Prefix.API.getPrefix().then(msg));
 							}
 							if (open != null) {
-								ItemBarMenu menu = getMenu(open);
-								if (menu != null) {
-									m.close(u);
-									menu.open(u);
-								}
+								openMenu(u, open);
 							}
 							if (pCmd != null) {
 								Bukkit.getServer().dispatchCommand(u.getPlayer(), pCmd.replaceAll("%p%", u.getRealName()));
@@ -82,7 +88,29 @@ public class CoreMenuHandler implements MenuHandler {
 	}
 	
 	@Override
+	public void openMenu(User u, String name) {
+		closeMenu(u);
+		selected.remove(u.getUUID());
+		selected.put(u.getUUID(), name);
+		getMenu(name).open(u);
+	}
+	
+	@Override
+	public void closeMenu(User u) {
+		try {
+			selected.remove(u.getUUID());
+			getMenu(selected.get(u.getUUID())).close(u);
+		} catch (Exception ex) {
+		}
+	}
+	
+	@Override
 	public ItemBarMenu getMenu(String name) {
 		return menus.get(name);
+	}
+	
+	@Override
+	public ItemBarMenu getMenu(UUID id) {
+		return getMenu(selected.get(id));
 	}
 }

@@ -373,8 +373,8 @@ public class DevCommands {
 		}
 	}
 	
-	ItemBarMenu	m	= new CoreItemBarMenu();
-	ItemBarMenu	m2	= new CoreItemBarMenu();
+	ItemBarMenu	m	= new CoreItemBarMenu("m1");
+	ItemBarMenu	m2	= new CoreItemBarMenu("m2");
 	
 	@Command(name = "dev.iconbar", description = "DEV!", usage = "", permission = "dev")
 	public void iconbar(final CommandArgs args) {

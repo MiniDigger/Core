@@ -23,6 +23,7 @@ package me.MiniDigger.Core.AddOn.Hub;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -94,6 +95,14 @@ public class HubFeature extends CoreFeature {
 		stats = new StatsManager();
 		tp = new Teleporter();
 		shop = new TokenShop();
+		for (UUID id : getPhase().getGame().getPlayers()) {
+			final User u = Core.getCore().getUserHandler().get(id);
+			try {
+				Core.getCore().getMenuHandler().openMenu(u, "menu");
+			} catch (Exception ex) {
+				
+			}
+		}
 	}
 	
 	@Override
@@ -109,7 +118,7 @@ public class HubFeature extends CoreFeature {
 			// giveStartItems(e.getUser().getPlayer());
 			final User u = e.getUser();
 			try {
-				Core.getCore().getMenuHandler().getMenu("menu").open(u);
+				Core.getCore().getMenuHandler().openMenu(u, "menu");
 			} catch (Exception ex) {
 				
 			}
@@ -117,12 +126,12 @@ public class HubFeature extends CoreFeature {
 	}
 	
 	@SuppressWarnings("deprecation")
-	@EventHandler
+	// @EventHandler
 	public void handleInteract(final PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
 		final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
 		try {
-			Core.getCore().getMenuHandler().getMenu("menu").open(u);
+			Core.getCore().getMenuHandler().openMenu(u, "menu");
 		} catch (Exception ex) {
 			
 		}

@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,14 +20,16 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	private ItemStack[]	               icons	    = new ItemStack[9];
 	private ItemBarMenu.ClickHandler[]	actions	    = new ItemBarMenu.ClickHandler[9];
 	private boolean	                   isRegistered	= false;
+	private String	                   name;
 	
-	public CoreItemBarMenu(ItemStack[] icons, ItemBarMenu.ClickHandler[] actions) {
-		super();
+	public CoreItemBarMenu(String name, ItemStack[] icons, ItemBarMenu.ClickHandler[] actions) {
+		this(name);
 		this.icons = icons;
 		this.actions = actions;
 	}
 	
-	public CoreItemBarMenu() {
+	public CoreItemBarMenu(String name) {
+		this.name = name;
 		for (int i = 0; i < icons.length; i++) {
 			icons[i] = new CoreItemBuilder(Material.AIR).name("<empty>").build();
 			actions[i] = new ItemBarMenu.ClickHandler() {
@@ -41,6 +44,11 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	}
 	
 	@Override
+	public String getName() {
+		return name;
+	}
+	
+	@Override
 	public void setIcon(int id, ItemStack icon) {
 		icons[id] = icon;
 	}
@@ -52,6 +60,15 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
+		if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+			return;
+		}
+		try {
+			if (name != Core.getCore().getMenuHandler().getMenu(e.getPlayer().getUniqueId()).getName()) {
+				return;
+			}
+		} catch (Exception ex) {}
+		
 		if (e.getPlayer() == null) {
 			HandlerList.unregisterAll(this);
 			return; // RIP

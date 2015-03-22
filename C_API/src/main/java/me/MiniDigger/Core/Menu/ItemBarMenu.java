@@ -21,4 +21,6 @@ public interface ItemBarMenu extends Listener{
 	void open(User u);
 
 	void close(User u);
+
+	String getName();
 }
