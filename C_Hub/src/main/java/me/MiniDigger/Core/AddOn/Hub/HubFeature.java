@@ -95,11 +95,11 @@ public class HubFeature extends CoreFeature {
 		stats = new StatsManager();
 		tp = new Teleporter();
 		shop = new TokenShop();
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
 			try {
 				Core.getCore().getMenuHandler().openMenu(u, "menu");
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				
 			}
 		}
@@ -119,7 +119,7 @@ public class HubFeature extends CoreFeature {
 			final User u = e.getUser();
 			try {
 				Core.getCore().getMenuHandler().openMenu(u, "menu");
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				
 			}
 		}
@@ -132,7 +132,7 @@ public class HubFeature extends CoreFeature {
 		final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
 		try {
 			Core.getCore().getMenuHandler().openMenu(u, "menu");
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			
 		}
 		@SuppressWarnings("unused") boolean b;

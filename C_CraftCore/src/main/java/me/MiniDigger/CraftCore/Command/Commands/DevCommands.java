@@ -59,8 +59,8 @@ import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Menu.ItemBarMenu;
-import me.MiniDigger.Core.Menu.ItemMenu;
 import me.MiniDigger.Core.Menu.ItemBarMenu.ClickHandler;
+import me.MiniDigger.Core.Menu.ItemMenu;
 import me.MiniDigger.Core.Menu.ItemMenu.Row;
 import me.MiniDigger.Core.Menu.ItemMenu.onClick;
 import me.MiniDigger.Core.Prefix.Prefix;
@@ -382,7 +382,7 @@ public class DevCommands {
 		m2.setAction(0, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				u.sendMessage(Prefix.API.getPrefix().then("test3"));
 			}
 		});
@@ -390,7 +390,7 @@ public class DevCommands {
 		m2.setAction(1, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu md, ItemStack is, User u) {
+			public void click(final ItemBarMenu md, final ItemStack is, final User u) {
 				u.sendMessage(Prefix.API.getPrefix().then("gooing back"));
 				m2.close(u);
 				m.open(u);
@@ -401,7 +401,7 @@ public class DevCommands {
 		m.setAction(0, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				u.sendMessage(Prefix.API.getPrefix().then("test"));
 			}
 		});
@@ -410,7 +410,7 @@ public class DevCommands {
 		m.setAction(8, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				u.sendMessage(Prefix.API.getPrefix().then("test2"));
 				m.close(u);
 				m2.open(u);

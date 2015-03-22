@@ -61,13 +61,13 @@ public class CoreServerHandler implements ServerHandler {
 			
 			@Override
 			public void run() {
-				FileConfiguration c = Core.getCore().getInstance().getConfig();
-				for (String name : c.getConfigurationSection("server").getKeys(false)) {
-					String host = c.getString("server." + name + ".host");
-					String port = c.getString("server." + name + ".port");
+				final FileConfiguration c = Core.getCore().getInstance().getConfig();
+				for (final String name : c.getConfigurationSection("server").getKeys(false)) {
+					final String host = c.getString("server." + name + ".host");
+					final String port = c.getString("server." + name + ".port");
 					try {
 						gotServerInfo(new CoreServerPing(name, host, Integer.parseInt(port)).getServerInfo());
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						System.out.println("could not ping " + name + ", " + host + ", " + port);
 					}
 				}

@@ -75,18 +75,18 @@ public class LobbyFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent e) {
+	public void onPlayerJoin(final PlayerJoinEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			try {
 				Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				try {
 					Core.getCore().getMenuHandler().openMenu(u, "game");
-				} catch (Exception ex1) {
+				} catch (final Exception ex1) {
 					try {
 						Core.getCore().getMenuHandler().openMenu(u, "menu");
-					} catch (Exception ex2) {}
+					} catch (final Exception ex2) {}
 				}
 			}
 			
@@ -100,17 +100,17 @@ public class LobbyFeature extends CoreFeature {
 			@Override
 			public void run() {
 				// Menu Stuff
-				for (UUID id : getPhase().getGame().getPlayers()) {
+				for (final UUID id : getPhase().getGame().getPlayers()) {
 					final User u = Core.getCore().getUserHandler().get(id);
 					try {
 						Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						try {
 							Core.getCore().getMenuHandler().openMenu(u, "game");
-						} catch (Exception ex1) {
+						} catch (final Exception ex1) {
 							try {
 								Core.getCore().getMenuHandler().openMenu(u, "menu");
-							} catch (Exception ex2) {}
+							} catch (final Exception ex2) {}
 						}
 					}
 				}

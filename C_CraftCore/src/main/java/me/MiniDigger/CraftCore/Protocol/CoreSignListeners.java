@@ -106,7 +106,7 @@ public class CoreSignListeners implements SignListeners {
 			
 			@Override
 			public void run() {
-				ByteArrayDataOutput out = ByteStreams.newDataOutput();
+				final ByteArrayDataOutput out = ByteStreams.newDataOutput();
 				out.writeUTF("Connect");
 				out.writeUTF(getSign().getLine(1));
 				getPlayer().sendPluginMessage(Core.getCore().getInstance(), "BungeeCord", out.toByteArray());

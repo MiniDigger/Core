@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Menu;
 
 import java.io.File;
@@ -22,36 +42,36 @@ import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
 public class CoreMenuHandler implements MenuHandler {
 	
-	private FileConfiguration	     config;
-	private File	                 configFile	= new File(Core.getCore().getInstance().getDataFolder(), "menu.yml");
+	private FileConfiguration	           config;
+	private final File	                   configFile	= new File(Core.getCore().getInstance().getDataFolder(), "menu.yml");
 	
-	private Map<String, ItemBarMenu>	menus	= new HashMap<String, ItemBarMenu>();
-	private Map<UUID, String>	     selected	= new HashMap<UUID, String>();
+	private final Map<String, ItemBarMenu>	menus	  = new HashMap<String, ItemBarMenu>();
+	private final Map<UUID, String>	       selected	  = new HashMap<UUID, String>();
 	
 	@Override
 	public void load() {
 		config = YamlConfiguration.loadConfiguration(configFile);
 		for (final String s : config.getKeys(false)) {
 			try {
-				ItemBarMenu m = new CoreItemBarMenu(s);
-				for (String key : config.getConfigurationSection(s).getKeys(false)) {
-					int i = Integer.parseInt(key);
-					Material mat = Material.valueOf(config.getString(s + "." + i + ".mat"));
-					CoreItemBuilder ib = new CoreItemBuilder(mat);
+				final ItemBarMenu m = new CoreItemBarMenu(s);
+				for (final String key : config.getConfigurationSection(s).getKeys(false)) {
+					final int i = Integer.parseInt(key);
+					final Material mat = Material.valueOf(config.getString(s + "." + i + ".mat"));
+					final CoreItemBuilder ib = new CoreItemBuilder(mat);
 					
 					try {
 						ib.name(config.getString(s + "." + i + ".name").replaceAll("&", "§"));
-					} catch (Exception ex) {}
+					} catch (final Exception ex) {}
 					
 					try {
-						int data = Integer.parseInt(config.getString(s + "." + i + ".data"));
+						final int data = Integer.parseInt(config.getString(s + "." + i + ".data"));
 						ib.data(data).durability(data);
-					} catch (Exception ex2) {}
+					} catch (final Exception ex2) {}
 					
-					for (String ss : config.getStringList(s + "." + i + ".lore")) {
+					for (final String ss : config.getStringList(s + "." + i + ".lore")) {
 						try {
 							ib.lore(ss.replaceAll("&", "§"));
-						} catch (Exception ex) {}
+						} catch (final Exception ex) {}
 					}
 					
 					m.setIcon(i, ib.build());
@@ -64,7 +84,7 @@ public class CoreMenuHandler implements MenuHandler {
 					m.setAction(i, new ClickHandler() {
 						
 						@Override
-						public void click(ItemBarMenu m, ItemStack is, User u) {
+						public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 							if (msg != null) {
 								u.sendMessage(Prefix.API.getPrefix().then(msg));
 							}
@@ -81,14 +101,14 @@ public class CoreMenuHandler implements MenuHandler {
 					});
 				}
 				menus.put(s, m);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
 	
 	@Override
-	public void openMenu(User u, String name) {
+	public void openMenu(final User u, final String name) {
 		closeMenu(u);
 		selected.remove(u.getUUID());
 		selected.put(u.getUUID(), name);
@@ -96,21 +116,20 @@ public class CoreMenuHandler implements MenuHandler {
 	}
 	
 	@Override
-	public void closeMenu(User u) {
+	public void closeMenu(final User u) {
 		try {
 			selected.remove(u.getUUID());
 			getMenu(selected.get(u.getUUID())).close(u);
-		} catch (Exception ex) {
-		}
+		} catch (final Exception ex) {}
 	}
 	
 	@Override
-	public ItemBarMenu getMenu(String name) {
+	public ItemBarMenu getMenu(final String name) {
 		return menus.get(name);
 	}
 	
 	@Override
-	public ItemBarMenu getMenu(UUID id) {
+	public ItemBarMenu getMenu(final UUID id) {
 		return getMenu(selected.get(id));
 	}
 }

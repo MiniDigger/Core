@@ -104,10 +104,10 @@ public class CoreItemBuilder implements Listener {
 	 * @since 1.0
 	 */
 	public CoreItemBuilder name(final String name) {
-		ItemMeta meta = is.hasItemMeta() && is.getItemMeta() != null ? is.getItemMeta() : Bukkit.getItemFactory().getItemMeta(is.getType());
+		final ItemMeta meta = is.hasItemMeta() && is.getItemMeta() != null ? is.getItemMeta() : Bukkit.getItemFactory().getItemMeta(is.getType());
 		
 		if (meta == null) {
-//			System.out.println("could not apply name...");
+			// System.out.println("could not apply name...");
 			return this;
 		}
 		

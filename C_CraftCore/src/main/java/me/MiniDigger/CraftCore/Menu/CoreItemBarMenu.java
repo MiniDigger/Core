@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Menu;
 
 import org.bukkit.Bukkit;
@@ -20,22 +40,22 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	private ItemStack[]	               icons	    = new ItemStack[9];
 	private ItemBarMenu.ClickHandler[]	actions	    = new ItemBarMenu.ClickHandler[9];
 	private boolean	                   isRegistered	= false;
-	private String	                   name;
+	private final String	           name;
 	
-	public CoreItemBarMenu(String name, ItemStack[] icons, ItemBarMenu.ClickHandler[] actions) {
+	public CoreItemBarMenu(final String name, final ItemStack[] icons, final ItemBarMenu.ClickHandler[] actions) {
 		this(name);
 		this.icons = icons;
 		this.actions = actions;
 	}
 	
-	public CoreItemBarMenu(String name) {
+	public CoreItemBarMenu(final String name) {
 		this.name = name;
 		for (int i = 0; i < icons.length; i++) {
 			icons[i] = new CoreItemBuilder(Material.AIR).name("<empty>").build();
 			actions[i] = new ItemBarMenu.ClickHandler() {
 				
 				@Override
-				public void click(ItemBarMenu m, ItemStack is, User u) {
+				public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				}
 			};
 		}
@@ -49,17 +69,17 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	}
 	
 	@Override
-	public void setIcon(int id, ItemStack icon) {
+	public void setIcon(final int id, final ItemStack icon) {
 		icons[id] = icon;
 	}
 	
 	@Override
-	public void setAction(int id, ItemBarMenu.ClickHandler action) {
+	public void setAction(final int id, final ItemBarMenu.ClickHandler action) {
 		actions[id] = action;
 	}
 	
 	@EventHandler
-	public void onInteract(PlayerInteractEvent e) {
+	public void onInteract(final PlayerInteractEvent e) {
 		if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) {
 			return;
 		}
@@ -67,17 +87,17 @@ public class CoreItemBarMenu implements ItemBarMenu {
 			if (name != Core.getCore().getMenuHandler().getMenu(e.getPlayer().getUniqueId()).getName()) {
 				return;
 			}
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 		
 		if (e.getPlayer() == null) {
 			HandlerList.unregisterAll(this);
 			return; // RIP
 		}
 		for (int i = 0; i < icons.length; i++) {
-			ItemStack is = icons[i];
+			final ItemStack is = icons[i];
 			if (is != null && e.getItem() != null && is.hasItemMeta() && e.getItem().hasItemMeta()
 			        && e.getItem().getItemMeta().getDisplayName() == is.getItemMeta().getDisplayName()) {
-				User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+				final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 				if (actions[i] != null) {
 					actions[i].click(this, is, u);
 					e.setCancelled(true);
@@ -89,7 +109,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	}
 	
 	@Override
-	public void open(User u) {
+	public void open(final User u) {
 		if (!isRegistered) {
 			isRegistered = true;
 			Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
@@ -102,7 +122,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	}
 	
 	@Override
-	public void close(User u) {
+	public void close(final User u) {
 		isRegistered = false;
 		HandlerList.unregisterAll(this);
 		Core.getCore().getPlayerUtil().clearInv(u.getPlayer());
@@ -110,8 +130,8 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	
 	@Override
 	public String toString() {
-		StringBuilder b = new StringBuilder(this.getClass().toString() + ": ");
-		for (ItemStack is : icons) {
+		final StringBuilder b = new StringBuilder(this.getClass().toString() + ": ");
+		for (final ItemStack is : icons) {
 			b.append("i:" + is.toString() + ",");
 		}
 		return b.toString();

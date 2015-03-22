@@ -213,11 +213,12 @@ public interface Game {
 	 * 
 	 * @param allow
 	 */
-	void setAllowJoin(boolean allow);
+	void setAllowJoin(final boolean allow);
+	
 	/**
 	 * set weather or not players are allowed to specatete the game
 	 * 
 	 * @param allow
 	 */
-	void setAllowSpectate(boolean allow);
+	void setAllowSpectate(final boolean allow);
 }

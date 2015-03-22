@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Server;
 
 import java.io.DataOutputStream;
@@ -16,124 +36,124 @@ import me.MiniDigger.Core.Server.ServerPing;
 
 public class CoreServerPing implements ServerPing {
 	
-	private String	address	       = "localhost";
-	private int	   port	           = 25565;
-	private String	name;
+	private String	     address	     = "localhost";
+	private int	         port	         = 25565;
+	private final String	name;
 	
-	private int	   timeout	       = 1500;
+	private int	         timeout	     = 1500;
 	
-	private int	   pingVersion	   = -1;
-	private int	   protocolVersion	= -1;
-	private String	gameVersion;
-	private String	motd;
-	private int	   playersOnline	= -1;
-	private int	   maxPlayers	   = -1;
+	private int	         pingVersion	 = -1;
+	private int	         protocolVersion	= -1;
+	private String	     gameVersion;
+	private String	     motd;
+	private int	         playersOnline	 = -1;
+	private int	         maxPlayers	     = -1;
 	
-	public CoreServerPing(String name) {
+	public CoreServerPing(final String name) {
 		this.name = name;
 	}
 	
-	public CoreServerPing(String name, String address) {
+	public CoreServerPing(final String name, final String address) {
 		this(name);
 		
-		this.setAddress(address);
+		setAddress(address);
 	}
 	
-	public CoreServerPing(String name, String address, int port) {
+	public CoreServerPing(final String name, final String address, final int port) {
 		this(name, address);
 		
-		this.setPort(port);
+		setPort(port);
 	}
 	
-	public CoreServerPing(String name, String address, int port, int timeout) {
+	public CoreServerPing(final String name, final String address, final int port, final int timeout) {
 		this(name, address, port);
 		
-		this.setTimeout(timeout);
+		setTimeout(timeout);
 	}
 	
-	public void setAddress(String address) {
+	public void setAddress(final String address) {
 		this.address = address;
 	}
 	
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
 	
-	public void setPort(int port) {
+	public void setPort(final int port) {
 		this.port = port;
 	}
 	
 	public int getPort() {
-		return this.port;
+		return port;
 	}
 	
-	public void setTimeout(int timeout) {
+	public void setTimeout(final int timeout) {
 		this.timeout = timeout;
 	}
 	
 	public int getTimeout() {
-		return this.timeout;
+		return timeout;
 	}
 	
-	private void setPingVersion(int pingVersion) {
+	private void setPingVersion(final int pingVersion) {
 		this.pingVersion = pingVersion;
 	}
 	
 	public int getPingVersion() {
-		return this.pingVersion;
+		return pingVersion;
 	}
 	
-	private void setProtocolVersion(int protocolVersion) {
+	private void setProtocolVersion(final int protocolVersion) {
 		this.protocolVersion = protocolVersion;
 	}
 	
 	public int getProtocolVersion() {
-		return this.protocolVersion;
+		return protocolVersion;
 	}
 	
-	private void setGameVersion(String gameVersion) {
+	private void setGameVersion(final String gameVersion) {
 		this.gameVersion = gameVersion;
 	}
 	
 	public String getGameVersion() {
-		return this.gameVersion;
+		return gameVersion;
 	}
 	
-	private void setMotd(String motd) {
+	private void setMotd(final String motd) {
 		this.motd = motd;
 	}
 	
 	public String getMotd() {
-		return this.motd;
+		return motd;
 	}
 	
-	private void setPlayersOnline(int playersOnline) {
+	private void setPlayersOnline(final int playersOnline) {
 		this.playersOnline = playersOnline;
 	}
 	
 	public int getPlayersOnline() {
-		return this.playersOnline;
+		return playersOnline;
 	}
 	
-	private void setMaxPlayers(int maxPlayers) {
+	private void setMaxPlayers(final int maxPlayers) {
 		this.maxPlayers = maxPlayers;
 	}
 	
 	public int getMaxPlayers() {
-		return this.maxPlayers;
+		return maxPlayers;
 	}
 	
 	public boolean fetchData() {
 		try {
-			Socket socket = new Socket();
+			final Socket socket = new Socket();
 			OutputStream outputStream;
 			DataOutputStream dataOutputStream;
 			InputStream inputStream;
 			InputStreamReader inputStreamReader;
 			
-			socket.setSoTimeout(this.timeout);
+			socket.setSoTimeout(timeout);
 			
-			socket.connect(new InetSocketAddress(this.getAddress(), this.getPort()), this.getTimeout());
+			socket.connect(new InetSocketAddress(getAddress(), getPort()), getTimeout());
 			
 			outputStream = socket.getOutputStream();
 			dataOutputStream = new DataOutputStream(outputStream);
@@ -143,7 +163,7 @@ public class CoreServerPing implements ServerPing {
 			
 			dataOutputStream.write(new byte[] { (byte) 0xFE, (byte) 0x01 });
 			
-			int packetId = inputStream.read();
+			final int packetId = inputStream.read();
 			
 			if (packetId == -1) {
 				close(socket, outputStream, dataOutputStream, inputStream, inputStreamReader);
@@ -155,7 +175,7 @@ public class CoreServerPing implements ServerPing {
 				throw new IOException("Invalid packet ID (" + packetId + ").");
 			}
 			
-			int length = inputStreamReader.read();
+			final int length = inputStreamReader.read();
 			
 			if (length == -1) {
 				close(socket, outputStream, dataOutputStream, inputStream, inputStreamReader);
@@ -167,30 +187,30 @@ public class CoreServerPing implements ServerPing {
 				throw new IOException("Invalid string length.");
 			}
 			
-			char[] chars = new char[length];
+			final char[] chars = new char[length];
 			
 			if (inputStreamReader.read(chars, 0, length) != length) {
 				close(socket, outputStream, dataOutputStream, inputStream, inputStreamReader);
 				throw new IOException("Premature end of stream.");
 			}
 			
-			String string = new String(chars);
+			final String string = new String(chars);
 			
 			if (string.startsWith("§")) {
-				String[] data = string.split("\0");
+				final String[] data = string.split("\0");
 				
-				this.setPingVersion(Integer.parseInt(data[0].substring(1)));
-				this.setProtocolVersion(Integer.parseInt(data[1]));
-				this.setGameVersion(data[2]);
-				this.setMotd(data[3]);
-				this.setPlayersOnline(Integer.parseInt(data[4]));
-				this.setMaxPlayers(Integer.parseInt(data[5]));
+				setPingVersion(Integer.parseInt(data[0].substring(1)));
+				setProtocolVersion(Integer.parseInt(data[1]));
+				setGameVersion(data[2]);
+				setMotd(data[3]);
+				setPlayersOnline(Integer.parseInt(data[4]));
+				setMaxPlayers(Integer.parseInt(data[5]));
 			} else {
-				String[] data = string.split("§");
+				final String[] data = string.split("§");
 				
-				this.setMotd(data[0]);
-				this.setPlayersOnline(Integer.parseInt(data[1]));
-				this.setMaxPlayers(Integer.parseInt(data[2]));
+				setMotd(data[0]);
+				setPlayersOnline(Integer.parseInt(data[1]));
+				setMaxPlayers(Integer.parseInt(data[2]));
 			}
 			
 			dataOutputStream.close();
@@ -200,23 +220,24 @@ public class CoreServerPing implements ServerPing {
 			inputStream.close();
 			
 			socket.close();
-		} catch (SocketException exception) {
+		} catch (final SocketException exception) {
 			return false;
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			return false;
 		}
 		
 		return true;
 	}
 	
-	private void close(Socket socket, OutputStream outputStream, DataOutputStream dataOutputStream, InputStream inputStream, InputStreamReader inputStreamReader) {
+	private void close(final Socket socket, final OutputStream outputStream, final DataOutputStream dataOutputStream, final InputStream inputStream,
+	        final InputStreamReader inputStreamReader) {
 		try {
 			dataOutputStream.close();
 			inputStreamReader.close();
 			outputStream.close();
 			inputStream.close();
 			socket.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			// e.printStackTrace();
 		}
 	}
@@ -224,7 +245,7 @@ public class CoreServerPing implements ServerPing {
 	@Override
 	public Server getServerInfo() {
 		fetchData();
-		Server server = new CoreServer();
+		final Server server = new CoreServer();
 		server.setJoin(true);
 		server.setSpectate(true);
 		server.setMaxPlayers(maxPlayers);
