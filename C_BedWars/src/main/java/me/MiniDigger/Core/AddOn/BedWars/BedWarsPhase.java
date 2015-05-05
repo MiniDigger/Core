@@ -102,7 +102,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new MobFeature(this, allowed));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new MapFeature(this, getGame().getGameData("VoteWinner")));
+		addFeature(new MapFeature(this, getGame().getGameData("VoteWinner"), true));
 		addFeature(new PvPFeature(this, true));
 		addFeature(new TeamSpawnFeature(this, true, DyeColor.WHITE));
 		addFeature(new TeamBedFeature(this, 4));
