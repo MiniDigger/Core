@@ -110,9 +110,7 @@ public class CoreWorldHandler implements WorldHandler {
 	}
 	
 	@Override
-	public void copyWorld(final String name) {
-		final File mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
-		File map = new File(mapFolder, name + ".zip");
+	public void deleteWorld(final String name) {
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
 		final File oldMap = new File(out, name);
 		
@@ -120,6 +118,16 @@ public class CoreWorldHandler implements WorldHandler {
 			_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD);
 			Core.getCore().getFileUtil().deleteDirectory(oldMap);
 		}
+	}
+	
+	@Override
+	public void copyWorld(final String name) {
+		final File mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
+		File map = new File(mapFolder, name + ".zip");
+		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
+		final File oldMap = new File(out, name);
+		
+		deleteWorld(name);
 		
 		_.log(LogLevel.DEBUG, LangKeyType.World.UNZIP, map.getAbsolutePath(), out.getAbsolutePath());
 		

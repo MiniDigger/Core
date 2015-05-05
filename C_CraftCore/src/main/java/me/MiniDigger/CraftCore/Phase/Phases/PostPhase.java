@@ -64,7 +64,7 @@ public class PostPhase extends CorePhase {
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER)));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new MapFeature(this, getGame().getGameData("Lobby")));
+		addFeature(new MapFeature(this, getGame().getGameData("Lobby"), true));
 		addFeature(new SpawnFeature(this, true));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new LobbyFeature(this));

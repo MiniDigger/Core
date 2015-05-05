@@ -23,6 +23,9 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.DyeColor;
+import org.bukkit.Location;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
@@ -33,14 +36,24 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 public class MapFeature extends CoreFeature {
 	
 	private MapData	map;
+	private boolean	shouldUnload;
 	
-	public MapFeature(final Phase phase, final String map) {
+	public MapFeature(final Phase phase, final String map,final boolean shouldUnload) {
 		super(phase);
 		setMap(map);
+		this.shouldUnload = shouldUnload;
 	}
 	
 	public MapData getMap() {
 		return map;
+	}
+	
+	public boolean shouldUnload() {
+		return shouldUnload;
+	}
+	
+	public void setShouldUnload(final boolean unload) {
+		this.shouldUnload = unload;
 	}
 	
 	@Override
@@ -74,6 +87,14 @@ public class MapFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
+		if (shouldUnload) {
+			Core.getCore()
+			        .getWorldHandler()
+			        .unloadWorld(map.getName(),
+			                (Location) Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby")).getLocs(DyeColor.RED).values().toArray()[0]);
+			Core.getCore().getWorldHandler().deleteWorld(map.getName());
+		}
+		
 		map = null;
 	}
 	
