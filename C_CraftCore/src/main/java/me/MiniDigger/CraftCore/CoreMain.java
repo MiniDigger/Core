@@ -81,8 +81,6 @@ import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Lang._;
-import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
-import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
 
@@ -308,7 +306,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		_.log(LogLevel.INFO, LangKeyType.Socket.STOP_C);
 		try {
-			((CoreSocketClient) Core.getCore().getSocketHandler().getClient()).close();
+			Core.getCore().getSocketHandler().stopClient();
 		} catch (final Exception ex) {
 			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			_.stacktrace(LogLevel.DEBUG, ex);
@@ -316,7 +314,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		_.log(LogLevel.INFO, LangKeyType.Socket.STOP);
 		try {
-			((CoreSocketServer) Core.getCore().getSocketHandler().getServer()).stop(30);
+			Core.getCore().getSocketHandler().stopServer();
 		} catch (final Exception ex) {
 			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			_.stacktrace(LogLevel.DEBUG, ex);

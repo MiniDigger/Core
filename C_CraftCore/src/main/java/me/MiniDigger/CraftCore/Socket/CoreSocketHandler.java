@@ -20,6 +20,7 @@
  */
 package me.MiniDigger.CraftCore.Socket;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -39,6 +40,7 @@ import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.CommandPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.LogRecordPacket;
+import me.MiniDigger.CraftCore.Packet.Packets.ServerCommandPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
 public class CoreSocketHandler implements SocketHandler {
@@ -75,6 +77,24 @@ public class CoreSocketHandler implements SocketHandler {
 	}
 	
 	@Override
+	public void stopClient() {
+		((CoreSocketClient) client).close();
+	}
+	
+	@Override
+	public void stopServer() {
+		final ServerCommandPacket packet = new ServerCommandPacket();
+		packet.setCommand("CloseClient");
+		Core.getCore().getPacketHandler().sendBroadcast(packet);
+		
+		try {
+			((CoreSocketServer) server).stop();
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
 	public void registerPackets() {
 		final List<Class<? extends Packet>> classes = new ArrayList<Class<? extends Packet>>();
 		classes.add(ChatPacket.class);
@@ -82,6 +102,7 @@ public class CoreSocketHandler implements SocketHandler {
 		classes.add(ServerPacket.class);
 		classes.add(LogRecordPacket.class);
 		classes.add(CommandPacket.class);
+		classes.add(ServerCommandPacket.class);
 		
 		for (final Class<? extends Packet> c : classes) {
 			try {

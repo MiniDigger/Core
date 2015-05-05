@@ -72,6 +72,7 @@ import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Menu.CoreItemBarMenu;
 import me.MiniDigger.CraftCore.Menu.CoreItemMenu;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
+import me.MiniDigger.CraftCore.Packet.Packets.ServerCommandPacket;
 import me.MiniDigger.CraftCore.REST.CoreRESTHandler;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -355,6 +356,13 @@ public class DevCommands {
 		final FancyMessage msg = new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE);
 		meta.setPage(1, msg.toJSONString());
 		is.setItemMeta(meta);
+	}
+	
+	@Command(name = "dev.closeClients", description = "DEV!", usage = "", permission = "dev")
+	public void closeClients(final CommandArgs args) {
+		final ServerCommandPacket packet = new ServerCommandPacket();
+		packet.setCommand("CloseClient");
+		Core.getCore().getPacketHandler().sendBroadcast(packet);
 	}
 	
 	@Command(name = "dev.book2", description = "DEV!", usage = "", permission = "dev")
