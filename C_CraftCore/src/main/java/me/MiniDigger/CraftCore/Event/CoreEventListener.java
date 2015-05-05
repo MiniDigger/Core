@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,6 +34,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.MiniDigger.Core.Core;
@@ -170,6 +173,17 @@ public class CoreEventListener implements EventListener {
 			Bukkit.getPluginManager().callEvent(event);
 			if (!event.keepDrops()) {
 				e.getDrops().clear();
+			}
+		}
+	}
+	
+	@Override
+	@EventHandler
+	public void onPlayerMove(final PlayerMoveEvent e) {
+		// Don't fly thru barriers
+		if (e.getPlayer().getGameMode() == GameMode.SPECTATOR) {
+			if (e.getTo().getBlock().getType() == Material.BARRIER) {
+				e.setCancelled(true);
 			}
 		}
 	}
