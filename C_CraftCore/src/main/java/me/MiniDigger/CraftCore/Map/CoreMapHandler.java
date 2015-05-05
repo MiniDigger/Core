@@ -64,6 +64,7 @@ public class CoreMapHandler implements MapHandler {
 			System.out.println("Could not add map: Name was null");
 			return;
 		}
+		
 		maps.add(data);
 	}
 	
@@ -72,10 +73,12 @@ public class CoreMapHandler implements MapHandler {
 		if (name == null) {
 			return null;
 		}
+		
 		for (final MapData data : maps) {
 			if (data == null) {
 				return null;
 			}
+			
 			if (data.getName().equals(name)) {
 				return data;
 			}
@@ -94,6 +97,7 @@ public class CoreMapHandler implements MapHandler {
 					break;
 				}
 			}
+			
 			if (!breaked) {
 				result.add(data);
 			}
