@@ -108,7 +108,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 					e.remove();
 				}
 			}
-			w.save();
+			// w.save();
 		}
 		
 		WatchdogThread.doStop();
