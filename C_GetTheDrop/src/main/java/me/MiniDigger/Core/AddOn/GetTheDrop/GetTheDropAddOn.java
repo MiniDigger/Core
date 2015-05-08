@@ -55,6 +55,7 @@ public class GetTheDropAddOn extends CoreAddOn {
 	@Command(name = "getthedrop", permission = "getthedrop", usage = "", consol = true, description = "Initiiert ein GTD Game", max = 0)
 	public void getthedrop(final CommandArgs args) {
 		final GetTheDropGame game = new GetTheDropGame();
+		game.init();
 		Core.getCore().getGameHandler().addGame(game);
 		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
 			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);

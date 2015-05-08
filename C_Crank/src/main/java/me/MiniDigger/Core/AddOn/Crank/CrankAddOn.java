@@ -55,6 +55,7 @@ public class CrankAddOn extends CoreAddOn {
 	@Command(name = "crank", permission = "crank", usage = "", consol = true, description = "Initiiert ein Crank Game", max = 0)
 	public void getthedrop(final CommandArgs args) {
 		final CrankGame game = new CrankGame();
+		game.init();
 		Core.getCore().getGameHandler().addGame(game);
 		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
 			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);

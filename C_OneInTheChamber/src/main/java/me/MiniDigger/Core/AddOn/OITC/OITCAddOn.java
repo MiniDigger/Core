@@ -55,6 +55,7 @@ public class OITCAddOn extends CoreAddOn {
 	@Command(name = "oitc", permission = "oitc", usage = "", consol = true, description = "Initiiert ein OITC Game", max = 0)
 	public void getthedrop(final CommandArgs args) {
 		final OITCGame game = new OITCGame();
+		game.init();
 		Core.getCore().getGameHandler().addGame(game);
 		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
 			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
