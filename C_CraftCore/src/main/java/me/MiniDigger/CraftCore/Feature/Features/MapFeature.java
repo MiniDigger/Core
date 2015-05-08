@@ -38,7 +38,7 @@ public class MapFeature extends CoreFeature {
 	private MapData	map;
 	private boolean	shouldUnload;
 	
-	public MapFeature(final Phase phase, final String map,final boolean shouldUnload) {
+	public MapFeature(final Phase phase, final String map, final boolean shouldUnload) {
 		super(phase);
 		setMap(map);
 		this.shouldUnload = shouldUnload;
@@ -88,11 +88,7 @@ public class MapFeature extends CoreFeature {
 	@Override
 	public void end() {
 		if (shouldUnload) {
-			Core.getCore()
-			        .getWorldHandler()
-			        .unloadWorld(map.getName(),
-			                (Location) Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby")).getLocs(DyeColor.RED).values().toArray()[0]);
-			Core.getCore().getWorldHandler().deleteWorld(map.getName());
+			unload();
 		}
 		
 		map = null;
@@ -108,5 +104,13 @@ public class MapFeature extends CoreFeature {
 		}
 		
 		this.map = Core.getCore().getMapHandler().getMap(map);
+	}
+	
+	public void unload() {
+		Core.getCore()
+		        .getWorldHandler()
+		        .unloadWorld(map.getName(),
+		                (Location) Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby")).getLocs(DyeColor.RED).values().toArray()[0]);
+		Core.getCore().getWorldHandler().deleteWorld(map.getName());
 	}
 }

@@ -36,6 +36,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.Feature.Feature;
+import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -45,6 +46,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Lang._;
 
 import mkremins.fanciful.FancyMessage;
@@ -238,6 +240,8 @@ public class CoreGame implements Game {
 		Core.getCore().getGameHandler().removeGame(this);
 		HandlerList.unregisterAll(getPhase());
 		Core.getCore().getCommandHandler().unregisterCommands(getPhase());
+		
+		((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
 		
 		for (final Feature f : getPhase().getFeatures()) {
 			HandlerList.unregisterAll(f);
