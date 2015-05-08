@@ -129,6 +129,11 @@ public class HubFeature extends CoreFeature {
 	// @EventHandler
 	public void handleInteract(final PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
+		
+		if (!getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
+			return;
+		}
+		
 		final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
 		try {
 			Core.getCore().getMenuHandler().openMenu(u, "menu");

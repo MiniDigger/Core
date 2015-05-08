@@ -72,4 +72,20 @@ public interface GameHandler {
 	 * @return All the games
 	 */
 	public List<Game> getGames(final User user);
+	
+	/**
+	 * Join Game
+	 * 
+	 * @param user
+	 * @param game
+	 */
+	void joinGame(User user, Game game);
+
+	/**
+	 * Leave Game
+	 * 
+	 * @param user
+	 * @param game
+	 */
+	void leaveGame(User user, Game game);
 }

@@ -89,4 +89,17 @@ public class CoreGameHandler implements GameHandler {
 		}
 		return g;
 	}
+	
+	@Override
+	public void joinGame(final User user, final Game game) {
+		for (Game g : getGames(user)) {
+			g.leave(user);
+		}
+		game.join(user);
+	}
+	
+	@Override
+	public void leaveGame(final User user, final Game game) {
+		game.leave(user);
+	}
 }

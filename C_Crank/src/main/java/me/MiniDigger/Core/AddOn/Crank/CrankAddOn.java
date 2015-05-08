@@ -60,7 +60,7 @@ public class CrankAddOn extends CoreAddOn {
 		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
 			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
 			Bukkit.getPluginManager().callEvent((Event) e1);
-			game.join(user);
+			Core.getCore().getGameHandler().joinGame(user, game);
 		}
 		game.start();
 	}
