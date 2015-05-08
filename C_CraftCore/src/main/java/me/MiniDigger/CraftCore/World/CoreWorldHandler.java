@@ -114,6 +114,10 @@ public class CoreWorldHandler implements WorldHandler {
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
 		final File oldMap = new File(out, name);
 		
+		if(Bukkit.getWorld(name)!= null){
+			unloadWorld(name, null);
+		}
+		
 		if (oldMap.exists() && oldMap.isDirectory()) {
 			_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD);
 			Core.getCore().getFileUtil().deleteDirectory(oldMap);
