@@ -13,7 +13,7 @@ public class ServerCommandPacket extends CorePacket {
 	private String	cmd;
 	
 	@Override
-	public void fromString(String s) {
+	public void fromString(final String s) {
 		cmd = s.split(Pattern.quote("|"))[0];
 	}
 	
@@ -35,7 +35,7 @@ public class ServerCommandPacket extends CorePacket {
 	}
 	
 	@Override
-	public void handle(WebSocket con) {
+	public void handle(final WebSocket con) {
 		
 	}
 	
@@ -44,7 +44,7 @@ public class ServerCommandPacket extends CorePacket {
 		return "ServerCommand";
 	}
 	
-	public void setCommand(String cmd) {
+	public void setCommand(final String cmd) {
 		this.cmd = cmd;
 	}
 	

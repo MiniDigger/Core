@@ -45,7 +45,7 @@ public interface EventListener extends Listener {
 	
 	@EventHandler
 	public void onPlayerDeath(final PlayerDeathEvent e);
-
+	
 	@EventHandler
-	void onPlayerMove(PlayerMoveEvent e);
+	void onPlayerMove(final PlayerMoveEvent e);
 }

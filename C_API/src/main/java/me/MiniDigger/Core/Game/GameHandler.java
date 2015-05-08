@@ -79,13 +79,13 @@ public interface GameHandler {
 	 * @param user
 	 * @param game
 	 */
-	void joinGame(User user, Game game);
-
+	void joinGame(final User user, final Game game);
+	
 	/**
 	 * Leave Game
 	 * 
 	 * @param user
 	 * @param game
 	 */
-	void leaveGame(User user, Game game);
+	void leaveGame(final User user, final Game game);
 }

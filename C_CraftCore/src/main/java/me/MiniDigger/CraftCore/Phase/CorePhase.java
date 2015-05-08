@@ -199,7 +199,7 @@ public abstract class CorePhase implements Phase {
 	public void end(final CommandArgs args) {
 		getGame().broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wurde bei einem Admin beendet!").color(ChatColor.RED));
 		
-		User[] u = new User[getGame().getPlayers().size()];
+		final User[] u = new User[getGame().getPlayers().size()];
 		for (int i = 0; i < u.length; i++) {
 			u[i] = Core.getCore().getUserHandler().get(getGame().getPlayers().get(i));
 		}

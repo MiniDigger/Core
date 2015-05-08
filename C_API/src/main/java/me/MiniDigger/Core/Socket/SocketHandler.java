@@ -88,12 +88,12 @@ public interface SocketHandler {
 	 * @return The session
 	 */
 	public Session getSession(final InetSocketAddress address);
-
+	
 	/**
 	 * Closes to conection to the server
 	 */
 	void stopClient();
-
+	
 	/**
 	 * Stops the server, all clients should be stopped!
 	 */

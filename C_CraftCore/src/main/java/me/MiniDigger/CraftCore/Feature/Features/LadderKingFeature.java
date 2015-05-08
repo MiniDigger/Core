@@ -9,9 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import me.MiniDigger.Core.Core;
@@ -22,13 +20,11 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
-import ca.wacos.nametagedit.data.PlayerData;
-
 public class LadderKingFeature extends CoreFeature {
 	
 	private UUID	king;
 	
-	public LadderKingFeature(Phase phase) {
+	public LadderKingFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -63,18 +59,18 @@ public class LadderKingFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onPlayerMove(PlayerMoveEvent e) {
+	public void onPlayerMove(final PlayerMoveEvent e) {
 		if (e.getTo().getBlock() != null && e.getTo().getBlock().getType() == Material.GOLD_PLATE) {
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 				if (e.getPlayer().getUniqueId() != king) {
 					if (king == null) {
-						User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+						final User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 						getPhase().getGame().broadCastMessage(
 						        Prefix.API.getPrefix().then(k.getDisplayName()).color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
 						king = k.getUUID();
 					} else {
-						User o = Core.getCore().getUserHandler().get(king);
-						User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+						final User o = Core.getCore().getUserHandler().get(king);
+						final User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 						getPhase().getGame().broadCastMessage(
 						        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" ist kein Ladderkönig mehr. ").color(ChatColor.GOLD)
 						                .then(k.getDisplayName()).color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
@@ -86,10 +82,10 @@ public class LadderKingFeature extends CoreFeature {
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onPvP(EntityDamageByEntityEvent e) {
+	public void onPvP(final EntityDamageByEntityEvent e) {
 		if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
-			User damager = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
-			User damaged = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
+			final User damager = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
+			final User damaged = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
 			
 			if (getPhase().getGame().getPlayers().contains(damaged.getUUID()) && getPhase().getGame().getPlayers().contains(damager.getUUID())) {
 				if (damager.getUUID() == king) {

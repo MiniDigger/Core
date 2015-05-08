@@ -51,11 +51,11 @@ public interface WorldHandler {
 	 *            The name of the world
 	 */
 	public void copyWorld(final String name);
-
+	
 	/**
 	 * Deletes the world, should be unloaded at this point
 	 * 
 	 * @param name
 	 */
-	void deleteWorld(String name);
+	void deleteWorld(final String name);
 }

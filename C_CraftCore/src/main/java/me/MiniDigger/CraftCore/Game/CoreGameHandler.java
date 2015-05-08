@@ -92,7 +92,7 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void joinGame(final User user, final Game game) {
-		for (Game g : getGames(user)) {
+		for (final Game g : getGames(user)) {
 			if (g.getType() != GameType.TICTACTOE) {
 				g.leave(user);
 			}

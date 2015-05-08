@@ -54,7 +54,7 @@ public class MapFeature extends CoreFeature {
 	}
 	
 	public void setShouldUnload(final boolean unload) {
-		this.shouldUnload = unload;
+		shouldUnload = unload;
 	}
 	
 	@Override
