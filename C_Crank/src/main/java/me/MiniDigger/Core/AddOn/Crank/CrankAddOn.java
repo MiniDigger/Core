@@ -52,7 +52,7 @@ public class CrankAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "crank", permission = "crank", usage = "", consol = true, description = "Initiiert ein Crank Game", max = 0)
+	@Command(name = "crank", permission = "crank", usage = "", consol = true, description = "Initiiert ein Crank Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final CrankGame game = new CrankGame();
 		game.init();

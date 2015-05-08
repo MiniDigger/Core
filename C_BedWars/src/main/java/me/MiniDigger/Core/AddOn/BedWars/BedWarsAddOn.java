@@ -52,7 +52,7 @@ public class BedWarsAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "bedwars", permission = "bedwars", usage = "", consol = true, description = "Initiiert ein BW Game", max = 0)
+	@Command(name = "bedwars", permission = "bedwars", usage = "", consol = true, description = "Initiiert ein BW Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final BedWarsGame game = new BedWarsGame();
 		game.init();

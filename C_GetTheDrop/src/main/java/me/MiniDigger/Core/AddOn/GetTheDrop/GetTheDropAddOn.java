@@ -52,7 +52,7 @@ public class GetTheDropAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "getthedrop", permission = "getthedrop", usage = "", consol = true, description = "Initiiert ein GTD Game", max = 0)
+	@Command(name = "getthedrop", permission = "getthedrop", usage = "", consol = true, description = "Initiiert ein GTD Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final GetTheDropGame game = new GetTheDropGame();
 		game.init();

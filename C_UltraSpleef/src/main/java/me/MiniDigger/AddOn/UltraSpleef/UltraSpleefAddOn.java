@@ -52,7 +52,7 @@ public class UltraSpleefAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "ultraspleef", permission = "ultraspleef", usage = "", consol = true, description = "Initiiert ein Ultraspleef Game", max = 0)
+	@Command(name = "ultraspleef", permission = "ultraspleef", usage = "", consol = true, description = "Initiiert ein Ultraspleef Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final UltraSpleefGame game = new UltraSpleefGame();
 		game.init();

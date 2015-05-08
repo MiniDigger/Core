@@ -52,7 +52,7 @@ public class OITCAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "oitc", permission = "oitc", usage = "", consol = true, description = "Initiiert ein OITC Game", max = 0)
+	@Command(name = "oitc", permission = "oitc", usage = "", consol = true, description = "Initiiert ein OITC Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final OITCGame game = new OITCGame();
 		game.init();
