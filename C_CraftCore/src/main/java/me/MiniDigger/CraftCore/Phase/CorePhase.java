@@ -36,6 +36,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 
 public abstract class CorePhase implements Phase {
 	
@@ -173,7 +174,7 @@ public abstract class CorePhase implements Phase {
 		return null;
 	}
 	
-	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip", max = 0)
+	@Command(name = "skip", description = "überspringt eine Phase", usage = "", permission = "skip", max = 0, sync = true)
 	public void skip(final CommandArgs args) {
 		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), new Runnable() {
 			
@@ -187,6 +188,27 @@ public abstract class CorePhase implements Phase {
 	
 	@Completer(name = "skip")
 	public List<String> skipC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
+		
+		result.add("");
+		
+		return result;
+	}
+	
+	@Command(name = "end", description = "beendet das Spiel", usage = "", permission = "end", max = 0, sync = true)
+	public void end(final CommandArgs args) {
+		getGame().broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wurde bei einem Admin beendet!").color(ChatColor.RED));
+		
+		User[] u = new User[getGame().getPlayers().size()];
+		for (int i = 0; i < u.length; i++) {
+			u[i] = Core.getCore().getUserHandler().get(getGame().getPlayers().get(i));
+		}
+		
+		getGame().end(u);
+	}
+	
+	@Completer(name = "end")
+	public List<String> endC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		result.add("");

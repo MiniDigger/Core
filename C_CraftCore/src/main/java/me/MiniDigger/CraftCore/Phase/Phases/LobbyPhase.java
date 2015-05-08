@@ -36,6 +36,7 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LadderKingFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LobbyFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
@@ -71,12 +72,13 @@ public class LobbyPhase extends CorePhase {
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER)));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new MapFeature(this, getGame().getGameData("Lobby"),false));
+		addFeature(new MapFeature(this, getGame().getGameData("Lobby"), false));
 		addFeature(new SpawnFeature(this, true));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new LobbyFeature(this));
 		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
+		addFeature(new LadderKingFeature(this));
 	}
 	
 	@Override

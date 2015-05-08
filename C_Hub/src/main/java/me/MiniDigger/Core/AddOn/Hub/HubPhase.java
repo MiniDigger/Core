@@ -36,6 +36,7 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.JumpPadFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LadderKingFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
@@ -105,6 +106,7 @@ public class HubPhase extends CorePhase {
 		addFeature(new PvPFeature(this, false));
 		addFeature(new NoDropFeature(this));
 		addFeature(new NoPickupFeature(this));
+		addFeature(new LadderKingFeature(this));
 	}
 	
 }

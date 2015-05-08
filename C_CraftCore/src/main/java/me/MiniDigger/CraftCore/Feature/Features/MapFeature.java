@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 
@@ -99,8 +100,10 @@ public class MapFeature extends CoreFeature {
 			return;
 		}
 		if (Core.getCore().getMapHandler().getMap(map) == null) {
-			Core.getCore().getWorldHandler().copyWorld(map);
-			Core.getCore().getWorldHandler().loadWorld(map);
+			if (Bukkit.getWorld(map) == null) {
+				Core.getCore().getWorldHandler().copyWorld(map);
+				Core.getCore().getWorldHandler().loadWorld(map);
+			}
 		}
 		
 		this.map = Core.getCore().getMapHandler().getMap(map);
