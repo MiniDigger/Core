@@ -22,23 +22,25 @@ package me.MiniDigger.Core.Game;
 
 public enum GameType {
 	
-	TICTACTOE("TicTacToe", "TTT", null),
-	LOBBY("Lobby", "Lobby", null),
-	GETTHEDROP("GetTheDrop", "GTD", null),
-	NOTHING("Nothing", "", null),
-	BEDWARS("BedWars", "BW", null),
-	CRANK("Crank", "Crank", null),
-	OITC("OneInTheChamber", "OITC", null),
-	ULTRASPLEEF("UltraSpleef", "US", null);
+	TICTACTOE("TicTacToe", "TTT", null, "tictactoe"),
+	LOBBY("Lobby", "Lobby", null, ""),
+	GETTHEDROP("GetTheDrop", "GTD", null, "getthedrop"),
+	NOTHING("Nothing", "", null, ""),
+	BEDWARS("BedWars", "BW", null, "bedwars"),
+	CRANK("Crank", "Crank", null, "crank"),
+	OITC("OneInTheChamber", "OITC", null, "oitc"),
+	ULTRASPLEEF("UltraSpleef", "US", null, "ultraspleef");
 	
 	private String	    name;
 	private String	    abk;
 	private Class<Game>	game;
+	private String	    cmd;
 	
-	private GameType(final String name, final String abk, final Class<Game> game) {
+	private GameType(final String name, final String abk, final Class<Game> game, final String cmd) {
 		this.name = name;
 		this.abk = abk;
 		this.game = game;
+		this.cmd = cmd;
 	}
 	
 	public String getName() {
@@ -51,6 +53,10 @@ public enum GameType {
 	
 	public Class<?> getGame() {
 		return game;
+	}
+	
+	public String getCommand() {
+		return cmd;
 	}
 	
 	@SuppressWarnings("unchecked")

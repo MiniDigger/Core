@@ -104,4 +104,9 @@ public class CoreGameHandler implements GameHandler {
 	public void leaveGame(final User user, final Game game) {
 		game.leave(user);
 	}
+	
+	@Override
+	public List<Game> getGames() {
+		return games;
+	}
 }

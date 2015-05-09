@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -110,6 +111,22 @@ public class CoreSignListeners implements SignListeners {
 				out.writeUTF("Connect");
 				out.writeUTF(getSign().getLine(1));
 				getPlayer().sendPluginMessage(Core.getCore().getInstance(), "BungeeCord", out.toByteArray());
+			}
+		}, false));
+		
+		register(new SignListener("[GameJ]", new SignAction() {
+			
+			@Override
+			public void run() {
+				Bukkit.getServer().dispatchCommand(getPlayer(), "game join " + getSign().getLine(1));
+			}
+		}, false));
+		
+		register(new SignListener("[GameL]", new SignAction() {
+			
+			@Override
+			public void run() {
+				Bukkit.getServer().dispatchCommand(getPlayer(), "game leave");
 			}
 		}, false));
 	}

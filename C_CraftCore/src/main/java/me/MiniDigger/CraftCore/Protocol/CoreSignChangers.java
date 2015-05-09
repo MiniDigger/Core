@@ -298,6 +298,22 @@ public class CoreSignChangers implements SignChangers {
 				return "";
 			}
 		});
+		
+		addSignChanger(new SignChanger("[GameL]", "signchangers.create.team", "Zeigt das Team schön formatiert an") {
+			
+			@Override
+			public String getValue(final Player p, final Location loc) {
+				if (!(loc.getBlock().getState() instanceof Sign)) {
+					return ChatColor.RED + "fail";
+				}
+				final Sign sign = (Sign) loc.getBlock().getState();
+				sign.setLine(0, "Klicke hier, um");
+				sign.setLine(1, "dein aktuelles");
+				sign.setLine(2, "Spiel zu");
+				sign.setLine(3, "verlassen");
+				return "";
+			}
+		});
 	}
 	
 	private void handleSignEdit(final PlayerInteractEvent event, final Sign sign) {
@@ -384,7 +400,7 @@ public class CoreSignChangers implements SignChangers {
 		
 		WrappedChatComponent[] newLines = { lines[0], lines[1], lines[2], lines[3] };
 		
-		if (newLines[0] != null && newLines[0].getJson() != null && newLines[0].getJson().contains("[Teleport]") && edit) {
+		if (newLines[0] != null && newLines[0].getJson() != null && (newLines[0].getJson().contains("[Teleport]") || newLines[0].getJson().contains("[Game]")) && edit) {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				for (int i = 0; i < 4; i++) {
 					lines[i].setJson(new FancyMessage(((Sign) location.getBlock().getState()).getLines()[i]).toJSONString());

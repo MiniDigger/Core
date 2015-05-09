@@ -50,6 +50,7 @@ import me.MiniDigger.CraftCore.Command.Commands.ChatCommands;
 import me.MiniDigger.CraftCore.Command.Commands.DevCommands;
 import me.MiniDigger.CraftCore.Command.Commands.EffectsCommands;
 import me.MiniDigger.CraftCore.Command.Commands.EssentialCommands;
+import me.MiniDigger.CraftCore.Command.Commands.GameCommands;
 import me.MiniDigger.CraftCore.Command.Commands.ItemCommands;
 import me.MiniDigger.CraftCore.Command.Commands.KitCommands;
 import me.MiniDigger.CraftCore.Command.Commands.LangCommands;
@@ -67,6 +68,7 @@ import me.MiniDigger.CraftCore.Command.Completer.ChatCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.DevCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.EffectsCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.EssentialCompleter;
+import me.MiniDigger.CraftCore.Command.Completer.GameCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.ItemCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.KitCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.LangCompleter;
@@ -370,14 +372,14 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
 		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(),
-		        new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(), new TagCommands() };
+		        new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(), new TagCommands(), new GameCommands() };
 		for (final Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
 		
 		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
 		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new AddOnCompleter(),
-		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter(), new LangCompleter(), new TagCompleter() };
+		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter(), new LangCompleter(), new TagCompleter(), new GameCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}

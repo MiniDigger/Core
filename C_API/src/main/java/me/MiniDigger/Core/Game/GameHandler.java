@@ -88,4 +88,10 @@ public interface GameHandler {
 	 * @param game
 	 */
 	void leaveGame(final User user, final Game game);
+	
+	/**
+	 * 
+	 * @return a list with all running games
+	 */
+	public List<Game> getGames();
 }
