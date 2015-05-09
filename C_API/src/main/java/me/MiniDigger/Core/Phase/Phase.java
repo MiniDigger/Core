@@ -117,4 +117,11 @@ public interface Phase extends Listener {
 	 * Inits the feature
 	 */
 	public void init();
+	
+	/**
+	 * remove a feature
+	 * 
+	 * @param t
+	 */
+	void remFeature(FeatureType t);
 }

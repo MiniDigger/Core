@@ -38,6 +38,8 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Feature.Features.JoinHandlerFeature;
+
 public abstract class CorePhase implements Phase {
 	
 	protected Game	        game;
@@ -50,7 +52,7 @@ public abstract class CorePhase implements Phase {
 	}
 	
 	public CorePhase() {
-		
+		addFeature(new JoinHandlerFeature(this));
 	}
 	
 	@Override
@@ -161,6 +163,13 @@ public abstract class CorePhase implements Phase {
 	public void addFeature(final Feature f) {
 		if (getFeature(f.getType()) == null) {
 			features.add(f);
+		}
+	}
+	
+	@Override
+	public void remFeature(final FeatureType t) {
+		if (getFeature(t) != null) {
+			features.remove(getFeature(t));
 		}
 	}
 	
