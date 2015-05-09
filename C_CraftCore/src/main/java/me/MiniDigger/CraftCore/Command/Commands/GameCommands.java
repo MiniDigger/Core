@@ -22,7 +22,7 @@ public class GameCommands {
 	public void join(final CommandArgs args) {
 		for (Game game : Core.getCore().getGameHandler().getGames()) {
 			if (game.getType().name().equalsIgnoreCase(args.getArgs()[0])) {
-				game.join(args.getUser());
+				Core.getCore().getGameHandler().joinGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel beigetreten").color(ChatColor.GREEN));
 				return;
 			}
@@ -41,7 +41,7 @@ public class GameCommands {
 	public void leave(final CommandArgs args) {
 		for (Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
 			if (game.getType() != GameType.TICTACTOE) {
-				game.leave(args.getUser());
+				Core.getCore().getGameHandler().leaveGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel verlassen").color(ChatColor.GREEN));
 				return;
 			}

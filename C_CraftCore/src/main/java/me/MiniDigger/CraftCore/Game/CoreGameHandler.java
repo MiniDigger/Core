@@ -23,6 +23,8 @@ package me.MiniDigger.CraftCore.Game;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameHandler;
@@ -103,6 +105,12 @@ public class CoreGameHandler implements GameHandler {
 	@Override
 	public void leaveGame(final User user, final Game game) {
 		game.leave(user);
+		
+		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
+		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
+		Core.getCore().getBarHandler().removeBar(user.getPlayer());
+		
+		user.getPlayer().teleport(Bukkit.getWorld("Spawn").getSpawnLocation());
 	}
 	
 	@Override

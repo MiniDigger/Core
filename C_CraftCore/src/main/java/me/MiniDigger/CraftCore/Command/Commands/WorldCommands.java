@@ -196,7 +196,7 @@ public class WorldCommands {
 		
 		if (maps.contains(map) && Bukkit.getWorld(map) != null || (args.getArgs().length > 1 && args.getArgs()[1].contains("-f"))) {
 			try {
-				Core.getCore().getWorldHandler().unloadWorld(map, Bukkit.getWorlds().get(0).getSpawnLocation());
+				Core.getCore().getWorldHandler().unloadWorld(map, Bukkit.getWorld("Spawn").getSpawnLocation());
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Welt unloaded! Lösche sie..."));
 			} catch (final Exception ex) {}
 			System.gc();
