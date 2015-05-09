@@ -50,6 +50,11 @@ import me.MiniDigger.CraftCore.Map.CoreMapData;
 public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
+	public Location getFallbackLoc() {
+		return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
+	}
+	
+	@Override
 	public void unloadWorld(final String world, final Location fallBackLoc) {
 		final World w = Bukkit.getWorld(world);
 		w.save();
@@ -115,7 +120,7 @@ public class CoreWorldHandler implements WorldHandler {
 		final File oldMap = new File(out, name);
 		
 		if (Bukkit.getWorld(name) != null) {
-			unloadWorld(name, Bukkit.getWorld("Spawn").getSpawnLocation());
+			unloadWorld(name, Core.getCore().getWorldHandler().getFallbackLoc());
 		}
 		
 		if (oldMap.exists() && oldMap.isDirectory()) {

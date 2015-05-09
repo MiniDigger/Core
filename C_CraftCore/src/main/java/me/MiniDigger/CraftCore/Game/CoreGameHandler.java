@@ -110,7 +110,7 @@ public class CoreGameHandler implements GameHandler {
 		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
 		
-		user.getPlayer().teleport(Bukkit.getWorld("Spawn").getSpawnLocation());
+		user.getPlayer().teleport(Core.getCore().getWorldHandler().getFallbackLoc());
 	}
 	
 	@Override

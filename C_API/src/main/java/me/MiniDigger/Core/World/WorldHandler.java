@@ -58,4 +58,10 @@ public interface WorldHandler {
 	 * @param name
 	 */
 	void deleteWorld(final String name);
+
+	/**
+	 * 
+	 * @return the fallback lco
+	 */
+	Location getFallbackLoc();
 }
