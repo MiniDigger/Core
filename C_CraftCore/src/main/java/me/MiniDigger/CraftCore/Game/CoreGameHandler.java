@@ -111,6 +111,10 @@ public class CoreGameHandler implements GameHandler {
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
 		
 		user.getPlayer().teleport(Core.getCore().getWorldHandler().getFallbackLoc());
+		
+		if (getMainGame().getType() == GameType.LOBBY) {
+			joinGame(user, getMainGame());
+		}
 	}
 	
 	@Override
