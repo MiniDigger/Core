@@ -51,7 +51,8 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public Location getFallbackLoc() {
-		return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
+		// return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
+		return new Location(Bukkit.getWorld("Spawn"), -937.5, 38.0, -768.5);
 	}
 	
 	@Override
