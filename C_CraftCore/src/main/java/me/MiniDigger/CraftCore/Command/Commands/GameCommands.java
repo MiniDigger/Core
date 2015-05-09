@@ -58,10 +58,11 @@ public class GameCommands {
 	public void list(final CommandArgs args) {
 		Prefix.API.getPrefix().then("********** Games *********").color(ChatColor.GOLD).send(args.getPlayer());
 		for (Game game : Core.getCore().getGameHandler().getGames()) {
+			Prefix.API.getPrefix().then("Game#" + game.getIdentifier()).send(args.getPlayer());
 			Prefix.API
 			        .getPrefix()
-			        .then("Game#" + game.getIdentifier() + ": Typ: " + game.getType().name() + ", Spieler: " + game.getPlayers().size() + "(" + game.getSpecs().size()
-			                + "), Phase: " + game.getPhase().getName()).send(args.getPlayer());
+			        .then(" * Typ: " + game.getType().name() + ", Spieler: " + game.getPlayers().size() + "(" + game.getSpecs().size() + "), Phase: "
+			                + game.getPhase().getName()).send(args.getPlayer());
 		}
 		Prefix.API.getPrefix().then("**************************").color(ChatColor.GOLD).send(args.getPlayer());
 	}
