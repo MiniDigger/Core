@@ -32,6 +32,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 
 public class TeamFeature extends TeamSelectFeature {
 	
@@ -66,6 +67,14 @@ public class TeamFeature extends TeamSelectFeature {
 			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(id).getName()).setPrefix("");
 		}
 		Core.getCore().getScoreboardHandler().updateAll();
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			Core.getCore().getScoreboardHandler().getTeam(e.getUser().getPlayer().getName()).setPrefix("");
+			Core.getCore().getScoreboardHandler().updateAll();
+		}
 	}
 	
 	public void setTeams(final List<Team> teams) {

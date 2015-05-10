@@ -24,11 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.event.EventHandler;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TwoPlayerFeature extends CoreFeature {
@@ -99,6 +102,13 @@ public class TwoPlayerFeature extends CoreFeature {
 	@Override
 	public void end() {
 		
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			getPhase().getGame().end(getOther(e.getUser()));
+		}
 	}
 	
 	public boolean isOne(final UUID uuid) {

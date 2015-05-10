@@ -25,12 +25,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class BuildFeature extends CoreFeature {
@@ -68,6 +70,14 @@ public class BuildFeature extends CoreFeature {
 			final User user = Core.getCore().getUserHandler().get(id);
 			Core.getCore().getBuildHandler().setBuilder(user, true);
 			Core.getCore().getBuildHandler().allow(user, allowed);
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			Core.getCore().getBuildHandler().setBuilder(e.getUser(), false);
+			Core.getCore().getBuildHandler().disallow(e.getUser(), (Material) null);
 		}
 	}
 	

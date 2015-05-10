@@ -27,6 +27,7 @@ import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -34,6 +35,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Team.CoreTeam;
 
@@ -131,6 +133,13 @@ public class TeamSelectFeature extends CoreFeature {
 		for (int i = 0; i < teamCount; i++) {
 			final Team t = new CoreTeam(teamSize, teamNames.get(i), teamColors.get(i), getPhase().getGame());
 			teams.add(t);
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			getTeam(e.getUser()).leave(e.getUser().getUUID());
 		}
 	}
 	

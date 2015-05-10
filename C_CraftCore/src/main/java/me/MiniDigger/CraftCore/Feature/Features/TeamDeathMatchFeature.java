@@ -37,6 +37,7 @@ import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TeamDeathMatchFeature extends CoreFeature {
@@ -95,6 +96,23 @@ public class TeamDeathMatchFeature extends CoreFeature {
 	public void onUserJoin(CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			respawns.put(e.getUser().getUUID(), respawnCount);
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			respawns.remove(e.getUser().getUUID());
+			if (!isTeamAlive(e.getUser().getPlayer())) {
+				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+				final Team t = tf.getTeam(e.getUser().getPlayer());
+				System.out.println(t.getName() + "d raußen");
+				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(t.getName()).color(t.getColor()).then(" ist draußen!"));
+				checkEnd();
+			} else {
+				System.out.println("noch drinnen");
+			}
+			System.out.println("c");
 		}
 	}
 	

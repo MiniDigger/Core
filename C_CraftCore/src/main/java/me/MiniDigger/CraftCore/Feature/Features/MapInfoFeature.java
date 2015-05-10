@@ -37,6 +37,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -96,6 +97,13 @@ public class MapInfoFeature extends CoreFeature {
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10);
 		
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()).clear();
+		}
 	}
 	
 	@EventHandler

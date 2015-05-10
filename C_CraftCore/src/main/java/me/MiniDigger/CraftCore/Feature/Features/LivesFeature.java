@@ -42,6 +42,7 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -106,6 +107,26 @@ public class LivesFeature extends CoreFeature {
 			final User u = Core.getCore().getUserHandler().get(id);
 			if (lives.get(id) != 0) {
 				board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			lives.remove(e.getUser().getUUID());
+			getPhase().getGame().broadCastMessage(
+			        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)
+			                .then(" ist draußen!").color(ChatColor.AQUA));
+			
+			Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()).clear();
+			
+			if (getPhase().getGame().getPlayers().size() < 2) {
+				try {
+					getPhase().getGame().end(Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0)));
+				} catch (final Exception ex) {
+					getPhase().getGame().end(new User[] { null });
+				}
 			}
 		}
 	}

@@ -42,6 +42,7 @@ import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -128,6 +129,29 @@ public class LastManStandingFeature extends CoreFeature {
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			if (getPhase().getGame().getPlayers().size() < 2) {
+				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
+					
+					@Override
+					public void run() {
+						try {
+							getPhase().getGame().end(Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0)));
+						} catch (final Exception ex) {
+							getPhase().getGame().end((User) null);
+						}
+					}
+				}, 10);// till respawn is finished
+			} else {
+				getPhase().getGame().broadCastMessage(
+				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch ").color(ChatColor.AQUA)
+				                .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
+			}
+		}
 	}
 	
 	@EventHandler

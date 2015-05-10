@@ -22,7 +22,9 @@ package me.MiniDigger.CraftCore.Feature.Features;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -34,6 +36,7 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class DoubleJumpFeature extends CoreFeature {
@@ -69,7 +72,19 @@ public class DoubleJumpFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		
+		for (UUID id : getPhase().getGame().getPlayers()) {
+			final Player p = Bukkit.getPlayer(id);
+			p.setAllowFlight(false);
+			p.setFlying(false);
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			e.getUser().getPlayer().setAllowFlight(false);
+			e.getUser().getPlayer().setFlying(false);
+		}
 	}
 	
 	@EventHandler

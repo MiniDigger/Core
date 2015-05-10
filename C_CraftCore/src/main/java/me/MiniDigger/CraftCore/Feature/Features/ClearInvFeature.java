@@ -26,10 +26,12 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.PlayerInventory;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
@@ -81,6 +83,18 @@ public class ClearInvFeature extends CoreFeature {
 				invs.put(id, p.getInventory());
 			}
 			p.getInventory().clear();
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(CoreUserLeaveGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			if (restore) {
+				try {
+					e.getUser().getPlayer().getInventory().setContents(invs.get(e.getUser().getUUID()).getContents());
+					e.getUser().getPlayer().getInventory().setArmorContents(invs.get(e.getUser().getUUID()).getArmorContents());
+				} catch (final Exception ex) {}
+			}
 		}
 	}
 	
