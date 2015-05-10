@@ -32,6 +32,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class FixedHealthFeature extends CoreFeature {
@@ -69,6 +70,14 @@ public class FixedHealthFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
+	}
+	
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			e.getUser().getPlayer().setHealth(0.0);
+		}
 	}
 	
 	@EventHandler

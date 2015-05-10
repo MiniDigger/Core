@@ -74,7 +74,7 @@ public class PostPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		
+		System.out.println("POST PHASE");
 		getGame().setAllowJoin(false);
 		getGame().setAllowSpectate(false);
 		super.startPhase();

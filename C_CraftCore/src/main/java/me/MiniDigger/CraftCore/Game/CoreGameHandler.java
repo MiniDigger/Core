@@ -31,6 +31,9 @@ import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
+
 public class CoreGameHandler implements GameHandler {
 	
 	private boolean	              mainGameStarted	= false;
@@ -94,6 +97,8 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void joinGame(final User user, final Game game) {
+		final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(game, user);
+		Bukkit.getPluginManager().callEvent(event);
 		for (final Game g : getGames(user)) {
 			if (g.getType() != GameType.TICTACTOE) {
 				g.leave(user);
@@ -104,6 +109,9 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void leaveGame(final User user, final Game game) {
+		final CoreUserLeaveGameEvent event = new CoreUserLeaveGameEvent(game, user);
+		Bukkit.getPluginManager().callEvent(event);
+		
 		game.leave(user);
 		
 		Core.getCore().getPlayerUtil().prepare(user.getPlayer());

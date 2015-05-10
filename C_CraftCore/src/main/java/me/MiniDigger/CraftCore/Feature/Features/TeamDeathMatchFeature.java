@@ -36,6 +36,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TeamDeathMatchFeature extends CoreFeature {
@@ -88,6 +89,13 @@ public class TeamDeathMatchFeature extends CoreFeature {
 	public void setRespawns(final UUID id, final int count) {
 		respawns.remove(id);
 		respawns.put(id, count);
+	}
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			respawns.put(e.getUser().getUUID(), respawnCount);
+		}
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)

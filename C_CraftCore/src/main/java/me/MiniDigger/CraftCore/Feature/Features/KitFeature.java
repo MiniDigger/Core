@@ -39,6 +39,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class KitFeature extends CoreFeature {
@@ -94,6 +95,19 @@ public class KitFeature extends CoreFeature {
 		if (e.shouldRespawn()) {
 			Core.getCore().getKitHandler().give(e.getUser(), Core.getCore().getKitHandler().getActivKit(e.getUser().getUUID()));
 			e.setKeepDrops(false);
+		}
+	}
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			if (Core.getCore().getKitHandler().getActivKit(e.getUser().getUUID()) == null) {
+				final Kit k = Core.getCore().getKitHandler().getKits().get(0);
+				Core.getCore().getKitHandler().give(e.getUser(), k.getName());
+				Prefix.API.getPrefix().then("Du hast kein Kit ausgewählt, nimm " + k.getName() + "!").color(ChatColor.AQUA).send(e.getUser().getPlayer());
+				return;
+			}
+			Core.getCore().getKitHandler().give(e.getUser(), Core.getCore().getKitHandler().getActivKit(e.getUser().getUUID()));
 		}
 	}
 	

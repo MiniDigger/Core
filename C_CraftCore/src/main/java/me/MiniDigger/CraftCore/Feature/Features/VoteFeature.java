@@ -103,6 +103,13 @@ public class VoteFeature extends CoreFeature {
 		sendVoteMessages();
 	}
 	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			sendVoteMessage(e.getUser());
+		}
+	}
+	
 	private void modBoard(final Scoreboard board) {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Votes", DisplaySlot.SIDEBAR));

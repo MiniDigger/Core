@@ -43,6 +43,7 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LobbyFeature extends CoreFeature {
@@ -72,6 +73,24 @@ public class LobbyFeature extends CoreFeature {
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
+	}
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			final User u = e.getUser();
+			try {
+				Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
+			} catch (final Exception ex) {
+				try {
+					Core.getCore().getMenuHandler().openMenu(u, "game");
+				} catch (final Exception ex1) {
+					try {
+						Core.getCore().getMenuHandler().openMenu(u, "menu");
+					} catch (final Exception ex2) {}
+				}
+			}
+		}
 	}
 	
 	@EventHandler

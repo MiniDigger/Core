@@ -104,6 +104,13 @@ public class SpawnFeature extends CoreFeature {
 		}
 	}
 	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			spawn(e.getUser());
+		}
+	}
+	
 	@Override
 	public void end() {
 		usedSpawns = null;

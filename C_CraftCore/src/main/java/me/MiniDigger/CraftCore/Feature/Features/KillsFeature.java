@@ -35,6 +35,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Stats.StatsType;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 
@@ -91,6 +92,13 @@ public class KillsFeature extends CoreFeature {
 				Core.getCore().getScoreboardHandler().getBoard(id).addLine(new CoreScoreboardLine(kills.get(id2), "", DisplaySlot.BELOW_NAME));
 			}
 			Core.getCore().getScoreboardHandler().update(id);
+		}
+	}
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			updateSb();
 		}
 	}
 	

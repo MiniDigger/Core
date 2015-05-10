@@ -45,8 +45,6 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
-import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 
 public class CoreEventListener implements EventListener {
 	
@@ -61,9 +59,7 @@ public class CoreEventListener implements EventListener {
 		Core.getCore().getScoreboardHandler().update(e.getPlayer().getUniqueId());
 		
 		if (Core.getCore().getGameHandler().getMainGame() != null && Core.getCore().getGameHandler().getMainGame().getType() != GameType.NOTHING) {
-			final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(Core.getCore().getGameHandler().getMainGame(), user);
-			Bukkit.getPluginManager().callEvent(event);
-			Core.getCore().getGameHandler().getMainGame().join(user);
+			Core.getCore().getGameHandler().joinGame(user, Core.getCore().getGameHandler().getMainGame());
 			
 			if (!Core.getCore().getGameHandler().isMainGameStarted()) {
 				Core.getCore().getGameHandler().setMainGameStarted(true);
@@ -80,9 +76,7 @@ public class CoreEventListener implements EventListener {
 		final List<Game> games = Core.getCore().getGameHandler().getGames(user);
 		if (games != null && games.size() != 0) {
 			for (final Game game : games) {
-				final CoreUserLeaveGameEvent event = new CoreUserLeaveGameEvent(game, user);
-				Bukkit.getPluginManager().callEvent(event);
-				game.leave(user);
+				Core.getCore().getGameHandler().leaveGame(user, game);
 			}
 		}
 		e.setQuitMessage(null);

@@ -24,11 +24,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
+
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class TeamFeature extends TeamSelectFeature {
 	
@@ -47,6 +50,14 @@ public class TeamFeature extends TeamSelectFeature {
 			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(id).getName()).setPrefix(getTeam(Bukkit.getPlayer(id)).getColor() + "");
 		}
 		Core.getCore().getScoreboardHandler().updateAll();
+	}
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			Core.getCore().getScoreboardHandler().getTeam(e.getUser().getPlayer().getName()).setPrefix(getTeam(e.getUser().getPlayer()).getColor() + "");
+			Core.getCore().getScoreboardHandler().updateAll();
+		}
 	}
 	
 	@Override

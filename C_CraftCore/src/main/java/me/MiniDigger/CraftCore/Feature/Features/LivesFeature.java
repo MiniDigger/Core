@@ -41,6 +41,7 @@ import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -106,6 +107,14 @@ public class LivesFeature extends CoreFeature {
 			if (lives.get(id) != 0) {
 				board.addLine(new CoreScoreboardLine(lives.get(id), u.getDisplayName(), DisplaySlot.SIDEBAR));
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onUserJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			lives.put(e.getUser().getUUID(), max);
+			showLives();
 		}
 	}
 	
