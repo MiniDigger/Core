@@ -109,6 +109,7 @@ public class CorePlayerUtil implements PlayerUtil {
 		clearInv(p);
 		fixHealth(p);
 		p.setGameMode(GameMode.SURVIVAL);
+		p.setFlying(false);
 	}
 	
 }
