@@ -97,7 +97,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}
 		
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
-			p.kickPlayer(ChatColor.RED + "Der Server wird nun neugestarte \n " + ChatColor.AQUA + " Er wird gleich wieder online sein");
+			p.kickPlayer(ChatColor.RED + "Der Server wird nun neugestartet \n " + ChatColor.AQUA + " Er wird gleich wieder online sein");
 		}
 		
 		for (final World w : Bukkit.getWorlds()) {

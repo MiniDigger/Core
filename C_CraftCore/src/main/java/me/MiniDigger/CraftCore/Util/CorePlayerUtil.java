@@ -108,8 +108,10 @@ public class CorePlayerUtil implements PlayerUtil {
 		clearArmor(p);
 		clearInv(p);
 		fixHealth(p);
+		p.setGameMode(GameMode.CREATIVE);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setFlying(false);
+		p.setAllowFlight(false);
 	}
 	
 }

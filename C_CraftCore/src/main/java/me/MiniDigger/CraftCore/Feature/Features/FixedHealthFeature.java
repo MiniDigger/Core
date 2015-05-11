@@ -76,7 +76,7 @@ public class FixedHealthFeature extends CoreFeature {
 	@EventHandler
 	public void onUserJoin(CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
-			e.getUser().getPlayer().setHealth(0.0);
+			e.getUser().getPlayer().setHealth(20.0);
 		}
 	}
 	
@@ -90,5 +90,4 @@ public class FixedHealthFeature extends CoreFeature {
 			}
 		}
 	}
-	
 }

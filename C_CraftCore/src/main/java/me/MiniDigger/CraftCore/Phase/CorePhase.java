@@ -206,7 +206,7 @@ public abstract class CorePhase implements Phase {
 	
 	@Command(name = "end", description = "beendet das Spiel", usage = "", permission = "end", max = 0, sync = true)
 	public void end(final CommandArgs args) {
-		getGame().broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wurde bei einem Admin beendet!").color(ChatColor.RED));
+		getGame().broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wurde von einem Admin beendet!").color(ChatColor.RED));
 		
 		final User[] u = new User[getGame().getPlayers().size()];
 		for (int i = 0; i < u.length; i++) {
