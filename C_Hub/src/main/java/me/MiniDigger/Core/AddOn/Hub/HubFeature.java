@@ -97,11 +97,12 @@ public class HubFeature extends CoreFeature {
 		shop = new TokenShop();
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
-			try {
-				Core.getCore().getMenuHandler().openMenu(u, "menu");
-			} catch (final Exception ex) {
-				
-			}
+			// try {
+			// Core.getCore().getMenuHandler().openMenu(u, "menu");
+			// } catch (final Exception ex) {
+			//
+			// }
+			giveStartItems(u.getPlayer());
 		}
 	}
 	
@@ -115,35 +116,35 @@ public class HubFeature extends CoreFeature {
 	@EventHandler
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
-			// giveStartItems(e.getUser().getPlayer());
-			final User u = e.getUser();
-			try {
-				Core.getCore().getMenuHandler().openMenu(u, "menu");
-			} catch (final Exception ex) {
-				
-			}
+			giveStartItems(e.getUser().getPlayer());
+			// final User u = e.getUser();
+			// try {
+			// Core.getCore().getMenuHandler().openMenu(u, "menu");
+			// } catch (final Exception ex) {
+			//
+			// }
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
-	// @EventHandler
+	@EventHandler
 	public void handleInteract(final PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
 		
-		if (!getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
-			return;
-		}
+		// if (!getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
+		// return;
+		// }
 		
-		final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-		try {
-			Core.getCore().getMenuHandler().openMenu(u, "menu");
-		} catch (final Exception ex) {
-			
-		}
-		@SuppressWarnings("unused") boolean b;
-		if ((b = true) == true) {
-			return;
-		}
+		// final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+		// try {
+		// Core.getCore().getMenuHandler().openMenu(u, "menu");
+		// } catch (final Exception ex) {
+		//
+		// }
+		// @SuppressWarnings("unused") boolean b;
+		// if ((b = true) == true) {
+		// return;
+		// }
 		// OLD STUFF
 		final int cooldownTime = 5;
 		if ((event.getAction() == Action.RIGHT_CLICK_AIR) || (event.getAction() == Action.RIGHT_CLICK_BLOCK)) {

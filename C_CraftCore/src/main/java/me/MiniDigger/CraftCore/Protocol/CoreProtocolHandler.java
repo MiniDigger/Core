@@ -246,11 +246,12 @@ public class CoreProtocolHandler implements ProtocolHandler {
 	
 	@SuppressWarnings("deprecation")
 	private void handlePing(final WrappedServerPing ping) {
-		ping.setPlayers(Arrays.asList(new WrappedGameProfile("1", ChatColor.RED + "Hallo und willkommen"), new WrappedGameProfile("2", "auf Zone-Games.eu!"),
-		        new WrappedGameProfile("3", "Hier findest du vieles.")));
-		ping.setVersionName("Please use 1.7.10");
-		ping.setPlayersOnline(100);
-		ping.setPlayersMaximum(-1);
+		
+		ping.setPlayers(Arrays.asList(new WrappedGameProfile("1", ChatColor.RED + "Hallo und willkommen"), new WrappedGameProfile("2", "im"),
+		        new WrappedGameProfile("3", "WartimeDignity"),new WrappedGameProfile("4", "Universum")));
+//		ping.setVersionName("Please use 1.7.10");
+//		ping.setPlayersOnline(100);
+//		ping.setPlayersMaximum(-1);
 	}
 	
 	@Override
