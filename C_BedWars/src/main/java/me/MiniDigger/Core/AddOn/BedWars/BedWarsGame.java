@@ -33,6 +33,7 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
+import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class BedWarsGame extends CoreGame {
@@ -40,6 +41,7 @@ public class BedWarsGame extends CoreGame {
 	LobbyPhase	 lobby;
 	VotePhase	 vote;
 	BedWarsPhase	bw;
+	PostPhase	 post;
 	
 	@Override
 	public GameType getType() {
@@ -53,14 +55,17 @@ public class BedWarsGame extends CoreGame {
 		lobby = new LobbyPhase(this, null, 4);
 		vote = new VotePhase(this, null, 60);
 		bw = new BedWarsPhase(this, null);
+		post = new PostPhase(this, 10);
 		
 		vote.addFeature(new TeamSelectFeature(vote, bw, 4, 4));
 		
 		vote.setNextPhase(bw);
 		lobby.setNextPhase(vote);
+		bw.setNextPhase(post);
 		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
 	}

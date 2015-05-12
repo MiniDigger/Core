@@ -27,6 +27,7 @@ import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
@@ -52,6 +53,15 @@ public class CoreWorldHandler implements WorldHandler {
 	@Override
 	public Location getFallbackLoc() {
 		// return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
+		if (Bukkit.getWorld("Spawn") != null) {
+			System.out.println("1");
+			final MapData map = Core.getCore().getMapHandler().getMap("Spawn");
+			if (map != null) {
+				System.out.println("2");
+				return (Location) map.getLocs(DyeColor.RED).values().toArray()[0];
+			}
+		}
+		System.out.println("wtf");
 		return new Location(Bukkit.getWorld("Spawn"), -937.5, 38.0, -768.5);
 	}
 	

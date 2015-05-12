@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Phase.Phases;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
 import me.MiniDigger.CraftCore.Feature.Features.ClearInvFeature;
@@ -37,9 +38,14 @@ import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
-import me.MiniDigger.CraftCore.Phase.CorePhase;
+import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
-public class PostPhase extends CorePhase {
+public class PostPhase extends CoreTimedPhase {
+	
+	public PostPhase(final Game game, final int secs) {
+		super(game, null, secs);
+		init();
+	}
 	
 	@Override
 	public String getName() {
@@ -48,12 +54,12 @@ public class PostPhase extends CorePhase {
 	
 	@Override
 	public boolean displayBar() {
-		return false;
+		return true;
 	}
 	
 	@Override
 	public boolean displayLevel() {
-		return false;
+		return true;
 	}
 	
 	@Override
@@ -64,7 +70,7 @@ public class PostPhase extends CorePhase {
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER)));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new MapFeature(this, getGame().getGameData("Lobby"), true));
+		addFeature(new MapFeature(this, null, true));
 		addFeature(new SpawnFeature(this, true));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new LobbyFeature(this));
@@ -78,6 +84,12 @@ public class PostPhase extends CorePhase {
 		getGame().setAllowJoin(false);
 		getGame().setAllowSpectate(false);
 		super.startPhase();
+	}
+	
+	@Override
+	public void endPhase() {
+		
+		super.endPhase();
 	}
 	
 }

@@ -31,6 +31,7 @@ import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
+import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class UltraSpleefGame extends CoreGame {
@@ -39,6 +40,7 @@ public class UltraSpleefGame extends CoreGame {
 	VotePhase	     vote;
 	GracePhase	     grace;
 	UltraSpleefPhase	spleef;
+	PostPhase	     post;
 	
 	@Override
 	public GameType getType() {
@@ -53,13 +55,16 @@ public class UltraSpleefGame extends CoreGame {
 		vote = new VotePhase(this, null, 30);
 		grace = new GracePhase(this, null, 5);
 		spleef = new UltraSpleefPhase(this, null);
+		post = new PostPhase(this, 10);
 		
 		grace.setNextPhase(spleef);
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
+		spleef.setNextPhase(post);
 		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
 		super.init();

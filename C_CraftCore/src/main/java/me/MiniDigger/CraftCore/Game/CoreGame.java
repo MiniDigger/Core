@@ -223,6 +223,9 @@ public class CoreGame implements Game {
 					p.getInventory().clear();
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
+						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
+							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
+						}
 					}
 				}
 				
@@ -231,6 +234,9 @@ public class CoreGame implements Game {
 					p.getInventory().clear();
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
+						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
+							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
+						}
 					}
 				}
 			}
@@ -251,7 +257,6 @@ public class CoreGame implements Game {
 		if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 			Core.getCore().getShutdownUtil().doShutdown();
 		} else {
-			broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet"));
 			new BukkitRunnable() {
 				
 				@Override
@@ -279,9 +284,9 @@ public class CoreGame implements Game {
 						}
 					}
 				}
-			}.runTaskLater(Core.getCore().getInstance(), 10 * 60);// After
-			                                                      // shutdown
-			                                                      // timer
+			}.runTaskLater(Core.getCore().getInstance(), 10 * 60 * 20);// After
+			                                                           // shutdown
+			                                                           // timer
 		}
 		
 		try {

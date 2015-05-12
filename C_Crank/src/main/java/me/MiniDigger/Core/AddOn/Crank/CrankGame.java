@@ -31,6 +31,7 @@ import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
+import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class CrankGame extends CoreGame {
@@ -39,6 +40,7 @@ public class CrankGame extends CoreGame {
 	VotePhase	vote;
 	GracePhase	grace;
 	CrankPhase	crank;
+	PostPhase	post;
 	
 	@Override
 	public GameType getType() {
@@ -53,13 +55,16 @@ public class CrankGame extends CoreGame {
 		vote = new VotePhase(this, null, 30);
 		grace = new GracePhase(this, null, 15);
 		crank = new CrankPhase(this);
+		post = new PostPhase(this, 10);
 		
 		grace.setNextPhase(crank);
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
+		crank.setNextPhase(post);
 		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
 		super.init();

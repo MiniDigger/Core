@@ -53,7 +53,7 @@ public class CrankAddOn extends CoreAddOn {
 	}
 	
 	@Command(name = "crank", permission = "crank", usage = "", consol = true, description = "Initiiert ein Crank Game", max = 0, sync = true)
-	public void getthedrop(final CommandArgs args) {
+	public void crank(final CommandArgs args) {
 		final CrankGame game = new CrankGame();
 		game.init();
 		Core.getCore().getGameHandler().addGame(game);
@@ -66,7 +66,7 @@ public class CrankAddOn extends CoreAddOn {
 	}
 	
 	@Completer(name = "crank")
-	public List<String> getthedropC(final CommandArgs args) {
+	public List<String> crankC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
 		result.add("");
