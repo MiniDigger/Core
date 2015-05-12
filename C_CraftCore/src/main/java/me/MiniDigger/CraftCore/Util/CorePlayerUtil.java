@@ -105,10 +105,13 @@ public class CorePlayerUtil implements PlayerUtil {
 	
 	@Override
 	public void prepare(final Player p) {
+		p.setGameMode(GameMode.CREATIVE);
 		clearArmor(p);
 		clearInv(p);
 		fixHealth(p);
-		p.setGameMode(GameMode.CREATIVE);
+		p.getActivePotionEffects().clear();
+		p.setExp(0);
+		p.setLevel(0);
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setFlying(false);
 		p.setAllowFlight(false);

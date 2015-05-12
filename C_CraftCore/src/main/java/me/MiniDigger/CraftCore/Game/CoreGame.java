@@ -48,7 +48,6 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Lang._;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreGame implements Game {
@@ -251,6 +250,38 @@ public class CoreGame implements Game {
 		
 		if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 			Core.getCore().getShutdownUtil().doShutdown();
+		} else {
+			broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet"));
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
+					for (final UUID w : specs) {
+						final Player p = Bukkit.getPlayer(w);
+						p.getInventory().clear();
+						if (p != null) {
+							if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+								p.teleport(loc);
+							}
+							Core.getCore().getPlayerUtil().prepare(p);
+						}
+					}
+					
+					for (final UUID w : users) {
+						final Player p = Bukkit.getPlayer(w);
+						p.getInventory().clear();
+						if (p != null) {
+							if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+								p.teleport(loc);
+							}
+							Core.getCore().getPlayerUtil().prepare(p);
+						}
+					}
+				}
+			}.runTaskLater(Core.getCore().getInstance(), 10 * 60);// After
+			                                                      // shutdown
+			                                                      // timer
 		}
 		
 		try {
