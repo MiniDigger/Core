@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -38,6 +39,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -104,6 +108,19 @@ public class HubFeature extends CoreFeature {
 			// }
 			giveStartItems(u.getPlayer());
 		}
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID id : getPhase().getGame().getPlayers()) {
+					final Player p = Bukkit.getPlayer(id);
+					if (p != null) {
+						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, 2));
+					}
+				}
+			}
+		}.runTaskTimer(Core.getCore().getInstance(), 1, 20);
 	}
 	
 	@Override

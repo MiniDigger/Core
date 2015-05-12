@@ -43,6 +43,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class CrankFeature extends CoreFeature {
@@ -132,14 +133,21 @@ public class CrankFeature extends CoreFeature {
 				reset(e.getKiller().getUUID());
 			}
 		} else if (timers.containsKey(e.getUser().getUUID())) {
-			timers.get(e.getUser().getUUID()).cancel();
+			timers.remove(e.getUser().getUUID()).cancel();
 		}
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserJoinGameEvent e) {
+	public void onQuit(CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			timers.remove(e.getUser().getUUID()).cancel();
+		}
+	}
+	
+	@EventHandler
+	public void onJoin(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			reset(e.getUser().getUUID());
 		}
 	}
 	
