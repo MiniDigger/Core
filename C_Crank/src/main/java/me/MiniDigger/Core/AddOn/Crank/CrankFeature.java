@@ -42,6 +42,7 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class CrankFeature extends CoreFeature {
@@ -135,8 +136,18 @@ public class CrankFeature extends CoreFeature {
 		}
 	}
 	
+	@EventHandler
+	public void onQuit(CoreUserJoinGameEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			timers.remove(e.getUser().getUUID()).cancel();
+		}
+	}
+	
 	@Override
 	public void end() {
+		for (BukkitRunnable r : timers.values()) {
+			r.cancel();
+		}
 		timers = null;
 	}
 }
