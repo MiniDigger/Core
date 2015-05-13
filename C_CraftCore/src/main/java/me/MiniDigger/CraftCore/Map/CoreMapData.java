@@ -30,6 +30,8 @@ import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.Wool;
@@ -145,7 +147,8 @@ public class CoreMapData implements MapData {
 		//
 		// @Override
 		// public void run() {
-		final HashMap<DyeColor, ArrayList<Location>> locs = new HashMap<>();
+		final HashMap<DyeColor, HashMap<String, Location>> locs = new HashMap<>();
+		final HashMap<DyeColor, Integer> ints = new HashMap<>();
 		
 		final int startX = start.getBlockX();
 		final int startY = start.getBlockZ();
@@ -164,15 +167,29 @@ public class CoreMapData implements MapData {
 					final Location loc = new Location(start.getWorld(), x, y, z);
 					if (loc.getBlock().getType() == Material.WOOL) {
 						@SuppressWarnings("deprecation") final DyeColor color = DyeColor.getByWoolData(loc.getBlock().getData());
-						ArrayList<Location> wLocs = locs.get(color);
+						HashMap<String, Location> wLocs = locs.get(color);
 						if (color == DyeColor.BLACK) {
 							continue;// skip black, often used for back
 							         // of windows
 						}
 						if (wLocs == null) {
-							wLocs = new ArrayList<>();
+							wLocs = new HashMap<String, Location>();
 						}
-						wLocs.add(loc);
+						
+						if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
+							final Sign sign = (Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
+							wLocs.put(sign.getLine(0), loc);
+						} else {
+							Integer i = ints.remove(color);
+							if (i == null) {
+								i = 0;
+							}
+							wLocs.put(i + "", loc);
+							i++;
+							ints.put(color, i);
+						}
+						
+						// TODO Use blockface of sign for pitch and yaw
 						
 						locs.remove(color);
 						locs.put(color, wLocs);
@@ -182,15 +199,17 @@ public class CoreMapData implements MapData {
 				}
 			}
 		}
-		for (final DyeColor color : locs.keySet()) {
-			final ArrayList<Location> loc = locs.get(color);
-			final HashMap<String, Location> l = new HashMap<>();
-			for (int i = 0; i < loc.size(); i++) {
-				l.put(i + "", loc.get(i));
-			}
-			CoreMapData.this.locs.put(color, l);
-		}
+		// for (final DyeColor color : locs.keySet()) {
+		// final ArrayList<Location> loc = locs.get(color);
+		// final HashMap<String, Location> l = new HashMap<>();
+		// for (int i = 0; i < loc.size(); i++) {
+		// l.put(i + "", loc.get(i));
+		// }
+		// CoreMapData.this.locs.put(color, l);
+		// }
+		
 		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), finished);
+		
 		// }
 		// });
 		//
