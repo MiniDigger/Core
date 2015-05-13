@@ -195,7 +195,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
-				Core.getCore().getMapHandler().getMap("Hub").getLocs(DyeColor.BLACK).get("");
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("OITC"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 			}
 		});
 		
@@ -204,7 +208,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
-				
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 			}
 		});
 		
@@ -213,6 +221,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -222,6 +235,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GETTHEDROP"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -231,6 +249,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CITYBUILD"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -240,6 +263,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CRANK"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -249,6 +277,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("TNTRUN"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -281,6 +314,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -290,6 +328,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -299,6 +342,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BUILDMYTHING"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -308,6 +356,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
+				try {
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BEDWARS"));
+				} catch (Exception ex) {
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
