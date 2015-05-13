@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
@@ -142,12 +143,11 @@ public class CoreMapData implements MapData {
 	}
 	
 	@Override
-	public void scanMap(final Location start, final int range, final Runnable finished) {
+	public void scanMap(final Location start, final int range, final List<DyeColor> searchFor, final Runnable finished) {
 		// final Thread thread = new Thread(new Runnable() {
 		//
 		// @Override
 		// public void run() {
-		final HashMap<DyeColor, HashMap<String, Location>> locs = new HashMap<>();
 		final HashMap<DyeColor, Integer> ints = new HashMap<>();
 		
 		final int startX = start.getBlockX();
@@ -167,10 +167,9 @@ public class CoreMapData implements MapData {
 					final Location loc = new Location(start.getWorld(), x, y, z);
 					if (loc.getBlock().getType() == Material.WOOL) {
 						@SuppressWarnings("deprecation") final DyeColor color = DyeColor.getByWoolData(loc.getBlock().getData());
-						HashMap<String, Location> wLocs = locs.get(color);
-						if (color == DyeColor.BLACK) {
-							continue;// skip black, often used for back
-							         // of windows
+						HashMap<String, Location> wLocs = CoreMapData.this.locs.get(color);
+						if (!searchFor.contains(color)) {
+							continue;
 						}
 						if (wLocs == null) {
 							wLocs = new HashMap<String, Location>();
@@ -179,7 +178,7 @@ public class CoreMapData implements MapData {
 						if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
 							final Sign sign = (Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 							wLocs.put(sign.getLine(0), loc);
-						} else {
+							} else {
 							Integer i = ints.remove(color);
 							if (i == null) {
 								i = 0;
@@ -191,8 +190,8 @@ public class CoreMapData implements MapData {
 						
 						// TODO Use blockface of sign for pitch and yaw
 						
-						locs.remove(color);
-						locs.put(color, wLocs);
+						CoreMapData.this.locs.remove(color);
+						CoreMapData.this.locs.put(color, wLocs);
 						// TODO We will need some kind of pitch and ywa
 						// for the spawns
 					}
@@ -208,6 +207,7 @@ public class CoreMapData implements MapData {
 		// CoreMapData.this.locs.put(color, l);
 		// }
 		
+		System.out.println("Size: " + CoreMapData.this.locs.keySet().size());
 		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), finished);
 		
 		// }

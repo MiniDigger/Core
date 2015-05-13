@@ -21,6 +21,7 @@
 package me.MiniDigger.Core.Map;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -62,10 +63,13 @@ public interface MapData {
 	 *            The middle point
 	 * @param range
 	 *            The range
+	 * @param searchFor
+	 *            The keys we need to search for
 	 * @param finished
 	 *            The code, that should get executed, when the scan is completed
 	 */
-	public void scanMap(final Location start, final int range, final Runnable finished);
+	
+	void scanMap(Location start, int range, List<DyeColor> searchFor, Runnable finished);
 	
 	/**
 	 * Replaces all blocks at saved locations with air

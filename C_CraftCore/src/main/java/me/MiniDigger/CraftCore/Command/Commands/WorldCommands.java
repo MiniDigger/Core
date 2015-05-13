@@ -34,6 +34,7 @@ import net.minecraft.server.v1_8_R1.ExceptionWorldConflict;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -318,8 +319,29 @@ public class WorldCommands {
 				} else {
 					session.put("gameTypes", in);
 				}
+			} else if (args.getArgs()[0].startsWith("lc:")) {
+				final String in = args.getArgs()[0].replace("lc:", "");
+				if (session.containsKey("locTypes")) {
+					final String old = session.get("locTypes");
+					if (old.contains(",")) {
+						final List<String> types = Core.getCore().getStringUtil().stringToList(old);
+						types.add(in);
+						session.remove("locTypes");
+						session.put("locTypes", Core.getCore().getStringUtil().listToString(types));
+					} else {
+						final List<String> types = new ArrayList<>();
+						types.add(old);
+						types.add(in);
+						session.remove("locTypes");
+						session.put("locTypes", Core.getCore().getStringUtil().listToString(types));
+					}
+				} else {
+					session.put("locTypes", in);
+				}
 			} else if (args.getArgs()[0].equals("finish")) {
 				session.put("finished", "yeah!");
+			} else if (args.getArgs()[0].equals("loctype")) {
+				
 			} else {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unknown args!").color(ChatColor.RED));
 			}
@@ -355,12 +377,21 @@ public class WorldCommands {
 			gameTypes(args);
 			return;
 		}
+		if (!session.containsKey("locTypes")) {
+			locTypes(args);
+			return;
+		}
 		if (!session.containsKey("finished")) {
 			return;// WAIT
 		}
 		
+		final List<DyeColor> color = new ArrayList<DyeColor>();
+		for (String s : Core.getCore().getStringUtil().stringToList(session.get("locTypes"))) {
+			color.add(DyeColor.valueOf(s));
+		}
+		
 		final MapData data = new CoreMapData(session.get("world"));
-		data.scanMap(Core.getCore().getLocationUtil().StringToLocation(session.get("middle")), Integer.parseInt(session.get("range")), new Runnable() {
+		data.scanMap(Core.getCore().getLocationUtil().StringToLocation(session.get("middle")), Integer.parseInt(session.get("range")), color, new Runnable() {
 			
 			@Override
 			public void run() {
@@ -431,6 +462,16 @@ public class WorldCommands {
 				WorldCommands.this.data.remove(args.getUser().getUUID());
 			}
 		});
+	}
+	
+	private void locTypes(final CommandArgs args) {
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Welche LocTypes gibt es? Du kannst mehrmals klicken!").color(ChatColor.YELLOW));
+		final FancyMessage msg = Prefix.API.getPrefix();
+		for (final DyeColor type : DyeColor.values()) {
+			msg.then(type.name() + " ").command("/world create lc:" + type.name());
+		}
+		args.getUser().sendMessage(msg);
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Fertig? Klick mich hart!").command("/world create finish"));
 	}
 	
 	private void gameTypes(final CommandArgs args) {
