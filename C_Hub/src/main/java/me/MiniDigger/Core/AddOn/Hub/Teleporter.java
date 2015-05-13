@@ -282,11 +282,14 @@ public class Teleporter implements Listener {
 			}
 			
 			event.setCancelled(true);
+			((Player) event.getView().getPlayer()).updateInventory();
+			p.updateInventory();
 			Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
 				
 				@Override
 				public void run() {
 					((Player) event.getView().getPlayer()).updateInventory();
+					p.updateInventory();
 				}
 			}, 20);
 			if (event.getCurrentItem() == null) {

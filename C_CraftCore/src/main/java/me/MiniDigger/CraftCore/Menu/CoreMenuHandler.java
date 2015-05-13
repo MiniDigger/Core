@@ -132,4 +132,9 @@ public class CoreMenuHandler implements MenuHandler {
 	public ItemBarMenu getMenu(final UUID id) {
 		return getMenu(selected.get(id));
 	}
+	
+	@Override
+	public void addMenu(ItemBarMenu m) {
+		menus.put(m.getName(), m);
+	}
 }

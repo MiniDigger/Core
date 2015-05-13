@@ -20,12 +20,9 @@
  */
 package me.MiniDigger.Core.AddOn.Hub;
 
-import java.util.UUID;
-
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
@@ -70,9 +67,6 @@ public class HubPhase extends CorePhase {
 	
 	@Override
 	public void startPhase() {
-		for (final UUID u : getGame().getPlayers()) {
-			((HubFeature) getFeature(FeatureType.HUB)).giveStartItems(Core.getCore().getUserHandler().get(u).getPlayer());
-		}
 		super.startPhase();
 	}
 	

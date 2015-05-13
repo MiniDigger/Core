@@ -27,51 +27,34 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Menu.ItemBarMenu;
+import me.MiniDigger.Core.Menu.ItemBarMenu.ClickHandler;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
+import me.MiniDigger.CraftCore.Menu.CoreItemBarMenu;
 
 public class HubFeature extends CoreFeature {
 	
-	private StatsManager	            stats;
-	private Teleporter	                tp;
-	private TokenShop	                shop;
-	private final HashMap<String, Long>	cooldowns	= new HashMap<>();
+	private final HashMap<UUID, Long>	cooldowns	= new HashMap<>();
 	
 	public HubFeature(final Phase phase) {
 		super(phase);
-	}
-	
-	public StatsManager getStatsManager() {
-		return stats;
-	}
-	
-	public Teleporter getTeleporter() {
-		return tp;
-	}
-	
-	public TokenShop getTokenShop() {
-		return shop;
 	}
 	
 	@Override
@@ -96,17 +79,10 @@ public class HubFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		stats = new StatsManager();
-		tp = new Teleporter();
-		shop = new TokenShop();
+		menu();
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
-			// try {
-			// Core.getCore().getMenuHandler().openMenu(u, "menu");
-			// } catch (final Exception ex) {
-			//
-			// }
-			giveStartItems(u.getPlayer());
+			Core.getCore().getMenuHandler().openMenu(u, "Hub");
 		}
 		
 		new BukkitRunnable() {
@@ -116,7 +92,7 @@ public class HubFeature extends CoreFeature {
 				for (final UUID id : getPhase().getGame().getPlayers()) {
 					final Player p = Bukkit.getPlayer(id);
 					if (p != null) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, 2));
+						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 2));
 					}
 				}
 			}
@@ -125,187 +101,222 @@ public class HubFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		HandlerList.unregisterAll(shop);
-		HandlerList.unregisterAll(tp);
-		HandlerList.unregisterAll(stats);
+		
 	}
 	
 	@EventHandler
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
-			giveStartItems(e.getUser().getPlayer());
-			// final User u = e.getUser();
-			// try {
-			// Core.getCore().getMenuHandler().openMenu(u, "menu");
-			// } catch (final Exception ex) {
-			//
-			// }
+			Core.getCore().getMenuHandler().openMenu(e.getUser(), "Hub");
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
-	@EventHandler
-	public void handleInteract(final PlayerInteractEvent event) {
-		final Player p = event.getPlayer();
+	public void menu() {
+		final ItemBarMenu hub = new CoreItemBarMenu("Hub");
 		
-		// if (!getPhase().getGame().getPlayers().contains(p.getUniqueId())) {
-		// return;
-		// }
-		
-		// final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-		// try {
-		// Core.getCore().getMenuHandler().openMenu(u, "menu");
-		// } catch (final Exception ex) {
-		//
-		// }
-		// @SuppressWarnings("unused") boolean b;
-		// if ((b = true) == true) {
-		// return;
-		// }
-		// OLD STUFF
-		final int cooldownTime = 5;
-		if ((event.getAction() == Action.RIGHT_CLICK_AIR) || (event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-			if (p.getItemInHand().getType() == Material.SKULL_ITEM && p.getItemInHand().getData().getData() == 3) {
-				if (cooldowns.containsKey(p.getName())) {
-					final long secondsLeft = cooldowns.get(p.getName()).longValue() / 1000L + cooldownTime - System.currentTimeMillis() / 1000L;
+		hub.setIcon(
+		        0,
+		        new CoreItemBuilder(Material.SKULL_ITEM).name(ChatColor.RED + "Spieler verstecken").lore("Benutze dieses Item").lore("um alle anderen")
+		                .lore("Spieler zu verstecken").data(3).durability(3).build());
+		hub.setAction(0, new ClickHandler() {
+			
+			final int	cooldownTime	= 5;
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				if (cooldowns.containsKey(u.getUUID())) {
+					final long secondsLeft = cooldowns.get(u.getUUID()).longValue() / 1000L + cooldownTime - System.currentTimeMillis() / 1000L;
 					if (secondsLeft > 0L) {
-						p.sendMessage("§4Warte bitte kurz!");
+						Prefix.API.getPrefix().then("Bitte warte kurz bevor du dieses Item erneut benutzt!").color(ChatColor.RED).send(u.getPlayer());
 						return;
 					}
+					cooldowns.remove(u.getUUID());
 				}
 				
-				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
+				cooldowns.put(u.getUUID(), System.currentTimeMillis());
 				for (final Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
-					if (!pl.hasPermission("lm.kickjoin")) {
-						p.hidePlayer(pl);
+					if (!pl.hasPermission("donthideme")) {
+						u.getPlayer().hidePlayer(pl);
 					}
 				}
-				p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "§6Alle anderen Spieler sind nun §aunsichtbar!");
-				p.getInventory().remove(p.getItemInHand());
-				
-				final ItemStack normalSkull = new ItemStack(Material.SKULL_ITEM.getId(), 1, (short) 0, (byte) 1);
-				final ItemMeta normalSkullMeta = normalSkull.getItemMeta();
-				normalSkullMeta.setDisplayName(ChatColor.RED + "Spieler aus!");
-				normalSkull.setItemMeta(normalSkullMeta);
-				
-				p.getInventory().setItemInHand(normalSkull);
-				p.updateInventory();
-				p.playSound(p.getLocation(), Sound.LEVEL_UP, 10.0F, 1.0F);
-			} else if (p.getItemInHand().getType() == Material.SKULL_ITEM && p.getItemInHand().getData().getData() == 1) {
-				if (cooldowns.containsKey(p.getName())) {
-					final long secondsLeft = cooldowns.get(p.getName()).longValue() / 1000L + cooldownTime - System.currentTimeMillis() / 1000L;
-					if (secondsLeft > 0L) {
-						p.sendMessage("§4Warte bitte kurz!");
-						return;
-					}
-				}
-				
-				cooldowns.put(p.getName(), Long.valueOf(System.currentTimeMillis()));
-				for (final Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
-					p.showPlayer(pl);
-				}
-				
-				p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "§6Alle anderen Spieler sind nun §asichtbar!");
-				p.getInventory().remove(p.getItemInHand());
-				
-				final ItemStack playerSkull = new ItemStack(Material.SKULL_ITEM.getId(), 1, (short) 0, (byte) 3);
-				final ItemMeta playerSkullMeta = playerSkull.getItemMeta();
-				playerSkullMeta.setDisplayName(ChatColor.GREEN + "Spieler an!");
-				playerSkull.setItemMeta(playerSkullMeta);
-				
-				p.getInventory().setItemInHand(playerSkull);
-				p.updateInventory();
-				p.playSound(p.getLocation(), Sound.LEVEL_UP, 10.0F, 1.0F);
-			} else if (p.getItemInHand().getType() == Material.WATCH) {
-				boolean staff = false;
-				if (p.hasPermission("staffspawn")) {
-					staff = true;
-				}
-				p.openInventory(tp.QuickTP(staff));
-			} else if (p.getItemInHand().getType() == Material.DIAMOND) {
-				p.openInventory(stats.SelectStats(p));
-			} else if (p.getItemInHand().getType() == Material.CHEST) {
-				shop.open(p);
-			} else if (p.getItemInHand().getType() == Material.MINECART) {
-				p.sendMessage("§cComing soon...");
-			} else if (!p.isOp()) {
-				if (event.getClickedBlock() != null) {
-					if ((event.getClickedBlock().getState() instanceof Sign)) {
-						event.setCancelled(false);
-					} else {
-						event.setCancelled(true);
-					}
-				}
+				Prefix.API.getPrefix().then("Alle anderen Spieler sind nun ").color(ChatColor.GREEN).then("unsichtbar!").color(ChatColor.GOLD).send(u.getPlayer());
+				Core.getCore().getMenuHandler().closeMenu(u);
+				Core.getCore().getMenuHandler().openMenu(u, "Hub2");
 			}
-		}
+		});
+		
+		hub.setIcon(1, new CoreItemBuilder(Material.COMPASS).name("Teleporter").lore("Öffnet den Teleporter").lore("Mit diesem kannst du").lore("zu jedem Spielmodi")
+		        .lore("hinteleportieren!").build());
+		hub.setAction(1, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				Core.getCore().getMenuHandler().closeMenu(u);
+				Core.getCore().getMenuHandler().openMenu(u, "Teleporter");
+			}
+		});
+		
+		/*************************************************/
+		
+		final ItemBarMenu hub2 = hub.clone();
+		hub2.setName("Hub2");
+		hub2.setIcon(
+		        0,
+		        new CoreItemBuilder(Material.SKULL_ITEM).name(ChatColor.GREEN + "Spieler anzeigen").lore("Benutze dieses Item").lore("um alle anderen")
+		                .lore("Spieler anzuzeigen").data(1).durability(1).build());
+		hub2.setAction(0, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				for (final Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
+					u.getPlayer().showPlayer(pl);
+				}
+				Prefix.API.getPrefix().then("Alle anderen Spieler sind nun ").color(ChatColor.GREEN).then("sichtbar!").color(ChatColor.GOLD).send(u.getPlayer());
+				Core.getCore().getMenuHandler().closeMenu(u);
+				Core.getCore().getMenuHandler().openMenu(u, "Hub");
+			}
+		});
+		
+		/************************************************/
+		
+		final ItemBarMenu tp = new CoreItemBarMenu("Teleporter");
+		tp.setIcon(0, new CoreItemBuilder(Material.BARRIER).name("Back").lore("Zurück zum Hauptmenü").build());
+		tp.setAction(0, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				Core.getCore().getMenuHandler().closeMenu(u);
+				Core.getCore().getMenuHandler().openMenu(u, "Hub");
+			}
+		});
+		
+		tp.setIcon(1, new CoreItemBuilder(Material.BOW).name("OneInTheChamber").build());
+		tp.setAction(1, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				Core.getCore().getMapHandler().getMap("Hub").getLocs(DyeColor.BLACK).get("");
+			}
+		});
+		
+		tp.setIcon(2, new CoreItemBuilder(Material.FIREWORK).name("Event").build());
+		tp.setAction(2, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp.setIcon(3, new CoreItemBuilder(Material.CHEST).name("KitPvP").build());
+		tp.setAction(3, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp.setIcon(4, new CoreItemBuilder(Material.MONSTER_EGG).name("GetTheDrop").build());
+		tp.setAction(4, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp.setIcon(5, new CoreItemBuilder(Material.GOLD_SPADE).name("CityBuild").build());
+		tp.setAction(5, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp.setIcon(6, new CoreItemBuilder(Material.TNT).name("Crank").build());
+		tp.setAction(6, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp.setIcon(7, new CoreItemBuilder(Material.EXPLOSIVE_MINECART).name("TNTRun").build());
+		tp.setAction(7, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp.setIcon(8, new CoreItemBuilder(Material.TRIPWIRE_HOOK).name("Next Page").build());
+		tp.setAction(8, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				Core.getCore().getMenuHandler().closeMenu(u);
+				Core.getCore().getMenuHandler().openMenu(u, "Teleporter2");
+			}
+		});
+		
+		/************************************************/
+		
+		final ItemBarMenu tp2 = new CoreItemBarMenu("Teleporter2");
+		tp2.setIcon(0, new CoreItemBuilder(Material.BARRIER).name("Back").lore("Eine Seite zurück").build());
+		tp2.setAction(0, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				Core.getCore().getMenuHandler().closeMenu(u);
+				Core.getCore().getMenuHandler().openMenu(u, "Teleporter");
+			}
+		});
+		
+		tp2.setIcon(1, new CoreItemBuilder(Material.WOOD_SWORD).name("Survival Games").build());
+		tp2.setAction(1, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp2.setIcon(2, new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).name("Infected").build());
+		tp2.setAction(2, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp2.setIcon(3, new CoreItemBuilder(Material.STAINED_CLAY).name("BuildMyThing").build());
+		tp2.setAction(3, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		tp2.setIcon(4, new CoreItemBuilder(Material.BED).name("BedWars").build());
+		tp2.setAction(4, new ClickHandler() {
+			
+			@Override
+			public void click(ItemBarMenu m, ItemStack is, User u) {
+				
+			}
+		});
+		
+		/*********************************************/
+		
+		Core.getCore().getMenuHandler().addMenu(hub);
+		Core.getCore().getMenuHandler().addMenu(hub2);
+		Core.getCore().getMenuHandler().addMenu(tp);
+		Core.getCore().getMenuHandler().addMenu(tp2);
 	}
-	
-	@SuppressWarnings("deprecation")
-	public void giveStartItems(final Player p) {
-		final ItemStack QuickTP = new ItemStack(Material.WATCH, 1);
-		final ItemMeta QuickTPMeta = QuickTP.getItemMeta();
-		QuickTPMeta.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Server Buddy");
-		QuickTP.setItemMeta(QuickTPMeta);
-		
-		final ItemStack holder = new ItemStack(Material.STAINED_GLASS_PANE);
-		holder.setData(new MaterialData(Material.STAINED_GLASS_PANE.getId(), (byte) 5));
-		final ItemMeta holderMeta = holder.getItemMeta();
-		holderMeta.setDisplayName(ChatColor.RESET + "");
-		holder.setItemMeta(holderMeta);
-		
-		final ItemStack playerSkull = new ItemStack(Material.SKULL_ITEM.getId(), 1, (short) 0, (byte) 3);
-		final ItemMeta playerSkullMeta = playerSkull.getItemMeta();
-		playerSkullMeta.setDisplayName(ChatColor.GREEN + "Spieler an!");
-		playerSkull.setItemMeta(playerSkullMeta);
-		
-		final ItemStack normalSkull = new ItemStack(Material.SKULL_ITEM.getId(), 1, (short) 0, (byte) 1);
-		final ItemMeta normalSkullMeta = normalSkull.getItemMeta();
-		normalSkullMeta.setDisplayName(ChatColor.RED + "Spieler aus!");
-		normalSkull.setItemMeta(normalSkullMeta);
-		
-		final ItemStack stats = new ItemStack(Material.DIAMOND, 1);
-		final ItemMeta statsMeta = stats.getItemMeta();
-		statsMeta.setDisplayName(ChatColor.AQUA + "Stats");
-		stats.setItemMeta(statsMeta);
-		
-		final ItemStack shop = new ItemStack(Material.CHEST, 1);
-		final ItemMeta shopMeta = shop.getItemMeta();
-		shopMeta.setDisplayName(ChatColor.GOLD + "Token-Shop");
-		shop.setItemMeta(shopMeta);
-		
-		final ItemStack lobbymanager = new ItemStack(Material.MINECART, 1);
-		final ItemMeta lobbymanagerMeta = lobbymanager.getItemMeta();
-		lobbymanagerMeta.setDisplayName(ChatColor.DARK_GRAY + "Lobby Manager");
-		lobbymanager.setItemMeta(lobbymanagerMeta);
-		
-		final ItemStack buddy = new ItemStack(Material.WRITTEN_BOOK, 1);
-		final BookMeta buddyMeta = (BookMeta) buddy.getItemMeta();
-		buddyMeta
-		        .addPage("Herzlich Willkommen auf Zone-Games.eu\nInhaltsverzeichnis:\n1.Das Team\n2.Die Regeln\n3.Spiel beitreten\n4.Der Ingame-Shop\n5.Premium-Artikel\n6.Die Buddy List\n7.Hilfe und Support");
-		buddyMeta
-		        .addPage("1.Das Team\nUnser Team besteht aus vielen unterschiedlichen Personen, die dir bei Fragen zur Seite stehen und helfen.\nOwner:\n- EclipseGamer\n- Zockebester\n- MiniDigger\n- werda07\n- maanu113\n \nAdmins:\n- SchafiHD\n- _EnziAnditore_\n- Prom3d\n \nDeveloper:\n- MiniDigger\n \nModeratoren:\n- JustSayLucy\n- Infinity989\n- LisiPlay\n- Sloxh\n \nArchitekten:\n- Prom3d\n- Killbracker\n- General_Efects\n- JockelCrafter\n- pandabear1\n- kaito_kid1");
-		buddyMeta.addPage("2.Die Regeln\n- Keine Beleidigungen!\n- Kein Spamming!\n- Maximale Teamgröße 4 Spieler!\n- Spaß haben!");
-		buddyMeta
-		        .addPage("3.Spiel beitreten\n \nUm einem Spiel/Server beizutreten muss du lediglich Rechtsklick auf ein Serverschild machen, wenn du dem Server nach einmaligen Rechtsklick nicht beitretest wird der Server wahrscheinlich voll sein. Um volle Server trotzdem beitreten zu können musst du dir eins unser drei Premium-Pakete im Shop erwerben. Mehr zu den Premium-Paketen findest du unter www.shop.zone-games.eu oder unter Punkt 6.");
-		buddyMeta
-		        .addPage("4.Der Ingame-Shop\n \nIm Ingame-Shop kannst du dir Klassen oder Items für gewisse Spielmodi freischalten, indem du sie mit der Ingame-Währung TOKENS erwirbst. Nach dem Erwerb einer Klasse oder eines Items kannst du sie sofort ausprobieren. Du muss lediglich für die Benutzung ein kleinen Token-Betrag zahlen.");
-		buddyMeta.setAuthor("Zone-Games.eu Team");
-		buddyMeta.setTitle("Willkommen");
-		buddyMeta.setDisplayName(ChatColor.GOLD + "Zone-Games");
-		buddy.setItemMeta(buddyMeta);
-		
-		p.getInventory().clear();
-		p.getInventory().setItem(0, QuickTP);
-		p.getInventory().setItem(1, lobbymanager);
-		p.getInventory().setItem(2, playerSkull);
-		p.getInventory().setItem(3, holder);
-		p.getInventory().setItem(4, holder);
-		p.getInventory().setItem(5, holder);
-		p.getInventory().setItem(6, stats);
-		p.getInventory().setItem(7, shop);
-		p.getInventory().setItem(8, buddy);
-		p.updateInventory();
-		
-	}
-	
 }

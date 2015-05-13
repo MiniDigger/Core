@@ -25,7 +25,9 @@ import java.util.List;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
@@ -71,6 +73,13 @@ public class NoDropFeature extends CoreFeature {
 	public void onDrop(final PlayerDropItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			e.setCancelled(true);
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					e.getPlayer().updateInventory();
+				}
+			}.runTaskLater(Core.getCore().getInstance(), 10);
 		}
 	}
 }

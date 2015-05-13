@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Menu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -36,6 +37,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Menu.ItemMenu;
 
 public class CoreItemMenu implements ItemMenu {
@@ -43,7 +45,7 @@ public class CoreItemMenu implements ItemMenu {
 	private final String	  name;
 	private final int	      size;
 	private final onClick	  click;
-	List<String>	          viewing	= new ArrayList<String>();
+	List<UUID>	          viewing	= new ArrayList<UUID>();
 	
 	private final ItemStack[]	items;
 	
@@ -52,7 +54,7 @@ public class CoreItemMenu implements ItemMenu {
 		this.size = size * 9;
 		items = new ItemStack[this.size];
 		this.click = click;
-		Bukkit.getPluginManager().registerEvents(this, Bukkit.getPluginManager().getPlugins()[0]);
+		Bukkit.getPluginManager().registerEvents(this, Core.getCore().getInstance());
 	}
 	
 	@Override
@@ -66,7 +68,7 @@ public class CoreItemMenu implements ItemMenu {
 	@Override
 	public ItemMenu open(final Player p) {
 		p.openInventory(getInventory(p));
-		viewing.add(p.getName());
+		viewing.add(p.getUniqueId());
 		return this;
 	}
 	
@@ -91,7 +93,7 @@ public class CoreItemMenu implements ItemMenu {
 	@Override
 	public List<Player> getViewers() {
 		final List<Player> viewers = new ArrayList<Player>();
-		for (final String s : viewing) {
+		for (final UUID s : viewing) {
 			viewers.add(Bukkit.getPlayer(s));
 		}
 		return viewers;
@@ -100,7 +102,7 @@ public class CoreItemMenu implements ItemMenu {
 	@Override
 	@EventHandler
 	public void onInventoryClick(final InventoryClickEvent event) {
-		if (viewing.contains(event.getWhoClicked().getName())) {
+		if (viewing.contains(event.getWhoClicked().getUniqueId())) {
 			event.setCancelled(true);
 			final Player p = (Player) event.getWhoClicked();
 			if (event.getClickedInventory() == null || !event.getClickedInventory().getName().equals(name) || event.getSlot() == -999) {
@@ -118,7 +120,7 @@ public class CoreItemMenu implements ItemMenu {
 	@Override
 	@EventHandler
 	public void onInventoryDrag(final InventoryDragEvent event) {
-		if (viewing.contains(event.getWhoClicked().getName())) {
+		if (viewing.contains(event.getWhoClicked().getUniqueId())) {
 			event.setCancelled(true);
 			((Player) event.getWhoClicked()).updateInventory();
 		}
@@ -127,7 +129,7 @@ public class CoreItemMenu implements ItemMenu {
 	@Override
 	@EventHandler
 	public void onInventoryClose(final InventoryCloseEvent event) {
-		if (viewing.contains(event.getPlayer().getName())) {
+		if (viewing.contains(event.getPlayer().getUniqueId())) {
 			viewing.remove(event.getPlayer().getName());
 		}
 	}

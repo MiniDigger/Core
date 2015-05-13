@@ -22,12 +22,16 @@ package me.MiniDigger.CraftCore.Menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Menu.ItemBarMenu;
@@ -40,7 +44,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	private ItemStack[]	               icons	    = new ItemStack[9];
 	private ItemBarMenu.ClickHandler[]	actions	    = new ItemBarMenu.ClickHandler[9];
 	private boolean	                   isRegistered	= false;
-	private final String	           name;
+	private String	                   name;
 	
 	public CoreItemBarMenu(final String name, final ItemStack[] icons, final ItemBarMenu.ClickHandler[] actions) {
 		this(name);
@@ -108,6 +112,56 @@ public class CoreItemBarMenu implements ItemBarMenu {
 		}
 	}
 	
+	@EventHandler
+	public void onItemClick(final InventoryClickEvent e) {
+		ItemStack[] i = new ItemStack[] { e.getCurrentItem(), e.getCursor() };
+		for (ItemStack item : i) {
+			if (item != null) {
+				for (ItemStack is : icons) {
+					if (is.equals(item)) {
+						e.setResult(Result.DENY);
+						e.setCancelled(true);
+						// e.setCurrentItem(null);
+						((Player) e.getWhoClicked()).updateInventory();
+						
+						new BukkitRunnable() {
+							
+							@Override
+							public void run() {
+								((Player) e.getWhoClicked()).updateInventory();
+							}
+						}.runTaskLater(Core.getCore().getInstance(), 10);
+					}
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onItemClick(final InventoryDragEvent e) {
+		ItemStack[] i = new ItemStack[] { e.getOldCursor(), e.getCursor() };
+		for (ItemStack item : i) {
+			if (item != null) {
+				for (ItemStack is : icons) {
+					if (is.equals(item)) {
+						e.setResult(Result.DENY);
+						e.setCancelled(true);
+						// e.setCursor(null);
+						((Player) e.getWhoClicked()).updateInventory();
+						
+						new BukkitRunnable() {
+							
+							@Override
+							public void run() {
+								((Player) e.getWhoClicked()).updateInventory();
+							}
+						}.runTaskLater(Core.getCore().getInstance(), 10);
+					}
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void open(final User u) {
 		if (!isRegistered) {
@@ -135,5 +189,20 @@ public class CoreItemBarMenu implements ItemBarMenu {
 			b.append("i:" + is.toString() + ",");
 		}
 		return b.toString();
+	}
+	
+	@Override
+	public ItemBarMenu clone() {
+		ItemBarMenu m = new CoreItemBarMenu(getName());
+		for (int i = 0; i < 9; i++) {
+			m.setAction(i, actions[i]);
+			m.setIcon(i, icons[i]);
+		}
+		return m;
+	}
+	
+	@Override
+	public void setName(String string) {
+		this.name = string;
 	}
 }
