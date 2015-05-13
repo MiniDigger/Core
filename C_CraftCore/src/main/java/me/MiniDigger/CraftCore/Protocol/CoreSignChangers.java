@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
@@ -283,7 +284,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		
-		addSignChanger(new SignChanger("[Team]", "signchangers.create.team", "Zeigt das Team schön formatiert an") {
+		addSignChanger(new SignChanger("[Team]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
 			
 			@Override
 			public String getValue(final Player p, final Location loc) {
@@ -291,15 +292,21 @@ public class CoreSignChangers implements SignChangers {
 					return ChatColor.RED + "fail";
 				}
 				final Sign sign = (Sign) loc.getBlock().getState();
-				sign.setLine(0, "Klicke hier, um");
-				sign.setLine(1, "Team " + sign.getLine(1));
-				sign.setLine(2, "Zu beizutreten!");
-				sign.setLine(3, "");
-				return "";
+				return "Klicke hier, um%:%Team " + sign.getLine(1) + "%:%beizutreten!%:% ";
 			}
 		});
 		
-		addSignChanger(new SignChanger("[GameL]", "signchangers.create.team", "Zeigt das Team schön formatiert an") {
+		addSignChanger(new SignChanger("[GameL]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
+			
+			@Override
+			public String getValue(final Player p, final Location loc) {
+				if (!(loc.getBlock().getState() instanceof Sign)) {
+					return ChatColor.RED + "fail";
+				}
+				return "Klicke hier, um%:%dein aktuelles%:%Spiel zu%:%verlassen";
+			}
+		});
+		addSignChanger(new SignChanger("[GameJ]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
 			
 			@Override
 			public String getValue(final Player p, final Location loc) {
@@ -307,11 +314,8 @@ public class CoreSignChangers implements SignChangers {
 					return ChatColor.RED + "fail";
 				}
 				final Sign sign = (Sign) loc.getBlock().getState();
-				sign.setLine(0, "Klicke hier, um");
-				sign.setLine(1, "dein aktuelles");
-				sign.setLine(2, "Spiel zu");
-				sign.setLine(3, "verlassen");
-				return "";
+				String game = sign.getLine(1);
+				return "Klicke hier,um%:%Game " + game + "%:%beizutreten!%:% ";
 			}
 		});
 	}
@@ -423,6 +427,7 @@ public class CoreSignChangers implements SignChangers {
 			value = null;
 			key = c.getKey();
 			if (key != null) {
+				boolean full = false;
 				for (int i = 0; i < newLines.length; i++) {
 					if (newLines[i] == null || newLines[i].getJson() == null) {
 						continue;
@@ -439,6 +444,12 @@ public class CoreSignChangers implements SignChangers {
 								break;
 							}
 						}
+						
+						if (c.isFullChanger()) {
+							full = true;
+							break;
+						}
+						
 						if (!edit) {
 							break;
 						}
@@ -451,6 +462,12 @@ public class CoreSignChangers implements SignChangers {
 								newLines[i].setJson(newLines[i].getJson().replace(key, value));
 							}
 						}
+					}
+				}
+				if (full) {
+					String[] s = value.split(Pattern.quote("%:%"));
+					for (int i = 0; i < newLines.length; i++) {
+						newLines[i].setJson(new FancyMessage(s[i]).toJSONString());
 					}
 				}
 			}

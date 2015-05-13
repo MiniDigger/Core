@@ -82,6 +82,7 @@ public interface SignChangers extends Listener {
 		private final String	key;
 		private final String	perm;
 		private final String	desc;
+		private boolean		 full	= false;
 		
 		public SignChanger(final String key, final String permission, final String desciption) {
 			if ((key == null) || (permission == null)) {
@@ -93,6 +94,11 @@ public interface SignChangers extends Listener {
 			this.key = key;
 			perm = permission;
 			desc = desciption;
+		}
+		
+		public SignChanger(final String key, final String permission, final String desciption, final boolean full) {
+			this(key, permission, desciption);
+			this.full = full;
 		}
 		
 		/**
@@ -114,6 +120,13 @@ public interface SignChangers extends Listener {
 		 */
 		public String getDescription() {
 			return desc;
+		}
+		
+		/**
+		 * @return if this changer changes the whole sign
+		 */
+		public boolean isFullChanger(){
+			return full;
 		}
 		
 		/**
