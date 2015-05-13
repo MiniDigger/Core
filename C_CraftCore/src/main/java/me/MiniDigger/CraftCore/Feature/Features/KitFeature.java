@@ -99,7 +99,7 @@ public class KitFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onUserJoin(CoreUserJoinGameEvent e) {
+	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			if (Core.getCore().getKitHandler().getActivKit(e.getUser().getUUID()) == null) {
 				final Kit k = Core.getCore().getKitHandler().getKits().get(0);

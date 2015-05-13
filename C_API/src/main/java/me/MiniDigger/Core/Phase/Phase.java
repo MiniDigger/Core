@@ -123,5 +123,5 @@ public interface Phase extends Listener {
 	 * 
 	 * @param t
 	 */
-	void remFeature(FeatureType t);
+	void remFeature(final FeatureType t);
 }

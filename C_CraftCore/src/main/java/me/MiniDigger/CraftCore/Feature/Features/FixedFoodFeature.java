@@ -68,7 +68,6 @@ public class FixedFoodFeature extends CoreFeature {
 	public void end() {
 		
 	}
-
 	
 	@EventHandler
 	public void onFoodChange(final FoodLevelChangeEvent e) {

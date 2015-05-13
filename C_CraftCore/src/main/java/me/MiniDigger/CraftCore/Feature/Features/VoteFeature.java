@@ -104,7 +104,7 @@ public class VoteFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onUserJoin(CoreUserJoinGameEvent e) {
+	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			sendVoteMessage(e.getUser());
 		}

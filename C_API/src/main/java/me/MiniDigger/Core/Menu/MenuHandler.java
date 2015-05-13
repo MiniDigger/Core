@@ -35,7 +35,7 @@ public interface MenuHandler {
 	void openMenu(final User u, final String name);
 	
 	ItemBarMenu getMenu(final UUID id);
-
-	void addMenu(ItemBarMenu hub);
+	
+	void addMenu(final ItemBarMenu hub);
 	
 }

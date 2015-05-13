@@ -105,7 +105,7 @@ public class TwoPlayerFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			getPhase().getGame().end(getOther(e.getUser()));
 		}

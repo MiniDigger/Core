@@ -132,7 +132,7 @@ public class LastManStandingFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			if (getPhase().getGame().getPlayers().size() < 2) {
 				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {

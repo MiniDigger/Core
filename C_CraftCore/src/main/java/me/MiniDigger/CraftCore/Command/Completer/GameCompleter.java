@@ -31,7 +31,7 @@ public class GameCompleter {
 		final List<String> result = new ArrayList<>();
 		
 		if (args.getArgs().length == 1) {
-			for (GameType t : GameType.values()) {
+			for (final GameType t : GameType.values()) {
 				if (t != GameType.LOBBY && t != GameType.NOTHING && t != GameType.TICTACTOE) {
 					result.add(t.name());
 				}

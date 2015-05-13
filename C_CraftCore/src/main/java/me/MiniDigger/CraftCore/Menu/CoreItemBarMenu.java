@@ -114,10 +114,10 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	
 	@EventHandler
 	public void onItemClick(final InventoryClickEvent e) {
-		ItemStack[] i = new ItemStack[] { e.getCurrentItem(), e.getCursor() };
-		for (ItemStack item : i) {
+		final ItemStack[] i = new ItemStack[] { e.getCurrentItem(), e.getCursor() };
+		for (final ItemStack item : i) {
 			if (item != null) {
-				for (ItemStack is : icons) {
+				for (final ItemStack is : icons) {
 					if (is.equals(item)) {
 						e.setResult(Result.DENY);
 						e.setCancelled(true);
@@ -139,10 +139,10 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	
 	@EventHandler
 	public void onItemClick(final InventoryDragEvent e) {
-		ItemStack[] i = new ItemStack[] { e.getOldCursor(), e.getCursor() };
-		for (ItemStack item : i) {
+		final ItemStack[] i = new ItemStack[] { e.getOldCursor(), e.getCursor() };
+		for (final ItemStack item : i) {
 			if (item != null) {
-				for (ItemStack is : icons) {
+				for (final ItemStack is : icons) {
 					if (is.equals(item)) {
 						e.setResult(Result.DENY);
 						e.setCancelled(true);
@@ -193,7 +193,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	
 	@Override
 	public ItemBarMenu clone() {
-		ItemBarMenu m = new CoreItemBarMenu(getName());
+		final ItemBarMenu m = new CoreItemBarMenu(getName());
 		for (int i = 0; i < 9; i++) {
 			m.setAction(i, actions[i]);
 			m.setIcon(i, icons[i]);
@@ -202,7 +202,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	}
 	
 	@Override
-	public void setName(String string) {
-		this.name = string;
+	public void setName(final String string) {
+		name = string;
 	}
 }

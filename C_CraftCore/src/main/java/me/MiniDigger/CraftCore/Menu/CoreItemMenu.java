@@ -45,7 +45,7 @@ public class CoreItemMenu implements ItemMenu {
 	private final String	  name;
 	private final int	      size;
 	private final onClick	  click;
-	List<UUID>	          viewing	= new ArrayList<UUID>();
+	List<UUID>	              viewing	= new ArrayList<UUID>();
 	
 	private final ItemStack[]	items;
 	

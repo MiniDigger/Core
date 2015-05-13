@@ -134,7 +134,7 @@ public class CoreMenuHandler implements MenuHandler {
 	}
 	
 	@Override
-	public void addMenu(ItemBarMenu m) {
+	public void addMenu(final ItemBarMenu m) {
 		menus.put(m.getName(), m);
 	}
 }

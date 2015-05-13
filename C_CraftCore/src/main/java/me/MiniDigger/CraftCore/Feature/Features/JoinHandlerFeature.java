@@ -16,7 +16,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class JoinHandlerFeature extends CoreFeature {
 	
-	public JoinHandlerFeature(Phase phase) {
+	public JoinHandlerFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -43,7 +43,7 @@ public class JoinHandlerFeature extends CoreFeature {
 	@Override
 	public void start() {
 		if (getPhase().getGame().getPlayers().size() <= 1) {
-			User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
+			final User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
 			getPhase().getGame().end(u);
 		}
 	}
@@ -54,7 +54,7 @@ public class JoinHandlerFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onJoin(CoreUserJoinGameEvent e) {
+	public void onJoin(final CoreUserJoinGameEvent e) {
 		if (getPhase().getGame().getIdentifier() == e.getGame().getIdentifier()) {
 			if (getPhase().getGame().allowJoin()) {
 				Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());

@@ -93,14 +93,14 @@ public class TeamDeathMatchFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onUserJoin(CoreUserJoinGameEvent e) {
+	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			respawns.put(e.getUser().getUUID(), respawnCount);
 		}
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			respawns.remove(e.getUser().getUUID());
 			if (!isTeamAlive(e.getUser().getPlayer())) {

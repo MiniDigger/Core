@@ -123,7 +123,7 @@ public class HubFeature extends CoreFeature {
 			final int	cooldownTime	= 5;
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				if (cooldowns.containsKey(u.getUUID())) {
 					final long secondsLeft = cooldowns.get(u.getUUID()).longValue() / 1000L + cooldownTime - System.currentTimeMillis() / 1000L;
 					if (secondsLeft > 0L) {
@@ -150,7 +150,7 @@ public class HubFeature extends CoreFeature {
 		hub.setAction(1, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				Core.getCore().getMenuHandler().closeMenu(u);
 				Core.getCore().getMenuHandler().openMenu(u, "Teleporter");
 			}
@@ -167,7 +167,7 @@ public class HubFeature extends CoreFeature {
 		hub2.setAction(0, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				for (final Player pl : Core.getCore().getUserHandler().getOnlinePlayers()) {
 					u.getPlayer().showPlayer(pl);
 				}
@@ -184,7 +184,7 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(0, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				Core.getCore().getMenuHandler().closeMenu(u);
 				Core.getCore().getMenuHandler().openMenu(u, "Hub");
 			}
@@ -194,10 +194,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(1, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("OITC"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 			}
@@ -207,10 +207,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(2, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 			}
@@ -220,10 +220,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(3, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -234,10 +234,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(4, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GETTHEDROP"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -248,10 +248,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(5, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CITYBUILD"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -262,10 +262,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(6, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CRANK"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -276,10 +276,10 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(7, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("TNTRUN"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -290,7 +290,7 @@ public class HubFeature extends CoreFeature {
 		tp.setAction(8, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				Core.getCore().getMenuHandler().closeMenu(u);
 				Core.getCore().getMenuHandler().openMenu(u, "Teleporter2");
 			}
@@ -303,7 +303,7 @@ public class HubFeature extends CoreFeature {
 		tp2.setAction(0, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				Core.getCore().getMenuHandler().closeMenu(u);
 				Core.getCore().getMenuHandler().openMenu(u, "Teleporter");
 			}
@@ -313,10 +313,10 @@ public class HubFeature extends CoreFeature {
 		tp2.setAction(1, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -327,10 +327,10 @@ public class HubFeature extends CoreFeature {
 		tp2.setAction(2, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -341,10 +341,10 @@ public class HubFeature extends CoreFeature {
 		tp2.setAction(3, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BMT"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -355,10 +355,10 @@ public class HubFeature extends CoreFeature {
 		tp2.setAction(4, new ClickHandler() {
 			
 			@Override
-			public void click(ItemBarMenu m, ItemStack is, User u) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BEDWARS"));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				

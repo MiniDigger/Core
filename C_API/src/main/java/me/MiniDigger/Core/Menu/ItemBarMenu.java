@@ -41,8 +41,8 @@ public interface ItemBarMenu extends Listener {
 	void close(final User u);
 	
 	String getName();
-
+	
 	ItemBarMenu clone();
-
-	void setName(String string);
+	
+	void setName(final String string);
 }

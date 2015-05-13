@@ -112,7 +112,7 @@ public class LivesFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			lives.remove(e.getUser().getUUID());
 			getPhase().getGame().broadCastMessage(
@@ -132,7 +132,7 @@ public class LivesFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onUserJoin(CoreUserJoinGameEvent e) {
+	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			lives.put(e.getUser().getUUID(), max);
 			showLives();

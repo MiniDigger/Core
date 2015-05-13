@@ -178,7 +178,7 @@ public class CoreMapData implements MapData {
 						if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
 							final Sign sign = (Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 							wLocs.put(sign.getLine(0), loc);
-							} else {
+						} else {
 							Integer i = ints.remove(color);
 							if (i == null) {
 								i = 0;

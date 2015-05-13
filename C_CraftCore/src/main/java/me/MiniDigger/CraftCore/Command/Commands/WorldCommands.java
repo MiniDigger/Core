@@ -386,7 +386,7 @@ public class WorldCommands {
 		}
 		
 		final List<DyeColor> color = new ArrayList<DyeColor>();
-		for (String s : Core.getCore().getStringUtil().stringToList(session.get("locTypes"))) {
+		for (final String s : Core.getCore().getStringUtil().stringToList(session.get("locTypes"))) {
 			color.add(DyeColor.valueOf(s));
 		}
 		

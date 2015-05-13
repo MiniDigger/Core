@@ -69,7 +69,7 @@ public interface MapData {
 	 *            The code, that should get executed, when the scan is completed
 	 */
 	
-	void scanMap(Location start, int range, List<DyeColor> searchFor, Runnable finished);
+	void scanMap(final Location start, final int range, final List<DyeColor> searchFor, final Runnable finished);
 	
 	/**
 	 * Replaces all blocks at saved locations with air

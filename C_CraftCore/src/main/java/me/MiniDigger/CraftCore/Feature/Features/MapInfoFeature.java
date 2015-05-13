@@ -100,14 +100,14 @@ public class MapInfoFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()).clear();
 		}
 	}
 	
 	@EventHandler
-	public void onUserJoin(CoreUserJoinGameEvent e) {
+	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			modBoard(Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()));
 			Core.getCore().getScoreboardHandler().update(e.getUser().getUUID());

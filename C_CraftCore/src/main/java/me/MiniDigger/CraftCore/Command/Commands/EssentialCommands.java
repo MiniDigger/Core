@@ -72,10 +72,10 @@ public class EssentialCommands {
 	@Command(name = "killall", usage = "", min = 0, max = 0, consol = true, permission = "killall", description = "Tötet Mobs")
 	public void killall(final CommandArgs args) {
 		int i = 0;
-		for (World world : Bukkit.getWorlds()) {
-			for (Entity e : world.getEntities()) {
+		for (final World world : Bukkit.getWorlds()) {
+			for (final Entity e : world.getEntities()) {
 				boolean b = false;
-				for (EntityType t : Core.getCore().getEntityUtil().getAll(Type.ANGRY, Type.FRIENDLY, Type.PASSIV, Type.PROJECTILE)) {
+				for (final EntityType t : Core.getCore().getEntityUtil().getAll(Type.ANGRY, Type.FRIENDLY, Type.PASSIV, Type.PROJECTILE)) {
 					if (t == e.getType()) {
 						b = true;
 					}

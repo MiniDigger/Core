@@ -137,7 +137,7 @@ public class TeamSelectFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			getTeam(e.getUser()).leave(e.getUser().getUUID());
 		}

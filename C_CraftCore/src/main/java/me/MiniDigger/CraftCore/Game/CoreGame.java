@@ -48,6 +48,7 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Lang._;
+
 import mkremins.fanciful.FancyMessage;
 
 public class CoreGame implements Game {
@@ -261,7 +262,7 @@ public class CoreGame implements Game {
 				
 				@Override
 				public void run() {
-					Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
+					final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 					for (final UUID w : specs) {
 						final Player p = Bukkit.getPlayer(w);
 						p.getInventory().clear();

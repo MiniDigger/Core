@@ -54,7 +54,7 @@ public class TeamFeature extends TeamSelectFeature {
 	}
 	
 	@EventHandler
-	public void onUserJoin(CoreUserJoinGameEvent e) {
+	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			Core.getCore().getScoreboardHandler().getTeam(e.getUser().getPlayer().getName()).setPrefix(getTeam(e.getUser().getPlayer()).getColor() + "");
 			Core.getCore().getScoreboardHandler().updateAll();
@@ -69,8 +69,9 @@ public class TeamFeature extends TeamSelectFeature {
 		Core.getCore().getScoreboardHandler().updateAll();
 	}
 	
+	@Override
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			Core.getCore().getScoreboardHandler().getTeam(e.getUser().getPlayer().getName()).setPrefix("");
 			Core.getCore().getScoreboardHandler().updateAll();

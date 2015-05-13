@@ -20,7 +20,7 @@ public class GameCommands {
 	
 	@Command(name = "game.join", usage = "", consol = false, permission = "game.join", description = "Tritt einem Spiel bei", min = 1, max = 1, sync = true)
 	public void join(final CommandArgs args) {
-		for (Game game : Core.getCore().getGameHandler().getGames()) {
+		for (final Game game : Core.getCore().getGameHandler().getGames()) {
 			if (game.getType().name().equalsIgnoreCase(args.getArgs()[0])) {
 				Core.getCore().getGameHandler().joinGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel beigetreten").color(ChatColor.GREEN));
@@ -28,7 +28,7 @@ public class GameCommands {
 			}
 		}
 		
-		for (GameType type : GameType.values()) {
+		for (final GameType type : GameType.values()) {
 			if (type.name().equalsIgnoreCase(args.getArgs()[0])) {
 				Bukkit.dispatchCommand(args.getPlayer(), type.getCommand());
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Neues Spiel gestartet!").color(ChatColor.GREEN));
@@ -39,7 +39,7 @@ public class GameCommands {
 	
 	@Command(name = "game.leave", usage = "", consol = false, permission = "game.leave", description = "Verlässt ein Spiel", max = 0, sync = true)
 	public void leave(final CommandArgs args) {
-		for (Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
+		for (final Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
 			if (game.getType() != GameType.TICTACTOE) {
 				Core.getCore().getGameHandler().leaveGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel verlassen").color(ChatColor.GREEN));
@@ -57,7 +57,7 @@ public class GameCommands {
 	@Command(name = "game.list", usage = "", consol = false, permission = "game.list", description = "Zeigt eine Liste mit allen aktiven Spielen", max = 0)
 	public void list(final CommandArgs args) {
 		Prefix.API.getPrefix().then("********** Games *********").color(ChatColor.GOLD).send(args.getPlayer());
-		for (Game game : Core.getCore().getGameHandler().getGames()) {
+		for (final Game game : Core.getCore().getGameHandler().getGames()) {
 			Prefix.API.getPrefix().then("Game#" + game.getIdentifier()).send(args.getPlayer());
 			Prefix.API
 			        .getPrefix()

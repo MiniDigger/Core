@@ -74,7 +74,7 @@ public class BuildFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			Core.getCore().getBuildHandler().setBuilder(e.getUser(), false);
 			Core.getCore().getBuildHandler().disallow(e.getUser(), (Material) null);

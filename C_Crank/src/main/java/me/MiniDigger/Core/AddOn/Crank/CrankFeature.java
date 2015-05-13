@@ -138,14 +138,14 @@ public class CrankFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			timers.remove(e.getUser().getUUID()).cancel();
 		}
 	}
 	
 	@EventHandler
-	public void onJoin(CoreUserJoinGameEvent e) {
+	public void onJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			reset(e.getUser().getUUID());
 		}
@@ -153,7 +153,7 @@ public class CrankFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		for (BukkitRunnable r : timers.values()) {
+		for (final BukkitRunnable r : timers.values()) {
 			r.cancel();
 		}
 		timers = null;

@@ -72,7 +72,7 @@ public class DoubleJumpFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final Player p = Bukkit.getPlayer(id);
 			p.setAllowFlight(false);
 			p.setFlying(false);
@@ -80,7 +80,7 @@ public class DoubleJumpFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onQuit(CoreUserLeaveGameEvent e) {
+	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			e.getUser().getPlayer().setAllowFlight(false);
 			e.getUser().getPlayer().setFlying(false);
