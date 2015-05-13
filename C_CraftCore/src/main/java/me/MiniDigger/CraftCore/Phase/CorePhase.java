@@ -219,6 +219,7 @@ public abstract class CorePhase implements Phase {
 		}
 		
 		getGame().end(u);
+		
 	}
 	
 	@Completer(name = "end")

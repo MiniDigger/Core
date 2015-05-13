@@ -68,6 +68,10 @@ public class CoreWorldHandler implements WorldHandler {
 	@Override
 	public void unloadWorld(final String world, final Location fallBackLoc) {
 		final World w = Bukkit.getWorld(world);
+		if (w == null) {
+			return;
+		}
+		
 		w.save();
 		
 		for (final LivingEntity e : w.getLivingEntities()) {
@@ -127,6 +131,10 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public void deleteWorld(final String name) {
+		if (name == null) {
+			return;
+		}
+		
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
 		final File oldMap = new File(out, name);
 		
