@@ -57,11 +57,13 @@ public class UltraSpleefAddOn extends CoreAddOn {
 		final UltraSpleefGame game = new UltraSpleefGame();
 		game.init();
 		Core.getCore().getGameHandler().addGame(game);
-		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
-			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
-			Bukkit.getPluginManager().callEvent((Event) e1);
-			game.join(user);
-		}
+		// for (final User user :
+		// Core.getCore().getUserHandler().getOnlineUsers()) {
+		User user = args.getUser();
+		final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
+		Bukkit.getPluginManager().callEvent((Event) e1);
+		game.join(user);
+		// }
 		game.start();
 	}
 	

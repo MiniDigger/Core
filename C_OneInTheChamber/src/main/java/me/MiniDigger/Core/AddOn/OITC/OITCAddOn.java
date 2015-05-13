@@ -57,11 +57,13 @@ public class OITCAddOn extends CoreAddOn {
 		final OITCGame game = new OITCGame();
 		game.init();
 		Core.getCore().getGameHandler().addGame(game);
-		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
-			final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
-			Bukkit.getPluginManager().callEvent((Event) e1);
-			Core.getCore().getGameHandler().joinGame(user, game);
-		}
+		// for (final User user :
+		// Core.getCore().getUserHandler().getOnlineUsers()) {
+		User user = args.getUser();
+		final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
+		Bukkit.getPluginManager().callEvent((Event) e1);
+		Core.getCore().getGameHandler().joinGame(user, game);
+		// }
 		game.start();
 	}
 	
