@@ -104,6 +104,8 @@ public class CoreGameHandler implements GameHandler {
 		}
 		game.join(user);
 		
+		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
+		
 		final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent(event);
 	}

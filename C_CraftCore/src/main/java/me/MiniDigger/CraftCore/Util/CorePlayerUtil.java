@@ -31,6 +31,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockIterator;
 
 import me.MiniDigger.Core.Util.PlayerUtil;
@@ -105,10 +106,12 @@ public class CorePlayerUtil implements PlayerUtil {
 	
 	@Override
 	public void prepare(final Player p) {
-		p.setGameMode(GameMode.CREATIVE);
 		clearArmor(p);
 		clearInv(p);
 		fixHealth(p);
+		for(PotionEffect e : p.getActivePotionEffects()){
+			p.removePotionEffect(e.getType());
+		}
 		p.getActivePotionEffects().clear();
 		p.setExp(0);
 		p.setLevel(0);
