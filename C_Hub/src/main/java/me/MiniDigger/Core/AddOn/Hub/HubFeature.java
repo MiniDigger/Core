@@ -343,7 +343,7 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(ItemBarMenu m, ItemStack is, User u) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BUILDMYTHING"));
+					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BMT"));
 				} catch (Exception ex) {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
