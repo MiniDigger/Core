@@ -109,7 +109,7 @@ public class CorePlayerUtil implements PlayerUtil {
 		clearArmor(p);
 		clearInv(p);
 		fixHealth(p);
-		for(PotionEffect e : p.getActivePotionEffects()){
+		for (final PotionEffect e : p.getActivePotionEffects()) {
 			p.removePotionEffect(e.getType());
 		}
 		p.getActivePotionEffects().clear();

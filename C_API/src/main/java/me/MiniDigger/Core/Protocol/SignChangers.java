@@ -125,7 +125,7 @@ public interface SignChangers extends Listener {
 		/**
 		 * @return if this changer changes the whole sign
 		 */
-		public boolean isFullChanger(){
+		public boolean isFullChanger() {
 			return full;
 		}
 		

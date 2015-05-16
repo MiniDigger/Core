@@ -315,16 +315,16 @@ public class CoreSignChangers implements SignChangers {
 					return ChatColor.RED + "fail1";
 				}
 				final Sign sign = (Sign) loc.getBlock().getState();
-				String name = sign.getLine(1);
+				final String name = sign.getLine(1);
 				Game game = null;
-				for (Game g : Core.getCore().getGameHandler().getGames()) {
+				for (final Game g : Core.getCore().getGameHandler().getGames()) {
 					if (g.getType().name().equalsIgnoreCase(name)) {
 						game = g;
 						break;
 					}
 				}
 				if (game != null) {
-					StringBuilder sb = new StringBuilder();
+					final StringBuilder sb = new StringBuilder();
 					sb.append("[" + name + "]");
 					sb.append("%:%");
 					sb.append(game.getPhase().getName());
@@ -340,7 +340,7 @@ public class CoreSignChangers implements SignChangers {
 					}
 					return sb.toString();
 				} else {
-					StringBuilder sb = new StringBuilder();
+					final StringBuilder sb = new StringBuilder();
 					sb.append("[" + name + "]");
 					sb.append("%:%");
 					sb.append("Waiting for players");
@@ -500,11 +500,11 @@ public class CoreSignChangers implements SignChangers {
 				}
 				if (full) {
 					try {
-						String[] s = value.split(Pattern.quote("%:%"));
+						final String[] s = value.split(Pattern.quote("%:%"));
 						for (int i = 0; i < newLines.length; i++) {
 							newLines[i].setJson(new FancyMessage(s[i]).toJSONString());
 						}
-					} catch (Exception ex) {
+					} catch (final Exception ex) {
 						for (int i = 0; i < 4; i++) {
 							newLines[i].setJson(new FancyMessage(value).toJSONString());
 						}

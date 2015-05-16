@@ -25,8 +25,8 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LadderKingFeature extends CoreFeature {
 	
-	private UUID	                  king;
-	private Map<UUID, BukkitRunnable>	tasks	= new HashMap<UUID, BukkitRunnable>();
+	private UUID	                        king;
+	private final Map<UUID, BukkitRunnable>	tasks	= new HashMap<UUID, BukkitRunnable>();
 	
 	public LadderKingFeature(final Phase phase) {
 		super(phase);
@@ -82,7 +82,7 @@ public class LadderKingFeature extends CoreFeature {
 						king = k.getUUID();
 					}
 					
-					for (BukkitRunnable r : tasks.values()) {
+					for (final BukkitRunnable r : tasks.values()) {
 						r.cancel();
 					}
 					tasks.clear();

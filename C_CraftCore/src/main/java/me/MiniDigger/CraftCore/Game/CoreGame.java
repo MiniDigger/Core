@@ -61,7 +61,7 @@ public class CoreGame implements Game {
 	private GameType	                  type;
 	private boolean	                      allowJoin;
 	private boolean	                      allowSpectate;
-	protected int	                      maxplayers = 1000;
+	protected int	                      maxplayers	= 1000;
 	
 	@Override
 	public Error join(final User user) {
