@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -34,8 +33,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Menu.ItemBarMenu;
@@ -83,20 +80,22 @@ public class HubFeature extends CoreFeature {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
 			Core.getCore().getMenuHandler().openMenu(u, "Hub");
+			u.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
 		}
 		
-		new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				for (final UUID id : getPhase().getGame().getPlayers()) {
-					final Player p = Bukkit.getPlayer(id);
-					if (p != null) {
-						p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 2));
-					}
-				}
-			}
-		}.runTaskTimer(Core.getCore().getInstance(), 1, 20);
+		// new BukkitRunnable() {
+		//
+		// @Override
+		// public void run() {
+		// for (final UUID id : getPhase().getGame().getPlayers()) {
+		// final Player p = Bukkit.getPlayer(id);
+		// if (p != null) {
+		// p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999,
+		// 2));
+		// }
+		// }
+		// }
+		// }.runTaskTimer(Core.getCore().getInstance(), 1, 20*20);
 	}
 	
 	@Override
@@ -108,6 +107,8 @@ public class HubFeature extends CoreFeature {
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			Core.getCore().getMenuHandler().openMenu(e.getUser(), "Hub");
+			e.getUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
+			
 		}
 	}
 	
