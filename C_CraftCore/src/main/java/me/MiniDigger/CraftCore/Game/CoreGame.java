@@ -61,6 +61,7 @@ public class CoreGame implements Game {
 	private GameType	                  type;
 	private boolean	                      allowJoin;
 	private boolean	                      allowSpectate;
+	protected int	                          maxplayers;
 	
 	@Override
 	public Error join(final User user) {
@@ -312,6 +313,11 @@ public class CoreGame implements Game {
 	@Override
 	public List<UUID> getSpecs() {
 		return specs;
+	}
+	
+	@Override
+	public int getMaxPlayers() {
+		return maxplayers;
 	}
 	
 }

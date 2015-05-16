@@ -49,6 +49,8 @@ public class UltraSpleefGame extends CoreGame {
 	
 	@Override
 	public void init() {
+		super.maxplayers = 16;
+		
 		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);

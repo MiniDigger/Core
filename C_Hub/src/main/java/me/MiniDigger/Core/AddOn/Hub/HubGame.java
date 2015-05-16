@@ -37,6 +37,8 @@ public class HubGame extends CoreGame {
 	
 	@Override
 	public void init() {
+		super.maxplayers = 1000;
+		
 		setGameData("Lobby", "Spawn");
 		
 		final HubPhase hub = new HubPhase(this, null, null);

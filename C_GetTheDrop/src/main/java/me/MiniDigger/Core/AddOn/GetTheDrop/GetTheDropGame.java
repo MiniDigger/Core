@@ -50,6 +50,8 @@ public class GetTheDropGame extends CoreGame {
 	
 	@Override
 	public void init() {
+		super.maxplayers = 12;
+		
 		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);

@@ -44,6 +44,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Protocol.SignChangers;
 import me.MiniDigger.Core.Stats.StatsType;
@@ -314,8 +315,33 @@ public class CoreSignChangers implements SignChangers {
 					return ChatColor.RED + "fail";
 				}
 				final Sign sign = (Sign) loc.getBlock().getState();
-				String game = sign.getLine(1);
-				return "Klicke hier,um%:%Game " + game + "%:%beizutreten!%:% ";
+				String name = sign.getLine(1);
+				Game game = null;
+				for (Game g : Core.getCore().getGameHandler().getGames()) {
+					if (g.getType().name() == name) {
+						game = g;
+						break;
+					}
+				}
+				if (game != null) {
+					StringBuilder sb = new StringBuilder();
+					sb.append("[" + name + "]");
+					sb.append("%:%");
+					sb.append(game.getPhase().getName());
+					sb.append("%:%");
+					sb.append(game.getPlayers().size() + "/" + game.getMaxPlayers() + " (" + game.getSpecs().size() + ")");
+					sb.append("%:%");
+					if (game.allowJoin()) {
+						sb.append(ChatColor.GREEN + "Join");
+					} else if (game.allowSpectate()) {
+						sb.append(ChatColor.YELLOW + "Spec");
+					} else {
+						sb.append(ChatColor.RED + "FULL");
+					}
+					return sb.toString();
+				} else {
+					return "fail";
+				}
 			}
 		});
 	}

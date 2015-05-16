@@ -221,4 +221,10 @@ public interface Game {
 	 * @param allow
 	 */
 	void setAllowSpectate(final boolean allow);
+
+	/**
+	 * 
+	 * @return the max amount of players that are allowed to play at one time
+	 */
+	public int getMaxPlayers();
 }
