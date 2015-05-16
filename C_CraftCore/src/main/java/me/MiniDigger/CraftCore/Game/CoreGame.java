@@ -61,7 +61,7 @@ public class CoreGame implements Game {
 	private GameType	                  type;
 	private boolean	                      allowJoin;
 	private boolean	                      allowSpectate;
-	protected int	                          maxplayers;
+	protected int	                      maxplayers;
 	
 	@Override
 	public Error join(final User user) {
@@ -318,6 +318,11 @@ public class CoreGame implements Game {
 	@Override
 	public int getMaxPlayers() {
 		return maxplayers;
+	}
+	
+	@Override
+	public boolean isFull() {
+		return getPlayers().size() >= maxplayers;
 	}
 	
 }

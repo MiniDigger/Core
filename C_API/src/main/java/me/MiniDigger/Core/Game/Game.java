@@ -227,4 +227,10 @@ public interface Game {
 	 * @return the max amount of players that are allowed to play at one time
 	 */
 	public int getMaxPlayers();
+
+	/**
+	 * 
+	 * @return if the game is full (players.size >= maxplayers)
+	 */
+	public boolean isFull();
 }

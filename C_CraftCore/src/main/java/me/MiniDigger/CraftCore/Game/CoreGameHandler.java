@@ -24,11 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameHandler;
 import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
@@ -97,6 +99,11 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void joinGame(final User user, final Game game) {
+		if (game.isFull()) {
+			Prefix.API.getPrefix().then("Das Spiel ist voll!").color(ChatColor.RED).send(user.getPlayer());
+			return;
+		}
+		
 		for (final Game g : getGames(user)) {
 			if (g.getType() != GameType.TICTACTOE) {
 				g.leave(user);

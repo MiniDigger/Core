@@ -331,7 +331,7 @@ public class CoreSignChangers implements SignChangers {
 					sb.append("%:%");
 					sb.append(game.getPlayers().size() + "/" + game.getMaxPlayers() + " (" + game.getSpecs().size() + ")");
 					sb.append("%:%");
-					if (game.allowJoin()) {
+					if (game.allowJoin() && !game.isFull()) {
 						sb.append(ChatColor.GREEN + "Join");
 					} else if (game.allowSpectate()) {
 						sb.append(ChatColor.YELLOW + "Spec");
