@@ -1,7 +1,9 @@
 package me.MiniDigger.CraftCore.Feature.Features;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
@@ -11,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -22,7 +25,8 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LadderKingFeature extends CoreFeature {
 	
-	private UUID	king;
+	private UUID	                  king;
+	private Map<UUID, BukkitRunnable>	tasks	= new HashMap<UUID, BukkitRunnable>();
 	
 	public LadderKingFeature(final Phase phase) {
 		super(phase);
@@ -68,6 +72,7 @@ public class LadderKingFeature extends CoreFeature {
 						getPhase().getGame().broadCastMessage(
 						        Prefix.API.getPrefix().then(k.getDisplayName()).color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
 						king = k.getUUID();
+						
 					} else {
 						final User o = Core.getCore().getUserHandler().get(king);
 						final User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
@@ -76,6 +81,26 @@ public class LadderKingFeature extends CoreFeature {
 						                .then(k.getDisplayName()).color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
 						king = k.getUUID();
 					}
+					
+					for (BukkitRunnable r : tasks.values()) {
+						r.cancel();
+					}
+					tasks.clear();
+					
+					tasks.put(king, new BukkitRunnable() {
+						
+						@Override
+						public void run() {
+							if (king == null) {
+								return;
+							}
+							final User o = Core.getCore().getUserHandler().get(king);
+							king = null;
+							getPhase().getGame().broadCastMessage(
+							        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" hat seinen Tron verlassen!").color(ChatColor.GOLD));
+						}
+					});
+					tasks.get(king).runTaskLater(Core.getCore().getInstance(), 5 * 20);
 				}
 			}
 		}
@@ -84,7 +109,7 @@ public class LadderKingFeature extends CoreFeature {
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPvP(final EntityDamageByEntityEvent e) {
 		if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
-			final User damager = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
+			final User damager = Core.getCore().getUserHandler().get(((Player) e.getDamager()).getUniqueId());
 			final User damaged = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
 			
 			if (getPhase().getGame().getPlayers().contains(damaged.getUUID()) && getPhase().getGame().getPlayers().contains(damager.getUUID())) {
