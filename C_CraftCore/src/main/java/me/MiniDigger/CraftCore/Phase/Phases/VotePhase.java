@@ -95,7 +95,7 @@ public class VotePhase extends CoreTimedPhase {
 		super.startPhase();
 		getGame().broadCastMessage(LangKeyType.Game.VOTE_START1, MsgType.IMPORTANT);
 		getGame().broadCastMessage(LangKeyType.Game.VOTE_START2, MsgType.IMPORTANT, getSecs() + "");
-		((VoteFeature) getFeature(FeatureType.VOTE)).sendVoteMessages();
+		// ((VoteFeature) getFeature(FeatureType.VOTE)).sendVoteMessages();
 		
 		getGame().setAllowJoin(true);
 		getGame().setAllowSpectate(true);
