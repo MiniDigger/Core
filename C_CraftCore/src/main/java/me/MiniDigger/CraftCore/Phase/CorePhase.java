@@ -39,6 +39,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.JoinHandlerFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LeaveHandlerFeature;
 
 public abstract class CorePhase implements Phase {
 	
@@ -47,11 +48,13 @@ public abstract class CorePhase implements Phase {
 	protected List<Feature>	features	= new ArrayList<>();
 	
 	public CorePhase(final Game game, final Phase next) {
+		this();
 		this.game = game;
 		this.next = next;
 	}
 	
 	public CorePhase() {
+		addFeature(new LeaveHandlerFeature(this));
 		addFeature(new JoinHandlerFeature(this));
 	}
 	
@@ -69,7 +72,7 @@ public abstract class CorePhase implements Phase {
 		for (final Feature f : features) {
 			f.init(this);
 		}
-		// System.out.println("register cmds");
+		
 		Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 		Core.getCore().getCommandHandler().registerCommands(this);
 		for (final Feature f : features) {

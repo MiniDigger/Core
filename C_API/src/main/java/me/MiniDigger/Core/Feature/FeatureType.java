@@ -66,7 +66,8 @@ public enum FeatureType {
 	SPAWNERS,
 	TEAM_ARMOR,
 	LADDERKING,
-	JOINHANDLER;
+	JOINHANDLER,
+	LEAVEHANDLER;
 	
 	/**
 	 * @return A human readable name for the feature

@@ -9,7 +9,6 @@ import org.bukkit.event.EventHandler;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
-import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
@@ -42,10 +41,10 @@ public class JoinHandlerFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		if (getPhase().getGame().getPlayers().size() <= 1) {
-			final User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
-			getPhase().getGame().end(u);
-		}
+//		if (getPhase().getGame().getPlayers().size() <= 1) {
+//			final User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
+//			getPhase().getGame().end(u);
+//		}
 	}
 	
 	@Override
