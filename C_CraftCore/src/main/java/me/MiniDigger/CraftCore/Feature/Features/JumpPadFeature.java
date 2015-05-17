@@ -84,6 +84,9 @@ public class JumpPadFeature extends CoreFeature {
 			if (event.getClickedBlock().getType() != Material.WOOD_PLATE && event.getClickedBlock().getType() != Material.STONE_PLATE) {
 				return;
 			}
+			if (event.isCancelled()) {
+				return;
+			}
 			double strength = 1.5;
 			double up = 1;
 			if (event.getClickedBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
