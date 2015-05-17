@@ -58,8 +58,17 @@ public class CoreErrorHandler implements ErrorHandler {
 					return;
 				}
 				if (record.getLevel() == Level.SEVERE) {
-					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", record.getThrown().getMessage());
+					String msg = record.getThrown().getMessage();
+					if (msg == null) {
+						msg = record.getThrown().getCause().getMessage();
+						if (msg == null) {
+							msg = "<msg null>";
+						}
+					}
+					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", msg);
 					_.stacktrace(LogLevel.DEBUG, record.getThrown());
+					_.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+					_.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
 				}
 			}
 			

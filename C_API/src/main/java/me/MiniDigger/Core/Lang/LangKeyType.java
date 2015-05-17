@@ -300,10 +300,12 @@ public class LangKeyType {
 		
 		protected static String		    type	= "log";
 		public static final LangKeyType	CATCHED	= new LangKeyType("catched", type, "Catched an error(`%0%`): `%1%`");
+		public static final LangKeyType	CAUSED	= new LangKeyType("catched", type, "Caused by: ");
 		
 		public static List<LangKeyType> values() {
 			final List<LangKeyType> values = new ArrayList<>();
 			values.add(CATCHED);
+			values.add(CAUSED);
 			return values;
 		}
 	}

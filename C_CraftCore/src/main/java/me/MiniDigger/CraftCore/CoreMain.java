@@ -243,8 +243,17 @@ public class CoreMain extends JavaPlugin implements Main {
 				
 				@Override
 				public void uncaughtException(final Thread t, final Throwable e) {
-					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", e.getMessage() == null ? "<msg null>" : e.getMessage());
+					String msg = e.getMessage();
+					if (msg == null) {
+						msg = e.getCause().getMessage();
+						if (msg == null) {
+							msg = "<msg null>";
+						}
+					}
+					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", msg);
 					_.stacktrace(LogLevel.DEBUG, e);
+					_.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+					_.stacktrace(LogLevel.DEBUG, e.getCause());
 				}
 			});
 			
@@ -253,8 +262,17 @@ public class CoreMain extends JavaPlugin implements Main {
 				@Override
 				public boolean isLoggable(final LogRecord record) {
 					if (record.getThrown() != null) {
-						_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", record.getThrown().getMessage());
+						String msg = record.getThrown().getMessage();
+						if (msg == null) {
+							msg = record.getThrown().getCause().getMessage();
+							if (msg == null) {
+								msg = "<msg null>";
+							}
+						}
+						_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", msg);
 						_.stacktrace(LogLevel.DEBUG, record.getThrown());
+						_.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+						_.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
 					}
 					return true;
 				}

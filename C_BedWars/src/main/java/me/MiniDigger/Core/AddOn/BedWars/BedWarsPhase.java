@@ -23,6 +23,7 @@ package me.MiniDigger.Core.AddOn.BedWars;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -47,6 +48,7 @@ import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 import me.MiniDigger.Core.Villager.VillagerTrade;
@@ -486,7 +488,12 @@ public class BedWarsPhase extends CorePhase {
 	public void endPhase() {
 		super.endPhase();
 		final TeamFeature tf = (TeamFeature) getFeature(FeatureType.TEAM);
-		final User[] winner = new User[tf.getTeams().size()];
-		game.end(winner);
+		final List<User> winner = new ArrayList<User>();
+		for (Team t : tf.getTeams()) {
+			for (UUID id : t.getPlayers()) {
+				winner.add(Core.getCore().getUserHandler().get(id));
+			}
+		}
+		game.end(winner.toArray(new User[winner.size()]));
 	}
 }
