@@ -59,9 +59,11 @@ import me.MiniDigger.Core.Util.CommonMethods;
 import me.MiniDigger.Core.Util.DeZipUtil;
 import me.MiniDigger.Core.Util.EntityUtil;
 import me.MiniDigger.Core.Util.EnumUtil;
+import me.MiniDigger.Core.Util.FaceUtil;
 import me.MiniDigger.Core.Util.FileUtil;
 import me.MiniDigger.Core.Util.ItemUtil;
 import me.MiniDigger.Core.Util.LocationUtil;
+import me.MiniDigger.Core.Util.MathUtil;
 import me.MiniDigger.Core.Util.PlayerUtil;
 import me.MiniDigger.Core.Util.RandomUtil;
 import me.MiniDigger.Core.Util.ReflectionUtil;
@@ -209,6 +211,10 @@ public abstract class Core {
 	public abstract EnumUtil getEnumUtil();
 	
 	public abstract ItemUtil getItemUtil();
+	
+	public abstract MathUtil getMathUtil();
+	
+	public abstract FaceUtil getFaceUtil();
 	
 	public abstract void setCommandHandler(final CommandHandler c);
 	

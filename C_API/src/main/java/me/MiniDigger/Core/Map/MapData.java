@@ -91,4 +91,9 @@ public interface MapData {
 	 * @return The number of loaded chunks
 	 */
 	public int loadChunks();
+	
+	/**
+	 * trys to add pitch and yaw to the locs
+	 */
+	void smothLocs();
 }

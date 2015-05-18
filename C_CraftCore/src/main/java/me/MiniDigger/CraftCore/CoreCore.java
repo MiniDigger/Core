@@ -61,9 +61,11 @@ import me.MiniDigger.Core.Util.CommonMethods;
 import me.MiniDigger.Core.Util.DeZipUtil;
 import me.MiniDigger.Core.Util.EntityUtil;
 import me.MiniDigger.Core.Util.EnumUtil;
+import me.MiniDigger.Core.Util.FaceUtil;
 import me.MiniDigger.Core.Util.FileUtil;
 import me.MiniDigger.Core.Util.ItemUtil;
 import me.MiniDigger.Core.Util.LocationUtil;
+import me.MiniDigger.Core.Util.MathUtil;
 import me.MiniDigger.Core.Util.PlayerUtil;
 import me.MiniDigger.Core.Util.RandomUtil;
 import me.MiniDigger.Core.Util.ReflectionUtil;
@@ -112,9 +114,11 @@ import me.MiniDigger.CraftCore.Util.CoreCommonMethods;
 import me.MiniDigger.CraftCore.Util.CoreDeZipUtil;
 import me.MiniDigger.CraftCore.Util.CoreEntityUtil;
 import me.MiniDigger.CraftCore.Util.CoreEnumUtil;
+import me.MiniDigger.CraftCore.Util.CoreFaceUtil;
 import me.MiniDigger.CraftCore.Util.CoreFileUtil;
 import me.MiniDigger.CraftCore.Util.CoreItemUtil;
 import me.MiniDigger.CraftCore.Util.CoreLocationUtil;
+import me.MiniDigger.CraftCore.Util.CoreMathUtil;
 import me.MiniDigger.CraftCore.Util.CorePlayerUtil;
 import me.MiniDigger.CraftCore.Util.CoreRandomUtil;
 import me.MiniDigger.CraftCore.Util.CoreReflectionUtil;
@@ -181,6 +185,8 @@ public class CoreCore extends Core {
 	private BaseUtil	       baseUtil;
 	private EnumUtil	       enumUtil;
 	private ItemUtil	       itemUtil;
+	private FaceUtil	       faceUtil;
+	private MathUtil	       mathUtil;
 	
 	public CoreCore(final Main instance) {
 		super();
@@ -592,6 +598,22 @@ public class CoreCore extends Core {
 	}
 	
 	@Override
+	public MathUtil getMathUtil() {
+		if (mathUtil == null) {
+			mathUtil = new CoreMathUtil();
+		}
+		return mathUtil;
+	}
+	
+	@Override
+	public FaceUtil getFaceUtil() {
+		if (faceUtil == null) {
+			faceUtil = new CoreFaceUtil();
+		}
+		return faceUtil;
+	}
+	
+	@Override
 	public ItemUtil getItemUtil() {
 		if (itemUtil == null) {
 			itemUtil = new CoreItemUtil();
@@ -604,4 +626,5 @@ public class CoreCore extends Core {
 	public void setCommandHandler(final CommandHandler c) {
 		commandHandler = c;
 	}
+	
 }

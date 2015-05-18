@@ -83,6 +83,7 @@ public class MapFeature extends CoreFeature {
 	public void start() {
 		if (map != null) {
 			map.clearLocs();
+			map.smothLocs();
 		}
 	}
 	

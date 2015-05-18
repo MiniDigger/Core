@@ -32,7 +32,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.Sign;
+import org.bukkit.material.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.Wool;
@@ -96,6 +96,29 @@ public class CoreMapData implements MapData {
 			config.save(file);
 		} catch (final IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void smothLocs() {
+		@SuppressWarnings("unchecked") HashMap<DyeColor, HashMap<String, Location>> locs = (HashMap<DyeColor, HashMap<String, Location>>) this.locs.clone();
+		for (final DyeColor type : locs.keySet()) {
+			HashMap<String, Location> m = this.locs.remove(type);
+			HashMap<String, Location> n = new HashMap<String, Location>();
+			
+			for (String key : m.keySet()) {
+				Location loc = m.get(key);
+				
+				if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
+					final org.bukkit.block.Sign sign = (org.bukkit.block.Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
+					final Sign s = (Sign) sign.getData();
+					loc.setYaw(Core.getCore().getFaceUtil().faceToYaw(s.getFacing()));
+				}
+				
+				n.put(key, loc);
+			}
+			
+			this.locs.put(type, n);
 		}
 	}
 	
@@ -176,7 +199,7 @@ public class CoreMapData implements MapData {
 						}
 						
 						if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
-							final Sign sign = (Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
+							final org.bukkit.block.Sign sign = (org.bukkit.block.Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 							wLocs.put(sign.getLine(0), loc);
 						} else {
 							Integer i = ints.remove(color);
@@ -188,12 +211,8 @@ public class CoreMapData implements MapData {
 							ints.put(color, i);
 						}
 						
-						// TODO Use blockface of sign for pitch and yaw
-						
 						CoreMapData.this.locs.remove(color);
 						CoreMapData.this.locs.put(color, wLocs);
-						// TODO We will need some kind of pitch and ywa
-						// for the spawns
 					}
 				}
 			}
