@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -41,7 +40,6 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.MsgType;
-import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
@@ -208,8 +206,11 @@ public class CoreGame implements Game {
 	
 	@Override
 	public void end(final User... winner) {
-		final MapData lobby = Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
-		final Location loc = lobby.getLocs(DyeColor.RED).values().iterator().next();
+		// final MapData lobby =
+		// Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
+		// final Location loc =
+		// lobby.getLocs(DyeColor.RED).values().iterator().next();
+		final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 		for (final User w : winner) {
 			if (w != null) {
 				w.getPlayer().teleport(loc);
@@ -233,6 +234,17 @@ public class CoreGame implements Game {
 				
 				for (final UUID w : users) {
 					final Player p = Bukkit.getPlayer(w);
+					p.getInventory().clear();
+					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+						p.teleport(loc);
+						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
+							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
+						}
+					}
+				}
+				
+				for (final User w : winner) {
+					final Player p = w.getPlayer();
 					p.getInventory().clear();
 					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 						p.teleport(loc);
@@ -284,6 +296,18 @@ public class CoreGame implements Game {
 							}
 							Core.getCore().getPlayerUtil().prepare(p);
 						}
+					}
+					for (final User w : winner) {
+						try {
+							final Player p = w.getPlayer();
+							p.getInventory().clear();
+							if (p != null) {
+								if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+									p.teleport(loc);
+								}
+								Core.getCore().getPlayerUtil().prepare(p);
+							}
+						} catch (Exception ex) {}
 					}
 				}
 			}.runTaskLater(Core.getCore().getInstance(), 10 * 60 * 20);// After
