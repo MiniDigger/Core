@@ -34,6 +34,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.BlockIterator;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Util.PlayerUtil;
 
 public class CorePlayerUtil implements PlayerUtil {
@@ -112,6 +113,7 @@ public class CorePlayerUtil implements PlayerUtil {
 		for (final PotionEffect e : p.getActivePotionEffects()) {
 			p.removePotionEffect(e.getType());
 		}
+		Core.getCore().getScoreboardHandler().getBoard(p.getUniqueId()).clear();
 		p.getActivePotionEffects().clear();
 		p.setExp(0);
 		p.setLevel(0);
