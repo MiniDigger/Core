@@ -27,9 +27,11 @@ import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -110,6 +112,19 @@ public class HubFeature extends CoreFeature {
 			Core.getCore().getMenuHandler().openMenu(e.getUser(), "Hub");
 			e.getUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
 			
+		}
+	}
+	
+	@EventHandler
+	public void onGameModeChange(final PlayerGameModeChangeEvent e) {
+		final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+		if (getPhase().getGame().getPlayers().contains(u.getUUID())) {
+			if (e.getNewGameMode() == GameMode.SURVIVAL) {
+				Core.getCore().getMenuHandler().openMenu(u, "Hub");
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
+			} else {
+				Core.getCore().getMenuHandler().closeMenu(u);
+			}
 		}
 	}
 	
