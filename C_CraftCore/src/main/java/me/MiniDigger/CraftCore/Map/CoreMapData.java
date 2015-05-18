@@ -112,11 +112,6 @@ public class CoreMapData implements MapData {
 				if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof org.bukkit.block.Sign) {
 					final org.bukkit.block.Sign sign = (org.bukkit.block.Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 					final Sign s = (Sign) sign.getData();
-					System.out.println("FACE: " + s.getFacing().name());
-					System.out.println("YAW: " + Core.getCore().getFaceUtil().faceToYaw(s.getFacing()));
-					System.out.println("OPPOSIT: " + s.getFacing().getOppositeFace().name());
-					System.out.println("YAW: " + Core.getCore().getFaceUtil().faceToYaw(s.getFacing().getOppositeFace()));
-					
 					loc.setYaw(Core.getCore().getFaceUtil().faceToYaw(s.getFacing().getOppositeFace()));
 				}
 				
