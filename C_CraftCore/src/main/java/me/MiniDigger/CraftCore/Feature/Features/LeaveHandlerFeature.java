@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
@@ -54,6 +55,10 @@ public class LeaveHandlerFeature extends CoreFeature {
 			getPhase().getGame().broadCastMessage(
 			        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler " + e.getUser().getDisplayName() + " hat das Spiel verlassen!"));
 			if (getPhase().getGame().getPlayers().size() <= 2) {
+				if (getPhase().getGame().getType() == GameType.LOBBY) {
+					return;
+				}
+				
 				User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
 				if (u.getUUID() == e.getUser().getUUID()) {
 					u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(1));
