@@ -331,11 +331,11 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
-				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
-				} catch (final Exception ex) {
-					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
-				}
+				// try {
+				// u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
+				// } catch (final Exception ex) {
+				Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				// }
 				
 			}
 		});
@@ -354,22 +354,8 @@ public class HubFeature extends CoreFeature {
 			}
 		});
 		
-		tp2.setIcon(3, new CoreItemBuilder(Material.STAINED_CLAY).name("BuildMyThing").build());
+		tp2.setIcon(3, new CoreItemBuilder(Material.BED).name("BedWars").build());
 		tp2.setAction(3, new ClickHandler() {
-			
-			@Override
-			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
-				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BMT"));
-				} catch (final Exception ex) {
-					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
-				}
-				
-			}
-		});
-		
-		tp2.setIcon(4, new CoreItemBuilder(Material.BED).name("BedWars").build());
-		tp2.setAction(4, new ClickHandler() {
 			
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u) {

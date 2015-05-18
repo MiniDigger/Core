@@ -13,8 +13,8 @@ import me.MiniDigger.Core.Util.FaceUtil;
 public class CoreFaceUtil implements FaceUtil {
 	
 	public final BlockFace[]	              AXIS	        = new BlockFace[4];
-	public final BlockFace[]	              RADIAL	    = { BlockFace.WEST, BlockFace.NORTH_WEST, BlockFace.NORTH, BlockFace.NORTH_EAST, BlockFace.EAST,
-	        BlockFace.SOUTH_EAST, BlockFace.SOUTH, BlockFace.SOUTH_WEST };
+	public final BlockFace[]	              RADIAL	    = { BlockFace.SOUTH, BlockFace.SOUTH_WEST, BlockFace.WEST, BlockFace.NORTH_WEST, BlockFace.NORTH,
+	        BlockFace.NORTH_EAST, BlockFace.EAST, BlockFace.SOUTH_EAST };
 	public final BlockFace[]	              BLOCK_SIDES	= { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST, BlockFace.UP, BlockFace.DOWN };
 	public final BlockFace[]	              ATTACHEDFACES	= { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST, BlockFace.UP };
 	private final EnumMap<BlockFace, Integer>	notches	    = new EnumMap<BlockFace, Integer>(BlockFace.class);

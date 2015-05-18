@@ -101,6 +101,7 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public void smothLocs() {
+		System.out.println("lets smoth the shit out of the map!");
 		@SuppressWarnings("unchecked") HashMap<DyeColor, HashMap<String, Location>> locs = (HashMap<DyeColor, HashMap<String, Location>>) this.locs.clone();
 		for (final DyeColor type : locs.keySet()) {
 			HashMap<String, Location> m = this.locs.remove(type);
@@ -108,11 +109,15 @@ public class CoreMapData implements MapData {
 			
 			for (String key : m.keySet()) {
 				Location loc = m.get(key);
-				
-				if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
+				if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof org.bukkit.block.Sign) {
 					final org.bukkit.block.Sign sign = (org.bukkit.block.Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 					final Sign s = (Sign) sign.getData();
-					loc.setYaw(Core.getCore().getFaceUtil().faceToYaw(s.getFacing()));
+					System.out.println("FACE: " + s.getFacing().name());
+					System.out.println("YAW: " + Core.getCore().getFaceUtil().faceToYaw(s.getFacing()));
+					System.out.println("OPPOSIT: " + s.getFacing().getOppositeFace().name());
+					System.out.println("YAW: " + Core.getCore().getFaceUtil().faceToYaw(s.getFacing().getOppositeFace()));
+					
+					loc.setYaw(Core.getCore().getFaceUtil().faceToYaw(s.getFacing().getOppositeFace()));
 				}
 				
 				n.put(key, loc);
