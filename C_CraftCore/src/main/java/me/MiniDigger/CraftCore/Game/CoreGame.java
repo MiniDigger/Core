@@ -307,7 +307,7 @@ public class CoreGame implements Game {
 								}
 								Core.getCore().getPlayerUtil().prepare(p);
 							}
-						} catch (Exception ex) {}
+						} catch (final Exception ex) {}
 					}
 				}
 			}.runTaskLater(Core.getCore().getInstance(), 10 * 60 * 20);// After

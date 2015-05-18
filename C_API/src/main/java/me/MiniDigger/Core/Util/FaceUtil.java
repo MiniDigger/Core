@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.Core.Util;
 
 import org.bukkit.Location;
@@ -15,7 +35,7 @@ public interface FaceUtil {
 	 *            to get
 	 * @return Notch of the face
 	 */
-	int faceToNotch(BlockFace face);
+	int faceToNotch(final BlockFace face);
 	
 	/**
 	 * Checks whether a given face is an offset along the X-axis
@@ -24,7 +44,7 @@ public interface FaceUtil {
 	 *            to check
 	 * @return True if it is along the X-axis, False if not
 	 */
-	boolean isAlongX(BlockFace face);
+	boolean isAlongX(final BlockFace face);
 	
 	/**
 	 * Checks whether a given face is an offset along the Y-axis
@@ -33,7 +53,7 @@ public interface FaceUtil {
 	 *            to check
 	 * @return True if it is along the Y-axis, False if not
 	 */
-	boolean isAlongY(BlockFace face);
+	boolean isAlongY(final BlockFace face);
 	
 	/**
 	 * Checks whether a given face is an offset along the Z-axis
@@ -42,7 +62,7 @@ public interface FaceUtil {
 	 *            to check
 	 * @return True if it is along the Z-axis, False if not
 	 */
-	boolean isAlongZ(BlockFace face);
+	boolean isAlongZ(final BlockFace face);
 	
 	/**
 	 * Gets the Block Face at the notch index specified<br>
@@ -52,7 +72,7 @@ public interface FaceUtil {
 	 *            to get
 	 * @return BlockFace of the notch
 	 */
-	BlockFace notchToFace(int notch);
+	BlockFace notchToFace(final int notch);
 	
 	/**
 	 * Rotates a given Block Face horizontally
@@ -63,7 +83,7 @@ public interface FaceUtil {
 	 *            to rotate at
 	 * @return rotated face
 	 */
-	BlockFace rotate(BlockFace from, int notchCount);
+	BlockFace rotate(final BlockFace from, final int notchCount);
 	
 	/**
 	 * Combines two non-subcardinal faces into one face<br>
@@ -76,7 +96,7 @@ public interface FaceUtil {
 	 *            face to combined
 	 * @return the combined face
 	 */
-	BlockFace combine(BlockFace from, BlockFace to);
+	BlockFace combine(final BlockFace from, final BlockFace to);
 	
 	/**
 	 * Subtracts two faces
@@ -86,7 +106,7 @@ public interface FaceUtil {
 	 *            to subtract from face1
 	 * @return Block Face result ofthe subtraction
 	 */
-	BlockFace subtract(BlockFace face1, BlockFace face2);
+	BlockFace subtract(final BlockFace face1, final BlockFace face2);
 	
 	/**
 	 * Adds two faces together
@@ -96,7 +116,7 @@ public interface FaceUtil {
 	 *            to add to face1
 	 * @return Block Face result of the addition
 	 */
-	BlockFace add(BlockFace face1, BlockFace face2);
+	BlockFace add(final BlockFace face1, final BlockFace face2);
 	
 	/**
 	 * Gets all the individual faces represented by a Block Face<br>
@@ -107,7 +127,7 @@ public interface FaceUtil {
 	 *            face to get the faces for
 	 * @return an array of length 2 containing all the faces
 	 */
-	BlockFace[] getFaces(BlockFace main);
+	BlockFace[] getFaces(final BlockFace main);
 	
 	/**
 	 * Gets the direction a minecart faces when on a given track
@@ -116,7 +136,7 @@ public interface FaceUtil {
 	 *            of the rails
 	 * @return minecart direction
 	 */
-	BlockFace getRailsCartDirection(BlockFace raildirection);
+	BlockFace getRailsCartDirection(final BlockFace raildirection);
 	
 	/**
 	 * Gets the rail direction from a Direction<br>
@@ -126,7 +146,7 @@ public interface FaceUtil {
 	 *            to convert
 	 * @return rail direction
 	 */
-	BlockFace toRailsDirection(BlockFace direction);
+	BlockFace toRailsDirection(final BlockFace direction);
 	
 	/**
 	 * Gets whether a given Block Face is sub-cardinal (such as NORTH_WEST)
@@ -135,7 +155,7 @@ public interface FaceUtil {
 	 *            to check
 	 * @return True if sub-cardinal, False if not
 	 */
-	boolean isSubCardinal(BlockFace face);
+	boolean isSubCardinal(final BlockFace face);
 	
 	/**
 	 * Checks whether a face is up or down
@@ -144,7 +164,7 @@ public interface FaceUtil {
 	 *            to check
 	 * @return True if it is UP or DOWN
 	 */
-	boolean isVertical(BlockFace face);
+	boolean isVertical(final BlockFace face);
 	
 	/**
 	 * Gets the BlockFace.UP or BlockFace.DOWN constant based on the up
@@ -154,7 +174,7 @@ public interface FaceUtil {
 	 *            parameter
 	 * @return UP if up is true, DOWN if up is false
 	 */
-	BlockFace getVertical(boolean up);
+	BlockFace getVertical(final boolean up);
 	
 	/**
 	 * Gets the BlockFace.UP or BlockFace.DOWN based on the delta-y parameter
@@ -163,7 +183,7 @@ public interface FaceUtil {
 	 *            parameter
 	 * @return UP if dy >= 0, DOWN if dy < 0
 	 */
-	BlockFace getVertical(double dy);
+	BlockFace getVertical(final double dy);
 	
 	/**
 	 * Gets whether two faces have a sub-cardinal difference or less
@@ -174,7 +194,7 @@ public interface FaceUtil {
 	 *            to check
 	 * @return True if the difference <= 45 degrees
 	 */
-	boolean hasSubDifference(BlockFace face1, BlockFace face2);
+	boolean hasSubDifference(final BlockFace face1, final BlockFace face2);
 	
 	/**
 	 * Gets the Vector direction from a Block Face
@@ -185,7 +205,7 @@ public interface FaceUtil {
 	 *            of the vector
 	 * @return Vector of the direction and length
 	 */
-	Vector faceToVector(BlockFace face, double length);
+	Vector faceToVector(final BlockFace face, final double length);
 	
 	/**
 	 * Gets the Vector direction from a Block Face
@@ -194,7 +214,7 @@ public interface FaceUtil {
 	 *            to use
 	 * @return Vector of the direction and length 1
 	 */
-	Vector faceToVector(BlockFace face);
+	Vector faceToVector(final BlockFace face);
 	
 	/**
 	 * Gets the Block Face direction to go from one point to another
@@ -207,7 +227,7 @@ public interface FaceUtil {
 	 *            setting
 	 * @return the Block Face of the direction
 	 */
-	BlockFace getDirection(Location from, Location to, boolean useSubCardinalDirections);
+	BlockFace getDirection(final Location from, final Location to, final boolean useSubCardinalDirections);
 	
 	/**
 	 * Gets the Block Face direction to go from one block to another
@@ -220,7 +240,7 @@ public interface FaceUtil {
 	 *            setting
 	 * @return the Block Face of the direction
 	 */
-	BlockFace getDirection(Block from, Block to, boolean useSubCardinalDirections);
+	BlockFace getDirection(final Block from, final Block to, final boolean useSubCardinalDirections);
 	
 	/**
 	 * Gets the Block Face direction to go into the movement vector direction
@@ -229,7 +249,7 @@ public interface FaceUtil {
 	 *            vector
 	 * @return the Block Face of the direction
 	 */
-	BlockFace getDirection(Vector movement);
+	BlockFace getDirection(final Vector movement);
 	
 	/**
 	 * Gets the Block Face direction to go into the movement vector direction
@@ -240,7 +260,7 @@ public interface FaceUtil {
 	 *            setting
 	 * @return the Block Face of the direction
 	 */
-	BlockFace getDirection(Vector movement, boolean useSubCardinalDirections);
+	BlockFace getDirection(final Vector movement, final boolean useSubCardinalDirections);
 	
 	/**
 	 * Gets the Block Face direction to go into the movement vector direction
@@ -253,7 +273,7 @@ public interface FaceUtil {
 	 *            setting
 	 * @return the Block Face of the direction
 	 */
-	BlockFace getDirection(double dx, double dz, boolean useSubCardinalDirections);
+	BlockFace getDirection(final double dx, final double dz, final boolean useSubCardinalDirections);
 	
 	/**
 	 * Gets the yaw angle in degrees difference between two Block Faces
@@ -262,7 +282,7 @@ public interface FaceUtil {
 	 * @param face2
 	 * @return angle in degrees
 	 */
-	int getFaceYawDifference(BlockFace face1, BlockFace face2);
+	int getFaceYawDifference(final BlockFace face1, final BlockFace face2);
 	
 	/**
 	 * Gets the co-sinus value from a Block Face treated as an Angle
@@ -271,7 +291,7 @@ public interface FaceUtil {
 	 *            to get the co-sinus value from
 	 * @return co-sinus value
 	 */
-	double cos(BlockFace face);
+	double cos(final BlockFace face);
 	
 	/**
 	 * Gets the sinus value from a Block Face treated as an Angle
@@ -280,7 +300,7 @@ public interface FaceUtil {
 	 *            to get the sinus value from
 	 * @return sinus value
 	 */
-	double sin(BlockFace face);
+	double sin(final BlockFace face);
 	
 	/**
 	 * Gets the angle from a horizontal Block Face
@@ -289,7 +309,7 @@ public interface FaceUtil {
 	 *            to get the angle for
 	 * @return face angle
 	 */
-	int faceToYaw(BlockFace face);
+	int faceToYaw(final BlockFace face);
 	
 	/**
 	 * Gets the horizontal Block Face from a given yaw angle<br>
@@ -299,7 +319,7 @@ public interface FaceUtil {
 	 *            angle
 	 * @return The Block Face of the angle
 	 */
-	BlockFace yawToFace(float yaw);
+	BlockFace yawToFace(final float yaw);
 	
 	/**
 	 * Gets the horizontal Block Face from a given yaw angle
@@ -310,6 +330,6 @@ public interface FaceUtil {
 	 *            setting, True to allow NORTH_WEST to be returned
 	 * @return The Block Face of the angle
 	 */
-	BlockFace yawToFace(float yaw, boolean useSubCardinalDirections);
+	BlockFace yawToFace(final float yaw, final boolean useSubCardinalDirections);
 	
 }

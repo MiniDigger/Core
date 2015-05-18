@@ -32,9 +32,9 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
-import org.bukkit.material.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.material.Sign;
 import org.bukkit.material.Wool;
 
 import me.MiniDigger.Core.Core;
@@ -102,13 +102,13 @@ public class CoreMapData implements MapData {
 	@Override
 	public void smothLocs() {
 		System.out.println("lets smoth the shit out of the map!");
-		@SuppressWarnings("unchecked") HashMap<DyeColor, HashMap<String, Location>> locs = (HashMap<DyeColor, HashMap<String, Location>>) this.locs.clone();
+		@SuppressWarnings("unchecked") final HashMap<DyeColor, HashMap<String, Location>> locs = (HashMap<DyeColor, HashMap<String, Location>>) this.locs.clone();
 		for (final DyeColor type : locs.keySet()) {
-			HashMap<String, Location> m = this.locs.remove(type);
-			HashMap<String, Location> n = new HashMap<String, Location>();
+			final HashMap<String, Location> m = this.locs.remove(type);
+			final HashMap<String, Location> n = new HashMap<String, Location>();
 			
-			for (String key : m.keySet()) {
-				Location loc = m.get(key);
+			for (final String key : m.keySet()) {
+				final Location loc = m.get(key);
 				if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof org.bukkit.block.Sign) {
 					final org.bukkit.block.Sign sign = (org.bukkit.block.Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 					final Sign s = (Sign) sign.getData();

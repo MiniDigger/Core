@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Util;
 
 import java.util.EnumMap;
@@ -29,38 +49,38 @@ public class CoreFaceUtil implements FaceUtil {
 	}
 	
 	@Override
-	public int faceToNotch(BlockFace face) {
-		Integer notch = notches.get(face);
+	public int faceToNotch(final BlockFace face) {
+		final Integer notch = notches.get(face);
 		return notch == null ? 0 : notch.intValue();
 	}
 	
 	@Override
-	public boolean isAlongX(BlockFace face) {
+	public boolean isAlongX(final BlockFace face) {
 		return face.getModX() != 0 && face.getModZ() == 0;
 	}
 	
 	@Override
-	public boolean isAlongY(BlockFace face) {
+	public boolean isAlongY(final BlockFace face) {
 		return isVertical(face);
 	}
 	
 	@Override
-	public boolean isAlongZ(BlockFace face) {
+	public boolean isAlongZ(final BlockFace face) {
 		return face.getModZ() != 0 && face.getModX() == 0;
 	}
 	
 	@Override
-	public BlockFace notchToFace(int notch) {
+	public BlockFace notchToFace(final int notch) {
 		return RADIAL[notch & 0x7];
 	}
 	
 	@Override
-	public BlockFace rotate(BlockFace from, int notchCount) {
+	public BlockFace rotate(final BlockFace from, final int notchCount) {
 		return notchToFace(faceToNotch(from) + notchCount);
 	}
 	
 	@Override
-	public BlockFace combine(BlockFace from, BlockFace to) {
+	public BlockFace combine(final BlockFace from, final BlockFace to) {
 		if (from == BlockFace.NORTH) {
 			if (to == BlockFace.WEST) {
 				return BlockFace.NORTH_WEST;
@@ -90,17 +110,17 @@ public class CoreFaceUtil implements FaceUtil {
 	}
 	
 	@Override
-	public BlockFace subtract(BlockFace face1, BlockFace face2) {
+	public BlockFace subtract(final BlockFace face1, final BlockFace face2) {
 		return notchToFace(faceToNotch(face1) - faceToNotch(face2));
 	}
 	
 	@Override
-	public BlockFace add(BlockFace face1, BlockFace face2) {
+	public BlockFace add(final BlockFace face1, final BlockFace face2) {
 		return notchToFace(faceToNotch(face1) + faceToNotch(face2));
 	}
 	
 	@Override
-	public BlockFace[] getFaces(BlockFace main) {
+	public BlockFace[] getFaces(final BlockFace main) {
 		switch (main) {
 		case SOUTH_EAST:
 			return new BlockFace[] { BlockFace.SOUTH, BlockFace.EAST };
@@ -130,7 +150,7 @@ public class CoreFaceUtil implements FaceUtil {
 	}
 	
 	@Override
-	public BlockFace toRailsDirection(BlockFace direction) {
+	public BlockFace toRailsDirection(final BlockFace direction) {
 		switch (direction) {
 		case NORTH:
 			return BlockFace.SOUTH;
@@ -155,17 +175,17 @@ public class CoreFaceUtil implements FaceUtil {
 	}
 	
 	@Override
-	public boolean isVertical(BlockFace face) {
+	public boolean isVertical(final BlockFace face) {
 		return face == BlockFace.UP || face == BlockFace.DOWN;
 	}
 	
 	@Override
-	public BlockFace getVertical(boolean up) {
+	public BlockFace getVertical(final boolean up) {
 		return up ? BlockFace.UP : BlockFace.DOWN;
 	}
 	
 	@Override
-	public BlockFace getVertical(double dy) {
+	public BlockFace getVertical(final double dy) {
 		return getVertical(dy >= 0.0);
 	}
 	
@@ -175,42 +195,42 @@ public class CoreFaceUtil implements FaceUtil {
 	}
 	
 	@Override
-	public Vector faceToVector(BlockFace face, double length) {
+	public Vector faceToVector(final BlockFace face, final double length) {
 		return faceToVector(face).multiply(length);
 	}
 	
 	@Override
-	public Vector faceToVector(BlockFace face) {
+	public Vector faceToVector(final BlockFace face) {
 		return new Vector(face.getModX(), face.getModY(), face.getModZ());
 	}
 	
 	@Override
-	public BlockFace getDirection(Location from, Location to, boolean useSubCardinalDirections) {
+	public BlockFace getDirection(final Location from, final Location to, final boolean useSubCardinalDirections) {
 		return getDirection(to.getX() - from.getX(), to.getZ() - from.getZ(), useSubCardinalDirections);
 	}
 	
 	@Override
-	public BlockFace getDirection(Block from, Block to, boolean useSubCardinalDirections) {
+	public BlockFace getDirection(final Block from, final Block to, final boolean useSubCardinalDirections) {
 		return getDirection(to.getX() - from.getX(), to.getZ() - from.getZ(), useSubCardinalDirections);
 	}
 	
 	@Override
-	public BlockFace getDirection(Vector movement) {
+	public BlockFace getDirection(final Vector movement) {
 		return getDirection(movement, true);
 	}
 	
 	@Override
-	public BlockFace getDirection(Vector movement, boolean useSubCardinalDirections) {
+	public BlockFace getDirection(final Vector movement, final boolean useSubCardinalDirections) {
 		return getDirection(movement.getX(), movement.getZ(), useSubCardinalDirections);
 	}
 	
 	@Override
-	public BlockFace getDirection(final double dx, final double dz, boolean useSubCardinalDirections) {
+	public BlockFace getDirection(final double dx, final double dz, final boolean useSubCardinalDirections) {
 		return yawToFace(Core.getCore().getMathUtil().getLookAtYaw(dx, dz), useSubCardinalDirections);
 	}
 	
 	@Override
-	public int getFaceYawDifference(BlockFace face1, BlockFace face2) {
+	public int getFaceYawDifference(final BlockFace face1, final BlockFace face2) {
 		return Core.getCore().getMathUtil().getAngleDifference(faceToYaw(face1), faceToYaw(face2));
 	}
 	
@@ -256,12 +276,12 @@ public class CoreFaceUtil implements FaceUtil {
 	}
 	
 	@Override
-	public BlockFace yawToFace(float yaw) {
+	public BlockFace yawToFace(final float yaw) {
 		return yawToFace(yaw, true);
 	}
 	
 	@Override
-	public BlockFace yawToFace(float yaw, boolean useSubCardinalDirections) {
+	public BlockFace yawToFace(final float yaw, final boolean useSubCardinalDirections) {
 		if (useSubCardinalDirections) {
 			return RADIAL[Math.round(yaw / 45f) & 0x7];
 		} else {

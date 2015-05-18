@@ -489,8 +489,8 @@ public class BedWarsPhase extends CorePhase {
 		super.endPhase();
 		final TeamFeature tf = (TeamFeature) getFeature(FeatureType.TEAM);
 		final List<User> winner = new ArrayList<User>();
-		for (Team t : tf.getTeams()) {
-			for (UUID id : t.getPlayers()) {
+		for (final Team t : tf.getTeams()) {
+			for (final UUID id : t.getPlayers()) {
 				winner.add(Core.getCore().getUserHandler().get(id));
 			}
 		}
