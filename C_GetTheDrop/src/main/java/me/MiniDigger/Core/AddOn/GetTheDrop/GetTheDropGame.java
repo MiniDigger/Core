@@ -74,6 +74,9 @@ public class GetTheDropGame extends CoreGame {
 		((MapFeature) one.getFeature(FeatureType.MAP)).setMap("GTD_Arena");
 		
 		setPhase(lobby);
+		
+		lobby.init();
+		
 		super.init();
 	}
 	
@@ -95,9 +98,7 @@ public class GetTheDropGame extends CoreGame {
 	@Override
 	public void start() {
 		super.start();
-		
-		lobby.init();
-		
+
 		getPhase().startPhase();
 	}
 	
