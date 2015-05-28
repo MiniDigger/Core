@@ -68,7 +68,8 @@ public enum FeatureType {
 	LADDERKING,
 	JOINHANDLER,
 	LEAVEHANDLER,
-	PREMIUMLAUNCH;
+	PREMIUMLAUNCH,
+	SUV;
 	
 	/**
 	 * @return A human readable name for the feature

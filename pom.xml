@@ -60,6 +60,7 @@
 		<module>C_OneInTheChamber</module>
 		<module>C_GravityGun</module>
 		<module>C_UltraSpleef</module>
+		<module>C_SuchenUndVerstecken</module>
 		<module>C_Build</module>
 	</modules>
 
@@ -90,6 +91,7 @@
 				<module>C_OneInTheChamber</module>
 				<module>C_GravityGun</module>
 				<module>C_UltraSpleef</module>
+				<module>C_SuchenUndVerstecken</module>
 				<module>C_Build</module>
 			</modules>
 		</profile>
