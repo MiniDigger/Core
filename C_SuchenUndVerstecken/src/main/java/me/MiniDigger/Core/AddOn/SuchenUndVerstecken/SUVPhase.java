@@ -17,14 +17,14 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoNameTagFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
-
-public class SUVPhase extends CorePhase{
+public class SUVPhase extends CorePhase {
 	
 	public SUVPhase(final Game game) {
 		super(game, null);
@@ -62,6 +62,7 @@ public class SUVPhase extends CorePhase{
 		addFeature(new NoFallDmgFeature(this));
 		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
+		addFeature(new NoNameTagFeature(this));
 	}
 	
 	@Override
