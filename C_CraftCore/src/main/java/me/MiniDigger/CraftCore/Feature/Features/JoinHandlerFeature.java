@@ -83,7 +83,7 @@ public class JoinHandlerFeature extends CoreFeature {
 				Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
 				((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 			} else {
-				System.out.println("fuck you, you can't join here");
+				System.out.println("fuck you, you can't join here: " + getPhase().getGame().getType().name());
 			}
 		}
 	}

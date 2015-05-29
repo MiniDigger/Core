@@ -223,47 +223,64 @@ public class CoreGame implements Game {
 			public void run() {
 				for (final UUID w : specs) {
 					final Player p = Bukkit.getPlayer(w);
-					final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-					p.getInventory().clear();
-					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-						p.teleport(loc);
+					if (p != null) {
+						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+						p.getInventory().clear();
+						
+						if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+							p.teleport(loc);
+						}
 						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
 						}
+						
+						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+						}
 					}
-					if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-						Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-					}
+					
 				}
 				
 				for (final UUID w : users) {
 					final Player p = Bukkit.getPlayer(w);
-					final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-					p.getInventory().clear();
-					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-						p.teleport(loc);
+					if (p != null) {
+						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+						p.getInventory().clear();
+						
+						if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+							p.teleport(loc);
+						}
+						
 						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
 						}
+						
+						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+						}
 					}
-					if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-						Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-					}
+					
 				}
 				
 				for (final User w : winner) {
 					final Player p = w.getPlayer();
-					final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-					p.getInventory().clear();
-					if (p != null && !p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-						p.teleport(loc);
+					if (p != null) {
+						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+						p.getInventory().clear();
+						
+						if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+							p.teleport(loc);
+						}
+						
 						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
 						}
+						
+						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+						}
 					}
-					if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-						Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-					}
+					
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
@@ -290,47 +307,59 @@ public class CoreGame implements Game {
 					final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 					for (final UUID w : specs) {
 						final Player p = Bukkit.getPlayer(w);
-						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-						p.getInventory().clear();
 						if (p != null) {
+							final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+							
+							p.getInventory().clear();
+							
 							if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 								p.teleport(loc);
 							}
 							Core.getCore().getPlayerUtil().prepare(p);
+							
+							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+							}
 						}
-						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-						}
+						
 					}
 					
 					for (final UUID w : users) {
 						final Player p = Bukkit.getPlayer(w);
-						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-						p.getInventory().clear();
 						if (p != null) {
+							final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+							
+							p.getInventory().clear();
+							
 							if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 								p.teleport(loc);
 							}
 							Core.getCore().getPlayerUtil().prepare(p);
+							
+							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+							}
 						}
-						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-						}
+						
 					}
 					for (final User w : winner) {
 						try {
 							final Player p = w.getPlayer();
-							final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-							p.getInventory().clear();
 							if (p != null) {
+								final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+								
+								p.getInventory().clear();
+								
 								if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 									p.teleport(loc);
 								}
 								Core.getCore().getPlayerUtil().prepare(p);
+								
+								if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+									Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+								}
 							}
-							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-							}
+							
 						} catch (final Exception ex) {}
 					}
 				}
