@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.tools.ant.types.CommandlineJava.SysProperties;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.DyeColor;
@@ -54,10 +56,8 @@ public class CoreWorldHandler implements WorldHandler {
 	public Location getFallbackLoc() {
 		// return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
 		if (Bukkit.getWorld("Spawn") != null) {
-			System.out.println("1");
 			final MapData map = Core.getCore().getMapHandler().getMap("Spawn");
 			if (map != null) {
-				System.out.println("2");
 				return (Location) map.getLocs(DyeColor.RED).values().toArray()[0];
 			}
 		}
@@ -67,51 +67,56 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public void unloadWorld(final String world, final Location fallBackLoc) {
+		System.out.println("unload " + world);
 		final World w = Bukkit.getWorld(world);
 		if (w == null) {
 			return;
 		}
 		
-		w.save();
+		try {
+			w.save();
+		} catch (Exception ex) {
+			System.out.println("No save for you, bitch");
+		}
 		
-		for (final LivingEntity e : w.getLivingEntities()) {
-			if (e.getType() == EntityType.PLAYER) {
-				e.teleport(fallBackLoc);
-			} else {
-				e.remove();
+		try {
+			for (final LivingEntity e : w.getLivingEntities()) {
+				if (e.getType() == EntityType.PLAYER) {
+					e.teleport(fallBackLoc);
+				} else {
+					e.remove();
+				}
 			}
+		} catch (Exception ex) {
+			System.out.println("Ok, you can live some seconds longer...");
 		}
 		
-		for (final Chunk c : w.getLoadedChunks()) {
-			c.unload();
-			w.unloadChunk(c);
+		try {
+			for (final Chunk c : w.getLoadedChunks()) {
+				c.unload();
+				w.unloadChunk(c);
+			}
+		} catch (Exception ex) {
+			System.out.println("I will unload you later...");
 		}
-		
-		Bukkit.unloadWorld(w, true);
+		try {
+			Bukkit.unloadWorld(w, true);
+		} catch (Exception ex) {
+			System.out.println("Will, that sucks");
+		}
+		System.out.println("?");
 	}
 	
 	@Override
 	public World loadWorld(final String name) {
+		System.out.println("load " + name);
 		final WorldCreator wc = WorldCreator.name(name);
 		wc.environment(Environment.NORMAL);
 		wc.generateStructures(false);
 		wc.type(WorldType.FLAT);
 		wc.generator(new CoreCleanroomChunkGenerator("."));
 		
-		final File session = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), name + "/session.lock");
-		session.delete();
-		try {
-			session.createNewFile();
-			final DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(session));
-			
-			try {
-				dataoutputstream.writeLong(System.currentTimeMillis());
-			} finally {
-				dataoutputstream.close();
-			}
-		} catch (final IOException ioexception) {
-			Core.getCore().getInstance().error("ERROR: " + ioexception.getMessage());
-		}
+		fixSession(new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), name));
 		
 		final World w = new CoreWorldLoader().loadWorld(wc);
 		w.setAutoSave(false);
@@ -135,6 +140,8 @@ public class CoreWorldHandler implements WorldHandler {
 			return;
 		}
 		
+		System.out.println("delete " + name);
+		
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
 		final File oldMap = new File(out, name);
 		
@@ -143,13 +150,47 @@ public class CoreWorldHandler implements WorldHandler {
 		}
 		
 		if (oldMap.exists() && oldMap.isDirectory()) {
-			_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD);
-			Core.getCore().getFileUtil().deleteDirectory(oldMap);
+			try {
+				_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+				Core.getCore().getFileUtil().deleteDirectory(oldMap);
+			} catch (Exception ex) {
+				System.out.println("err");
+				fixSession(oldMap);
+				try {
+					_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+					Core.getCore().getFileUtil().deleteDirectory(oldMap);
+				} catch (Exception exs) {
+					System.out.println("err124");
+				}
+			}
 		}
+	}
+	
+	private void fixSession(File oldMap) {
+		System.out.println("fix session");
+		final File session = new File(oldMap, "session.lock");
+		session.delete();
+		System.out.println("deleted " + session.getAbsolutePath());
+		// try {
+		// session.createNewFile();
+		// final DataOutputStream dataoutputstream = new DataOutputStream(new
+		// FileOutputStream(session));
+		//
+		// try {
+		// dataoutputstream.writeLong(System.currentTimeMillis());
+		// } finally {
+		// dataoutputstream.close();
+		// }
+		// } catch (final IOException ioexception) {
+		// _.log(LogLevel.ERROR, LangKeyType.Main.ERROR,
+		// ioexception.getMessage());
+		// _.stacktrace(LogLevel.DEBUG, ioexception);
+		// }
 	}
 	
 	@Override
 	public void copyWorld(final String name) {
+		System.out.println("copy " + name);
 		final File mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		File map = new File(mapFolder, name + ".zip");
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
@@ -161,21 +202,7 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		Core.getCore().getDeZipUtil().extract(new File(map.getAbsolutePath()), out);
 		
-		final File session = new File(oldMap, "session.lock");
-		session.delete();
-		try {
-			session.createNewFile();
-			final DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(session));
-			
-			try {
-				dataoutputstream.writeLong(System.currentTimeMillis());
-			} finally {
-				dataoutputstream.close();
-			}
-		} catch (final IOException ioexception) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ioexception.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ioexception);
-		}
+		fixSession(oldMap);
 		
 		map = new File(Bukkit.getWorldContainer(), name);
 		final File mapDataFile = new File(map, "map.yml");

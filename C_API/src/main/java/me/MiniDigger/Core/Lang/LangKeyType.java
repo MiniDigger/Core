@@ -410,7 +410,7 @@ public class LangKeyType {
 		public static final LangKeyType	CHUNKS_LOADED		= new LangKeyType("chunks_loaded", type, "`%0%` chunks loaded!");
 		public static final LangKeyType	CONVERTING		 = new LangKeyType("converting", type, "Converting world `%0%`...");
 		public static final LangKeyType	CREATED		     = new LangKeyType("created", type, "Created world with dimension `%0%`");
-		public static final LangKeyType	DELETE_OLD		 = new LangKeyType("delete_old", type, "Old map found, deleting...");
+		public static final LangKeyType	DELETE_OLD		 = new LangKeyType("delete_old", type, "Old map found, deleting... (`%0%`)");
 		public static final LangKeyType	FILE_ERROR		 = new LangKeyType("file_error", type, "File exists with the name `%0%` and isn't a folder");
 		public static final LangKeyType	LOADING_CHUNKS		= new LangKeyType("loading_chunks", type, "Loading Chunks...");
 		public static final LangKeyType	LOADING_WORLD		= new LangKeyType("loading_world", type, "Loading world `%0%`...");

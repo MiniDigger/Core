@@ -93,12 +93,16 @@ public class DropFeature extends CoreFeature {
 	public void drop(final boolean special) {
 		if (special) {
 			for (final Location loc : this.special) {
-				loc.getWorld().dropItem(loc, getSpecialItem());
+				if (loc.getWorld() != null) {
+					loc.getWorld().dropItem(loc, getSpecialItem());
+				}
 			}
 		} else {
 			for (int i = 0; i < getPhase().getGame().getPlayers().size(); i++) {
 				final Location loc = normal[Core.getCore().getRandomUtil().nextInt(normal.length)];
-				loc.getWorld().dropItemNaturally(loc, getNormalItem());
+				if (loc.getWorld() != null) {
+					loc.getWorld().dropItemNaturally(loc, getNormalItem());
+				}
 			}
 		}
 		
