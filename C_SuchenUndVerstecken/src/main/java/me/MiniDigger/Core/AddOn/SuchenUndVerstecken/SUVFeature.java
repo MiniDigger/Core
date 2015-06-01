@@ -59,7 +59,7 @@ public class SUVFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+		showLives();
 	}
 	
 	@Override
@@ -190,5 +190,13 @@ public class SUVFeature extends CoreFeature {
 			check(null, e.getUser().getUUID(), true);
 			checkEnd();
 		}
+	}
+	
+	public void setSucher1(UUID id) {
+		this.sucher1 = id;
+	}
+	
+	public void setSucher2(UUID id) {
+		this.sucher2 = id;
 	}
 }

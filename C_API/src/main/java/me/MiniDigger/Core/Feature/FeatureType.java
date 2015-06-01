@@ -69,7 +69,8 @@ public enum FeatureType {
 	JOINHANDLER,
 	LEAVEHANDLER,
 	PREMIUMLAUNCH,
-	SUV;
+	SUV,
+	SUVSELECT;
 	
 	/**
 	 * @return A human readable name for the feature
