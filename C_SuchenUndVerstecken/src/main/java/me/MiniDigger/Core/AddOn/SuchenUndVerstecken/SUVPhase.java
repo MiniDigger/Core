@@ -22,6 +22,7 @@ import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class SUVPhase extends CorePhase {
@@ -63,6 +64,7 @@ public class SUVPhase extends CorePhase {
 		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
 		addFeature(new NoNameTagFeature(this));
+		addFeature(new TeamFeature(this, 20, 2));
 	}
 	
 	@Override

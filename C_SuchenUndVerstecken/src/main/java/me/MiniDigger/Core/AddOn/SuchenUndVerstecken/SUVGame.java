@@ -7,6 +7,7 @@ import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
@@ -39,6 +40,9 @@ public class SUVGame extends CoreGame {
 		suv = new SUVPhase(this);
 		post = new PostPhase(this, 10);
 		
+		vote.addFeature(new TeamSelectFeature(vote, suv, 20, 2));
+		vote.addFeature(new SUVSelectFeature(vote));
+		
 		grace.setNextPhase(suv);
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
@@ -47,7 +51,7 @@ public class SUVGame extends CoreGame {
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
-		
+			
 		setPhase(lobby);
 		super.init();
 	}
