@@ -159,6 +159,8 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		sizes = calcSizes();
 		
+		next.init();
+		
 		((TeamFeature) next.getFeature(FeatureType.TEAM)).setTeams(teams);
 	}
 	

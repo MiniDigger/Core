@@ -70,6 +70,8 @@ public class BedWarsGame extends CoreGame {
 		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
 		
 		setPhase(lobby);
+		
+		super.init();
 	}
 	
 	@Override
