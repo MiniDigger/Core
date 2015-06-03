@@ -89,7 +89,10 @@ public class TeamArmorFeature extends CoreFeature {
 				leg.setItemMeta(meta);
 				feet.setItemMeta(meta);
 				
-				p.getInventory().addItem(head, body, leg, feet);
+				p.getInventory().setHelmet(head);
+				p.getInventory().setChestplate(body);
+				p.getInventory().setLeggings(leg);
+				p.getInventory().setBoots(feet);
 			}
 		}
 	}
