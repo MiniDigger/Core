@@ -65,6 +65,7 @@ import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnerFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnersFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamArmorFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamSpawnFeature;
@@ -115,7 +116,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new SpecateFeature(this));
 		addFeature(new BuildFeature(this, (Material) null));
 		addFeature(new SpawnersFeature(this));
-		addFeature(new TeamArmorFeature(this));
+		addFeature(new TeamArmorFeature(this, false));
 		
 		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 		

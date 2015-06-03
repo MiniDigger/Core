@@ -18,16 +18,19 @@
  * Proprietary and confidential
  * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
  */
-package me.MiniDigger.Core.AddOn.BedWars;
+package me.MiniDigger.CraftCore.Feature.Features;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import me.MiniDigger.Core.Core;
@@ -37,12 +40,14 @@ import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 
 public class TeamArmorFeature extends CoreFeature {
 	
-	public TeamArmorFeature(final Phase phase) {
+	private boolean	giveOnStartUp;
+	
+	public TeamArmorFeature(final Phase phase, boolean giveOnStartup) {
 		super(phase);
+		this.giveOnStartUp = giveOnStartup;
 	}
 	
 	@Override
@@ -67,6 +72,26 @@ public class TeamArmorFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
+		if (giveOnStartUp) {
+			for (UUID id : getPhase().getGame().getPlayers()) {
+				Player p = Bukkit.getPlayer(id);
+				ItemStack head = new ItemStack(Material.LEATHER_HELMET);
+				ItemStack body = new ItemStack(Material.LEATHER_CHESTPLATE);
+				ItemStack leg = new ItemStack(Material.LEATHER_LEGGINGS);
+				ItemStack feet = new ItemStack(Material.LEATHER_BOOTS);
+				
+				LeatherArmorMeta meta = (LeatherArmorMeta) head.getItemMeta();
+				TeamFeature f = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+				meta.setColor(Core.getCore().getChatColorUtil().toColor(f.getTeam(p).getColor()));
+				
+				head.setItemMeta(meta);
+				body.setItemMeta(meta);
+				leg.setItemMeta(meta);
+				feet.setItemMeta(meta);
+				
+				p.getInventory().addItem(head, body, leg, feet);
+			}
+		}
 	}
 	
 	@Override
