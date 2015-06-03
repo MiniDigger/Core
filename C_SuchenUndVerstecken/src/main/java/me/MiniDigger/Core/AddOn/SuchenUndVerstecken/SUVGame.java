@@ -25,7 +25,7 @@ public class SUVGame extends CoreGame {
 	
 	@Override
 	public GameType getType() {
-		return GameType.OITC;
+		return GameType.SUV;
 	}
 	
 	@Override
