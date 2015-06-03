@@ -29,7 +29,7 @@ public enum GameType {
 	BEDWARS("BedWars", "BW", null, "bedwars"),
 	CRANK("Crank", "Crank", null, "crank"),
 	OITC("OneInTheChamber", "OITC", null, "oitc"),
-	ULTRASPLEEF("UltraSpleef", "US", null, "ultraspleef"),
+	ULTRASPLEEF("Gravity King", "GK", null, "ultraspleef"),
 	SUV("SuchenUndVerstecken", "SUV", null, "suv");
 	
 	private String	    name;

@@ -54,7 +54,7 @@ public class UltraSpleefPhase extends CorePhase {
 	
 	@Override
 	public String getName() {
-		return "UltraSpleef";
+		return "GravityKing";
 	}
 	
 	@Override
