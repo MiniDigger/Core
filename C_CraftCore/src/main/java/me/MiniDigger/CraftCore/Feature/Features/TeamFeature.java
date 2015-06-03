@@ -20,6 +20,7 @@
  */
 package me.MiniDigger.CraftCore.Feature.Features;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,8 +37,15 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 
 public class TeamFeature extends TeamSelectFeature {
 	
+	private List<UUID>	exceptions	= new ArrayList<UUID>();
+	
 	public TeamFeature(final Phase p, final int teamSize, final int teamCount) {
 		super(p, null, teamCount, teamCount);
+	}
+	
+	public TeamFeature(final Phase p, final int teamSize, final int teamCount, List<UUID> exceptions) {
+		super(p, null, teamCount, teamCount);
+		this.exceptions = exceptions;
 	}
 	
 	@Override
@@ -48,6 +56,9 @@ public class TeamFeature extends TeamSelectFeature {
 	@Override
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
+			if (exceptions.contains(id)) {
+				continue;
+			}
 			Core.getCore().getScoreboardHandler().getTeam(Bukkit.getPlayer(id).getName()).setPrefix(getTeam(Bukkit.getPlayer(id)).getColor() + "");
 		}
 		Core.getCore().getScoreboardHandler().updateAll();
@@ -80,5 +91,9 @@ public class TeamFeature extends TeamSelectFeature {
 	
 	public void setTeams(final List<Team> teams) {
 		this.teams = teams;
+	}
+	
+	public void setExceptions(List<UUID> exceptions2) {
+		this.exceptions = exceptions2;
 	}
 }

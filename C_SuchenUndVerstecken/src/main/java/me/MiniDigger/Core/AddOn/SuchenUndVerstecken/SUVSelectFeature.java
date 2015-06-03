@@ -15,6 +15,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 
 public class SUVSelectFeature extends CoreFeature {
 	
@@ -56,6 +57,10 @@ public class SUVSelectFeature extends CoreFeature {
 			SUVFeature f = (SUVFeature) getPhase().getNextPhase().getFeature(FeatureType.SUV);
 			f.setSucher1(sucher1);
 			f.setSucher2(sucher2);
+			
+			TeamSelectFeature tf = (TeamSelectFeature) getPhase().getFeature(FeatureType.TEAM_SELECT);
+			tf.addException(sucher1);
+			tf.addException(sucher2);
 		} catch (Exception ex) {
 			System.out.println("Couldn't search for searchers....");
 		}

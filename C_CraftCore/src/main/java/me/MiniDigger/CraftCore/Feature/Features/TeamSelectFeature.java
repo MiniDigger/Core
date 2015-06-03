@@ -31,6 +31,7 @@ import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
@@ -45,12 +46,22 @@ public class TeamSelectFeature extends CoreFeature {
 	protected int	     teamSize;
 	protected int	     teamCount;
 	protected Phase	     next;
+	private List<UUID>	 exceptions	= new ArrayList<UUID>();
 	
 	public TeamSelectFeature(final Phase p, final Phase next, final int teamSize, final int teamCount) {
 		super(p);
 		this.teamSize = teamSize;
 		this.teamCount = teamCount;
 		this.next = next;
+	}
+	
+	public TeamSelectFeature(final Phase p, final Phase next, final int teamSize, final int teamCount, final List<UUID> exceptions) {
+		this(p, next, teamSize, teamCount);
+		this.exceptions = exceptions;
+	}
+	
+	public void addException(final UUID id) {
+		exceptions.add(id);
 	}
 	
 	public int getTeamSize() {
@@ -149,6 +160,9 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			if (getTeam(Core.getCore().getUserHandler().get(id)) == null) {
+				if (exceptions.contains(id)) {
+					continue;
+				}
 				final Team t = getTeam(findSmallest(sizes));
 				t.join(id);
 				sizes = calcSizes();
@@ -159,9 +173,24 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		sizes = calcSizes();
 		
+		if (getPhase().getGame().getType() == GameType.SUV) {
+			if (exceptions.size() == 1) {
+				teams.clear();
+				User u = Core.getCore().getUserHandler().get(exceptions.get(0));
+				Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());
+				for (final UUID id : getPhase().getGame().getPlayers()) {
+					if (exceptions.contains(id)) {
+						continue;
+					}
+					t.join(id);
+				}
+			}
+		}
+		
 		next.init();
 		
 		((TeamFeature) next.getFeature(FeatureType.TEAM)).setTeams(teams);
+		((TeamFeature) next.getFeature(FeatureType.TEAM)).setExceptions(exceptions);
 	}
 	
 	public HashMap<String, Integer> calcSizes() {
