@@ -22,7 +22,7 @@ public class SUVAddOn extends CoreAddOn {
 	
 	@Override
 	public void enable() {
-		GameType.OITC.setClass(SUVGame.class);
+		GameType.SUV.setClass(SUVGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
