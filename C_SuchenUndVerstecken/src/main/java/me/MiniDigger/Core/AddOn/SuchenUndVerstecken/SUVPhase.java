@@ -17,6 +17,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoInventoryInteractionFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoNameTagFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
@@ -66,6 +67,7 @@ public class SUVPhase extends CorePhase {
 		addFeature(new NoNameTagFeature(this));
 		addFeature(new TeamFeature(this, 20, 2));
 		addFeature(new TeamArmorFeature(this, true));
+		addFeature(new NoInventoryInteractionFeature(this));
 	}
 	
 	@Override

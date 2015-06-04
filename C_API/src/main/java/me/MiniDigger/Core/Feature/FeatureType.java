@@ -71,7 +71,8 @@ public enum FeatureType {
 	PREMIUMLAUNCH,
 	SUV,
 	SUVSELECT,
-	BTM;
+	BTM,
+	NOINVENTORYINTERACTION;
 	
 	/**
 	 * @return A human readable name for the feature
