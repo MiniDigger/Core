@@ -30,7 +30,8 @@ public enum GameType {
 	CRANK("Crank", "Crank", null, "crank"),
 	OITC("OneInTheChamber", "OITC", null, "oitc"),
 	ULTRASPLEEF("Gravity King", "GK", null, "ultraspleef"),
-	SUV("SuchenUndVerstecken", "SUV", null, "suv");
+	SUV("SuchenUndVerstecken", "SUV", null, "suv"),
+	BTM("BuildMyThing", "BTM", null, "btm");
 	
 	private String	    name;
 	private String	    abk;

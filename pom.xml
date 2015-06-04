@@ -62,6 +62,7 @@
 		<module>C_UltraSpleef</module>
 		<module>C_SuchenUndVerstecken</module>
 		<module>C_Build</module>
+		<module>C_BuildMyThing</module>
 	</modules>
 
 	<profiles>

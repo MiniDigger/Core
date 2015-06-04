@@ -70,7 +70,8 @@ public enum FeatureType {
 	LEAVEHANDLER,
 	PREMIUMLAUNCH,
 	SUV,
-	SUVSELECT;
+	SUVSELECT,
+	BTM;
 	
 	/**
 	 * @return A human readable name for the feature
