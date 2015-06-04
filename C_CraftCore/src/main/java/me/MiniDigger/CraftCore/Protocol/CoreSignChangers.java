@@ -42,6 +42,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
@@ -66,19 +67,26 @@ public class CoreSignChangers implements SignChangers {
 	@Override
 	public void update(final List<UUID> noUpdates) {
 		for (final Location loc : (ArrayList<Location>) last_seen_signs.clone()) {
-			for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
-				if (e != null && e.getType() == EntityType.PLAYER) {
-					if (loc.getBlock().getState() instanceof Sign) {
-						if (!justJoined.contains(((Player) e).getName())) {
-							if (!noUpdates.contains(((Player) e).getUniqueId())) {
-								sendSignChange((Player) e, (Sign) loc.getBlock().getState());
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					
+					for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
+						if (e != null && e.getType() == EntityType.PLAYER) {
+							if (loc.getBlock().getState() instanceof Sign) {
+								if (!justJoined.contains(((Player) e).getName())) {
+									if (!noUpdates.contains(((Player) e).getUniqueId())) {
+										sendSignChange((Player) e, (Sign) loc.getBlock().getState());
+									}
+								} else {
+									justJoined.remove(((Player) e).getName());
+								}
 							}
-						} else {
-							justJoined.remove(((Player) e).getName());
 						}
 					}
 				}
-			}
+			}.runTask(Core.getCore().getInstance());
 		}
 	}
 	
