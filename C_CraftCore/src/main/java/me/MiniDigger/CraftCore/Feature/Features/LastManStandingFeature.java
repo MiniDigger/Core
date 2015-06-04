@@ -151,6 +151,7 @@ public class LastManStandingFeature extends CoreFeature {
 				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch ").color(ChatColor.AQUA)
 				                .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
 			}
+			showLives();
 		}
 	}
 	
