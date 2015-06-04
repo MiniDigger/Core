@@ -3,10 +3,7 @@ package me.MiniDigger.Core.AddOn.BuildMyThing;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.AddOn.SuchenUndVerstecken.SUVFeature;
-import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
-import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
@@ -16,16 +13,9 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
-import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
-import me.MiniDigger.CraftCore.Feature.Features.NoNameTagFeature;
-import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
-import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamArmorFeature;
-import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
-import me.MiniDigger.CraftCore.Phase.CorePhase;
 import me.MiniDigger.CraftCore.Phase.CoreRepeatingPhase;
 
 public class BTMPhase extends CoreRepeatingPhase {

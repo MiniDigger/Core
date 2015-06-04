@@ -61,8 +61,8 @@
 		<module>C_GravityGun</module>
 		<module>C_UltraSpleef</module>
 		<module>C_SuchenUndVerstecken</module>
-		<module>C_Build</module>
 		<module>C_BuildMyThing</module>
+		<module>C_Build</module>
 	</modules>
 
 	<profiles>
@@ -93,6 +93,7 @@
 				<module>C_GravityGun</module>
 				<module>C_UltraSpleef</module>
 				<module>C_SuchenUndVerstecken</module>
+				<module>C_BuildMyThing</module>
 				<module>C_Build</module>
 			</modules>
 		</profile>
