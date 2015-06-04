@@ -22,16 +22,14 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class SUVFeature extends CoreFeature {
 	
-	private UUID	   sucher1;
-	private UUID	   sucher2;
-	
-	private List<UUID>	team1	= new ArrayList<UUID>();
-	private List<UUID>	team2	= new ArrayList<UUID>();
+	private UUID	sucher1;
+	private UUID	sucher2;
 	
 	public SUVFeature(Phase phase) {
 		super(phase);
@@ -71,10 +69,16 @@ public class SUVFeature extends CoreFeature {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Noch da", DisplaySlot.SIDEBAR));
 		
-		board.addLine(new CoreScoreboardLine(3, "Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
-		board.addLine(new CoreScoreboardLine(2, team1.size() + " Spieler", DisplaySlot.SIDEBAR));
-		board.addLine(new CoreScoreboardLine(1, "Team " + Core.getCore().getUserHandler().get(sucher2).getDisplayName(), DisplaySlot.SIDEBAR));
-		board.addLine(new CoreScoreboardLine(0, team2.size() + " Spieler", DisplaySlot.SIDEBAR));
+		TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		
+		if (sucher1 != null) {
+			board.addLine(new CoreScoreboardLine(3, "Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, t.getTeams().get(0).getPlayers().size() + " Spieler", DisplaySlot.SIDEBAR));
+		}
+		if (sucher2 != null) {
+			board.addLine(new CoreScoreboardLine(1, "Team " + Core.getCore().getUserHandler().get(sucher2).getDisplayName(), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(0, t.getTeams().get(1).getPlayers().size() + " Spieler", DisplaySlot.SIDEBAR));
+		}
 	}
 	
 	public void showLives() {
@@ -112,8 +116,10 @@ public class SUVFeature extends CoreFeature {
 	}
 	
 	public void check(UUID id1, UUID id2, boolean leave) {
+		TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		
 		if (id1 == null) {
-			if (team1.contains(id2)) {
+			if (t.getTeams().get(0).getPlayers().contains(id2)) {
 				id1 = sucher2;
 			} else {
 				id1 = sucher1;
@@ -128,26 +134,46 @@ public class SUVFeature extends CoreFeature {
 			Location l = v.getPlayer().getLocation();
 			l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			
-			if (id1 == sucher1 && team2.contains(id2)) {
+			if (id1 == sucher1 && t.getTeams().get(1).getPlayers().contains(id2)) {
 				User os = Core.getCore().getUserHandler().get(sucher2);
-				team2.remove(id2);
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType())
-				                .getPrefix()
-				                .then("Der Spieler " + v.getDisplayName() + " aus dem Team von " + os.getDisplayName()
-				                        + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch " + team2.size() + " Spieler in diesem Team am Leben!"));
-			} else if (id1 == sucher2 && team1.contains(id2)) {
+				t.getTeams().get(1).getPlayers().remove(id2);
+				if (os.getPlayer() != null) {
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType())
+					                .getPrefix()
+					                .then("Der Spieler " + v.getDisplayName() + " aus dem Team von " + os.getDisplayName()
+					                        + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+					                .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler in diesem Team am Leben!"));
+				} else {
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+					                .then("Der Spieler " + v.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+					                .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler am Leben!"));
+				}
+			} else if (id1 == sucher2 && t.getTeams().get(0).getPlayers().contains(id2)) {
 				User os = Core.getCore().getUserHandler().get(sucher1);
-				team1.remove(id2);
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType())
-				                .getPrefix()
-				                .then("Der Spieler " + v.getDisplayName() + " aus dem Team von " + os.getDisplayName()
-				                        + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch " + team1.size() + " Spieler in diesem Team am Leben!"));
+				t.getTeams().get(0).getPlayers().remove(id2);
+				if (os.getPlayer() != null) {
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType())
+					                .getPrefix()
+					                .then("Der Spieler " + v.getDisplayName() + " aus dem Team von " + os.getDisplayName()
+					                        + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+					                .then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler in diesem Team am Leben!"));
+				} else {
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+					                .then("Der Spieler " + v.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame().broadCastMessage(
+					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+					                .then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler am Leben!"));
+				}
 			}
 			
 			showLives();
@@ -156,19 +182,21 @@ public class SUVFeature extends CoreFeature {
 	}
 	
 	public void checkEnd() {
-		if (team1.size() == 0) {
+		TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		
+		if (t.getTeams().get(0).getPlayers().size() == 0) {
 			User w = Core.getCore().getUserHandler().get(sucher2);
-			User[] ww = new User[team2.size() + 1];
-			for (int i = 1; i <= ww.length - 1; i++) {
-				ww[i] = Core.getCore().getUserHandler().get(team2.get(i));
+			User[] ww = new User[t.getTeams().get(1).getPlayers().size() + 1];
+			for (int i = 1; i < ww.length - 1; i++) {
+				ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(1).getPlayers().get(i));
 			}
 			ww[0] = w;
 			getPhase().getGame().end(w);
-		} else if (team2.size() == 0) {
+		} else if (t.getTeamCount() > 1 && t.getTeams().get(1).getPlayers().size() == 0) {
 			User w = Core.getCore().getUserHandler().get(sucher1);
-			User[] ww = new User[team1.size() + 1];
-			for (int i = 1; i <= ww.length - 1; i++) {
-				ww[i] = Core.getCore().getUserHandler().get(team1.get(i));
+			User[] ww = new User[t.getTeams().get(0).getPlayers().size() + 1];
+			for (int i = 1; i < ww.length - 1; i++) {
+				ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(0).getPlayers().get(i));
 			}
 			ww[0] = w;
 			getPhase().getGame().end(w);

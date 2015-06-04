@@ -174,7 +174,12 @@ public class TeamSelectFeature extends CoreFeature {
 		sizes = calcSizes();
 		
 		if (getPhase().getGame().getType() == GameType.SUV) {
-			if (exceptions.size() == 1) {
+			if ((exceptions.size() < 2 && exceptions.size() > 0) && (exceptions.get(0) == null | exceptions.get(1) == null)) {
+				for (Team t : teams) {
+					for (UUID id : t.getPlayers()) {
+						t.leave(id);
+					}
+				}
 				teams.clear();
 				User u = Core.getCore().getUserHandler().get(exceptions.get(0));
 				Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());

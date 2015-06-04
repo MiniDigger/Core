@@ -23,6 +23,10 @@ public class SUVGame extends CoreGame {
 	SUVPhase	suv;
 	PostPhase	post;
 	
+	public SUVPhase getSuvPhase() {
+		return suv;
+	}
+	
 	@Override
 	public GameType getType() {
 		return GameType.SUV;
@@ -36,7 +40,7 @@ public class SUVGame extends CoreGame {
 		
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
-		grace = new GracePhase(this, null, 15);
+		grace = new GracePhase(this, null, 15000);
 		suv = new SUVPhase(this);
 		post = new PostPhase(this, 10);
 		
@@ -51,7 +55,7 @@ public class SUVGame extends CoreGame {
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
-			
+		
 		setPhase(lobby);
 		super.init();
 	}

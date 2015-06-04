@@ -56,10 +56,9 @@ public class SUVPhase extends CorePhase {
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, null, true));
-		addFeature(new PvPFeature(this, true));
+		addFeature(new PvPFeature(this, false));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SUVFeature(this));
-		addFeature(new LivesFeature(this, 5));
 		addFeature(new SpecateFeature(this));
 		addFeature(new NoFallDmgFeature(this));
 		addFeature(new NoPickupFeature(this));

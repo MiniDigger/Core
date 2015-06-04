@@ -54,7 +54,7 @@ public class SUVSelectFeature extends CoreFeature {
 	@Override
 	public void end() {
 		try {
-			SUVFeature f = (SUVFeature) getPhase().getNextPhase().getFeature(FeatureType.SUV);
+			SUVFeature f = (SUVFeature) ((SUVGame) getPhase().getGame()).getSuvPhase().getFeature(FeatureType.SUV);
 			f.setSucher1(sucher1);
 			f.setSucher2(sucher2);
 			
