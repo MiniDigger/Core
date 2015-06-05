@@ -29,7 +29,9 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
@@ -85,10 +87,24 @@ public class MobFeature extends CoreFeature {
 		}
 		world = m.getMap().getName();
 		
-		for (final Entity e : Bukkit.getWorld(world).getEntities()) {
-			if (!allowed.contains(e.getType())) {
-				e.remove();
+		try {
+			for (final Entity e : Bukkit.getWorld(world).getEntities()) {
+				if (!allowed.contains(e.getType())) {
+					e.remove();
+				}
 			}
+		} catch (Exception ex) {
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					for (final Entity e : Bukkit.getWorld(world).getEntities()) {
+						if (!allowed.contains(e.getType())) {
+							e.remove();
+						}
+					}
+				}
+			}.runTaskLater(Core.getCore().getInstance(), 20);// IDK
 		}
 	}
 	

@@ -88,7 +88,11 @@ public class CoreBuildHandler implements BuildHandler {
 			return true;
 		}
 		
-		return blocks.get(u.getUUID()).contains(b.getType());
+		if (blocks.get(u.getUUID()).contains(b.getType())) {
+			return isBuilder(u);
+		}
+		
+		return false;
 	}
 	
 }

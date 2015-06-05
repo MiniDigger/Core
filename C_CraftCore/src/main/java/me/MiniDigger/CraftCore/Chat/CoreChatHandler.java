@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Chat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import me.MiniDigger.Core.Core;
@@ -35,6 +36,7 @@ import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
 import me.MiniDigger.CraftCore.Chat.Channels.GlobalChannel;
 import me.MiniDigger.CraftCore.Chat.Channels.NormalChannel;
 import me.MiniDigger.CraftCore.Chat.Channels.PremiumChannel;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserChatEvent;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
 
@@ -84,7 +86,13 @@ public class CoreChatHandler implements ChatHandler {
 			user.joinChannel(getChannel("Default"));
 		}
 		
-		user.getSpeakChannel().chat(user, message);
+		CoreUserChatEvent e = new CoreUserChatEvent(user, user.getSpeakChannel(), message);
+		Bukkit.getPluginManager().callEvent(e);
+		if (e.isCancelled()) {
+			return;
+		}
+		
+		e.getChannel().chat(user, e.getMsg());
 		
 		final ChatPacket packet = new ChatPacket();
 		packet.setUser(user.getUUID());
