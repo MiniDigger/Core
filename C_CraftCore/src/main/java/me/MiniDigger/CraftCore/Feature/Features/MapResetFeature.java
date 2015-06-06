@@ -50,14 +50,12 @@ public class MapResetFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		for (int i = changes.size(); i > 0; i--) {
-			System.out.println("update " + changes.get(i).getType().name());
+		for (int i = changes.size() - 1; i >= 0; i--) {
 			changes.get(i).update(true, false);
 		}
 	}
 	
 	public void add(BlockState s) {
-		System.out.println("add " + s.getType().name());
 		changes.add(s);
 	}
 	
