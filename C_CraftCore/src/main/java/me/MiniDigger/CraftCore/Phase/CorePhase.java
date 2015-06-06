@@ -221,6 +221,8 @@ public abstract class CorePhase implements Phase {
 			u[i] = Core.getCore().getUserHandler().get(getGame().getPlayers().get(i));
 		}
 		
+		endPhase();
+		
 		getGame().end(u);
 		
 	}

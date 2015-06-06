@@ -32,9 +32,9 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
-public class BTMFeature extends CoreFeature {
+public class BMTFeature extends CoreFeature {
 	
-	public BTMFeature(Phase phase) {
+	public BMTFeature(Phase phase) {
 		super(phase);
 	}
 	
@@ -110,6 +110,8 @@ public class BTMFeature extends CoreFeature {
 		builder = available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
 		
 		final User u = Core.getCore().getUserHandler().get(builder);
+		u.getPlayer().getInventory().clear();
+		u.getPlayer().updateInventory();
 		getPhase().getGame().broadCastMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Der Spieler " + u.getDisplayName() + " ist nun dran"));
 		
 		// Word
@@ -136,6 +138,8 @@ public class BTMFeature extends CoreFeature {
 			if (!o.getPlayer().getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 				if (id != builder) {
 					o.getPlayer().teleport(loc);
+					o.getPlayer().getInventory().clear();
+					o.getPlayer().updateInventory();
 				}
 			}
 		}
@@ -155,12 +159,14 @@ public class BTMFeature extends CoreFeature {
 		Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
 		Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
 		u.getPlayer().teleport(loc);
+		u.getPlayer().getInventory().clear();
+		u.getPlayer().updateInventory();
 		
 		getPhase().getGame().broadCastMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Das Wort war: " + word));
 		
 		getPhase().getNextPhase().init();
 		
-		BTMFeature b = (BTMFeature) getPhase().getNextPhase().getFeature(FeatureType.BTM);
+		BMTFeature b = (BMTFeature) getPhase().getNextPhase().getFeature(FeatureType.BTM);
 		b.setWords(words);
 		b.setBuilded(builded);
 		b.setBuilder(builder);

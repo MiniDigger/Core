@@ -3,6 +3,8 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -48,22 +50,28 @@ public class MapResetFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		for (final BlockState b : changes) {
-			b.update(true, false);
+		for (int i = changes.size(); i > 0; i--) {
+			System.out.println("update " + changes.get(i).getType().name());
+			changes.get(i).update(true, false);
 		}
+	}
+	
+	public void add(BlockState s) {
+		System.out.println("add " + s.getType().name());
+		changes.add(s);
 	}
 	
 	@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
-			changes.add(e.getBlockReplacedState());
+			add(e.getBlockReplacedState());
 		}
 	}
 	
 	@EventHandler
 	public void onDestroy(BlockBreakEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
-			changes.add(e.getBlock().getState());
+			add(e.getBlock().getState());
 		}
 	}
 }

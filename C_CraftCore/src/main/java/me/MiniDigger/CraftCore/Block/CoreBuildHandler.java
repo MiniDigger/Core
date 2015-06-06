@@ -94,10 +94,12 @@ public class CoreBuildHandler implements BuildHandler {
 			d = disallow.get(u.getUUID()).contains(b.getType());
 		}
 		
-		if (a || !d) {
-			return isBuilder(u);
+		if (a) {
+			return true;
 		}
-		
-		return false;
+		if (!d) {
+			return true;
+		}
+		return isBuilder(u);
 	}
 }

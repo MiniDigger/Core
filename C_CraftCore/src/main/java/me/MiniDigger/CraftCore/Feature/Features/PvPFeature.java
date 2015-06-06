@@ -88,11 +88,29 @@ public class PvPFeature extends CoreFeature {
 	public void onDmg(final CoreUserDamageEvent e) {
 		if (e.getGame() != null && e.getGame().equals(getPhase().getGame())) {
 			if (!pvpEnabled) {
-				if (e.getDamager() != null) {
+				e.setCanceled(true);
+				return;
+			}
+		}
+		
+		try {
+			if (getPhase().getGame().getPlayers().contains(e.getDamager().getUUID())) {
+				if (!pvpEnabled) {
 					e.setCanceled(true);
 					return;
 				}
 			}
+		} catch (Exception ex) {
+		}
+		
+		try {
+			if (getPhase().getGame().getPlayers().contains(e.getDamaged().getUUID())) {
+				if (!pvpEnabled) {
+					e.setCanceled(true);
+					return;
+				}
+			}
+		} catch (Exception ex) {
 		}
 	}
 	

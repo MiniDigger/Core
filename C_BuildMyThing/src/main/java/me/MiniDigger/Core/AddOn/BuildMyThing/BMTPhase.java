@@ -18,16 +18,16 @@ import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
-public class BTMPhase extends CoreTimedPhase {
+public class BMTPhase extends CoreTimedPhase {
 	
-	public BTMPhase(final Game game) {
+	public BMTPhase(final Game game) {
 		super(game, null, 60);
 		next = this;
 	}
 	
 	@Override
 	public String getName() {
-		return "BTM";
+		return "BMT";
 	}
 	
 	@Override
@@ -48,9 +48,9 @@ public class BTMPhase extends CoreTimedPhase {
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY)));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new MapFeature(this, "BTM_Arena", false));
+		addFeature(new MapFeature(this, "BMT_Arena", false));
 		addFeature(new PvPFeature(this, false));
-		addFeature(new BTMFeature(this));
+		addFeature(new BMTFeature(this));
 		addFeature(new NoFallDmgFeature(this));
 		addFeature(new MapResetFeature(this));
 	}

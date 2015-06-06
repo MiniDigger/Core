@@ -12,10 +12,10 @@ import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 
-public class BTMGame extends CoreGame {
+public class BMTGame extends CoreGame {
 	
 	LobbyPhase	lobby;
-	BTMPhase	btm;
+	BMTPhase	btm;
 	PostPhase	post;
 	
 	public PostPhase getPost(){
@@ -24,7 +24,7 @@ public class BTMGame extends CoreGame {
 	
 	@Override
 	public GameType getType() {
-		return GameType.BTM;
+		return GameType.BMT;
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class BTMGame extends CoreGame {
 		setGameData("Lobby", "Lobby");
 		
 		lobby = new LobbyPhase(this, null, 5);
-		btm = new BTMPhase(this);
+		btm = new BMTPhase(this);
 		post = new PostPhase(this, 10);
 		
 		lobby.setNextPhase(btm);

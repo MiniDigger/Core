@@ -31,7 +31,7 @@ public enum GameType {
 	OITC("OneInTheChamber", "OITC", null, "oitc"),
 	ULTRASPLEEF("Gravity King", "GK", null, "ultraspleef"),
 	SUV("SuchenUndVerstecken", "SUV", null, "suv"),
-	BTM("BuildMyThing", "BTM", null, "btm");
+	BMT("BuildMyThing", "BMT", null, "bmt");
 	
 	private String	    name;
 	private String	    abk;

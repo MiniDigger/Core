@@ -17,11 +17,11 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
-public class BTMAddOn extends CoreAddOn {
+public class BMTAddOn extends CoreAddOn {
 	
 	@Override
 	public void enable() {
-		GameType.BTM.setClass(BTMGame.class);
+		GameType.BMT.setClass(BMTGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
@@ -34,7 +34,7 @@ public class BTMAddOn extends CoreAddOn {
 	
 	@Command(name = "btm", permission = "btm", usage = "", consol = true, description = "Initiiert ein BTM Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
-		final BTMGame game = new BTMGame();
+		final BMTGame game = new BMTGame();
 		game.init();
 		Core.getCore().getGameHandler().addGame(game);
 		// for (final User user :

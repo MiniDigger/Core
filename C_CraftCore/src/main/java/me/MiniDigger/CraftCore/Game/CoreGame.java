@@ -210,6 +210,7 @@ public class CoreGame implements Game {
 		// Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
 		// final Location loc =
 		// lobby.getLocs(DyeColor.RED).values().iterator().next();
+			
 		final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 		for (final User w : winner) {
 			if (w != null) {
