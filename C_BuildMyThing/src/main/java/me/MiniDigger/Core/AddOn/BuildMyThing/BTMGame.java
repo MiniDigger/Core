@@ -18,6 +18,10 @@ public class BTMGame extends CoreGame {
 	BTMPhase	btm;
 	PostPhase	post;
 	
+	public PostPhase getPost(){
+		return post;
+	}
+	
 	@Override
 	public GameType getType() {
 		return GameType.BTM;
@@ -34,7 +38,7 @@ public class BTMGame extends CoreGame {
 		post = new PostPhase(this, 10);
 		
 		lobby.setNextPhase(btm);
-		btm.setNextPhase(post);
+		btm.setNextPhase(btm);
 		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");

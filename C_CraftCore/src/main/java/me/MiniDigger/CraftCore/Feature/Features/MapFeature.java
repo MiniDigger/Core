@@ -92,8 +92,6 @@ public class MapFeature extends CoreFeature {
 		if (shouldUnload) {
 			unload();
 		}
-		
-		map = null;
 	}
 	
 	public void setMap(final String map) {

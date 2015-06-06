@@ -35,7 +35,8 @@ import me.MiniDigger.Core.User.User;
 public class CoreBuildHandler implements BuildHandler {
 	
 	private final ArrayList<UUID>	            builders	= new ArrayList<>();
-	private final HashMap<UUID, List<Material>>	blocks	 = new HashMap<UUID, List<Material>>();
+	private final HashMap<UUID, List<Material>>	allow	 = new HashMap<UUID, List<Material>>();
+	private final HashMap<UUID, List<Material>>	disallow	= new HashMap<UUID, List<Material>>();
 	
 	@Override
 	public boolean isBuilder(final User user) {
@@ -57,42 +58,46 @@ public class CoreBuildHandler implements BuildHandler {
 	
 	@Override
 	public void allow(final User u, final Material... mat) {
-		if (!blocks.containsKey(u.getUUID())) {
-			blocks.put(u.getUUID(), new ArrayList<Material>());
+		if (!allow.containsKey(u.getUUID())) {
+			allow.put(u.getUUID(), new ArrayList<Material>());
 		}
 		
-		final List<Material> l = blocks.remove(u.getUUID());
+		final List<Material> l = allow.remove(u.getUUID());
 		l.addAll(Arrays.asList(mat));
-		blocks.put(u.getUUID(), l);
+		allow.put(u.getUUID(), l);
 	}
 	
 	@Override
 	public void disallow(final User u, final Material... mat) {
-		if (!blocks.containsKey(u.getUUID())) {
-			blocks.put(u.getUUID(), new ArrayList<Material>());
+		if (!disallow.containsKey(u.getUUID())) {
+			disallow.put(u.getUUID(), new ArrayList<Material>());
 		}
-		
-		final List<Material> l = blocks.remove(u.getUUID());
 		
 		if (mat == null) {
 			return;
 		}
 		
-		l.removeAll(Arrays.asList(mat));
-		blocks.put(u.getUUID(), l);
+		final List<Material> l = disallow.remove(u.getUUID());
+		
+		l.addAll(Arrays.asList(mat));
+		disallow.put(u.getUUID(), l);
 	}
 	
 	@Override
 	public boolean allow(final User u, final Block b) {
-		if (!blocks.containsKey(u.getUUID())) {
-			return true;
+		boolean a = false;
+		if (allow.containsKey(u.getUUID())) {
+			a = allow.get(u.getUUID()).contains(b.getType());
+		}
+		boolean d = true;
+		if (disallow.containsKey(u.getUUID())) {
+			d = disallow.get(u.getUUID()).contains(b.getType());
 		}
 		
-		if (blocks.get(u.getUUID()).contains(b.getType())) {
+		if (a || !d) {
 			return isBuilder(u);
 		}
 		
 		return false;
 	}
-	
 }

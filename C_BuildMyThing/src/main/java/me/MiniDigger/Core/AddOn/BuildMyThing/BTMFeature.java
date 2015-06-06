@@ -39,12 +39,12 @@ public class BTMFeature extends CoreFeature {
 	}
 	
 	private String	           word;
-	private String[]	       words;
+	private String[]	       words	= new String[0];
 	private UUID	           builder;
-	private UUID	           oldBuilder;
 	private int	               found	= 0;
 	private List<UUID>	       builded	= new ArrayList<UUID>();
 	private Map<UUID, Integer>	points	= new HashMap<UUID, Integer>();
+	private List<UUID>	       guessed	= new ArrayList<UUID>();
 	
 	@Override
 	public FeatureType getType() {
@@ -68,22 +68,29 @@ public class BTMFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
+		//
+		word = "";
+		found = 0;
+		guessed.clear();
+		
 		// Words
-		try {
-			List<String> l = new ArrayList<String>();
-			
-			File f = new File(Core.getCore().getInstance().getDataFolder(), "words.txt");
-			BufferedReader r = new BufferedReader(new FileReader(f));
-			
-			String buffer;
-			while ((buffer = r.readLine()) != null) {
-				l.add(buffer);
+		if (words.length == 0) {
+			try {
+				List<String> l = new ArrayList<String>();
+				
+				File f = new File(Core.getCore().getInstance().getDataFolder(), "words.txt");
+				BufferedReader r = new BufferedReader(new FileReader(f));
+				
+				String buffer;
+				while ((buffer = r.readLine()) != null) {
+					l.add(buffer);
+				}
+				
+				r.close();
+				words = l.toArray(new String[l.size()]);
+			} catch (Exception ex) {
+				words = new String[] { "banane", "apfel", "pferd" };// FALLBACK
 			}
-			
-			r.close();
-			words = l.toArray(new String[l.size()]);
-		} catch (Exception ex) {
-			words = new String[] { "banane", "apfel", "pferd" };// FALLBACK
 		}
 		
 		// User
@@ -92,6 +99,12 @@ public class BTMFeature extends CoreFeature {
 			if (!builded.contains(id)) {
 				available.add(id);
 			}
+		}
+		
+		if (available.size() == 0) {
+			System.out.println("clear");
+			available.clear();
+			available = getPhase().getGame().getPlayers();
 		}
 		
 		builder = available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
@@ -114,13 +127,16 @@ public class BTMFeature extends CoreFeature {
 		if (data.getLocs(DyeColor.GREEN) == null) {
 			System.out.println("locs null");
 		}
-		u.getPlayer().teleport(data.getLocs(DyeColor.GREEN).get(0));
+		u.getPlayer().teleport(data.getLocs(DyeColor.GREEN).values().iterator().next());
 		
+		Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
 		for (UUID id : getPhase().getGame().getPlayers()) {
-			Location loc = data.getLocs(DyeColor.RED).get(Core.getCore().getRandomUtil().nextInt(data.getLocs(DyeColor.RED).size()));
+			Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
 			User o = Core.getCore().getUserHandler().get(id);
-			if (o.getPlayer().getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-				o.getPlayer().teleport(loc);
+			if (!o.getPlayer().getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
+				if (id != builder) {
+					o.getPlayer().teleport(loc);
+				}
 			}
 		}
 		
@@ -136,7 +152,11 @@ public class BTMFeature extends CoreFeature {
 		u.getPlayer().setGameMode(GameMode.SURVIVAL);
 		
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		u.getPlayer().teleport(data.getLocs(DyeColor.GREEN).get(0));
+		Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
+		Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
+		u.getPlayer().teleport(loc);
+		
+		getPhase().getGame().broadCastMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Das Wort war: " + word));
 		
 		getPhase().getNextPhase().init();
 		
@@ -148,12 +168,35 @@ public class BTMFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onChat(CoreUserChatEvent e) {
+	public void onChat(final CoreUserChatEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getUser().getUUID())) {
+			if (guessed.contains(e.getUser().getUUID())) {
+				e.setCancelled(true);
+				return;
+			}
+			
 			if (e.getMsg().equalsIgnoreCase(word)) {
 				e.setCancelled(true);
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getGamePrefix().getPrefix().then("Der Spieler " + e.getUser().getDisplayName() + " hat das Wort erraten!"));
+				
+				if (found == 0) {
+					int p = points.remove(builder);
+					points.put(builder, p + 2);
+					
+					if (points.get(builder) >= 20) {
+						updateBoards();
+						new BukkitRunnable() {
+							
+							@Override
+							public void run() {
+								getPhase().getGame().end(Core.getCore().getUserHandler().get(builder));
+								
+							}
+						}.runTask(Core.getCore().getInstance());
+						return;
+					}
+				}
 				
 				found++;
 				int point = 3;
@@ -171,9 +214,20 @@ public class BTMFeature extends CoreFeature {
 				
 				int p = points.remove(e.getUser().getUUID());
 				points.put(e.getUser().getUUID(), p + point);
+				guessed.add(e.getUser().getUUID());
 				
-				p = points.remove(builder);
-				points.put(builder, p + 2);
+				if (points.get(e.getUser().getUUID()) >= 20) {
+					updateBoards();
+					new BukkitRunnable() {
+						
+						@Override
+						public void run() {
+							getPhase().getGame().end(Core.getCore().getUserHandler().get(e.getUser().getUUID()));
+							
+						}
+					}.runTask(Core.getCore().getInstance());
+					return;
+				}
 				
 				updateBoards();
 			}

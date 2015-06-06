@@ -12,15 +12,17 @@ import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MapResetFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoFallDmgFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
-import me.MiniDigger.CraftCore.Phase.CoreRepeatingPhase;
+import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
-public class BTMPhase extends CoreRepeatingPhase {
+public class BTMPhase extends CoreTimedPhase {
 	
 	public BTMPhase(final Game game) {
-		super(game);
+		super(game, null, 60);
+		next = this;
 	}
 	
 	@Override
@@ -30,12 +32,12 @@ public class BTMPhase extends CoreRepeatingPhase {
 	
 	@Override
 	public boolean displayBar() {
-		return false;
+		return true;
 	}
 	
 	@Override
 	public boolean displayLevel() {
-		return false;
+		return true;
 	}
 	
 	@Override
@@ -46,9 +48,10 @@ public class BTMPhase extends CoreRepeatingPhase {
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY)));
 		addFeature(new FixedTimeFeature(this, 12000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new MapFeature(this, "BTM_Arena", true));
+		addFeature(new MapFeature(this, "BTM_Arena", false));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new BTMFeature(this));
 		addFeature(new NoFallDmgFeature(this));
+		addFeature(new MapResetFeature(this));
 	}
 }

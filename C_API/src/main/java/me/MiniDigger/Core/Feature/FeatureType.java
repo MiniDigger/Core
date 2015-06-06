@@ -72,7 +72,8 @@ public enum FeatureType {
 	SUV,
 	SUVSELECT,
 	BTM,
-	NOINVENTORYINTERACTION;
+	NOINVENTORYINTERACTION,
+	MAPRESET;
 	
 	/**
 	 * @return A human readable name for the feature

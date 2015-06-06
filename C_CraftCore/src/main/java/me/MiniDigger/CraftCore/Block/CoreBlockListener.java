@@ -35,7 +35,7 @@ public class CoreBlockListener implements BlockListener {
 	@EventHandler
 	public void onBlockBreak(final BlockBreakEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-		if (!Core.getCore().getBuildHandler().isBuilder(user) || !Core.getCore().getBuildHandler().allow(user, e.getBlock())) {
+		if (!Core.getCore().getBuildHandler().allow(user, e.getBlock())) {
 			e.setCancelled(true);
 		}
 	}
@@ -44,7 +44,7 @@ public class CoreBlockListener implements BlockListener {
 	@EventHandler
 	public void onBlockPlace(final BlockPlaceEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-		if (!Core.getCore().getBuildHandler().isBuilder(user) || !Core.getCore().getBuildHandler().allow(user, e.getBlock())) {
+		if (!Core.getCore().getBuildHandler().allow(user, e.getBlock())) {
 			e.setCancelled(true);
 		}
 	}
@@ -53,7 +53,7 @@ public class CoreBlockListener implements BlockListener {
 	@EventHandler
 	public void onBlockDamage(final BlockDamageEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-		if (!Core.getCore().getBuildHandler().isBuilder(user) || !Core.getCore().getBuildHandler().allow(user, e.getBlock())) {
+		if (!Core.getCore().getBuildHandler().allow(user, e.getBlock())) {
 			e.setCancelled(true);
 		}
 	}

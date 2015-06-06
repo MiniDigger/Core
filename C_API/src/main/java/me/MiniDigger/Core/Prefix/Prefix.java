@@ -51,7 +51,8 @@ public enum Prefix {
 	OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC", GameType.OITC),
 	ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.ULTRASPLEEF),
 	TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag", GameType.NOTHING),
-	SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV);
+	SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV),
+	BTM(ChatColor.AQUA, ChatColor.BLUE, "BTM", GameType.BTM);
 	
 	private ChatColor	klammer;
 	private ChatColor	color;
