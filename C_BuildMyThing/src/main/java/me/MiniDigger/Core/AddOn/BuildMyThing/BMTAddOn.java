@@ -32,7 +32,7 @@ public class BMTAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "btm", permission = "btm", usage = "", consol = true, description = "Initiiert ein BTM Game", max = 0, sync = true)
+	@Command(name = "bmt", permission = "bmt", usage = "", consol = true, description = "Initiiert ein BMT Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final BMTGame game = new BMTGame();
 		game.init();
@@ -47,7 +47,7 @@ public class BMTAddOn extends CoreAddOn {
 		game.start();
 	}
 	
-	@Completer(name = "btm")
+	@Completer(name = "bmt")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		
