@@ -98,6 +98,10 @@ public class MobFeature extends CoreFeature {
 				
 				@Override
 				public void run() {
+					if (Bukkit.getWorld(world) == null) {
+						cancel();
+						return;
+					}
 					for (final Entity e : Bukkit.getWorld(world).getEntities()) {
 						if (!allowed.contains(e.getType())) {
 							e.remove();

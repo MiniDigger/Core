@@ -25,9 +25,11 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Event.CancelableEvent;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
@@ -85,6 +87,10 @@ public class FixedTimeFeature extends CoreFeature {
 			
 			@Override
 			public void run() {
+				if (w == null) {
+					task.cancel();
+					return;
+				}
 				w.setTime(time);
 			}
 		}, 2, 2);

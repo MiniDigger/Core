@@ -80,6 +80,10 @@ public class FixedWeatherFeature extends CoreFeature {
 		world = m.getMap().getName();
 		
 		final World w = Bukkit.getWorld(world);
+		if (w == null) {
+			System.out.println("no such world");
+			return;
+		}
 		switch (weather) {
 		case CLEAR:
 			w.setStorm(false);
