@@ -26,6 +26,7 @@ import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 
+import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.MsgType;
@@ -233,4 +234,10 @@ public interface Game {
 	 * @return if the game is full (players.size >= maxplayers)
 	 */
 	public boolean isFull();
+
+	/**
+	 * 
+	 * @return the chatchannel of this game
+	 */
+	ChatChannel getChatChannel();
 }

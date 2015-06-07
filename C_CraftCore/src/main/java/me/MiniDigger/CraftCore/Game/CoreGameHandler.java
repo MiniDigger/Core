@@ -106,10 +106,13 @@ public class CoreGameHandler implements GameHandler {
 		
 		for (final Game g : getGames(user)) {
 			if (g.getType() != GameType.TICTACTOE) {
-				g.leave(user);
+				leaveGame(user, g);
 			}
 		}
 		game.join(user);
+		
+		System.out.println("join " + game.getChatChannel().getName());
+		user.setPrimaryChannel(game.getChatChannel());
 		
 		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
 		
@@ -123,6 +126,10 @@ public class CoreGameHandler implements GameHandler {
 		Bukkit.getPluginManager().callEvent(event);
 		
 		game.leave(user);
+
+		System.out.println("leave " + game.getChatChannel().getName());
+		user.leaveChannel(game.getChatChannel());
+		user.setPrimaryChannel(Core.getCore().getChatHandler().getChannel("Default"));
 		
 		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
 		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();

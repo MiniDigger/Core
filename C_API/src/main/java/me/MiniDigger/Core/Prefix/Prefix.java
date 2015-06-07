@@ -30,7 +30,8 @@ import mkremins.fanciful.FancyMessage;
 
 public enum Prefix {
 	ERROR(ChatColor.RED, ChatColor.DARK_RED, "Error", GameType.NOTHING),
-	CORE(ChatColor.RED, ChatColor.GRAY, "Core", GameType.LOBBY),
+	CORE(ChatColor.RED, ChatColor.GRAY, "Core", GameType.NOTHING),
+	HUB(ChatColor.AQUA, ChatColor.BLUE, "Hub", GameType.LOBBY),
 	TICTACTOE(ChatColor.RESET, ChatColor.BLUE, "TicTacToe> ", GameType.TICTACTOE),
 	STATS(ChatColor.RESET, ChatColor.GOLD, "Stats> ", GameType.NOTHING),
 	API(ChatColor.GRAY, ChatColor.RED, "Core", GameType.NOTHING),

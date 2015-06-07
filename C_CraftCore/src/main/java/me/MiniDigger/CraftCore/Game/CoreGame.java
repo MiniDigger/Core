@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -33,6 +34,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Error.Error;
 import me.MiniDigger.Core.Feature.Feature;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -44,6 +46,7 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Lang._;
 
@@ -59,7 +62,14 @@ public class CoreGame implements Game {
 	private GameType	                  type;
 	private boolean	                      allowJoin;
 	private boolean	                      allowSpectate;
+	private ChatChannel	                  channel;
 	protected int	                      maxplayers	= 1000;
+	
+	public CoreGame() {
+		channel = new CoreChatChannel();
+		channel.init(getType().name(), ChatColor.GRAY, "chat.hear", "chat.speak", new FancyMessage(""), false);
+		Core.getCore().getChatHandler().registerChannel(channel);
+	}
 	
 	@Override
 	public Error join(final User user) {
@@ -82,6 +92,11 @@ public class CoreGame implements Game {
 		} else {
 			return Error.USER_NOT_JOINED;
 		}
+	}
+	
+	@Override
+	public ChatChannel getChatChannel() {
+		return channel;
 	}
 	
 	@Override
@@ -210,7 +225,7 @@ public class CoreGame implements Game {
 		// Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
 		// final Location loc =
 		// lobby.getLocs(DyeColor.RED).values().iterator().next();
-			
+		
 		final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 		for (final User w : winner) {
 			if (w != null) {

@@ -123,4 +123,22 @@ public interface ChatChannel {
 	 * @return if the channel should display msgs from other servers
 	 */
 	public boolean isGlobal();
+	
+	/**
+	 * The consturctor for a new channel
+	 * 
+	 * @param name
+	 *            The name of the channel
+	 * @param color
+	 *            The color of the messages send in this channel
+	 * @param hearPerm
+	 *            The permission user need to join this channel
+	 * @param speakPerm
+	 *            The permission user need to speak in this channel
+	 * @param prefix
+	 *            The prefix used for this channel
+	 * @param showMsg
+	 *            If join and leave msgs should be shown
+	 */
+	void init(String name, ChatColor color, String hearPerm, String speakPerm, FancyMessage prefix, boolean showMsg);
 }

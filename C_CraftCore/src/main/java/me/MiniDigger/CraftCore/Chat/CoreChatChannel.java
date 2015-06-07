@@ -41,6 +41,7 @@ public class CoreChatChannel implements ChatChannel {
 	protected String	   speakPerm;
 	protected FancyMessage	prefix;
 	protected boolean	   global;
+	protected boolean	   showMsg;
 	
 	@Override
 	public void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
@@ -49,6 +50,13 @@ public class CoreChatChannel implements ChatChannel {
 		this.prefix = prefix;
 		this.hearPerm = hearPerm;
 		this.speakPerm = speakPerm;
+		this.showMsg = true;
+	}
+	
+	@Override
+	public void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix, final boolean showMsg) {
+		init(name, color, hearPerm, speakPerm, prefix);
+		this.showMsg = showMsg;
 	}
 	
 	@Override
@@ -66,9 +74,11 @@ public class CoreChatChannel implements ChatChannel {
 		if (color == ChatColor.RESET) {
 			color = ChatColor.WHITE;
 		}
-		broadcast(getPrefix().then("+ ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
-		        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
-		        .suggest("/pm " + chatUser.getDisplayName() + " ").color(color).then(" hat den Raum betreten.").color(ChatColor.YELLOW));
+		if (showMsg) {
+			broadcast(getPrefix().then("+ ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
+			        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
+			        .suggest("/pm " + chatUser.getDisplayName() + " ").color(color).then(" hat den Raum betreten.").color(ChatColor.YELLOW));
+		}
 	}
 	
 	@Override
@@ -77,9 +87,11 @@ public class CoreChatChannel implements ChatChannel {
 		if (color == ChatColor.RESET) {
 			color = ChatColor.WHITE;
 		}
-		broadcast(getPrefix().then("- ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
-		        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
-		        .suggest("/pm " + chatUser.getDisplayName() + " ").color(color).then(" hat den Raum verlassen.").color(ChatColor.YELLOW));
+		if (showMsg) {
+			broadcast(getPrefix().then("- ").color(ChatColor.YELLOW).style(ChatColor.BOLD).then("Der Spieler ").color(ChatColor.YELLOW)
+			        .then(chatUser.getPrefix() + chatUser.getDisplayName()).tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben")
+			        .suggest("/pm " + chatUser.getDisplayName() + " ").color(color).then(" hat den Raum verlassen.").color(ChatColor.YELLOW));
+		}
 	}
 	
 	@Override
@@ -118,7 +130,10 @@ public class CoreChatChannel implements ChatChannel {
 		final List<User> result = new ArrayList<>();
 		
 		for (final User user : Core.getCore().getUserHandler().getOnlineUsers()) {
-			if (user.hasPermission(hearPerm)) {
+			// if (user.hasPermission(hearPerm)) {
+			// result.add(user);
+			// }
+			if (user.getListenChannels().contains(this)) {
 				result.add(user);
 			}
 		}
