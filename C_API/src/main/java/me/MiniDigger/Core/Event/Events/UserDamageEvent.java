@@ -63,13 +63,10 @@ public interface UserDamageEvent {
 	public boolean hasDamager();
 	
 	/**
-	 * @param cancel
-	 *            If the event should be canceled or not
+	 * sets the new dmg value
+	 * 
+	 * @param d
+	 *            the new value to set
 	 */
-	public void setCanceled(final boolean cancel);
-	
-	/**
-	 * @return If the event should be canceled or not
-	 */
-	public boolean isCanceled();
+	void setDmg(double d);
 }

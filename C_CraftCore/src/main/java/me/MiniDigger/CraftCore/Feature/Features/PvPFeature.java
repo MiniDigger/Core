@@ -88,7 +88,8 @@ public class PvPFeature extends CoreFeature {
 	public void onDmg(final CoreUserDamageEvent e) {
 		if (e.getGame() != null && e.getGame().equals(getPhase().getGame())) {
 			if (!pvpEnabled) {
-				e.setCanceled(true);
+				e.setCancelled(true);
+				e.setDmg(0.0);
 				return;
 			}
 		}
@@ -96,22 +97,25 @@ public class PvPFeature extends CoreFeature {
 		try {
 			if (getPhase().getGame().getPlayers().contains(e.getDamager().getUUID())) {
 				if (!pvpEnabled) {
-					e.setCanceled(true);
+					e.setCancelled(true);
+					e.setDmg(0.0);
 					return;
 				}
 			}
 		} catch (Exception ex) {
+			e.setCancelled(true);
+			e.setDmg(0.0); // SHOULD THIS BE HERE? IDK!
 		}
 		
 		try {
 			if (getPhase().getGame().getPlayers().contains(e.getDamaged().getUUID())) {
 				if (!pvpEnabled) {
-					e.setCanceled(true);
+					e.setCancelled(true);
+					e.setDmg(0.0);
 					return;
 				}
 			}
-		} catch (Exception ex) {
-		}
+		} catch (Exception ex) {}
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)

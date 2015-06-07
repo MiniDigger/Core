@@ -68,7 +68,7 @@ public class BMTFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		//
+		// Resets
 		word = "";
 		found = 0;
 		guessed.clear();

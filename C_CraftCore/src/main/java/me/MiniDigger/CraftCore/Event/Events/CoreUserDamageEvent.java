@@ -28,18 +28,16 @@ import me.MiniDigger.CraftCore.Event.CoreCancelableEvent;
 
 public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDamageEvent {
 	
-	private final double	dmg;
-	private final User	 damager;
-	private final User	 damaged;
-	private final Game	 game;
-	private boolean	     cancel;
+	private double	   dmg;
+	private final User	damager;
+	private final User	damaged;
+	private final Game	game;
 	
 	public CoreUserDamageEvent(final double dmg, final User damager, final User damaged, final Game game, final boolean cancel) {
 		this.dmg = dmg;
 		this.damager = damager;
 		this.damaged = damaged;
 		this.game = game;
-		this.cancel = cancel;
 	}
 	
 	@Override
@@ -73,12 +71,7 @@ public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDama
 	}
 	
 	@Override
-	public void setCanceled(final boolean cancel) {
-		this.cancel = cancel;
-	}
-	
-	@Override
-	public boolean isCanceled() {
-		return cancel;
+	public void setDmg(double d) {
+		this.dmg = d;
 	}
 }

@@ -89,7 +89,7 @@ public class CoreBuildHandler implements BuildHandler {
 		if (allow.containsKey(u.getUUID())) {
 			a = allow.get(u.getUUID()).contains(b.getType());
 		}
-		boolean d = true;
+		boolean d = false;
 		if (disallow.containsKey(u.getUUID())) {
 			d = disallow.get(u.getUUID()).contains(b.getType());
 		}
@@ -97,8 +97,8 @@ public class CoreBuildHandler implements BuildHandler {
 		if (a) {
 			return true;
 		}
-		if (!d) {
-			return true;
+		if (d) {
+			return false;
 		}
 		return isBuilder(u);
 	}
