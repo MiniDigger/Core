@@ -210,6 +210,7 @@ public class LobbyFeature extends CoreFeature {
 	
 	private static class SignStorage {
 		
+		// Bedwars link
 		private static Map<Integer, Map<Integer, String[]>> bedwarsOne() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -240,6 +241,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// Bedwars rechts
 		private static Map<Integer, Map<Integer, String[]>> bedwarsTwo() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -270,6 +272,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// Crank links
 		private static Map<Integer, Map<Integer, String[]>> crankOne() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -300,6 +303,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// Crank rechts
 		private static Map<Integer, Map<Integer, String[]>> crankTwo() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -313,23 +317,24 @@ public class LobbyFeature extends CoreFeature {
 			
 			// Line 2
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "Kit", "Tank", "---------------", "&9&lUser-Kit" });
-			temp.put(1, new String[] { "Kit", "Soldat", "---------------", "&9&lUser-Kit" });
-			temp.put(2, new String[] { "Kit", "Jäger", "---------------", "&9&lUser-Kit" });
-			temp.put(3, new String[] { "Kit", "Bauer", "---------------", "&9&lUser-Kit" });
+			temp.put(0, new String[] { "[Kit]", "Tank", "---------------", "&9&lUser-Kit" });
+			temp.put(1, new String[] { "[Kit]", "Soldat", "---------------", "&9&lUser-Kit" });
+			temp.put(2, new String[] { "[Kit]", "Jäger", "---------------", "&9&lUser-Kit" });
+			temp.put(3, new String[] { "[Kit]", "Bauer", "---------------", "&9&lUser-Kit" });
 			result.put(1, temp);
 			
 			// Line 3
 			temp = new HashMap<Integer, String[]>();
-			temp.put(0, new String[] { "Kit", "Kleriker", "---------------", "&9&lUser-Kit" });
-			temp.put(1, new String[] { "Kit", "Ice-Man", "---------------", "&a&lToken-Kit" });
-			temp.put(2, new String[] { "Kit", "Runner", "---------------", "&a&lToken-Kit" });
-			temp.put(3, new String[] { "Kit", "Magier", "---------------", "&6&lPremium" });
+			temp.put(0, new String[] { "[Kit]", "Kleriker", "---------------", "&9&lUser-Kit" });
+			temp.put(1, new String[] { "[Kit]", "Ice-Man", "---------------", "&a&lToken-Kit" });
+			temp.put(2, new String[] { "[Kit]", "Runner", "---------------", "&a&lToken-Kit" });
+			temp.put(3, new String[] { "[Kit]", "Magier", "---------------", "&6&lPremium" });
 			result.put(2, temp);
 			
 			return result;
 		}
 		
+		// getthedrop links
 		private static Map<Integer, Map<Integer, String[]>> getthedropOne() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -360,6 +365,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// getthedrop rechts
 		private static Map<Integer, Map<Integer, String[]>> getthedropTwo() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -390,6 +396,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// oneinthechamber links
 		private static Map<Integer, Map<Integer, String[]>> oitcOne() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -420,6 +427,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// oneinthechamber rechts
 		private static Map<Integer, Map<Integer, String[]>> oitcTwo() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -450,6 +458,7 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// ultraspleef links
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefOne() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
@@ -480,7 +489,380 @@ public class LobbyFeature extends CoreFeature {
 			return result;
 		}
 		
+		// unltraspleef rechts
 		private static Map<Integer, Map<Integer, String[]>> ultraspleefTwo() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// buildmything links
+		private static Map<Integer, Map<Integer, String[]>> bmtOne() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// buildmything rechts
+		private static Map<Integer, Map<Integer, String[]>> bmtTwo() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// infected links
+		private static Map<Integer, Map<Integer, String[]>> ifOne() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// infected rechts
+		private static Map<Integer, Map<Integer, String[]>> ifTwo() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// kistenkrieg links
+		private static Map<Integer, Map<Integer, String[]>> kkOne() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// kistenkrieg rechts
+		private static Map<Integer, Map<Integer, String[]>> kkTwo() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// survivalgames links
+		private static Map<Integer, Map<Integer, String[]>> sgOne() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// survivalgames rechts
+		private static Map<Integer, Map<Integer, String[]>> sgTwo() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// kitpvp links
+		private static Map<Integer, Map<Integer, String[]>> kpOne() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// kitpvp rechts
+		private static Map<Integer, Map<Integer, String[]>> kpTwo() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// suchenundverstecken links
+		private static Map<Integer, Map<Integer, String[]>> suvOne() {
+			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
+			
+			// Line 1
+			Map<Integer, String[]> temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(0, temp);
+			
+			// Line 2
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(1, temp);
+			
+			// Line 3
+			temp = new HashMap<Integer, String[]>();
+			temp.put(0, new String[] { "", "", "", "" });
+			temp.put(1, new String[] { "", "", "", "" });
+			temp.put(2, new String[] { "", "", "", "" });
+			temp.put(3, new String[] { "", "", "", "" });
+			result.put(2, temp);
+			
+			return result;
+		}
+		
+		// suchenundverstecken rechts
+		private static Map<Integer, Map<Integer, String[]>> suvTwo() {
 			final Map<Integer, Map<Integer, String[]>> result = new HashMap<Integer, Map<Integer, String[]>>();
 			
 			// Line 1
@@ -542,6 +924,18 @@ public class LobbyFeature extends CoreFeature {
 				return placeholder();
 			case ULTRASPLEEF:
 				return ultraspleefOne();
+			case BMT:
+				return bmtOne();
+			case IF:
+				return ifOne();
+			case KK:
+				return kkOne();
+			case KP:
+				return kpOne();
+			case SG:
+				return sgOne();
+			case SUV:
+				return suvOne();
 			}
 			
 			return placeholder();
@@ -565,6 +959,18 @@ public class LobbyFeature extends CoreFeature {
 				return placeholder();
 			case ULTRASPLEEF:
 				return ultraspleefTwo();
+			case BMT:
+				return bmtTwo();
+			case IF:
+				return ifTwo();
+			case KK:
+				return kkTwo();
+			case KP:
+				return kpTwo();
+			case SG:
+				return sgTwo();
+			case SUV:
+				return suvTwo();
 			}
 			
 			return placeholder();
