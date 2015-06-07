@@ -72,8 +72,12 @@ public class LeaveHandlerFeature extends CoreFeature {
 	@EventHandler
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
-			getPhase().getGame().broadCastMessage(
-			        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler " + e.getUser().getDisplayName() + " hat das Spiel verlassen!"));
+			if (getPhase().getGame().getType() != GameType.TICTACTOE && getPhase().getGame().getType() != GameType.LOBBY) {
+				getPhase().getGame().broadCastMessage(
+				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+				                .then("Der Spieler " + e.getUser().getDisplayName() + " hat das Spiel verlassen!"));
+			}
+			
 			if (getPhase().getGame().getPlayers().size() <= 2) {
 				if (getPhase().getGame().getType() == GameType.LOBBY) {
 					return;
