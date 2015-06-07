@@ -6,7 +6,6 @@
 		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<groupId>me.MiniDigger.Core.AddOn</groupId>
 	<artifactId>C_Basic</artifactId>
 	<name>C_Basic</name>
 	<description>A basic AddOn with usefull stuff</description>

@@ -1,16 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>me.MiniDigger.Core</groupId>
-    <artifactId>C_Core</artifactId>
-    <version>parent</version>
-  </parent>
-  <groupId>me.MiniDigger.Core.AddOn.SUV</groupId>
-  <artifactId>C_SuchenUndVerstecken</artifactId>
-  <name>C_SuchenUndVerstecken</name>
-  <version>1.0</version>
-  
- <build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>me.MiniDigger.Core</groupId>
+		<artifactId>C_Core</artifactId>
+		<version>parent</version>
+	</parent>
+	<artifactId>C_SuchenUndVerstecken</artifactId>
+	<name>C_SuchenUndVerstecken</name>
+	<version>1.0</version>
+
+	<build>
 		<finalName>SUV-${project.version}</finalName>
 		<plugins>
 			<plugin>
@@ -29,8 +29,7 @@
 								<property name="compile_classpath" refid="maven.compile.classpath" />
 								<property name="outputDir" value="${project.build.outputDirectory}" />
 								<property name="sourceDir" value="${project.build.sourceDirectory}" />
-								<property name="path"
-									value="..\src\main\resources\addon_build.xml" />
+								<property name="path" value="..\src\main\resources\addon_build.xml" />
 								<ant antfile="${path}" target="buildAddOn" />
 							</target>
 						</configuration>

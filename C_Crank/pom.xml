@@ -10,7 +10,6 @@
 	<name>C_Crank</name>
 	<version>1.0</version>
 	<description>A minigame inspired by the film crank</description>
-	<groupId>me.MiniDigger.Core.AddOn</groupId>
 
 	<build>
 		<finalName>Crank-${project.version}</finalName>

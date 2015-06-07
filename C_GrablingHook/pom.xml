@@ -6,7 +6,6 @@
 		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<groupId>me.MiniDigger.Core.AddOn</groupId>
 	<artifactId>C_GrablingHook</artifactId>
 	<name>C_GrablingHook</name>
 	<description>ITEM: A GrablingHook Item</description>

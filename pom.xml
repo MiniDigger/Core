@@ -62,6 +62,10 @@
 		<module>C_UltraSpleef</module>
 		<module>C_SuchenUndVerstecken</module>
 		<module>C_BuildMyThing</module>
+		<module>C_Kistenkrieg</module>
+		<module>C_KitPvP</module>
+		<module>C_SurvivalGames</module>
+		<module>C_Infected</module>
 		<module>C_Build</module>
 	</modules>
 
@@ -94,6 +98,10 @@
 				<module>C_UltraSpleef</module>
 				<module>C_SuchenUndVerstecken</module>
 				<module>C_BuildMyThing</module>
+				<module>C_Kistenkrieg</module>
+				<module>C_KitPvP</module>
+				<module>C_SurvivalGames</module>
+				<module>C_Infected</module>
 				<module>C_Build</module>
 			</modules>
 		</profile>

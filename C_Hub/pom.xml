@@ -6,11 +6,10 @@
 		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<groupId>me.MiniDigger.Core.AddOn</groupId>
 	<artifactId>C_Hub</artifactId>
 	<name>C_Hub</name>
 	<description>A hub AddOn</description>
-	
+
 	<build>
 		<finalName>Hub-${project.version}</finalName>
 		<plugins>
@@ -30,8 +29,7 @@
 								<property name="compile_classpath" refid="maven.compile.classpath" />
 								<property name="outputDir" value="${project.build.outputDirectory}" />
 								<property name="sourceDir" value="${project.build.sourceDirectory}" />
-								<property name="path"
-									value="..\src\main\resources\addon_build.xml" />
+								<property name="path" value="..\src\main\resources\addon_build.xml" />
 								<ant antfile="${path}" target="buildAddOn" />
 							</target>
 						</configuration>
@@ -40,7 +38,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>me.MiniDigger.Core</groupId>

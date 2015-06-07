@@ -31,7 +31,11 @@ public enum GameType {
 	OITC("OneInTheChamber", "OITC", null, "oitc"),
 	ULTRASPLEEF("Gravity King", "GK", null, "ultraspleef"),
 	SUV("SuchenUndVerstecken", "SUV", null, "suv"),
-	BMT("BuildMyThing", "BMT", null, "bmt");
+	BMT("BuildMyThing", "BMT", null, "bmt"),
+	SG("SurvivalGames", "SG", null, "sg"),
+	KP("KitPvP", "KP", null, "kp"),
+	KK("KistenKrieg", "KK", null, "kk"),
+	IF("Infected", "IF", null, "if");
 	
 	private String	    name;
 	private String	    abk;

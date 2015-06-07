@@ -6,7 +6,6 @@
 		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<groupId>me.MiniDigger.Core.AddOn</groupId>
 	<artifactId>C_BedWars</artifactId>
 	<name>C_BedWars</name>
 	<description>GAME: A BedWars/Rush AddOn</description>

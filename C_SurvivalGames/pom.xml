@@ -6,12 +6,11 @@
 		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<artifactId>C_GetTheDrop</artifactId>
-	<name>C_GetTheDrop</name>
-	<description>GAME: A 2 phase pvp game</description>
+	<artifactId>C_SurvivalGames</artifactId>
+	<name>C_SurvivalGames</name>
 
 	<build>
-		<finalName>GetTheDrop-${project.version}</finalName>
+		<finalName>SurvivalGames-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -51,5 +50,4 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-	<version>1.0</version>
 </project>

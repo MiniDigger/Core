@@ -6,10 +6,10 @@
 		<artifactId>C_Core</artifactId>
 		<version>parent</version>
 	</parent>
-	<groupId>me.MiniDigger.Core.AddOn</groupId>
 	<artifactId>C_GravityGun</artifactId>
 	<name>C_GravityGun</name>
 	<description>A item</description>
+	
 	<build>
 		<finalName>GravityGun-${project.version}</finalName>
 		<plugins>
