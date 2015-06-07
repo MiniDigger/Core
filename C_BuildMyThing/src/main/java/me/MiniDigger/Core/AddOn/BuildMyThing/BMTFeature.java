@@ -34,7 +34,7 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class BMTFeature extends CoreFeature {
 	
-	public BMTFeature(Phase phase) {
+	public BMTFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -44,7 +44,7 @@ public class BMTFeature extends CoreFeature {
 	private int	               found	= 0;
 	private List<UUID>	       builded	= new ArrayList<UUID>();
 	private Map<UUID, Integer>	points	= new HashMap<UUID, Integer>();
-	private List<UUID>	       guessed	= new ArrayList<UUID>();
+	private final List<UUID>	guessed	= new ArrayList<UUID>();
 	
 	@Override
 	public FeatureType getType() {
@@ -76,10 +76,10 @@ public class BMTFeature extends CoreFeature {
 		// Words
 		if (words.length == 0) {
 			try {
-				List<String> l = new ArrayList<String>();
+				final List<String> l = new ArrayList<String>();
 				
-				File f = new File(Core.getCore().getInstance().getDataFolder(), "words.txt");
-				BufferedReader r = new BufferedReader(new FileReader(f));
+				final File f = new File(Core.getCore().getInstance().getDataFolder(), "words.txt");
+				final BufferedReader r = new BufferedReader(new FileReader(f));
 				
 				String buffer;
 				while ((buffer = r.readLine()) != null) {
@@ -88,14 +88,14 @@ public class BMTFeature extends CoreFeature {
 				
 				r.close();
 				words = l.toArray(new String[l.size()]);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				words = new String[] { "banane", "apfel", "pferd" };// FALLBACK
 			}
 		}
 		
 		// User
 		List<UUID> available = new ArrayList<UUID>();
-		for (UUID id : getPhase().getGame().getPlayers()) {
+		for (final UUID id : getPhase().getGame().getPlayers()) {
 			if (!builded.contains(id)) {
 				available.add(id);
 			}
@@ -131,10 +131,10 @@ public class BMTFeature extends CoreFeature {
 		}
 		u.getPlayer().teleport(data.getLocs(DyeColor.GREEN).values().iterator().next());
 		
-		Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
-		for (UUID id : getPhase().getGame().getPlayers()) {
-			Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
-			User o = Core.getCore().getUserHandler().get(id);
+		final Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
+		for (final UUID id : getPhase().getGame().getPlayers()) {
+			final Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
+			final User o = Core.getCore().getUserHandler().get(id);
 			if (!o.getPlayer().getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 				if (id != builder) {
 					o.getPlayer().teleport(loc);
@@ -156,8 +156,8 @@ public class BMTFeature extends CoreFeature {
 		u.getPlayer().setGameMode(GameMode.SURVIVAL);
 		
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
-		Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
+		final Location[] locs = data.getLocs(DyeColor.RED).values().toArray(new Location[data.getLocs(DyeColor.RED).size()]);
+		final Location loc = locs[(Core.getCore().getRandomUtil().nextInt(locs.length))];
 		u.getPlayer().teleport(loc);
 		u.getPlayer().getInventory().clear();
 		u.getPlayer().updateInventory();
@@ -166,7 +166,7 @@ public class BMTFeature extends CoreFeature {
 		
 		getPhase().getNextPhase().init();
 		
-		BMTFeature b = (BMTFeature) getPhase().getNextPhase().getFeature(FeatureType.BTM);
+		final BMTFeature b = (BMTFeature) getPhase().getNextPhase().getFeature(FeatureType.BTM);
 		b.setWords(words);
 		b.setBuilded(builded);
 		b.setBuilder(builder);
@@ -187,7 +187,7 @@ public class BMTFeature extends CoreFeature {
 				        getPhase().getGame().getGamePrefix().getPrefix().then("Der Spieler " + e.getUser().getDisplayName() + " hat das Wort erraten!"));
 				
 				if (found == 0) {
-					int p = points.remove(builder);
+					final int p = points.remove(builder);
 					points.put(builder, p + 2);
 					
 					if (points.get(builder) >= 20) {
@@ -218,7 +218,7 @@ public class BMTFeature extends CoreFeature {
 					break;
 				}
 				
-				int p = points.remove(e.getUser().getUUID());
+				final int p = points.remove(e.getUser().getUUID());
 				points.put(e.getUser().getUUID(), p + point);
 				guessed.add(e.getUser().getUUID());
 				
@@ -289,19 +289,19 @@ public class BMTFeature extends CoreFeature {
 		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
 	}
 	
-	public void setBuilder(UUID builder) {
+	public void setBuilder(final UUID builder) {
 		this.builder = builder;
 	}
 	
-	public void setBuilded(List<UUID> builded) {
+	public void setBuilded(final List<UUID> builded) {
 		this.builded = builded;
 	}
 	
-	public void setPoints(Map<UUID, Integer> points) {
+	public void setPoints(final Map<UUID, Integer> points) {
 		this.points = points;
 	}
 	
-	private void setWords(String[] words) {
+	private void setWords(final String[] words) {
 		this.words = words;
 	}
 }

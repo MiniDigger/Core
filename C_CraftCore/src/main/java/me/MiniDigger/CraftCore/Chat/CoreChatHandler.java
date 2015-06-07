@@ -86,7 +86,7 @@ public class CoreChatHandler implements ChatHandler {
 			user.joinChannel(getChannel("Default"));
 		}
 		
-		CoreUserChatEvent e = new CoreUserChatEvent(user, user.getSpeakChannel(), message);
+		final CoreUserChatEvent e = new CoreUserChatEvent(user, user.getSpeakChannel(), message);
 		Bukkit.getPluginManager().callEvent(e);
 		if (e.isCancelled()) {
 			return;

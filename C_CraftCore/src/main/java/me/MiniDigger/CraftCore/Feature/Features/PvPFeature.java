@@ -102,7 +102,7 @@ public class PvPFeature extends CoreFeature {
 					return;
 				}
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			e.setCancelled(true);
 			e.setDmg(0.0); // SHOULD THIS BE HERE? IDK!
 		}
@@ -115,7 +115,7 @@ public class PvPFeature extends CoreFeature {
 					return;
 				}
 			}
-		} catch (Exception ex) {}
+		} catch (final Exception ex) {}
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)

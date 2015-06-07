@@ -71,7 +71,7 @@ public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDama
 	}
 	
 	@Override
-	public void setDmg(double d) {
-		this.dmg = d;
+	public void setDmg(final double d) {
+		dmg = d;
 	}
 }

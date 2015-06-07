@@ -17,7 +17,6 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
-
 public class SUVAddOn extends CoreAddOn {
 	
 	@Override

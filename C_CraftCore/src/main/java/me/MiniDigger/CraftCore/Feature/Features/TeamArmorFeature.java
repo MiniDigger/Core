@@ -43,11 +43,11 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TeamArmorFeature extends CoreFeature {
 	
-	private boolean	giveOnStartUp;
+	private final boolean	giveOnStartUp;
 	
-	public TeamArmorFeature(final Phase phase, boolean giveOnStartup) {
+	public TeamArmorFeature(final Phase phase, final boolean giveOnStartup) {
 		super(phase);
-		this.giveOnStartUp = giveOnStartup;
+		giveOnStartUp = giveOnStartup;
 	}
 	
 	@Override
@@ -73,15 +73,15 @@ public class TeamArmorFeature extends CoreFeature {
 	@Override
 	public void start() {
 		if (giveOnStartUp) {
-			for (UUID id : getPhase().getGame().getPlayers()) {
-				Player p = Bukkit.getPlayer(id);
-				ItemStack head = new ItemStack(Material.LEATHER_HELMET);
-				ItemStack body = new ItemStack(Material.LEATHER_CHESTPLATE);
-				ItemStack leg = new ItemStack(Material.LEATHER_LEGGINGS);
-				ItemStack feet = new ItemStack(Material.LEATHER_BOOTS);
+			for (final UUID id : getPhase().getGame().getPlayers()) {
+				final Player p = Bukkit.getPlayer(id);
+				final ItemStack head = new ItemStack(Material.LEATHER_HELMET);
+				final ItemStack body = new ItemStack(Material.LEATHER_CHESTPLATE);
+				final ItemStack leg = new ItemStack(Material.LEATHER_LEGGINGS);
+				final ItemStack feet = new ItemStack(Material.LEATHER_BOOTS);
 				
-				LeatherArmorMeta meta = (LeatherArmorMeta) head.getItemMeta();
-				TeamFeature f = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+				final LeatherArmorMeta meta = (LeatherArmorMeta) head.getItemMeta();
+				final TeamFeature f = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				meta.setColor(Core.getCore().getChatColorUtil().toColor(f.getTeam(p).getColor()));
 				
 				head.setItemMeta(meta);

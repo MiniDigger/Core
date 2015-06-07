@@ -22,7 +22,7 @@ public class SUVSelectFeature extends CoreFeature {
 	private UUID	sucher1;
 	private UUID	sucher2;
 	
-	public SUVSelectFeature(Phase phase) {
+	public SUVSelectFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -54,14 +54,14 @@ public class SUVSelectFeature extends CoreFeature {
 	@Override
 	public void end() {
 		try {
-			SUVFeature f = (SUVFeature) ((SUVGame) getPhase().getGame()).getSuvPhase().getFeature(FeatureType.SUV);
+			final SUVFeature f = (SUVFeature) ((SUVGame) getPhase().getGame()).getSuvPhase().getFeature(FeatureType.SUV);
 			f.setSucher1(sucher1);
 			f.setSucher2(sucher2);
 			
-			TeamSelectFeature tf = (TeamSelectFeature) getPhase().getFeature(FeatureType.TEAM_SELECT);
+			final TeamSelectFeature tf = (TeamSelectFeature) getPhase().getFeature(FeatureType.TEAM_SELECT);
 			tf.addException(sucher1);
 			tf.addException(sucher2);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("Couldn't search for searchers....");
 		}
 	}
@@ -81,7 +81,7 @@ public class SUVSelectFeature extends CoreFeature {
 			final User sucher2 = Core.getCore().getUserHandler().get(this.sucher2);
 			sucher2.sendMessage(Prefix.API.getPrefix().then("Du bist nun kein Sucher mehr!").color(ChatColor.RED));
 			
-			this.sucher2 = this.sucher1;
+			this.sucher2 = sucher1;
 			sucher1 = user.getUUID();
 		}
 		

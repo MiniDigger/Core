@@ -20,12 +20,7 @@
  */
 package me.MiniDigger.CraftCore.World;
 
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.apache.tools.ant.types.CommandlineJava.SysProperties;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -75,7 +70,7 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		try {
 			w.save();
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("No save for you, bitch");
 		}
 		
@@ -87,7 +82,7 @@ public class CoreWorldHandler implements WorldHandler {
 					e.remove();
 				}
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("Ok, you can live some seconds longer...");
 		}
 		
@@ -96,12 +91,12 @@ public class CoreWorldHandler implements WorldHandler {
 				c.unload();
 				w.unloadChunk(c);
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("I will unload you later...");
 		}
 		try {
 			Bukkit.unloadWorld(w, true);
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			System.out.println("Will, that sucks");
 		}
 		System.out.println("?");
@@ -153,20 +148,20 @@ public class CoreWorldHandler implements WorldHandler {
 			try {
 				_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
 				Core.getCore().getFileUtil().deleteDirectory(oldMap);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				System.out.println("err");
 				fixSession(oldMap);
 				try {
 					_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
 					Core.getCore().getFileUtil().deleteDirectory(oldMap);
-				} catch (Exception exs) {
+				} catch (final Exception exs) {
 					System.out.println("err124");
 				}
 			}
 		}
 	}
 	
-	private void fixSession(File oldMap) {
+	private void fixSession(final File oldMap) {
 		System.out.println("fix session");
 		final File session = new File(oldMap, "session.lock");
 		session.delete();

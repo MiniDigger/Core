@@ -68,5 +68,5 @@ public interface UserDamageEvent {
 	 * @param d
 	 *            the new value to set
 	 */
-	void setDmg(double d);
+	void setDmg(final double d);
 }

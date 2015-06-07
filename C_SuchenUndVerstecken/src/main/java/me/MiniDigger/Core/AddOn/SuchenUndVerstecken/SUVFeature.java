@@ -31,7 +31,7 @@ public class SUVFeature extends CoreFeature {
 	private UUID	sucher1;
 	private UUID	sucher2;
 	
-	public SUVFeature(Phase phase) {
+	public SUVFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -69,7 +69,7 @@ public class SUVFeature extends CoreFeature {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Noch da", DisplaySlot.SIDEBAR));
 		
-		TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		
 		if (sucher1 != null) {
 			board.addLine(new CoreScoreboardLine(3, "Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
@@ -115,8 +115,8 @@ public class SUVFeature extends CoreFeature {
 		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
 	}
 	
-	public void check(UUID id1, UUID id2, boolean leave) {
-		TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+	public void check(UUID id1, final UUID id2, final boolean leave) {
+		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		
 		if (id1 == null) {
 			if (t.getTeams().get(0).getPlayers().contains(id2)) {
@@ -128,14 +128,14 @@ public class SUVFeature extends CoreFeature {
 		
 		if (id1 == sucher1 || id1 == sucher2) {
 			// User s = Core.getCore().getUserHandler().get(id1);
-			User v = Core.getCore().getUserHandler().get(id2);
+			final User v = Core.getCore().getUserHandler().get(id2);
 			
 			v.getPlayer().damage(9000.0);
-			Location l = v.getPlayer().getLocation();
+			final Location l = v.getPlayer().getLocation();
 			l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			
 			if (id1 == sucher1 && t.getTeams().get(1).getPlayers().contains(id2)) {
-				User os = Core.getCore().getUserHandler().get(sucher2);
+				final User os = Core.getCore().getUserHandler().get(sucher2);
 				t.getTeams().get(1).getPlayers().remove(id2);
 				if (os.getPlayer() != null) {
 					getPhase().getGame().broadCastMessage(
@@ -155,7 +155,7 @@ public class SUVFeature extends CoreFeature {
 					                .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler am Leben!"));
 				}
 			} else if (id1 == sucher2 && t.getTeams().get(0).getPlayers().contains(id2)) {
-				User os = Core.getCore().getUserHandler().get(sucher1);
+				final User os = Core.getCore().getUserHandler().get(sucher1);
 				t.getTeams().get(0).getPlayers().remove(id2);
 				if (os.getPlayer() != null) {
 					getPhase().getGame().broadCastMessage(
@@ -182,19 +182,19 @@ public class SUVFeature extends CoreFeature {
 	}
 	
 	public void checkEnd() {
-		TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		
 		if (t.getTeams().get(0).getPlayers().size() == 0) {
-			User w = Core.getCore().getUserHandler().get(sucher2);
-			User[] ww = new User[t.getTeams().get(1).getPlayers().size() + 1];
+			final User w = Core.getCore().getUserHandler().get(sucher2);
+			final User[] ww = new User[t.getTeams().get(1).getPlayers().size() + 1];
 			for (int i = 1; i < ww.length - 1; i++) {
 				ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(1).getPlayers().get(i));
 			}
 			ww[0] = w;
 			getPhase().getGame().end(w);
 		} else if (t.getTeamCount() > 1 && t.getTeams().get(1).getPlayers().size() == 0) {
-			User w = Core.getCore().getUserHandler().get(sucher1);
-			User[] ww = new User[t.getTeams().get(0).getPlayers().size() + 1];
+			final User w = Core.getCore().getUserHandler().get(sucher1);
+			final User[] ww = new User[t.getTeams().get(0).getPlayers().size() + 1];
 			for (int i = 1; i < ww.length - 1; i++) {
 				ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(0).getPlayers().get(i));
 			}
@@ -204,7 +204,7 @@ public class SUVFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onInteract(PlayerInteractEntityEvent e) {
+	public void onInteract(final PlayerInteractEntityEvent e) {
 		if (e.getRightClicked() instanceof Player) {
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId()) && getPhase().getGame().getPlayers().contains(e.getRightClicked().getUniqueId())) {
 				check(e.getPlayer().getUniqueId(), e.getRightClicked().getUniqueId(), false);
@@ -220,11 +220,11 @@ public class SUVFeature extends CoreFeature {
 		}
 	}
 	
-	public void setSucher1(UUID id) {
-		this.sucher1 = id;
+	public void setSucher1(final UUID id) {
+		sucher1 = id;
 	}
 	
-	public void setSucher2(UUID id) {
-		this.sucher2 = id;
+	public void setSucher2(final UUID id) {
+		sucher2 = id;
 	}
 }

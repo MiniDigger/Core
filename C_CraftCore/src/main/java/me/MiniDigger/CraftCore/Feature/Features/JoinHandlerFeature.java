@@ -80,7 +80,7 @@ public class JoinHandlerFeature extends CoreFeature {
 				Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
 				try {
 					e.getUser().getPlayer().teleport(((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap().getLocs(DyeColor.RED).get(0));
-				} catch (Exception ex) {
+				} catch (final Exception ex) {
 					System.out.println("error while join tp");
 				}
 			} else if (getPhase().getGame().allowSpectate()) {

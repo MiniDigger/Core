@@ -18,7 +18,7 @@ public class BMTGame extends CoreGame {
 	BMTPhase	btm;
 	PostPhase	post;
 	
-	public PostPhase getPost(){
+	public PostPhase getPost() {
 		return post;
 	}
 	

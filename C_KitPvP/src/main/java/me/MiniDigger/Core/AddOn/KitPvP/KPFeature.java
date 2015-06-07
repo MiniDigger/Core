@@ -10,7 +10,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class KPFeature extends CoreFeature {
 	
-	public KPFeature(Phase phase) {
+	public KPFeature(final Phase phase) {
 		super(phase);
 	}
 	

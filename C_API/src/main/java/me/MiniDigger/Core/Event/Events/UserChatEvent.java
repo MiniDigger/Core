@@ -14,13 +14,13 @@ public interface UserChatEvent {
 	 * @param msg
 	 *            the msg to set
 	 */
-	void setMsg(String msg);
+	void setMsg(final String msg);
 	
 	/**
 	 * @param channel
 	 *            the channel to set
 	 */
-	void setChannel(ChatChannel channel);
+	void setChannel(final ChatChannel channel);
 	
 	/**
 	 * @return the channel
@@ -31,7 +31,7 @@ public interface UserChatEvent {
 	 * @param user
 	 *            the user to set
 	 */
-	void setUser(User user);
+	void setUser(final User user);
 	
 	/**
 	 * @return the user

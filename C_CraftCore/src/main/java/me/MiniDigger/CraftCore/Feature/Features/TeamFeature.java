@@ -43,7 +43,7 @@ public class TeamFeature extends TeamSelectFeature {
 		super(p, null, teamCount, teamCount);
 	}
 	
-	public TeamFeature(final Phase p, final int teamSize, final int teamCount, List<UUID> exceptions) {
+	public TeamFeature(final Phase p, final int teamSize, final int teamCount, final List<UUID> exceptions) {
 		super(p, null, teamCount, teamCount);
 		this.exceptions = exceptions;
 	}
@@ -93,7 +93,7 @@ public class TeamFeature extends TeamSelectFeature {
 		this.teams = teams;
 	}
 	
-	public void setExceptions(List<UUID> exceptions2) {
-		this.exceptions = exceptions2;
+	public void setExceptions(final List<UUID> exceptions2) {
+		exceptions = exceptions2;
 	}
 }

@@ -1,6 +1,5 @@
 package me.MiniDigger.Core.AddOn.Kistenkrieg;
 
-import me.MiniDigger.Core.AddOn.OITC.OITCPhase;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -15,12 +14,12 @@ import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
-
 public class KKGame extends CoreGame {
+	
 	LobbyPhase	lobby;
 	VotePhase	vote;
 	GracePhase	grace;
-	KKPhase	kk;
+	KKPhase	   kk;
 	PostPhase	post;
 	
 	@Override

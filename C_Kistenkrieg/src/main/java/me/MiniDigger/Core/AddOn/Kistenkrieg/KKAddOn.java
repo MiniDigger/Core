@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.AddOn.OITC.OITCGame;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Command.Completer;
@@ -18,7 +17,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
-public class KKAddOn extends CoreAddOn{
+public class KKAddOn extends CoreAddOn {
 	
 	@Override
 	public void enable() {

@@ -1,6 +1,5 @@
 package me.MiniDigger.Core.AddOn.KitPvP;
 
-import me.MiniDigger.Core.AddOn.OITC.OITCPhase;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -15,12 +14,12 @@ import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
-
-public class KPGame extends CoreGame{
+public class KPGame extends CoreGame {
+	
 	LobbyPhase	lobby;
 	VotePhase	vote;
 	GracePhase	grace;
-	KPPhase	kp;
+	KPPhase	   kp;
 	PostPhase	post;
 	
 	@Override

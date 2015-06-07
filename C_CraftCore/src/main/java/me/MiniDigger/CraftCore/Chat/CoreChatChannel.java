@@ -50,7 +50,7 @@ public class CoreChatChannel implements ChatChannel {
 		this.prefix = prefix;
 		this.hearPerm = hearPerm;
 		this.speakPerm = speakPerm;
-		this.showMsg = true;
+		showMsg = true;
 	}
 	
 	@Override

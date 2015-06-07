@@ -6,7 +6,7 @@ import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class KPPhase extends CorePhase {
 	
-	public KPPhase(Game game) {
+	public KPPhase(final Game game) {
 		super(game, null);
 	}
 	

@@ -126,7 +126,7 @@ public class CoreGameHandler implements GameHandler {
 		Bukkit.getPluginManager().callEvent(event);
 		
 		game.leave(user);
-
+		
 		System.out.println("leave " + game.getChatChannel().getName());
 		user.leaveChannel(game.getChatChannel());
 		user.setPrimaryChannel(Core.getCore().getChatHandler().getChannel("Default"));

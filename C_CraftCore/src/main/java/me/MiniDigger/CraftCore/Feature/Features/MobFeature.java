@@ -93,7 +93,7 @@ public class MobFeature extends CoreFeature {
 					e.remove();
 				}
 			}
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			new BukkitRunnable() {
 				
 				@Override

@@ -234,7 +234,7 @@ public interface Game {
 	 * @return if the game is full (players.size >= maxplayers)
 	 */
 	public boolean isFull();
-
+	
 	/**
 	 * 
 	 * @return the chatchannel of this game

@@ -62,7 +62,7 @@ public class CoreGame implements Game {
 	private GameType	                  type;
 	private boolean	                      allowJoin;
 	private boolean	                      allowSpectate;
-	private ChatChannel	                  channel;
+	private final ChatChannel	          channel;
 	protected int	                      maxplayers	= 1000;
 	
 	public CoreGame() {

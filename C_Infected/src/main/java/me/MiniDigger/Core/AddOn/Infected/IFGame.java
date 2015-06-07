@@ -1,6 +1,5 @@
 package me.MiniDigger.Core.AddOn.Infected;
 
-import me.MiniDigger.Core.AddOn.OITC.OITCPhase;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -20,7 +19,7 @@ public class IFGame extends CoreGame {
 	LobbyPhase	lobby;
 	VotePhase	vote;
 	GracePhase	grace;
-	IFPhase	ifp;
+	IFPhase	   ifp;
 	PostPhase	post;
 	
 	@Override

@@ -175,14 +175,14 @@ public class TeamSelectFeature extends CoreFeature {
 		
 		if (getPhase().getGame().getType() == GameType.SUV) {
 			if ((exceptions.size() < 2 && exceptions.size() > 0) && (exceptions.get(0) == null | exceptions.get(1) == null)) {
-				for (Team t : teams) {
-					for (UUID id : t.getPlayers()) {
+				for (final Team t : teams) {
+					for (final UUID id : t.getPlayers()) {
 						t.leave(id);
 					}
 				}
 				teams.clear();
-				User u = Core.getCore().getUserHandler().get(exceptions.get(0));
-				Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());
+				final User u = Core.getCore().getUserHandler().get(exceptions.get(0));
+				final Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());
 				for (final UUID id : getPhase().getGame().getPlayers()) {
 					if (exceptions.contains(id)) {
 						continue;

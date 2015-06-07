@@ -14,7 +14,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class NoInventoryInteractionFeature extends CoreFeature {
 	
-	public NoInventoryInteractionFeature(Phase phase) {
+	public NoInventoryInteractionFeature(final Phase phase) {
 		super(phase);
 	}
 	
@@ -49,7 +49,7 @@ public class NoInventoryInteractionFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onInvInteract(InventoryInteractEvent e) {
+	public void onInvInteract(final InventoryInteractEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getWhoClicked().getUniqueId())) {
 			e.setCancelled(true);
 			e.setResult(Result.DENY);

@@ -98,7 +98,7 @@ public class GetTheDropGame extends CoreGame {
 	@Override
 	public void start() {
 		super.start();
-
+		
 		getPhase().startPhase();
 	}
 	

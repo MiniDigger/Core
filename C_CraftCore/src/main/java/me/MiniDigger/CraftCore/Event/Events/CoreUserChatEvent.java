@@ -12,7 +12,7 @@ public class CoreUserChatEvent extends CoreCancelableEvent implements UserChatEv
 	private ChatChannel	channel;
 	private String	    msg;
 	
-	public CoreUserChatEvent(User user, ChatChannel channel, String msg) {
+	public CoreUserChatEvent(final User user, final ChatChannel channel, final String msg) {
 		super();
 		this.user = user;
 		this.channel = channel;
@@ -25,7 +25,7 @@ public class CoreUserChatEvent extends CoreCancelableEvent implements UserChatEv
 	}
 	
 	@Override
-	public void setUser(User user) {
+	public void setUser(final User user) {
 		this.user = user;
 	}
 	
@@ -35,7 +35,7 @@ public class CoreUserChatEvent extends CoreCancelableEvent implements UserChatEv
 	}
 	
 	@Override
-	public void setChannel(ChatChannel channel) {
+	public void setChannel(final ChatChannel channel) {
 		this.channel = channel;
 	}
 	
@@ -45,7 +45,7 @@ public class CoreUserChatEvent extends CoreCancelableEvent implements UserChatEv
 	}
 	
 	@Override
-	public void setMsg(String msg) {
+	public void setMsg(final String msg) {
 		this.msg = msg;
 	}
 	

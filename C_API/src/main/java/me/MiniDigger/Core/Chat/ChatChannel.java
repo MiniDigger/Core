@@ -140,5 +140,5 @@ public interface ChatChannel {
 	 * @param showMsg
 	 *            If join and leave msgs should be shown
 	 */
-	void init(String name, ChatColor color, String hearPerm, String speakPerm, FancyMessage prefix, boolean showMsg);
+	void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix, final boolean showMsg);
 }
