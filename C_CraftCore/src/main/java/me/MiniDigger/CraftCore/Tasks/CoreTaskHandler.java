@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.CraftCore.Tasks;
 
 import java.util.ArrayList;
@@ -13,48 +33,48 @@ import me.MiniDigger.Core.Tasks.TaskHandler;
 
 public class CoreTaskHandler implements TaskHandler {
 	
-	private List<Task>	tasks	= new ArrayList<Task>();
+	private final List<Task>	tasks	= new ArrayList<Task>();
 	
 	@Override
-	public Task runTaskTimerAsynchronously(BukkitRunnable task, long delay, long period, Phase phase) {
-		BukkitTask bt = task.runTaskTimerAsynchronously(Core.getCore().getInstance(), delay, period);
-		Task ct = new CoreTask(phase, bt);
+	public Task runTaskTimerAsynchronously(final BukkitRunnable task, final long delay, final long period, final Phase phase) {
+		final BukkitTask bt = task.runTaskTimerAsynchronously(Core.getCore().getInstance(), delay, period);
+		final Task ct = new CoreTask(phase, bt);
 		tasks.add(ct);
 		return ct;
 	}
 	
 	@Override
-	public Task runTaskTimer(BukkitRunnable task, long delay, long period, Phase phase) {
-		BukkitTask bt = task.runTaskTimer(Core.getCore().getInstance(), delay, period);
-		Task ct = new CoreTask(phase, bt);
+	public Task runTaskTimer(final BukkitRunnable task, final long delay, final long period, final Phase phase) {
+		final BukkitTask bt = task.runTaskTimer(Core.getCore().getInstance(), delay, period);
+		final Task ct = new CoreTask(phase, bt);
 		tasks.add(ct);
 		return ct;
 	}
 	
 	@Override
-	public Task runTaskLaterAsynchronously(BukkitRunnable task, long delay, Phase phase) {
+	public Task runTaskLaterAsynchronously(final BukkitRunnable task, final long delay, final Phase phase) {
 		return runTaskTimerAsynchronously(task, delay, -1L, phase);
 	}
 	
 	@Override
-	public Task runTaskLater(BukkitRunnable task, long delay, Phase phase) {
+	public Task runTaskLater(final BukkitRunnable task, final long delay, final Phase phase) {
 		return runTaskTimer(task, delay, -1L, phase);
 	}
 	
 	@Override
-	public Task runTaskAsynchronously(BukkitRunnable task, Phase phase) {
+	public Task runTaskAsynchronously(final BukkitRunnable task, final Phase phase) {
 		return runTaskLaterAsynchronously(task, 0L, phase);
 	}
 	
 	@Override
-	public Task runTask(BukkitRunnable task, Phase phase) {
+	public Task runTask(final BukkitRunnable task, final Phase phase) {
 		return runTaskLater(task, 0L, phase);
 	}
 	
 	@Override
-	public List<Task> getTaskByPhase(Phase phase) {
-		List<Task> t = new ArrayList<Task>();
-		for (Task task : tasks) {
+	public List<Task> getTaskByPhase(final Phase phase) {
+		final List<Task> t = new ArrayList<Task>();
+		for (final Task task : tasks) {
 			if (task.getPhase().equals(phase)) {
 				t.add(task);
 			}
@@ -64,8 +84,14 @@ public class CoreTaskHandler implements TaskHandler {
 	
 	@Override
 	public void cancelAll() {
-		for (Task task : tasks) {
+		for (final Task task : tasks) {
 			task.getTask().cancel();
 		}
+	}
+	
+	@Override
+	public void cancel(final Task task) {
+		// TODO Auto-generated method stub
+		
 	}
 }

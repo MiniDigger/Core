@@ -30,13 +30,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
+import me.MiniDigger.Core.Tasks.Task;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
@@ -44,7 +44,7 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class ShowDropsFeature extends CoreFeature {
 	
-	private BukkitTask	             task;
+	private Task	                 task;
 	private final Map<UUID, Integer>	drops	= new HashMap<UUID, Integer>();
 	
 	public ShowDropsFeature(final Phase phase) {
@@ -79,7 +79,7 @@ public class ShowDropsFeature extends CoreFeature {
 	@Override
 	public void end() {
 		if (task != null) {
-			task.cancel();
+			Core.getCore().getTaskHandler().cancel(task);
 			task = null;
 		}
 		
@@ -100,10 +100,10 @@ public class ShowDropsFeature extends CoreFeature {
 	
 	public void scoreboard() {
 		if (task != null) {
-			task.cancel();
+			Core.getCore().getTaskHandler().cancel(task);
 			task = null;
 		}
-		task = new BukkitRunnable() {
+		task = Core.getCore().getTaskHandler().runTaskTimer(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -122,7 +122,7 @@ public class ShowDropsFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(id);
 				}
 			}
-		}.runTaskTimer(Core.getCore().getInstance(), 20, 20);
+		}, 20, 20, getPhase());
 	}
 	
 }

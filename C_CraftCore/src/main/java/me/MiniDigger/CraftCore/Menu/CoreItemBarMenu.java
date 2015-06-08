@@ -128,7 +128,9 @@ public class CoreItemBarMenu implements ItemBarMenu {
 							
 							@Override
 							public void run() {
-								((Player) e.getWhoClicked()).updateInventory();
+								if (e.getWhoClicked() != null) {
+									((Player) e.getWhoClicked()).updateInventory();
+								}
 							}
 						}.runTaskLater(Core.getCore().getInstance(), 10);
 					}
@@ -153,7 +155,9 @@ public class CoreItemBarMenu implements ItemBarMenu {
 							
 							@Override
 							public void run() {
-								((Player) e.getWhoClicked()).updateInventory();
+								if (e.getWhoClicked() != null) {
+									((Player) e.getWhoClicked()).updateInventory();
+								}
 							}
 						}.runTaskLater(Core.getCore().getInstance(), 10);
 					}

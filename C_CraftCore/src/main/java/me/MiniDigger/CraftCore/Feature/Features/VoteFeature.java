@@ -180,7 +180,7 @@ public class VoteFeature extends CoreFeature {
 			return false;
 		}
 		
-		final BukkitRunnable r = new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -190,9 +190,7 @@ public class VoteFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		};
-		
-		r.runTask(Core.getCore().getInstance());
+		}, getPhase());
 		
 		return true;
 	}

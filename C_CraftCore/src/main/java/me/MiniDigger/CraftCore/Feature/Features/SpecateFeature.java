@@ -95,7 +95,7 @@ public class SpecateFeature extends CoreFeature {
 		getPhase().getGame().addSpec(user.getUUID());
 		user.getPlayer().setGameMode(GameMode.SPECTATOR);
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -103,7 +103,7 @@ public class SpecateFeature extends CoreFeature {
 					user.getPlayer().teleport(loc);
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
+		}, 10, getPhase());// Wait for respawn
 		
 		Prefix.SPEC.getPrefix().then("Du bist jetzt Zuschauer!").send(user.getPlayer());
 	}

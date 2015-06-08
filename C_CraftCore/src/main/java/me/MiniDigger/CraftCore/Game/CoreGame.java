@@ -233,7 +233,7 @@ public class CoreGame implements Game {
 			}
 		}
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -299,7 +299,7 @@ public class CoreGame implements Game {
 					
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 10);// Wait for respawn
+		}, 10, getPhase());// Wait for respawn
 		
 		Core.getCore().getGameHandler().removeGame(this);
 		HandlerList.unregisterAll(getPhase());
@@ -316,7 +316,7 @@ public class CoreGame implements Game {
 		if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 			Core.getCore().getShutdownUtil().doShutdown();
 		} else {
-			new BukkitRunnable() {
+			Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 				
 				@Override
 				public void run() {
@@ -379,9 +379,9 @@ public class CoreGame implements Game {
 						} catch (final Exception ex) {}
 					}
 				}
-			}.runTaskLater(Core.getCore().getInstance(), 10 * 60 * 20);// After
-			                                                           // shutdown
-			                                                           // timer
+			}, 10 * 60 * 20, getPhase());// After
+			                             // shutdown
+			                             // timer
 		}
 		
 		try {

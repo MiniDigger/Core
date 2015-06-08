@@ -100,7 +100,7 @@ public class LastManStandingFeature extends CoreFeature {
 	public void showLives() {
 		final List<UUID> retry = new ArrayList<UUID>();
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -114,9 +114,9 @@ public class LastManStandingFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		}.runTask(Core.getCore().getInstance());
+		}, getPhase());
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -128,7 +128,7 @@ public class LastManStandingFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
+		}, 20, getPhase());// WAit for respawn
 	}
 	
 	@EventHandler

@@ -73,13 +73,13 @@ public class NoDropFeature extends CoreFeature {
 	public void onDrop(final PlayerDropItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			e.setCancelled(true);
-			new BukkitRunnable() {
+			Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 				
 				@Override
 				public void run() {
 					e.getPlayer().updateInventory();
 				}
-			}.runTaskLater(Core.getCore().getInstance(), 10);
+			}, 10, getPhase());
 		}
 	}
 }

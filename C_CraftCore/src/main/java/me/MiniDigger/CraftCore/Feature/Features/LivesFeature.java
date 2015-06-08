@@ -146,7 +146,7 @@ public class LivesFeature extends CoreFeature {
 		
 		final List<UUID> retry = new ArrayList<UUID>();
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -160,9 +160,9 @@ public class LivesFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		}.runTask(Core.getCore().getInstance());
+		}, getPhase());
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -174,7 +174,7 @@ public class LivesFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
+		}, 20, getPhase());// WAit for respawn
 	}
 	
 	@EventHandler
@@ -190,13 +190,13 @@ public class LivesFeature extends CoreFeature {
 				final Location loc = locs.get(locs.keySet().iterator().next());
 				e.getUser().getPlayer().teleport(loc);
 				
-				new BukkitRunnable() {
+				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 					
 					@Override
 					public void run() {
 						e.getUser().getPlayer().teleport(loc);
 					}
-				}.runTaskLater(Core.getCore().getInstance(), 10);
+				}, 10, getPhase());
 				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)

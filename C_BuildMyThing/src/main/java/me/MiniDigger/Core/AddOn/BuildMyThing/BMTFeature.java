@@ -1,3 +1,23 @@
+/**
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * 
+ * Copyright © MiniDigger and others - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
+ */
 package me.MiniDigger.Core.AddOn.BuildMyThing;
 
 import java.io.BufferedReader;
@@ -192,14 +212,14 @@ public class BMTFeature extends CoreFeature {
 					
 					if (points.get(builder) >= 20) {
 						updateBoards();
-						new BukkitRunnable() {
+						Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 							
 							@Override
 							public void run() {
 								getPhase().getGame().end(Core.getCore().getUserHandler().get(builder));
 								
 							}
-						}.runTask(Core.getCore().getInstance());
+						}, getPhase());
 						return;
 					}
 				}
@@ -224,14 +244,14 @@ public class BMTFeature extends CoreFeature {
 				
 				if (points.get(e.getUser().getUUID()) >= 20) {
 					updateBoards();
-					new BukkitRunnable() {
+					Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 						
 						@Override
 						public void run() {
 							getPhase().getGame().end(Core.getCore().getUserHandler().get(e.getUser().getUUID()));
 							
 						}
-					}.runTask(Core.getCore().getInstance());
+					}, getPhase());
 					return;
 				}
 				
@@ -258,7 +278,7 @@ public class BMTFeature extends CoreFeature {
 	public void updateBoards() {
 		final List<UUID> retry = new ArrayList<UUID>();
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -272,9 +292,9 @@ public class BMTFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		}.runTask(Core.getCore().getInstance());
+		}, getPhase());
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -286,7 +306,7 @@ public class BMTFeature extends CoreFeature {
 					Core.getCore().getScoreboardHandler().update(uuid);
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 20);// WAit for respawn
+		}, 20, getPhase());// WAit for respawn
 	}
 	
 	public void setBuilder(final UUID builder) {

@@ -39,15 +39,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class PremiumLaunchFeature extends CoreFeature {
 	
-	private Location	                    loc1;
-	private Location	                    loc2;
-	private final Map<UUID, BukkitRunnable>	tasks	= new HashMap<UUID, BukkitRunnable>();
+	private Location	          loc1;
+	private Location	          loc2;
+	private final Map<UUID, Task>	tasks	= new HashMap<UUID, Task>();
 	
 	public PremiumLaunchFeature(final Phase phase) {
 		super(phase);
@@ -98,24 +99,22 @@ public class PremiumLaunchFeature extends CoreFeature {
 						if (u.hasPermission("premium.launch")) {
 							if (s.getLocation().distance(loc1) < s.getLocation().distance(loc2)) {
 								u.getPlayer().teleport(loc2);
-								tasks.put(u.getUUID(), new BukkitRunnable() {
+								tasks.put(u.getUUID(), Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 									
 									@Override
 									public void run() {
 										tasks.remove(u.getUUID());
 									}
-								});
-								tasks.get(u.getUUID()).runTaskLater(Core.getCore().getInstance(), 2 * 20);
+								}, 2 * 20, getPhase()));
 							} else {
 								u.getPlayer().teleport(loc1);
-								tasks.put(u.getUUID(), new BukkitRunnable() {
+								tasks.put(u.getUUID(), Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 									
 									@Override
 									public void run() {
 										tasks.remove(u.getUUID());
 									}
-								});
-								tasks.get(u.getUUID()).runTaskLater(Core.getCore().getInstance(), 2 * 20);
+								}, 2 * 20, getPhase()));
 							}
 						}
 					}

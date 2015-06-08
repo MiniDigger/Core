@@ -141,7 +141,7 @@ public class SpawnFeature extends CoreFeature {
 			try {
 				user.getPlayer().teleport(loc);
 			} catch (final Exception ex) {
-				new BukkitRunnable() {
+				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 					
 					@Override
 					public void run() {
@@ -151,7 +151,7 @@ public class SpawnFeature extends CoreFeature {
 							System.out.println("respawn failed after second try");
 						}
 					}
-				}.runTaskLater(Core.getCore().getInstance(), 20 * 2);
+				}, 20 * 2, getPhase());
 			}
 			return loc;
 		}

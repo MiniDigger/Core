@@ -39,14 +39,15 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LadderKingFeature extends CoreFeature {
 	
-	private UUID	                        king;
-	private final Map<UUID, BukkitRunnable>	tasks	= new HashMap<UUID, BukkitRunnable>();
+	private UUID	              king;
+	private final Map<UUID, Task>	tasks	= new HashMap<UUID, Task>();
 	
 	public LadderKingFeature(final Phase phase) {
 		super(phase);
@@ -102,12 +103,12 @@ public class LadderKingFeature extends CoreFeature {
 						king = k.getUUID();
 					}
 					
-					for (final BukkitRunnable r : tasks.values()) {
-						r.cancel();
+					for (final Task r : tasks.values()) {
+						Core.getCore().getTaskHandler().cancel(r);
 					}
 					tasks.clear();
 					
-					tasks.put(king, new BukkitRunnable() {
+					tasks.put(king, Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 						
 						@Override
 						public void run() {
@@ -119,8 +120,7 @@ public class LadderKingFeature extends CoreFeature {
 							getPhase().getGame().broadCastMessage(
 							        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" hat seinen Tron verlassen!").color(ChatColor.GOLD));
 						}
-					});
-					tasks.get(king).runTaskLater(Core.getCore().getInstance(), 5 * 20);
+					}, 5 * 20, getPhase()));
 				}
 			}
 		}

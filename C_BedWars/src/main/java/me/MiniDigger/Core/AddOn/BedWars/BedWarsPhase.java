@@ -128,48 +128,48 @@ public class BedWarsPhase extends CorePhase {
 		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 4, null, silver));
 		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 20, null, gold));
 		
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				genBowVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 1);
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 6 * 20);
-		new BukkitRunnable() {
+		}, 6 * 20, this);
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				genWeaponVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 2);
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 7 * 20);
-		new BukkitRunnable() {
+		}, 7 * 20, this);
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				genArmorVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 3);
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 8 * 20);
-		new BukkitRunnable() {
+		}, 8 * 20, this);
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				genFoodVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 4);
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 9 * 20);
-		new BukkitRunnable() {
+		}, 9 * 20, this);
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				genBlockVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 5);
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 10 * 20);
-		new BukkitRunnable() {
+		}, 10 * 20, this);
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
 				genPotionVillager(DyeColor.ORANGE, bronce.clone(), silver.clone(), gold.clone(), 6);
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 11 * 20);
+		}, 11 * 20, this);
 		
 	}
 	

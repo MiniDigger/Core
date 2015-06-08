@@ -85,20 +85,6 @@ public class HubFeature extends CoreFeature {
 			Core.getCore().getMenuHandler().openMenu(u, "Hub");
 			u.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
 		}
-		
-		// new BukkitRunnable() {
-		//
-		// @Override
-		// public void run() {
-		// for (final UUID id : getPhase().getGame().getPlayers()) {
-		// final Player p = Bukkit.getPlayer(id);
-		// if (p != null) {
-		// p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999,
-		// 2));
-		// }
-		// }
-		// }
-		// }.runTaskTimer(Core.getCore().getInstance(), 1, 20*20);
 	}
 	
 	@Override

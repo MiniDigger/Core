@@ -71,7 +71,7 @@ public class OITCFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -80,7 +80,7 @@ public class OITCFeature extends CoreFeature {
 					giveItems(u.getPlayer());
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 20);
+		}, 20, getPhase());
 	}
 	
 	@Override

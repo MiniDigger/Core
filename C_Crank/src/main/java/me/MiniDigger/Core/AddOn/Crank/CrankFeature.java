@@ -38,6 +38,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
@@ -48,8 +49,8 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class CrankFeature extends CoreFeature {
 	
-	private final int	                  crankTime;
-	private HashMap<UUID, BukkitRunnable>	timers	= new HashMap<UUID, BukkitRunnable>();
+	private final int	        crankTime;
+	private HashMap<UUID, Task>	timers	= new HashMap<UUID, Task>();
 	
 	public CrankFeature(final Phase phase, final int crankTime) {
 		super(phase);
@@ -91,9 +92,9 @@ public class CrankFeature extends CoreFeature {
 		Bukkit.getPlayer(id).getActivePotionEffects().clear();
 		Bukkit.getPlayer(id).addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 30, 1));
 		try {
-			timers.get(id).cancel();
+			Core.getCore().getTaskHandler().cancel(timers.get(id));
 		} catch (final Exception ex) {}
-		final BukkitRunnable timer = new BukkitRunnable() {
+		final Task timer = Core.getCore().getTaskHandler().runTaskTimer(new BukkitRunnable() {
 			
 			private int	time	= crankTime;
 			
@@ -112,8 +113,7 @@ public class CrankFeature extends CoreFeature {
 					user.getPlayer().setExp((float) (0.3 * time) / 10);
 				}
 			}
-		};
-		timer.runTaskTimer(Core.getCore().getInstance(), 1 * 20, 1 * 20);
+		}, 20, 20, getPhase());
 		timers.put(id, timer);
 	}
 	
@@ -133,14 +133,14 @@ public class CrankFeature extends CoreFeature {
 				reset(e.getKiller().getUUID());
 			}
 		} else if (timers.containsKey(e.getUser().getUUID())) {
-			timers.remove(e.getUser().getUUID()).cancel();
+			Core.getCore().getTaskHandler().cancel(timers.remove(e.getUser().getUUID()));
 		}
 	}
 	
 	@EventHandler
 	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
-			timers.remove(e.getUser().getUUID()).cancel();
+			Core.getCore().getTaskHandler().cancel(timers.remove(e.getUser().getUUID()));
 		}
 	}
 	
@@ -153,8 +153,8 @@ public class CrankFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		for (final BukkitRunnable r : timers.values()) {
-			r.cancel();
+		for (final Task r : timers.values()) {
+			Core.getCore().getTaskHandler().cancel(r);
 		}
 		timers = null;
 	}

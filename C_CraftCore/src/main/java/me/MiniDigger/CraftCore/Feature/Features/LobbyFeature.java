@@ -114,7 +114,7 @@ public class LobbyFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -199,8 +199,7 @@ public class LobbyFeature extends CoreFeature {
 					start = start.getRelative(BlockFace.WEST, side);
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 20);// wait for chunks
-		                                                 // loaded
+		}, 20, getPhase());// wait for chunks loaded
 	}
 	
 	@Override

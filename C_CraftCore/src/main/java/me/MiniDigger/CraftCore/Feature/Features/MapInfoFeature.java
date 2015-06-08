@@ -82,7 +82,7 @@ public class MapInfoFeature extends CoreFeature {
 				retry.add(id);
 			}
 		}
-		new BukkitRunnable() {
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
 			public void run() {
@@ -95,7 +95,7 @@ public class MapInfoFeature extends CoreFeature {
 					}
 				}
 			}
-		}.runTaskLater(Core.getCore().getInstance(), 10);
+		}, 10, getPhase());
 		
 	}
 	

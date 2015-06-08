@@ -94,7 +94,7 @@ public class MobFeature extends CoreFeature {
 				}
 			}
 		} catch (final Exception ex) {
-			new BukkitRunnable() {
+			Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 				
 				@Override
 				public void run() {
@@ -108,7 +108,7 @@ public class MobFeature extends CoreFeature {
 						}
 					}
 				}
-			}.runTaskLater(Core.getCore().getInstance(), 20);// IDK
+			}, 20, getPhase());// IDK
 		}
 	}
 	

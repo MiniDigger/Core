@@ -116,13 +116,13 @@ public class KitFeature extends CoreFeature {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			if (u.getPlayer() == null) {
-				new BukkitRunnable() {
+				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 					
 					@Override
 					public void run() {
 						Core.getCore().getKitHandler().give(u, Core.getCore().getKitHandler().getActivKit(u.getUUID()));
 					}
-				}.runTaskLater(Core.getCore().getInstance(), 10);
+				}, 10, getPhase());
 				return;
 			}
 			Core.getCore().getKitHandler().give(u, Core.getCore().getKitHandler().getActivKit(u.getUUID()));
