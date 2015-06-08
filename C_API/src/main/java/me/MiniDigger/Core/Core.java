@@ -50,6 +50,7 @@ import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.Client.ClientHandler;
 import me.MiniDigger.Core.Squad.SquadHandler;
 import me.MiniDigger.Core.Stats.StatsHandler;
+import me.MiniDigger.Core.Tasks.TaskHandler;
 import me.MiniDigger.Core.Tip.TipHandler;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.User.UserHandler;
@@ -175,6 +176,8 @@ public abstract class Core {
 	public abstract DependencyHanlder getDependencyHanlder();
 	
 	public abstract MenuHandler getMenuHandler();
+	
+	public abstract TaskHandler getTaskHandler();
 	
 	/*
 	 * #################### UTILS ####################

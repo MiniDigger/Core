@@ -350,6 +350,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		
 		_.log(LogLevel.INFO, LangKeyType.Main.STOP_TASKS);
 		try {
+			Core.getCore().getTaskHandler().cancelAll();
 			Bukkit.getScheduler().cancelTasks(this);
 		} catch (final Exception ex) {
 			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());

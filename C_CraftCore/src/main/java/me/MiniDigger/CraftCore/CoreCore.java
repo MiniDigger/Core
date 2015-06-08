@@ -52,6 +52,7 @@ import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.Client.ClientHandler;
 import me.MiniDigger.Core.Squad.SquadHandler;
 import me.MiniDigger.Core.Stats.StatsHandler;
+import me.MiniDigger.Core.Tasks.TaskHandler;
 import me.MiniDigger.Core.Tip.TipHandler;
 import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.User.UserHandler;
@@ -105,6 +106,7 @@ import me.MiniDigger.CraftCore.Socket.CoreSocketHandler;
 import me.MiniDigger.CraftCore.Socket.Client.CoreClientHandler;
 import me.MiniDigger.CraftCore.Squad.CoreSquadHandler;
 import me.MiniDigger.CraftCore.Stats.CoreStatsHandler;
+import me.MiniDigger.CraftCore.Tasks.CoreTaskHandler;
 import me.MiniDigger.CraftCore.Tip.CoreTipHandler;
 import me.MiniDigger.CraftCore.Update.CoreUpdateHandler;
 import me.MiniDigger.CraftCore.User.CoreUserHandler;
@@ -168,6 +170,7 @@ public class CoreCore extends Core {
 	private DependencyHanlder	dependencyHanlder;
 	private ErrorHandler	   errorHandler;
 	private MenuHandler	       menuHandler;
+	private TaskHandler	       taskHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -473,6 +476,14 @@ public class CoreCore extends Core {
 			menuHandler = new CoreMenuHandler();
 		}
 		return menuHandler;
+	}
+	
+	@Override
+	public TaskHandler getTaskHandler() {
+		if (taskHandler == null) {
+			taskHandler = new CoreTaskHandler();
+		}
+		return taskHandler;
 	}
 	
 	/***********/
