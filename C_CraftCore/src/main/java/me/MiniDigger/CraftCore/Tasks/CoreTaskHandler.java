@@ -23,6 +23,7 @@ package me.MiniDigger.CraftCore.Tasks;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -34,6 +35,26 @@ import me.MiniDigger.Core.Tasks.TaskHandler;
 public class CoreTaskHandler implements TaskHandler {
 	
 	private final List<Task>	tasks	= new ArrayList<Task>();
+	
+	public CoreTaskHandler() {
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				cleanup();
+			}
+		}.runTaskTimer(Core.getCore().getInstance(), 10 * 20, 5 * 20);
+	}
+	
+	private void cleanup() {
+		List<Task> dump = new ArrayList<Task>();
+		for (Task task : tasks) {
+			if (!Bukkit.getScheduler().isCurrentlyRunning(task.getTask().getTaskId()) && !Bukkit.getScheduler().isQueued(task.getTask().getTaskId())) {
+				dump.add(task);
+			}
+		}
+		tasks.removeAll(dump);
+	}
 	
 	@Override
 	public Task runTaskTimerAsynchronously(final BukkitRunnable task, final long delay, final long period, final Phase phase) {
@@ -91,7 +112,7 @@ public class CoreTaskHandler implements TaskHandler {
 	
 	@Override
 	public void cancel(final Task task) {
-		// TODO Auto-generated method stub
-		
+		tasks.remove(task);
+		task.getTask().cancel();
 	}
 }

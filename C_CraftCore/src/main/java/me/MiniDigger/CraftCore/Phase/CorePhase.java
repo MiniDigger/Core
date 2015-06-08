@@ -36,6 +36,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.JoinHandlerFeature;
@@ -89,6 +90,10 @@ public abstract class CorePhase implements Phase {
 	
 	@Override
 	public void endPhase() {
+		for (Task t : Core.getCore().getTaskHandler().getTaskByPhase(this)) {
+			Core.getCore().getTaskHandler().cancel(t);
+		}
+		
 		HandlerList.unregisterAll(this);
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		
