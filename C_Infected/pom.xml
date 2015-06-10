@@ -8,9 +8,10 @@
 	</parent>
 	<artifactId>C_Infected</artifactId>
 	<name>C_Infected</name>
+	<version>1.0</version>
 
 	<build>
-		<finalName>Infected-${project.version}</finalName>
+		<finalName>IF-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -8,9 +8,10 @@
 	</parent>
 	<artifactId>C_KitPvP</artifactId>
 	<name>C_KitPvP</name>
-
+	<version>1.0</version>
+	
 	<build>
-		<finalName>KitPvP-${project.version}</finalName>
+		<finalName>KP-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

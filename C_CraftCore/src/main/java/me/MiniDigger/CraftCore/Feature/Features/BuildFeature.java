@@ -68,7 +68,9 @@ public class BuildFeature extends CoreFeature {
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User user = Core.getCore().getUserHandler().get(id);
-			Core.getCore().getBuildHandler().setBuilder(user, true);
+			if (allowed.length == 0) {
+				Core.getCore().getBuildHandler().setBuilder(user, true);
+			}
 			Core.getCore().getBuildHandler().allow(user, allowed);
 		}
 	}

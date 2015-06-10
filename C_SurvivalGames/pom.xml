@@ -8,9 +8,10 @@
 	</parent>
 	<artifactId>C_SurvivalGames</artifactId>
 	<name>C_SurvivalGames</name>
+	<version>1.0</version>
 
 	<build>
-		<finalName>SurvivalGames-${project.version}</finalName>
+		<finalName>SG-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

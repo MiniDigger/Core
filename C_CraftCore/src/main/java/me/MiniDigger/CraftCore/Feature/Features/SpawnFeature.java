@@ -138,6 +138,7 @@ public class SpawnFeature extends CoreFeature {
 				continue;
 			}
 			usedSpawns.add(loc);
+			loc.add(0.5, 0.5, 0.5);
 			try {
 				user.getPlayer().teleport(loc);
 			} catch (final Exception ex) {

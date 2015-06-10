@@ -8,9 +8,10 @@
 	</parent>
 	<artifactId>C_Kistenkrieg</artifactId>
 	<name>C_Kistenkrieg</name>
+	<version>1.0</version>
 
 	<build>
-		<finalName>Kistenkrieg-${project.version}</finalName>
+		<finalName>KK-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

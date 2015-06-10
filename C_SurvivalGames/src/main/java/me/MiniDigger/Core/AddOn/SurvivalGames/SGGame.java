@@ -38,13 +38,15 @@ public class SGGame extends CoreGame {
 	
 	LobbyPhase	lobby;
 	VotePhase	vote;
+	CagePhase	cage;
 	GracePhase	grace;
-	SGPhase	   sg;
+	SGPhase1	sg1;
+	SGPhase2	sg2;
 	PostPhase	post;
 	
 	@Override
 	public GameType getType() {
-		return GameType.OITC;
+		return GameType.SG;
 	}
 	
 	@Override
@@ -55,14 +57,18 @@ public class SGGame extends CoreGame {
 		
 		lobby = new LobbyPhase(this, null, 5);
 		vote = new VotePhase(this, null, 30);
+		cage = new CagePhase(this, null, 15);
 		grace = new GracePhase(this, null, 15);
-		sg = new SGPhase(this);
+		sg1 = new SGPhase1(this, 5 * 60);
+		sg2 = new SGPhase2(this);
 		post = new PostPhase(this, 10);
 		
-		grace.setNextPhase(sg);
-		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
-		sg.setNextPhase(post);
+		vote.setNextPhase(cage);
+		cage.setNextPhase(grace);
+		grace.setNextPhase(sg1);
+		sg1.setNextPhase(sg2);
+		sg2.setNextPhase(post);
 		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");

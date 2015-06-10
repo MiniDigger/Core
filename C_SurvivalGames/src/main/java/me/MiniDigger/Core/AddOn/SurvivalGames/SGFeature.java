@@ -26,7 +26,9 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.WorldBorder;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
@@ -35,6 +37,8 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 
 public class SGFeature extends CoreFeature {
+	
+	private WorldBorder	b;
 	
 	public SGFeature(final Phase phase) {
 		super(phase);
@@ -63,12 +67,21 @@ public class SGFeature extends CoreFeature {
 	@Override
 	public void start() {
 		final MapData m = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		final WorldBorder b = Bukkit.getWorld(m.getName()).getWorldBorder();
+		b = Bukkit.getWorld(m.getName()).getWorldBorder();
 		b.setCenter(m.getLocs(DyeColor.BLACK).values().iterator().next());
 		b.setSize(b.getCenter().distance(m.getLocs(DyeColor.BLUE).values().iterator().next()), 0);
 		b.setDamageBuffer(5.0);
+		b.setWarningTime(20);
 		b.setWarningDistance(5);
 		
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then("Die WorldBoarder verkleinert sich nun!"));
+				b.setSize(25, 5 * 60);
+			}
+		}, 5 * 60 * 20, getPhase());
 	}
 	
 	@Override
