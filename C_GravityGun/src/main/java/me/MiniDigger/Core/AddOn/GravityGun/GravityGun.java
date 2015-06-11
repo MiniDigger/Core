@@ -244,7 +244,7 @@ public class GravityGun extends CoreItem {
 		}
 	}
 	
-	@EventHandler(ignoreCancelled = true)
+//	@EventHandler(ignoreCancelled = true) disable entity pushing for now
 	public void EntityDamageByEntityEvent(final EntityDamageByEntityEvent e) {
 		if (e.getDamager() instanceof Player) {
 			final Player h = (Player) e.getDamager();
@@ -354,18 +354,23 @@ public class GravityGun extends CoreItem {
 				e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.LAVA_POP, 7.0f, 4.0f);
 			} else {
 				try {
-					if (!(GravityGun.entity.get(e.getRightClicked()) instanceof Player)) {
-						GravityGun.entity.put(e.getPlayer(), e.getRightClicked());
-						GravityGun.entityList.add(e.getPlayer());
-						e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENDERMAN_TELEPORT, 7.0f, 3.0f);
-						Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-							
-							@Override
-							public void run() {
-								GravityGun.entityList.remove(e.getPlayer());
-							}
-						}, 20L);
-					}
+					// if (!(GravityGun.entity.get(e.getRightClicked())
+					// instanceof Player)) {
+					// GravityGun.entity.put(e.getPlayer(),
+					// e.getRightClicked());
+					// GravityGun.entityList.add(e.getPlayer());
+					// e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(),
+					// Sound.ENDERMAN_TELEPORT, 7.0f, 3.0f);
+					// Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(),
+					// new Runnable() {
+					//
+					// @Override
+					// public void run() {
+					// GravityGun.entityList.remove(e.getPlayer());
+					// }
+					// }, 20L);
+					// }
+					// disable entity movement for now
 				} catch (final Exception ex) {}
 			}
 		}
