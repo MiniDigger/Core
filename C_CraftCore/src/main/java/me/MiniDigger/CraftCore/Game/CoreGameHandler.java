@@ -106,7 +106,7 @@ public class CoreGameHandler implements GameHandler {
 		
 		for (final Game g : getGames(user)) {
 			if (g.getType() != GameType.TICTACTOE) {
-				leaveGame(user, g);
+				leave(user, g);
 			}
 		}
 		game.join(user);
@@ -115,13 +115,15 @@ public class CoreGameHandler implements GameHandler {
 		user.setPrimaryChannel(game.getChatChannel());
 		
 		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
+		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
+		Core.getCore().getBarHandler().removeBar(user.getPlayer());
+		Core.getCore().getMenuHandler().closeMenu(user);
 		
 		final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent(event);
 	}
 	
-	@Override
-	public void leaveGame(final User user, final Game game) {
+	private void leave(final User user, final Game game){
 		final CoreUserLeaveGameEvent event = new CoreUserLeaveGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent(event);
 		
@@ -134,6 +136,12 @@ public class CoreGameHandler implements GameHandler {
 		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
 		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
+		Core.getCore().getMenuHandler().closeMenu(user);
+	}
+	
+	@Override
+	public void leaveGame(final User user, final Game game) {
+		leave(user, game);
 		
 		user.getPlayer().teleport(Core.getCore().getWorldHandler().getFallbackLoc());
 		

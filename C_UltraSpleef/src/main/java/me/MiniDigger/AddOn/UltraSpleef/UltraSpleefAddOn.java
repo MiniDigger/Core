@@ -62,7 +62,7 @@ public class UltraSpleefAddOn extends CoreAddOn {
 		final User user = args.getUser();
 		final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent((Event) e1);
-		game.join(user);
+		Core.getCore().getGameHandler().joinGame(user, game);
 		// }
 		game.start();
 	}
