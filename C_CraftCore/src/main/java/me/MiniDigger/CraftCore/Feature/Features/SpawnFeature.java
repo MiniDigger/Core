@@ -123,7 +123,7 @@ public class SpawnFeature extends CoreFeature {
 		}
 		int counter = 0;// To prevent invinitiv loop
 		while (true) {
-			final Location loc = spawns[Core.getCore().getRandomUtil().nextInt(spawns.length)];
+			final Location loc = spawns[Core.getCore().getRandomUtil().nextInt(spawns.length)].clone();
 			if (loc == null) {
 				counter++;
 				continue;
