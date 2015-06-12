@@ -97,6 +97,10 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public User get(final UUID id) {
+		if(id == null){
+			return null;
+		}
+		
 		for (final User u : users) {
 			if (u.getUUID().equals(id)) {
 				return u;

@@ -94,6 +94,7 @@ public class SUVPhase extends CorePhase {
 		final String winner = getGame().getGameData("VoteWinner");
 		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
+		((PvPFeature) getFeature(FeatureType.PVP)).setbroadCastMsg(false);
 		super.startPhase();
 	}
 }

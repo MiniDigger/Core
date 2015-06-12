@@ -28,6 +28,7 @@ import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -158,6 +159,66 @@ public class TeamSelectFeature extends CoreFeature {
 	public void end() {
 		HashMap<String, Integer> sizes = calcSizes();
 		
+		if (getPhase().getGame().getType() == GameType.SUV) {
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					System.out.println("starting suv part");
+					
+					for (Team t : teams) {
+						t.getPlayers().clear();
+					}
+					teams.clear();
+					teams = new ArrayList<Team>();
+					
+					List<UUID> exceptions2 = new ArrayList<UUID>();
+					System.out.println("size1: " + exceptions.size());
+					for (UUID id : exceptions) {
+						if (id != null) {
+							exceptions2.add(id);
+							System.out.println("add " + id);
+						}
+					}
+					System.out.println("size12: " + exceptions2.size());
+					
+					for (UUID id : exceptions2) {
+						final User u = Core.getCore().getUserHandler().get(id);
+						final Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());
+						System.out.println("add team " + u.getDisplayName());
+						teams.add(t);
+					}
+					
+					HashMap<String, Integer> sizes = calcSizes();
+					
+					for (UUID id : getPhase().getGame().getPlayers()) {
+						if (exceptions2.contains(id)) {
+							continue;
+						}
+						getTeam(findSmallest(sizes)).join(id);
+						
+						sizes = calcSizes();
+					}
+					
+					balance();
+					sizes = calcSizes();
+					
+					next.init();
+					
+					((TeamFeature) next.getFeature(FeatureType.TEAM)).setTeams(teams);
+					((TeamFeature) next.getFeature(FeatureType.TEAM)).setExceptions(exceptions2);
+					
+					for (Team t : teams) {
+						System.out.println("Team: " + t.getName());
+						for (UUID id : t.getPlayers()) {
+							System.out.println(Core.getCore().getUserHandler().get(id).getDisplayName());
+						}
+					}
+				}
+			}.runTaskLater(Core.getCore().getInstance(), 10);
+			return;
+		}
+		
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			if (getTeam(Core.getCore().getUserHandler().get(id)) == null) {
 				if (exceptions.contains(id)) {
@@ -172,25 +233,6 @@ public class TeamSelectFeature extends CoreFeature {
 		balance();
 		
 		sizes = calcSizes();
-		
-		if (getPhase().getGame().getType() == GameType.SUV) {
-			if ((exceptions.size() < 2 && exceptions.size() > 0) && (exceptions.get(0) == null | exceptions.get(1) == null)) {
-				for (final Team t : teams) {
-					for (final UUID id : t.getPlayers()) {
-						t.leave(id);
-					}
-				}
-				teams.clear();
-				final User u = Core.getCore().getUserHandler().get(exceptions.get(0));
-				final Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());
-				for (final UUID id : getPhase().getGame().getPlayers()) {
-					if (exceptions.contains(id)) {
-						continue;
-					}
-					t.join(id);
-				}
-			}
-		}
 		
 		next.init();
 		
@@ -279,6 +321,7 @@ public class TeamSelectFeature extends CoreFeature {
 				name = s;
 			}
 		}
+		System.out.println("smallest = " + name);
 		return name;
 	}
 }

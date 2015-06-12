@@ -75,13 +75,18 @@ public class TeamArmorFeature extends CoreFeature {
 		if (giveOnStartUp) {
 			for (final UUID id : getPhase().getGame().getPlayers()) {
 				final Player p = Bukkit.getPlayer(id);
+				final TeamFeature f = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+				
+				if (f.getTeam(p) == null) {
+					continue;
+				}
+				
 				final ItemStack head = new ItemStack(Material.LEATHER_HELMET);
 				final ItemStack body = new ItemStack(Material.LEATHER_CHESTPLATE);
 				final ItemStack leg = new ItemStack(Material.LEATHER_LEGGINGS);
 				final ItemStack feet = new ItemStack(Material.LEATHER_BOOTS);
 				
 				final LeatherArmorMeta meta = (LeatherArmorMeta) head.getItemMeta();
-				final TeamFeature f = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				meta.setColor(Core.getCore().getChatColorUtil().toColor(f.getTeam(p).getColor()));
 				
 				head.setItemMeta(meta);
@@ -152,6 +157,9 @@ public class TeamArmorFeature extends CoreFeature {
 				case UNKNOWN:
 					final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 					final Team t = tf.getTeam(u);
+					if (t == null) {
+						return;
+					}
 					final Color c = Core.getCore().getChatColorUtil().toColor(t.getColor());
 					
 					try {

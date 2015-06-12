@@ -74,14 +74,29 @@ public class SUVSelectFeature extends CoreFeature {
 	@Override
 	public void end() {
 		try {
-			final SUVFeature f = (SUVFeature) ((SUVGame) getPhase().getGame()).getSuvPhase().getFeature(FeatureType.SUV);
-			f.setSucher1(sucher1);
-			f.setSucher2(sucher2);
+			// final SUVFeature f = (SUVFeature) ((SUVGame)
+			// getPhase().getGame()).getSuvPhase().getFeature(FeatureType.SUV);
+			// f.setSucher1(sucher1);
+			// f.setSucher2(sucher2);
+			getPhase().getGame().setGameData("sucher1", sucher1 !=null? sucher1.toString() : "");
+			getPhase().getGame().setGameData("sucher2", sucher2 !=null? sucher2.toString() : "");
 			
 			final TeamSelectFeature tf = (TeamSelectFeature) getPhase().getFeature(FeatureType.TEAM_SELECT);
 			tf.addException(sucher1);
 			tf.addException(sucher2);
+			
+			User user1 = Core.getCore().getUserHandler().get(sucher1);
+			User user2 = Core.getCore().getUserHandler().get(sucher2);
+			
+			try {
+				System.out.println("user1: " + user1.getDisplayName());
+			} catch (Exception ex) {}
+			try {
+				System.out.println("user2: " + user2.getDisplayName());
+			} catch (Exception ex) {}
+			
 		} catch (final Exception ex) {
+			ex.printStackTrace();
 			System.out.println("Couldn't search for searchers....");
 		}
 	}
