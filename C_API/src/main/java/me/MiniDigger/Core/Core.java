@@ -25,6 +25,7 @@ import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Bar.BarHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
+import me.MiniDigger.Core.Broadcast.BroadcastHandler;
 import me.MiniDigger.Core.Chat.ChatHandler;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Dependencies.DependencyHanlder;
@@ -179,6 +180,10 @@ public abstract class Core {
 	
 	public abstract TaskHandler getTaskHandler();
 	
+	public abstract ErrorHandler getErrorHandler();
+	
+	public abstract BroadcastHandler getBroadcastHandler();
+	
 	/*
 	 * #################### UTILS ####################
 	 */
@@ -220,6 +225,4 @@ public abstract class Core {
 	public abstract FaceUtil getFaceUtil();
 	
 	public abstract void setCommandHandler(final CommandHandler c);
-	
-	public abstract ErrorHandler getErrorHandler();
 }

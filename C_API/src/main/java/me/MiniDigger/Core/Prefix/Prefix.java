@@ -57,7 +57,8 @@ public enum Prefix {
 	SG(ChatColor.AQUA, ChatColor.BLUE, "SG", GameType.SG),
 	IF(ChatColor.AQUA, ChatColor.BLUE, "IF", GameType.IF),
 	KK(ChatColor.AQUA, ChatColor.BLUE, "KK", GameType.KK),
-	KP(ChatColor.AQUA, ChatColor.BLUE, "KP", GameType.KP);
+	KP(ChatColor.AQUA, ChatColor.BLUE, "KP", GameType.KP),
+	BROADCAST(ChatColor.AQUA, ChatColor.BLUE, "Broadcast", GameType.NOTHING);
 	
 	private ChatColor	klammer;
 	private ChatColor	color;

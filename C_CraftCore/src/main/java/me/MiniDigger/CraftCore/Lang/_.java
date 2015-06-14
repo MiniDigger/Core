@@ -104,9 +104,17 @@ public class _ {
 	}
 	
 	public static void stacktrace(final LogLevel lvl, final Throwable t) {
+		if (t == null) {
+			return;
+		}
 		if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
 			for (final StackTraceElement e : t.getStackTrace()) {
 				lvl.getMsg(e.toString()).send(Bukkit.getConsoleSender());
+			}
+			
+			if (t.getCause() != null) {
+				lvl.getMsg("Caused by:").send(Bukkit.getConsoleSender());
+				stacktrace(lvl, t.getCause());
 			}
 		}
 	}

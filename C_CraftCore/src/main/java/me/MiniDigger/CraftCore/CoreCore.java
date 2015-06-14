@@ -27,6 +27,7 @@ import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Bar.BarHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
+import me.MiniDigger.Core.Broadcast.BroadcastHandler;
 import me.MiniDigger.Core.Chat.ChatHandler;
 import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Dependencies.DependencyHanlder;
@@ -82,6 +83,7 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOnHandler;
 import me.MiniDigger.CraftCore.Bar.CoreBarHandler;
 import me.MiniDigger.CraftCore.Block.CoreBuildHandler;
 import me.MiniDigger.CraftCore.Booster.CoreBoosterHandler;
+import me.MiniDigger.CraftCore.Broadcast.CoreBroadcastHandler;
 import me.MiniDigger.CraftCore.Chat.CoreChatHandler;
 import me.MiniDigger.CraftCore.Dependencies.CoreDependencyHandler;
 import me.MiniDigger.CraftCore.Error.CoreErrorHandler;
@@ -171,6 +173,7 @@ public class CoreCore extends Core {
 	private ErrorHandler	   errorHandler;
 	private MenuHandler	       menuHandler;
 	private TaskHandler	       taskHandler;
+	private BroadcastHandler	broadcastHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -484,6 +487,14 @@ public class CoreCore extends Core {
 			taskHandler = new CoreTaskHandler();
 		}
 		return taskHandler;
+	}
+	
+	@Override
+	public BroadcastHandler getBroadcastHandler() {
+		if (broadcastHandler == null) {
+			broadcastHandler = new CoreBroadcastHandler();
+		}
+		return broadcastHandler;
 	}
 	
 	/***********/

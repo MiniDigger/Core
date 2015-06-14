@@ -75,6 +75,12 @@ public class PluginCommands {
 		}
 	}
 	
+	@Command(name="reloadbroadcaster",usage="",description="Läd den Broadcaster neu",permission="reloadbroadcaster")
+	public void reloadbroadcaster(final CommandArgs args) {
+		Core.getCore().getBroadcastHandler().init();
+		Prefix.API.getPrefix().then("Done.").send(args.getSender());
+	}
+	
 	@Command(name = "stop", usage = "", description = "Stopt den Server", permission = "stop")
 	public void stopCommand(final CommandArgs args) {
 		Core.getCore().getShutdownUtil().doShutdown();

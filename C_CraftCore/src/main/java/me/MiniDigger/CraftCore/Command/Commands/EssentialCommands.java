@@ -33,10 +33,6 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
-/**
- * @author Martin
- * 
- */
 public class EssentialCommands {
 	
 	@Command(name = "spawnmob", usage = "spawnmob <type> [count]", min = 1, max = 2, consol = false, permission = "spawnmob", description = "Spawn Mobs")
@@ -99,5 +95,4 @@ public class EssentialCommands {
 			Prefix.API.getPrefix().then("Nur auf dem Hub Server!").color(ChatColor.RED).send(args.getPlayer());
 		}
 	}
-	
 }
