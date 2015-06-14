@@ -96,4 +96,8 @@ public interface MapData {
 	 * trys to add pitch and yaw to the locs
 	 */
 	void smothLocs();
+	
+	void setNewName(String name);
+	
+	String getOldName();
 }

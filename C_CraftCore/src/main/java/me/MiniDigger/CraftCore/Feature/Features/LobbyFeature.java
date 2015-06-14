@@ -112,6 +112,14 @@ public class LobbyFeature extends CoreFeature {
 		}
 	}
 	
+	public String getName() {
+		String name = getPhase().getGame().getGameData("Lobby");
+		if (name.equals("Lobby")) {
+			name = getPhase().getGame().getType().getAbk() + "_Lobby";
+		}
+		return name;
+	}
+	
 	@Override
 	public void start() {
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
@@ -141,7 +149,7 @@ public class LobbyFeature extends CoreFeature {
 				text1 = SignStorage.getOne(getPhase().getGame().getType());
 				text2 = SignStorage.getTwo(getPhase().getGame().getType());
 				
-				final World w = Bukkit.getWorld(getPhase().getGame().getGameData("Lobby"));
+				final World w = Bukkit.getWorld(getName());
 				final Location origin = new Location(w, -48, 4, -51);
 				final Block blockOrigion = origin.getBlock();
 				

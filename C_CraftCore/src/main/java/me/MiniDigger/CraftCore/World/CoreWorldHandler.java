@@ -21,6 +21,10 @@
 package me.MiniDigger.CraftCore.World;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.common.io.Files;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -34,6 +38,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -104,21 +109,30 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public World loadWorld(final String name) {
-		System.out.println("load " + name);
-		final WorldCreator wc = WorldCreator.name(name);
+		return loadWorld(name, name);
+	}
+	
+	@Override
+	public World loadWorld(final String name, final String newName) {
+		System.out.println("load " + name + " as " + newName);
+		final WorldCreator wc = WorldCreator.name(newName);
 		wc.environment(Environment.NORMAL);
 		wc.generateStructures(false);
 		wc.type(WorldType.FLAT);
 		wc.generator(new CoreCleanroomChunkGenerator("."));
 		
-		fixSession(new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), name));
+		fixSession(new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), newName));
 		
 		final World w = new CoreWorldLoader().loadWorld(wc);
 		w.setAutoSave(false);
 		
 		_.log(LogLevel.INFO, LangKeyType.World.LOADING_CHUNKS);
 		try {
-			final MapData data = Core.getCore().getMapHandler().getMap(name);
+			MapData data = Core.getCore().getMapHandler().getMap(name);
+			if (data == null) {
+				System.out.println("try other name: " + newName);
+				data = Core.getCore().getMapHandler().getMap(newName);
+			}
 			final int i = data.loadChunks();
 			_.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i + "");
 		} catch (final Exception ex) {
@@ -166,6 +180,10 @@ public class CoreWorldHandler implements WorldHandler {
 		final File session = new File(oldMap, "session.lock");
 		session.delete();
 		System.out.println("deleted " + session.getAbsolutePath());
+		
+		final File uid = new File(oldMap, "uid.dat");
+		uid.delete();
+		
 		// try {
 		// session.createNewFile();
 		// final DataOutputStream dataoutputstream = new DataOutputStream(new
@@ -185,11 +203,16 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public void copyWorld(final String name) {
-		System.out.println("copy " + name);
+		copyWorld(name, name);
+	}
+	
+	@Override
+	public void copyWorld(final String name, final String newName) {
+		System.out.println("copy " + name + " as " + newName);
 		final File mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		File map = new File(mapFolder, name + ".zip");
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
-		final File oldMap = new File(out, name);
+		final File oldMap = new File(out, newName);
 		
 		deleteWorld(name);
 		
@@ -199,11 +222,35 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		fixSession(oldMap);
 		
-		map = new File(Bukkit.getWorldContainer(), name);
+		new File(out, name).renameTo(new File(newName));
+		
+		map = new File(Bukkit.getWorldContainer(), newName);
 		final File mapDataFile = new File(map, "map.yml");
 		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
 		
 		final MapData data = new CoreMapData(con);
+		data.setNewName(newName);
 		Core.getCore().getMapHandler().addMap(data);
+	}
+	
+	@Override
+	public void cleanup() {
+		System.out.println("cleanup");
+		File mapFolder = Bukkit.getWorldContainer();
+		String[] ignore = new String[] { "logs", "plugins", "world", "world_the_end" };
+		List<String> i = Arrays.asList(ignore);
+		
+		for (final File f : mapFolder.listFiles()) {
+			System.out.println("check " + f.getName());
+			if (f.isDirectory()) {
+				System.out.println("is dir");
+				if (!i.contains(f.getName())) {
+					System.out.println("bye");
+					if (Core.getCore().getFileUtil().deleteDirectory(f)) {
+						System.out.println("yeah");
+					}
+				}
+			}
+		}
 	}
 }

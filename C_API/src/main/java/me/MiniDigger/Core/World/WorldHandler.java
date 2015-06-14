@@ -64,4 +64,25 @@ public interface WorldHandler {
 	 * @return the fallback lco
 	 */
 	Location getFallbackLoc();
+	
+	/**
+	 * Copyies a world and renames it
+	 * 
+	 * @param name
+	 * @param newName
+	 */
+	void copyWorld(String name, String newName);
+	
+	/**
+	 * Loads a world by the given name
+	 * 
+	 * @param name
+	 *            The name of the world
+	 * @param newName
+	 *            The second name of the wold
+	 * @return The loaded world object
+	 */
+	World loadWorld(String name, String newName);
+
+	void cleanup();
 }

@@ -98,21 +98,62 @@ public class MapFeature extends CoreFeature {
 		if (map == null) {
 			return;
 		}
+		
+		String newMap = getName(map);
+		System.out.println("set map: " + map + " as " + newMap);
 		if (Core.getCore().getMapHandler().getMap(map) == null) {
-			if (Bukkit.getWorld(map) == null) {
-				Core.getCore().getWorldHandler().copyWorld(map);
-				Core.getCore().getWorldHandler().loadWorld(map);
+			System.out.println("not loaded");
+			if (Bukkit.getWorld(newMap) == null) {
+				System.out.println("not loaded2");
+				Core.getCore().getWorldHandler().copyWorld(map, newMap);
+				System.out.println("loadss");
+				Core.getCore().getWorldHandler().loadWorld(map, newMap);
 			}
 		}
 		
-		this.map = Core.getCore().getMapHandler().getMap(map);
+		this.map = Core.getCore().getMapHandler().getMap(newMap);
+		if (this.map == null) {
+			this.map = Core.getCore().getMapHandler().getMap(map);
+			if (this.map == null) {
+				System.out.println("how...");
+			}
+		}
+	}
+	
+	public String getName(final String map) {
+		String name = map;
+		if (name.equals("Lobby")) {
+			name = getPhase().getGame().getType().getAbk() + "_Lobby";
+		}
+		
+		System.out.println("1phase: " + getPhase().getName());
+		System.out.println("1name: " + name);
+		return name;
+	}
+	
+	public String getName() {
+		String name = "";
+		if (map == null) {
+			name = getPhase().getGame().getGameData("Lobby");
+			if (name == null) {
+				System.out.println("idk what to do...");
+			}
+		} else {
+			name = map.getName();
+		}
+		
+		if (name.equals("Lobby")) {
+			name = getPhase().getGame().getType().getAbk() + "_Lobby";
+		}
+		
+		System.out.println("phase: " + getPhase().getName());
+		System.out.println("name: " + name);
+		return name;
 	}
 	
 	public void unload() {
-		Core.getCore()
-		        .getWorldHandler()
-		        .unloadWorld(map.getName(),
-		                (Location) Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby")).getLocs(DyeColor.RED).values().toArray()[0]);
+		Core.getCore().getWorldHandler()
+		        .unloadWorld(map.getName(), (Location) Core.getCore().getMapHandler().getMap(getName()).getLocs(DyeColor.RED).values().toArray()[0]);
 		Core.getCore().getWorldHandler().deleteWorld(map.getName());
 	}
 }

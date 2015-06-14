@@ -78,6 +78,10 @@ public class FixedTimeFeature extends CoreFeature {
 	@Override
 	public void start() {
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
+		if (m.getMap() == null) {
+			System.out.println("ftf: map null");
+			return;
+		}
 		world = m.getMap().getName();
 		
 		final World w = Bukkit.getWorld(world);

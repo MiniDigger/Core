@@ -384,6 +384,14 @@ public class CoreGame implements Game {
 			                             // timer
 		}
 		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				Core.getCore().getWorldHandler().cleanup();
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 5 * 20);
+		
 		try {
 			finalize();
 		} catch (final Throwable e) {

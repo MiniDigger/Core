@@ -77,12 +77,15 @@ public class FixedWeatherFeature extends CoreFeature {
 	@Override
 	public void start() {
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
+		if (m.getMap() == null) {
+			System.out.println("fwf: map null");
+			return;
+		}
 		world = m.getMap().getName();
 		
-		final World w = Bukkit.getWorld(world);
+		World w = Bukkit.getWorld(world);
 		if (w == null) {
-			System.out.println("no such world");
-			return;
+			w = Bukkit.getWorld(m.getMap().getOldName());
 		}
 		switch (weather) {
 		case CLEAR:

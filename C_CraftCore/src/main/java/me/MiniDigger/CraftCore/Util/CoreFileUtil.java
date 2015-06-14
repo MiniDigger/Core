@@ -42,5 +42,4 @@ public class CoreFileUtil implements FileUtil {
 		path.deleteOnExit();
 		return (path.delete());
 	}
-	
 }

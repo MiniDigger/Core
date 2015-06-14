@@ -82,8 +82,10 @@ public class MobFeature extends CoreFeature {
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		if (m == null) {
 			System.out.println("m = null");
+			return;
 		} else if (m.getMap() == null) {
 			System.out.println("map = null");
+			return;
 		}
 		world = m.getMap().getName();
 		

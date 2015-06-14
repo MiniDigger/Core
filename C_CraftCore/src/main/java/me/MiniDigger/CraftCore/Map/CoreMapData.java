@@ -43,6 +43,7 @@ import me.MiniDigger.Core.Map.MapData;
 public class CoreMapData implements MapData {
 	
 	private String	                                     name;
+	private String	                                     newName;
 	private HashMap<DyeColor, HashMap<String, Location>>	locs;
 	
 	public CoreMapData(final String name) {
@@ -56,12 +57,23 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public String getName() {
+		return newName;
+	}
+	
+	@Override
+	public String getOldName() {
 		return name;
 	}
 	
 	@Override
 	public HashMap<String, Location> getLocs(final DyeColor type) {
 		return locs.get(type);
+	}
+	
+	@Override
+	public void setNewName(String name) {
+		this.name = this.newName;
+		this.newName = name;
 	}
 	
 	@Override
@@ -109,6 +121,7 @@ public class CoreMapData implements MapData {
 			
 			for (final String key : m.keySet()) {
 				final Location loc = m.get(key);
+				loc.setWorld(Bukkit.getWorld(getName()));
 				if (loc.getBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof org.bukkit.block.Sign) {
 					final org.bukkit.block.Sign sign = (org.bukkit.block.Sign) loc.getBlock().getRelative(BlockFace.DOWN, 2).getState();
 					final Sign s = (Sign) sign.getData();
@@ -263,6 +276,9 @@ public class CoreMapData implements MapData {
 			final HashMap<String, Location> map = locs.get(color);
 			for (final Location l : map.values()) {
 				l.setWorld(Bukkit.getWorld(name));
+				if (l.getWorld() == null) {
+					l.setWorld(Bukkit.getWorld(newName));
+				}
 				try {
 					if (l == null || l.getBlock() == null) {
 						System.out.println("Failed i");
@@ -288,7 +304,10 @@ public class CoreMapData implements MapData {
 		int i = 0;
 		for (final HashMap<String, Location> map : locs.values()) {
 			for (final Location l : map.values()) {
-				l.setWorld(Bukkit.getWorld(name));
+				l.setWorld(Bukkit.getWorld(getName()));
+				if (l.getWorld() == null) {
+					l.setWorld(Bukkit.getWorld(getOldName()));
+				}
 				if (!l.getChunk().isLoaded() || l.getWorld().isChunkLoaded(l.getChunk())) {
 					l.getChunk().load();
 					l.getWorld().loadChunk(l.getChunk());
