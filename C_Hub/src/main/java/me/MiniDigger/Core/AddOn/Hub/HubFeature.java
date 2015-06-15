@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
@@ -156,6 +157,15 @@ public class HubFeature extends CoreFeature {
 			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				Core.getCore().getMenuHandler().closeMenu(u);
 				Core.getCore().getMenuHandler().openMenu(u, "Teleporter");
+			}
+		});
+		
+		hub.setIcon(2, new CoreItemBuilder(Material.FEATHER).name("Fly umschalten").lore("Klicke um den Fly Modus umzuschalten").build());
+		hub.setAction(2, new ClickHandler() {
+			
+			@Override
+			public void click(final ItemBarMenu m, final ItemStack is, final User u) {
+				Bukkit.dispatchCommand(u.getPlayer(), "toggle fly");
 			}
 		});
 		

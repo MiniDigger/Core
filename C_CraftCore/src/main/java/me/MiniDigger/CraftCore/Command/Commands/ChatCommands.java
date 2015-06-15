@@ -255,4 +255,23 @@ public class ChatCommands {
 			Prefix.CHAT.getPrefix().then("Das Suffix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());;
 		}
 	}
+	
+	@Command(name = "pm", description = "Sendet eine PM", usage = "pm <spieler> <nachricht>", permission = "pm", consol = false, min = 1, string = 2)
+	public void pm(final CommandArgs args) {
+		User u = Core.getCore().getUserHandler().getFromDisplayName(args.getArgs()[0]);
+		String msg = args.getArgs()[1];
+		
+		if (args.getUser().hasPermission("chat.color")) {
+			msg = Core.getCore().getChatColorUtil().replaceAndToMc(msg);
+		}
+		
+		new FancyMessage(args.getUser().getPrefix() + args.getUser().getDisplayName())
+		        .tooltip("Klicke hier um " + args.getUser().getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + args.getUser().getDisplayName())
+		        .then(" -> ").color(ChatColor.RED).then("DIR: " + msg).send(u.getPlayer());
+		new FancyMessage("DU").color(ChatColor.RED).then(" -> ").then(u.getPrefix() + u.getDisplayName())
+		        .tooltip("Klicke hier um " + u.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + u.getDisplayName()).then(": " + msg)
+		        .send(args.getUser().getPlayer());
+		
+		Core.getCore().getInstance().info(args.getUser().getPrefix() + args.getUser().getDisplayName() + " -> " + u.getPrefix() + u.getDisplayName() + ": " + msg);
+	}
 }
