@@ -312,7 +312,7 @@ public class CoreSignChangers implements SignChangers {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
 				}
-				return "Klicke hier, um%:%dein aktuelles%:%Spiel zu%:%verlassen";
+				return ChatColor.RED + "Klicke hier, um%:%dein aktuelles%:%Spiel zu%:%verlassen";
 			}
 		});
 		addSignChanger(new SignChanger("[GameJ]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
@@ -333,11 +333,11 @@ public class CoreSignChangers implements SignChangers {
 				}
 				if (game != null) {
 					final StringBuilder sb = new StringBuilder();
-					sb.append("[" + name + "]");
+					sb.append(ChatColor.GOLD + "[" + name + "]");
 					sb.append("%:%");
-					sb.append(game.getPhase().getName());
+					sb.append(ChatColor.BLACK + game.getPhase().getName());
 					sb.append("%:%");
-					sb.append(game.getPlayers().size() + "/" + game.getMaxPlayers() + " (" + game.getSpecs().size() + ")");
+					sb.append(ChatColor.BLACK + "" + game.getPlayers().size() + "/" + game.getMaxPlayers() + " (" + game.getSpecs().size() + ")");
 					sb.append("%:%");
 					if (game.allowJoin() && !game.isFull()) {
 						sb.append(ChatColor.GREEN + "Join");
@@ -349,11 +349,11 @@ public class CoreSignChangers implements SignChangers {
 					return sb.toString();
 				} else {
 					final StringBuilder sb = new StringBuilder();
-					sb.append("[" + name + "]");
+					sb.append(ChatColor.GOLD + "[" + name + "]");
 					sb.append("%:%");
-					sb.append("Waiting for players");
+					sb.append(ChatColor.BLACK + "Waiting for players");
 					sb.append("%:%");
-					sb.append(0 + "/" + -1 + " (" + 0 + ")");
+					sb.append(ChatColor.BLACK + "" + 0 + "/" + -1 + " (" + 0 + ")");
 					sb.append("%:%");
 					sb.append(ChatColor.GREEN + "Join");
 					return sb.toString();

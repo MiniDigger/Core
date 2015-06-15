@@ -34,6 +34,10 @@ import me.MiniDigger.Core.User.UserHandler;
 
 import me.MiniDigger.CraftCore.Lang._;
 
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+
+import ru.tehkode.permissions.PermissionUser;
+
 public class CoreUserHandler implements UserHandler {
 	
 	private final List<User>	users	= new ArrayList<>();
@@ -97,7 +101,7 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public User get(final UUID id) {
-		if(id == null){
+		if (id == null) {
 			return null;
 		}
 		
@@ -110,6 +114,8 @@ public class CoreUserHandler implements UserHandler {
 		final User u = new CoreUser(id);
 		if (!u.load()) {
 			u.init();
+			PermissionUser user = PermissionsEx.getUser(u.getPlayer());
+			u.setPrefix(user.getPrefix());
 		}
 		users.add(u);
 		u.save();
