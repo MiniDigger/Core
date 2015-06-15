@@ -50,7 +50,7 @@ public enum Prefix {
 	LANG(ChatColor.AQUA, ChatColor.BLUE, "Lang", GameType.NOTHING),
 	SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING),
 	OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC", GameType.OITC),
-	ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.ULTRASPLEEF),
+	ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.GK),
 	TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag", GameType.NOTHING),
 	SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV),
 	BMT(ChatColor.AQUA, ChatColor.BLUE, "BMT", GameType.BMT),

@@ -41,8 +41,20 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class DoubleJumpFeature extends CoreFeature {
 	
+	private List<UUID>	disabled	= new ArrayList<UUID>();
+	
 	public DoubleJumpFeature(final Phase phase) {
 		super(phase);
+	}
+	
+	public void setDisable(UUID id, boolean disable) {
+		if (disable) {
+			if (!disabled.contains(id)) {
+				disabled.add(id);
+			}
+		} else {
+			disabled.remove(id);
+		}
 	}
 	
 	@Override
@@ -91,11 +103,13 @@ public class DoubleJumpFeature extends CoreFeature {
 	public void e(final PlayerToggleFlightEvent event) {
 		final Player player = event.getPlayer();
 		if (getPhase().getGame().getPlayers().contains(player.getUniqueId()) && player.getGameMode() != GameMode.CREATIVE) {
-			event.setCancelled(true);
-			player.setAllowFlight(false);
-			player.setFlying(false);
-			player.setVelocity(player.getLocation().getDirection().multiply(1.6).setY(1));
-			player.getWorld().playSound(player.getLocation(), Sound.ENDERDRAGON_WINGS, 4, 1);
+			if (!disabled.contains(player.getUniqueId())) {
+				event.setCancelled(true);
+				player.setAllowFlight(false);
+				player.setFlying(false);
+				player.setVelocity(player.getLocation().getDirection().multiply(1.6).setY(1));
+				player.getWorld().playSound(player.getLocation(), Sound.ENDERDRAGON_WINGS, 4, 1);
+			}
 		}
 	}
 	
@@ -107,5 +121,9 @@ public class DoubleJumpFeature extends CoreFeature {
 				player.setAllowFlight(true);
 			}
 		}
+	}
+	
+	public boolean isDisabled(UUID uuid) {
+		return disabled.contains(uuid);
 	}
 }

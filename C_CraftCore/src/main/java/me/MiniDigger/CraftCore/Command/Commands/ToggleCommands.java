@@ -41,8 +41,12 @@ import org.bukkit.util.Vector;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.Feature.Features.DoubleJumpFeature;
 
 public class ToggleCommands implements Listener {
 	
@@ -84,7 +88,13 @@ public class ToggleCommands implements Listener {
 	@Command(name = "toggle.fly", description = "Toggelt den Fly Modus", permission = "fly", consol = false, min = 0, max = 0, sync = true)
 	public void fly(final CommandArgs args) {
 		args.getUser().getPlayer().setAllowFlight((!args.getPlayer().getAllowFlight()));
-		Prefix.API.getPrefix().then("Du kannst nun " + (args.getPlayer().getAllowFlight() == false ? "nicht mehr" : "") + " fliegen").send(args.getSender());
+		Prefix.API.getPrefix().then("Du kannst nun " + (args.getPlayer().getAllowFlight() == false ? "nicht mehr " : "") + "fliegen").send(args.getSender());
+		for (Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
+			DoubleJumpFeature f = (DoubleJumpFeature) game.getPhase().getFeature(FeatureType.DOUBLEJUMP);
+			if (f != null) {
+				f.setDisable(args.getUser().getUUID(), !f.isDisabled(args.getUser().getUUID()));
+			}
+		}
 	}
 	
 	private final List<UUID>	hacks	= new ArrayList<>();

@@ -44,7 +44,7 @@ public class UltraSpleefGame extends CoreGame {
 	
 	@Override
 	public GameType getType() {
-		return GameType.ULTRASPLEEF;
+		return GameType.GK;
 	}
 	
 	@Override

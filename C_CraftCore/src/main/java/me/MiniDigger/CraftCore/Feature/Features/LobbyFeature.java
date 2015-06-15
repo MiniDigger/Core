@@ -929,7 +929,7 @@ public class LobbyFeature extends CoreFeature {
 				return oitcOne();
 			case TICTACTOE:
 				return placeholder();
-			case ULTRASPLEEF:
+			case GK:
 				return ultraspleefOne();
 			case BMT:
 				return bmtOne();
@@ -964,7 +964,7 @@ public class LobbyFeature extends CoreFeature {
 				return oitcTwo();
 			case TICTACTOE:
 				return placeholder();
-			case ULTRASPLEEF:
+			case GK:
 				return ultraspleefTwo();
 			case BMT:
 				return bmtTwo();

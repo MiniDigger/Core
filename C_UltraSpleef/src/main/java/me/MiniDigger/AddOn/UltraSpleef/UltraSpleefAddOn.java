@@ -41,7 +41,7 @@ public class UltraSpleefAddOn extends CoreAddOn {
 	
 	@Override
 	public void enable() {
-		GameType.ULTRASPLEEF.setClass(UltraSpleefGame.class);
+		GameType.GK.setClass(UltraSpleefGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
@@ -52,7 +52,7 @@ public class UltraSpleefAddOn extends CoreAddOn {
 		super.disable();
 	}
 	
-	@Command(name = "ultraspleef", permission = "ultraspleef", usage = "", consol = true, description = "Initiiert ein Ultraspleef Game", max = 0, sync = true)
+	@Command(name = "gk", permission = "gk", usage = "", consol = true, description = "Initiiert ein GK Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final UltraSpleefGame game = new UltraSpleefGame();
 		game.init();
@@ -67,7 +67,7 @@ public class UltraSpleefAddOn extends CoreAddOn {
 		game.start();
 	}
 	
-	@Completer(name = "ultraspleef")
+	@Completer(name = "gk")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
 		

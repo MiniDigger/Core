@@ -338,7 +338,7 @@ public class CoreSignChangers implements SignChangers {
 					sb.append("%:%");
 					sb.append(ChatColor.RED + "DEAKTIVIERT");
 					sb.append("%:%");
-					sb.append(ChatColor.RED + "Dieser Spielmodus ist");
+					sb.append(ChatColor.RED + "Spielmodus ist");
 					sb.append("%:%");
 					sb.append(ChatColor.RED + "tempoär deaktiviert");
 					return sb.toString();
