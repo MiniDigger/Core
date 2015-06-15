@@ -169,6 +169,7 @@ public class CoreGameHandler implements GameHandler {
 		disabled.clear();
 		disabled = new ArrayList<GameType>();
 		
+		Core.getCore().getInstance().reloadConfig();
 		List<String> list = Core.getCore().getInstance().getConfig().getStringList("disabled-gametypes");
 		for (String s : list) {
 			try {
