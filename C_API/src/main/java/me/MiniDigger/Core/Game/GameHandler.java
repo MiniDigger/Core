@@ -94,4 +94,18 @@ public interface GameHandler {
 	 * @return a list with all running games
 	 */
 	public List<Game> getGames();
+	
+	/**
+	 * If that type is disabled
+	 * 
+	 * @param type
+	 *            the gametype
+	 * @return
+	 */
+	public boolean isDisabled(GameType type);
+	
+	/**
+	 * Reloads the list with disabled games
+	 */
+	public void reloadDisabled();
 }

@@ -42,6 +42,8 @@ public class CoreGameHandler implements GameHandler {
 	private Game	              mainGame;
 	private final ArrayList<Game>	games	      = new ArrayList<>();
 	
+	private List<GameType>	      disabled	      = new ArrayList<GameType>();
+	
 	@Override
 	public boolean isMainGameStarted() {
 		return mainGameStarted;
@@ -59,7 +61,7 @@ public class CoreGameHandler implements GameHandler {
 	
 	@Override
 	public void searchMainGame() {
-		final String game = (Core.getCore().getInstance()).getConfig().getString("server-type");
+		final String game = Core.getCore().getInstance().getConfig().getString("server-type");
 		if (game != null) {
 			try {
 				final GameType type = GameType.valueOf(game);
@@ -74,6 +76,8 @@ public class CoreGameHandler implements GameHandler {
 		} else {
 			Core.getCore().getInstance().info("No main game found.");
 		}
+		
+		reloadDisabled();
 	}
 	
 	@Override
@@ -123,7 +127,7 @@ public class CoreGameHandler implements GameHandler {
 		Bukkit.getPluginManager().callEvent(event);
 	}
 	
-	private void leave(final User user, final Game game){
+	private void leave(final User user, final Game game) {
 		final CoreUserLeaveGameEvent event = new CoreUserLeaveGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent(event);
 		
@@ -153,5 +157,26 @@ public class CoreGameHandler implements GameHandler {
 	@Override
 	public List<Game> getGames() {
 		return games;
+	}
+	
+	@Override
+	public boolean isDisabled(GameType type) {
+		return disabled.contains(type);
+	}
+	
+	@Override
+	public void reloadDisabled() {
+		disabled.clear();
+		disabled = new ArrayList<GameType>();
+		
+		List<String> list = Core.getCore().getInstance().getConfig().getStringList("disabled-gametypes");
+		for (String s : list) {
+			try {
+				disabled.add(GameType.valueOf(s.toUpperCase()));
+			} catch (Exception ex) {
+				System.out.println("Unknown gametype " + s);
+			}
+		}
+		Core.getCore().getInstance().info(disabled.size() + " Spielmodi wurden deaktiviert");
 	}
 }

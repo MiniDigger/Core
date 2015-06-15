@@ -81,6 +81,12 @@ public class PluginCommands {
 		Prefix.API.getPrefix().then("Done.").send(args.getSender());
 	}
 	
+	@Command(name="reloaddisabledgames",usage="",description="Läd die Deaktivierten Spiele neu",permission="reloaddisabledgames")
+	public void reloaddisabledgames(final CommandArgs args) {
+		Core.getCore().getGameHandler().reloadDisabled();
+		Prefix.API.getPrefix().then("Done.").send(args.getSender());
+	}
+	
 	@Command(name = "stop", usage = "", description = "Stopt den Server", permission = "stop")
 	public void stopCommand(final CommandArgs args) {
 		Core.getCore().getShutdownUtil().doShutdown();

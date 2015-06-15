@@ -42,6 +42,10 @@ public class GameCommands {
 	public void join(final CommandArgs args) {
 		for (final Game game : Core.getCore().getGameHandler().getGames()) {
 			if (game.getType().name().equalsIgnoreCase(args.getArgs()[0])) {
+				if (Core.getCore().getGameHandler().isDisabled(game.getType())) {
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Dieser Spielmodi ist temporär deaktiviert! Sorry!").color(ChatColor.RED));
+					return;
+				}
 				Core.getCore().getGameHandler().joinGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel beigetreten").color(ChatColor.GREEN));
 				return;
@@ -50,6 +54,10 @@ public class GameCommands {
 		
 		for (final GameType type : GameType.values()) {
 			if (type.name().equalsIgnoreCase(args.getArgs()[0])) {
+				if (Core.getCore().getGameHandler().isDisabled(type)) {
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Dieser Spielmodi ist temporär deaktiviert! Sorry!").color(ChatColor.RED));
+					return;
+				}
 				Bukkit.dispatchCommand(args.getPlayer(), type.getCommand());
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Neues Spiel gestartet!").color(ChatColor.GREEN));
 			}

@@ -46,6 +46,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Protocol.SignChangers;
 import me.MiniDigger.Core.Stats.StatsType;
@@ -330,6 +331,17 @@ public class CoreSignChangers implements SignChangers {
 						game = g;
 						break;
 					}
+				}
+				if (Core.getCore().getGameHandler().isDisabled(GameType.valueOf(name.toUpperCase()))) {
+					final StringBuilder sb = new StringBuilder();
+					sb.append(ChatColor.GOLD + "[" + name + "]");
+					sb.append("%:%");
+					sb.append(ChatColor.RED + "DEAKTIVIERT");
+					sb.append("%:%");
+					sb.append(ChatColor.RED + "Dieser Spielmodus ist");
+					sb.append("%:%");
+					sb.append(ChatColor.RED + "tempoär deaktiviert");
+					return sb.toString();
 				}
 				if (game != null) {
 					final StringBuilder sb = new StringBuilder();
