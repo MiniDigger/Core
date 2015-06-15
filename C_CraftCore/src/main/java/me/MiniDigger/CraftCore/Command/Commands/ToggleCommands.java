@@ -78,13 +78,13 @@ public class ToggleCommands implements Listener {
 	public void updates(final CommandArgs args) {
 		final boolean b = Core.getCore().getProtocolHandler().toggleUpdates(args.getUser().getUUID());
 		
-		Prefix.API.getPrefix().then("Du bekommst nun " + (b == false ? "keine" : "") + " Protocol updates");
+		Prefix.API.getPrefix().then("Du bekommst nun " + (b == false ? "keine" : "") + " Protocol updates").send(args.getSender());
 	}
 	
-	@Command(name = "toggle.fly", description = "Toggelt den Fly Modus", permission = "fly", consol = false, min = 0, max = 0)
+	@Command(name = "toggle.fly", description = "Toggelt den Fly Modus", permission = "fly", consol = false, min = 0, max = 0, sync = true)
 	public void fly(final CommandArgs args) {
 		args.getUser().getPlayer().setAllowFlight((!args.getPlayer().getAllowFlight()));
-		Prefix.API.getPrefix().then("Du kannst nun " + (args.getPlayer().getAllowFlight() == false ? "nicht mehr" : "") + " fliegen");
+		Prefix.API.getPrefix().then("Du kannst nun " + (args.getPlayer().getAllowFlight() == false ? "nicht mehr" : "") + " fliegen").send(args.getSender());
 	}
 	
 	private final List<UUID>	hacks	= new ArrayList<>();
