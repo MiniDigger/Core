@@ -36,6 +36,8 @@ public class ToggleCompleter {
 		if (args.getArgs().length == 1) {
 			result.add("build");
 			result.add("hacks");
+			result.add("fly");
+			result.add("updates");
 			
 			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
 		} else {
@@ -50,6 +52,16 @@ public class ToggleCompleter {
 	
 	@Completer(name = "toggle.hacks")
 	public List<String> hacksC(final CommandArgs args) {
+		return new ArrayList<String>();
+	}
+	
+	@Completer(name = "toggle.fly")
+	public List<String> flyC(final CommandArgs args) {
+		return new ArrayList<String>();
+	}
+	
+	@Completer(name = "toggle.updates")
+	public List<String> updatesC(final CommandArgs args) {
 		return new ArrayList<String>();
 	}
 }

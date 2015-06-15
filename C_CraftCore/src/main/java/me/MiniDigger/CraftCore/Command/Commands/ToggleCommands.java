@@ -49,7 +49,7 @@ public class ToggleCommands implements Listener {
 	@Command(name = "toggle", description = "Stellt viele Sachen um", permission = "toggle")
 	public void toggle(final CommandArgs args) {
 		Prefix.API.getPrefix().then("Stellt viele Sachen um").send(args.getSender());
-		Prefix.API.getPrefix().then("Sub-Commands: build,hacks").send(args.getSender());
+		Prefix.API.getPrefix().then("Sub-Commands: build,hacks,fly").send(args.getSender());
 	}
 	
 	@Command(name = "toggle.build", description = "Toggelt den Build Modus", permission = "toggle.build", consol = false, min = 0, max = 1)
@@ -74,11 +74,17 @@ public class ToggleCommands implements Listener {
 		}
 	}
 	
-	@Command(name = "toggle.updates", description = "Toggelt den Protocollib updates", permission = "toggle.updates", consol = false, min = 0, max = 1)
+	@Command(name = "toggle.updates", description = "Toggelt den Protocollib updates", permission = "toggle.updates", consol = false, min = 0, max = 0)
 	public void updates(final CommandArgs args) {
 		final boolean b = Core.getCore().getProtocolHandler().toggleUpdates(args.getUser().getUUID());
 		
 		Prefix.API.getPrefix().then("Du bekommst nun " + (b == false ? "keine" : "") + " Protocol updates");
+	}
+	
+	@Command(name = "toggle.fly", description = "Toggelt den Fly Modus", permission = "fly", consol = false, min = 0, max = 0)
+	public void fly(final CommandArgs args) {
+		args.getUser().getPlayer().setAllowFlight((!args.getPlayer().getAllowFlight()));
+		Prefix.API.getPrefix().then("Du kannst nun " + (args.getPlayer().getAllowFlight() == false ? "nicht mehr" : "") + " fliegen");
 	}
 	
 	private final List<UUID>	hacks	= new ArrayList<>();
