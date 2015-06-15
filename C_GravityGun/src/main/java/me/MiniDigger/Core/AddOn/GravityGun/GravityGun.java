@@ -109,10 +109,10 @@ public class GravityGun extends CoreItem {
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void EntityChangeBlockEvent(final EntityChangeBlockEvent event) {
 		if (event.getEntityType() == EntityType.FALLING_BLOCK) {
-			Player[] onlinePlayers;
+			List<Player> onlinePlayers;
 			event.setCancelled(false);
-			for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
-				final Player all = onlinePlayers[i];
+			for (int length = (onlinePlayers = Core.getCore().getUserHandler().getOnlinePlayers()).size(), i = 0; i < length; ++i) {
+				final Player all = onlinePlayers.get(i);
 				if ((FallingBlock) event.getEntity() == GravityGun.hold.get(all)) {
 					event.setCancelled(true);
 				}
@@ -163,9 +163,9 @@ public class GravityGun extends CoreItem {
 	}
 	
 	public static void move() {
-		Player[] onlinePlayers;
-		for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
-			final Player all = onlinePlayers[i];
+		List<Player> onlinePlayers;
+		for (int length = (onlinePlayers = Core.getCore().getUserHandler().getOnlinePlayers()).size(), i = 0; i < length; ++i) {
+			final Player all = onlinePlayers.get(i);
 			if (GravityGun.block.containsKey(all)) {
 				if (GravityGun.hold.containsKey(all)) {
 					final FallingBlock fs = GravityGun.hold.get(all);
@@ -244,7 +244,7 @@ public class GravityGun extends CoreItem {
 		}
 	}
 	
-//	@EventHandler(ignoreCancelled = true) disable entity pushing for now
+	// @EventHandler(ignoreCancelled = true) disable entity pushing for now
 	public void EntityDamageByEntityEvent(final EntityDamageByEntityEvent e) {
 		if (e.getDamager() instanceof Player) {
 			final Player h = (Player) e.getDamager();

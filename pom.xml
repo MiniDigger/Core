@@ -134,14 +134,7 @@
 			</snapshots>
 		</repository>
 		<repository>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/groups/public/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>carrade-repo</id>
+			<id>carrade-repo</id><!-- FanyFull -->
 			<url>http://depot.carrade.eu/maven2/</url>
 		</repository>
 		<repository>
@@ -165,12 +158,20 @@
 			<url>http://repo.franga2000.com/artifactory/public</url>
 		</repository>
 		<repository>
-			<id>nametagedit-repo</id>
-			<url>http://ci.eyrenetwork.net/plugin/repository/everything/</url>
-		</repository>
-		<repository>
 			<id>elmakers-repo</id><!-- EffectLib -->
 			<url>http://maven.elmakers.com/repository/</url>
+		</repository>
+		<repository>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>mvmrepository</id>
+			<url>http://mvnrepository.com/artifact</url>
+		</repository>
+		<repository>
+			<id>nametagedit-repo</id><!-- NameTagEdit -->
+			<url>http://ci.playmc.cc/plugin/repository/everything</url>
 		</repository>
 	</repositories>
 
@@ -179,6 +180,12 @@
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot</artifactId>
 			<version>1.8-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.8.7-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -221,12 +228,6 @@
 			<groupId>org.apache.ant</groupId>
 			<artifactId>ant</artifactId>
 			<version>1.8.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.gmail.filoghost</groupId>
-			<artifactId>holographicdisplays</artifactId>
-			<version>2.1.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
