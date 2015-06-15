@@ -267,7 +267,7 @@ public class ChatCommands {
 		
 		new FancyMessage(args.getUser().getPrefix() + args.getUser().getDisplayName())
 		        .tooltip("Klicke hier um " + args.getUser().getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + args.getUser().getDisplayName())
-		        .then(" -> ").color(ChatColor.RED).then("DIR: " + msg).send(u.getPlayer());
+		        .then(" -> ").color(ChatColor.RED).then("DIR").color(ChatColor.RED).then(": " + msg).send(u.getPlayer());
 		new FancyMessage("DU").color(ChatColor.RED).then(" -> ").then(u.getPrefix() + u.getDisplayName())
 		        .tooltip("Klicke hier um " + u.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + u.getDisplayName()).then(": " + msg)
 		        .send(args.getUser().getPlayer());

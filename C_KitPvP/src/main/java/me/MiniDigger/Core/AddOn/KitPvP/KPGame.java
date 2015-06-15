@@ -44,7 +44,7 @@ public class KPGame extends CoreGame {
 	
 	@Override
 	public GameType getType() {
-		return GameType.OITC;
+		return GameType.KP;
 	}
 	
 	@Override

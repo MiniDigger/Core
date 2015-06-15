@@ -88,13 +88,18 @@ public class ToggleCommands implements Listener {
 	@Command(name = "toggle.fly", description = "Toggelt den Fly Modus", permission = "fly", consol = false, min = 0, max = 0, sync = true)
 	public void fly(final CommandArgs args) {
 		args.getUser().getPlayer().setAllowFlight((!args.getPlayer().getAllowFlight()));
-		Prefix.API.getPrefix().then("Du kannst nun " + (args.getPlayer().getAllowFlight() == false ? "nicht mehr " : "") + "fliegen").send(args.getSender());
+		boolean b = args.getPlayer().getAllowFlight();
 		for (Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
 			DoubleJumpFeature f = (DoubleJumpFeature) game.getPhase().getFeature(FeatureType.DOUBLEJUMP);
 			if (f != null) {
 				f.setDisable(args.getUser().getUUID(), !f.isDisabled(args.getUser().getUUID()));
+				if (f.isDisabled(args.getUser().getUUID())) {
+					b = true;
+				}
 			}
 		}
+		Prefix.API.getPrefix().then("Du kannst nun " + (b == false ? "nicht mehr " : "") + "fliegen").send(args.getSender());
+		
 	}
 	
 	private final List<UUID>	hacks	= new ArrayList<>();
