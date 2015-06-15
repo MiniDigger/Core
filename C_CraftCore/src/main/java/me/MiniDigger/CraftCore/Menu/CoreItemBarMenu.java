@@ -43,6 +43,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	
 	private ItemStack[]	               icons	    = new ItemStack[9];
 	private ItemBarMenu.ClickHandler[]	actions	    = new ItemBarMenu.ClickHandler[9];
+	private String[]	               perms	    = new String[9];
 	private boolean	                   isRegistered	= false;
 	private String	                   name;
 	
@@ -62,6 +63,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 				public void click(final ItemBarMenu m, final ItemStack is, final User u) {
 				}
 			};
+			perms[i] = "";
 		}
 		isRegistered = true;
 		Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
@@ -80,6 +82,11 @@ public class CoreItemBarMenu implements ItemBarMenu {
 	@Override
 	public void setAction(final int id, final ItemBarMenu.ClickHandler action) {
 		actions[id] = action;
+	}
+	
+	@Override
+	public void setPermission(int i, String string) {
+		perms[i] = string;
 	}
 	
 	@EventHandler
@@ -174,6 +181,11 @@ public class CoreItemBarMenu implements ItemBarMenu {
 		}
 		Core.getCore().getPlayerUtil().clearInv(u.getPlayer());
 		for (int i = 0; i < icons.length; i++) {
+			if (!perms[i].equals("")) {
+				if (!u.hasPermission(perms[i])) {
+					continue;
+				}
+			}
 			u.getPlayer().getInventory().setItem(i, icons[i]);
 		}
 		u.getPlayer().updateInventory();

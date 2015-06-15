@@ -168,6 +168,7 @@ public class HubFeature extends CoreFeature {
 				Bukkit.dispatchCommand(u.getPlayer(), "toggle fly");
 			}
 		});
+		hub.setPermission(2, "fly");
 		
 		/*************************************************/
 		
