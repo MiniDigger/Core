@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
@@ -236,7 +237,12 @@ public class ChatCommands {
 			args.getUser().setPrefix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(args.getPlayer());;
 		} else {
-			final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[1]).getUniqueId());
+			Player p = Bukkit.getPlayer(args.getArgs()[1]);
+			if (p == null) {
+				Prefix.CHAT.getPrefix().then("Unbekannter Spieler:  " + args.getArgs()[1]).color(ChatColor.RED).send(args.getSender());
+				return;
+			}
+			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.setPrefix(args.getArgs()[1]);
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(user.getPlayer());;
 			Prefix.CHAT.getPrefix().then("Das Prefix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());;
@@ -249,7 +255,12 @@ public class ChatCommands {
 			args.getUser().setSuffix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(args.getPlayer());;
 		} else {
-			final User user = Core.getCore().getUserHandler().get(Bukkit.getPlayer(args.getArgs()[1]).getUniqueId());
+			Player p = Bukkit.getPlayer(args.getArgs()[1]);
+			if (p == null) {
+				Prefix.CHAT.getPrefix().then("Unbekannter Spieler:  " + args.getArgs()[1]).color(ChatColor.RED).send(args.getSender());
+				return;
+			}
+			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.setSuffix(args.getArgs()[1]);
 			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(user.getPlayer());;
 			Prefix.CHAT.getPrefix().then("Das Suffix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());;
