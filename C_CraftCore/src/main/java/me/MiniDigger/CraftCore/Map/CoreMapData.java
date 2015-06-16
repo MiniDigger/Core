@@ -74,6 +74,18 @@ public class CoreMapData implements MapData {
 	public void setNewName(String name) {
 		this.name = this.newName;
 		this.newName = name;
+		
+		World w = Bukkit.getWorld(name);
+		
+		if (w == null) {
+			System.out.println("fair enought");
+		}
+		
+		for (DyeColor c : locs.keySet()) {
+			for (Location l : locs.get(c).values()) {
+				l.setWorld(w);
+			}
+		}
 	}
 	
 	@Override

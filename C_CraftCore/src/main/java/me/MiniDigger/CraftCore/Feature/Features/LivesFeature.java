@@ -186,9 +186,13 @@ public class LivesFeature extends CoreFeature {
 				
 				e.setShouldRespawn(false);
 				final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
-				final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
-				final Location loc = locs.get(locs.keySet().iterator().next());
-				e.getUser().getPlayer().teleport(loc);
+				if (map == null) {
+					System.out.println("map == null in livesfeature");
+				} else {
+					final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
+					final Location loc = locs.get(locs.keySet().iterator().next());
+					e.getUser().getPlayer().teleport(loc);
+				}
 				
 				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 					

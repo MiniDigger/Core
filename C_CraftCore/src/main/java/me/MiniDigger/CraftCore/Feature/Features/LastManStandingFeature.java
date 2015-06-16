@@ -160,9 +160,13 @@ public class LastManStandingFeature extends CoreFeature {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			e.setShouldRespawn(false);
 			final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
-			final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
-			final Location loc = locs.get(locs.keySet().iterator().next());
-			e.getUser().getPlayer().teleport(loc);
+			if (map == null) {
+				System.out.println("map == null in lmtfeature");
+			} else {
+				final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
+				final Location loc = locs.get(locs.keySet().iterator().next());
+				e.getUser().getPlayer().teleport(loc);
+			}
 			
 			getPhase().getGame().leave(e.getUser());
 			

@@ -76,10 +76,23 @@ public class CoreMapHandler implements MapHandler {
 		
 		for (final MapData data : maps) {
 			if (data == null) {
-				return null;
+				continue;
 			}
 			
 			if (data.getName().equals(name)) {
+				return data;
+			}
+		}
+		for (final MapData data : maps) {
+			if (data == null) {
+				continue;
+			}
+			
+			if (data.getOldName() == null) {
+				continue;
+			}
+			
+			if (data.getOldName().equals(name)) {
 				return data;
 			}
 		}
