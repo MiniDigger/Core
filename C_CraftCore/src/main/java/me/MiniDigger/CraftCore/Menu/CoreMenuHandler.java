@@ -29,6 +29,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
 import me.MiniDigger.Core.Core;
@@ -84,7 +85,7 @@ public class CoreMenuHandler implements MenuHandler {
 					m.setAction(i, new ClickHandler() {
 						
 						@Override
-						public void click(final ItemBarMenu m, final ItemStack is, final User u) {
+						public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 							if (msg != null) {
 								u.sendMessage(Prefix.API.getPrefix().then(msg));
 							}

@@ -22,6 +22,7 @@ package me.MiniDigger.CraftCore.Menu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
@@ -29,6 +30,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -60,7 +62,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 			actions[i] = new ItemBarMenu.ClickHandler() {
 				
 				@Override
-				public void click(final ItemBarMenu m, final ItemStack is, final User u) {
+				public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				}
 			};
 			perms[i] = "";
@@ -110,10 +112,35 @@ public class CoreItemBarMenu implements ItemBarMenu {
 			        && e.getItem().getItemMeta().getDisplayName() == is.getItemMeta().getDisplayName()) {
 				final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 				if (actions[i] != null) {
-					actions[i].click(this, is, u);
+					actions[i].click(this, is, u, null);
 					e.setCancelled(true);
 					e.setUseInteractedBlock(Result.DENY);
 					e.setUseItemInHand(Result.DENY);
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onInteractEntitx(final PlayerInteractEntityEvent e) {
+		try {
+			if (name != Core.getCore().getMenuHandler().getMenu(e.getPlayer().getUniqueId()).getName()) {
+				return;
+			}
+		} catch (final Exception ex) {}
+		
+		if (e.getPlayer() == null) {
+			HandlerList.unregisterAll(this);
+			return; // RIP
+		}
+		for (int i = 0; i < icons.length; i++) {
+			final ItemStack is = icons[i];
+			if (is != null && e.getPlayer().getItemInHand() != null && is.hasItemMeta() && e.getPlayer().getItemInHand().hasItemMeta()
+			        && e.getPlayer().getItemInHand().getItemMeta().getDisplayName() == is.getItemMeta().getDisplayName()) {
+				final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+				if (actions[i] != null) {
+					actions[i].click(this, is, u, e.getRightClicked());
+					e.setCancelled(true);
 				}
 			}
 		}

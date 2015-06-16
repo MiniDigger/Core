@@ -20,6 +20,7 @@
  */
 package me.MiniDigger.Core.Menu;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
@@ -29,7 +30,7 @@ public interface ItemBarMenu extends Listener {
 	
 	interface ClickHandler {
 		
-		void click(final ItemBarMenu m, final ItemStack is, final User u);
+		void click(final ItemBarMenu m, final ItemStack is, final User u, Entity entity);
 	}
 	
 	void setAction(final int id, final ClickHandler action);
@@ -45,6 +46,6 @@ public interface ItemBarMenu extends Listener {
 	ItemBarMenu clone();
 	
 	void setName(final String string);
-
+	
 	void setPermission(int i, String string);
 }
