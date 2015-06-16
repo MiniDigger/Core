@@ -69,6 +69,19 @@ public class EssentialCompleter {
 		}
 	}
 	
+	@Completer(name = "tempban")
+	public List<String> tempbanC(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			final List<String> result = new ArrayList<>();
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
 	@Completer(name = "unban")
 	public List<String> unbanC(final CommandArgs args) {
 		if (args.getArgs().length == 1) {

@@ -203,6 +203,22 @@ public class HubFeature extends CoreFeature {
 		});
 		hub.setPermission(3, "tptoevent");
 		
+		hub.setIcon(4, new CoreItemBuilder(Material.WOOD_DOOR).name("Selber zum Event Porten").lore("Geht nur wenn ein Event am laufen ist ;D").build());
+		hub.setAction(4, new ClickHandler() {
+			
+			@Override
+			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
+				if (event) {
+					try {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT2"));
+					} catch (Exception ex) {
+						Prefix.API.getPrefix().then("Not setup!").send(u.getPlayer());
+					}
+				}
+			}
+		});
+		hub.setPermission(4, "tptoevent");
+		
 		/*************************************************/
 		
 		// TODO this is not cool, add an option to change a item in a menu
@@ -396,6 +412,14 @@ public class HubFeature extends CoreFeature {
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
+			}
+		});
+		tp2.setIcon(4, new CoreItemBuilder(Material.NETHER_STAR).name("Spawn").build());
+		tp2.setAction(4, new ClickHandler() {
+			
+			@Override
+			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
+				Bukkit.dispatchCommand(u.getPlayer(), "hub");
 			}
 		});
 		

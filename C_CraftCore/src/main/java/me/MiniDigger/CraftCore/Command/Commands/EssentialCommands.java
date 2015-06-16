@@ -20,6 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -109,6 +112,22 @@ public class EssentialCommands {
 		Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		if (p != null) {
 			p.kickPlayer("Du wurdest von " + args.getSender().getName() + " gebannt: " + args.getArgs()[1]);
+		}
+	}
+	
+	@Command(name = "tempban", usage = "<user> <time> <reason>", min = 3, consol = true, permission = "tempban", description = "TempBan a user", sync = true, string = 3)
+	public void tempban(final CommandArgs args) {
+		int time = Integer.parseInt(args.getArgs()[1]);
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.DATE, time);
+		
+		Bukkit.getBanList(BanList.Type.NAME).addBan(args.getArgs()[0], args.getArgs()[2], c.getTime(), args.getSender().getName());
+		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " wurde für " + time + " Tage gebannt!").send(args.getSender());
+		
+		Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		if (p != null) {
+			p.kickPlayer("Du wurdest von " + args.getSender().getName() + " für " + time + " Tage gebannt: " + args.getArgs()[2]);
 		}
 	}
 	
