@@ -20,18 +20,23 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+
+import mkremins.fanciful.FancyMessage;
 
 public class EssentialCommands {
 	
@@ -94,5 +99,22 @@ public class EssentialCommands {
 		} else {
 			Prefix.API.getPrefix().then("Nur auf dem Hub Server!").color(ChatColor.RED).send(args.getPlayer());
 		}
+	}
+	
+	@Command(name = "ban", usage = "<user> <reason>", min = 2, consol = true, permission = "ban", description = "Ban a user", sync = true, string = 2)
+	public void ban(final CommandArgs args) {
+		Bukkit.getBanList(BanList.Type.NAME).addBan(args.getArgs()[0], args.getArgs()[1], null, args.getSender().getName());
+		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " wurde gebannt!").send(args.getSender());
+		
+		Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		if (p != null) {
+			p.kickPlayer("Du wurdest von " + args.getSender().getName() + " gebannt: " + args.getArgs()[1]);
+		}
+	}
+	
+	@Command(name = "unban", usage = "<user>", min = 1, max = 1, consol = true, permission = "unban", description = "UnBan a user", sync = true)
+	public void unban(final CommandArgs args) {
+		Bukkit.getBanList(BanList.Type.NAME).pardon(args.getArgs()[0]);
+		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " kann jetzt wieder Spielen!").send(args.getSender());
 	}
 }

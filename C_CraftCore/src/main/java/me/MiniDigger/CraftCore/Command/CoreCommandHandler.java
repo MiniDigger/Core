@@ -160,9 +160,23 @@ public class CoreCommandHandler implements CommandHandler {
 				final Method method = commandMap.getFirstValue(cmdLabel);
 				final Object methodObject = commandMap.getSecondValue(cmdLabel);
 				
+				/* Core Start */
+				final Command command = method.getAnnotation(Command.class);
+				
 				final List<String> newArgs = new ArrayList<String>();
+				boolean add = false;
+				String toAdd = "";
 				for (int a = 0; a < args.length; a++) {
 					String s = args[a];
+					if (a == (command.string() - 1)) {
+						add = true;
+					}
+					
+					if (add) {
+						toAdd += " " + s;
+						continue;
+					}
+					
 					if (s.startsWith("\"")) {
 						final StringBuilder arg = new StringBuilder();
 						while (!s.endsWith("\"")) {
@@ -178,10 +192,12 @@ public class CoreCommandHandler implements CommandHandler {
 					}
 				}
 				
+				if (add) {
+					newArgs.add(toAdd);
+				}
+				
 				args = newArgs.toArray(new String[newArgs.size()]);
 				
-				/* Core Start */
-				final Command command = method.getAnnotation(Command.class);
 				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
 				
 				if (sender instanceof Player) {

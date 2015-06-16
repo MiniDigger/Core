@@ -203,4 +203,17 @@ public class ChatCompleter {
 			return new ArrayList<String>();
 		}
 	}
+	
+	@Completer(name = "pm")
+	public List<String> pmC(final CommandArgs args) {
+		if (args.getArgs().length == 2) {
+			final List<String> result = new ArrayList<>();
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[1]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
 }

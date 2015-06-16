@@ -23,7 +23,12 @@ package me.MiniDigger.CraftCore.Command.Completer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.BanEntry;
+import org.bukkit.BanList;
+import org.bukkit.BanList.Type;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -49,5 +54,31 @@ public class EssentialCompleter {
 		}
 		
 		return new ArrayList<String>();
+	}
+	
+	@Completer(name = "ban")
+	public List<String> banC(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			final List<String> result = new ArrayList<>();
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+				result.add(p.getName());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
+	}
+	
+	@Completer(name = "unban")
+	public List<String> unbanC(final CommandArgs args) {
+		if (args.getArgs().length == 1) {
+			final List<String> result = new ArrayList<>();
+			for (BanEntry e : Bukkit.getBanList(Type.NAME).getBanEntries()) {
+				result.add(e.getTarget());
+			}
+			return Core.getCore().getCommonMethods().completer(result, args.getArgs()[0]);
+		} else {
+			return new ArrayList<String>();
+		}
 	}
 }
