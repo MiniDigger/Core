@@ -192,15 +192,17 @@ public class LivesFeature extends CoreFeature {
 					final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
 					final Location loc = locs.get(locs.keySet().iterator().next());
 					e.getUser().getPlayer().teleport(loc);
+					
+					Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+						
+						@Override
+						public void run() {
+							e.getUser().getPlayer().teleport(loc);
+						}
+					}, 10, getPhase());
 				}
 				
-				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-					
-					@Override
-					public void run() {
-						e.getUser().getPlayer().teleport(loc);
-					}
-				}, 10, getPhase());
+				
 				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)
