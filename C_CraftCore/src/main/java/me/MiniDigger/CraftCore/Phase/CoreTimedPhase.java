@@ -25,19 +25,21 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Phase.TimedPhase;
+import me.MiniDigger.Core.Tasks.Task;
 
 public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 	
-	private int	       secs;
-	private BukkitTask	timer;
-	private float	   sub;
-	private float	   subbed;
+	private int	  secs;
+	private float	sub;
+	private float	subbed;
+	private Task	task;
 	
 	public CoreTimedPhase(final Game game, final Phase nextPhase, final int time) {
 		super(game, nextPhase);
@@ -59,7 +61,7 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 		subbed = 100;
 		sub = subbed / secs;
 		
-		timer = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
+		task = Core.getCore().getTaskHandler().runTaskTimer(new BukkitRunnable() {
 			
 			int	passed	= 0;
 			
@@ -68,7 +70,7 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 				passed++;
 				final int toGo = secs - passed;
 				if (toGo <= 0) {
-					timer.cancel();
+					task.getTask().cancel();
 					endPhase();
 					Core.getCore().getBarHandler().removeAllStatusBars();
 					return;
@@ -80,14 +82,14 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 					tickLast5secs(passed, toGo);
 				}
 			}
-		}, 20, 20);
+		}, 20, 20, this);
 	}
 	
 	@Override
 	public void endPhase() {
 		try {
-			timer.cancel();
-		} catch (final Exception ex) {}
+			task.getTask().cancel();
+		} catch (Exception ex) {}
 		
 		for (final UUID u : getGame().getPlayers()) {
 			final Player p = Bukkit.getPlayer(u);
