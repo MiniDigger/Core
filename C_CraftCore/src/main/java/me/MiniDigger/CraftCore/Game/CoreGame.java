@@ -44,6 +44,7 @@ import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
@@ -221,10 +222,19 @@ public class CoreGame implements Game {
 	
 	@Override
 	public void end(final User... winner) {
-		// final MapData lobby =
-		// Core.getCore().getMapHandler().getMap(getGameData("Lobby"));
-		// final Location loc =
-		// lobby.getLocs(DyeColor.RED).values().iterator().next();
+		final List<UUID> winnerids = new ArrayList<UUID>();
+		for (final User u : winner) {
+			winnerids.add(u.getUUID());
+		}
+		
+		for (final Task task : Core.getCore().getTaskHandler().getTaskByPhase(getPhase())) {
+			task.getTask().cancel();
+		}
+		
+		final List<UUID> combined = new ArrayList<UUID>();
+		combined.addAll(specs);
+		combined.addAll(users);
+		combined.addAll(winnerids);
 		
 		final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 		for (final User w : winner) {
@@ -237,7 +247,7 @@ public class CoreGame implements Game {
 			
 			@Override
 			public void run() {
-				for (final UUID w : specs) {
+				for (final UUID w : combined) {
 					final Player p = Bukkit.getPlayer(w);
 					if (p != null) {
 						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
@@ -246,48 +256,6 @@ public class CoreGame implements Game {
 						if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
 							p.teleport(loc);
 						}
-						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
-							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
-						}
-						
-						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-						}
-					}
-					
-				}
-				
-				for (final UUID w : users) {
-					final Player p = Bukkit.getPlayer(w);
-					if (p != null) {
-						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-						p.getInventory().clear();
-						
-						if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-							p.teleport(loc);
-						}
-						
-						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
-							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
-						}
-						
-						if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-							Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-						}
-					}
-					
-				}
-				
-				for (final User w : winner) {
-					final Player p = w.getPlayer();
-					if (p != null) {
-						final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-						p.getInventory().clear();
-						
-						if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-							p.teleport(loc);
-						}
-						
 						if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 							Prefix.API.getPrefix().then("Das Spiel wird in 10 Sekunden neu gestartet").send(p);
 						}
@@ -321,7 +289,7 @@ public class CoreGame implements Game {
 				@Override
 				public void run() {
 					final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
-					for (final UUID w : specs) {
+					for (final UUID w : combined) {
 						final Player p = Bukkit.getPlayer(w);
 						if (p != null) {
 							final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
@@ -338,51 +306,33 @@ public class CoreGame implements Game {
 							}
 						}
 						
-					}
-					
-					for (final UUID w : users) {
-						final Player p = Bukkit.getPlayer(w);
-						if (p != null) {
-							final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-							
-							p.getInventory().clear();
-							
-							if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-								p.teleport(loc);
-							}
-							Core.getCore().getPlayerUtil().prepare(p);
-							
-							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-							}
-						}
-						
-					}
-					for (final User w : winner) {
-						try {
-							final Player p = w.getPlayer();
-							if (p != null) {
-								final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
-								
-								p.getInventory().clear();
-								
-								if (!p.getLocation().getWorld().getName().equalsIgnoreCase(loc.getWorld().getName())) {
-									p.teleport(loc);
-								}
-								Core.getCore().getPlayerUtil().prepare(p);
-								
-								if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-									Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
-								}
-							}
-							
-						} catch (final Exception ex) {}
 					}
 				}
 			}, 10 * 60 * 20, getPhase());// After
 			                             // shutdown
 			                             // timer
+			
+			final Game g = Core.getCore().getGameHandler().getMainGame();
+			if (g.getType() == GameType.LOBBY) {
+				if (winnerids.size() > 1) {
+					StringBuilder sb = new StringBuilder();
+					for (int i = 0; i < winner.length; i++) {
+						if (i == winner.length) {
+							sb.append(" und " + winner[i].getDisplayName());
+						} else {
+							sb.append(", " + winner[i].getDisplayName());
+						}
+					}
+					g.broadCastMessage(Prefix.API.getPrefix().then(
+					        "Die Spieler " + sb.toString() + " sind siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
+				} else {
+					g.broadCastMessage(Prefix.API.getPrefix().then(
+					        "Der Spieler " + winner[0].getDisplayName() + " ist siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
+				}
+			}
 		}
+		
+		Core.getCore().getWorldHandler().unloadWorld(getGameData("Lobby"), loc);
 		
 		new BukkitRunnable() {
 			

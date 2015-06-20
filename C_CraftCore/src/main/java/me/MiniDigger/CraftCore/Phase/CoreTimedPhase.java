@@ -70,11 +70,14 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 				passed++;
 				final int toGo = secs - passed;
 				if (toGo <= 0) {
+					if (getName().equals("GetTheDropTwo")) System.out.println("cancel timedphase task");
 					task.getTask().cancel();
 					endPhase();
 					Core.getCore().getBarHandler().removeAllStatusBars();
 					return;
 				}
+				
+				if (getName().equals("GetTheDropTwo")) System.out.println("tick");
 				
 				tick(passed, toGo);
 				

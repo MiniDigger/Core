@@ -88,7 +88,10 @@ public class CoreBuildHandler implements BuildHandler {
 		l.addAll(Arrays.asList(mat));
 		disallow.put(u.getUUID(), l);
 		
-		final List<Material> l1 = allow.remove(u.getUUID());
+		List<Material> l1 = allow.remove(u.getUUID());
+		if (l1 == null) {
+			l1 = new ArrayList<Material>();
+		}
 		l1.removeAll(Arrays.asList(mat));
 		allow.put(u.getUUID(), l1);
 	}

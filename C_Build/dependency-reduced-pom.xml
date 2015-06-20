@@ -284,14 +284,6 @@
           <artifactId>BukkitExecutors</artifactId>
           <groupId>com.comphenix.executors</groupId>
         </exclusion>
-        <exclusion>
-          <artifactId>netty-all</artifactId>
-          <groupId>io.netty</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

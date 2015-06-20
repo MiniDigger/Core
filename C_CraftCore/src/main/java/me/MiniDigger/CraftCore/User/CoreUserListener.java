@@ -35,7 +35,7 @@ public class CoreUserListener implements UserListener {
 	public void onPlayerJoin(final PlayerJoinEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		user.startSession();
-		user.getStats();
+		// user.getStats(); //TODO We don't need you for now
 	}
 	
 	@Override

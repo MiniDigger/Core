@@ -48,6 +48,7 @@ public class CoreMapData implements MapData {
 	
 	public CoreMapData(final String name) {
 		this.name = name;
+		this.newName = name;
 		locs = new HashMap<>();
 	}
 	
@@ -72,13 +73,21 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public void setNewName(String name) {
-		this.name = this.newName;
-		this.newName = name;
+		System.out.println("set new name: " + name + " old was " + this.name + "(" + this.newName + ")");
+		if (name.contains("_Lobby") && this.name == null) {
+			System.out.println("well, thats fucked up, use Lobby as old and " + name + " as new name");
+			this.name = "Lobby";
+			this.newName = name;
+		} else {
+			this.name = this.newName;
+			this.newName = name;
+		}
 		
 		World w = Bukkit.getWorld(name);
 		
 		if (w == null) {
-			System.out.println("fair enought");
+			System.out.println("New Map not loaded! (" + getName() + "," + getOldName() + ")");
+			return;
 		}
 		
 		for (DyeColor c : locs.keySet()) {

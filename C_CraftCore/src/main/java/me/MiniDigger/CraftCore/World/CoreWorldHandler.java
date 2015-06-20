@@ -24,7 +24,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.common.io.Files;
+import org.apache.commons.lang.ArrayUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -38,8 +38,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
@@ -51,6 +49,10 @@ import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 
 public class CoreWorldHandler implements WorldHandler {
+	
+	public CoreWorldHandler() {
+		cleanup();
+	}
 	
 	@Override
 	public Location getFallbackLoc() {
@@ -208,11 +210,9 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public void copyWorld(final String name, final String newName) {
-		System.out.println("copy " + name + " as " + newName);
 		final File mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		File map = new File(mapFolder, name + ".zip");
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
-		final File oldMap = new File(out, newName);
 		
 		deleteWorld(name);
 		
@@ -220,11 +220,11 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		Core.getCore().getDeZipUtil().extract(new File(map.getAbsolutePath()), out);
 		
-		fixSession(oldMap);
-		
-		new File(out, name).renameTo(new File(newName));
+		new File(out, name).renameTo(new File(out, newName));
 		
 		map = new File(Bukkit.getWorldContainer(), newName);
+		fixSession(map);
+		
 		final File mapDataFile = new File(map, "map.yml");
 		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
 		
@@ -238,16 +238,16 @@ public class CoreWorldHandler implements WorldHandler {
 		System.out.println("cleanup");
 		File mapFolder = Bukkit.getWorldContainer();
 		String[] ignore = new String[] { "logs", "plugins", "world", "world_the_end" };
+		for (World w : Bukkit.getWorlds()) {
+			ArrayUtils.add(ignore, w.getName());
+		}
 		List<String> i = Arrays.asList(ignore);
 		
 		for (final File f : mapFolder.listFiles()) {
-			System.out.println("check " + f.getName());
 			if (f.isDirectory()) {
-				System.out.println("is dir");
 				if (!i.contains(f.getName())) {
-					System.out.println("bye");
 					if (Core.getCore().getFileUtil().deleteDirectory(f)) {
-						System.out.println("yeah");
+						System.out.println("Could not delete " + f.getName());
 					}
 				}
 			}

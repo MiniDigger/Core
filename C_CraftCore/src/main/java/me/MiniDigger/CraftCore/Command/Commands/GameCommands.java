@@ -60,6 +60,12 @@ public class GameCommands {
 				}
 				Bukkit.dispatchCommand(args.getPlayer(), type.getCommand());
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Neues Spiel gestartet!").color(ChatColor.GREEN));
+				
+				Game g = Core.getCore().getGameHandler().getMainGame();
+				if (g.getType() == GameType.LOBBY) {
+					g.broadCastMessage(Prefix.API.getPrefix()
+					        .then("Der Spieler " + args.getUser().getDisplayName() + " hat ein neus Spiel " + type.getName() + " gestartet!").color(ChatColor.GOLD));
+				}
 			}
 		}
 		// args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekanntes Spiel!").color(ChatColor.RED));

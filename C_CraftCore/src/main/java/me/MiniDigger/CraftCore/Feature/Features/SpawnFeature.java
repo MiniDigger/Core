@@ -96,6 +96,9 @@ public class SpawnFeature extends CoreFeature {
 		usedSpawns = new ArrayList<>();
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> spawns = data.getLocs(locKey);
+		if (spawns == null) {
+			System.out.println("spawns null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{" + data.getOldName() + "}");
+		}
 		this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
 		if (spawn) {
 			for (final UUID id : getPhase().getGame().getPlayers()) {

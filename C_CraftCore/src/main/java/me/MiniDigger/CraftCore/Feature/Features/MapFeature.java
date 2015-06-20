@@ -100,24 +100,25 @@ public class MapFeature extends CoreFeature {
 		}
 		
 		String newMap = getName(map);
-		System.out.println("set map: " + map + " as " + newMap);
 		if (Core.getCore().getMapHandler().getMap(map) == null) {
-			System.out.println("not loaded");
 			if (Bukkit.getWorld(newMap) == null) {
-				System.out.println("not loaded2");
 				Core.getCore().getWorldHandler().copyWorld(map, newMap);
-				System.out.println("loadss");
 				Core.getCore().getWorldHandler().loadWorld(map, newMap);
 			}
 		}
 		
-		this.map = Core.getCore().getMapHandler().getMap(newMap);
+		this.map = Core.getCore().getMapHandler().getMap(map);
 		if (this.map == null) {
-			this.map = Core.getCore().getMapHandler().getMap(map);
-			if (this.map == null) {
-				System.out.println("how...");
+			this.map = Core.getCore().getMapHandler().getMap(newMap);
+		}
+		
+		int i = 0;
+		for (DyeColor color : DyeColor.values()) {
+			if (this.map.getLocs(color) != null) {
+				i += this.map.getLocs(color).size();
 			}
 		}
+		System.out.println("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs");
 	}
 	
 	public String getName(final String map) {
