@@ -43,6 +43,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Phase.Phase;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
@@ -122,12 +123,12 @@ public class BMTFeature extends CoreFeature {
 		}
 		
 		if (available.size() == 0) {
-			System.out.println("clear");
 			available.clear();
 			available = getPhase().getGame().getPlayers();
 		}
 		
 		builder = available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
+		builded.add(builder);
 		
 		final User u = Core.getCore().getUserHandler().get(builder);
 		u.getPlayer().getInventory().clear();
@@ -203,6 +204,12 @@ public class BMTFeature extends CoreFeature {
 			
 			if (e.getMsg().equalsIgnoreCase(word)) {
 				e.setCancelled(true);
+				
+				if (builder.equals(e.getUser().getUUID())) {
+					e.getUser().sendMessage(Prefix.BMT.getPrefix().then("Du kannst nicht dein eigenes Wort erraten...").color(ChatColor.RED));
+					return;
+				}
+				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getGamePrefix().getPrefix().then("Der Spieler " + e.getUser().getDisplayName() + " hat das Wort erraten!"));
 				
