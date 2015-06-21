@@ -26,6 +26,9 @@ import java.util.List;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockFormEvent;
+import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.event.block.BlockPistonEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -36,6 +39,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 public class MapResetFeature extends CoreFeature {
 	
 	private final List<BlockState>	changes	= new ArrayList<BlockState>();
+	private String	               map	    = "";
 	
 	public MapResetFeature(final Phase phase) {
 		super(phase);
@@ -63,7 +67,7 @@ public class MapResetFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+		map = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap().getName();
 	}
 	
 	@Override
@@ -90,4 +94,26 @@ public class MapResetFeature extends CoreFeature {
 			add(e.getBlock().getState());
 		}
 	}
+	
+	@EventHandler
+	public void onForm(final BlockFormEvent e) {
+		if (e.getBlock().getWorld().getName().equalsIgnoreCase(map)) {
+			add(e.getBlock().getState());
+		}
+	}
+	
+	@EventHandler
+	public void onDestroy(final BlockPistonEvent e) {
+		if (e.getBlock().getWorld().getName().equalsIgnoreCase(map)) {
+			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onForm(final BlockPhysicsEvent e) {
+		if (e.getBlock().getWorld().getName().equalsIgnoreCase(map)) {
+			add(e.getBlock().getState());
+		}
+	}
+	
 }
