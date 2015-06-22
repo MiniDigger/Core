@@ -108,6 +108,7 @@ public class _ {
 			return;
 		}
 		if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
+			lvl.getMsg(t.getClass().getName() + (t.getMessage() == null ? "" : ": " + t.getMessage())).send(Bukkit.getConsoleSender());
 			for (final StackTraceElement e : t.getStackTrace()) {
 				lvl.getMsg(e.toString()).send(Bukkit.getConsoleSender());
 			}

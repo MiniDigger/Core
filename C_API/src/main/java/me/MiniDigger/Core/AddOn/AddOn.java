@@ -23,8 +23,9 @@ package me.MiniDigger.Core.AddOn;
 import java.io.File;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 
-public interface AddOn {
+public interface AddOn extends Listener{
 	
 	/**
 	 * @returns the name of this addon

@@ -314,6 +314,9 @@ public class CoreUser implements User {
 	
 	@Override
 	public boolean hasPermission(final String perm) {
+		if (getPlayer() == null) {
+			return false;
+		}
 		return getPlayer().hasPermission(perm);
 	}
 	

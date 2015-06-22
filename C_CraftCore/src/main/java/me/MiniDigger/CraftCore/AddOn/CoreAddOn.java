@@ -25,8 +25,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.HandlerList;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOn;
@@ -48,7 +50,7 @@ public class CoreAddOn implements AddOn {
 	
 	@Override
 	public void enable() {
-		
+		Bukkit.getServer().getPluginManager().registerEvents(this, Core.getCore().getInstance());
 	}
 	
 	@Override
@@ -61,7 +63,7 @@ public class CoreAddOn implements AddOn {
 	
 	@Override
 	public void disable() {
-		
+		HandlerList.unregisterAll(this);
 	}
 	
 	public List<ChatChannel> registerChatChannel() {

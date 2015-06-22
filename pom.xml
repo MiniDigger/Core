@@ -66,6 +66,7 @@
 		<module>C_KitPvP</module>
 		<module>C_SurvivalGames</module>
 		<module>C_Infected</module>
+		<module>C_ChatBot</module>
 		<module>C_Build</module>
 	</modules>
 
@@ -102,6 +103,7 @@
 				<module>C_KitPvP</module>
 				<module>C_SurvivalGames</module>
 				<module>C_Infected</module>
+				<module>C_ChatBot</module>
 				<module>C_Build</module>
 			</modules>
 		</profile>
