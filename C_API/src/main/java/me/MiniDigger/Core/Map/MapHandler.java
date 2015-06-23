@@ -93,4 +93,11 @@ public interface MapHandler {
 	 * @return a list with all gametypes that map is configured for
 	 */
 	public List<GameType> getGameTypes(final String name);
+	
+	/**
+	 * Unloads a map from cache
+	 * 
+	 * @param map
+	 */
+	void unload(MapData map);
 }

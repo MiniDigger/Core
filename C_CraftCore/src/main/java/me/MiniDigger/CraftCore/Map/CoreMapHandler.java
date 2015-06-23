@@ -188,4 +188,9 @@ public class CoreMapHandler implements MapHandler {
 		
 		return result;
 	}
+	
+	@Override
+	public void unload(final MapData map) {
+		maps.remove(map);
+	}
 }

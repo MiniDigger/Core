@@ -333,6 +333,7 @@ public class CoreGame implements Game {
 		}
 		
 		Core.getCore().getWorldHandler().unloadWorld(getGameData("Lobby"), loc);
+		Core.getCore().getWorldHandler().deleteWorld(getGameData("Lobby"));
 		
 		new BukkitRunnable() {
 			

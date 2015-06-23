@@ -71,6 +71,9 @@ public class CoreWorldHandler implements WorldHandler {
 	@Override
 	public void unloadWorld(final String world, final Location fallBackLoc) {
 		System.out.println("unload " + world);
+		
+		Core.getCore().getMapHandler().unload(Core.getCore().getMapHandler().getMap(world));
+		
 		final World w = Bukkit.getWorld(world);
 		if (w == null) {
 			return;
@@ -107,7 +110,6 @@ public class CoreWorldHandler implements WorldHandler {
 		} catch (final Exception ex) {
 			System.out.println("Will, that sucks");
 		}
-		System.out.println("?");
 	}
 	
 	@Override
