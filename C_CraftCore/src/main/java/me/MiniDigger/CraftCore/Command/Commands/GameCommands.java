@@ -46,6 +46,10 @@ public class GameCommands {
 					args.getUser().sendMessage(Prefix.API.getPrefix().then("Dieser Spielmodi ist temporär deaktiviert! Sorry!").color(ChatColor.RED));
 					return;
 				}
+				if (game.getPlayers().contains(args.getUser().getUUID()) || game.getSpecs().contains(args.getUser().getUUID())) {
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Du bist bereits in diesem Spiel!").color(ChatColor.RED));
+					return;
+				}
 				Core.getCore().getGameHandler().joinGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel beigetreten").color(ChatColor.GREEN));
 				return;
