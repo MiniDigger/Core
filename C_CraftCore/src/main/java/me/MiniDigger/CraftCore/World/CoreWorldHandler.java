@@ -38,6 +38,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
@@ -239,7 +240,7 @@ public class CoreWorldHandler implements WorldHandler {
 		File mapFolder = Bukkit.getWorldContainer();
 		String[] ignore = new String[] { "logs", "plugins", "world", "world_the_end" };
 		for (World w : Bukkit.getWorlds()) {
-			ArrayUtils.add(ignore, w.getName());
+			ignore = (String[]) ArrayUtils.add(ignore, w.getName());
 		}
 		List<String> i = Arrays.asList(ignore);
 		
