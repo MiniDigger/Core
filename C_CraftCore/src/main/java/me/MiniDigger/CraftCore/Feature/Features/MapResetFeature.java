@@ -28,7 +28,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.event.block.BlockPistonEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
+import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -103,7 +104,14 @@ public class MapResetFeature extends CoreFeature {
 	}
 	
 	@EventHandler
-	public void onDestroy(final BlockPistonEvent e) {
+	public void onExtend(final BlockPistonExtendEvent e) {
+		if (e.getBlock().getWorld().getName().equalsIgnoreCase(map)) {
+			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onRetrac(final BlockPistonRetractEvent e) {
 		if (e.getBlock().getWorld().getName().equalsIgnoreCase(map)) {
 			e.setCancelled(true);
 		}
