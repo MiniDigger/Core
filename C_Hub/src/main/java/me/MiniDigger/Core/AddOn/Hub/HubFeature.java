@@ -31,13 +31,14 @@ import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
@@ -47,12 +48,15 @@ import me.MiniDigger.Core.Menu.ItemBarMenu;
 import me.MiniDigger.Core.Menu.ItemBarMenu.ClickHandler;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Menu.CoreItemBarMenu;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class HubFeature extends CoreFeature {
 	
@@ -91,20 +95,75 @@ public class HubFeature extends CoreFeature {
 			Core.getCore().getMenuHandler().openMenu(u, "Hub");
 			u.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
 		}
+		showBoard();
+	}
+	
+	private void modBoard(final Scoreboard board) {
+		board.clear(DisplaySlot.SIDEBAR);
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "" + ChatColor.BOLD + "" + ChatColor.UNDERLINE + "Hub", DisplaySlot.SIDEBAR));
+		
+		board.addLine(new CoreScoreboardLine(7, ChatColor.GOLD + "Der Server befindet", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(6, ChatColor.GOLD + "sich aktuell noch", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(5, ChatColor.GOLD + "in der Beta-Phase!", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(4, ChatColor.GOLD + "", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(3, ChatColor.GOLD + "" + ChatColor.BOLD + "" + ChatColor.UNDERLINE + "Bug gefunden?", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(2, ChatColor.GOLD + "Schick eine kurze", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(1, ChatColor.GOLD + "E-Mail an:", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(0, ChatColor.GOLD + "bugs@minidigger.me", DisplaySlot.SIDEBAR));
+	}
+	
+	public void showBoard() {
+		final List<UUID> retry = new ArrayList<UUID>();
+		
+		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				
+				for (final UUID uuid : getPhase().getGame().getPlayers()) {
+					if (Bukkit.getPlayer(uuid) == null) {
+						retry.add(uuid);
+						continue;
+					}
+					modBoard(Core.getCore().getScoreboardHandler().getBoard(uuid));
+					Core.getCore().getScoreboardHandler().update(uuid);
+				}
+			}
+		}, getPhase());
+		
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID uuid : retry) {
+					if (Bukkit.getPlayer(uuid) == null) {
+						continue;// Fuck you
+					}
+					modBoard(Core.getCore().getScoreboardHandler().getBoard(uuid));
+					Core.getCore().getScoreboardHandler().update(uuid);
+				}
+			}
+		}, 20, getPhase());// WAit for respawn
 	}
 	
 	@Override
 	public void end() {
-		
+		for (final UUID uuid : getPhase().getGame().getPlayers()) {
+			if (Bukkit.getPlayer(uuid) == null) {
+				continue;// Fuck you
+			}
+			Core.getCore().getScoreboardHandler().getBoard(uuid).clear();
+			Core.getCore().getScoreboardHandler().update(uuid);
+		}
 	}
 	
 	@EventHandler
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			Core.getCore().getMenuHandler().openMenu(e.getUser(), "Hub");
-			e.getUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
-			
+			e.getUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));	
 		}
+		showBoard();
 	}
 	
 	@EventHandler
