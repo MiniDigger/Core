@@ -69,6 +69,7 @@ public class GameCommands {
 				if (g.getType() == GameType.LOBBY) {
 					g.broadCastMessage(Prefix.API.getPrefix()
 					        .then("Der Spieler " + args.getUser().getDisplayName() + " hat ein neus Spiel " + type.getName() + " gestartet!").color(ChatColor.GOLD));
+					g.broadCastMessage(Prefix.API.getPrefix().then("Klicke hier um beizutreten").command("/game join " + type.name()).color(ChatColor.GOLD));
 				}
 			}
 		}
