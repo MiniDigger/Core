@@ -123,11 +123,7 @@ public class ToggleCommands implements Listener {
 		}
 		
 		final Player player = (Player) event.getEntity();
-		System.out.println("pn: " + player.getName() + " uuid: " + player.getUniqueId());
-		if (!hacks.contains(player.getUniqueId())) {
-			System.out.println("ppfff");
-			hacks.add(player.getUniqueId());
-		}
+		
 		if (hacks.contains(player.getUniqueId())) {
 			double minAngle = 6.283185307179586D;
 			Entity minEntity = null;
@@ -144,13 +140,8 @@ public class ToggleCommands implements Listener {
 			}
 			
 			if (minEntity != null) {
-				System.out.println("start task to " + minEntity.getType().name());
 				new HomingTask((Arrow) event.getProjectile(), (LivingEntity) minEntity);
-			} else {
-				System.out.println("nothing found");
 			}
-		} else {
-			System.out.println("disabled");
 		}
 	}
 	
