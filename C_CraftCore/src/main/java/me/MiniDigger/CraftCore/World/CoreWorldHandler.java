@@ -64,7 +64,6 @@ public class CoreWorldHandler implements WorldHandler {
 				return (Location) map.getLocs(DyeColor.RED).values().toArray()[0];
 			}
 		}
-		System.out.println("wtf");
 		return new Location(Bukkit.getWorld("Spawn"), -937.5, 38.0, -768.5);
 	}
 	

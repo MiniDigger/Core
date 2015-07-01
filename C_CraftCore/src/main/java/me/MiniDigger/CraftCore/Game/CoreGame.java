@@ -273,13 +273,13 @@ public class CoreGame implements Game {
 		HandlerList.unregisterAll(getPhase());
 		Core.getCore().getCommandHandler().unregisterCommands(getPhase());
 		
-		((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
-		
 		for (final Feature f : getPhase().getFeatures()) {
 			HandlerList.unregisterAll(f);
 			Core.getCore().getCommandHandler().unregisterCommands(f);
 			f.end();
 		}
+		
+		((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
 		
 		if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 			Core.getCore().getShutdownUtil().doShutdown();
@@ -332,8 +332,8 @@ public class CoreGame implements Game {
 			}
 		}
 		
-		Core.getCore().getWorldHandler().unloadWorld(getGameData("Lobby"), loc);
-		Core.getCore().getWorldHandler().deleteWorld(getGameData("Lobby"));
+		Core.getCore().getWorldHandler().unloadWorld(getName(getGameData("Lobby")), loc);
+		Core.getCore().getWorldHandler().deleteWorld(getName(getGameData("Lobby")));
 		
 		new BukkitRunnable() {
 			
@@ -348,6 +348,14 @@ public class CoreGame implements Game {
 		} catch (final Throwable e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private String getName(final String map) {
+		String name = map;
+		if (name.equals("Lobby")) {
+			name = getPhase().getGame().getType().getAbk() + "_Lobby";
+		}
+		return name;
 	}
 	
 	@Override

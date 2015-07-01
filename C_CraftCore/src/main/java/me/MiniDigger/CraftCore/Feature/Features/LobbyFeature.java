@@ -162,19 +162,21 @@ public class LobbyFeature extends CoreFeature {
 						start.setType(Material.AIR);
 						start.setType(Material.WALL_SIGN);
 						
-						final Sign sign = (Sign) start.getState();
-						final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
-						mat.setFacingDirection(BlockFace.EAST);
-						sign.setData(mat);
-						
-						sign.setLine(0, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[0]));
-						sign.setLine(1, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[1]));
-						sign.setLine(2, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[2]));
-						sign.setLine(3, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[3]));
-						
-						sign.update();
-						
-						start = start.getRelative(BlockFace.NORTH, 1);
+						if (start.getState() instanceof Sign) {
+							final Sign sign = (Sign) start.getState();
+							final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
+							mat.setFacingDirection(BlockFace.EAST);
+							sign.setData(mat);
+							
+							sign.setLine(0, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[0]));
+							sign.setLine(1, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[1]));
+							sign.setLine(2, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[2]));
+							sign.setLine(3, Core.getCore().getChatColorUtil().replaceAndToMc(text1.get(x).get(i)[3]));
+							
+							sign.update();
+							
+							start = start.getRelative(BlockFace.NORTH, 1);
+						}
 					}
 					start = start.getRelative(BlockFace.DOWN);
 					start = start.getRelative(BlockFace.SOUTH, side);
@@ -189,19 +191,21 @@ public class LobbyFeature extends CoreFeature {
 						start.setType(Material.AIR);
 						start.setType(Material.WALL_SIGN);
 						
-						final Sign sign = (Sign) start.getState();
-						final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
-						mat.setFacingDirection(BlockFace.SOUTH);
-						sign.setData(mat);
-						
-						sign.setLine(0, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[0]));
-						sign.setLine(1, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[1]));
-						sign.setLine(2, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[2]));
-						sign.setLine(3, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[3]));
-						
-						sign.update();
-						
-						start = start.getRelative(BlockFace.EAST, 1);
+						if (start.getState() instanceof Sign) {
+							final Sign sign = (Sign) start.getState();
+							final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
+							mat.setFacingDirection(BlockFace.SOUTH);
+							sign.setData(mat);
+							
+							sign.setLine(0, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[0]));
+							sign.setLine(1, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[1]));
+							sign.setLine(2, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[2]));
+							sign.setLine(3, Core.getCore().getChatColorUtil().replaceAndToMc(text2.get(x).get(i)[3]));
+							
+							sign.update();
+							
+							start = start.getRelative(BlockFace.EAST, 1);
+						}
 					}
 					start = start.getRelative(BlockFace.DOWN);
 					start = start.getRelative(BlockFace.WEST, side);

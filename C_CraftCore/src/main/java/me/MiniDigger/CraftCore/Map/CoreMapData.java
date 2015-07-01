@@ -323,20 +323,23 @@ public class CoreMapData implements MapData {
 	@Override
 	public int loadChunks() {
 		int i = 0;
+		int a = 0;
 		for (final HashMap<String, Location> map : locs.values()) {
 			for (final Location l : map.values()) {
 				l.setWorld(Bukkit.getWorld(getName()));
 				if (l.getWorld() == null) {
 					l.setWorld(Bukkit.getWorld(getOldName()));
 				}
-				if (!l.getChunk().isLoaded() || l.getWorld().isChunkLoaded(l.getChunk())) {
+				if (!l.getChunk().isLoaded() || !l.getWorld().isChunkLoaded(l.getChunk())) {
 					l.getChunk().load();
 					l.getWorld().loadChunk(l.getChunk());
 					i++;
+				} else {
+					a++;
 				}
 			}
 		}
+		System.out.println("Didn't load " + a + " Chunks");
 		return i;
 	}
-	
 }

@@ -20,18 +20,28 @@
  */
 package me.MiniDigger.CraftCore.Map;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
+import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Map.MapHandler;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 public class CoreMapHandler implements MapHandler {
 	
@@ -192,5 +202,34 @@ public class CoreMapHandler implements MapHandler {
 	@Override
 	public void unload(final MapData map) {
 		maps.remove(map);
+	}
+	
+	@Override
+	public void fixMap(MapData map) {
+		try {
+			OutputStream out = new FileOutputStream(new File(new File(Bukkit.getWorldContainer(), map.getName()), "map.yml"));
+			FileInputStream fin = new FileInputStream(new File(Core.getCore().getInstance().getConfig().getString("mapFolder"), map.getOldName() + ".zip"));
+			BufferedInputStream bin = new BufferedInputStream(fin);
+			ZipInputStream zin = new ZipInputStream(bin);
+			ZipEntry ze = null;
+			while ((ze = zin.getNextEntry()) != null) {
+				if (ze.getName().equals("Lobby/map.yml")) {
+					byte[] buffer = new byte[8192];
+					int len;
+					while ((len = zin.read(buffer)) != -1) {
+						out.write(buffer, 0, len);
+					}
+					out.close();
+					zin.close();
+					break;
+				}
+			}
+		} catch (Exception ex) {
+			_.stacktrace(LogLevel.DEBUG, ex);
+		}
+		
+		final File mapDataFile = new File(new File(Bukkit.getWorldContainer(), map.getName()), "map.yml");
+		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
+		map.load(con);
 	}
 }

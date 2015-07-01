@@ -102,11 +102,9 @@ public class CoreEventListener implements EventListener {
 			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
 				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled());
 				Bukkit.getPluginManager().callEvent(event);
-				System.out.println("c " + event.isCancelled());
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
 				if (!event.isCancelled()) {
-					System.out.println(";(");
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
 						lastDamaged.put(user.getUUID(), damager.getUUID());

@@ -119,6 +119,19 @@ public class MapFeature extends CoreFeature {
 			}
 		}
 		System.out.println("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs");
+		
+		if (i == 0) {
+			System.out.println("Well, thats bad, try to grab a new YML!");
+			Core.getCore().getMapHandler().fixMap(this.map);
+			
+			i = 0;
+			for (DyeColor color : DyeColor.values()) {
+				if (this.map.getLocs(color) != null) {
+					i += this.map.getLocs(color).size();
+				}
+			}
+			System.out.println("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs after fixing");
+		}
 	}
 	
 	public String getName(final String map) {
@@ -126,9 +139,6 @@ public class MapFeature extends CoreFeature {
 		if (name.equals("Lobby")) {
 			name = getPhase().getGame().getType().getAbk() + "_Lobby";
 		}
-		
-		System.out.println("1phase: " + getPhase().getName());
-		System.out.println("1name: " + name);
 		return name;
 	}
 	

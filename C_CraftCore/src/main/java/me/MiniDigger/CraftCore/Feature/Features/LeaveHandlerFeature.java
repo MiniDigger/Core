@@ -85,7 +85,11 @@ public class LeaveHandlerFeature extends CoreFeature {
 				
 				User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
 				if (u.getUUID() == e.getUser().getUUID()) {
-					u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(1));
+					try {
+						u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(1));
+					} catch (Exception ex) {
+						u = null;
+					}
 				}
 				getPhase().getGame().end(u);
 			}

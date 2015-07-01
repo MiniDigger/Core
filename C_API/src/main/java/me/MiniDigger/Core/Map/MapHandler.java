@@ -100,4 +100,11 @@ public interface MapHandler {
 	 * @param map
 	 */
 	void unload(MapData map);
+	
+	/**
+	 * Grabs a new yml from the zip to load locs
+	 * 
+	 * @param map
+	 */
+	public void fixMap(MapData map);
 }
