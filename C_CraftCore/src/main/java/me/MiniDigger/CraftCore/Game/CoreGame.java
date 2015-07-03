@@ -224,6 +224,12 @@ public class CoreGame implements Game {
 	public void end(final User... winner) {
 		final List<UUID> winnerids = new ArrayList<UUID>();
 		for (final User u : winner) {
+			if (u == null) {
+				continue;
+			}
+			if (u.getUUID() == null) {
+				continue;
+			}
 			winnerids.add(u.getUUID());
 		}
 		
@@ -274,12 +280,20 @@ public class CoreGame implements Game {
 		Core.getCore().getCommandHandler().unregisterCommands(getPhase());
 		
 		for (final Feature f : getPhase().getFeatures()) {
-			HandlerList.unregisterAll(f);
-			Core.getCore().getCommandHandler().unregisterCommands(f);
-			f.end();
+			try {
+				HandlerList.unregisterAll(f);
+				Core.getCore().getCommandHandler().unregisterCommands(f);
+				f.end();
+			} catch (Exception ex) {
+				System.out.println("could not end feature " + f.getType().name());
+			}
 		}
 		
-		((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
+		try {
+			((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
+		} catch (Exception ex) {
+			System.out.println("could not unload map");
+		}
 		
 		if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
 			Core.getCore().getShutdownUtil().doShutdown();
@@ -300,6 +314,8 @@ public class CoreGame implements Game {
 								p.teleport(loc);
 							}
 							Core.getCore().getPlayerUtil().prepare(p);
+							
+							Core.getCore().getScoreboardHandler().getBoard(w).clear();
 							
 							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
 								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());

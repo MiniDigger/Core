@@ -96,6 +96,10 @@ public class LivesFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
+		for (final UUID uuid : getPhase().getGame().getPlayers()) {
+			Core.getCore().getScoreboardHandler().getBoard(uuid).clear();
+		}
+		
 		lives = null;
 	}
 	
@@ -201,8 +205,6 @@ public class LivesFeature extends CoreFeature {
 						}
 					}, 10, getPhase());
 				}
-				
-				
 				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getPrefix().then("Der Spieler ").color(ChatColor.AQUA).then(e.getUser().getDisplayName()).color(ChatColor.BLUE)
