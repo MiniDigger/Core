@@ -46,6 +46,18 @@ public class CoreReflectionUtil implements ReflectionUtil {
 	}
 	
 	@Override
+	public Class<?> getNMSClass(final String className) {
+		final String fullName = "net.minecraft.server." + getVersion() + className;
+		Class<?> clazz = null;
+		try {
+			clazz = Class.forName(fullName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return clazz;
+	}
+	
+	@Override
 	public Object getHandle(final Entity entity) {
 		try {
 			return getMethod(entity.getClass(), "getHandle").invoke(entity);
@@ -130,4 +142,10 @@ public class CoreReflectionUtil implements ReflectionUtil {
 		return o;
 	}
 	
+	@Override
+	public String getVersion() {
+		final String name = Bukkit.getServer().getClass().getPackage().getName();
+		final String version = String.valueOf(name.substring(name.lastIndexOf(46) + 1)) + ".";
+		return version;
+	}
 }

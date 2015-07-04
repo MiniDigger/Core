@@ -106,4 +106,12 @@ public interface ChatColorUtil {
 	 * @return a Color object that matches the chatcolor
 	 */
 	Color toColor(final ChatColor c);
+	
+	/**
+	 * Converts a string into an json text message
+	 * 
+	 * @param string
+	 * @return
+	 */
+	String convertToJSON(String string);
 }

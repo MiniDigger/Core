@@ -26,6 +26,7 @@ import me.MiniDigger.Core.Achievement.AchievementHandler;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Bar.ActionBarHandler;
 import me.MiniDigger.Core.Bar.BarHandler;
+import me.MiniDigger.Core.Bar.TitleHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
 import me.MiniDigger.Core.Broadcast.BroadcastHandler;
@@ -83,6 +84,7 @@ import me.MiniDigger.CraftCore.Achievement.CoreAchievementHandler;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOnHandler;
 import me.MiniDigger.CraftCore.Bar.CoreActionBarHandler;
 import me.MiniDigger.CraftCore.Bar.CoreBarHandler;
+import me.MiniDigger.CraftCore.Bar.CoreTitleHandler;
 import me.MiniDigger.CraftCore.Block.CoreBuildHandler;
 import me.MiniDigger.CraftCore.Booster.CoreBoosterHandler;
 import me.MiniDigger.CraftCore.Broadcast.CoreBroadcastHandler;
@@ -177,6 +179,7 @@ public class CoreCore extends Core {
 	private TaskHandler	       taskHandler;
 	private BroadcastHandler	broadcastHandler;
 	private ActionBarHandler	actionBarHandler;
+	private TitleHandler	   titleHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -506,6 +509,14 @@ public class CoreCore extends Core {
 			actionBarHandler = new CoreActionBarHandler();
 		}
 		return actionBarHandler;
+	}
+	
+	@Override
+	public TitleHandler getTitleHandler() {
+		if (titleHandler == null) {
+			titleHandler = new CoreTitleHandler();
+		}
+		return titleHandler;
 	}
 	
 	/***********/

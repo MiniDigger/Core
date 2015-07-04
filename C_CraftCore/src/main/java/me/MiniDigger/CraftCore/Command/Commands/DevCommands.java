@@ -170,17 +170,17 @@ public class DevCommands {
 			flags = (byte) (flags | 0x3);
 			direction = (byte) (0x3);
 			break;
-		
+			
 		case SOUTH:
 			flags = (byte) (flags | 0x0);
 			direction = (byte) (0x0);
 			break;
-		
+			
 		case WEST:
 			flags = (byte) (flags | 0x1);
 			direction = (byte) (0x1);
 			break;
-		
+			
 		case NORTH:
 			flags = (byte) (flags | 0x2);
 			direction = (byte) (0x2);
@@ -324,8 +324,8 @@ public class DevCommands {
 	public void mob(final CommandArgs args) {
 		// CoreEntityType.ZOMBIE.spawnEntity(args.getPlayer().getLocation());
 		final Entity entity = new CoreZombie(args.getPlayer().getWorld());
-		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(), args.getPlayer().getLocation().getZ(), args.getPlayer()
-		        .getLocation().getYaw(), args.getPlayer().getLocation().getPitch());
+		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(), args.getPlayer().getLocation().getZ(),
+		        args.getPlayer().getLocation().getYaw(), args.getPlayer().getLocation().getPitch());
 		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue(Core.getCore().getInstance(), true));
 		((CraftWorld) args.getPlayer().getLocation().getWorld()).getHandle().addEntity(entity);
 	}
@@ -352,6 +352,14 @@ public class DevCommands {
 	@Command(name = "dev.action", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void action(final CommandArgs args) {
 		Core.getCore().getActionBarHandler().sendAction(args.getPlayer(), "Dies ist ein Test!");
+	}
+	
+	@Command(name = "dev.title", description = "DEV!", usage = "", permission = "dev", sync = true)
+	public void title(final CommandArgs args) {
+		Core.getCore().getTitleHandler().sendTitle(args.getPlayer(), 1 * 20, 5 * 20, 1 * 20,
+		        ChatColor.BOLD + "" + ChatColor.RED + "I am the " + ChatColor.BLUE + "" + ChatColor.UNDERLINE + "Title");
+		Core.getCore().getTitleHandler().sendSubTitle(args.getPlayer(), 1 * 20, 5 * 20, 1 * 20,
+		        ChatColor.BOLD + "" + ChatColor.RED + "I am the " + ChatColor.BLUE + "" + ChatColor.UNDERLINE + "SubTitle");
 	}
 	
 	@Command(name = "dev.book1", description = "DEV!", usage = "", permission = "dev")

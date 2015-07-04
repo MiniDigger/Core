@@ -99,4 +99,19 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	Object getPrivateField(final String fieldName, final Class<?> clazz, final Object object);
+	
+	/**
+	 * returns a version string
+	 * 
+	 * @return
+	 */
+	String getVersion();
+	
+	/**
+	 * the nms class with that name
+	 * 
+	 * @param className
+	 * @return
+	 */
+	Class<?> getNMSClass(String className);
 }

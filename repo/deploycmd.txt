@@ -1,0 +1,2 @@
+ 
+  mvn install:install-file -Dfile=craftbukkit-1.8.7.jar -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.8-SNAPSHOT -Dpackaging=jar  -DlocalRepositoryPath=F:\DATA\Dev\bukkit_ws\C_Core\repo

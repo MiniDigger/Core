@@ -24,6 +24,7 @@ import me.MiniDigger.Core.Achievement.AchievementHandler;
 import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Bar.ActionBarHandler;
 import me.MiniDigger.Core.Bar.BarHandler;
+import me.MiniDigger.Core.Bar.TitleHandler;
 import me.MiniDigger.Core.Block.BuildHandler;
 import me.MiniDigger.Core.Booster.BoosterHandler;
 import me.MiniDigger.Core.Broadcast.BroadcastHandler;
@@ -186,6 +187,8 @@ public abstract class Core {
 	public abstract BroadcastHandler getBroadcastHandler();
 	
 	public abstract ActionBarHandler getActionBarHandler();
+	
+	public abstract TitleHandler getTitleHandler();
 	
 	/*
 	 * #################### UTILS ####################

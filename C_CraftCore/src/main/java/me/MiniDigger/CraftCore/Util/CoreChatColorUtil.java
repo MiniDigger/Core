@@ -20,6 +20,12 @@
  */
 package me.MiniDigger.CraftCore.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
@@ -69,6 +75,30 @@ public class CoreChatColorUtil implements ChatColorUtil {
 		}
 		return ChatColor.RESET;
 	}
+	
+	@SuppressWarnings("unchecked")
+    @Override
+	public String convertToJSON(final String string) {
+		final JSONObject json = new JSONObject();
+		json.put("text", "");
+		final JSONArray texts = new JSONArray();
+		final List<String> colors = new ArrayList<String>();
+		for (int i = 0; i < string.length() - 1; ++i) {
+			final String region = string.substring(i, i + 2);
+			if (region.matches("(§([a-fk-or0-9]))")) {
+				colors.add(region);
+			}
+		}
+		final String[] split = string.split("(§([a-fk-or0-9]))");
+		for (int j = 0; j < colors.size(); ++j) {
+			final JSONObject raw = new JSONObject();
+			raw.put("text", split[j + 1]);
+			raw.put("color", ChatColor.getByChar(colors.get(j).substring(1)).name().toLowerCase());
+			texts.add(raw);
+		}
+		json.put("extra", texts);
+		return json.toString();
+    }
 	
 	@Override
 	public Color toColor(final ChatColor c) {
