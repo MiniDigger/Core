@@ -1,0 +1,41 @@
+package me.MiniDigger.CraftCore.Bar;
+
+import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
+
+import me.MiniDigger.Core.Bar.ActionBarHandler;
+import me.MiniDigger.Core.Lang.LogLevel;
+
+import me.MiniDigger.CraftCore.Lang._;
+
+public class CoreActionBarHandler implements ActionBarHandler{
+	
+	private Class<?> getNmsClass(final String nmsClassName) throws ClassNotFoundException {
+		return Class.forName("net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + "." + nmsClassName);
+	}
+	
+	private String getServerVersion() {
+		return Bukkit.getServer().getClass().getPackage().getName().substring(23);
+	}
+	
+	@Override
+	public void sendAction(final Player p, String msg) {
+		try {
+			if (getServerVersion().equalsIgnoreCase("v1_8_R2") || getServerVersion().equalsIgnoreCase("v1_8_R3")) {
+				final Object icbc = getNmsClass("IChatBaseComponent$ChatSerializer").getMethod("a", String.class).invoke(null, "{'text': '" + msg + "'}");
+				final Object ppoc = getNmsClass("PacketPlayOutChat").getConstructor(getNmsClass("IChatBaseComponent"), Byte.TYPE).newInstance(icbc, (byte) 2);
+				final Object nmsp = p.getClass().getMethod("getHandle", (Class<?>[]) new Class[0]).invoke(p, new Object[0]);
+				final Object pcon = nmsp.getClass().getField("playerConnection").get(nmsp);
+				pcon.getClass().getMethod("sendPacket", getNmsClass("Packet")).invoke(pcon, ppoc);
+			} else {
+				final Object icbc = getNmsClass("ChatSerializer").getMethod("a", String.class).invoke(null, "{'text': '" + msg + "'}");
+				final Object ppoc = getNmsClass("PacketPlayOutChat").getConstructor(getNmsClass("IChatBaseComponent"), Byte.TYPE).newInstance(icbc, (byte) 2);
+				final Object nmsp = p.getClass().getMethod("getHandle", (Class<?>[]) new Class[0]).invoke(p, new Object[0]);
+				final Object pcon = nmsp.getClass().getField("playerConnection").get(nmsp);
+				pcon.getClass().getMethod("sendPacket", getNmsClass("Packet")).invoke(pcon, ppoc);
+			}
+		} catch (Exception e) {
+			_.stacktrace(LogLevel.DEBUG, e);
+		}
+	}
+}

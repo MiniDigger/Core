@@ -349,6 +349,11 @@ public class DevCommands {
 		args.getPlayer().openInventory(Core.getCore().getItemUtil().invFromBase64(data));
 	}
 	
+	@Command(name = "dev.action", description = "DEV!", usage = "", permission = "dev", sync = true)
+	public void action(final CommandArgs args) {
+		Core.getCore().getActionBarHandler().sendAction(args.getPlayer(), "Dies ist ein Test!");
+	}
+	
 	@Command(name = "dev.book1", description = "DEV!", usage = "", permission = "dev")
 	public void book1(final CommandArgs args) {
 		final ItemStack is = args.getPlayer().getItemInHand();
