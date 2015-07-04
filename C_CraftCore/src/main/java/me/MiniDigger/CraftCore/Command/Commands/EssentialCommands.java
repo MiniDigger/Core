@@ -136,4 +136,17 @@ public class EssentialCommands {
 		Bukkit.getBanList(BanList.Type.NAME).pardon(args.getArgs()[0]);
 		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " kann jetzt wieder Spielen!").send(args.getSender());
 	}
+	
+	@Command(name = "ping", usage = "", consol = false, permission = "ping", description = "Shows your ping")
+	public void ping(final CommandArgs args) {
+		Object handle = null;
+		int ping = 0;
+		try {
+			handle = args.getPlayer().getClass().getMethod("getHandle", (Class<?>[]) new Class[0]).invoke(args.getPlayer(), new Object[0]);
+			ping = (int) handle.getClass().getDeclaredField("ping").get(handle);
+		} catch (Exception ex) {
+			System.out.println("could not get ping");
+		}
+		Prefix.API.getPrefix().then("Dein Ping ist: " + ping + "ms").send(args.getPlayer());
+	}
 }
