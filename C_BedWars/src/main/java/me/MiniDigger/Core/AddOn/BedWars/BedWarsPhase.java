@@ -21,6 +21,7 @@
 package me.MiniDigger.Core.AddOn.BedWars;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -112,7 +113,12 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamFeature(this, 4, 4));
 		addFeature(new TeamDeathMatchFeature(this, 0));
 		addFeature(new VillagerFeature(this));
-		addFeature(new BuildFeature(this, Material.values()));
+		List<Material> list = new ArrayList<>();
+		for(Material m : Material.values()){
+			list.add(m);
+		}
+		list.remove(Material.WOOL);
+		addFeature(new BuildFeature(this, list.toArray(new Material[list.size()])));
 		addFeature(new SpecateFeature(this));
 		addFeature(new BuildFeature(this, (Material) null));
 		addFeature(new SpawnersFeature(this));
@@ -248,8 +254,8 @@ public class BedWarsPhase extends CorePhase {
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 		
 		silver.setAmount(3);
-		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE)
-		        .enchantment(Enchantment.DIG_SPEED).lore(" " + ChatChars.Misc.bullet + " Level 2").build();
+		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DIG_SPEED)
+		        .lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 		
 		gold.setAmount(1);
@@ -282,8 +288,8 @@ public class BedWarsPhase extends CorePhase {
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 		
 		silver.setAmount(2);
-		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE)
-		        .lore(" " + ChatChars.Misc.bullet + " Level 1").build();
+		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1")
+		        .build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 		
 		silver.setAmount(8);

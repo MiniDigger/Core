@@ -151,12 +151,13 @@ public class BedFeature extends CoreFeature {
 			try {
 				final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 				e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
+				
+				final SpecateFeature s = (SpecateFeature) getPhase().getFeature(FeatureType.SPEC);
+				getPhase().getGame().leave(user);
+				s.spec(user);
 			} catch (Exception ex) {
 				System.out.println("no respawn found");
 			}
-			final SpecateFeature s = (SpecateFeature) getPhase().getFeature(FeatureType.SPEC);
-			getPhase().getGame().leave(user);
-			s.spec(user);
 		} else {
 			try {
 				final TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
