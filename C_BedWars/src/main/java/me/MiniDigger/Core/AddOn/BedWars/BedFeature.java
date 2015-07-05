@@ -148,8 +148,12 @@ public class BedFeature extends CoreFeature {
 			}
 		}
 		if (bed == null) {
-			final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
-			e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
+			try {
+				final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
+				e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
+			} catch (Exception ex) {
+				System.out.println("no respawn found");
+			}
 			final SpecateFeature s = (SpecateFeature) getPhase().getFeature(FeatureType.SPEC);
 			getPhase().getGame().leave(user);
 			s.spec(user);

@@ -26,6 +26,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
@@ -81,21 +82,23 @@ public class PvPFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+	
 	}
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	@EventHandler
 	public void onDmg(final CoreUserDamageEvent e) {
 		if (e.getGame() != null && e.getGame().equals(getPhase().getGame())) {
-			if (!pvpEnabled) {
-				e.setCancelled(true);
-				e.setDmg(0.0);
-				return;
+			if (e.getCause() == DamageCause.ENTITY_ATTACK) {
+				if (!pvpEnabled) {
+					e.setCancelled(true);
+					e.setDmg(0.0);
+					return;
+				}
 			}
 		}
 		
@@ -108,8 +111,8 @@ public class PvPFeature extends CoreFeature {
 				}
 			}
 		} catch (final Exception ex) {
-			e.setCancelled(true);
-			e.setDmg(0.0); // SHOULD THIS BE HERE? IDK!
+			// e.setCancelled(true);
+			// e.setDmg(0.0); // SHOULD THIS BE HERE? IDK! NOPE
 		}
 		
 		try {
@@ -128,14 +131,13 @@ public class PvPFeature extends CoreFeature {
 		if (e.getGame() != null && e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			if (broadCastMsg) {
 				if (e.getKiller() != null) {
-					getPhase().getGame().broadCastMessage(
-					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler ").color(ChatColor.AQUA)
+					getPhase().getGame()
+					        .broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler ").color(ChatColor.AQUA)
 					                .then(e.getUser().getDisplayName()).color(ChatColor.DARK_BLUE).then(" wurde von ").color(ChatColor.AQUA)
 					                .then(e.getKiller().getDisplayName()).color(ChatColor.DARK_BLUE).then(" getötet!").color(ChatColor.AQUA));
 				} else {
-					getPhase().getGame().broadCastMessage(
-					        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler ").color(ChatColor.AQUA)
-					                .then(e.getUser().getDisplayName()).color(ChatColor.DARK_BLUE).then(" ist gestorben!").color(ChatColor.AQUA));
+					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler ").color(ChatColor.AQUA)
+					        .then(e.getUser().getDisplayName()).color(ChatColor.DARK_BLUE).then(" ist gestorben!").color(ChatColor.AQUA));
 				}
 			}
 		}

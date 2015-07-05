@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.Core.Event.Events;
 
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
 
@@ -69,4 +71,9 @@ public interface UserDamageEvent {
 	 *            the new value to set
 	 */
 	void setDmg(final double d);
+	
+	/**
+	 * @return the damage cause
+	 */
+	DamageCause getCause();
 }

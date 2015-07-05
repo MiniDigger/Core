@@ -82,7 +82,7 @@ public class CoreEventListener implements EventListener {
 		e.setQuitMessage(null);
 	}
 	
-	private static final HashMap<UUID, UUID>	lastDamaged	= new HashMap<>();
+	private static final HashMap<UUID, UUID> lastDamaged = new HashMap<>();
 	
 	public static void clearLastDmg(final UUID id) {
 		lastDamaged.remove(id);
@@ -100,7 +100,7 @@ public class CoreEventListener implements EventListener {
 			}
 			
 			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
-				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled());
+				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled(), e.getCause());
 				Bukkit.getPluginManager().callEvent(event);
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
@@ -128,7 +128,7 @@ public class CoreEventListener implements EventListener {
 			}
 			
 			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
-				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled());
+				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled(), e.getCause());
 				Bukkit.getPluginManager().callEvent(event);
 				e.setCancelled(event.isCancelled());
 				if (!event.isCancelled()) {

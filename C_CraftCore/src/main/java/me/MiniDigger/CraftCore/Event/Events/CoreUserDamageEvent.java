@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.CraftCore.Event.Events;
 
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+
 import me.MiniDigger.Core.Event.Events.UserDamageEvent;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
@@ -28,16 +30,18 @@ import me.MiniDigger.CraftCore.Event.CoreCancelableEvent;
 
 public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDamageEvent {
 	
-	private double	   dmg;
-	private final User	damager;
-	private final User	damaged;
-	private final Game	game;
+	private double				dmg;
+	private final User			damager;
+	private final User			damaged;
+	private final Game			game;
+	private final DamageCause	cause;
 	
-	public CoreUserDamageEvent(final double dmg, final User damager, final User damaged, final Game game, final boolean cancel) {
+	public CoreUserDamageEvent(final double dmg, final User damager, final User damaged, final Game game, final boolean cancel, final DamageCause cause) {
 		this.dmg = dmg;
 		this.damager = damager;
 		this.damaged = damaged;
 		this.game = game;
+		this.cause = cause;
 	}
 	
 	@Override
@@ -73,5 +77,10 @@ public class CoreUserDamageEvent extends CoreCancelableEvent implements UserDama
 	@Override
 	public void setDmg(final double d) {
 		dmg = d;
+	}
+	
+	@Override
+	public DamageCause getCause() {
+		return cause;
 	}
 }
