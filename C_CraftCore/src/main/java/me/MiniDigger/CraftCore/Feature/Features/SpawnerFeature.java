@@ -81,11 +81,11 @@ public class SpawnerFeature extends CoreFeature {
 		}
 	}
 	
-	private final int	     interval;
+	private final int			interval;
 	private final EntityType	type;
-	private final DyeColor	 locKey;
-	private final ItemStack	 item;
-	private Location[]	     locs;
+	private final DyeColor		locKey;
+	private final ItemStack		item;
+	private Location[]			locs;
 	
 	public SpawnerFeature(final Phase phase, final DyeColor locKey, final int interval, final EntityType type, final ItemStack item) {
 		super(phase);
@@ -119,7 +119,7 @@ public class SpawnerFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		System.out.println("start spawner search for " + locKey.name());
+		// System.out.println("start spawner search for " + locKey.name());
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		
 		final HashMap<String, Location> n = data.getLocs(locKey);
@@ -139,7 +139,7 @@ public class SpawnerFeature extends CoreFeature {
 			final Block b = l.getBlock();
 			if (b.getType() == Material.MOB_SPAWNER) {
 				if (item != null) {
-					System.out.println("create spawner: " + locKey.name());
+					// System.out.println("create spawner: " + locKey.name());
 					final World world = ((CraftWorld) b.getWorld()).getHandle();
 					final TileEntity tileEntity = world.getTileEntity(new BlockPosition(b.getX(), b.getY(), b.getZ()));
 					if ((tileEntity instanceof TileEntityMobSpawner)) {
@@ -158,9 +158,11 @@ public class SpawnerFeature extends CoreFeature {
 						itemTag.set("Item", itemStackTag);
 						spawnerTag.set("SpawnData", itemTag);
 						spawnerTag.setShort("SpawnCount", (short) 1);
-						System.out.println("SpawnCount" + spawnerTag.getShort("SpawnCount"));
+						// System.out.println("SpawnCount" +
+						// spawnerTag.getShort("SpawnCount"));
 						spawnerTag.setShort("SpawnRange", (short) 0.1);
-						System.out.println("SpawnRange" + spawnerTag.getShort("SpawnRange"));
+						// System.out.println("SpawnRange" +
+						// spawnerTag.getShort("SpawnRange"));
 						spawnerTag.setShort("Delay", (short) interval);
 						spawnerTag.setShort("MinSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxSpawnDelay", (short) (interval));
@@ -205,7 +207,7 @@ public class SpawnerFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	public class CoreEntityItem extends EntityItem {
