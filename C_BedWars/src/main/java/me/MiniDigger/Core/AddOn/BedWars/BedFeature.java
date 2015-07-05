@@ -52,7 +52,7 @@ import me.MiniDigger.CraftCore.Lang._;
 
 public class BedFeature extends CoreFeature {
 	
-	private Location	 bed;
+	private Location		bed;
 	private final String	teamName;
 	
 	public BedFeature(final Phase phase, final Location bed, final String teamName) {
@@ -97,17 +97,17 @@ public class BedFeature extends CoreFeature {
 			flags = (byte) (flags | 0x3);
 			direction = (byte) (0x3);
 			break;
-		
+			
 		case SOUTH:
 			flags = (byte) (flags | 0x0);
 			direction = (byte) (0x0);
 			break;
-		
+			
 		case WEST:
 			flags = (byte) (flags | 0x1);
 			direction = (byte) (0x1);
 			break;
-		
+			
 		case NORTH:
 			flags = (byte) (flags | 0x2);
 			direction = (byte) (0x2);
@@ -176,14 +176,30 @@ public class BedFeature extends CoreFeature {
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBedDestory(final BlockBreakEvent e) {
+		// System.out.println("break");
 		if (e.getBlock().getType() == Material.BED_BLOCK) {
+			// System.out.println("is bed");
+			if (bed == null) {
+				// System.out.println("bed null");
+				return;
+			}
+			Location loc = e.getBlock().getLocation();
+			loc.setPitch(0.0F);
+			loc.setYaw(0.0F);
+			bed.setPitch(0.0F);
+			bed.setYaw(0.0F);
+			
+			// System.out.println(e.getBlock().getLocation().toString() + ": " +
+			// bed.toString());
 			if (e.getBlock().getLocation().equals(bed) || e.getBlock().getLocation().add(1, 0, 0).equals(bed) || e.getBlock().getLocation().add(-1, 0, 0).equals(bed)
 			        || e.getBlock().getLocation().add(0, 0, 1).equals(bed) || e.getBlock().getLocation().add(0, 0, -1).equals(bed)) {
+				// System.out.println("does fit");
 				if (teamName != null) {
 					final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 					final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 					final Team t = tf.getTeam(user);
 					if (t.getName().equalsIgnoreCase(teamName)) {
+						System.out.println("eigenes bed");
 						e.setCancelled(true);
 						return;
 					} else {
