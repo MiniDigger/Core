@@ -60,13 +60,13 @@ public class BMTFeature extends CoreFeature {
 	}
 	
 	private String				word;
-	private String[]			words	= new String[0];
+	private String[]			words		= new String[0];
 	private UUID				builder;
-	private int					found	= 0;
-	private List<UUID>			builded	= new ArrayList<UUID>();
-	private Map<UUID, Integer>	points	= new HashMap<UUID, Integer>();
-	private final List<UUID>	guessed	= new ArrayList<UUID>();
-	private int					pointsneeded;
+	private int					found		= 0;
+	private List<UUID>			builded		= new ArrayList<UUID>();
+	private Map<UUID, Integer>	points		= new HashMap<UUID, Integer>();
+	private final List<UUID>	guessed		= new ArrayList<UUID>();
+	private int					pointsneeded	= -1;
 	
 	@Override
 	public FeatureType getType() {
@@ -96,7 +96,9 @@ public class BMTFeature extends CoreFeature {
 		guessed.clear();
 		
 		// Calc Points needed
-		pointsneeded = getPhase().getGame().getPlayers().size() * 2 + 5;
+		if (pointsneeded == -1) {
+			pointsneeded = getPhase().getGame().getPlayers().size() * 2 + 5;
+		}
 		
 		// Words
 		if (words.length == 0) {
