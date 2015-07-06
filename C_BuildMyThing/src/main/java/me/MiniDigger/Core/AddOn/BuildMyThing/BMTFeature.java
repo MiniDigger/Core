@@ -59,11 +59,11 @@ public class BMTFeature extends CoreFeature {
 		super(phase);
 	}
 	
-	private String	           word;
-	private String[]	       words	= new String[0];
-	private UUID	           builder;
-	private int	               found	= 0;
-	private List<UUID>	       builded	= new ArrayList<UUID>();
+	private String				word;
+	private String[]			words	= new String[0];
+	private UUID				builder;
+	private int					found	= 0;
+	private List<UUID>			builded	= new ArrayList<UUID>();
 	private Map<UUID, Integer>	points	= new HashMap<UUID, Integer>();
 	private final List<UUID>	guessed	= new ArrayList<UUID>();
 	
@@ -127,7 +127,8 @@ public class BMTFeature extends CoreFeature {
 			available = getPhase().getGame().getPlayers();
 		}
 		
-//		builder = available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
+		// builder =
+		// available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
 		builder = available.get(0);
 		builded.add(builder);
 		
@@ -203,6 +204,11 @@ public class BMTFeature extends CoreFeature {
 				return;
 			}
 			
+			if (builder == e.getUser().getUUID()) {
+				e.setCancelled(true);
+				return;
+			}
+			
 			if (e.getMsg().equalsIgnoreCase(word)) {
 				e.setCancelled(true);
 				
@@ -213,7 +219,7 @@ public class BMTFeature extends CoreFeature {
 				
 				getPhase().getGame().broadCastMessage(
 				        getPhase().getGame().getGamePrefix().getPrefix().then("Der Spieler " + e.getUser().getDisplayName() + " hat das Wort erraten!"));
-				
+						
 				if (found == 0) {
 					final int p = points.remove(builder);
 					points.put(builder, p + 2);
