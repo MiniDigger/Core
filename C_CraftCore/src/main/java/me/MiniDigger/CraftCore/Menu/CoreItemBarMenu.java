@@ -43,11 +43,11 @@ import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
 public class CoreItemBarMenu implements ItemBarMenu {
 	
-	private ItemStack[]	               icons	    = new ItemStack[9];
-	private ItemBarMenu.ClickHandler[]	actions	    = new ItemBarMenu.ClickHandler[9];
-	private String[]	               perms	    = new String[9];
-	private boolean	                   isRegistered	= false;
-	private String	                   name;
+	private ItemStack[]					icons		= new ItemStack[9];
+	private ItemBarMenu.ClickHandler[]	actions		= new ItemBarMenu.ClickHandler[9];
+	private String[]					perms		= new String[9];
+	private boolean						isRegistered	= false;
+	private String						name;
 	
 	public CoreItemBarMenu(final String name, final ItemStack[] icons, final ItemBarMenu.ClickHandler[] actions) {
 		this(name);
@@ -152,7 +152,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 		for (final ItemStack item : i) {
 			if (item != null) {
 				for (final ItemStack is : icons) {
-					if (is.equals(item)) {
+					if (is.equals(item) && is.getType() != Material.AIR) {
 						e.setResult(Result.DENY);
 						e.setCancelled(true);
 						// e.setCurrentItem(null);
@@ -179,7 +179,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 		for (final ItemStack item : i) {
 			if (item != null) {
 				for (final ItemStack is : icons) {
-					if (is.equals(item)) {
+					if (is.equals(item) && is.getType() != Material.AIR) {
 						e.setResult(Result.DENY);
 						e.setCancelled(true);
 						// e.setCursor(null);

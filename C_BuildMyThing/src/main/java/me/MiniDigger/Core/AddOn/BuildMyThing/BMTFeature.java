@@ -66,6 +66,7 @@ public class BMTFeature extends CoreFeature {
 	private List<UUID>			builded	= new ArrayList<UUID>();
 	private Map<UUID, Integer>	points	= new HashMap<UUID, Integer>();
 	private final List<UUID>	guessed	= new ArrayList<UUID>();
+	private int					pointsneeded;
 	
 	@Override
 	public FeatureType getType() {
@@ -93,6 +94,9 @@ public class BMTFeature extends CoreFeature {
 		word = "";
 		found = 0;
 		guessed.clear();
+		
+		// Calc Points needed
+		pointsneeded = getPhase().getGame().getPlayers().size() * 2 + 5;
 		
 		// Words
 		if (words.length == 0) {
@@ -140,7 +144,7 @@ public class BMTFeature extends CoreFeature {
 		// Word
 		word = words[Core.getCore().getRandomUtil().nextInt(words.length)];
 		
-		u.sendMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Dein Wort ist: " + word));
+		u.sendMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Dein Wort ist: " + ChatColor.GOLD + word));
 		
 		Core.getCore().getBuildHandler().setBuilder(u, true);
 		Core.getCore().getBuildHandler().disallow(u, Material.BARRIER);
@@ -185,7 +189,7 @@ public class BMTFeature extends CoreFeature {
 		u.getPlayer().getInventory().clear();
 		u.getPlayer().updateInventory();
 		
-		getPhase().getGame().broadCastMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Das Wort war: " + word));
+		getPhase().getGame().broadCastMessage(getPhase().getGame().getGamePrefix().getPrefix().then("Das Wort war: " + ChatColor.GREEN + word));
 		
 		getPhase().getNextPhase().init();
 		
@@ -224,7 +228,7 @@ public class BMTFeature extends CoreFeature {
 					final int p = points.remove(builder);
 					points.put(builder, p + 2);
 					
-					if (points.get(builder) >= 20) {
+					if (points.get(builder) >= pointsneeded) {
 						updateBoards();
 						Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 							
@@ -276,7 +280,7 @@ public class BMTFeature extends CoreFeature {
 	
 	private void modBoard(final Scoreboard board) {
 		board.clear(DisplaySlot.SIDEBAR);
-		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Punkte", DisplaySlot.SIDEBAR));
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Punkte (von " + pointsneeded + ")", DisplaySlot.SIDEBAR));
 		
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);
