@@ -127,7 +127,8 @@ public class BMTFeature extends CoreFeature {
 			available = getPhase().getGame().getPlayers();
 		}
 		
-		builder = available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
+//		builder = available.get(Core.getCore().getRandomUtil().nextInt(available.size()));
+		builder = available.get(0);
 		builded.add(builder);
 		
 		final User u = Core.getCore().getUserHandler().get(builder);

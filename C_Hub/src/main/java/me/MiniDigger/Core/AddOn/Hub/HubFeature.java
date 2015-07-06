@@ -61,7 +61,7 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 public class HubFeature extends CoreFeature {
 	
 	private final HashMap<UUID, Long>	cooldowns	= new HashMap<>();
-	private boolean	                  event	      = false;
+	private boolean						event		= false;
 	
 	public HubFeature(final Phase phase) {
 		super(phase);
@@ -161,7 +161,7 @@ public class HubFeature extends CoreFeature {
 	public void onPlayerJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			Core.getCore().getMenuHandler().openMenu(e.getUser(), "Hub");
-			e.getUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));	
+			e.getUser().getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 2));
 		}
 		showBoard();
 	}
@@ -183,8 +183,20 @@ public class HubFeature extends CoreFeature {
 	public void event(final CommandArgs args) {
 		if (event) {
 			getPhase().getGame().broadCastMessage(Prefix.API.getPrefix().then("Es werden keine Spieler mehr reingelassen, nächstes mal musst du schneller sein!"));
+			
+			for (UUID id : getPhase().getGame().getPlayers()) {
+				Player p = Core.getCore().getUserHandler().get(id).getPlayer();
+				Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20, ChatColor.GOLD + "" + ChatColor.BOLD + "Event ist gestartet");
+				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20, ChatColor.GOLD + "" + ChatColor.BOLD + "Das nächste mal musst du wohl schneller sein ;D");
+			}
 		} else {
 			getPhase().getGame().broadCastMessage(Prefix.API.getPrefix().then("Ein Event wurde gestartet, begib dich zum Sammelpunkt!"));
+			
+			for (UUID id : getPhase().getGame().getPlayers()) {
+				Player p = Core.getCore().getUserHandler().get(id).getPlayer();
+				Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20, ChatColor.GOLD + "" + ChatColor.BOLD + "Event");
+				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20, ChatColor.GOLD + "" + ChatColor.BOLD + "Begib dich zum Sammelpunkt");
+			}
 		}
 		event = !event;
 	}
@@ -192,13 +204,11 @@ public class HubFeature extends CoreFeature {
 	public void menu() {
 		final ItemBarMenu hub = new CoreItemBarMenu("Hub");
 		
-		hub.setIcon(
-		        0,
-		        new CoreItemBuilder(Material.SKULL_ITEM).name(ChatColor.RED + "Spieler verstecken").lore("Benutze dieses Item").lore("um alle anderen")
-		                .lore("Spieler zu verstecken").data(3).durability(3).build());
+		hub.setIcon(0, new CoreItemBuilder(Material.SKULL_ITEM).name(ChatColor.RED + "Spieler verstecken").lore("Benutze dieses Item").lore("um alle anderen")
+		        .lore("Spieler zu verstecken").data(3).durability(3).build());
 		hub.setAction(0, new ClickHandler() {
 			
-			final int	cooldownTime	= 5;
+			final int cooldownTime = 5;
 			
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
@@ -283,10 +293,8 @@ public class HubFeature extends CoreFeature {
 		// TODO this is not cool, add an option to change a item in a menu
 		final ItemBarMenu hub2 = hub.clone();
 		hub2.setName("Hub2");
-		hub2.setIcon(
-		        0,
-		        new CoreItemBuilder(Material.SKULL_ITEM).name(ChatColor.GREEN + "Spieler anzeigen").lore("Benutze dieses Item").lore("um alle anderen")
-		                .lore("Spieler anzuzeigen").data(1).durability(1).build());
+		hub2.setIcon(0, new CoreItemBuilder(Material.SKULL_ITEM).name(ChatColor.GREEN + "Spieler anzeigen").lore("Benutze dieses Item").lore("um alle anderen")
+		        .lore("Spieler anzuzeigen").data(1).durability(1).build());
 		hub2.setAction(0, new ClickHandler() {
 			
 			@Override
@@ -345,8 +353,8 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				// try {
-				// u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
-				// } catch (final Exception ex) {
+		        // u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
+		        // } catch (final Exception ex) {
 				Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				// }
 				
@@ -452,8 +460,8 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				// try {
-				// u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
-				// } catch (final Exception ex) {
+		        // u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
+		        // } catch (final Exception ex) {
 				Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				// }
 				

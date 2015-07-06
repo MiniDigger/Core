@@ -41,7 +41,7 @@ import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 public class BMTPhase extends CoreTimedPhase {
 	
 	public BMTPhase(final Game game) {
-		super(game, null, 60);
+		super(game, null, 90);
 		next = this;
 	}
 	
