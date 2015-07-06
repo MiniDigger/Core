@@ -66,12 +66,12 @@ public class JumpPadFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+	
 	}
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -96,14 +96,14 @@ public class JumpPadFeature extends CoreFeature {
 						strength = Double.parseDouble(sign.getLine(1));
 						up = Double.parseDouble(sign.getLine(2));
 					} catch (final Exception ex) {
-						
+					
 					}
 				}
 			}
 			
 			event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENDERDRAGON_HIT, 10.0F, 1.0F);
 			event.getPlayer().playEffect(event.getPlayer().getLocation(), Effect.SMOKE, 10);
-			final Vector v = event.getPlayer().getLocation().getDirection().multiply(strength).setY(up);
+			final Vector v = event.getPlayer().getLocation().getDirection().multiply(strength / 2).setY(up / 2);
 			event.getPlayer().setVelocity(v);
 			event.setCancelled(true);
 		}
