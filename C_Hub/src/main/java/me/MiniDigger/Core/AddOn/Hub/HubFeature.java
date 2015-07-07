@@ -107,7 +107,7 @@ public class HubFeature extends CoreFeature {
 		
 		board.addLine(new CoreScoreboardLine(7, ChatColor.GOLD + "Der Server befindet", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(6, ChatColor.GOLD + "sich aktuell noch", DisplaySlot.SIDEBAR));
-		board.addLine(new CoreScoreboardLine(5, ChatColor.GOLD + "in der Beta-Phase!", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(5, ChatColor.GOLD + "in der Alpha-Phase!", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(4, ChatColor.GOLD + "", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(3, ChatColor.GOLD + "" + ChatColor.BOLD + "" + ChatColor.UNDERLINE + "Bug gefunden?", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(2, ChatColor.GOLD + "Schick eine kurze", DisplaySlot.SIDEBAR));
