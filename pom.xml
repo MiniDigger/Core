@@ -68,6 +68,7 @@
 		<module>C_Infected</module>
 		<module>C_ChatBot</module>
 		<module>C_Build</module>
+		<module>C_Ehrenhalle</module>
 	</modules>
 
 	<profiles>
@@ -124,6 +125,14 @@
 					<fork>true</fork>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -174,6 +183,10 @@
 		<repository>
 			<id>nametagedit-repo</id><!-- NameTagEdit -->
 			<url>http://ci.playmc.cc/plugin/repository/everything</url>
+		</repository>
+		<repository>
+			<id>citizens</id><!-- Citizens -->
+			<url>http://repo.citizensnpcs.co/</url>
 		</repository>
 	</repositories>
 
@@ -260,6 +273,12 @@
 					<groupId>org.bukkit</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.citizensnpcs</groupId>
+			<artifactId>citizens</artifactId>
+			<version>2.0.14-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

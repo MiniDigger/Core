@@ -78,7 +78,8 @@ public enum FeatureType {
 	KITPVP,
 	KISTENKRIEG,
 	IF,
-	WORLDBOARDER;
+	WORLDBOARDER,
+	EH;
 	
 	/**
 	 * @return A human readable name for the feature

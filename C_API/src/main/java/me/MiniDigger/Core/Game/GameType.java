@@ -35,12 +35,13 @@ public enum GameType {
 	SG("SurvivalGames", "SG", null, "sg"),
 	KP("KitPvP", "KP", null, "kp"),
 	KK("KistenKrieg", "KK", null, "kk"),
-	IF("Infected", "IF", null, "if");
+	IF("Infected", "IF", null, "if"),
+	EH("Ehrenhalle", "EH", null, "eh");
 	
-	private String	    name;
-	private String	    abk;
-	private Class<Game>	game;
-	private String	    cmd;
+	private String name;
+	private String abk;
+	private Class<Game> game;
+	private String cmd;
 	
 	private GameType(final String name, final String abk, final Class<Game> game, final String cmd) {
 		this.name = name;
