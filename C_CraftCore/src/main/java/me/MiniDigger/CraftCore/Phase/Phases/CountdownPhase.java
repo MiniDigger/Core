@@ -55,7 +55,7 @@ public class CountdownPhase extends CoreTimedPhase {
 		addFeature(new ClearInvFeature(this, false));
 		addFeature(new FixedFoodFeature(this));
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER)));
-		addFeature(new FixedTimeFeature(this, 12000));
+		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, getGame().getGameData("Lobby"), false));
 		addFeature(new SpawnFeature(this, true));

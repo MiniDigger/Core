@@ -74,7 +74,7 @@ public class GetTheDropPhaseTwo extends CoreTimedPhase {
 		addFeature(new LastManStandingFeature(this));
 		addFeature(new FixedFoodFeature(this));
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY)));
-		addFeature(new FixedTimeFeature(this, 12000));
+		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new DropFeature(this));
 		addFeature(new MapFeature(this, null, false));

@@ -104,7 +104,7 @@ public class BedWarsPhase extends CorePhase {
 		final List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY);
 		allowed.add(EntityType.VILLAGER);
 		addFeature(new MobFeature(this, allowed));
-		addFeature(new FixedTimeFeature(this, 12000));
+		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, getGame().getGameData("VoteWinner"), true));
 		addFeature(new PvPFeature(this, true));
