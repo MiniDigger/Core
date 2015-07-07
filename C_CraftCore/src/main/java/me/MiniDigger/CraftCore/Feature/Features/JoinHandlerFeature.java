@@ -86,6 +86,7 @@ public class JoinHandlerFeature extends CoreFeature {
 			} else if (getPhase().getGame().allowSpectate()) {
 				Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
 				try {
+					System.out.println("join as spec");
 					((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 				} catch (Exception ex) {
 					System.out.println("could not specate");

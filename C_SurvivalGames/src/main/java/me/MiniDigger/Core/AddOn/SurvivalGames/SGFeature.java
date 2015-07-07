@@ -38,7 +38,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 
 public class SGFeature extends CoreFeature {
 	
-	private WorldBorder	b;
+	private WorldBorder b;
 	
 	public SGFeature(final Phase phase) {
 		super(phase);
@@ -69,7 +69,7 @@ public class SGFeature extends CoreFeature {
 		final MapData m = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		b = Bukkit.getWorld(m.getName()).getWorldBorder();
 		b.setCenter(m.getLocs(DyeColor.BLACK).values().iterator().next());
-		b.setSize(b.getCenter().distance(m.getLocs(DyeColor.BLUE).values().iterator().next()), 0);
+		b.setSize(b.getCenter().distance(m.getLocs(DyeColor.BLUE).values().iterator().next()) * 2, 0);
 		b.setDamageBuffer(5.0);
 		b.setWarningTime(20);
 		b.setWarningDistance(5);
@@ -86,7 +86,7 @@ public class SGFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 }

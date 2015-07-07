@@ -318,6 +318,7 @@ public class CoreGame implements Game {
 							Core.getCore().getScoreboardHandler().getBoard(w).clear();
 							
 							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
+								System.out.println("maybe this forced the player to respawn...");
 								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
 							}
 						}

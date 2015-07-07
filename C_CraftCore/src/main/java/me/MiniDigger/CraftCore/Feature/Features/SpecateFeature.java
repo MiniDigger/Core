@@ -47,7 +47,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpecateFeature extends CoreFeature {
 	
-	private Location	loc;
+	private Location loc;
 	
 	public SpecateFeature(final Phase phase) {
 		super(phase);
@@ -84,7 +84,7 @@ public class SpecateFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	public boolean isSpec(final UUID id) {
@@ -135,10 +135,12 @@ public class SpecateFeature extends CoreFeature {
 	
 	@EventHandler
 	public void onJoin(final CoreUserJoinGameEvent e) {
-		if (!getPhase().getGame().allowJoin()) {
-			spec(e.getUser());
-		} else {
-			remSpec(e.getUser());
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			if (!getPhase().getGame().allowJoin()) {
+				spec(e.getUser());
+			} else {
+				remSpec(e.getUser());
+			}
 		}
 	}
 	

@@ -81,7 +81,7 @@ public class CagePhase extends CoreTimedPhase {
 			@Override
 			public void run() {
 				Location power = m.getLocs(DyeColor.ORANGE).values().iterator().next();
-				power.getBlock().setType(Material.WOOD);
+				power.getBlock().setType(Material.REDSTONE_BLOCK);
 				power.getBlock().getState().update(true, true);
 				Block b = power.getBlock().getRelative(BlockFace.UP);
 				b.setType(Material.LEVER);
