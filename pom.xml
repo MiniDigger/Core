@@ -67,8 +67,8 @@
 		<module>C_SurvivalGames</module>
 		<module>C_Infected</module>
 		<module>C_ChatBot</module>
-		<module>C_Build</module>
 		<module>C_Ehrenhalle</module>
+		<module>C_Build</module>
 	</modules>
 
 	<profiles>
@@ -105,6 +105,7 @@
 				<module>C_SurvivalGames</module>
 				<module>C_Infected</module>
 				<module>C_ChatBot</module>
+				<module>C_Ehrenhalle</module>
 				<module>C_Build</module>
 			</modules>
 		</profile>
