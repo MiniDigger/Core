@@ -44,6 +44,8 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Menu.ItemBarMenu;
 import me.MiniDigger.Core.Menu.ItemBarMenu.ClickHandler;
 import me.MiniDigger.Core.Phase.Phase;
@@ -54,6 +56,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
+import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.Menu.CoreItemBarMenu;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -187,7 +190,8 @@ public class HubFeature extends CoreFeature {
 			for (UUID id : getPhase().getGame().getPlayers()) {
 				Player p = Core.getCore().getUserHandler().get(id).getPlayer();
 				Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20, ChatColor.GOLD + "" + ChatColor.BOLD + "Event ist gestartet");
-				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20, ChatColor.GOLD + "" + ChatColor.BOLD + "Das nächste mal musst du wohl schneller sein ;D");
+				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20,
+				        ChatColor.GOLD + "" + ChatColor.BOLD + "Das nächste mal musst du wohl schneller sein ;D");
 			}
 		} else {
 			getPhase().getGame().broadCastMessage(Prefix.API.getPrefix().then("Ein Event wurde gestartet, begib dich zum Sammelpunkt!"));
@@ -327,8 +331,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("OITC"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.OITC)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("OITC"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 			}
@@ -342,6 +351,7 @@ public class HubFeature extends CoreFeature {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT"));
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 			}
@@ -352,11 +362,16 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
-				// try {
-		        // u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
-		        // } catch (final Exception ex) {
-				Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
-				// }
+				try {
+					if (Core.getCore().getGameHandler().isDisabled(GameType.KP)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
+					}
+				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -367,8 +382,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GETTHEDROP"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.GETTHEDROP)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GETTHEDROP"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -381,8 +401,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GK"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.GK)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GK"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -395,8 +420,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CRANK"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.CRANK)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CRANK"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -409,8 +439,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BMT"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.BMT)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BMT"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -446,8 +481,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.SG)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -459,11 +499,16 @@ public class HubFeature extends CoreFeature {
 			
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
-				// try {
-		        // u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
-		        // } catch (final Exception ex) {
-				Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
-				// }
+				try {
+					if (Core.getCore().getGameHandler().isDisabled(GameType.IF)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
+					}
+				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
 				
 			}
 		});
@@ -474,8 +519,13 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				try {
-					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BEDWARS"));
+					if (Core.getCore().getGameHandler().isDisabled(GameType.BEDWARS)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BEDWARS"));
+					}
 				} catch (final Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
