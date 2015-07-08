@@ -400,6 +400,7 @@ public class CoreSignChangers implements SignChangers {
 		// });
 		if (!user.hasPermission("builder.changesigns")) {
 			user.sendMessage(Prefix.API.getPrefix().then("Du hast keine Rechte, Schilder zu editieren!").color(ChatColor.RED));
+			return;
 		}
 		NMSUtils.sendPacket(event.getPlayer(), NMSUtils.getSignChangePacket(sign.getBlock(), lines));
 		NMSUtils.sendEditor(event.getPlayer(), sign.getBlock());

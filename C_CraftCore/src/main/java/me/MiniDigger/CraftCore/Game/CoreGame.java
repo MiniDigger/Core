@@ -41,6 +41,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
@@ -55,16 +56,16 @@ import mkremins.fanciful.FancyMessage;
 
 public class CoreGame implements Game {
 	
-	private final UUID	                  id	     = UUID.randomUUID();
-	private final List<UUID>	          users	     = new ArrayList<>();
-	private final List<UUID>	          specs	     = new ArrayList<UUID>();
-	private final HashMap<String, String>	gameData	= new HashMap<>();
-	private Phase	                      phase;
-	private GameType	                  type;
-	private boolean	                      allowJoin;
-	private boolean	                      allowSpectate;
-	private final ChatChannel	          channel;
-	protected int	                      maxplayers	= 1000;
+	private final UUID						id			= UUID.randomUUID();
+	private final List<UUID>				users			= new ArrayList<>();
+	private final List<UUID>				specs			= new ArrayList<UUID>();
+	private final HashMap<String, String>	gameData		= new HashMap<>();
+	private Phase							phase;
+	private GameType						type;
+	private boolean							allowJoin;
+	private boolean							allowSpectate;
+	private final ChatChannel				channel;
+	protected int							maxplayers	= 1000;
 	
 	public CoreGame() {
 		channel = new CoreChatChannel();
@@ -319,7 +320,9 @@ public class CoreGame implements Game {
 							
 							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
 								System.out.println("maybe this forced the player to respawn...");
-								Core.getCore().getGameHandler().joinGame(u, Core.getCore().getGameHandler().getMainGame());
+								return;
+								// Core.getCore().getGameHandler().joinGame(u,
+			                    // Core.getCore().getGameHandler().getMainGame());
 							}
 						}
 						
@@ -331,20 +334,24 @@ public class CoreGame implements Game {
 			
 			final Game g = Core.getCore().getGameHandler().getMainGame();
 			if (g.getType() == GameType.LOBBY) {
-				if (winnerids.size() > 1) {
-					StringBuilder sb = new StringBuilder();
-					for (int i = 0; i < winner.length; i++) {
-						if (i == winner.length) {
-							sb.append(" und " + winner[i].getDisplayName());
-						} else {
-							sb.append(", " + winner[i].getDisplayName());
+				try {
+					if (winnerids.size() > 1) {
+						StringBuilder sb = new StringBuilder();
+						for (int i = 0; i < winner.length; i++) {
+							if (i == winner.length) {
+								sb.append(" und " + winner[i].getDisplayName());
+							} else {
+								sb.append(", " + winner[i].getDisplayName());
+							}
 						}
+						g.broadCastMessage(Prefix.API.getPrefix()
+						        .then("Die Spieler " + sb.toString() + " sind siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
+					} else {
+						g.broadCastMessage(Prefix.API.getPrefix()
+						        .then("Der Spieler " + winner[0].getDisplayName() + " ist siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
 					}
-					g.broadCastMessage(Prefix.API.getPrefix().then(
-					        "Die Spieler " + sb.toString() + " sind siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
-				} else {
-					g.broadCastMessage(Prefix.API.getPrefix().then(
-					        "Der Spieler " + winner[0].getDisplayName() + " ist siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
+				} catch (Exception ex) {
+					_.stacktrace(LogLevel.DEBUG, ex);
 				}
 			}
 		}
