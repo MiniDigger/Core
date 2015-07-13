@@ -24,6 +24,8 @@ import java.util.List;
 
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
+import me.MiniDigger.Core.User.User;
+
 public interface ServerHandler {
 	
 	/**
@@ -66,4 +68,11 @@ public interface ServerHandler {
 	 * @return hopefully all servers connected to this socket network
 	 */
 	public List<Server> getServers();
+
+	/**
+	 * sends a user to a server
+	 * @param user
+	 * @param server
+	 */
+	void connect(User user, String server);
 }

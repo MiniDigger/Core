@@ -22,9 +22,6 @@ package me.MiniDigger.CraftCore.Protocol;
 
 import java.util.ArrayList;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
@@ -44,7 +41,7 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 
 public class CoreSignListeners implements SignListeners {
 	
-	private final ArrayList<SignListener>	listener	= new ArrayList<SignListener>();
+	private final ArrayList<SignListener> listener = new ArrayList<SignListener>();
 	
 	@Override
 	public void register(final SignListener l) {
@@ -107,10 +104,7 @@ public class CoreSignListeners implements SignListeners {
 			
 			@Override
 			public void run() {
-				final ByteArrayDataOutput out = ByteStreams.newDataOutput();
-				out.writeUTF("Connect");
-				out.writeUTF(getSign().getLine(1));
-				getPlayer().sendPluginMessage(Core.getCore().getInstance(), "BungeeCord", out.toByteArray());
+				Core.getCore().getServerHandler().connect(getUser(), getSign().getLine(1));
 			}
 		}, false));
 		

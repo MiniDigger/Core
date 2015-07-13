@@ -27,6 +27,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -36,6 +38,7 @@ import org.bukkit.scheduler.BukkitTask;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.Core.Server.ServerHandler;
+import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
@@ -44,8 +47,8 @@ import mkremins.fanciful.FancyMessage;
 public class CoreServerHandler implements ServerHandler {
 	
 	private final ArrayList<Server>	servers	= new ArrayList<>();
-	private BukkitTask	            task;
-	private BukkitTask	            ping;
+	private BukkitTask				task;
+	private BukkitTask				ping;
 	
 	@Override
 	public void startTask() {
@@ -208,6 +211,14 @@ public class CoreServerHandler implements ServerHandler {
 			servers.remove(getServerInfo(server.getName()));
 			servers.add(server);
 		}
+	}
+	
+	@Override
+	public void connect(User user, String server) {
+		final ByteArrayDataOutput out = ByteStreams.newDataOutput();
+		out.writeUTF("Connect");
+		out.writeUTF(server);
+		user.getPlayer().sendPluginMessage(Core.getCore().getInstance(), "BungeeCord", out.toByteArray());
 	}
 	
 }

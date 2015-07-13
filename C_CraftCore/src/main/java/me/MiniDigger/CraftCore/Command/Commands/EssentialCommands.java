@@ -94,13 +94,16 @@ public class EssentialCommands {
 		Prefix.API.getPrefix().then("Es wurde" + (i > 1 ? "n " : " ") + i + " Entities gelöscht!").color(ChatColor.GREEN).send(args.getSender());
 	}
 	
-	@Command(name = "hub", aliases = { "spawn" }, usage = "", min = 0, max = 0, consol = false, permission = "hub", description = "Teleportiert den Spieler zum Hub", sync = true)
+	@Command(name = "hub", aliases = {
+	        "spawn" }, usage = "", min = 0, max = 0, consol = false, permission = "hub", description = "Teleportiert den Spieler zum Hub", sync = true)
 	public void hub(final CommandArgs args) {
 		if (Core.getCore().getGameHandler().getMainGame().getType() == GameType.LOBBY) {
 			Core.getCore().getGameHandler().joinGame(args.getUser(), Core.getCore().getGameHandler().getMainGame());
 			Prefix.API.getPrefix().then("Wuuschh").send(args.getPlayer());
 		} else {
-			Prefix.API.getPrefix().then("Nur auf dem Hub Server!").color(ChatColor.RED).send(args.getPlayer());
+			// Prefix.API.getPrefix().then("Nur auf dem Hub
+			// Server!").color(ChatColor.RED).send(args.getPlayer());
+			Core.getCore().getServerHandler().connect(args.getUser(), "lobby");
 		}
 	}
 	
