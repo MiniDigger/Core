@@ -54,5 +54,7 @@ trimExclude *.* <init>() and //No-arg constructors.  Some APIs access them indir
 			*.* extends JavaPlugin and
 			*.* onEnable(*) and
 			*.* onDisable(*) and
-			me.MiniDigger.*.*
+			me.MiniDigger.*.* and
+			org.apache.lucene.*.* and
+			com.avaje.*.*
 			;

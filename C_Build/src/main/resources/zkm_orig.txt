@@ -16,12 +16,6 @@ trimExclude public *.* extends org.bukkit.plugin.java.JavaPlugin and
 			*.* public static getHandlerList() and
 			*.* public static getHandlers();
 
-trim        deleteSourceFileAttributes=true
-            deleteDeprecatedAttributes=true
-            deleteAnnotationAttributes=false
-            deleteExceptionAttributes=false
-            deleteUnknownAttributes=false;
-            
 exclude     public *.* extends org.bukkit.plugin.java.JavaPlugin and
 			public *.* extends me.MiniDigger.CraftCore.AddOn.CoreAddOn and
 			public *.* extends me.MiniDigger.CraftCore.Protocol.SignGUI.NMSCore and

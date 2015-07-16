@@ -24,12 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Item.ItemType;
 import me.MiniDigger.Core.Phase.Phase;
@@ -65,7 +65,7 @@ public class UltraSpleefFeature extends CoreFeature {
 	@Override
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
-			final Player p = Bukkit.getPlayer(id);
+			final Player p = Core.getCore().getUserHandler().get(id).getPlayer();
 			p.getInventory().addItem(ItemType.GRAVITYGUN.getItem().getItem());
 			p.updateInventory();
 		}
@@ -73,7 +73,7 @@ public class UltraSpleefFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	@EventHandler
