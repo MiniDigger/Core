@@ -21,6 +21,7 @@
 package me.MiniDigger.CraftCore.Server;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -193,8 +194,16 @@ public class CoreServerHandler implements ServerHandler {
 	
 	@Override
 	public Server getServerInfo(final String name) {
-		synchronized (servers) {
-			for (final Server s : servers) {
+		try {
+			synchronized (servers) {
+				for (final Server s : servers) {
+					if (s.getName().equalsIgnoreCase(name)) {
+						return s;
+					}
+				}
+			}
+		} catch (ConcurrentModificationException e) {
+			for (final Server s : servers.toArray(new Server[servers.size()])) {
 				if (s.getName().equalsIgnoreCase(name)) {
 					return s;
 				}
