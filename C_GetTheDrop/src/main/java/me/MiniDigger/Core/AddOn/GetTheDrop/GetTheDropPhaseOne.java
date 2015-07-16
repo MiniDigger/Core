@@ -86,7 +86,7 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 	@Override
 	public void endPhase() {
 		getGame().broadCastMessage(LangKeyType.Game.GetTheDrop.STOP1, MsgType.NORMAL);
-		final String winner = getGame().getGameData("VoteWinner");
+		// final String winner = getGame().getGameData("VoteWinner");
 		// Core.getCore().getWorldHandler().copyWorld(winner);
 		// Core.getCore().getWorldHandler().loadWorld(winner);
 		

@@ -1,19 +1,6 @@
 package me.MiniDigger.CraftCore.Error;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
-
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginLogger;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-
-import net.minecraft.server.v1_8_R1.CrashReport;
-import net.minecraft.server.v1_8_R1.MinecraftServer;
+import static java.lang.System.getProperty;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -25,7 +12,19 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
-import static java.lang.System.getProperty;
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
+
+import net.minecraft.server.v1_8_R1.CrashReport;
+import net.minecraft.server.v1_8_R1.MinecraftServer;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLogger;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Custom pluginLogger to save errors. Multiple-instance safe!

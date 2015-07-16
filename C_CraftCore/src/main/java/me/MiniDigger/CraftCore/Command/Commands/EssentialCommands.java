@@ -36,10 +36,7 @@ import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Prefix.Prefix;
-import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
-
-import mkremins.fanciful.FancyMessage;
 
 public class EssentialCommands {
 	

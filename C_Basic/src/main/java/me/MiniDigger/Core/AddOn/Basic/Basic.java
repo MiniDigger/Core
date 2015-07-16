@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -38,31 +38,32 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Lang._;
 
 public class Basic extends CoreAddOn {
-	
+
 	@Override
 	public void enable() {
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-	
+
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.disable();
 	}
-	
-	@Command(name = "basic", usage = "name", description = "Kurzer test command!", aliases = { "basicv2", "basciv3" }, consol = true, min = 1, max = 1, permission = "basic.use", sync = false)
+
+	@Command(name = "basic", usage = "name", description = "Kurzer test command!", aliases = { "basicv2",
+	        "basciv3" }, consol = true, min = 1, max = 1, permission = "basic.use", sync = false)
 	public void yeah(final CommandArgs args) {
 		_.msg(Prefix.API, LangKeyType.Cmd.Basic.TEST, MsgType.NORMAL, args.getSender(), args.getArgs()[0]);
 	}
-	
+
 	@Completer(name = "basic")
 	public List<String> testCompleter(final CommandArgs args) {
 		final List<String> list = new ArrayList<String>();
 		list.add("Hello");
 		return list;
 	}
-	
+
 	@EventHandler
 	public void test(final PlayerInteractEvent e) {
 		boolean b = true;

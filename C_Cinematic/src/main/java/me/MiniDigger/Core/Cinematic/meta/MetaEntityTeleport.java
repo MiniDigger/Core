@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -29,17 +29,17 @@ import me.MiniDigger.Core.Cinematic.MetaType;
 
 /**
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class MetaEntityTeleport implements Meta {
-	
+
 	private final double	posX;
 	private final double	posY;
 	private final double	posZ;
-	private final float	 yaw;
-	private final float	 pitch;
-	private final long	 internalId;
-	
+	private final float		yaw;
+	private final float		pitch;
+	private final long		internalId;
+
 	/**
 	 * @param posX
 	 * @param posY
@@ -57,7 +57,7 @@ public class MetaEntityTeleport implements Meta {
 		this.pitch = pitch;
 		this.internalId = internalId;
 	}
-	
+
 	@Override
 	public void writeMeta(final DataOutputStream stream) throws IOException {
 		stream.writeDouble(posX);
@@ -67,7 +67,7 @@ public class MetaEntityTeleport implements Meta {
 		stream.writeFloat(pitch);
 		stream.writeLong(internalId);
 	}
-	
+
 	public static MetaEntityTeleport readMeta(final DataInputStream stream) throws IOException {
 		final double x = stream.readDouble();
 		final double y = stream.readDouble();
@@ -75,55 +75,55 @@ public class MetaEntityTeleport implements Meta {
 		final float yaw = stream.readFloat();
 		final float pitch = stream.readFloat();
 		final long internalId = stream.readLong();
-		
+
 		return new MetaEntityTeleport(x, y, z, yaw, pitch, internalId);
 	}
-	
+
 	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_TELEPORT;
 	}
-	
+
 	/**
 	 * @return the posX
 	 */
 	public double getPosX() {
 		return posX;
 	}
-	
+
 	/**
 	 * @return the posY
 	 */
 	public double getPosY() {
 		return posY;
 	}
-	
+
 	/**
 	 * @return the posZ
 	 */
 	public double getPosZ() {
 		return posZ;
 	}
-	
+
 	/**
 	 * @return the yaw
 	 */
 	public float getYaw() {
 		return yaw;
 	}
-	
+
 	/**
 	 * @return the pitch
 	 */
 	public float getPitch() {
 		return pitch;
 	}
-	
+
 	/**
 	 * @return the internalId
 	 */
 	public long getInternalId() {
 		return internalId;
 	}
-	
+
 }

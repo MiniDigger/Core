@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -30,23 +30,23 @@ import me.MiniDigger.Core.Cinematic.Meta;
 import me.MiniDigger.Core.Cinematic.MetaType;
 
 /**
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class MetaEntitySpawn implements Meta {
-	
-	private final double	 posX;
-	private final double	 posY;
-	private final double	 posZ;
-	private final float	     yaw;
-	private final float	     pitch;
+
+	private final double		posX;
+	private final double		posY;
+	private final double		posZ;
+	private final float			yaw;
+	private final float			pitch;
 	private final EntityType	entityType;
-	private final long	     internalId;
-	
+	private final long			internalId;
+
 	/**
 	 * Vytvori novy V3MetaEntitySpawn so specifikovanymi udajmi.
-	 * 
+	 *
 	 * @param posX
 	 * @param posY
 	 * @param posZ
@@ -64,7 +64,7 @@ public class MetaEntitySpawn implements Meta {
 		entityType = type;
 		this.internalId = internalId;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void writeMeta(final DataOutputStream stream) throws IOException {
@@ -76,7 +76,7 @@ public class MetaEntitySpawn implements Meta {
 		stream.writeInt(entityType.getTypeId());
 		stream.writeLong(internalId);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static MetaEntitySpawn readMeta(final DataInputStream stream) throws IOException {
 		final double x = stream.readDouble();
@@ -86,62 +86,62 @@ public class MetaEntitySpawn implements Meta {
 		final float pitch = stream.readFloat();
 		final EntityType type = EntityType.fromId(stream.readInt());
 		final long internalId = stream.readLong();
-		
+
 		return new MetaEntitySpawn(x, y, z, yaw, pitch, type, internalId);
 	}
-	
+
 	@Override
 	public MetaType getMetaType() {
 		return MetaType.ENTITY_SPAWN;
 	}
-	
+
 	/**
 	 * @return the posX
 	 */
 	public double getPosX() {
 		return posX;
 	}
-	
+
 	/**
 	 * @return the posY
 	 */
 	public double getPosY() {
 		return posY;
 	}
-	
+
 	/**
 	 * @return the posZ
 	 */
 	public double getPosZ() {
 		return posZ;
 	}
-	
+
 	/**
 	 * @return the yaw
 	 */
 	public float getYaw() {
 		return yaw;
 	}
-	
+
 	/**
 	 * @return the pitch
 	 */
 	public float getPitch() {
 		return pitch;
 	}
-	
+
 	/**
 	 * @return the internalId
 	 */
 	public long getInternalId() {
 		return internalId;
 	}
-	
+
 	/**
 	 * @return the entityType
 	 */
 	public EntityType getEntityType() {
 		return entityType;
 	}
-	
+
 }

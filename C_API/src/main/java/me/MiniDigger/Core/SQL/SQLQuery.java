@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -23,18 +23,18 @@ package me.MiniDigger.Core.SQL;
 import java.sql.PreparedStatement;
 
 public interface SQLQuery {
-	
+
 	/**
 	 * Opens the connection
 	 */
 	public void run();
-	
+
 	/**
-	 * 
+	 *
 	 * @return returns the statement
 	 */
 	public PreparedStatement getStatement();
-	
+
 	/**
 	 * Closes the query
 	 */

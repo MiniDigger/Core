@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -52,26 +52,26 @@ import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 import mkremins.fanciful.FancyMessage;
 
 public class SGPhase1 extends CoreTimedPhase {
-	
-	public SGPhase1(final Game game, int secs) {
+
+	public SGPhase1(final Game game, final int secs) {
 		super(game, null, secs);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "SG";
 	}
-	
+
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-	
+
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -90,36 +90,36 @@ public class SGPhase1 extends CoreTimedPhase {
 		        Material.WHEAT, Material.PUMPKIN));
 		addFeature(new WorldBoarderFeature(this, false));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void startPhase() {
 		getGame().broadCastMessage(new FancyMessage("Lasset die Spiele beginnen!"));
 		final String winner = getGame().getGameData("VoteWinner");
-		
+
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
-		
+
 		final MapData m = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
-		Location center = m.getLocs(DyeColor.BLACK).values().iterator().next();
+		final Location center = m.getLocs(DyeColor.BLACK).values().iterator().next();
 		((WorldBoarderFeature) getFeature(FeatureType.WORLDBOARDER)).fakeStart(center, 0, center.distance(m.getLocs(DyeColor.BLUE).values().iterator().next()) * 2);
-		
+
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
-				Location power = m.getLocs(DyeColor.ORANGE).values().iterator().next();
+				final Location power = m.getLocs(DyeColor.ORANGE).values().iterator().next();
 				power.getBlock().setType(Material.WOOD);
 				power.getBlock().getState().update(true, true);
-				Block b = power.getBlock().getRelative(BlockFace.UP);
+				final Block b = power.getBlock().getRelative(BlockFace.UP);
 				b.setType(Material.LEVER);
-				Lever lever = new Lever(Material.LEVER, b.getData());
+				final Lever lever = new Lever(Material.LEVER, b.getData());
 				lever.setFacingDirection(BlockFace.UP);
 				lever.setPowered(false);
 				b.setData(lever.getData());
 				b.getState().update(true, true);
 			}
 		}, 2, this);
-		
+
 		super.startPhase();
 	}
 }

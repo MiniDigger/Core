@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -25,14 +25,14 @@ import java.util.ArrayList;
 import org.bukkit.entity.EntityType;
 
 public interface EntityUtil {
-	
+
 	public enum Type {
 		PASSIV, ANGRY, FRIENDLY, PROJECTILE, OTHER, UTILITY, CART;
 	}
-	
+
 	/**
 	 * Returns all EntityTypes that matches the Types
-	 * 
+	 *
 	 * @param types
 	 * @return
 	 */

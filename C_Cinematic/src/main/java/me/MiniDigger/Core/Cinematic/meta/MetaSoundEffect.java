@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -29,20 +29,20 @@ import me.MiniDigger.Core.Cinematic.MetaType;
 
 /**
  * @author M
- * 
+ *         
  */
 public class MetaSoundEffect implements Meta {
-	
+
 	private final double	posX;
 	private final double	posY;
 	private final double	posZ;
-	private final float	 pitch;
-	private final float	 volume;
+	private final float		pitch;
+	private final float		volume;
 	private final String	name;
-	
+
 	/**
 	 * Vytvori novy V3MetaSoundEffect so specifikovanymi udajmi.
-	 * 
+	 *
 	 * @param posX
 	 * @param posY
 	 * @param posZ
@@ -58,7 +58,7 @@ public class MetaSoundEffect implements Meta {
 		this.volume = volume;
 		this.name = name;
 	}
-	
+
 	@Override
 	public void writeMeta(final DataOutputStream stream) throws IOException {
 		stream.writeDouble(posX);
@@ -68,7 +68,7 @@ public class MetaSoundEffect implements Meta {
 		stream.writeFloat(pitch);
 		stream.writeUTF(name);
 	}
-	
+
 	public static MetaSoundEffect readMeta(final DataInputStream stream) throws IOException {
 		final double x = stream.readDouble();
 		final double y = stream.readDouble();
@@ -76,55 +76,55 @@ public class MetaSoundEffect implements Meta {
 		final float volume = stream.readFloat();
 		final float pitch = stream.readFloat();
 		final String name = stream.readUTF();
-		
+
 		return new MetaSoundEffect(x, y, z, pitch, volume, name);
 	}
-	
+
 	@Override
 	public MetaType getMetaType() {
 		return MetaType.SOUND_EFFECT;
 	}
-	
+
 	/**
 	 * @return the posX
 	 */
 	public double getPosX() {
 		return posX;
 	}
-	
+
 	/**
 	 * @return the posY
 	 */
 	public double getPosY() {
 		return posY;
 	}
-	
+
 	/**
 	 * @return the posZ
 	 */
 	public double getPosZ() {
 		return posZ;
 	}
-	
+
 	/**
 	 * @return the pitch
 	 */
 	public float getPitch() {
 		return pitch;
 	}
-	
+
 	/**
 	 * @return the volume
 	 */
 	public float getVolume() {
 		return volume;
 	}
-	
+
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 }

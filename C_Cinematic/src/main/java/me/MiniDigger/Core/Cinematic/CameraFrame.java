@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -28,12 +28,12 @@ import org.bukkit.entity.Entity;
 
 /**
  * Reprezentuje ram/frame v klipe tretej verzie.
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class CameraFrame {
-	
+
 	/**
 	 * Pozicia hraca.
 	 */
@@ -41,23 +41,23 @@ public class CameraFrame {
 	/**
 	 * Specifikuje, ci frame obsahuje iba meta.
 	 */
-	private boolean	   isMetaOnly	= false;
+	private boolean		isMetaOnly	= false;
 	/**
 	 * Zoznam dalsich extra dat v ramci.
 	 */
-	private List<Meta>	metas	  = new ArrayList<Meta>();
+	private List<Meta>	metas		= new ArrayList<Meta>();
 	/**
 	 * Zoom.
 	 */
-	private float	   zoom;
+	private float		zoom;
 	/**
 	 * Odkaz na klip, ktoremu ram parti.
 	 */
 	public CameraClip	clip;
-	
+
 	/**
 	 * Vytvori novy frame.
-	 * 
+	 *
 	 * @param cameraLocation
 	 * @param isMetaOnly
 	 */
@@ -70,7 +70,7 @@ public class CameraFrame {
 		pitch = cameraLocation.getPitch();
 		this.isMetaOnly = isMetaOnly;
 	}
-	
+
 	public CameraFrame(final double x, final double y, final double z, final float yaw, final float pitch, final boolean isMetaOnly) {
 		camX = x;
 		camY = y;
@@ -79,21 +79,21 @@ public class CameraFrame {
 		this.yaw = yaw;
 		this.isMetaOnly = isMetaOnly;
 	}
-	
+
 	public CameraFrame(final String line) {
-		
-	}
 	
-	public int	  verzia	= 3;
+	}
+
+	public int		verzia	= 3;
 	public double	camX;
 	public double	camY;
 	public double	camZ;
 	public float	yaw;
 	public float	pitch;
-	
+
 	/**
 	 * Prida zaznam o pozicii entity.
-	 * 
+	 *
 	 * @param e
 	 */
 	// UNUSED
@@ -102,14 +102,14 @@ public class CameraFrame {
 			// this.clip.entites.
 		}
 	}
-	
+
 	/**
 	 * @return the playerLocation
 	 */
 	public Location getCameraLocation() {
 		return cameraLocation;
 	}
-	
+
 	/**
 	 * @param playerLocation
 	 *            the playerLocation to set
@@ -117,14 +117,14 @@ public class CameraFrame {
 	public void setCameraLocation(final Location playerLocation) {
 		cameraLocation = playerLocation;
 	}
-	
+
 	/**
 	 * @return the isMeta
 	 */
 	public boolean isMetaOnly() {
 		return isMetaOnly;
 	}
-	
+
 	/**
 	 * @param isMetaOnly
 	 *            the isMeta to set
@@ -132,23 +132,23 @@ public class CameraFrame {
 	public void setMetaOnly(final boolean isMetaOnly) {
 		this.isMetaOnly = isMetaOnly;
 	}
-	
+
 	/**
 	 * @return the extraData
 	 */
 	public List<Meta> getMetas() {
 		return metas;
 	}
-	
+
 	/**
 	 * Prida extra data.
-	 * 
+	 *
 	 * @param data
 	 */
 	public void addMeta(final Meta data) {
 		metas.add(data);
 	}
-	
+
 	/**
 	 * @param metas
 	 *            the extraData to set
@@ -156,14 +156,14 @@ public class CameraFrame {
 	public void setMeta(final List<Meta> metas) {
 		this.metas = metas;
 	}
-	
+
 	/**
 	 * @return the zoom
 	 */
 	public float getZoom() {
 		return zoom;
 	}
-	
+
 	/**
 	 * @param zoom
 	 *            the zoom to set
@@ -172,16 +172,16 @@ public class CameraFrame {
 		this.zoom = zoom;
 		return this; // For method chaining.
 	}
-	
+
 	/**
 	 * Vrati ci tento frame ma nejake meta.
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean hasMeta() {
 		return (metas.size() != 0);
 	}
-	
+
 	public int getMetaCount() {
 		return metas.size();
 	}

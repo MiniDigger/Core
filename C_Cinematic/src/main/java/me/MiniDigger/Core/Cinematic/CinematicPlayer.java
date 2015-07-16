@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -67,45 +67,45 @@ import me.MiniDigger.Core.Cinematic.util.SoundUtility;
 
 /**
  * Prehravac V3 klipov.
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class CinematicPlayer {
-	
-	private final Player	              player;
-	private final CameraClip	          clip;
-	private final Map<Long, LivingEntity>	entityMapping	= Collections.synchronizedMap(new HashMap<Long, LivingEntity>());
-	private boolean	                      playing;
-	private int	                          currentFrameNum	= 0;
-	private CameraFrame	                  currentFrame;
-	private int	                          syncUpdateTaskId;
-	private final Queue<Runnable>	      syncTasks	      = new LinkedTransferQueue<Runnable>();
-	private int	                          syncTaskCounter	= 0;
-	private Runnable	                  onCompleted;
-	
+
+	private final Player					player;
+	private final CameraClip				clip;
+	private final Map<Long, LivingEntity>	entityMapping		= Collections.synchronizedMap(new HashMap<Long, LivingEntity>());
+	private boolean							playing;
+	private int								currentFrameNum	= 0;
+	private CameraFrame						currentFrame;
+	private int								syncUpdateTaskId;
+	private final Queue<Runnable>			syncTasks			= new LinkedTransferQueue<Runnable>();
+	private int								syncTaskCounter	= 0;
+	private Runnable						onCompleted;
+
 	public CinematicPlayer(final Player camera, final CameraClip clip) {
 		player = camera;
 		this.clip = clip;
 	}
-	
+
 	public void play() {
 		playing = true;
 		player.setAllowFlight(true);
 		player.setFlying(true);
 		player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0));
-		
+
 		// Schedule sync updates.
 		syncUpdateTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Core.getCore().getInstance(), new Runnable() {
-			
+
 			@Override
 			public void run() {
 				CinematicPlayer.this.syncUpdate();
 			}
 		}, 0, 1);
-		
+
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				CinematicPlayer.this.unsyncUpdate();
@@ -114,7 +114,7 @@ public class CinematicPlayer {
 			}
 		}).start();
 	}
-	
+
 	/**
 	 * Volane 1000 / FPS krat za sekundu.
 	 */
@@ -123,27 +123,27 @@ public class CinematicPlayer {
 		while (playing) {
 			// Get next frame.
 			CameraFrame frame;
-			
+
 			if ((frame = nextFrame()) != null) {
 				// Nastav kameru.
-				
+
 				// Hracovi posli paketu o teleportacii. Server aktualizuje
 				// hracovu polohu v synUpdate, aby sa necrashoval.
 				final Set<EnumPlayerTeleportFlags> set = new HashSet<EnumPlayerTeleportFlags>();
 				set.addAll(Arrays.asList(EnumPlayerTeleportFlags.values()));
 				PacketHelper.send(player, new PacketPlayOutPosition(frame.camX, frame.camY, frame.camZ, frame.yaw, frame.pitch, set));
-				
+
 				// Spracuj zoom.
-				
+
 				// Spracuj meta.
 				for (final Meta meta : frame.getMetas()) {
 					switch (meta.getMetaType()) {
 					case ENTITY_DAMAGE:
 						final MetaEntityDamage v3MetaEntityDamage = ((MetaEntityDamage) meta);
-						
+
 						// Bezpecne
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								CinematicPlayer.this.getEntity(v3MetaEntityDamage.getInternalId()).damage(v3MetaEntityDamage.getDamage());
@@ -152,14 +152,14 @@ public class CinematicPlayer {
 						break;
 					case ENTITY_INVENTORY:
 						final MetaEntityInventory v3MetaEntityInventory = (MetaEntityInventory) meta;
-						
+
 						// Bezpecne.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								final LivingEntity le = CinematicPlayer.this.getEntity(v3MetaEntityInventory.getInternalId());
-								
+
 								switch (v3MetaEntityInventory.getSlot()) {
 								case 0:
 									le.getEquipment().setBoots(new ItemStack(v3MetaEntityInventory.getItemType(), 1));
@@ -182,10 +182,10 @@ public class CinematicPlayer {
 						break;
 					case ENTITY_REMOVE:
 						final MetaEntityRemove v3MetaEntityRemove = (MetaEntityRemove) meta;
-						
+
 						// Bezpecne.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								CinematicPlayer.this.removeRemove(v3MetaEntityRemove.getInternalId());
@@ -194,72 +194,72 @@ public class CinematicPlayer {
 						break;
 					case ENTITY_SPAWN:
 						final MetaEntitySpawn v3MetaEntitySpawn = (MetaEntitySpawn) meta;
-						
+
 						// Pre bezpocnost mudi byt synchronne.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
-								final Entity e = player.getWorld().spawnEntity(
-								        new Location(player.getWorld(), v3MetaEntitySpawn.getPosX(), v3MetaEntitySpawn.getPosY(), v3MetaEntitySpawn.getPosZ(),
-								                v3MetaEntitySpawn.getYaw(), v3MetaEntitySpawn.getPitch()), v3MetaEntitySpawn.getEntityType());
+								final Entity e = player.getWorld()
+						                .spawnEntity(new Location(player.getWorld(), v3MetaEntitySpawn.getPosX(), v3MetaEntitySpawn.getPosY(),
+						                        v3MetaEntitySpawn.getPosZ(), v3MetaEntitySpawn.getYaw(), v3MetaEntitySpawn.getPitch()),
+						                v3MetaEntitySpawn.getEntityType());
 								if (e instanceof LivingEntity) {
 									CinematicPlayer.this.addEntity(v3MetaEntitySpawn.getInternalId(), (LivingEntity) e);
 									// NMS.makeIdiot((LivingEntity) e);
-									// //Osproti entitu.
+						            // //Osproti entitu.
 								}
 							}
 						});
 						break;
 					case ENTITY_TELEPORT:
 						final MetaEntityTeleport v3MetaEntityTeleport = (MetaEntityTeleport) meta;
-						
+
 						// Musi byt synchronne pre bezpecnost.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								CinematicPlayer.this.getEntity(v3MetaEntityTeleport.getInternalId()).teleport(
-								        new Location(player.getWorld(), v3MetaEntityTeleport.getPosX(), v3MetaEntityTeleport.getPosY(), v3MetaEntityTeleport.getPosZ()));
+						                new Location(player.getWorld(), v3MetaEntityTeleport.getPosX(), v3MetaEntityTeleport.getPosY(), v3MetaEntityTeleport.getPosZ()));
 							}
 						});
-						
+
 						break;
 					case ENTITY_VELOCITY:
 						final MetaEntityVelocity v3MetaEntityVelocity = (MetaEntityVelocity) meta;
-						
+
 						// Musi byt synchronne pre bezpocnost.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
-								CinematicPlayer.this.getEntity(v3MetaEntityVelocity.getInternalId()).setVelocity(
-								        new Vector(v3MetaEntityVelocity.getVelX(), v3MetaEntityVelocity.getVelY(), v3MetaEntityVelocity.getVelZ()));
+								CinematicPlayer.this.getEntity(v3MetaEntityVelocity.getInternalId())
+						                .setVelocity(new Vector(v3MetaEntityVelocity.getVelX(), v3MetaEntityVelocity.getVelY(), v3MetaEntityVelocity.getVelZ()));
 							}
-						});
-						;
+						});;
 						break;
 					case ENTITY_FALLING_SAND:
 						final MetaFallingSand v3MetaFallingSand = (MetaFallingSand) meta;
-						
+
 						// Musi byt pre bezpocnost synchronne.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								final FallingBlock fb = player.getWorld().spawnFallingBlock(
-								        new Location(player.getWorld(), v3MetaFallingSand.getPosX(), v3MetaFallingSand.getPosY(), v3MetaFallingSand.getPosZ()),
-								        v3MetaFallingSand.getMaterial(), (byte) 0);
+						                new Location(player.getWorld(), v3MetaFallingSand.getPosX(), v3MetaFallingSand.getPosY(), v3MetaFallingSand.getPosZ()),
+						                v3MetaFallingSand.getMaterial(), (byte) 0);
 								fb.setVelocity(new Vector(v3MetaFallingSand.getVelX(), v3MetaFallingSand.getVelY(), v3MetaFallingSand.getVelZ()));
 								fb.setDropItem(false);
 								fb.setMetadata("isV3", new FixedMetadataValue(Core.getCore().getInstance(), true));
 							}
 						});
-						
+
 						break;
 					case PARTICLE_EFFECT:
 						final MetaParticleEffect v3MetaParticleEffect = (MetaParticleEffect) meta;
-						
+
 						ParticleEffect.fromId(v3MetaParticleEffect.getParticle()).display(
 						        new Location(player.getWorld(), v3MetaParticleEffect.getPosX(), v3MetaParticleEffect.getPosY(), v3MetaParticleEffect.getPosZ()),
 						        v3MetaParticleEffect.getOffsetX(), v3MetaParticleEffect.getOffsetY(), v3MetaParticleEffect.getOffsetZ(), v3MetaParticleEffect.getSpeed(),
@@ -267,38 +267,37 @@ public class CinematicPlayer {
 						break;
 					case SOUND_EFFECT:
 						final MetaSoundEffect v3MetaSoundEffect = (MetaSoundEffect) meta;
-						
+
 						SoundUtility.playCustomSound(player, v3MetaSoundEffect.getName(), v3MetaSoundEffect.getVolume(), v3MetaSoundEffect.getPitch());
 						break;
 					case EXPLOSION:
-						
+
 						break;
 					case ENTITY_MOVE:
 						final MetaEntityMove v3MetaEntityMove = (MetaEntityMove) meta;
-						
-						PacketHelper.send(
-						        player,
-						        new PacketPlayOutRelEntityMove(CinematicPlayer.this.getEntity(v3MetaEntityMove.getInternalId()).getEntityId(), NMS
-						                .fixedPointNumByte(v3MetaEntityMove.getMovX()), NMS.fixedPointNumByte(v3MetaEntityMove.getMovY()), NMS
-						                .fixedPointNumByte(v3MetaEntityMove.getMovZ()), false));
-						
+
+						PacketHelper.send(player,
+						        new PacketPlayOutRelEntityMove(CinematicPlayer.this.getEntity(v3MetaEntityMove.getInternalId()).getEntityId(),
+						                NMS.fixedPointNumByte(v3MetaEntityMove.getMovX()), NMS.fixedPointNumByte(v3MetaEntityMove.getMovY()),
+						                NMS.fixedPointNumByte(v3MetaEntityMove.getMovZ()), false));
+										
 						// Synchronizovane.
 						syncTasks.add(new Runnable() {
-							
+
 							@Override
 							public void run() {
-								
+							
 							}
 						});
 						break;
 					default:
 						break;
-					
+						
 					}
 				}
 			} else {
 				playing = false;
-				
+
 				// Remove things, clean up.
 				synchronized (entityMapping) {
 					// Kill all left entites.
@@ -306,7 +305,7 @@ public class CinematicPlayer {
 						e.damage(400D);
 					}
 				}
-				
+
 				player.setFlying(false);
 				if (player.getGameMode() == GameMode.SURVIVAL) {
 					player.setAllowFlight(false);
@@ -317,7 +316,7 @@ public class CinematicPlayer {
 					onCompleted.run();
 				}
 			}
-			
+
 			// Spinkaj.
 			try {
 				Thread.sleep(1000 / clip.FPS);
@@ -326,7 +325,7 @@ public class CinematicPlayer {
 			}
 		}
 	}
-	
+
 	/**
 	 * @param internalId
 	 */
@@ -336,7 +335,7 @@ public class CinematicPlayer {
 			entityMapping.remove(internalId);
 		}
 	}
-	
+
 	/**
 	 * @param internalId
 	 * @param e
@@ -346,20 +345,20 @@ public class CinematicPlayer {
 			entityMapping.put(internalId, e);
 		}
 	}
-	
+
 	/**
 	 * Vrati entitu podla internalID.
-	 * 
+	 *
 	 * @param internalId
 	 * @return
 	 */
 	private LivingEntity getEntity(final long internalId) {
 		return entityMapping.get(internalId);
 	}
-	
+
 	/**
 	 * Vrati dalsi frame.
-	 * 
+	 *
 	 * @return
 	 */
 	private CameraFrame nextFrame() {
@@ -370,7 +369,7 @@ public class CinematicPlayer {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Volane 20 krat za sekundu.
 	 */
@@ -389,7 +388,7 @@ public class CinematicPlayer {
 			}
 		}
 	}
-	
+
 	/**
 	 * @param runnable
 	 */

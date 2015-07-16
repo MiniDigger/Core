@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -24,27 +24,27 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SquadHandler {
-	
+
 	/**
 	 * Creates a new squad
-	 * 
+	 *
 	 * @param id
 	 *            The owner
 	 */
 	public void createSquad(final UUID id);
-	
+
 	/**
 	 * Searches for user's squad, may be null
-	 * 
+	 *
 	 * @param user
 	 *            The user
 	 * @return The squad
 	 */
 	public Squad getSquad(final UUID user);
-	
+
 	/**
 	 * Returns all invites, a user has
-	 * 
+	 *
 	 * @param user
 	 *            The user
 	 * @return All invites

@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -26,20 +26,20 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class HubAddOn extends CoreAddOn {
-	
+
 	@Override
 	public void enable() {
 		GameType.LOBBY.setClass(HubGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-	
+
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-	
+
 	// @Command(name = "shop", consol = false, permission = "shop", usage = "")
 	// public void shop(final CommandArgs args) {
 	// if (Core.getCore().getGameHandler().getMainGame().getType() ==
@@ -48,7 +48,8 @@ public class HubAddOn extends CoreAddOn {
 	// Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.HUB);
 	// f.getTokenShop().open(args.getPlayer());
 	// } else {
-	// Prefix.API.getPrefix().then("Du kannst den Shop derzeit nicht öffnen!").color(ChatColor.RED);
+	// Prefix.API.getPrefix().then("Du kannst den Shop derzeit nicht
+	// öffnen!").color(ChatColor.RED);
 	// }
 	// }
 	//

@@ -81,7 +81,6 @@ import me.MiniDigger.CraftCore.Command.Completer.TeamCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.ToggleCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
-import me.MiniDigger.CraftCore.Error.ErrorLogger;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.User.CoreUserListener;

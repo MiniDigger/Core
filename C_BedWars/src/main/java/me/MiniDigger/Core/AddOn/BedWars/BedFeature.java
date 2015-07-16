@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -51,36 +51,36 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Lang._;
 
 public class BedFeature extends CoreFeature {
-	
+
 	private Location		bed;
 	private final String	teamName;
-	
+
 	public BedFeature(final Phase phase, final Location bed, final String teamName) {
 		super(phase);
 		this.bed = bed;
 		this.teamName = teamName;
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.BED;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void start() {
@@ -91,23 +91,23 @@ public class BedFeature extends CoreFeature {
 		final Block head = bed.getRelative(face);
 		byte flags = (byte) 8;
 		byte direction = (byte) (0x0);
-		
+
 		switch (face) {
 		case EAST:
 			flags = (byte) (flags | 0x3);
 			direction = (byte) (0x3);
 			break;
-			
+
 		case SOUTH:
 			flags = (byte) (flags | 0x0);
 			direction = (byte) (0x0);
 			break;
-			
+
 		case WEST:
 			flags = (byte) (flags | 0x1);
 			direction = (byte) (0x1);
 			break;
-			
+
 		case NORTH:
 			flags = (byte) (flags | 0x2);
 			direction = (byte) (0x2);
@@ -115,24 +115,24 @@ public class BedFeature extends CoreFeature {
 		default:
 			break;
 		}
-		
+
 		bed.setTypeIdAndData(Material.BED_BLOCK.getId(), direction, false);
 		head.setTypeIdAndData(Material.BED_BLOCK.getId(), flags, false);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public BlockFace getFacing(final Block b) {
 		return ((org.bukkit.material.Directional) b.getType().getNewData(b.getData())).getFacing();
 	}
-	
+
 	@Override
 	public void end() {
 	}
-	
+
 	public Location getBed() {
 		return bed;
 	}
-	
+
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
@@ -151,11 +151,11 @@ public class BedFeature extends CoreFeature {
 			try {
 				final MapData d = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 				e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
-				
+
 				final SpecateFeature s = (SpecateFeature) getPhase().getFeature(FeatureType.SPEC);
 				getPhase().getGame().leave(user);
 				s.spec(user);
-			} catch (Exception ex) {
+			} catch (final Exception ex) {
 				System.out.println("no respawn found");
 			}
 		} else {
@@ -168,7 +168,7 @@ public class BedFeature extends CoreFeature {
 			e.setRespawnLocation(bed.add(0.5, 1, 0.5));
 		}
 	}
-	
+
 	@EventHandler
 	public void onBlockPlayer(final BlockPlaceEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
@@ -177,7 +177,7 @@ public class BedFeature extends CoreFeature {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBedDestory(final BlockBreakEvent e) {
@@ -188,12 +188,12 @@ public class BedFeature extends CoreFeature {
 				// System.out.println("bed null");
 				return;
 			}
-			Location loc = e.getBlock().getLocation();
+			final Location loc = e.getBlock().getLocation();
 			loc.setPitch(0.0F);
 			loc.setYaw(0.0F);
 			bed.setPitch(0.0F);
 			bed.setYaw(0.0F);
-			
+
 			// System.out.println(e.getBlock().getLocation().toString() + ": " +
 			// bed.toString());
 			if (e.getBlock().getLocation().equals(bed) || e.getBlock().getLocation().add(1, 0, 0).equals(bed) || e.getBlock().getLocation().add(-1, 0, 0).equals(bed)
@@ -215,13 +215,13 @@ public class BedFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(LangKeyType.Game.BedWars.BED_DESTROYED, MsgType.IMPORTANT);
 					bed = null;
 				}
-				
+
 				e.getBlock().setType(Material.AIR);
 				e.getBlock().getState().update(true, true);
 				if (e.getBlock().getState().getData().getData() < 8) {
 					e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), new ItemStack(Material.BED, 1));
 				}
-				
+
 				e.setCancelled(true);
 			}
 		}

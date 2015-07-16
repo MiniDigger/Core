@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.BanEntry;
-import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;

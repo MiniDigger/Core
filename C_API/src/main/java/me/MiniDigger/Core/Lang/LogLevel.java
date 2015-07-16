@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -26,15 +26,15 @@ import mkremins.fanciful.FancyMessage;
 
 public enum LogLevel {
 	ERROR("[Error]", ChatColor.RED), WARNING("[Warning]", ChatColor.YELLOW), INFO("[Info]", ChatColor.WHITE), DEBUG("[Debug]", ChatColor.GRAY);
-	
-	private String	  key;
-	private ChatColor	color;
-	
+
+	private String key;
+	private ChatColor color;
+
 	private LogLevel(final String key, final ChatColor color) {
 		this.key = key;
 		this.color = color;
 	}
-	
+
 	public boolean isGreaterThen(final LogLevel level) {
 		switch (this) {
 		case DEBUG:
@@ -56,7 +56,7 @@ public enum LogLevel {
 		}
 		return false;
 	}
-	
+
 	public FancyMessage getMsg(final String key) {
 		return new FancyMessage("[Core] ").then(this.key + " " + key).color(color);
 	}

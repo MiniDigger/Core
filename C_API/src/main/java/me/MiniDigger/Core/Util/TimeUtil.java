@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -25,17 +25,17 @@ package me.MiniDigger.Core.Util;
  * No more pesky huge integers like 5473973 seconds. With this utility,
  * separating into conventional time is easy. All you have to do is call
  * TimeUtil.format(integer) in another class.
- * 
+ *
  * If you decide to use it, it would be really nice if you could accredit me.
- * 
+ *
  * @author Anand
  * @version 1.0
  */
 public interface TimeUtil {
-	
+
 	/**
 	 * Formats the seconds into an Human Readable String
-	 * 
+	 *
 	 * @param secs
 	 * @return
 	 */

@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -21,7 +21,7 @@
 package me.MiniDigger.Core.Feature;
 
 public enum FeatureType {
-	
+
 	AUTORESPAWN,
 	BLEED,
 	CLEARINV,
@@ -80,7 +80,7 @@ public enum FeatureType {
 	IF,
 	WORLDBOARDER,
 	EH;
-	
+
 	/**
 	 * @return A human readable name for the feature
 	 * @deprecated use name() insted

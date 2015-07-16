@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -38,20 +38,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class UltraSpleefAddOn extends CoreAddOn {
-	
+
 	@Override
 	public void enable() {
 		GameType.GK.setClass(UltraSpleefGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-	
+
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-	
+
 	@Command(name = "gk", permission = "gk", usage = "", consol = true, description = "Initiiert ein GK Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final UltraSpleefGame game = new UltraSpleefGame();
@@ -66,13 +66,13 @@ public class UltraSpleefAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-	
+
 	@Completer(name = "gk")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-		
+
 		result.add("");
-		
+
 		return result;
 	}
 }

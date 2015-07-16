@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -22,9 +22,9 @@ package me.MiniDigger.Core.Cinematic;
 
 /**
  * V3 Meta typ.
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public enum MetaType {
 	ENTITY_DAMAGE(1),
@@ -38,13 +38,13 @@ public enum MetaType {
 	PARTICLE_EFFECT(9),
 	SOUND_EFFECT(10),
 	EXPLOSION(11);
-	
-	private int	id;
-	
+
+	private int id;
+
 	private MetaType(final int id) {
 		this.id = id;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

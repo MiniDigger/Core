@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -27,22 +27,22 @@ import org.bukkit.util.Vector;
 
 /**
  * Pomocna trieda na generovanie rznych typov pohybov.
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class Generator {
-	
+
 	// Mala staticka classa.
 	private Generator() {
-		
-	}
 	
+	}
+
 	/**
 	 * Vygeneruje ranmce pre rovnomerne rychlu cestu z pos1 do pos2 so
 	 * specifikovanym pitch a yaw pocas specifikovaneho casu v sekundach a
 	 * specifikovaneho poctu ramcov za sekundu.
-	 * 
+	 *
 	 * @param pos1
 	 * @param pos2
 	 * @param fps
@@ -58,7 +58,7 @@ public class Generator {
 		final Vector positionDifference = pos2.subtract(pos1);
 		// Zisti posunutia (prirastky).
 		final Vector frameChange = new Vector(positionDifference.getX() / frameCount, positionDifference.getY() / frameCount, positionDifference.getZ() / frameCount);
-		
+
 		for (int frameNum = 0; frameNum < frameCount; frameNum++) {
 			// Zvacsi pos1 o prirastok.
 			pos1.add(frameChange);
@@ -67,7 +67,7 @@ public class Generator {
 		}
 		return frameList;
 	}
-	
+
 	public static List<CameraFrame> lineLookAt(final Vector pos1, final Vector pos2, final Vector lookAt, final int fps, final int seconds) {
 		final List<CameraFrame> frameList = new ArrayList<CameraFrame>();
 		final int frameCount = fps * seconds;
@@ -75,7 +75,7 @@ public class Generator {
 		final Vector positionDifference = pos2.subtract(pos1);
 		// Zisti posunutia (prirastky).
 		final Vector frameChange = new Vector(positionDifference.getX() / frameCount, positionDifference.getY() / frameCount, positionDifference.getZ() / frameCount);
-		
+
 		for (int frameNum = 0; frameNum < frameCount; frameNum++) {
 			// Zvacsi pos1 o prirastok.
 			pos1.add(frameChange);
@@ -86,10 +86,10 @@ public class Generator {
 		}
 		return frameList;
 	}
-	
+
 	/**
 	 * Vygeneruje ramce pre pohyb po kruznici a lookAt specifikovany.
-	 * 
+	 *
 	 * @param center
 	 * @param lookAt
 	 * @param radius
@@ -113,10 +113,10 @@ public class Generator {
 		}
 		return frameList;
 	}
-	
+
 	public static List<CameraFrame> splinePath(final List<Vector> points) {
 		final List<CameraFrame> frameList = new ArrayList<CameraFrame>();
-		
+
 		return frameList;
 	}
 }

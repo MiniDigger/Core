@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -47,26 +47,26 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class SUVPhase extends CorePhase {
-	
+
 	public SUVPhase(final Game game) {
 		super(game, null);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "SUV";
 	}
-	
+
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-	
+
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -88,11 +88,11 @@ public class SUVPhase extends CorePhase {
 		addFeature(new TeamArmorFeature(this, true));
 		addFeature(new NoInventoryInteractionFeature(this));
 	}
-	
+
 	@Override
 	public void startPhase() {
 		final String winner = getGame().getGameData("VoteWinner");
-		
+
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
 		((PvPFeature) getFeature(FeatureType.PVP)).setbroadCastMsg(false);
 		super.startPhase();

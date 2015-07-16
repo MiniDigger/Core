@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -22,25 +22,25 @@ package me.MiniDigger.Core.Item;
 
 public enum ItemType {
 	GRABLING_HOOK(null), GRAVITYGUN(null);
-	
-	private Item	item;
-	
+
+	private Item item;
+
 	private ItemType(final Item item) {
 		this.item = item;
 	}
-	
+
 	/**
 	 * NULL: if not installed!
-	 * 
+	 *
 	 * @return The item who is associated whith this type
 	 */
 	public Item getItem() {
 		return item;
 	}
-	
+
 	/**
 	 * "Installs" the Item
-	 * 
+	 *
 	 * @param item
 	 */
 	public void setItem(final Item item) {

@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -28,10 +28,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 public interface BukkitCompleter extends TabCompleter {
-	
+
 	/**
 	 * Registers a new completer
-	 * 
+	 *
 	 * @param label
 	 *            The command lable the completer belongs to
 	 * @param m
@@ -40,10 +40,10 @@ public interface BukkitCompleter extends TabCompleter {
 	 *            The ibject the method is found in
 	 */
 	public void addCompleter(final String label, final Method m, final Object obj);
-	
+
 	/**
 	 * Requests a list of possible completions for a command argument.
-	 * 
+	 *
 	 * @param sender
 	 *            Source of the command
 	 * @param command

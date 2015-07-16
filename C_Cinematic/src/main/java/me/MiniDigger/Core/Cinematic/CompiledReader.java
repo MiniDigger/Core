@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -40,12 +40,12 @@ import me.MiniDigger.Core.Cinematic.meta.MetaSoundEffect;
 
 /**
  * Nacitava skompilovane V3 klipy.
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class CompiledReader {
-	
+
 	/**
 	 * Stream pouzivany na nacitanie suboru.
 	 */
@@ -53,46 +53,46 @@ public class CompiledReader {
 	/**
 	 * Kuzelne cislo 1.
 	 */
-	public final static int	      MAGIC_1	= 86;
+	public final static int			MAGIC_1	= 86;
 	/**
 	 * Kuzelne cislo 2.
 	 */
-	public final static int	      MAGIC_2	= 114;
+	public final static int			MAGIC_2	= 114;
 	/**
 	 * Verzia suboru.
 	 */
-	public final static int	      VERSION	= 1;
+	public final static int			VERSION	= 1;
 	/**
 	 * Klip.
 	 */
-	private CameraClip	          clip;
+	private CameraClip				clip;
 	/**
 	 * Svet.
 	 */
-	private World	              w;
-	
+	private World					w;
+
 	public static CameraClip loadFile(final String path) throws Exception {
 		return new CompiledReader(path).clip;
 	}
-	
+
 	private CompiledReader(final String path) throws Exception {
 		input = new DataInputStream(new FileInputStream(path));
 		readFile();
 	}
-	
+
 	/**
 	 * Nacita data zo suboru do pamate.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	private void readFile() throws Exception {
 		clip = new CameraClip();
-		
+
 		readClip();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param clip
 	 * @throws Exception
 	 */
@@ -110,20 +110,20 @@ public class CompiledReader {
 		}
 		close();
 	}
-	
+
 	private void readFileHeader() throws Exception {
 		// Check for magic.
 		final byte magic1 = input.readByte();
 		final byte magic2 = input.readByte();
-		
+
 		if (magic1 != CompiledReader.MAGIC_1 || magic2 != CompiledReader.MAGIC_2) {
 			throw new Exception("This is not a valid V3C file!");
 		}
-		
+
 		input.readByte(); // Version byte
 		clip.FPS = input.readByte();
 	}
-	
+
 	private CameraFrame readFrameHeader() throws IOException {
 		// read FrameHeader.
 		final double x = input.readDouble();
@@ -133,16 +133,16 @@ public class CompiledReader {
 		final float pitch = input.readFloat();
 		final float zoom = input.readFloat();
 		final boolean isMetaOnly = input.readBoolean();
-		
+
 		final CameraFrame frame = new CameraFrame(new Location(w, x, y, z, yaw, pitch), isMetaOnly).setZoom(zoom);
-		
+
 		// Process meta.
 		final short metaCount = input.readShort(); // MetaCount
-		
+
 		for (short i = 0; i < metaCount; i++) {
 			// Meta type
 			final byte metaType = input.readByte();
-			
+
 			switch (metaType) {
 			case 0:
 				frame.addMeta(MetaSoundEffect.readMeta(input));
@@ -173,13 +173,13 @@ public class CompiledReader {
 				break;
 			}
 		}
-		
+
 		return frame;
 	}
-	
+
 	/**
 	 * Zatvori subor.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void close() throws IOException {

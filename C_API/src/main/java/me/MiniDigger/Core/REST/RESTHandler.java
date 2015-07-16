@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -28,10 +28,10 @@ import org.json.simple.JSONObject;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 
 public interface RESTHandler {
-	
+
 	/**
 	 * Updates the information for this addon
-	 * 
+	 *
 	 * @param bean
 	 *            the given addon
 	 * @param exact
@@ -39,22 +39,22 @@ public interface RESTHandler {
 	 * @return the updated informations
 	 */
 	public AddOnBean requestInfos(final AddOnBean bean, final boolean exact);
-	
+
 	/**
 	 * @return all addons in the repo
 	 */
 	public List<AddOnBean> getAllAddOns();
-	
+
 	/**
 	 * @param author
 	 *            the author
 	 * @return all addons created by the given author
 	 */
 	public List<AddOnBean> getAllAddOnsBy(final String author);
-	
+
 	/**
 	 * Requests the URL for a addon
-	 * 
+	 *
 	 * @param name
 	 *            the name of the addon
 	 * @param version
@@ -62,16 +62,16 @@ public interface RESTHandler {
 	 * @return the url for the file
 	 */
 	public URL showFile(final String name, final String version);
-	
+
 	/**
 	 * Checks if there is an update for a addon
-	 * 
+	 *
 	 * @param bean
 	 *            the addon to check
 	 * @return the checked addon with updated informations
 	 */
 	public AddOnBean checkUpdate(final AddOnBean bean);
-	
+
 	/**
 	 * @param licence
 	 *            the licence for this server
@@ -82,10 +82,10 @@ public interface RESTHandler {
 	 * @return the response token
 	 */
 	public String checkLicence(final String licence, final String token, final String sessionToken);
-	
+
 	/**
 	 * Registeres the session by the session server
-	 * 
+	 *
 	 * @param licence
 	 *            the licence for this server
 	 * @param sessionToken

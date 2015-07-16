@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -23,22 +23,22 @@ package me.MiniDigger.Core.Villager;
 import org.bukkit.inventory.ItemStack;
 
 public interface VillagerTrade {
-	
+
 	/**
 	 * @return if the trade has more then one item
 	 */
 	public boolean hasItem2();
-	
+
 	/**
 	 * @return the first item
 	 */
 	public ItemStack getItem1();
-	
+
 	/**
 	 * @return the second item
 	 */
 	public ItemStack getItem2();
-	
+
 	/**
 	 * @return the reward item
 	 */

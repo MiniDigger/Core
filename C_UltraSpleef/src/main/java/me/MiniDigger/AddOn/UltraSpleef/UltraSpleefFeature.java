@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -37,31 +37,31 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class UltraSpleefFeature extends CoreFeature {
-	
+
 	public UltraSpleefFeature(final Phase phase) {
 		super(phase);
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.ULTRASPLEEF;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
@@ -70,12 +70,12 @@ public class UltraSpleefFeature extends CoreFeature {
 			p.updateInventory();
 		}
 	}
-	
+
 	@Override
 	public void end() {
-	
+
 	}
-	
+
 	@EventHandler
 	public void onMove(final PlayerMoveEvent e) {
 		if (e.getFrom().getBlockY() >= 130 && e.getTo().getBlockY() <= 130) {
@@ -84,7 +84,7 @@ public class UltraSpleefFeature extends CoreFeature {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onRespawn(final PlayerRespawnEvent e) {
 		final Player p = e.getPlayer();

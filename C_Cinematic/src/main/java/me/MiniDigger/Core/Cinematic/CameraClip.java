@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -30,25 +30,25 @@ import org.bukkit.entity.Entity;
 
 /**
  * Zlozity klip 3 urovne.
- * 
+ *
  * @author Mato Kormuth
- * 
+ * 		
  */
 public class CameraClip {
-	
+
 	List<CameraFrame>	frames	= Collections.synchronizedList(new ArrayList<CameraFrame>());
-	List<Entity>	  entites	= Collections.synchronizedList(new ArrayList<Entity>());
-	
+	List<Entity>		entites	= Collections.synchronizedList(new ArrayList<Entity>());
+
 	/**
 	 * Pocet ramov za sekundu v tomto klipe.
 	 */
-	public int	      FPS	    = 20;
-	public int	      verzia	= 3;
-	public int	      metaCount	= 0;
-	
+	public int	FPS			= 20;
+	public int	verzia		= 3;
+	public int	metaCount	= 0;
+
 	/**
 	 * Prida jeden frame do zoznamu frameov.
-	 * 
+	 *
 	 * @param frame
 	 */
 	public void addFrame(final CameraFrame frame) {
@@ -56,38 +56,38 @@ public class CameraClip {
 		frames.add(frame);
 		metaCount += frame.getMetaCount();
 	}
-	
+
 	/**
 	 * Prida kolekciu frameov do zoznamu frameov.
-	 * 
+	 *
 	 * @param frames
 	 */
 	public void addFrames(final List<CameraFrame> frames) {
 		this.frames.addAll(frames);
 	}
-	
+
 	/**
 	 * Vrati vsetky framy v klipe.
-	 * 
+	 *
 	 * @return
 	 */
 	public List<CameraFrame> getFrames() {
 		return frames;
 	}
-	
+
 	/**
 	 * Vrati frame specifikovany indexom.
-	 * 
+	 *
 	 * @param index
 	 * @return
 	 */
 	public CameraFrame getFrame(final int index) {
 		return frames.get(index);
 	}
-	
+
 	/**
 	 * Ulozi klip do suboru.
-	 * 
+	 *
 	 * @param meno
 	 *            suboru.
 	 */
@@ -98,10 +98,10 @@ public class CameraClip {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Vrati pocet ramov v klipe.
-	 * 
+	 *
 	 * @return
 	 */
 	public int getNumOfFrames() {

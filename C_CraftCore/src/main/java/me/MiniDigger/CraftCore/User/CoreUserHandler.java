@@ -34,9 +34,8 @@ import me.MiniDigger.Core.User.UserHandler;
 
 import me.MiniDigger.CraftCore.Lang._;
 
-import ru.tehkode.permissions.bukkit.PermissionsEx;
-
 import ru.tehkode.permissions.PermissionUser;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class CoreUserHandler implements UserHandler {
 	

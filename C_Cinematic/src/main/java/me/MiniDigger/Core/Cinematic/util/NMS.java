@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -36,17 +36,16 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Helper na pracu s NMS kodom.
- * 
+ *
  * @author Matej Kormuth
- * 
+ * 		
  */
 public class NMS {
-	
+
 	/**
 	 * Verzia serveru.
 	 */
-	public static final String	VERSION	   = Bukkit.getServer().getClass().getPackage().getName().replaceAll("org.bukkit.craftbukkit.", "")
-	                                               .replaceAll(".CraftServer", "");
+	public static final String	VERSION		= Bukkit.getServer().getClass().getPackage().getName().replaceAll("org.bukkit.craftbukkit.", "").replaceAll(".CraftServer", "");
 	/**
 	 * Nazov balicku NMS.
 	 */
@@ -55,10 +54,10 @@ public class NMS {
 	 * Nazov balicku CB.
 	 */
 	public static final String	PACKAGE_CB	= "org.bukkit.craftbukkit." + VERSION + ".";
-	
+
 	/**
 	 * Unwraps CraftItemStack, and returns NMS ItemStack.
-	 * 
+	 *
 	 * @return
 	 */
 	public static net.minecraft.server.v1_8_R1.ItemStack getNMSItemStack(final ItemStack itemstack) {
@@ -74,12 +73,12 @@ public class NMS {
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
-	
+
 	/**
 	 * Vrati display name specifikovaneho item stacku.
-	 * 
+	 *
 	 * @param itemstack
 	 *            item stack
 	 * @return display name
@@ -90,11 +89,11 @@ public class NMS {
 		// Ziskaj tag, ktory potrebujeme.
 		return ((NBTTagCompound) nmsstack.getTag().get("display")).getString("Name");
 	}
-	
+
 	/**
 	 * Vrati, ci ItemStack ma NBT tag s menom 'display', teda ci ma cusotmname
 	 * alebo lore.
-	 * 
+	 *
 	 * @param itemstack
 	 * @return
 	 */
@@ -108,10 +107,10 @@ public class NMS {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Nastavi display name specifikovaneho item stacku.
-	 * 
+	 *
 	 * @param itemstack
 	 *            item stack
 	 * @param name
@@ -123,7 +122,7 @@ public class NMS {
 		// Ziskaj tag, ktory potrebujeme.
 		((NBTTagCompound) nmsstack.getTag().get("display")).setString("Name", name);
 	}
-	
+
 	public static void setHeadYaw(final Entity en, float yaw) {
 		if (!(en instanceof EntityLiving)) {
 			return;
@@ -132,7 +131,7 @@ public class NMS {
 		while (yaw < -180.0F) {
 			yaw += 360.0F;
 		}
-		
+
 		while (yaw >= 180.0F) {
 			yaw -= 360.0F;
 		}
@@ -143,7 +142,7 @@ public class NMS {
 		// handle.aP = yaw;
 		// TODO Disabled ;D
 	}
-	
+
 	/**
 	 * @param entity
 	 * @param movX
@@ -155,7 +154,7 @@ public class NMS {
 			((EntityLiving) entity).move(movX, movY, movZ);
 		}
 	}
-	
+
 	/**
 	 * @param movX
 	 * @return
@@ -166,7 +165,7 @@ public class NMS {
 		}
 		return (int) (i * 32);
 	}
-	
+
 	/**
 	 * @param i
 	 * @return
@@ -177,13 +176,13 @@ public class NMS {
 		}
 		return (byte) (i * 32);
 	}
-	
+
 	/**
 	 * Osporti entitu, ak je entita EntityInsentient tak, ze jej zmaze
 	 * goalSelector golas a targetSelector goals, cize AI.
-	 * 
+	 *
 	 * FIXME!!!!!
-	 * 
+	 *
 	 * @param e
 	 */
 	public static void makeIdiot(final org.bukkit.entity.LivingEntity e) {
@@ -194,18 +193,18 @@ public class NMS {
 		 * class.getDeclaredField("c"); gsa.setAccessible(true);
 		 * gsa.set(this.goalSelector, new UnsafeList());
 		 * gsa.set(this.targetSelector, new UnsafeList());
-		 * 
+		 *
 		 * Field gsb =
 		 * net.minecraft.server.v1_7_R3.PathfinderGoalSelector.class.
 		 * getDeclaredField("b"); gsb.setAccessible(true);
 		 * gsb.set(this.goalSelector, new UnsafeList());
 		 * gsb.set(this.targetSelector, new UnsafeList());
-		 * 
+		 *
 		 * } catch (SecurityException e) { e.printStackTrace(); } catch
 		 * (NoSuchFieldException e) { e.printStackTrace(); } catch
 		 * (IllegalArgumentException e) { e.printStackTrace(); } catch
 		 * (IllegalAccessException e) { e.printStackTrace(); }
 		 */
-		
+
 	}
 }

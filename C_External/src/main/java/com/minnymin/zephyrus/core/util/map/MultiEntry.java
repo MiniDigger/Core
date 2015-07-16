@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -22,9 +22,9 @@ package com.minnymin.zephyrus.core.util.map;
 
 /**
  * Zephyrus - MultiEntry.java
- * 
+ *
  * @author minnymin3
- * 
+ *         
  * @param <A>
  *            Key type
  * @param <B>
@@ -33,35 +33,35 @@ package com.minnymin.zephyrus.core.util.map;
  *            Second value type
  */
 public class MultiEntry<A, B, C> {
-	
-	private A	      key	      = null;
-	private B	      firstValue	= null;
-	private C	      secondValue	= null;
-	
-	private final int	index;
-	
+
+	private A	key			= null;
+	private B	firstValue	= null;
+	private C	secondValue	= null;
+
+	private final int index;
+
 	public MultiEntry(final A key, final MultiMap<A, B, C> map) {
 		this.key = key;
 		this.firstValue = map.getFirstValue(key);
 		this.secondValue = map.getSecondValue(key);
-		
+
 		this.index = map.getIndex(key);
 	}
-	
+
 	public A getKey() {
 		return key;
 	}
-	
+
 	public B getFirstValue() {
 		return firstValue;
 	}
-	
+
 	public C getSecondValue() {
 		return secondValue;
 	}
-	
+
 	public int getIndex() {
 		return index;
 	}
-	
+
 }

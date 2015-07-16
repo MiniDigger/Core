@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -59,19 +59,19 @@ public enum Prefix {
 	KK(ChatColor.AQUA, ChatColor.BLUE, "KK", GameType.KK),
 	KP(ChatColor.AQUA, ChatColor.BLUE, "KP", GameType.KP),
 	BROADCAST(ChatColor.AQUA, ChatColor.BLUE, "Broadcast", GameType.NOTHING);
-	
-	private ChatColor	klammer;
-	private ChatColor	color;
-	private String	  name;
-	private GameType	type;
-	
+
+	private ChatColor klammer;
+	private ChatColor color;
+	private String name;
+	private GameType type;
+
 	private Prefix(final ChatColor klammer, final ChatColor color, final String name, final GameType type) {
 		this.klammer = klammer;
 		this.color = color;
 		this.name = name;
 		this.type = type;
 	}
-	
+
 	public static void load() {
 		final FileConfiguration c = Core.getCore().getInstance().getConfig();
 		for (final Prefix p : values()) {
@@ -88,7 +88,7 @@ public enum Prefix {
 			}
 		}
 	}
-	
+
 	public static void save() {
 		final FileConfiguration c = Core.getCore().getInstance().getConfig();
 		for (final Prefix p : values()) {
@@ -98,7 +98,7 @@ public enum Prefix {
 		}
 		Core.getCore().getInstance().saveConfig();
 	}
-	
+
 	/**
 	 * @param klammer
 	 *            the klammer to set
@@ -106,7 +106,7 @@ public enum Prefix {
 	public void setKlammer(final ChatColor klammer) {
 		this.klammer = klammer;
 	}
-	
+
 	/**
 	 * @param color
 	 *            the color to set
@@ -114,7 +114,7 @@ public enum Prefix {
 	public void setColor(final ChatColor color) {
 		this.color = color;
 	}
-	
+
 	/**
 	 * @param name
 	 *            the name to set
@@ -122,35 +122,35 @@ public enum Prefix {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * @return The color used for the brackets
 	 */
 	public ChatColor getBracket() {
 		return klammer;
 	}
-	
+
 	/**
 	 * @return The color used for the name
 	 */
 	public ChatColor getColor() {
 		return color;
 	}
-	
+
 	/**
 	 * @return The name
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * @return The type, this prefix is assiocated with
 	 */
 	public GameType getType() {
 		return type;
 	}
-	
+
 	/**
 	 * @return The final prefix
 	 */
@@ -164,19 +164,19 @@ public enum Prefix {
 			        .color(ChatColor.YELLOW).style(ChatColor.MAGIC);
 		}
 		return new FancyMessage("[").color(klammer).then(name).color(color).tooltip("Made by MiniDigger", "more Infos:", "info@minidigger.me").then("] ").color(klammer);
-		
+
 	}
-	
+
 	/**
 	 * @return The prefix, optimized for consol use
 	 */
 	public String getConsolPrefix() {
 		return klammer + "[" + color + name + klammer + "]";
 	}
-	
+
 	/**
 	 * Searches for a prefix for that game
-	 * 
+	 *
 	 * @param type
 	 * @return may be null
 	 */

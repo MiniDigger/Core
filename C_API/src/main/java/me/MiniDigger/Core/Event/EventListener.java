@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -30,22 +30,22 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public interface EventListener extends Listener {
-	
+
 	@EventHandler
 	public void onPlayerJoin(final PlayerJoinEvent e);
-	
+
 	@EventHandler
 	public void onPlayerQuit(final PlayerQuitEvent e);
-	
+
 	@EventHandler
 	public void onPlayerDamage(final EntityDamageEvent e);
-	
+
 	@EventHandler
 	public void onPlayerDamageByPlayer(final EntityDamageByEntityEvent e);
-	
+
 	@EventHandler
 	public void onPlayerDeath(final PlayerDeathEvent e);
-	
+
 	@EventHandler
 	void onPlayerMove(final PlayerMoveEvent e);
 }

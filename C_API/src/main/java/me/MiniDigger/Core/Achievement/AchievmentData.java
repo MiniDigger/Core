@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -23,42 +23,42 @@ package me.MiniDigger.Core.Achievement;
 import java.util.UUID;
 
 public interface AchievmentData {
-	
+
 	/**
 	 * @return the user who belongs to this data
 	 */
 	public UUID getUser();
-	
+
 	/**
 	 * @return the data
 	 */
 	public int getData();
-	
+
 	/**
 	 * @param data
 	 *            the data to set
 	 */
 	public void setData(final int data);
-	
+
 	/**
 	 * Saves the data to the db
 	 */
 	public void save();
-	
+
 	/**
 	 * @return the achievement level
 	 */
 	int getLevel();
-	
+
 	/**
 	 * @param level
 	 *            the new level to set
 	 */
 	void setLevel(final int level);
-	
+
 	/**
 	 * @return the type of the corresponding achievement
 	 */
 	AchievmentType getType();
-	
+
 }

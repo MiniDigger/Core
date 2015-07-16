@@ -1,7 +1,7 @@
 package me.MiniDigger.CraftCore.Bar;
 
-import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Bar.ActionBarHandler;
 import me.MiniDigger.Core.Lang.LogLevel;

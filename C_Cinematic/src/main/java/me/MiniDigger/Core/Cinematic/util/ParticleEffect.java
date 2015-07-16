@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -35,47 +35,47 @@ import org.bukkit.entity.Player;
 
 /**
  * ParticleEffect Library v1.2
- * 
+ *
  * This library was created by @DarkBlade12 based on content related to
  * particles of @microgeek (names and packet values) and allows you to display
  * all Minecraft particle effects on a Bukkit server a You are welcome to use
  * it, modify it and redistribute it under the following conditions: 1. Credit
  * us if you publish a plugin that uses this library 2. Don't remove this text
- * 
+ *
  * @author DarkBlade12
  */
 public enum ParticleEffect {
-	
-	// <--[language]
-	// @name Particle Effects
-	// @group Useful Lists
-	// @description
-	// All of the effects listed here can be used by <@link command PlayEffect>
-	// to display visual effects or play sounds
-	//
-	// Sounds:
-	// - BLAZE_SHOOT, BOW_FIRE, CLICK1, CLICK2, DOOR_TOGGLE, EXTINGUISH,
-	// GHAST_SHOOT, GHAST_SHRIEK,
-	// RECORD_PLAY, STEP_SOUND, ZOMBIE_CHEW_IRON_DOOR, ZOMBIE_CHEW_WOODEN_DOOR,
-	// ZOMBIE_DESTROY_DOOR
-	//
-	// Visual effects:
-	// - iconcrack_[id] (item break effect - examples: iconcrack_7,
-	// iconcrack_268)
-	// - ENDER_SIGNAL, MOBSPAWNER_FLAMES, POTION_BREAK, SMOKE
-	// - HUGE_EXPLOSION, LARGE_EXPLODE, FIREWORKS_SPARK, BUBBLE, SUSPEND,
-	// DEPTH_SUSPEND, TOWN_AURA,
-	// CRIT, MAGIC_CRIT, MOB_SPELL, MOB_SPELL_AMBIENT, SPELL, INSTANT_SPELL,
-	// WITCH_MAGIC, NOTE, STEP_SOUND,
-	// PORTAL, ENCHANTMENT_TABLE, EXPLODE, FLAME, LAVA, FOOTSTEP, SPLASH,
-	// LARGE_SMOKE, CLOUD, RED_DUST,
-	// SNOWBALL_POOF, DRIP_WATER, DRIP_LAVA, SNOW_SHOVEL, SLIME, HEART,
-	// ANGRY_VILLAGER, HAPPY_VILLAGER
-	//
-	// - RANDOM (chooses a random visual effect from the list starting with
-	// 'huge_explosion')
-	// -->
-	
+    
+    // <--[language]
+    // @name Particle Effects
+    // @group Useful Lists
+    // @description
+    // All of the effects listed here can be used by <@link command PlayEffect>
+    // to display visual effects or play sounds
+    //
+    // Sounds:
+    // - BLAZE_SHOOT, BOW_FIRE, CLICK1, CLICK2, DOOR_TOGGLE, EXTINGUISH,
+    // GHAST_SHOOT, GHAST_SHRIEK,
+    // RECORD_PLAY, STEP_SOUND, ZOMBIE_CHEW_IRON_DOOR, ZOMBIE_CHEW_WOODEN_DOOR,
+    // ZOMBIE_DESTROY_DOOR
+    //
+    // Visual effects:
+    // - iconcrack_[id] (item break effect - examples: iconcrack_7,
+    // iconcrack_268)
+    // - ENDER_SIGNAL, MOBSPAWNER_FLAMES, POTION_BREAK, SMOKE
+    // - HUGE_EXPLOSION, LARGE_EXPLODE, FIREWORKS_SPARK, BUBBLE, SUSPEND,
+    // DEPTH_SUSPEND, TOWN_AURA,
+    // CRIT, MAGIC_CRIT, MOB_SPELL, MOB_SPELL_AMBIENT, SPELL, INSTANT_SPELL,
+    // WITCH_MAGIC, NOTE, STEP_SOUND,
+    // PORTAL, ENCHANTMENT_TABLE, EXPLODE, FLAME, LAVA, FOOTSTEP, SPLASH,
+    // LARGE_SMOKE, CLOUD, RED_DUST,
+    // SNOWBALL_POOF, DRIP_WATER, DRIP_LAVA, SNOW_SHOVEL, SLIME, HEART,
+    // ANGRY_VILLAGER, HAPPY_VILLAGER
+    //
+    // - RANDOM (chooses a random visual effect from the list starting with
+    // 'huge_explosion')
+    // -->
+
 	HUGE_EXPLOSION("hugeexplosion", 0),
 	LARGE_EXPLODE("largeexplode", 1),
 	FIREWORKS_SPARK("fireworksSpark", 2),
@@ -109,47 +109,47 @@ public enum ParticleEffect {
 	HEART("heart", 30),
 	ANGRY_VILLAGER("angryVillager", 31),
 	HAPPY_VILLAGER("happyVillager", 32);
-	
-	private static final Map<String, ParticleEffect>	NAME_MAP	= new HashMap<String, ParticleEffect>();
-	private static final Map<Integer, ParticleEffect>	ID_MAP	 = new HashMap<Integer, ParticleEffect>();
-	private static final double	                      MAX_RANGE	 = 300.0D;	                                 // Denizen:
-	                                                                                                         // Modified
-	                                                                                                         // from
-	                                                                                                         // original
-	                                                                                                         // range
-	                                                                                                         // of
-	                                                                                                         // 20.0D
-	private static Constructor<?>	                  PARTICLE_PACKET_CONSTRUCTOR;
-	
+
+	private static final Map<String, ParticleEffect> NAME_MAP = new HashMap<String, ParticleEffect>();
+	private static final Map<Integer, ParticleEffect> ID_MAP = new HashMap<Integer, ParticleEffect>();
+	private static final double MAX_RANGE = 300.0D; // Denizen:
+	                                                // Modified
+	                                                // from
+	                                                // original
+	                                                // range
+	                                                // of
+	                                                // 20.0D
+	private static Constructor<?> PARTICLE_PACKET_CONSTRUCTOR;
+
 	static {
 		for (final ParticleEffect effect : values()) {
 			NAME_MAP.put(effect.name, effect);
 			ID_MAP.put(effect.id, effect);
 		}
 		try {
-			PARTICLE_PACKET_CONSTRUCTOR = ReflectionUtil.getConstructor(ReflectionUtil.getClass("PacketPlayOutWorldParticles",
-			        ReflectionUtil.DynamicPackage.MINECRAFT_SERVER));
+			PARTICLE_PACKET_CONSTRUCTOR = ReflectionUtil
+			        .getConstructor(ReflectionUtil.getClass("PacketPlayOutWorldParticles", ReflectionUtil.DynamicPackage.MINECRAFT_SERVER));
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	private String	                                  name;
-	private int	                                      id;
-	
+
+	private String name;
+	private int id;
+
 	ParticleEffect(final String name, final int id) {
 		this.name = name;
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public static ParticleEffect fromName(final String name) {
 		if (name != null) {
 			for (final Entry<String, ParticleEffect> e : NAME_MAP.entrySet()) {
@@ -160,11 +160,11 @@ public enum ParticleEffect {
 		}
 		return null;
 	}
-	
+
 	public static ParticleEffect fromId(final int id) {
 		return ID_MAP.get(id);
 	}
-	
+
 	// Denizen: made public
 	public static List<Player> getPlayersInRange(final Location loc, final double range) {
 		final List<Player> players = new ArrayList<Player>();
@@ -176,7 +176,7 @@ public enum ParticleEffect {
 		}
 		return players;
 	}
-	
+
 	private static Object createPacket(final String name, final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed,
 	        final int amount) {
 		if (amount <= 0) {
@@ -184,36 +184,36 @@ public enum ParticleEffect {
 		}
 		try {
 			final Object p = PARTICLE_PACKET_CONSTRUCTOR.newInstance();
-			ReflectionUtil.setValues(p, new ReflectionUtil.FieldEntry("a", name), new ReflectionUtil.FieldEntry("b", (float) loc.getX()), new ReflectionUtil.FieldEntry(
-			        "c", (float) loc.getY()), new ReflectionUtil.FieldEntry("d", (float) loc.getZ()), new ReflectionUtil.FieldEntry("e", offsetX),
-			        new ReflectionUtil.FieldEntry("f", offsetY), new ReflectionUtil.FieldEntry("g", offsetZ), new ReflectionUtil.FieldEntry("h", speed),
-			        new ReflectionUtil.FieldEntry("i", amount));
+			ReflectionUtil.setValues(p, new ReflectionUtil.FieldEntry("a", name), new ReflectionUtil.FieldEntry("b", (float) loc.getX()),
+			        new ReflectionUtil.FieldEntry("c", (float) loc.getY()), new ReflectionUtil.FieldEntry("d", (float) loc.getZ()),
+			        new ReflectionUtil.FieldEntry("e", offsetX), new ReflectionUtil.FieldEntry("f", offsetY), new ReflectionUtil.FieldEntry("g", offsetZ),
+			        new ReflectionUtil.FieldEntry("h", speed), new ReflectionUtil.FieldEntry("i", amount));
 			return p;
 		} catch (final Exception e) {
 			Bukkit.getLogger().warning("[ParticleEffect] Failed to create a particle packet!");
 			return null;
 		}
 	}
-	
+
 	private Object createPacket(final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed, final int amount) {
 		return createPacket(getName(), loc, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	private static Object createIconCrackPacket(final int id, final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed,
 	        final int amount) {
 		return createPacket("iconcrack_" + id, loc, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	private static Object createBlockCrackPacket(final int id, final byte data, final Location loc, final float offsetX, final float offsetY, final float offsetZ,
 	        final float speed, final int amount) {
 		return createPacket("blockcrack_" + id + "_" + data, loc, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	private static Object createBlockDustPacket(final int id, final byte data, final Location loc, final float offsetX, final float offsetY, final float offsetZ,
 	        final float speed, final int amount) {
 		return createPacket("blockdust_" + id + "_" + data, loc, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	private static void sendPacket(final Player p, final Object packet) {
 		// Denizen: Check player against NPC registry to prevent errors
 		if (packet != null && !p.hasMetadata("isNpc")) {
@@ -226,28 +226,29 @@ public enum ParticleEffect {
 			}
 		}
 	}
-	
+
 	private static void sendPacket(final Collection<Player> players, final Object packet) {
 		for (final Player p : players) {
 			sendPacket(p, packet);
 		}
 	}
-	
+
 	/**
 	 * Displays a particle effect which is only visible for specific players
 	 */
 	public void display(final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed, final int amount, final Player... players) {
 		sendPacket(Arrays.asList(players), this.createPacket(loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	// Denizen: Entire duplicate function
 	/**
 	 * Displays a particle effect which is only visible for specific players
 	 */
-	public void display(final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed, final int amount, final List<Player> players) {
+	public void display(final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed, final int amount,
+	        final List<Player> players) {
 		sendPacket(players, this.createPacket(loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays a particle effect which is visible for all players within the
 	 * maximum range of 100 blocks in the world of @param loc
@@ -255,7 +256,7 @@ public enum ParticleEffect {
 	public void display(final Location loc, final float offsetX, final float offsetY, final float offsetZ, final float speed, final int amount) {
 		this.display(loc, MAX_RANGE, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	/**
 	 * Displays a particle effect which is visible for all players within a
 	 * certain range in the the world of @param loc
@@ -268,7 +269,7 @@ public enum ParticleEffect {
 		}
 		sendPacket(getPlayersInRange(loc, range), this.createPacket(loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays an icon crack (item break) effect which is only visible for
 	 * specific players
@@ -277,7 +278,7 @@ public enum ParticleEffect {
 	        final int amount, final Player... players) {
 		sendPacket(Arrays.asList(players), createIconCrackPacket(id, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	// Denizen: Entire duplicate function
 	/**
 	 * Displays an icon crack (item break) effect which is only visible for
@@ -287,7 +288,7 @@ public enum ParticleEffect {
 	        final int amount, final List<Player> players) {
 		sendPacket(players, createIconCrackPacket(id, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays an icon crack (item break) effect which is visible for all
 	 * players within the maximum range of 20 blocks in the world of @param loc
@@ -296,7 +297,7 @@ public enum ParticleEffect {
 	        final int amount) {
 		displayIconCrack(loc, MAX_RANGE, id, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	/**
 	 * Displays an icon crack (item break) effect which is visible for all
 	 * players within a certain range in the the world of @param loc
@@ -308,7 +309,7 @@ public enum ParticleEffect {
 		}
 		sendPacket(getPlayersInRange(loc, range), createIconCrackPacket(id, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays a block crack (block break) effect which is only visible for
 	 * specific players
@@ -317,7 +318,7 @@ public enum ParticleEffect {
 	        final float speed, final int amount, final Player... players) {
 		sendPacket(Arrays.asList(players), createBlockCrackPacket(id, data, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays a block crack (block break) effect which is visible for all
 	 * players within the maximum range of 20 blocks in the world of @param loc
@@ -326,7 +327,7 @@ public enum ParticleEffect {
 	        final float speed, final int amount) {
 		displayBlockCrack(loc, MAX_RANGE, id, data, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	/**
 	 * Displays a block crack (block break) effect which is visible for all
 	 * players within a certain range in the the world of @param loc
@@ -338,7 +339,7 @@ public enum ParticleEffect {
 		}
 		sendPacket(getPlayersInRange(loc, range), createBlockCrackPacket(id, data, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays a block dust effect which is only visible for specific players
 	 */
@@ -346,7 +347,7 @@ public enum ParticleEffect {
 	        final float speed, final int amount, final Player... players) {
 		sendPacket(Arrays.asList(players), createBlockDustPacket(id, data, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 	/**
 	 * Displays a block dust effect which is visible for all players within the
 	 * maximum range of 20 blocks in the world of @param loc
@@ -355,7 +356,7 @@ public enum ParticleEffect {
 	        final float speed, final int amount) {
 		displayBlockDust(loc, MAX_RANGE, id, data, offsetX, offsetY, offsetZ, speed, amount);
 	}
-	
+
 	/**
 	 * Displays a block dust effect which is visible for all players within a
 	 * certain range in the the world of @param loc
@@ -367,5 +368,5 @@ public enum ParticleEffect {
 		}
 		sendPacket(getPlayersInRange(loc, range), createBlockDustPacket(id, data, loc, offsetX, offsetY, offsetZ, speed, amount));
 	}
-	
+
 }
