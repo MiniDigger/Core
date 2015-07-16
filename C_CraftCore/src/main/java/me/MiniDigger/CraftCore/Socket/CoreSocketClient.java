@@ -25,6 +25,8 @@ import java.net.URI;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
+import org.bukkit.scheduler.BukkitRunnable;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Socket.SocketClient;
 
@@ -47,6 +49,20 @@ public class CoreSocketClient extends WebSocketClient implements SocketClient {
 	@Override
 	public void onClose(final int code, final String reason, final boolean remote) {
 		Core.getCore().getInstance().info("[Client] Closed " + reason);
+		if (reason != null && reason.contains("error")) {
+			Core.getCore().getInstance().info("[Client] Restart it");
+			Core.getCore().getSocketHandler().startClient();
+			return;
+		}
+		Core.getCore().getInstance().info("[Client] Try to restart in 1min!");
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				Core.getCore().getInstance().info("[Client] Try to restart!");
+				Core.getCore().getSocketHandler().startClient();
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 60 * 20);
 	}
 	
 	@Override
