@@ -73,12 +73,17 @@ public class GameCommands {
 				}
 			}
 		}
-		// args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekanntes Spiel!").color(ChatColor.RED));
+		// args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekanntes
+		// Spiel!").color(ChatColor.RED));
 	}
 	
 	@Command(name = "game.leave", usage = "", consol = false, permission = "game.leave", description = "Verlässt ein Spiel", max = 0, sync = true)
 	public void leave(final CommandArgs args) {
 		for (final Game game : Core.getCore().getGameHandler().getGames(args.getUser())) {
+			if (Core.getCore().getGameHandler().getMainGame().getType().equals(game.getType()) && game.getType() != GameType.LOBBY) {
+				Core.getCore().getServerHandler().connect(args.getUser(), "lobby");
+			}
+			
 			if (game.getType() != GameType.TICTACTOE) {
 				Core.getCore().getGameHandler().leaveGame(args.getUser(), game);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Spiel verlassen").color(ChatColor.GREEN));
@@ -90,7 +95,7 @@ public class GameCommands {
 	
 	@Command(name = "game.info", usage = "", consol = false, permission = "game.info", description = "Zeigt Infos zu einem aktuellen Spiel bei", min = 1, max = 1)
 	public void info(final CommandArgs args) {
-		
+	
 	}
 	
 	@Command(name = "game.list", usage = "", consol = false, permission = "game.list", description = "Zeigt eine Liste mit allen aktiven Spielen", max = 0)
@@ -98,10 +103,8 @@ public class GameCommands {
 		Prefix.API.getPrefix().then("********** Games *********").color(ChatColor.GOLD).send(args.getPlayer());
 		for (final Game game : Core.getCore().getGameHandler().getGames()) {
 			Prefix.API.getPrefix().then("Game#" + game.getIdentifier()).send(args.getPlayer());
-			Prefix.API
-			        .getPrefix()
-			        .then(" * Typ: " + game.getType().name() + ", Spieler: " + game.getPlayers().size() + "(" + game.getSpecs().size() + "), Phase: "
-			                + game.getPhase().getName()).send(args.getPlayer());
+			Prefix.API.getPrefix().then(" * Typ: " + game.getType().name() + ", Spieler: " + game.getPlayers().size() + "(" + game.getSpecs().size() + "), Phase: "
+			        + game.getPhase().getName()).send(args.getPlayer());
 		}
 		Prefix.API.getPrefix().then("**************************").color(ChatColor.GOLD).send(args.getPlayer());
 	}

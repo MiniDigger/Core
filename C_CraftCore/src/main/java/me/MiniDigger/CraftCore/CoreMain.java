@@ -90,7 +90,7 @@ import mkremins.fanciful.FancyMessage;
 
 public class CoreMain extends JavaPlugin implements Main {
 	
-	private boolean	    update	= false;
+	private boolean		update	= false;
 	private static Core	core;
 	
 	/**
@@ -292,8 +292,9 @@ public class CoreMain extends JavaPlugin implements Main {
 		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_SOCKET);
 		try {
 			Core.getCore().getSocketHandler().registerPackets();
-			final String server = System.getProperty("server");
-			if (server != null && server.equalsIgnoreCase("true")) {
+			// final String server = System.getProperty("server");
+			// if (server != null && server.equalsIgnoreCase("true")) {
+			if (getConfig().contains("startserver") && getConfig().getBoolean("startserver")) {
 				_.log(LogLevel.INFO, LangKeyType.Socket.START);
 				Core.getCore().getSocketHandler().startServer();
 				_.log(LogLevel.INFO, LangKeyType.Socket.STARTED);

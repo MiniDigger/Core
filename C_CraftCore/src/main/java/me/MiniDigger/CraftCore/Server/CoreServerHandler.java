@@ -220,5 +220,4 @@ public class CoreServerHandler implements ServerHandler {
 		out.writeUTF(server);
 		user.getPlayer().sendPluginMessage(Core.getCore().getInstance(), "BungeeCord", out.toByteArray());
 	}
-	
 }

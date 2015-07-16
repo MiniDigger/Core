@@ -58,11 +58,11 @@ import mkremins.fanciful.FancyMessage;
 
 public class CoreSignChangers implements SignChangers {
 	
-	private final ArrayList<String>	                   edit	           = new ArrayList<>();
-	private final ArrayList<SignChanger>	           signchangers	   = new ArrayList<>();
-	private final ArrayList<Location>	               last_seen_signs	= new ArrayList<>();
+	private final ArrayList<String>						edit				= new ArrayList<>();
+	private final ArrayList<SignChanger>				signchangers		= new ArrayList<>();
+	private final ArrayList<Location>					last_seen_signs	= new ArrayList<>();
 	private final HashMap<Location, ArrayList<String>>	players_signs	= new HashMap<>();
-	public final ArrayList<String>	                   justJoined	   = new ArrayList<>();
+	public final ArrayList<String>						justJoined		= new ArrayList<>();
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -148,43 +148,43 @@ public class CoreSignChangers implements SignChangers {
 				}
 				final int i = 0;
 				// if (Core.getSQLHandler().getModProvider()
-				// .loadList(player.getName()) == null) {
-				// return 0 + "";
-				// }
-				// for (final ModEntry entry : Core.getSQLHandler()
-				// .getModProvider().loadList(player.getName())) {
-				// if (entry.getAction().equals(Action.WARN.name())) {
-				// i++;
-				// }
-				// }
+		        // .loadList(player.getName()) == null) {
+		        // return 0 + "";
+		        // }
+		        // for (final ModEntry entry : Core.getSQLHandler()
+		        // .getModProvider().loadList(player.getName())) {
+		        // if (entry.getAction().equals(Action.WARN.name())) {
+		        // i++;
+		        // }
+		        // }
 				return i + "";
 			}
 		});
-		addSignChanger(new SignChanger("[Teleport]", "signchanger.create.teleport", "Teleportiert den Spieler zum angegebenen Server") {
+		addSignChanger(new SignChanger("[Teleport]", "signchanger.create.teleport", "Teleportiert den Spieler zum angegebenen Server", true) {
 			
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
 				}
-				return "";
+				return "server";
 			}
 		});
-		addSignChanger(new SignChanger(ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]", "signchanger.create.full",
-		        "Wichtig für die Teleport Schilder") {
-			
-			@Override
-			public String getValue(final Player p, final Location loc) {
-				if (!(loc.getBlock().getState() instanceof Sign)) {
-					return ChatColor.RED + "fail";
-				}
-				if (Core.getCore().getUserHandler().get(p.getUniqueId()).hasPermission("premium.joinfull")) {
-					return ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "[KICKJOIN]";
-				} else {
-					return ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]";
-				}
-			}
-		});
+		addSignChanger(
+		        new SignChanger(ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]", "signchanger.create.full", "Wichtig für die Teleport Schilder") {
+			        
+			        @Override
+			        public String getValue(final Player p, final Location loc) {
+				        if (!(loc.getBlock().getState() instanceof Sign)) {
+					        return ChatColor.RED + "fail";
+				        }
+				        if (Core.getCore().getUserHandler().get(p.getUniqueId()).hasPermission("premium.joinfull")) {
+					        return ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "[KICKJOIN]";
+				        } else {
+					        return ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]";
+				        }
+			        }
+		        });
 		addSignChanger(new SignChanger("[R_", "signchanger.create.rank", "Zeigt den Rank in dem StatsType an") {
 			
 			@Override
@@ -391,10 +391,12 @@ public class CoreSignChangers implements SignChangers {
 		// sign.setLine(2, lines[2]);
 		// sign.setLine(3, lines[3]);
 		// sign.update();
-		// user.sendMessage(Prefix.API.getPrefix().then("Sign editiert!").color(ChatColor.GREEN));
+		// user.sendMessage(Prefix.API.getPrefix().then("Sign
+		// editiert!").color(ChatColor.GREEN));
 		// edit.remove(player.getName());
 		// } else {
-		// user.sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst keine Schilder editieren!").color(ChatColor.RED));
+		// user.sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst keine
+		// Schilder editieren!").color(ChatColor.RED));
 		// }
 		// }
 		// });
@@ -520,14 +522,18 @@ public class CoreSignChangers implements SignChangers {
 					}
 				}
 				if (full) {
-					try {
-						final String[] s = value.split(Pattern.quote("%:%"));
-						for (int i = 0; i < newLines.length; i++) {
-							newLines[i].setJson(new FancyMessage(s[i]).toJSONString());
-						}
-					} catch (final Exception ex) {
-						for (int i = 0; i < 4; i++) {
-							newLines[i].setJson(new FancyMessage(value).toJSONString());
+					if (value.equals("server")) {
+						newLines = Core.getCore().getServerHandler().getServerInfo(lines);
+					} else {
+						try {
+							final String[] s = value.split(Pattern.quote("%:%"));
+							for (int i = 0; i < newLines.length; i++) {
+								newLines[i].setJson(new FancyMessage(s[i]).toJSONString());
+							}
+						} catch (final Exception ex) {
+							for (int i = 0; i < 4; i++) {
+								newLines[i].setJson(new FancyMessage(value).toJSONString());
+							}
 						}
 					}
 				}
