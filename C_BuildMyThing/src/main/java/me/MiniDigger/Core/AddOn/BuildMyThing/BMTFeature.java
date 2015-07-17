@@ -282,7 +282,7 @@ public class BMTFeature extends CoreFeature {
 
 	private void modBoard(final Scoreboard board) {
 		board.clear(DisplaySlot.SIDEBAR);
-		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Punkte (von " + pointsneeded + ")", DisplaySlot.SIDEBAR));
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Punkte(von " + pointsneeded + ")", DisplaySlot.SIDEBAR));
 
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			final User u = Core.getCore().getUserHandler().get(id);

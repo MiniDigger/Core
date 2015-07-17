@@ -23,7 +23,9 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.BlockState;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFormEvent;
@@ -40,7 +42,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 public class MapResetFeature extends CoreFeature {
 	
 	private final List<BlockState>	changes	= new ArrayList<BlockState>();
-	private String	               map	    = "";
+	private String					map		= "";
 	
 	public MapResetFeature(final Phase phase) {
 		super(phase);
@@ -75,6 +77,10 @@ public class MapResetFeature extends CoreFeature {
 	public void end() {
 		for (int i = changes.size() - 1; i >= 0; i--) {
 			changes.get(i).update(true, false);
+		}
+		
+		for (Entity e : Bukkit.getWorld(map).getEntities()) {
+			e.remove();
 		}
 	}
 	
