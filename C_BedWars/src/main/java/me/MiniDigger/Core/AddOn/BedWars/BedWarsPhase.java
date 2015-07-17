@@ -56,7 +56,6 @@ import me.MiniDigger.Core.Villager.VillagerTrade;
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
-import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
@@ -99,7 +98,6 @@ public class BedWarsPhase extends CorePhase {
 	public void init() {
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
-		addFeature(new FixedFoodFeature(this));
 		final List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY);
 		allowed.add(EntityType.VILLAGER);
 		addFeature(new MobFeature(this, allowed));
@@ -119,7 +117,6 @@ public class BedWarsPhase extends CorePhase {
 		list.remove(Material.WOOL);
 		addFeature(new BuildFeature(this, list.toArray(new Material[list.size()])));
 		addFeature(new SpecateFeature(this));
-		addFeature(new BuildFeature(this, (Material) null));
 		addFeature(new SpawnersFeature(this));
 		addFeature(new TeamArmorFeature(this, false));
 
@@ -129,9 +126,9 @@ public class BedWarsPhase extends CorePhase {
 
 		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 
-		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.PINK, 20 * 1, null, bronce));
-		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 4, null, silver));
-		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 20, null, gold));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.PINK, 20 * 2, null, bronce));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 6, null, silver));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 30, null, gold));
 
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 

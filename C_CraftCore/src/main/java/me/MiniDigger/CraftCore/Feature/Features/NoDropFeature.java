@@ -61,18 +61,19 @@ public class NoDropFeature extends CoreFeature {
 	
 	@Override
 	public void start() {
-		
+	
 	}
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	@EventHandler
 	public void onDrop(final PlayerDropItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			e.setCancelled(true);
+			e.getItemDrop().remove();
 			Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 				
 				@Override
