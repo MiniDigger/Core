@@ -34,9 +34,9 @@ import me.MiniDigger.Core.Dependencies.DependencyHanlder;
 
 public class CoreDependencyHandler implements DependencyHanlder {
 	
-	private static final int	   BYTE_SIZE	 = 1024;
+	private static final int BYTE_SIZE = 1024;
 	
-	private final List<Dependency>	dependencies	= new ArrayList<Dependency>();
+	private final List<Dependency> dependencies = new ArrayList<Dependency>();
 	
 	public CoreDependencyHandler() {
 		dependencies.add(new CoreDependency("ProtocolLib", "73"));
@@ -53,10 +53,13 @@ public class CoreDependencyHandler implements DependencyHanlder {
 			
 			@Override
 			public boolean accept(final File dir, final String name) {
-				return name.endsWith(".jar");
+				return name.contains(".jar");
 			}
 		})) {
 			if (p.getName().startsWith(d.getName())) {
+				if (p.getName().endsWith(".dis")) {
+					return false;
+				}
 				return p.getName().equals(d.getFullName());
 			}
 		}
@@ -73,8 +76,8 @@ public class CoreDependencyHandler implements DependencyHanlder {
 	}
 	
 	private void download(final Dependency d) {
-		saveFile(new File(Core.getCore().getInstance().getDataFolder().getParent()), d.getFullName() + ".jar", "http://api.minidigger.me/dependencies/" + d.getFullName()
-		        + ".jar");
+		saveFile(new File(Core.getCore().getInstance().getDataFolder().getParent()), d.getFullName() + ".jar",
+		        "http://api.minidigger.me/dependencies/" + d.getFullName() + ".jar");
 	}
 	
 	private void saveFile(final File folder, final String file, final String link) {
