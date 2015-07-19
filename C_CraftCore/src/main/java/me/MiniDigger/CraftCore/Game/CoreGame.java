@@ -246,7 +246,15 @@ public class CoreGame implements Game {
 		final Location loc = Core.getCore().getWorldHandler().getFallbackLoc();
 		for (final User w : winner) {
 			if (w != null) {
-				w.getPlayer().teleport(loc);
+				if (loc != null) {
+					try {
+						w.getPlayer().teleport(loc);
+					} catch (Exception e) {
+						System.out.println("can't tp to fallback2....");
+					}
+				} else {
+					System.out.println("can't tp to fallback....");
+				}
 			}
 		}
 		

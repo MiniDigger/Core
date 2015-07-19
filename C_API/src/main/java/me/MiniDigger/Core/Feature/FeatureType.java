@@ -79,7 +79,8 @@ public enum FeatureType {
 	KISTENKRIEG,
 	IF,
 	WORLDBOARDER,
-	EH;
+	EH,
+	NOINVENTORY;
 
 	/**
 	 * @return A human readable name for the feature

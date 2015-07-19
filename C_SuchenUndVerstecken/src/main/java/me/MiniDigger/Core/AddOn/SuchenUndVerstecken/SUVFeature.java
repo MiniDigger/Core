@@ -27,6 +27,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -43,6 +44,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
@@ -79,9 +81,13 @@ public class SUVFeature extends CoreFeature {
 	public void start() {
 		try {
 			sucher1 = UUID.fromString(getPhase().getGame().getGameData("sucher1"));
+			Bukkit.getPlayer(sucher1).getInventory()
+			        .setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.LIGHT_PURPLE)).build());
 		} catch (final Exception ex) {}
 		try {
 			sucher2 = UUID.fromString(getPhase().getGame().getGameData("sucher2"));
+			Bukkit.getPlayer(sucher2).getInventory()
+			        .setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
 		} catch (final Exception ex) {}
 		
 		showLives();
@@ -162,12 +168,8 @@ public class SUVFeature extends CoreFeature {
 			// User s = Core.getCore().getUserHandler().get(id1);
 			final User v = Core.getCore().getUserHandler().get(id2);
 			
-			v.getPlayer().damage(9000.0);
-			final Location l = v.getPlayer().getLocation();
-			l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
-			
 			if (id1.equals(sucher1) && t.getTeams().get(0).getPlayers().contains(id2)) {
-				System.out.println("stage1");
+				System.out.println("id1 is sucher1 and id2 in team 0");
 				final User os = Core.getCore().getUserHandler().get(sucher2);
 				if (os == null || os.getPlayer() == null) {
 					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
@@ -181,8 +183,12 @@ public class SUVFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
 					        .then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler in diesem Team am Leben!"));
 				}
+				
+				v.getPlayer().damage(9000.0);
+				final Location l = v.getPlayer().getLocation();
+				l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			} else if (id1.equals(sucher2) && t.getTeams().get(1).getPlayers().contains(id2)) {
-				System.out.println("stage2");
+				System.out.println("id1 is sucher2 and id2 in team 1");
 				final User os = Core.getCore().getUserHandler().get(sucher1);
 				if (os == null || os.getPlayer() == null) {
 					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
@@ -196,6 +202,10 @@ public class SUVFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
 					        .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler in diesem Team am Leben!"));
 				}
+				
+				v.getPlayer().damage(9000.0);
+				final Location l = v.getPlayer().getLocation();
+				l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			} else {
 				System.out.println("cmon");
 			}
@@ -209,15 +219,16 @@ public class SUVFeature extends CoreFeature {
 		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		if (t.getTeams().size() > 1) {
 			if (t.getTeams().get(0).getPlayers().size() == 0) {
-				final User w = Core.getCore().getUserHandler().get(sucher2);
+				final User w = Core.getCore().getUserHandler().get(sucher1);
 				final User[] ww = new User[t.getTeams().get(1).getPlayers().size() + 1];
 				for (int i = 1; i < ww.length - 1; i++) {
 					ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(1).getPlayers().get(i));
 				}
 				ww[0] = w;
-				getPhase().getGame().end(w);
+				getPhase().getGame().end(w); // TODO it is not w but ww here,
+				                             // but pssst ;D
 			} else if (t.getTeamCount() > 1 && t.getTeams().get(1).getPlayers().size() == 0) {
-				final User w = Core.getCore().getUserHandler().get(sucher1);
+				final User w = Core.getCore().getUserHandler().get(sucher2);
 				final User[] ww = new User[t.getTeams().get(0).getPlayers().size() + 1];
 				for (int i = 1; i < ww.length - 1; i++) {
 					ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(0).getPlayers().get(i));

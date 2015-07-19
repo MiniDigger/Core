@@ -189,6 +189,13 @@ public class TeamSelectFeature extends CoreFeature {
 						teams.add(t);
 					}
 					
+					try{
+					teams.get(1).setColor(ChatColor.LIGHT_PURPLE);
+					teams.get(0).setColor(ChatColor.GREEN);
+					}catch(Exception ex){
+						
+					}
+					
 					HashMap<String, Integer> sizes = calcSizes();
 					
 					for (UUID id : getPhase().getGame().getPlayers()) {

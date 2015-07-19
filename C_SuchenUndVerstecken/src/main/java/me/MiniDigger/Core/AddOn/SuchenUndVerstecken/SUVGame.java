@@ -20,6 +20,8 @@
  */
 package me.MiniDigger.Core.AddOn.SuchenUndVerstecken;
 
+import org.bukkit.event.inventory.InventoryOpenEvent;
+
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -27,6 +29,9 @@ import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoInventoryFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoInventoryInteractionFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoNameTagFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang._;
@@ -36,22 +41,22 @@ import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class SUVGame extends CoreGame {
-
+	
 	LobbyPhase	lobby;
 	VotePhase	vote;
 	GracePhase	grace;
 	SUVPhase	suv;
 	PostPhase	post;
-
+	
 	public SUVPhase getSuvPhase() {
 		return suv;
 	}
-
+	
 	@Override
 	public GameType getType() {
 		return GameType.SUV;
 	}
-
+	
 	@Override
 	public void init() {
 		super.maxplayers = 16;
@@ -67,6 +72,10 @@ public class SUVGame extends CoreGame {
 		vote.addFeature(new TeamSelectFeature(vote, suv, 20, 2));
 		vote.addFeature(new SUVSelectFeature(vote));
 
+		grace.addFeature(new NoInventoryFeature(grace));
+		grace.addFeature(new NoInventoryInteractionFeature(grace));
+		grace.addFeature(new NoNameTagFeature(grace));
+		
 		grace.setNextPhase(suv);
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
@@ -79,7 +88,7 @@ public class SUVGame extends CoreGame {
 		setPhase(lobby);
 		super.init();
 	}
-
+	
 	@Override
 	public void end(final User... winner) {
 		if (winner != null && winner.length == 1) {
@@ -87,20 +96,20 @@ public class SUVGame extends CoreGame {
 			if (w != null) {
 				_.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
 				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
-
+				
 				leave(w);
 			}
 		}
 		broadCastMessage(LangKeyType.Game.END, MsgType.IMPORTANT);
 		super.end(winner);
 	}
-
+	
 	@Override
 	public void start() {
 		super.start();
-
+		
 		lobby.init();
-
+		
 		getPhase().startPhase();
 	}
 }
