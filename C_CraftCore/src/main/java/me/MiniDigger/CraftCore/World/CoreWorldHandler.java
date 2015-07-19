@@ -59,11 +59,18 @@ public class CoreWorldHandler implements WorldHandler {
 	public Location getFallbackLoc() {
 		// return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
 		if (Bukkit.getWorld("Spawn") != null) {
+			System.out.println("spawn");
 			final MapData map = Core.getCore().getMapHandler().getMap("Spawn");
 			if (map != null) {
 				return (Location) map.getLocs(DyeColor.RED).values().toArray()[0];
 			}
+		} else {
+			System.out.println("lobby");
+			if (Bukkit.getWorld(Core.getCore().getGameHandler().getMainGame().getType().getAbk() + "_Lobby") != null) {
+				return new Location(Bukkit.getWorld("Spawn"), -38, 4, -41);
+			}
 		}
+		System.out.println("fallback");
 		return new Location(Bukkit.getWorld("Spawn"), -937.5, 38.0, -768.5);
 	}
 	
