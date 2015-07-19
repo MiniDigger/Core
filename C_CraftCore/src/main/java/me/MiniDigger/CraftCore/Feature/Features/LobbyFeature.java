@@ -82,13 +82,13 @@ public class LobbyFeature extends CoreFeature {
 			try {
 				Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
 			} catch (final Exception ex) {
-				try {
-					Core.getCore().getMenuHandler().openMenu(u, "game");
-				} catch (final Exception ex1) {
-					try {
-						Core.getCore().getMenuHandler().openMenu(u, "menu");
-					} catch (final Exception ex2) {}
-				}
+//				try {
+//					Core.getCore().getMenuHandler().openMenu(u, "game");
+//				} catch (final Exception ex1) {
+//					try {
+//						Core.getCore().getMenuHandler().openMenu(u, "menu");
+//					} catch (final Exception ex2) {}
+//				}
 			}
 		}
 	}

@@ -43,7 +43,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TeamArmorFeature extends CoreFeature {
 	
-	private final boolean	giveOnStartUp;
+	private final boolean giveOnStartUp;
 	
 	public TeamArmorFeature(final Phase phase, final boolean giveOnStartup) {
 		super(phase);
@@ -78,6 +78,7 @@ public class TeamArmorFeature extends CoreFeature {
 				final TeamFeature f = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				
 				if (f.getTeam(p) == null) {
+					System.out.println("no team for player " + p.getName());
 					continue;
 				}
 				
@@ -88,6 +89,8 @@ public class TeamArmorFeature extends CoreFeature {
 				
 				final LeatherArmorMeta meta = (LeatherArmorMeta) head.getItemMeta();
 				meta.setColor(Core.getCore().getChatColorUtil().toColor(f.getTeam(p).getColor()));
+				
+				System.out.println("use color " + meta.getColor().toString() + " for player " + p.getName() + " from team " + f.getTeam(p).getName());
 				
 				head.setItemMeta(meta);
 				body.setItemMeta(meta);

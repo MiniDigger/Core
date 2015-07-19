@@ -122,7 +122,7 @@ public class CoreGameHandler implements GameHandler {
 		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
 		Core.getCore().getMenuHandler().closeMenu(user);
-		
+	
 		final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent(event);
 	}

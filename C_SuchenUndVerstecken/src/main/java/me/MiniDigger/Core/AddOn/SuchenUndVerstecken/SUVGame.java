@@ -58,7 +58,7 @@ public class SUVGame extends CoreGame {
 
 		setGameData("Lobby", "Lobby");
 
-		lobby = new LobbyPhase(this, null, 5);
+		lobby = new LobbyPhase(this, null, 20);
 		vote = new VotePhase(this, null, 30);
 		grace = new GracePhase(this, null, 15000);
 		suv = new SUVPhase(this);
