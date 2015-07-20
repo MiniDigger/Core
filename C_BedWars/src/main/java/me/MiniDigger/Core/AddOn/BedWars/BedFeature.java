@@ -165,7 +165,7 @@ public class BedFeature extends CoreFeature {
 			} catch (final Exception ex) {
 				System.out.println("tdm respawn bed error: " + ex.getMessage());
 			}
-			e.setRespawnLocation(bed.add(0.5, 1, 0.5));
+			e.setRespawnLocation(bed.clone().add(0.5, 1, 0.5));
 		}
 	}
 
