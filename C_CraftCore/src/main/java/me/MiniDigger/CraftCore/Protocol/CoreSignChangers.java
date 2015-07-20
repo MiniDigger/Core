@@ -313,7 +313,7 @@ public class CoreSignChangers implements SignChangers {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
 					return ChatColor.RED + "fail";
 				}
-				return ChatColor.RED + "Klicke hier, um%:%dein aktuelles%:%Spiel zu%:%verlassen";
+				return ChatColor.RED + "Klicke hier, um%:%" + ChatColor.RED + "dein aktuelles%:%" + ChatColor.RED + "Spiel zu%:%" + ChatColor.RED + "verlassen";
 			}
 		});
 		addSignChanger(new SignChanger("[GameJ]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
