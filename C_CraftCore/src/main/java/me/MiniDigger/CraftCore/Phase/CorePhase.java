@@ -217,7 +217,7 @@ public abstract class CorePhase implements Phase {
 		return result;
 	}
 	
-	@Command(name = "end", description = "beendet das Spiel", usage = "", permission = "end", max = 0, sync = true)
+	@Command(name = "endgame", description = "beendet das Spiel", usage = "", permission = "end", max = 0, sync = true)
 	public void end(final CommandArgs args) {
 		getGame().broadCastMessage(Prefix.API.getPrefix().then("Das Spiel wurde von einem Admin beendet!").color(ChatColor.RED));
 		

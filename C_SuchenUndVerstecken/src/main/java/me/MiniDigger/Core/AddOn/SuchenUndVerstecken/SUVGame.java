@@ -20,8 +20,6 @@
  */
 package me.MiniDigger.Core.AddOn.SuchenUndVerstecken;
 
-import org.bukkit.event.inventory.InventoryOpenEvent;
-
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -59,7 +57,7 @@ public class SUVGame extends CoreGame {
 	
 	@Override
 	public void init() {
-		super.maxplayers = 16;
+		super.maxplayers = 66;
 
 		setGameData("Lobby", "Lobby");
 
