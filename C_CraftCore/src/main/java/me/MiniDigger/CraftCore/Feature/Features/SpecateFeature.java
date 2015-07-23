@@ -95,6 +95,8 @@ public class SpecateFeature extends CoreFeature {
 		getPhase().getGame().addSpec(user.getUUID());
 		user.getPlayer().setGameMode(GameMode.SPECTATOR);
 		
+		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
+		
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 			
 			@Override
