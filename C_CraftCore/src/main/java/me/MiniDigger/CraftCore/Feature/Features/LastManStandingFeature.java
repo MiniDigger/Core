@@ -147,9 +147,8 @@ public class LastManStandingFeature extends CoreFeature {
 					}
 				}, 10);// till respawn is finished
 			} else {
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch ").color(ChatColor.AQUA)
-				                .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
+				getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch ").color(ChatColor.AQUA)
+				        .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
 			}
 			showLives();
 		}
@@ -183,9 +182,8 @@ public class LastManStandingFeature extends CoreFeature {
 					}
 				}, 10);// till respawn is finished
 			} else {
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch ").color(ChatColor.AQUA)
-				                .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
+				getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch ").color(ChatColor.AQUA)
+				        .then(getPhase().getGame().getPlayers().size() + "").color(ChatColor.BLUE).then(" Spieler am leben!").color(ChatColor.AQUA));
 			}
 		}
 		showLives();

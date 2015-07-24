@@ -44,7 +44,7 @@ public class IFGame extends CoreGame {
 
 	@Override
 	public GameType getType() {
-		return GameType.OITC;
+		return GameType.IF;
 	}
 
 	@Override

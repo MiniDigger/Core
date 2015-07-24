@@ -189,6 +189,10 @@
 			<id>citizens</id><!-- Citizens -->
 			<url>http://repo.citizensnpcs.co/</url>
 		</repository>
+		<repository><!-- Lib's Disguises -->
+			<id>libs</id>
+			<url>http://psmc.ca/repo/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -286,6 +290,12 @@
 			<groupId>net.citizensnpcs</groupId>
 			<artifactId>citizens</artifactId>
 			<version>2.0.14-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>LibsDisguises</groupId>
+			<artifactId>LibsDisguises</artifactId>
+			<version>8.6.2-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

@@ -362,6 +362,18 @@
       <version>2.0.14-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>LibsDisguises</groupId>
+      <artifactId>LibsDisguises</artifactId>
+      <version>8.6.2-SNAPSHOT</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>bukkit</artifactId>
+          <groupId>org.bukkit</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
   <reporting>
     <plugins>
