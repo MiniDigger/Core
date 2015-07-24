@@ -18,7 +18,8 @@
 			"${maven.dependency.ru.tehkode.PermissionsEx.jar.path}"
 			"${maven.dependency.avalon-framework.avalon-framework.jar.path}"
 			"${maven.dependency.commons-logging.commons-logging.jar.path}"
-			"${maven.dependency.com.wacos.NametagEdit.jar.path}</path>
+			"${maven.dependency.com.wacos.NametagEdit.jar.path}"
+			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}</path>
 	</properties>
 
 	<reporting>
