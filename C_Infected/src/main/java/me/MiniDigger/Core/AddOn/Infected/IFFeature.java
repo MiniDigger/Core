@@ -75,8 +75,13 @@ public class IFFeature extends CoreFeature {
 		int count = getPhase().getGame().getPlayers().size() / 6;
 		System.out.println("count " + count);
 		
-		for (int i = 0; i < count; i++) {
+		if (count != 0) {
+			for (int i = 0; i < count; i++) {
+				infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
+			}
+		}else{
 			infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
+			System.out.println("no zombies....");
 		}
 		
 		for (UUID id : infeced) {
@@ -88,7 +93,7 @@ public class IFFeature extends CoreFeature {
 			DisguiseAPI.disguiseToAll(user.getPlayer(), zombie);
 		}
 		
-		start();
+		startTimer();
 	}
 	
 	public void startTimer() {

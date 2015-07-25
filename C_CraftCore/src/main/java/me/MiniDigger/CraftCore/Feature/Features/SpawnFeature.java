@@ -45,7 +45,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 public class SpawnFeature extends CoreFeature {
 	
 	private DyeColor	locKey;
-	private boolean	 spawn;
+	private boolean		spawn;
 	
 	public SpawnFeature(final Phase phase, final boolean spawn) {
 		super(phase);
@@ -59,7 +59,7 @@ public class SpawnFeature extends CoreFeature {
 	}
 	
 	private List<Location>	usedSpawns;
-	private Location[]	   spawns;
+	private Location[]		spawns;
 	
 	public boolean spawn() {
 		return spawn;
@@ -95,9 +95,14 @@ public class SpawnFeature extends CoreFeature {
 	public void start() {
 		usedSpawns = new ArrayList<>();
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+		if (data == null) {
+			System.out.println("no map to spawn!");
+			return;
+		}
 		final HashMap<String, Location> spawns = data.getLocs(locKey);
 		if (spawns == null) {
 			System.out.println("spawns null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{" + data.getOldName() + "}");
+			return;
 		}
 		this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
 		if (spawn) {

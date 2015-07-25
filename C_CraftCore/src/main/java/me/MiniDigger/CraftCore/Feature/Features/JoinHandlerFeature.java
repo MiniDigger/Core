@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.DyeColor;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 
 import me.MiniDigger.Core.Core;
@@ -70,7 +71,7 @@ public class JoinHandlerFeature extends CoreFeature {
 	
 	@Override
 	public void end() {
-		
+	
 	}
 	
 	@EventHandler
@@ -79,7 +80,10 @@ public class JoinHandlerFeature extends CoreFeature {
 			if (getPhase().getGame().allowJoin()) {
 				Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
 				try {
-					e.getUser().getPlayer().teleport(((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap().getLocs(DyeColor.RED).get(0));
+					Location loc = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap().getLocs(DyeColor.RED).get(0);
+					if (loc != null) {
+						e.getUser().getPlayer().teleport(loc);
+					}
 				} catch (final Exception ex) {
 					System.out.println("error while join tp");
 				}
