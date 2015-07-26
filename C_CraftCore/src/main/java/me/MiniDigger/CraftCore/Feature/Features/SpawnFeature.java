@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -105,10 +106,14 @@ public class SpawnFeature extends CoreFeature {
 			return;
 		}
 		this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
-		if (spawn) {
-			for (final UUID id : getPhase().getGame().getPlayers()) {
-				spawn(Core.getCore().getUserHandler().get(id));
+		if (this.spawns != null || this.spawns.length == 0) {
+			if (spawn) {
+				for (final UUID id : getPhase().getGame().getPlayers()) {
+					spawn(Core.getCore().getUserHandler().get(id));
+				}
 			}
+		} else {
+			System.out.println("spawns null on start");
 		}
 	}
 	
@@ -123,12 +128,32 @@ public class SpawnFeature extends CoreFeature {
 	public void end() {
 		usedSpawns = null;
 		spawns = null;
+		System.out.println("end spawnfeature");
 	}
 	
 	public Location spawn(final User user) {
+		if (spawns == null) {
+			usedSpawns = new ArrayList<>();
+			MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+			if (data == null) {
+				System.out.println("no map to spawn2!");
+				
+				((MapFeature) getPhase().getFeature(FeatureType.MAP)).setMap(getPhase().getGame().getGameData("VoteWinner"));
+				data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+			}
+			
+			final HashMap<String, Location> spawns = data.getLocs(locKey);
+			if (spawns == null) {
+				System.out.println("spawns2 null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{" + data.getOldName() + "}");
+				return null;
+			}
+			this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
+		}
+		
 		if (usedSpawns.size() >= spawns.length) {
 			usedSpawns = new ArrayList<>();
 		}
+		
 		int counter = 0;// To prevent invinitiv loop
 		while (true) {
 			final Location loc = spawns[Core.getCore().getRandomUtil().nextInt(spawns.length)].clone();
@@ -148,7 +173,17 @@ public class SpawnFeature extends CoreFeature {
 			usedSpawns.add(loc);
 			loc.add(0.5, 0.5, 0.5);
 			try {
-				user.getPlayer().teleport(loc);
+				System.out.println("respawn2");
+				System.out.println("loc: " + loc);
+				if (user.getPlayer().getLocation().distance(loc) > 5) {
+					Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
+						
+						@Override
+						public void run() {
+							user.getPlayer().teleport(loc);
+						}
+					}, 5);
+				}
 			} catch (final Exception ex) {
 				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 					
@@ -183,10 +218,11 @@ public class SpawnFeature extends CoreFeature {
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void onRespawn(final PlayerRespawnEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (getPhase().getGame().getPlayers().contains(user.getUUID())) {
+			System.out.println("respawn");
 			e.setRespawnLocation(spawn(user));
 		}
 	}

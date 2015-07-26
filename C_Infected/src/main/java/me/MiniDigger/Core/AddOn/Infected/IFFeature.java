@@ -25,17 +25,25 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.DisplaySlot;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
+import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
@@ -79,7 +87,7 @@ public class IFFeature extends CoreFeature {
 			for (int i = 0; i < count; i++) {
 				infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
 			}
-		}else{
+		} else {
 			infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
 			System.out.println("no zombies....");
 		}
@@ -89,11 +97,19 @@ public class IFFeature extends CoreFeature {
 			Prefix.IF.getPrefix().then("Du bist einer der ersten Zombies!").color(ChatColor.GOLD).send(user.getPlayer());
 			Prefix.IF.getPrefix().then("Töte alle Überlebenden um sie zu infizieren!").color(ChatColor.GOLD).send(user.getPlayer());
 			
+			Core.getCore().getPlayerUtil().prepare(user.getPlayer());
+			user.getPlayer().getInventory().setHelmet(new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).build());
+			user.getPlayer().getInventory().addItem(new CoreItemBuilder(Material.WOOD_SWORD).build());
+			user.getPlayer().updateInventory();
+			
 			MobDisguise zombie = new MobDisguise(DisguiseType.ZOMBIE);
 			DisguiseAPI.disguiseToAll(user.getPlayer(), zombie);
+			DisguiseAPI.disguiseIgnorePlayers(user.getPlayer(), zombie, user.getPlayer());
 		}
 		
 		startTimer();
+		
+		updateBoards();
 	}
 	
 	public void startTimer() {
@@ -117,10 +133,51 @@ public class IFFeature extends CoreFeature {
 					}
 					
 					user.getPlayer().setLevel(time);
-					user.getPlayer().setExp((float) (0.3 * time) / 10);
+					user.getPlayer().setExp((float) (0.0333333 * time) / 10);
 				}
 			}
 		}, 20, 20, getPhase());
+	}
+	
+	public void updateBoards() {
+		final List<UUID> retry = new ArrayList<UUID>();
+		
+		for (final UUID id : getPhase().getGame().getPlayers()) {
+			try {
+				modBoard(Core.getCore().getScoreboardHandler().getBoard(id));
+				Core.getCore().getScoreboardHandler().update(id);
+			} catch (final Exception ex) {
+				retry.add(id);
+			}
+		}
+		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (final UUID id : retry) {
+					try {
+						modBoard(Core.getCore().getScoreboardHandler().getBoard(id));
+						Core.getCore().getScoreboardHandler().update(id);
+					} catch (final Exception ex) {
+						retry.add(id);
+					}
+				}
+			}
+		}, 10, getPhase());
+	}
+	
+	private void modBoard(final Scoreboard board) {
+		int ifcount = infeced.size();
+		int playercount = getPhase().getGame().getPlayers().size();
+		int alive = playercount - ifcount;
+		
+		board.clear(DisplaySlot.SIDEBAR);
+		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Infected", DisplaySlot.SIDEBAR));
+		
+		board.addLine(new CoreScoreboardLine(3, ChatColor.GOLD + ChatChars.Misc.bullet + " Überlebende:", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(2, ChatColor.AQUA + " " + alive, DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(1, ChatColor.GOLD + ChatChars.Misc.bullet + " Zombies:", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(0, ChatColor.AQUA + " " + ifcount + " ", DisplaySlot.SIDEBAR));
 	}
 	
 	public void cure() {
@@ -142,6 +199,7 @@ public class IFFeature extends CoreFeature {
 	@EventHandler
 	public void onUserDeath(final CoreUserDeathEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			e.setKeepDrops(true);
 			if (infeced.contains(e.getUser().getUUID())) {
 				if (cure) {
 					getPhase().getGame().leave(e.getUser());
@@ -150,11 +208,18 @@ public class IFFeature extends CoreFeature {
 				infeced.add(e.getUser().getUUID());
 				Prefix.IF.getPrefix().then("Du bist jetzt ein Zombie!").color(ChatColor.GOLD).send(e.getUser().getPlayer());
 				Prefix.IF.getPrefix().then("Töte die letzten Überlebenen!").color(ChatColor.GOLD).send(e.getUser().getPlayer());
-				
-				MobDisguise zombie = new MobDisguise(DisguiseType.ZOMBIE);
-				DisguiseAPI.disguiseToAll(e.getUser().getPlayer(), zombie);
 			}
 			
+			Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
+			e.getUser().getPlayer().getInventory().setHelmet(new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).build());
+			e.getUser().getPlayer().getInventory().addItem(new CoreItemBuilder(Material.WOOD_SWORD).build());
+			e.getUser().getPlayer().updateInventory();
+			
+			MobDisguise zombie = new MobDisguise(DisguiseType.ZOMBIE);
+			DisguiseAPI.disguiseToAll(e.getUser().getPlayer(), zombie);
+			DisguiseAPI.disguiseIgnorePlayers(e.getUser().getPlayer(), zombie, e.getUser().getPlayer());
+			
+			updateBoards();
 			checkEnd();
 		}
 	}
@@ -188,6 +253,34 @@ public class IFFeature extends CoreFeature {
 				getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Die Menschheit ist gerettet!").color(ChatColor.GOLD));
 				
 				getPhase().getGame().end();
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerDmg(CoreUserDamageEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			boolean damagerZombie = false;
+			boolean damagedZombie = false;
+			
+			if (e.getDamager() != null) {
+				if (infeced.contains(e.getDamager().getUUID())) {
+					damagerZombie = true;
+				}
+			}
+			
+			if (infeced.contains(e.getDamaged().getUUID())) {
+				damagedZombie = true;
+			}
+			
+			if (damagedZombie && damagerZombie) {
+				e.setCancelled(true);
+				e.setDmg(0.0);
+			}
+			
+			if (!damagedZombie && !damagedZombie) {
+				e.setCancelled(true);
+				e.setDmg(0.0);
 			}
 		}
 	}

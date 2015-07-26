@@ -23,6 +23,8 @@ package me.MiniDigger.CraftCore.Util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -120,6 +122,7 @@ public class CorePlayerUtil implements PlayerUtil {
 		p.setGameMode(GameMode.SURVIVAL);
 		p.setFlying(false);
 		p.setAllowFlight(false);
+		p.setFireTicks(0);
 	}
 	
 }

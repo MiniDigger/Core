@@ -23,7 +23,9 @@ package me.MiniDigger.CraftCore.Phase.Phases;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
@@ -110,6 +112,15 @@ public class VotePhase extends CoreTimedPhase {
 		Core.getCore().getWorldHandler().copyWorld(map);
 		Core.getCore().getWorldHandler().loadWorld(map);
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(vote.getWinner());
+		((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
+		
+		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
+			
+			@Override
+			public void run() {
+				((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
+			}
+		}, 20);
 		
 		getGame().setAllowJoin(false);
 		getGame().setAllowSpectate(true);
