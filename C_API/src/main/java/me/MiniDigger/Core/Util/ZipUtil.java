@@ -21,7 +21,7 @@
 package me.MiniDigger.Core.Util;
 
 public interface ZipUtil {
-
+	
 	/**
 	 * Zips a folder
 	 *

@@ -23,7 +23,7 @@ package me.MiniDigger.Core.Util;
 import java.io.File;
 
 public interface FileUtil {
-
+	
 	/**
 	 * Deletes a whole directory
 	 *

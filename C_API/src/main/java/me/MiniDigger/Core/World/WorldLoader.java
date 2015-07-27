@@ -24,7 +24,7 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
 public interface WorldLoader {
-
+	
 	/**
 	 * Loads a world with the given creator
 	 *

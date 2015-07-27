@@ -21,26 +21,26 @@
 package me.MiniDigger.Core.Regen;
 
 public interface RegenHandler {
-
+	
 	/**
 	 * Starts listening to block events
 	 *
 	 * @param w
 	 */
 	public void startLooking(final Regen w);
-
+	
 	/**
 	 * Stops listening to block events
 	 *
 	 * @param w
 	 */
 	public void stopLooking(final Regen w);
-
+	
 	/**
 	 * Resets all words
 	 */
 	public void resetAll();
-
+	
 	/**
 	 * Returns an object for he world
 	 *

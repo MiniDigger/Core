@@ -29,26 +29,26 @@ import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class CagePhase extends CoreTimedPhase {
-
+	
 	public CagePhase(final SGGame sgGame, final Phase next, final int i) {
 		super(sgGame, next, i);
 	}
-
+	
 	@Override
 	public String getName() {
 		return "";
 	}
-
+	
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-
+	
 	@Override
 	public boolean displayLevel() {
 		return true;
 	}
-
+	
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -64,18 +64,18 @@ public class CagePhase extends CoreTimedPhase {
 		addFeature(new SpecateFeature(this));
 		addFeature(new MapInfoFeature(this));
 	}
-
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void startPhase() {
 		final String winner = getGame().getGameData("VoteWinner");
-
+		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
-
+		
 		final MapData m = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
-
+		
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-
+			
 			@Override
 			public void run() {
 				final Location power = m.getLocs(DyeColor.ORANGE).values().iterator().next();
@@ -90,17 +90,17 @@ public class CagePhase extends CoreTimedPhase {
 				b.getState().update(true, true);
 			}
 		}, 2, this);
-
+		
 		super.startPhase();
 	}
-
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void endPhase() {
 		final MapData m = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
-
+		
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-
+			
 			@Override
 			public void run() {
 				final Location power = m.getLocs(DyeColor.ORANGE).values().iterator().next();
@@ -115,11 +115,11 @@ public class CagePhase extends CoreTimedPhase {
 				b.getState().update(true, true);
 			}
 		}, 20, this);
-
+		
 		getNextPhase().init();
 		((SpawnFeature) getNextPhase().getFeature(FeatureType.SPAWN)).setSpawn(false);
-
+		
 		super.endPhase();
 	}
-
+	
 }

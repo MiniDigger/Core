@@ -21,7 +21,7 @@
 package me.MiniDigger.Core.Util;
 
 public interface BaseUtil {
-
+	
 	/**
 	 * Encodes the given string into Base64
 	 *
@@ -30,7 +30,7 @@ public interface BaseUtil {
 	 * @return the encoded string
 	 */
 	public String encode(final String s);
-
+	
 	/**
 	 * Decodes the given Base64 string back to the raw input
 	 *

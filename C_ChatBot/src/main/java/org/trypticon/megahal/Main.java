@@ -14,7 +14,7 @@ import org.trypticon.megahal.engine.MegaHAL;
  * @author Trejkaz
  */
 public class Main {
-
+	
 	/**
 	 * Main method.
 	 *
@@ -28,10 +28,10 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// private boolean typingDelay = false;
 	// private boolean speech = false;
-
+	
 	/**
 	 * Runs the main program.
 	 *
@@ -40,19 +40,19 @@ public class Main {
 	 */
 	public void run() throws IOException {
 		final MegaHAL hal = new MegaHAL(new File("data"));
-
+		
 		final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		final PrintWriter out = new PrintWriter(System.out, true);
-
+		
 		while (true) {
 			out.print("User> ");
 			out.flush();
-
+			
 			final String line = in.readLine();
 			if (line == null) {
 				break;
 			}
-
+			
 			String replyLine = hal.formulateReply(line);
 			if (replyLine == null) {
 				replyLine = "I don't know enough to respond to you yet.";
@@ -60,5 +60,5 @@ public class Main {
 			out.println("MegaHAL> " + replyLine);
 		}
 	}
-
+	
 }

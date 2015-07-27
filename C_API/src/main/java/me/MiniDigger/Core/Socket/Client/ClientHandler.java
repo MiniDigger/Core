@@ -23,6 +23,6 @@ package me.MiniDigger.Core.Socket.Client;
 import me.MiniDigger.Core.SQL.SaveHandler;
 
 public interface ClientHandler extends SaveHandler {
-
+	
 	public Client getClient(final String name);
 }

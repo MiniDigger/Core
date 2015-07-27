@@ -26,7 +26,7 @@ import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 
 public interface BukkitCommand {
-
+	
 	/**
 	 * Executes the command, returning its success
 	 *
@@ -39,7 +39,7 @@ public interface BukkitCommand {
 	 * @return true if the command was successful, otherwise false
 	 */
 	public boolean execute(final CommandSender sender, final String commandLabel, final String[] args);
-
+	
 	/**
 	 * Executed on tab completion for this command, returning a list of options
 	 * the player can tab through.
@@ -56,12 +56,12 @@ public interface BukkitCommand {
 	 *             if sender, alias, or args is null
 	 */
 	public List<String> tabComplete(final CommandSender sender, final String alias, final String[] args) throws CommandException, IllegalArgumentException;
-
+	
 	/**
 	 * @return the tab completer for this command
 	 */
 	public BukkitCompleter getCompleter();
-
+	
 	/**
 	 * Sets the tab completer
 	 *

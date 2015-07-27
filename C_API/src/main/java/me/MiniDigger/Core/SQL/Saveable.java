@@ -21,21 +21,21 @@
 package me.MiniDigger.Core.SQL;
 
 public interface Saveable {
-
+	
 	/**
 	 * Saves the object into the db
 	 *
 	 * @return if the save was successful
 	 */
 	public boolean save();
-
+	
 	/**
 	 * Loads the object from the db
 	 *
 	 * @return if the load was successful
 	 */
 	public boolean load();
-
+	
 	/**
 	 * Creates the table in the db
 	 *

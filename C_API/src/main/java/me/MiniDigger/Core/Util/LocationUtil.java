@@ -25,7 +25,7 @@ import java.util.List;
 import org.bukkit.Location;
 
 public interface LocationUtil {
-
+	
 	/**
 	 * Converts a String into a Location
 	 *
@@ -33,7 +33,7 @@ public interface LocationUtil {
 	 * @return
 	 */
 	public Location StringToLocation(final String locString);
-
+	
 	/**
 	 * Converts a Location into a String
 	 *
@@ -41,7 +41,7 @@ public interface LocationUtil {
 	 * @return
 	 */
 	public String LocationToString(final Location loc);
-
+	
 	/**
 	 * Converts a bunch of Locations into a String
 	 *
@@ -49,7 +49,7 @@ public interface LocationUtil {
 	 * @return
 	 */
 	public String LocationsToString(final List<Location> locs);
-
+	
 	/**
 	 * Converts a String into a bunch of Locations
 	 *

@@ -47,26 +47,26 @@ import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class UltraSpleefPhase extends CorePhase {
-
+	
 	public UltraSpleefPhase(final Game game, final Phase next) {
 		super(game, next);
 	}
-
+	
 	@Override
 	public String getName() {
 		return "GravityKing";
 	}
-
+	
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-
+	
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-
+	
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -85,12 +85,12 @@ public class UltraSpleefPhase extends CorePhase {
 		addFeature(new NoDropFeature(this));
 		addFeature(new UltraSpleefFeature(this));
 	}
-
+	
 	@Override
 	public void startPhase() {
 		getGame().broadCastMessage(LangKeyType.Game.UltraSpleef.START, MsgType.NORMAL);
 		final String winner = getGame().getGameData("VoteWinner");
-
+		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
 		super.startPhase();
 	}

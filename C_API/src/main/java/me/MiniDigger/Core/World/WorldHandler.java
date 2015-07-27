@@ -24,7 +24,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 public interface WorldHandler {
-
+	
 	/**
 	 * Unloads a world.
 	 *
@@ -34,7 +34,7 @@ public interface WorldHandler {
 	 *            The location to teleport the players on the world
 	 */
 	public void unloadWorld(final String world, final Location fallBackLoc);
-
+	
 	/**
 	 * Loads a world by the given name
 	 *
@@ -43,7 +43,7 @@ public interface WorldHandler {
 	 * @return The loaded world object
 	 */
 	public World loadWorld(final String name);
-
+	
 	/**
 	 * Copies a world from the repo into the world folder
 	 *
@@ -51,20 +51,20 @@ public interface WorldHandler {
 	 *            The name of the world
 	 */
 	public void copyWorld(final String name);
-
+	
 	/**
 	 * Deletes the world, should be unloaded at this point
 	 *
 	 * @param name
 	 */
 	void deleteWorld(final String name);
-
+	
 	/**
 	 *
 	 * @return the fallback lco
 	 */
 	Location getFallbackLoc();
-
+	
 	/**
 	 * Copyies a world and renames it
 	 *
@@ -72,7 +72,7 @@ public interface WorldHandler {
 	 * @param newName
 	 */
 	void copyWorld(String name, String newName);
-
+	
 	/**
 	 * Loads a world by the given name
 	 *
@@ -83,6 +83,6 @@ public interface WorldHandler {
 	 * @return The loaded world object
 	 */
 	World loadWorld(String name, String newName);
-	
+
 	void cleanup();
 }

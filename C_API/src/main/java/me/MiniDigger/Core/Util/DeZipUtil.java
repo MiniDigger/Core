@@ -23,7 +23,7 @@ package me.MiniDigger.Core.Util;
 import java.io.File;
 
 public interface DeZipUtil {
-
+	
 	/**
 	 * Dezips a zip into a directory
 	 *
@@ -31,7 +31,7 @@ public interface DeZipUtil {
 	 * @param outputDirectory
 	 */
 	public void UnzipToDirectory(final String zipFilePath, final String outputDirectory);
-
+	
 	/**
 	 * Dezips a zip into a directory
 	 *

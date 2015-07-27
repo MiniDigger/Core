@@ -27,13 +27,13 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 public interface BlockListener extends Listener {
-
+	
 	@EventHandler
 	public void onBlockBreak(final BlockBreakEvent e);
-
+	
 	@EventHandler
 	public void onBlockPlace(final BlockPlaceEvent e);
-
+	
 	@EventHandler
 	public void onBlockDamage(final BlockDamageEvent e);
 }

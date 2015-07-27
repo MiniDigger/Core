@@ -18,20 +18,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class EHAddOn extends CoreAddOn {
-	
+
 	@Override
 	public void enable() {
 		GameType.EH.setClass(EHGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	@Command(name = "eh", permission = "eh", usage = "", consol = true, description = "Initiiert ein EH Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final EHGame game = new EHGame();
@@ -46,13 +46,13 @@ public class EHAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-
+	
 	@Completer(name = "eh")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-
+		
 		result.add("");
-
+		
 		return result;
 	}
 }

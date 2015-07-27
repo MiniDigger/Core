@@ -21,7 +21,7 @@
 package me.MiniDigger.Core.Util;
 
 public interface ShutdownUtil {
-
+	
 	/**
 	 * Stops the server after 10 seconds
 	 */

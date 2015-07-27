@@ -24,7 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
 public interface EatableItem extends Item {
-
+	
 	/**
 	 * Gets executed, when a player eats this item
 	 *
@@ -32,7 +32,7 @@ public interface EatableItem extends Item {
 	 *            The event which was called
 	 */
 	public void onEat(final PlayerItemConsumeEvent e);
-
+	
 	@EventHandler
 	public void onPlayerItemConsume(final PlayerItemConsumeEvent e);
 }

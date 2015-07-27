@@ -22,13 +22,13 @@ package me.MiniDigger.Core.Error;
 
 public enum ErrorLevel {
 	BREAKING("breaking"), MAJOR("wichtig"), MINOR("unwichtig"), WARNING("warnend");
-
+	
 	private String verb;
-
+	
 	private ErrorLevel(final String verb) {
 		this.verb = verb;
 	}
-
+	
 	/**
 	 * The correct verb for the level, for creating correct messages
 	 *

@@ -22,13 +22,13 @@ package me.MiniDigger.Core.Item;
 
 public enum ItemType {
 	GRABLING_HOOK(null), GRAVITYGUN(null);
-
+	
 	private Item item;
-
+	
 	private ItemType(final Item item) {
 		this.item = item;
 	}
-
+	
 	/**
 	 * NULL: if not installed!
 	 *
@@ -37,7 +37,7 @@ public enum ItemType {
 	public Item getItem() {
 		return item;
 	}
-
+	
 	/**
 	 * "Installs" the Item
 	 *

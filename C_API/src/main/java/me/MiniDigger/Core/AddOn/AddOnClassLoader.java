@@ -23,19 +23,19 @@ package me.MiniDigger.Core.AddOn;
 import java.util.Set;
 
 public interface AddOnClassLoader {
-
+	
 	/**
 	 * Some classloader magic
 	 *
 	 * @see java.net.URLClassLoader.findClass
 	 */
 	public Class<?> findClass(final String name, final boolean b) throws ClassNotFoundException;
-
+	
 	/**
 	 * @return the addon assioated with this loader
 	 */
 	public AddOn getAddOn();
-
+	
 	/**
 	 * @return the name of all classes loaded by this loader
 	 */

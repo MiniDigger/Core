@@ -42,26 +42,26 @@ import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class IFPhase extends CorePhase {
-	
+
 	public IFPhase(final Game game) {
 		super(game, null);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Infected";
 	}
-	
+
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-	
+
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -79,5 +79,5 @@ public class IFPhase extends CorePhase {
 		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
 	}
-	
+
 }

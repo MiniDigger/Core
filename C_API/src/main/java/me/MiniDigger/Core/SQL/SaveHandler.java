@@ -21,12 +21,12 @@
 package me.MiniDigger.Core.SQL;
 
 public interface SaveHandler {
-
+	
 	/**
 	 * Load all entries from the db
 	 */
 	public boolean loadAll();
-
+	
 	/**
 	 * Saves all stored objects to the db
 	 */

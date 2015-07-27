@@ -27,7 +27,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
 public interface ReflectionUtil {
-
+	
 	/**
 	 * Returns a NMS class
 	 *
@@ -35,7 +35,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public Class<?> getCraftClass(final String ClassName);
-
+	
 	/**
 	 * Returns the CraftEntity
 	 *
@@ -43,7 +43,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public Object getHandle(final Entity entity);
-
+	
 	/**
 	 * Returns the CraftWorld
 	 *
@@ -51,7 +51,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public Object getHandle(final World world);
-
+	
 	/**
 	 * Gets a field in a class
 	 *
@@ -60,7 +60,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public Field getField(final Class<?> cl, final String field_name);
-
+	
 	/**
 	 * Gets a method in a class
 	 *
@@ -70,7 +70,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public Method getMethod(final Class<?> cl, final String method, final Class<?>... args);
-
+	
 	/**
 	 * Gets a method in a class
 	 *
@@ -79,7 +79,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public Method getMethod(final Class<?> cl, final String method);
-
+	
 	/**
 	 * Checks if both lists a equal
 	 *
@@ -88,7 +88,7 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	public boolean ClassListEqual(final Class<?>[] l1, final Class<?>[] l2);
-
+	
 	/**
 	 *
 	 * returns the value of an private field
@@ -99,14 +99,14 @@ public interface ReflectionUtil {
 	 * @return
 	 */
 	Object getPrivateField(final String fieldName, final Class<?> clazz, final Object object);
-
+	
 	/**
 	 * returns a version string
 	 *
 	 * @return
 	 */
 	String getVersion();
-
+	
 	/**
 	 * the nms class with that name
 	 *

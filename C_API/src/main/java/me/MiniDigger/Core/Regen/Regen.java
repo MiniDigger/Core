@@ -21,13 +21,13 @@
 package me.MiniDigger.Core.Regen;
 
 public interface Regen {
-
+	
 	/**
 	 *
 	 * @return the worldname
 	 */
 	public String getName();
-
+	
 	/**
 	 * Resets all the blocks
 	 *

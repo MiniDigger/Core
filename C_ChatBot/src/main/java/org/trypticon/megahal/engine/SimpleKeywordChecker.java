@@ -10,15 +10,15 @@ import java.util.Set;
  * @author Trejkaz
  */
 public class SimpleKeywordChecker extends KeywordChecker {
-	
+
 	private final Set<?>								banWords;
 	@SuppressWarnings("unused") private final Set<?>	auxWords;
-	
+
 	public SimpleKeywordChecker(final Set<?> banWords, final Set<?> auxWords) {
 		this.banWords = banWords;
 		this.auxWords = auxWords;
 	}
-	
+
 	@Override
 	public boolean isKeyword(final String symbol) {
 		return isWord(symbol) && !banWords.contains(symbol);

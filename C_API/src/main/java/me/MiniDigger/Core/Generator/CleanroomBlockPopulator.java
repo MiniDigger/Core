@@ -26,7 +26,7 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 
 public interface CleanroomBlockPopulator {
-
+	
 	/**
 	 * Populates the chunk
 	 *

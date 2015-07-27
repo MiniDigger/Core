@@ -52,26 +52,26 @@ import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 import mkremins.fanciful.FancyMessage;
 
 public class SGPhase1 extends CoreTimedPhase {
-
+	
 	public SGPhase1(final Game game, final int secs) {
 		super(game, null, secs);
 	}
-
+	
 	@Override
 	public String getName() {
 		return "SG";
 	}
-
+	
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-
+	
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-
+	
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -90,21 +90,21 @@ public class SGPhase1 extends CoreTimedPhase {
 		        Material.WHEAT, Material.PUMPKIN));
 		addFeature(new WorldBoarderFeature(this, false));
 	}
-
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void startPhase() {
 		getGame().broadCastMessage(new FancyMessage("Lasset die Spiele beginnen!"));
 		final String winner = getGame().getGameData("VoteWinner");
-
+		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
-
+		
 		final MapData m = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final Location center = m.getLocs(DyeColor.BLACK).values().iterator().next();
 		((WorldBoarderFeature) getFeature(FeatureType.WORLDBOARDER)).fakeStart(center, 0, center.distance(m.getLocs(DyeColor.BLUE).values().iterator().next()) * 2);
-
+		
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-
+			
 			@Override
 			public void run() {
 				final Location power = m.getLocs(DyeColor.ORANGE).values().iterator().next();
@@ -119,7 +119,7 @@ public class SGPhase1 extends CoreTimedPhase {
 				b.getState().update(true, true);
 			}
 		}, 2, this);
-
+		
 		super.startPhase();
 	}
 }

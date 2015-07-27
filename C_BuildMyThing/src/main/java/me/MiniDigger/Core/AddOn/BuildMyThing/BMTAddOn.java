@@ -38,20 +38,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class BMTAddOn extends CoreAddOn {
-
+	
 	@Override
 	public void enable() {
 		GameType.BMT.setClass(BMTGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	@Command(name = "bmt", permission = "bmt", usage = "", consol = true, description = "Initiiert ein BMT Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final BMTGame game = new BMTGame();
@@ -66,13 +66,13 @@ public class BMTAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-
+	
 	@Completer(name = "bmt")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-
+		
 		result.add("");
-
+		
 		return result;
 	}
 }

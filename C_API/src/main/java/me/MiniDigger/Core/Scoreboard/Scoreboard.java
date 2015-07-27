@@ -25,25 +25,25 @@ import java.util.List;
 import org.bukkit.scoreboard.DisplaySlot;
 
 public interface Scoreboard {
-
+	
 	/**
 	 * @param line
 	 *            the line to add to the board
 	 */
 	void addLine(final ScoreboardLine line);
-
+	
 	/**
 	 * @param content
 	 *            the content of the line to remove
 	 */
 	void removeLine(final String content);
-
+	
 	/**
 	 * @param id
 	 *            the id of the line to remove
 	 */
 	void removeLine(final int id);
-
+	
 	/**
 	 * @param id
 	 *            the id of the line
@@ -51,7 +51,7 @@ public interface Scoreboard {
 	 *         MAY BE NULL
 	 */
 	ScoreboardLine getLine(final int id);
-
+	
 	/**
 	 * @param content
 	 *            the content of the line
@@ -59,26 +59,26 @@ public interface Scoreboard {
 	 *         MAY BE NULL
 	 */
 	ScoreboardLine getLine(final String content);
-
+	
 	/**
 	 * @return this scoreboard as org.bukkit.scoreboard.Scoreboard
 	 */
 	org.bukkit.scoreboard.Scoreboard toBukkitScoreboard(final List<ScoreboardTeam> teams);
-
+	
 	/**
 	 * @param slot
 	 *            the slot
 	 * @return all lines in that slot
 	 */
 	List<ScoreboardLine> getLines(final DisplaySlot slot);
-
+	
 	/**
 	 *
 	 * @param title
 	 *            the new title
 	 */
 	void setTitle(final ScoreboardTitle title);
-
+	
 	/**
 	 *
 	 * @param slot
@@ -86,17 +86,17 @@ public interface Scoreboard {
 	 * @return
 	 */
 	ScoreboardTitle getTitle(final DisplaySlot slot);
-
+	
 	/**
 	 * Clears the board
 	 */
 	void clear();
-
+	
 	/**
 	 * Clears only one slot of the board
 	 *
 	 * @param slot
 	 */
 	void clear(final DisplaySlot slot);
-
+	
 }

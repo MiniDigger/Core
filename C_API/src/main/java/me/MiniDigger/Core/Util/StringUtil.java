@@ -23,7 +23,7 @@ package me.MiniDigger.Core.Util;
 import java.util.List;
 
 public interface StringUtil {
-
+	
 	/**
 	 * Replaces the last substring of this string that matches the given regular
 	 * expression with the given replacement
@@ -34,7 +34,7 @@ public interface StringUtil {
 	 * @return
 	 */
 	public String replaceLast(final String text, final String regex, final String replacement);
-
+	
 	/**
 	 * Converts a String List into an String
 	 *
@@ -42,7 +42,7 @@ public interface StringUtil {
 	 * @return
 	 */
 	public String listToString(final List<String> list);
-
+	
 	/**
 	 * Converts a String into an StringList
 	 *
@@ -50,7 +50,7 @@ public interface StringUtil {
 	 * @return
 	 */
 	public List<String> stringToList(final String string);
-
+	
 	/**
 	 * Converts an String Array into an String
 	 *
@@ -58,7 +58,7 @@ public interface StringUtil {
 	 * @return
 	 */
 	public String toString(final String[] args);
-
+	
 	/**
 	 * Checks if the Array contains an Object
 	 *

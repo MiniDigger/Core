@@ -26,7 +26,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
 public interface VillagerHandler {
-
+	
 	/**
 	 * Clears all Trades for the given villager
 	 *
@@ -35,7 +35,7 @@ public interface VillagerHandler {
 	 * @return if the action was successfull
 	 */
 	public boolean clearTrades(final Villager villager);
-
+	
 	/**
 	 * Adds a Trade to a Villager
 	 *
@@ -46,7 +46,7 @@ public interface VillagerHandler {
 	 * @return if the action was successfull
 	 */
 	public boolean addTrade(final Villager villager, final VillagerTrade villagerTrade);
-
+	
 	/**
 	 *
 	 * @param villager
@@ -54,7 +54,7 @@ public interface VillagerHandler {
 	 * @return all trades for the given villager
 	 */
 	public List<VillagerTrade> getTrades(final Villager villager);
-
+	
 	/**
 	 * Sets the trades for the given villager
 	 *
@@ -65,7 +65,7 @@ public interface VillagerHandler {
 	 * @return if the action was successfull
 	 */
 	public boolean setTrades(final Villager villager, final List<VillagerTrade> trades);
-
+	
 	/**
 	 * Opens the Trading Inventory for a player
 	 *

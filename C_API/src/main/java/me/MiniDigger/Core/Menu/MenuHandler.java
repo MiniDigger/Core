@@ -25,17 +25,17 @@ import java.util.UUID;
 import me.MiniDigger.Core.User.User;
 
 public interface MenuHandler {
-
+	
 	void load();
-
+	
 	ItemBarMenu getMenu(final String name);
-
+	
 	void closeMenu(final User u);
-
+	
 	void openMenu(final User u, final String name);
-
+	
 	ItemBarMenu getMenu(final UUID id);
-
+	
 	void addMenu(final ItemBarMenu hub);
-
+	
 }

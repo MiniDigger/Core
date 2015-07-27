@@ -23,13 +23,13 @@ package me.MiniDigger.Core.Packet;
 import org.java_websocket.WebSocket;
 
 public interface Packet {
-
+	
 	/**
 	 * @return a String, based of the fields
 	 */
 	@Override
 	public abstract String toString();
-
+	
 	/**
 	 * Creates a packet from a string
 	 *
@@ -37,12 +37,12 @@ public interface Packet {
 	 *            A packet string
 	 */
 	public abstract void fromString(final String s);
-
+	
 	/**
 	 * Let the client handle the packet, when he receives it
 	 */
 	public abstract void handle();
-
+	
 	/**
 	 * Lets the server handle the packet, when he receives it
 	 *
@@ -50,7 +50,7 @@ public interface Packet {
 	 *            The client, who send the packet
 	 */
 	public abstract void handle(final WebSocket con);
-
+	
 	/**
 	 *
 	 * @return The name of the packet

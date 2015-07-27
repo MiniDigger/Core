@@ -38,20 +38,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class KPAddOn extends CoreAddOn {
-
+	
 	@Override
 	public void enable() {
 		GameType.KP.setClass(KPGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	@Command(name = "kp", permission = "kp", usage = "", consol = true, description = "Initiiert ein KP Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final KPGame game = new KPGame();
@@ -66,13 +66,13 @@ public class KPAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-
+	
 	@Completer(name = "kp")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-
+		
 		result.add("");
-
+		
 		return result;
 	}
 }

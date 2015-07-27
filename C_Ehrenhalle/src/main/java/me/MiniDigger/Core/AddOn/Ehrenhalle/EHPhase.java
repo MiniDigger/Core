@@ -18,27 +18,27 @@ import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class EHPhase extends CorePhase {
-	
+
 	@Override
 	public String getName() {
 		return "Hub";
 	}
-
+	
 	@Override
 	public void startPhase() {
 		super.startPhase();
 	}
-
+	
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-
+	
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-
+	
 	@Override
 	public void init() {
 		addFeature(new FixedHealthFeature(this));

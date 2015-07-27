@@ -21,15 +21,15 @@
 package me.MiniDigger.Core.Mirror;
 
 public interface MirrorSender {
-
+	
 	/**
 	 * @param port
 	 */
 	void init(final int port);
-
+	
 	/**
 	 * @param event
 	 */
 	void send(final Object event);
-
+	
 }

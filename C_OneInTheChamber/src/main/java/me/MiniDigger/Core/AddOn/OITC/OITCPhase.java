@@ -46,26 +46,26 @@ import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class OITCPhase extends CorePhase {
-
+	
 	public OITCPhase(final Game game) {
 		super(game, null);
 	}
-
+	
 	@Override
 	public String getName() {
 		return "OITC";
 	}
-
+	
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-
+	
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-
+	
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -84,16 +84,16 @@ public class OITCPhase extends CorePhase {
 		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
 	}
-
+	
 	@Override
 	public void startPhase() {
 		getGame().broadCastMessage(LangKeyType.Game.OneInTheChamber.START1, MsgType.NORMAL);
 		getGame().broadCastMessage(LangKeyType.Game.OneInTheChamber.START2, MsgType.NORMAL);
 		getGame().broadCastMessage(LangKeyType.Game.OneInTheChamber.START3, MsgType.NORMAL);
 		final String winner = getGame().getGameData("VoteWinner");
-
+		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
 		super.startPhase();
 	}
-
+	
 }

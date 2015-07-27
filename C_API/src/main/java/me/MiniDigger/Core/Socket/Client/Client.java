@@ -23,26 +23,26 @@ package me.MiniDigger.Core.Socket.Client;
 import me.MiniDigger.Core.SQL.Saveable;
 
 public interface Client extends Saveable {
-
+	
 	/**
 	 *
 	 * @return the name
 	 */
 	public String getName();
-
+	
 	/**
 	 *
 	 * @return the password
 	 */
 	public String getPassword();
-
+	
 	/**
 	 *
 	 * @param name
 	 *            the name to set
 	 */
 	public void setName(final String name);
-
+	
 	/**
 	 *
 	 * @param password

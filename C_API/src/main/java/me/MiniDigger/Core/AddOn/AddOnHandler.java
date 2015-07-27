@@ -23,7 +23,7 @@ package me.MiniDigger.Core.AddOn;
 import java.util.List;
 
 public interface AddOnHandler {
-
+	
 	/**
 	 * Uninstalls a AddOn
 	 *
@@ -31,22 +31,22 @@ public interface AddOnHandler {
 	 *            The name of the addon that should get uninstalled
 	 */
 	public void listAsUnInstalled(final String name);
-
+	
 	/**
 	 * @return All installed addons as bean
 	 */
 	public List<AddOnBean> getInstalledBeans();
-
+	
 	/**
 	 * @return The names of all installed addons
 	 */
 	public List<String> getInstalledNames();
-
+	
 	/**
 	 * Loads the AddOn file
 	 */
 	public void load();
-
+	
 	/**
 	 * Marks a AddOn as installed
 	 *
@@ -54,27 +54,27 @@ public interface AddOnHandler {
 	 *            The addon to install
 	 */
 	public void listAsInstalled(final AddOnBean bean);
-
+	
 	/**
 	 * Enables all addons
 	 */
 	public void enableAddOns();
-
+	
 	/**
 	 * Disables all addons
 	 */
 	public void disableAddOns();
-
+	
 	/**
 	 * Classloader magic
 	 */
 	public Class<?> getClassByName(final String name);
-
+	
 	/**
 	 * Classloader magic
 	 */
 	public void setClass(final String name, final Class<?> result);
-
+	
 	/**
 	 * Tries to update the addon, given by it's name
 	 *

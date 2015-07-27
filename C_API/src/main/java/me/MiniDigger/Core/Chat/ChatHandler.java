@@ -25,7 +25,7 @@ import java.util.List;
 import me.MiniDigger.Core.User.User;
 
 public interface ChatHandler {
-
+	
 	/**
 	 * Returns the channel with this name
 	 *
@@ -34,7 +34,7 @@ public interface ChatHandler {
 	 * @return The channel if found, else NULL
 	 */
 	public ChatChannel getChannel(final String name);
-
+	
 	/**
 	 * Register a channel
 	 *
@@ -42,7 +42,7 @@ public interface ChatHandler {
 	 *            The channel to register
 	 */
 	public void registerChannel(final ChatChannel channel);
-
+	
 	/**
 	 * Unregisters a channel
 	 *
@@ -50,12 +50,12 @@ public interface ChatHandler {
 	 *            Teh channel to unregister
 	 */
 	public void unregisterChannel(final ChatChannel channel);
-
+	
 	/**
 	 * Registers all channnels
 	 */
 	public void registerChannels();
-
+	
 	/**
 	 * Handles a chat message send by an user
 	 *
@@ -65,7 +65,7 @@ public interface ChatHandler {
 	 *            The message send
 	 */
 	public void handleChat(final User user, final String message);
-
+	
 	/**
 	 * @return All registered chat channels
 	 */

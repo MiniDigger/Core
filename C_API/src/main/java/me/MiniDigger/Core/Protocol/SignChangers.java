@@ -31,7 +31,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public interface SignChangers extends Listener {
-
+	
 	/**
 	 * Updates all the signs
 	 *
@@ -39,7 +39,7 @@ public interface SignChangers extends Listener {
 	 *            a list with uuid not to update
 	 */
 	public void update(final List<UUID> noUpdates);
-
+	
 	/**
 	 * handles the PacketEvent, modifying the sign packet, if the player doesn't
 	 * edit the sign
@@ -48,12 +48,12 @@ public interface SignChangers extends Listener {
 	 *            The event
 	 */
 	public void handlePacket(final PacketEvent event);
-
+	
 	/**
 	 * Adds all the changers
 	 */
 	public void init();
-
+	
 	/**
 	 * Registers a signchanger
 	 *
@@ -61,7 +61,7 @@ public interface SignChangers extends Listener {
 	 *            The changer to register
 	 */
 	public void addSignChanger(final SignChanger changer);
-
+	
 	/**
 	 * Unregister a changer
 	 *
@@ -69,21 +69,21 @@ public interface SignChangers extends Listener {
 	 *            The changer to unregister
 	 */
 	public void removeSignChanger(final SignChanger changer);
-
+	
 	/**
 	 * @return All the registered changers
 	 */
 	public List<SignChanger> getSignChangerList();
-
+	
 	public void handleInteract(final PlayerInteractEvent event);
-
+	
 	public abstract class SignChanger {
-
+		
 		private final String	key;
 		private final String	perm;
 		private final String	desc;
 		private boolean			full	= false;
-
+		
 		public SignChanger(final String key, final String permission, final String desciption) {
 			if ((key == null) || (permission == null)) {
 				throw new IllegalArgumentException("The key and the permissions node inside the Changer constructor must not be null!");
@@ -95,40 +95,40 @@ public interface SignChangers extends Listener {
 			perm = permission;
 			desc = desciption;
 		}
-
+		
 		public SignChanger(final String key, final String permission, final String desciption, final boolean full) {
 			this(key, permission, desciption);
 			this.full = full;
 		}
-
+		
 		/**
 		 * @return The key
 		 */
 		public String getKey() {
 			return key;
 		}
-
+		
 		/**
 		 * @return The perm needed to create this type of changer
 		 */
 		public String getPerm() {
 			return perm;
 		}
-
+		
 		/**
 		 * @return A basic description
 		 */
 		public String getDescription() {
 			return desc;
 		}
-
+		
 		/**
 		 * @return if this changer changes the whole sign
 		 */
 		public boolean isFullChanger() {
 			return full;
 		}
-
+		
 		/**
 		 * Replaces the key with this value
 		 *

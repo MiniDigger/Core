@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Event.Result;
-import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 
 import me.MiniDigger.Core.Feature.FeatureType;

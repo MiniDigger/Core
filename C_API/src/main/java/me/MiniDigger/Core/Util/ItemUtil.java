@@ -24,17 +24,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public interface ItemUtil {
-
+	
 	String invToBase64(final Inventory inventory);
-
+	
 	Inventory invFromBase64(final String data);
-
+	
 	String itemToBase64(final ItemStack is);
-
+	
 	ItemStack itemFromBase64(final String data);
-
+	
 	ItemStack[] itemArrayFromBase64(final String data);
-
+	
 	String itemArrayToBase64(final ItemStack[] is);
-
+	
 }

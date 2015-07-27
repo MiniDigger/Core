@@ -25,29 +25,29 @@ import java.util.List;
 import me.MiniDigger.Core.User.User;
 
 public interface GameHandler {
-
+	
 	/**
 	 * @retur If the maingame is started or not
 	 */
 	public boolean isMainGameStarted();
-
+	
 	/**
 	 * Set the status of the maingame
 	 *
 	 * @param stared
 	 */
 	public void setMainGameStarted(final boolean started);
-
+	
 	/**
 	 * @return The main game for this server
 	 */
 	public Game getMainGame();
-
+	
 	/**
 	 * Checks if there is a main game
 	 */
 	public void searchMainGame();
-
+	
 	/**
 	 * Registers a game
 	 *
@@ -55,7 +55,7 @@ public interface GameHandler {
 	 *            The game to register
 	 */
 	public void addGame(final Game game);
-
+	
 	/**
 	 * Removes a game
 	 *
@@ -63,7 +63,7 @@ public interface GameHandler {
 	 *            The game to remove
 	 */
 	public void removeGame(final Game game);
-
+	
 	/**
 	 * Geathers all Games, a user is in
 	 *
@@ -72,7 +72,7 @@ public interface GameHandler {
 	 * @return All the games
 	 */
 	public List<Game> getGames(final User user);
-
+	
 	/**
 	 * Join Game
 	 *
@@ -80,7 +80,7 @@ public interface GameHandler {
 	 * @param game
 	 */
 	void joinGame(final User user, final Game game);
-
+	
 	/**
 	 * Leave Game
 	 *
@@ -88,13 +88,13 @@ public interface GameHandler {
 	 * @param game
 	 */
 	void leaveGame(final User user, final Game game);
-
+	
 	/**
 	 *
 	 * @return a list with all running games
 	 */
 	public List<Game> getGames();
-
+	
 	/**
 	 * If that type is disabled
 	 *
@@ -103,7 +103,7 @@ public interface GameHandler {
 	 * @return
 	 */
 	public boolean isDisabled(GameType type);
-
+	
 	/**
 	 * Reloads the list with disabled games
 	 */

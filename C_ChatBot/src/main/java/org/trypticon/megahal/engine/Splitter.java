@@ -8,7 +8,7 @@ import java.util.List;
  * @author Trejkaz
  */
 public interface Splitter {
-	
+
 	/**
 	 * Split a string into a list of symbols.
 	 *
@@ -17,7 +17,7 @@ public interface Splitter {
 	 * @return a list of Symbol objects.
 	 */
 	public List<Symbol> split(String text);
-	
+
 	/**
 	 * Join a list of symbols into a string.
 	 *

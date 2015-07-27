@@ -27,12 +27,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public interface SignGUI {
-
+	
 	/**
 	 * Called in the constructor
 	 */
 	public void init();
-
+	
 	/**
 	 * Opens the editor without an text
 	 *
@@ -42,7 +42,7 @@ public interface SignGUI {
 	 *            The code, that should get executed after the editing is done
 	 */
 	public void open(final Player player, final SignGUIListener response);
-
+	
 	/**
 	 * Opends the editor with default text
 	 *
@@ -54,12 +54,12 @@ public interface SignGUI {
 	 *            The code, that should get executed after the editing is done
 	 */
 	public void open(final Player player, final String[] defaultText, final SignGUIListener response);
-
+	
 	/**
 	 * Destroys this instance of the gui
 	 */
 	public void destroy();
-
+	
 	/**
 	 * Remove all data for the player
 	 *
@@ -67,12 +67,12 @@ public interface SignGUI {
 	 *            The player
 	 */
 	public void cleanupPlayer(final Player player);
-
+	
 	@EventHandler
 	public void onQuit(final PlayerQuitEvent event);
-
+	
 	public interface SignGUIListener {
-
+		
 		/**
 		 * Gets called, when the editing is done
 		 *
@@ -83,9 +83,9 @@ public interface SignGUI {
 		 */
 		public void onSignDone(final Player player, final String[] lines);
 	}
-
+	
 	interface PacketListener {
-
+		
 		public void onPacketReceiving(final PacketEvent event);
 	}
 }

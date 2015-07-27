@@ -21,7 +21,7 @@
 package me.MiniDigger.Core.Feature;
 
 public enum FeatureType {
-
+	
 	AUTORESPAWN,
 	BLEED,
 	CLEARINV,
@@ -81,7 +81,7 @@ public enum FeatureType {
 	WORLDBOARDER,
 	EH,
 	NOINVENTORY;
-
+	
 	/**
 	 * @return A human readable name for the feature
 	 * @deprecated use name() insted

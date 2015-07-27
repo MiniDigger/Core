@@ -38,20 +38,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class SUVAddOn extends CoreAddOn {
-
+	
 	@Override
 	public void enable() {
 		GameType.SUV.setClass(SUVGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	@Command(name = "suv", permission = "suv", usage = "", consol = true, description = "Initiiert ein SUV Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final SUVGame game = new SUVGame();
@@ -66,13 +66,13 @@ public class SUVAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-
+	
 	@Completer(name = "suv")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-
+		
 		result.add("");
-
+		
 		return result;
 	}
 }

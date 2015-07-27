@@ -18,51 +18,51 @@ import me.MiniDigger.CraftCore.Lang._;
 import me.MiniDigger.CraftCore.User.CoreUser;
 
 public class ChatBotAddOn extends CoreAddOn {
-
+	
 	private jMegaHalHandler	bot1;
 	private MegaHalHandler	bot2;
-
+	
 	private final String[]				triggers	= new String[] { "pinkbot" };
 	private final BlockingQueue<String>	input		= new LinkedBlockingQueue<String>();
-
+	
 	private User	user1;
 	private User	user2;
-
+	
 	@Override
 	public void enable() {
-
+		
 		new BukkitRunnable() {
-
+			
 			@Override
 			public void run() {
 				user1 = new CoreUser(null);
 				user2 = new CoreUser(null);
-
+				
 				user1.setDisplayName("PinkBot1");
 				user2.setDisplayName("PinkBot2");
-
+				
 				user1.setPrefix("");
 				user2.setPrefix("");
-
+				
 				user1.setSuffix("");
 				user2.setSuffix("");
-
+				
 				user1.setPrimaryChannel(Core.getCore().getGameHandler().getMainGame().getChatChannel());
 				user2.setPrimaryChannel(Core.getCore().getGameHandler().getMainGame().getChatChannel());
-
+				
 				bot1 = new jMegaHalHandler(ChatBotAddOn.this);
 				bot2 = new MegaHalHandler(ChatBotAddOn.this);
-
+				
 				try {
 					bot1.load();
 				} catch (ClassNotFoundException | IOException e) {
 					_.stacktrace(LogLevel.DEBUG, e);
 				}
-
+				
 				bot2.load();
-
+				
 				final Thread t = new Thread(new Runnable() {
-
+					
 					@Override
 					public void run() {
 						while (true) {
@@ -73,7 +73,7 @@ public class ChatBotAddOn extends CoreAddOn {
 										try {
 											final String sentence1 = getSentenceBot1(trigger, input);
 											final String sentence2 = getSentenceBot2(trigger, input);
-
+											
 											Core.getCore().getChatHandler().handleChat(user1, sentence1);
 											Core.getCore().getChatHandler().handleChat(user2, sentence2);
 										} catch (final Exception ex) {
@@ -86,7 +86,7 @@ public class ChatBotAddOn extends CoreAddOn {
 							}
 						}
 					}
-
+					
 					private synchronized String getSentenceBot1(final String trigger, final String message) {
 						String sentence = bot1.reply(message);
 						while (sentence.matches("^.*(?i)" + trigger + ".*$")) {
@@ -94,7 +94,7 @@ public class ChatBotAddOn extends CoreAddOn {
 						}
 						return sentence;
 					}
-
+					
 					private synchronized String getSentenceBot2(final String trigger, final String message) {
 						String sentence = bot2.reply(message);
 						while (sentence.matches("^.*(?i)" + trigger + ".*$")) {
@@ -102,7 +102,7 @@ public class ChatBotAddOn extends CoreAddOn {
 						}
 						return sentence;
 					}
-
+					
 				});
 				t.setName("BotHandler");
 				t.start();
@@ -110,7 +110,7 @@ public class ChatBotAddOn extends CoreAddOn {
 		}.runTaskLater(Core.getCore().getInstance(), 20);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		try {
@@ -118,21 +118,21 @@ public class ChatBotAddOn extends CoreAddOn {
 		} catch (final IOException e) {
 			_.stacktrace(LogLevel.DEBUG, e);
 		}
-
+		
 		bot2.save();
 		super.disable();
 	}
-
+	
 	private String fix(String input) {
 		final String[] old = new String[] { "ä", "ö", "ü", "Ä", "Ö", "Ü", "ß" };
 		final String[] neu = new String[] { "ae", "oe", "ue", "AE", "OE", "UE", "SS" };
-
+		
 		for (int i = 0; i < old.length; i++) {
 			input = input.replaceAll(old[i], neu[i]);
 		}
 		return input;
 	}
-
+	
 	public String clean(String string) {
 		if (string != null && string.length() > 300) {
 			string = string.substring(0, 300);
@@ -140,12 +140,12 @@ public class ChatBotAddOn extends CoreAddOn {
 		final String newstring = string.replaceAll("<.*?>", "").replaceAll("\\[.*?\\]", "");
 		return newstring;
 	}
-
+	
 	@EventHandler
 	public void onChat(final CoreUserChatEvent e) {
 		String msg = ChatColor.stripColor(e.getMsg());
 		msg = fix(msg);
-
+		
 		if (e.getUser().hasPermission("bot.log")) {
 			final String clean = clean(msg);
 			bot1.train(clean);
@@ -168,5 +168,5 @@ public class ChatBotAddOn extends CoreAddOn {
 			}
 		}
 	}
-
+	
 }

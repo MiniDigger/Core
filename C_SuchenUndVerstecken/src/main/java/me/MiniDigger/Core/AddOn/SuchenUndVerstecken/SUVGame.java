@@ -39,54 +39,54 @@ import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class SUVGame extends CoreGame {
-	
+
 	LobbyPhase	lobby;
 	VotePhase	vote;
 	GracePhase	grace;
 	SUVPhase	suv;
 	PostPhase	post;
-	
+
 	public SUVPhase getSuvPhase() {
 		return suv;
 	}
-	
+
 	@Override
 	public GameType getType() {
 		return GameType.SUV;
 	}
-	
+
 	@Override
 	public void init() {
 		super.maxplayers = 66;
-
+		
 		setGameData("Lobby", "Lobby");
-
+		
 		lobby = new LobbyPhase(this, null, 20);
 		vote = new VotePhase(this, null, 30);
 		grace = new GracePhase(this, null, 15000);
 		suv = new SUVPhase(this);
 		post = new PostPhase(this, 10);
-
+		
 		vote.addFeature(new TeamSelectFeature(vote, suv, 20, 2));
 		vote.addFeature(new SUVSelectFeature(vote));
-
+		
 		grace.addFeature(new NoInventoryFeature(grace));
 		grace.addFeature(new NoInventoryInteractionFeature(grace));
 		grace.addFeature(new NoNameTagFeature(grace));
-		
+
 		grace.setNextPhase(suv);
 		vote.setNextPhase(grace);
 		lobby.setNextPhase(vote);
 		suv.setNextPhase(post);
-
+		
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
-
+		
 		setPhase(lobby);
 		super.init();
 	}
-	
+
 	@Override
 	public void end(final User... winner) {
 		if (winner != null && winner.length == 1) {
@@ -94,20 +94,20 @@ public class SUVGame extends CoreGame {
 			if (w != null) {
 				_.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
 				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
-				
+
 				leave(w);
 			}
 		}
 		broadCastMessage(LangKeyType.Game.END, MsgType.IMPORTANT);
 		super.end(winner);
 	}
-	
+
 	@Override
 	public void start() {
 		super.start();
-		
+
 		lobby.init();
-		
+
 		getPhase().startPhase();
 	}
 }

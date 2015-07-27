@@ -38,20 +38,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class OITCAddOn extends CoreAddOn {
-
+	
 	@Override
 	public void enable() {
 		GameType.OITC.setClass(OITCGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	@Command(name = "oitc", permission = "oitc", usage = "", consol = true, description = "Initiiert ein OITC Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final OITCGame game = new OITCGame();
@@ -66,13 +66,13 @@ public class OITCAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-
+	
 	@Completer(name = "oitc")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-
+		
 		result.add("");
-
+		
 		return result;
 	}
 }

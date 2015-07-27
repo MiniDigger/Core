@@ -24,9 +24,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
 public interface ChatColorUtil {
-
+	
 	final static String possibleColours = "0123456789abcdefklmnor";
-
+	
 	/**
 	 *
 	 * Replaces the Minecraft color chars with & chars
@@ -36,7 +36,7 @@ public interface ChatColorUtil {
 	 * @return
 	 */
 	public String[] replaceMcToAnd(final String[] lines);
-
+	
 	/**
 	 * Replaces the & chars with Minecraft color chars
 	 *
@@ -45,7 +45,7 @@ public interface ChatColorUtil {
 	 * @return
 	 */
 	public String[] replaceAndToMc(final String[] lines);
-
+	
 	/**
 	 * Generate a ChatColor from a String
 	 *
@@ -54,7 +54,7 @@ public interface ChatColorUtil {
 	 * @return The ChatColor, RESET if noting found
 	 */
 	public ChatColor toChatColor(final String s);
-
+	
 	/**
 	 * Replaces the old chars with the new ones
 	 *
@@ -67,7 +67,7 @@ public interface ChatColorUtil {
 	 * @return The lines with replaced chars
 	 */
 	public String[] replaceColorChars(final String[] lines, final char old, final char neu);
-
+	
 	/**
 	 *
 	 * Replaces the Minecraft color chars with & chars
@@ -77,7 +77,7 @@ public interface ChatColorUtil {
 	 * @return
 	 */
 	public String replaceMcToAnd(final String msg);
-
+	
 	/**
 	 * Replaces the & chars with Minecraft color chars
 	 *
@@ -86,7 +86,7 @@ public interface ChatColorUtil {
 	 * @return
 	 */
 	public String replaceAndToMc(final String msg);
-
+	
 	/**
 	 * Replaces the old chars with the new ones
 	 *
@@ -98,15 +98,15 @@ public interface ChatColorUtil {
 	 *            The new char
 	 * @return The String with replaced chars
 	 */
-
+	
 	public String replaceColorChars(final String msg, final char old, final char neu);
-
+	
 	/**
 	 * @param c
 	 * @return a Color object that matches the chatcolor
 	 */
 	Color toColor(final ChatColor c);
-
+	
 	/**
 	 * Converts a string into an json text message
 	 *

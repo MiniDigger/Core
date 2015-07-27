@@ -28,17 +28,17 @@ import org.bukkit.inventory.ItemStack;
 import me.MiniDigger.Core.User.User;
 
 public interface Item extends Listener {
-
+	
 	/**
 	 * @return The type of the item
 	 */
 	public ItemType getType();
-
+	
 	/**
 	 * @return The itemstack for this item
 	 */
 	public ItemStack getItem();
-
+	
 	/**
 	 * Gets executed, when a player used this item
 	 *
@@ -46,10 +46,10 @@ public interface Item extends Listener {
 	 *            The event which was called
 	 */
 	public void onUse(final PlayerInteractEvent e);
-
+	
 	@EventHandler
 	public void onPlayerInteract(final PlayerInteractEvent e);
-
+	
 	/**
 	 * Check if the user has this item in his hand
 	 *

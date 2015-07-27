@@ -7,13 +7,13 @@ package org.trypticon.megahal.engine;
  * @author Trejkaz
  */
 public abstract class KeywordChecker {
-	
+
 	public abstract boolean isKeyword(String symbol);
-	
+
 	public boolean isWord(final String symbol) {
 		return isWordCharacter(symbol.charAt(0));
 	}
-	
+
 	public boolean isWordCharacter(final char ch) {
 		return Character.isLetter(ch) || (ch == '\'');
 	}

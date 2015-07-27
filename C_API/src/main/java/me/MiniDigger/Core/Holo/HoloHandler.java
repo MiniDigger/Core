@@ -25,7 +25,7 @@ import org.bukkit.Location;
 import me.MiniDigger.Core.User.User;
 
 public interface HoloHandler {
-
+	
 	/**
 	 * Create the holo displayed on player join
 	 *
@@ -33,5 +33,5 @@ public interface HoloHandler {
 	 * @param user
 	 */
 	void createSpawnHolo(final Location loc, final User user);
-
+	
 }

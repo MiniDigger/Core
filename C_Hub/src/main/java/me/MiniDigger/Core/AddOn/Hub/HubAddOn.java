@@ -26,20 +26,20 @@ import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 
 public class HubAddOn extends CoreAddOn {
-
+	
 	@Override
 	public void enable() {
 		GameType.LOBBY.setClass(HubGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	// @Command(name = "shop", consol = false, permission = "shop", usage = "")
 	// public void shop(final CommandArgs args) {
 	// if (Core.getCore().getGameHandler().getMainGame().getType() ==

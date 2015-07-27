@@ -49,34 +49,34 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class SUVFeature extends CoreFeature {
-	
+
 	private UUID	sucher1;
 	private UUID	sucher2;
-	
+
 	public SUVFeature(final Phase phase) {
 		super(phase);
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.SUV;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
 		try {
@@ -89,21 +89,21 @@ public class SUVFeature extends CoreFeature {
 			Bukkit.getPlayer(sucher2).getInventory()
 			        .setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
 		} catch (final Exception ex) {}
-		
+
 		showLives();
 	}
-	
+
 	@Override
 	public void end() {
 		Core.getCore().getScoreboardHandler().clearAll();
 	}
-	
+
 	private void modBoard(final Scoreboard board) {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Noch da", DisplaySlot.SIDEBAR));
-		
+
 		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		
+
 		if (sucher1 != null) {
 			board.addLine(new CoreScoreboardLine(3, "Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
 			board.addLine(new CoreScoreboardLine(2, t.getTeams().get(0).getPlayers().size() + " Spieler ", DisplaySlot.SIDEBAR));
@@ -113,15 +113,15 @@ public class SUVFeature extends CoreFeature {
 			board.addLine(new CoreScoreboardLine(0, t.getTeams().get(1).getPlayers().size() + " Spieler", DisplaySlot.SIDEBAR));
 		}
 	}
-	
+
 	public void showLives() {
 		final List<UUID> retry = new ArrayList<UUID>();
-		
+
 		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
-				
+
 				for (final UUID uuid : getPhase().getGame().getPlayers()) {
 					if (Bukkit.getPlayer(uuid) == null) {
 						retry.add(uuid);
@@ -132,9 +132,9 @@ public class SUVFeature extends CoreFeature {
 				}
 			}
 		}, getPhase());
-		
+
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
 				for (final UUID uuid : retry) {
@@ -147,10 +147,10 @@ public class SUVFeature extends CoreFeature {
 			}
 		}, 20, getPhase());// WAit for respawn
 	}
-	
+
 	public void check(UUID id1, final UUID id2, final boolean leave) {
 		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
-		
+
 		if (id1 == null) {
 			if (t.getTeams().get(0).getPlayers().contains(id2)) {
 				id1 = sucher2;
@@ -158,7 +158,7 @@ public class SUVFeature extends CoreFeature {
 				id1 = sucher1;
 			}
 		}
-		
+
 		if (id1.equals(sucher1) || id1.equals(sucher2)) {
 			System.out.println("is sucher");
 			if (id2.equals(sucher1) || id2.equals(sucher2)) {
@@ -167,7 +167,7 @@ public class SUVFeature extends CoreFeature {
 			}
 			// User s = Core.getCore().getUserHandler().get(id1);
 			final User v = Core.getCore().getUserHandler().get(id2);
-			
+
 			if (id1.equals(sucher1) && t.getTeams().get(0).getPlayers().contains(id2)) {
 				System.out.println("id1 is sucher1 and id2 in team 0");
 				final User os = Core.getCore().getUserHandler().get(sucher2);
@@ -183,7 +183,7 @@ public class SUVFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
 					        .then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler in diesem Team am Leben!"));
 				}
-				
+
 				v.getPlayer().damage(9000.0);
 				final Location l = v.getPlayer().getLocation();
 				l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
@@ -202,19 +202,19 @@ public class SUVFeature extends CoreFeature {
 					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
 					        .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler in diesem Team am Leben!"));
 				}
-				
+
 				v.getPlayer().damage(9000.0);
 				final Location l = v.getPlayer().getLocation();
 				l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			} else {
 				System.out.println("cmon");
 			}
-			
+
 			showLives();
 			checkEnd();
 		}
 	}
-	
+
 	public void checkEnd() {
 		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		if (t.getTeams().size() > 1) {
@@ -241,7 +241,7 @@ public class SUVFeature extends CoreFeature {
 			getPhase().getGame().end(w);
 		}
 	}
-	
+
 	@EventHandler
 	public void onInteract(final PlayerInteractEntityEvent e) {
 		if (e.getRightClicked() instanceof Player) {
@@ -253,7 +253,7 @@ public class SUVFeature extends CoreFeature {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
@@ -261,11 +261,11 @@ public class SUVFeature extends CoreFeature {
 			checkEnd();
 		}
 	}
-	
+
 	public void setSucher1(final UUID id) {
 		sucher1 = id;
 	}
-	
+
 	public void setSucher2(final UUID id) {
 		sucher2 = id;
 	}

@@ -38,20 +38,20 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class IFAddOn extends CoreAddOn {
-
+	
 	@Override
 	public void enable() {
 		GameType.IF.setClass(IFGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-
+	
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-
+	
 	@Command(name = "if", permission = "if", usage = "", consol = true, description = "Initiiert ein IF Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final IFGame game = new IFGame();
@@ -66,13 +66,13 @@ public class IFAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-
+	
 	@Completer(name = "if")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-
+		
 		result.add("");
-
+		
 		return result;
 	}
 }

@@ -16,10 +16,10 @@ import java.util.Set;
  * @author Trejkaz
  */
 public class Utils {
-	
+
 	public static Map<Symbol, Symbol> readSymbolMapFromFile(final String filename) throws IOException {
 		final Map<Symbol, Symbol> map = new HashMap<Symbol, Symbol>();
-		
+
 		final BufferedReader reader = new BufferedReader(new FileReader(filename));
 		String line;
 		while ((line = reader.readLine()) != null) {
@@ -37,13 +37,13 @@ public class Utils {
 			map.put(new Symbol(words[0], false), new Symbol(words[1], false));
 		}
 		reader.close();
-		
+
 		return map;
 	}
-	
+
 	public static Set<Symbol> readSymbolSetFromFile(final String filename) throws IOException {
 		final HashSet<Symbol> set = new HashSet<Symbol>();
-		
+
 		final BufferedReader reader = new BufferedReader(new FileReader(filename));
 		String line;
 		while ((line = reader.readLine()) != null) {
@@ -57,10 +57,10 @@ public class Utils {
 			set.add(new Symbol(line, false));
 		}
 		reader.close();
-		
+
 		return set;
 	}
-	
+
 	public static boolean equals(final List<?> l1, final List<?> l2) {
 		if (l1.size() != l2.size()) {
 			return false;

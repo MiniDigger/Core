@@ -48,26 +48,26 @@ import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class SUVPhase extends CorePhase {
-
+	
 	public SUVPhase(final Game game) {
 		super(game, null);
 	}
-
+	
 	@Override
 	public String getName() {
 		return "SUV";
 	}
-
+	
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-
+	
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-
+	
 	@Override
 	public void init() {
 		addFeature(new BleedFeature(this));
@@ -90,11 +90,11 @@ public class SUVPhase extends CorePhase {
 		addFeature(new NoInventoryInteractionFeature(this));
 		addFeature(new NoInventoryFeature(this));
 	}
-
+	
 	@Override
 	public void startPhase() {
 		final String winner = getGame().getGameData("VoteWinner");
-
+		
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
 		((PvPFeature) getFeature(FeatureType.PVP)).setbroadCastMsg(false);
 		super.startPhase();

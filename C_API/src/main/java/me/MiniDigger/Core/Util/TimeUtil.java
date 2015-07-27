@@ -32,7 +32,7 @@ package me.MiniDigger.Core.Util;
  * @version 1.0
  */
 public interface TimeUtil {
-
+	
 	/**
 	 * Formats the seconds into an Human Readable String
 	 *

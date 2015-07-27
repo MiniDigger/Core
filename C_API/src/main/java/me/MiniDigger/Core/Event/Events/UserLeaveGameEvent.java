@@ -25,13 +25,13 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
 
 public interface UserLeaveGameEvent extends Event {
-
+	
 	/**
 	 *
 	 * @return The game involved into this event
 	 */
 	public Game getGame();
-
+	
 	/**
 	 *
 	 * @return The user, who left the game

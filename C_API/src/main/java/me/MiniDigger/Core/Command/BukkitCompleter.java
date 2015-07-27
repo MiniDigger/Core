@@ -28,7 +28,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 public interface BukkitCompleter extends TabCompleter {
-
+	
 	/**
 	 * Registers a new completer
 	 *
@@ -40,7 +40,7 @@ public interface BukkitCompleter extends TabCompleter {
 	 *            The ibject the method is found in
 	 */
 	public void addCompleter(final String label, final Method m, final Object obj);
-
+	
 	/**
 	 * Requests a list of possible completions for a command argument.
 	 *

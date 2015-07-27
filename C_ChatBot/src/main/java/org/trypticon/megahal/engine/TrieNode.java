@@ -12,41 +12,41 @@ import java.util.List;
  * @see TrieNodeMap
  */
 public class TrieNode {
-	
+
 	/**
 	 * The symbol which occurs at this node.
 	 */
 	Symbol symbol;
-	
+
 	/**
 	 * The number of times this context occurs.
 	 */
 	int usage;
-	
+
 	/**
 	 * The total of the children's usages.
 	 */
 	int count;
-	
+
 	/**
 	 * The mapping of child symbols to TrieNode objects.
 	 */
 	private final TrieNodeMap children;
-	
+
 	/**
 	 * Constructs a root trie node.
 	 */
 	public TrieNode() {
 		this(null);
 	}
-	
+
 	public TrieNode(final Symbol symbol) {
 		this.symbol = symbol;
 		count = 0;
 		usage = 0;
 		children = new TrieNodeMap();
 	}
-	
+
 	/**
 	 * Gets the child trie for the given symbol. Optionally, grows the tree if
 	 * this child node did not already exist.
@@ -64,7 +64,7 @@ public class TrieNode {
 		}
 		return child;
 	}
-	
+
 	public List<?> getChildList() {
 		return children.getList();
 	}

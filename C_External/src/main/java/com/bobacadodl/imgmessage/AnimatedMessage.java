@@ -34,14 +34,14 @@ import javax.imageio.stream.ImageInputStream;
  * User: bobacadodl Date: 1/25/14 Time: 10:41 PM
  */
 public class AnimatedMessage {
-
+	
 	private final ImageMessage[]	images;
 	private int						index	= 0;
-
+	
 	public AnimatedMessage(final ImageMessage... images) {
 		this.images = images;
 	}
-
+	
 	public AnimatedMessage(final File gifFile, final int height, final char imgChar) throws IOException {
 		final List<BufferedImage> frames = getFrames(gifFile);
 		images = new ImageMessage[frames.size()];
@@ -49,7 +49,7 @@ public class AnimatedMessage {
 			images[i] = new ImageMessage(frames.get(i), height, imgChar);
 		}
 	}
-
+	
 	public List<BufferedImage> getFrames(final File input) {
 		final List<BufferedImage> images = new ArrayList<BufferedImage>();
 		try {
@@ -67,11 +67,11 @@ public class AnimatedMessage {
 		}
 		return images;
 	}
-
+	
 	public ImageMessage current() {
 		return images[index];
 	}
-
+	
 	public ImageMessage next() {
 		++index;
 		if (index >= images.length) {
@@ -81,7 +81,7 @@ public class AnimatedMessage {
 			return images[index];
 		}
 	}
-
+	
 	public ImageMessage previous() {
 		--index;
 		if (index <= 0) {
@@ -91,7 +91,7 @@ public class AnimatedMessage {
 			return images[index];
 		}
 	}
-
+	
 	public ImageMessage getIndex(final int index) {
 		return images[index];
 	}

@@ -19,25 +19,25 @@ import java.util.Map;
  * @see TrieNode
  */
 public class TrieNodeMap {
-	
+
 	// The two underlying data structures which we'll be using for this data
 	// type.
 	private final List<TrieNode>		list	= new ArrayList<TrieNode>();
 	private final Map<Symbol, TrieNode>	map		= new HashMap<Symbol, TrieNode>();
-	
+
 	public synchronized TrieNode get(final Symbol symbol) {
 		return map.get(symbol);
 	}
-	
+
 	public synchronized void put(final Symbol symbol, final TrieNode node) {
 		map.put(symbol, node);
 		list.add(node);
 	}
-	
+
 	public synchronized List<TrieNode> getList() {
 		return Collections.unmodifiableList(list);
 	}
-	
+
 	public synchronized Map<Symbol, TrieNode> getMap() {
 		return Collections.unmodifiableMap(map);
 	}

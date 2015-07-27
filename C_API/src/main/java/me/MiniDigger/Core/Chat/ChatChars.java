@@ -21,9 +21,9 @@
 package me.MiniDigger.Core.Chat;
 
 public class ChatChars {
-
+	
 	public static class Misc {
-
+		
 		public final static String	happy			= "☺";
 		public final static String	happyreverse		= "☺";
 		public final static String	unhappy			= "☹";
@@ -65,9 +65,9 @@ public class ChatChars {
 		public final static String	katakana			= "ツ";
 		public final static String	bullet			= "•";
 	}
-
+	
 	public static class Weather {
-
+		
 		public final static String	sun1			= "☼";
 		public final static String	sun2			= "☀";
 		public final static String	moon1		= "☾";
@@ -81,9 +81,9 @@ public class ChatChars {
 		public final static String	zap			= "Ϟ";
 		public final static String	snowflake	= "❅";
 	}
-
+	
 	public static class Cards {
-
+		
 		public final static String	heart		= "♡";
 		public final static String	spade		= "♤";
 		public final static String	diamond		= "♢";
@@ -93,9 +93,9 @@ public class ChatChars {
 		public final static String	blackdiamond	= "♦";
 		public final static String	blackclub	= "♣";
 	}
-
+	
 	public static class Directions {
-
+		
 		public final static String	left					= "←";
 		public final static String	right				= "→";
 		public final static String	up					= "↑";
@@ -105,9 +105,9 @@ public class ChatChars {
 		public final static String	bigdoubleAngleRight	= "⟫";
 		public final static String	bigdoubleAngleLeft	= "⟪";
 	}
-
+	
 	public static class Chess {
-
+		
 		public final static String	king			= "♔";
 		public final static String	queen		= "♕";
 		public final static String	rook			= "♖";
@@ -121,9 +121,9 @@ public class ChatChars {
 		public final static String	blackknight	= "♞";
 		public final static String	blackpawn	= "♟";
 	}
-
+	
 	public static class Zodiac {
-
+		
 		public final static String	ram			= "♈";
 		public final static String	bull			= "♉";
 		public final static String	twins		= "♊";
@@ -137,9 +137,9 @@ public class ChatChars {
 		public final static String	waterbearer	= "♒";
 		public final static String	fish			= "♓";
 	}
-
+	
 	public static class Art {
-
+		
 		public final static String	tableflip	= "(╯°□°)╯︵┻━┻";
 		public final static String	disapproval	= "ಠ_ಠ";
 		public final static String	headphones	= "d-_-b";

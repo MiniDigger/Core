@@ -23,7 +23,7 @@ package me.MiniDigger.Core.Event;
 import org.bukkit.event.HandlerList;
 
 public interface Event {
-
+	
 	/**
 	 * All Handlers for this event
 	 *

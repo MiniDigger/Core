@@ -21,11 +21,11 @@
 package me.MiniDigger.Core.Mirror;
 
 public interface MirrorReviever {
-
+	
 	/**
 	 * @param ip
 	 * @param port
 	 */
 	void init(final String ip, final int port);
-
+	
 }

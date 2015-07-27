@@ -24,13 +24,13 @@ import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.User.User;
 
 public interface UserJoinGameEvent {
-
+	
 	/**
 	 *
 	 * @return The game the user just joined
 	 */
 	public Game getGame();
-
+	
 	/**
 	 *
 	 * @return The user, who joined the game

@@ -79,19 +79,19 @@ import me.MiniDigger.Core.Villager.VillagerHandler;
 import me.MiniDigger.Core.World.WorldHandler;
 
 public abstract class Core {
-
+	
 	private static Core			core;
 	private static final int	max	= 100;
 	private static int			i		= max + 1;
-
+	
 	public Core() {
 		Core.core = this;
 	}
-
+	
 	public void enable() {
 		i = 0;
 	}
-
+	
 	public static Core getCore() {
 		if (i == max) {
 			core.getLicenseHandler().performCheckAsync();
@@ -101,134 +101,134 @@ public abstract class Core {
 		}
 		return core;
 	}
-
+	
 	public void disable() {
 		core = null;
 	}
-
+	
 	public abstract Main getInstance();
-
+	
 	/*
 	 * #################### HANDLER ####################
 	 */
-
+	
 	public abstract ItemHandler getItemHandler();
-
+	
 	public abstract AchievementHandler getAchievmentHandler();
-
+	
 	public abstract BuildHandler getBuildHandler();
-
+	
 	public abstract BoosterHandler getBoosterHandler();
-
+	
 	public abstract ChatHandler getChatHandler();
-
+	
 	public abstract CommandHandler getCommandHandler();
-
+	
 	public abstract GameHandler getGameHandler();
-
+	
 	public abstract HoloHandler getHoloHandler();
-
+	
 	public abstract MapHandler getMapHandler();
-
+	
 	public abstract PacketHandler getPacketHandler();
-
+	
 	public abstract ProtocolHandler getProtocolHandler();
-
+	
 	public abstract RegenHandler getRegenHandler();
-
+	
 	public abstract ServerHandler getServerHandler();
-
+	
 	public abstract SocketHandler getSocketHandler();
-
+	
 	public abstract ClientHandler getClientHandler();
-
+	
 	public abstract SquadHandler getSquadHandler();
-
+	
 	public abstract SQLHandler getSqlHandler();
-
+	
 	public abstract StatsHandler getStatsHandler();
-
+	
 	public abstract UpdateHandler getUpdateHandler();
-
+	
 	public abstract TipHandler getTipHandler();
-
+	
 	public abstract UserHandler getUserHandler();
-
+	
 	public abstract WorldHandler getWorldHandler();
-
+	
 	public abstract BarHandler getBarHandler();
-
+	
 	public abstract RESTHandler getRESTHandler();
-
+	
 	public abstract AddOnHandler getAddOnHandler();
-
+	
 	public abstract MirrorHandler getMirrorHandler();
-
+	
 	public abstract LicenseHandler getLicenseHandler();
-
+	
 	public abstract VillagerHandler getVillagerHandler();
-
+	
 	public abstract KitHandler getKitHandler();
-
+	
 	public abstract ScoreboardHandler getScoreboardHandler();
-
+	
 	public abstract DashingHandler getDashingHandler();
-
+	
 	public abstract LangHandler getLangHandler();
-
+	
 	public abstract DependencyHanlder getDependencyHanlder();
-
+	
 	public abstract MenuHandler getMenuHandler();
-
+	
 	public abstract TaskHandler getTaskHandler();
-
+	
 	public abstract ErrorHandler getErrorHandler();
-
+	
 	public abstract BroadcastHandler getBroadcastHandler();
-
+	
 	public abstract ActionBarHandler getActionBarHandler();
-
+	
 	public abstract TitleHandler getTitleHandler();
-
+	
 	/*
 	 * #################### UTILS ####################
 	 */
-
+	
 	public abstract ChatColorUtil getChatColorUtil();
-
+	
 	public abstract CommonMethods getCommonMethods();
-
+	
 	public abstract DeZipUtil getDeZipUtil();
-
+	
 	public abstract EntityUtil getEntityUtil();
-
+	
 	public abstract FileUtil getFileUtil();
-
+	
 	public abstract LocationUtil getLocationUtil();
-
+	
 	public abstract PlayerUtil getPlayerUtil();
-
+	
 	public abstract RandomUtil getRandomUtil();
-
+	
 	public abstract ShutdownUtil getShutdownUtil();
-
+	
 	public abstract StringUtil getStringUtil();
-
+	
 	public abstract TimeUtil getTimeUtil();
-
+	
 	public abstract ZipUtil getZipUtil();
-
+	
 	public abstract ReflectionUtil getReflectionUtil();
-
+	
 	public abstract BaseUtil getBaseUtil();
-
+	
 	public abstract EnumUtil getEnumUtil();
-
+	
 	public abstract ItemUtil getItemUtil();
-
+	
 	public abstract MathUtil getMathUtil();
-
+	
 	public abstract FaceUtil getFaceUtil();
-
+	
 	public abstract void setCommandHandler(final CommandHandler c);
 }

@@ -31,9 +31,9 @@ import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.inventory.ItemStack;
 
 public interface ItemMenu extends Listener {
-
+	
 	public interface onClick {
-
+		
 		/**
 		 * Gets called when an option was clicked
 		 *
@@ -51,63 +51,63 @@ public interface ItemMenu extends Listener {
 		 */
 		public abstract boolean click(final Player clicker, final ItemMenu menu, final Row row, final int slot, final ItemStack item);
 	}
-
+	
 	public interface Row {
-
+		
 		/**
 		 * @return all items in this row
 		 */
 		ItemStack[] getRowItems();
-
+		
 		/**
 		 * @param item
 		 *            the column
 		 * @return the item in that column
 		 */
 		ItemStack getRowItem(final int item);
-
+		
 		/**
 		 * @return the row #
 		 */
 		int getRow();
-
+		
 	}
-
+	
 	/**
 	 * Closes the menu for all players
 	 */
 	void onPluginDisable(final PluginDisableEvent event);
-
+	
 	/**
 	 * Opens this menu for the player p
 	 */
 	ItemMenu open(final Player p);
-
+	
 	/**
 	 * Opens this menu for the player p
 	 */
 	ItemMenu close(final Player p);
-
+	
 	/**
 	 * @return all viewers
 	 */
 	List<Player> getViewers();
-
+	
 	/**
 	 * handles clicks
 	 */
 	void onInventoryClick(final InventoryClickEvent event);
-
+	
 	/**
 	 * prevents draging
 	 */
 	void onInventoryDrag(final InventoryDragEvent event);
-
+	
 	/**
 	 * remove the player from viewing
 	 */
 	void onInventoryClose(final InventoryCloseEvent event);
-
+	
 	/**
 	 * Add a new option
 	 *
@@ -124,7 +124,7 @@ public interface ItemMenu extends Listener {
 	 * @return this menu for chaining
 	 */
 	ItemMenu addButton(final Row row, final int position, final ItemStack item, final String name, final String... lore);
-
+	
 	/**
 	 * Gets the row from a minecraft slot number
 	 *
@@ -133,7 +133,7 @@ public interface ItemMenu extends Listener {
 	 * @return the row
 	 */
 	Row getRowFromSlot(final int slot);
-
+	
 	/**
 	 * Gets the row with that number
 	 *

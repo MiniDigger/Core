@@ -16,35 +16,35 @@ package org.trypticon.megahal.engine;
  * @author Trejkaz
  */
 public class Symbol {
-	
+
 	public static final Symbol	START	= new Symbol("<START>", false);
 	public static final Symbol	END		= new Symbol("<END>", false);
-	
+
 	private final String	symbol;
 	private final boolean	keyword;
-	
+
 	public Symbol(final String symbol, final boolean keyword) {
 		this.symbol = symbol.intern();
 		this.keyword = keyword;
 	}
-	
+
 	@Override
 	public String toString() {
 		return symbol;
 	}
-	
+
 	@Override
 	public boolean equals(final Object other) {
 		// Because we intern them.
 		// noinspection StringEquality
 		return (other instanceof Symbol) && (symbol == ((Symbol) other).symbol);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return System.identityHashCode(symbol);
 	}
-	
+
 	public boolean isKeyword() {
 		return keyword;
 	}
