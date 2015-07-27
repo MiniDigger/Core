@@ -30,6 +30,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -89,7 +90,7 @@ public class CoreEventListener implements EventListener {
 	}
 	
 	@Override
-	@EventHandler
+	// @EventHandler //TODO does this make sense?
 	public void onPlayerDamage(final EntityDamageEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
 			final User user = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
@@ -104,6 +105,8 @@ public class CoreEventListener implements EventListener {
 				Bukkit.getPluginManager().callEvent(event);
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
+				System.out.println("set canceled " + event.isCancelled());
+				System.out.println("get dmg " + event.getDmg());
 				if (!event.isCancelled()) {
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
@@ -111,11 +114,17 @@ public class CoreEventListener implements EventListener {
 					}
 				}
 			}
+			
+			if (e.getDamage() == 0.0) {
+				System.out.println("set canceled in the end");
+				e.setCancelled(true);
+			}
 		}
 	}
 	
 	@Override
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR) // TODO Does this make
+	                                                // sense?
 	public void onPlayerDamageByPlayer(final EntityDamageByEntityEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
 			final User user = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
@@ -130,14 +139,21 @@ public class CoreEventListener implements EventListener {
 			for (final Game game : Core.getCore().getGameHandler().getGames(user)) {
 				final CoreUserDamageEvent event = new CoreUserDamageEvent(e.getDamage(), damager, user, game, e.isCancelled(), e.getCause());
 				Bukkit.getPluginManager().callEvent(event);
+				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
+				System.out.println("set canceled " + event.isCancelled());
+				System.out.println("get dmg " + event.getDmg());
 				if (!event.isCancelled()) {
-					e.setDamage(event.getDmg());
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
 						lastDamaged.put(user.getUUID(), damager.getUUID());
 					}
 				}
+			}
+			
+			if (e.getDamage() == 0.0) {
+				System.out.println("set canceled in the end2");
+				e.setCancelled(true);
 			}
 		}
 	}

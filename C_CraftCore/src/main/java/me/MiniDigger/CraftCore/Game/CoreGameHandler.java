@@ -38,11 +38,11 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 
 public class CoreGameHandler implements GameHandler {
 	
-	private boolean	              mainGameStarted	= false;
-	private Game	              mainGame;
-	private final ArrayList<Game>	games	      = new ArrayList<>();
+	private boolean					mainGameStarted	= false;
+	private Game					mainGame;
+	private final ArrayList<Game>	games				= new ArrayList<>();
 	
-	private List<GameType>	      disabled	      = new ArrayList<GameType>();
+	private List<GameType> disabled = new ArrayList<GameType>();
 	
 	@Override
 	public boolean isMainGameStarted() {
@@ -122,7 +122,7 @@ public class CoreGameHandler implements GameHandler {
 		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
 		Core.getCore().getBarHandler().removeBar(user.getPlayer());
 		Core.getCore().getMenuHandler().closeMenu(user);
-	
+		
 		final CoreUserJoinGameEvent event = new CoreUserJoinGameEvent(game, user);
 		Bukkit.getPluginManager().callEvent(event);
 	}
@@ -147,7 +147,9 @@ public class CoreGameHandler implements GameHandler {
 	public void leaveGame(final User user, final Game game) {
 		leave(user, game);
 		
-		user.getPlayer().teleport(Core.getCore().getWorldHandler().getFallbackLoc());
+		try {
+			user.getPlayer().teleport(Core.getCore().getWorldHandler().getFallbackLoc());
+		} catch (Exception ex) {}
 		
 		if (getMainGame().getType() == GameType.LOBBY) {
 			joinGame(user, getMainGame());

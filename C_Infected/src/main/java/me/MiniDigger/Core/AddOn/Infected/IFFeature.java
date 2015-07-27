@@ -263,24 +263,35 @@ public class IFFeature extends CoreFeature {
 			boolean damagerZombie = false;
 			boolean damagedZombie = false;
 			
+			System.out.println("dmg");
+			
 			if (e.getDamager() != null) {
 				if (infeced.contains(e.getDamager().getUUID())) {
 					damagerZombie = true;
+					System.out.println("damager is zombie");
 				}
+			} else {
+				System.out.println("damager null");
+				e.setDmg(0.0);
+				e.setCancelled(true);
+				return;
 			}
 			
 			if (infeced.contains(e.getDamaged().getUUID())) {
 				damagedZombie = true;
+				System.out.println("damaged is zombie");
 			}
 			
 			if (damagedZombie && damagerZombie) {
-				e.setCancelled(true);
+				System.out.println("zombie fight");
 				e.setDmg(0.0);
+				e.setCancelled(true);
 			}
 			
-			if (!damagedZombie && !damagedZombie) {
-				e.setCancelled(true);
+			if (!damagedZombie && !damagerZombie) {
+				System.out.println("normal fight");
 				e.setDmg(0.0);
+				e.setCancelled(true);
 			}
 		}
 	}
