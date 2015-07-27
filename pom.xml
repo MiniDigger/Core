@@ -145,10 +145,10 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-		<repository>
-			<id>carrade-repo</id><!-- FanyFull -->
-			<url>http://depot.carrade.eu/maven2/</url>
-		</repository>
+<!-- 		<repository> -->
+<!-- 			<id>carrade-repo</id>FanyFull -->
+<!-- 			<url>http://depot.carrade.eu/maven2/</url> -->
+<!-- 		</repository> -->
 		<repository><!-- Pex -->
 			<id>pex-repo</id>
 			<url>http://pex-repo.aoeu.xyz/</url>
@@ -165,10 +165,10 @@
 			<id>shadowvolt-repo</id><!-- New ProtocolLib -->
 			<url>http://ci.shadowvolt.com/plugin/repository/everything/</url>
 		</repository>
-		<repository><!-- FancyFull -->
-			<id>fancyfull-repo</id>
-			<url>http://repo.franga2000.com/artifactory/public</url>
-		</repository>
+	<!-- <repository>FancyFull -->
+	<!-- <id>fancyfull-repo</id> -->
+	<!-- <url>http://repo.franga2000.com/artifactory/public</url> -->
+	<!-- </repository> -->
 		<repository>
 			<id>elmakers-repo</id><!-- EffectLib -->
 			<url>http://maven.elmakers.com/repository/</url>
@@ -256,12 +256,12 @@
 			<version>2.4</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>mkremins</groupId>
-			<artifactId>fanciful</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
+	<!-- <dependency> -->
+	<!-- <groupId>mkremins</groupId> -->
+	<!-- <artifactId>fanciful</artifactId> -->
+	<!-- <version>0.3.1-SNAPSHOT</version> -->
+	<!-- <scope>compile</scope> -->
+	<!-- </dependency> -->
 		<dependency>
 			<groupId>ru.tehkode</groupId>
 			<artifactId>PermissionsEx</artifactId>

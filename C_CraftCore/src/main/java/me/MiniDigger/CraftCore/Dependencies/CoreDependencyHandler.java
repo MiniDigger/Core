@@ -31,6 +31,9 @@ import java.util.List;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Dependencies.Dependency;
 import me.MiniDigger.Core.Dependencies.DependencyHanlder;
+import me.MiniDigger.Core.Lang.LogLevel;
+
+import me.MiniDigger.CraftCore.Lang._;
 
 public class CoreDependencyHandler implements DependencyHanlder {
 	
@@ -39,16 +42,16 @@ public class CoreDependencyHandler implements DependencyHanlder {
 	private final List<Dependency> dependencies = new ArrayList<Dependency>();
 	
 	public CoreDependencyHandler() {
-		dependencies.add(new CoreDependency("ProtocolLib", "73"));
+		dependencies.add(new CoreDependency("ProtocolLib", "187"));
 		dependencies.add(new CoreDependency("PermissionsEx", "1.23.1"));
-		dependencies.add(new CoreDependency("NametagEdit", "3.0"));
-		dependencies.add(new CoreDependency("HolographicDisplays", "2.1.3"));
-		dependencies.add(new CoreDependency("EffectLib", "3.0.1"));
+		dependencies.add(new CoreDependency("NametagEdit", "19"));
+		dependencies.add(new CoreDependency("HolographicDisplays", "2.1.10"));
+		dependencies.add(new CoreDependency("EffectLib", "3.4"));
 		dependencies.add(new CoreDependency("Citizens", "2.0.14"));
 		dependencies.add(new CoreDependency("LibsDisguises", "3.6.3"));
 	}
 	
-	private boolean check(final Dependency d) {
+	private String check(final Dependency d) {
 		final File f = new File(Core.getCore().getInstance().getDataFolder().getParent());
 		for (final File p : f.listFiles(new FilenameFilter() {
 			
@@ -58,20 +61,36 @@ public class CoreDependencyHandler implements DependencyHanlder {
 			}
 		})) {
 			if (p.getName().startsWith(d.getName())) {
-				if (p.getName().endsWith(".dis")) {
-					return false;
-				}
-				return p.getName().equals(d.getFullName());
+				return p.getName();
 			}
 		}
-		return true;
+		return "true";
 	}
 	
 	@Override
 	public void check() {
 		for (final Dependency d : dependencies) {
-			if (check(d)) {
+			String fullName = check(d);
+			
+			System.out.println("check update for dependencie " + d.getFullName() + ", result: " + fullName);
+			
+			if (fullName.equals("true")) {
 				download(d);
+				continue;
+			}
+			
+			if (!fullName.equals(d.getFullName() + ".jar")) {
+				final File f = new File(Core.getCore().getInstance().getDataFolder().getParent());
+				try {
+					final File old = new File(f, fullName);
+					old.delete();
+					old.deleteOnExit();
+					System.out.println("Deleting old file: " + old.getName());
+				} catch (Exception ex) {
+					System.out.println("failed to delete old");
+				}
+				download(d);
+				continue;
 			}
 		}
 	}
@@ -116,6 +135,7 @@ public class CoreDependencyHandler implements DependencyHanlder {
 			}
 		} catch (final Exception ex) {
 			Core.getCore().getInstance().error("The dependency-updater tried to download a new update for " + file + ", but was unsuccessful. " + ex.getMessage());
+			_.stacktrace(LogLevel.DEBUG, ex);
 		} finally {
 			try {
 				if (in != null) {
