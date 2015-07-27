@@ -20,6 +20,9 @@
  */
 package me.MiniDigger.CraftCore.Command.Commands;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -33,16 +36,25 @@ import mkremins.fanciful.FancyMessage;
 
 public class PluginCommands {
 	
-	@Command(name = "plugin", aliases = { "plugins", "version", "v", "bukkit", "spigot", "core" }, description = "Zeigt Informationen über das Plugin und den Server", usage = "", permission = "plugins")
+	@Command(name = "plugin", aliases = { "plugins", "version", "v", "bukkit", "spigot",
+	        "core" }, description = "Zeigt Informationen über das Plugin und den Server", usage = "", permission = "plugins")
 	public void pluginCommand(final CommandArgs args) {
-		final FancyMessage msg = Prefix.CORE
-		        .getPrefix()
-		        .then("Dieser Server benutzt " + (Core.getCore().getInstance()).getDescription().getFullName() + " by MiniDigger zusammen mit CoreBukkit v"
-		                + Bukkit.getBukkitVersion()).color(ChatColor.GRAY);
+		final FancyMessage msg = Prefix.CORE.getPrefix().then("Dieser Server benutzt " + (Core.getCore().getInstance()).getDescription().getFullName()
+		        + " by MiniDigger zusammen mit CoreBukkit v" + Bukkit.getBukkitVersion() + "(" + getMinecraftVersion() + ")").color(ChatColor.GRAY);
 		msg.send(args.getSender());
 	}
 	
-	@Command(name = "plugin.list", aliases = { "plugins.list", "version.list", "v.list", "bukkit.list", "spigot.list", "core.list" }, description = "Zeigt alle Plugins", usage = "", permission = "plugins.list")
+	private String getMinecraftVersion() {
+		Matcher matcher = Pattern.compile("(\\(MC: )([\\d\\.]+)(\\))").matcher(Bukkit.getVersion());
+		if (matcher.find()) {
+			return matcher.group(2);
+		} else {
+			return null;
+		}
+	}
+	
+	@Command(name = "plugin.list", aliases = { "plugins.list", "version.list", "v.list", "bukkit.list", "spigot.list",
+	        "core.list" }, description = "Zeigt alle Plugins", usage = "", permission = "plugins.list")
 	public void pluginListCommand(final CommandArgs args) {
 		final FancyMessage msg = Prefix.CORE.getPrefix().then("Es sind folgende Plugins installiert ").color(ChatColor.AQUA);
 		for (final Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
@@ -52,12 +64,11 @@ public class PluginCommands {
 			} else {
 				c = ChatColor.RED;
 			}
-			msg.then(p.getName())
-			        .color(c)
-			        .tooltip(
-			                p.getDescription().getFullName() + " by " + Core.getCore().getStringUtil().listToString(p.getDescription().getAuthors())
-			                        + System.getProperty("line.separator") + " Info: " + p.getDescription().getDescription() + System.getProperty("line.separator")
-			                        + " More Infos:" + p.getDescription().getWebsite()).then(" ");
+			msg.then(p.getName()).color(c)
+			        .tooltip(p.getDescription().getFullName() + " by " + Core.getCore().getStringUtil().listToString(p.getDescription().getAuthors())
+			                + System.getProperty("line.separator") + " Info: " + p.getDescription().getDescription() + System.getProperty("line.separator")
+			                + " More Infos:" + p.getDescription().getWebsite())
+			        .then(" ");
 		}
 		msg.send(args.getSender());
 	}
@@ -75,13 +86,13 @@ public class PluginCommands {
 		}
 	}
 	
-	@Command(name="reloadbroadcaster",usage="",description="Läd den Broadcaster neu",permission="reloadbroadcaster")
+	@Command(name = "reloadbroadcaster", usage = "", description = "Läd den Broadcaster neu", permission = "reloadbroadcaster")
 	public void reloadbroadcaster(final CommandArgs args) {
 		Core.getCore().getBroadcastHandler().init();
 		Prefix.API.getPrefix().then("Done.").send(args.getSender());
 	}
 	
-	@Command(name="reloaddisabledgames",usage="",description="Läd die Deaktivierten Spiele neu",permission="reloaddisabledgames")
+	@Command(name = "reloaddisabledgames", usage = "", description = "Läd die Deaktivierten Spiele neu", permission = "reloaddisabledgames")
 	public void reloaddisabledgames(final CommandArgs args) {
 		Core.getCore().getGameHandler().reloadDisabled();
 		Prefix.API.getPrefix().then("Done.").send(args.getSender());
