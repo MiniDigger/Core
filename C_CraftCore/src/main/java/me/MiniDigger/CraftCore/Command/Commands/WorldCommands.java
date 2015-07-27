@@ -27,10 +27,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
-import net.minecraft.server.v1_8_R1.ExceptionWorldConflict;
+import net.minecraft.server.v1_8_R3.ExceptionWorldConflict;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

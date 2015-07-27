@@ -26,12 +26,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
-import net.minecraft.server.v1_8_R1.EntityVillager;
-import net.minecraft.server.v1_8_R1.MerchantRecipe;
-import net.minecraft.server.v1_8_R1.MerchantRecipeList;
-import net.minecraft.server.v1_8_R1.StatisticList;
+import net.minecraft.server.v1_8_R3.EntityVillager;
+import net.minecraft.server.v1_8_R3.MerchantRecipe;
+import net.minecraft.server.v1_8_R3.MerchantRecipeList;
+import net.minecraft.server.v1_8_R3.StatisticList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -77,7 +77,7 @@ public class CoreVillagerHandler implements VillagerHandler {
 		return openTradeWindow(v.getCustomName(), getTrades(v), p);
 	}
 	
-	// https://github.com/nisovin/Shopkeepers/blob/master/modules/v1_8_R1/src/main/java/com/nisovin/shopkeepers/compat/v1_8_R1/NMSHandler.java
+	// https://github.com/nisovin/Shopkeepers/blob/master/modules/v1_8_R3/src/main/java/com/nisovin/shopkeepers/compat/v1_8_R3/NMSHandler.java
 	@SuppressWarnings("unchecked")
 	public boolean openTradeWindow(final String name, final List<VillagerTrade> recipes, final Player player) {
 		try {
@@ -143,11 +143,11 @@ public class CoreVillagerHandler implements VillagerHandler {
 		return recipe;
 	}
 	
-	private net.minecraft.server.v1_8_R1.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
+	private net.minecraft.server.v1_8_R3.ItemStack convertItemStack(final org.bukkit.inventory.ItemStack item) {
 		if (item == null) {
 			return null;
 		}
-		return org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack.asNMSCopy(item);
+		return org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack.asNMSCopy(item);
 	}
 	
 }

@@ -22,17 +22,15 @@ package me.MiniDigger.CraftCore.World;
 
 import java.io.File;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 
-import net.minecraft.server.v1_8_R1.ConvertProgressUpdater;
-import net.minecraft.server.v1_8_R1.Convertable;
-import net.minecraft.server.v1_8_R1.EntityTracker;
-import net.minecraft.server.v1_8_R1.EnumGamemode;
-import net.minecraft.server.v1_8_R1.ServerNBTManager;
-import net.minecraft.server.v1_8_R1.WorldData;
-import net.minecraft.server.v1_8_R1.WorldManager;
-import net.minecraft.server.v1_8_R1.WorldServer;
-import net.minecraft.server.v1_8_R1.WorldSettings;
+import net.minecraft.server.v1_8_R3.EntityTracker;
+import net.minecraft.server.v1_8_R3.ServerNBTManager;
+import net.minecraft.server.v1_8_R3.WorldData;
+import net.minecraft.server.v1_8_R3.WorldManager;
+import net.minecraft.server.v1_8_R3.WorldServer;
+import net.minecraft.server.v1_8_R3.WorldSettings;
+import net.minecraft.server.v1_8_R3.WorldSettings.EnumGamemode;
 
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -64,7 +62,7 @@ public class CoreWorldLoader implements WorldLoader {
 		ChunkGenerator generator = creator.generator();
 		final File folder = new File(server.getWorldContainer(), name);
 		final World world = server.getWorld(name);
-		final net.minecraft.server.v1_8_R1.WorldType type = net.minecraft.server.v1_8_R1.WorldType.getType(creator.type().getName());
+		final net.minecraft.server.v1_8_R3.WorldType type = net.minecraft.server.v1_8_R3.WorldType.getType(creator.type().getName());
 		final boolean generateStructures = creator.generateStructures();
 		
 		if (world != null) {
@@ -79,11 +77,13 @@ public class CoreWorldLoader implements WorldLoader {
 			generator = server.getGenerator(name);
 		}
 		
-		final Convertable converter = new net.minecraft.server.v1_8_R1.WorldLoaderServer(server.getWorldContainer());
-		if (converter.isConvertable(name)) {
-			_.log(LogLevel.INFO, LangKeyType.World.CONVERTING, name);
-			converter.convert(name, new ConvertProgressUpdater(server.getServer()));
-		}
+		// final Convertable converter = new
+		// net.minecraft.server.v1_8_R3.WorldLoaderServer(server.getWorldContainer());
+		// if (converter.isConvertable(name)) {
+		// _.log(LogLevel.INFO, LangKeyType.World.CONVERTING, name);
+		// converter.convert(name, new
+		// ConvertProgressUpdater(server.getServer()));
+		// } //TODO Do we need word converison? it is broken since 1.8.R3
 		
 		int dimension = 3 + server.getServer().worlds.size() + 1;
 		boolean used = false;
@@ -101,17 +101,17 @@ public class CoreWorldLoader implements WorldLoader {
 		_.log(LogLevel.INFO, LangKeyType.World.CREATED, dimension + "");
 		
 		// final WorldServer internal = new WorldServer(server.getServer(), new
-		// net.minecraft.server.v1_8_R1.ServerNBTManager(server.getWorldContainer(),
+		// net.minecraft.server.v1_8_R3.ServerNBTManager(server.getWorldContainer(),
 		// name, true), name,
 		// dimension, new WorldSettings(creator.seed(), EnumGamemode.SURVIVAL,
 		// generateStructures, hardcore, type),
 		// server.getServer().methodProfiler,
 		// creator.environment(), generator);
 		
-		final WorldServer internal = new WorldServer(server.getServer(), new ServerNBTManager(server.getWorldContainer(), name, true), new WorldData(new WorldSettings(
-		        creator.seed(), EnumGamemode.SURVIVAL, generateStructures, hardcore, type), name), dimension, server.getServer().methodProfiler, creator.environment(),
-		        generator);
-		
+		final WorldServer internal = new WorldServer(server.getServer(), new ServerNBTManager(server.getWorldContainer(), name, true),
+		        new WorldData(new WorldSettings(creator.seed(), EnumGamemode.SURVIVAL, generateStructures, hardcore, type), name), dimension,
+		        server.getServer().methodProfiler, creator.environment(), generator);
+				
 		boolean containsWorld = false;
 		for (final World otherWorld : server.getWorlds()) {
 			if (otherWorld.getName().equalsIgnoreCase(name.toLowerCase())) {

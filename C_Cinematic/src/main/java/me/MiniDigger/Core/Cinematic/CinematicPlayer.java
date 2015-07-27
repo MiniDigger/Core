@@ -29,12 +29,12 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.LinkedTransferQueue;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
-import net.minecraft.server.v1_8_R1.EntityPlayer;
-import net.minecraft.server.v1_8_R1.EnumPlayerTeleportFlags;
-import net.minecraft.server.v1_8_R1.PacketPlayOutPosition;
-import net.minecraft.server.v1_8_R1.PacketPlayOutRelEntityMove;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.EnumPlayerTeleportFlags;
+import net.minecraft.server.v1_8_R3.PacketPlayOutPosition;
+import net.minecraft.server.v1_8_R3.PacketPlayOutRelEntityMove;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

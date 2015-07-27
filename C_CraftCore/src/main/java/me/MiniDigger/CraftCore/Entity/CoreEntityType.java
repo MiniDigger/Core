@@ -22,10 +22,10 @@ package me.MiniDigger.CraftCore.Entity;
 
 import java.util.Map;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
-import net.minecraft.server.v1_8_R1.Entity;
-import net.minecraft.server.v1_8_R1.EntityTypes;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.EntityTypes;
 
 import org.bukkit.Location;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;

@@ -25,18 +25,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftItem;
-import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftItem;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 
-import net.minecraft.server.v1_8_R1.BlockPosition;
-import net.minecraft.server.v1_8_R1.EntityItem;
-import net.minecraft.server.v1_8_R1.NBTTagCompound;
-import net.minecraft.server.v1_8_R1.RegistryMaterials;
-import net.minecraft.server.v1_8_R1.TileEntity;
-import net.minecraft.server.v1_8_R1.TileEntityMobSpawner;
-import net.minecraft.server.v1_8_R1.World;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.EntityItem;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.RegistryMaterials;
+import net.minecraft.server.v1_8_R3.TileEntity;
+import net.minecraft.server.v1_8_R3.TileEntityMobSpawner;
+import net.minecraft.server.v1_8_R3.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
@@ -63,13 +63,13 @@ public class SpawnerFeature extends CoreFeature {
 	static {
 		try {
 			// Get the new registry HashMp from the Item class
-			final Field registryField = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("REGISTRY");
+			final Field registryField = net.minecraft.server.v1_8_R3.Item.class.getDeclaredField("REGISTRY");
 			registryField.setAccessible(true);
 			final RegistryMaterials registry = (RegistryMaterials) registryField.get(null);
 			// Get entry of the spawner
 			final Object spawnerEntry = registry.a(52);
 			// Set maxStackSize "e(int maxStackSize)"
-			final Field maxStackSize = net.minecraft.server.v1_8_R1.Item.class.getDeclaredField("maxStackSize");
+			final Field maxStackSize = net.minecraft.server.v1_8_R3.Item.class.getDeclaredField("maxStackSize");
 			maxStackSize.setAccessible(true);
 			maxStackSize.setInt(spawnerEntry, 1);
 			// Cleanup
@@ -151,7 +151,7 @@ public class SpawnerFeature extends CoreFeature {
 						final NBTTagCompound itemTag = new NBTTagCompound();
 						itemTag.setShort("Health", (short) 1);
 						itemTag.setShort("Age", (short) 0);
-						final net.minecraft.server.v1_8_R1.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+						final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
 						final NBTTagCompound itemStackTag = new NBTTagCompound();
 						itemStack.save(itemStackTag);
 						itemStackTag.setByte("Count", (byte) 1);

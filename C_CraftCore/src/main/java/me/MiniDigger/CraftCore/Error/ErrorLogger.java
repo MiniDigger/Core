@@ -16,10 +16,10 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 
-import net.minecraft.server.v1_8_R1.CrashReport;
-import net.minecraft.server.v1_8_R1.MinecraftServer;
+import net.minecraft.server.v1_8_R3.CrashReport;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

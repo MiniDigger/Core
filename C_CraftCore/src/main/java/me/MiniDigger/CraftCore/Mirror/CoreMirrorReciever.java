@@ -24,7 +24,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.Socket;
 
-import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
+import com.google.gson.Gson;
+
 import org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader;
 
 import org.bukkit.Bukkit;

@@ -20,7 +20,7 @@
  */
 package me.MiniDigger.CraftCore.Villager;
 
-import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 
 import org.bukkit.inventory.ItemStack;
 
@@ -43,8 +43,8 @@ public class CoreVillagerTrade implements VillagerTrade {
 		this.rewardItem = rewardItem;
 	}
 	
-	public CoreVillagerTrade(final net.minecraft.server.v1_8_R1.ItemStack buyItem1, final net.minecraft.server.v1_8_R1.ItemStack buyItem2,
-	        final net.minecraft.server.v1_8_R1.ItemStack buyItem3) {
+	public CoreVillagerTrade(final net.minecraft.server.v1_8_R3.ItemStack buyItem1, final net.minecraft.server.v1_8_R3.ItemStack buyItem2,
+	        final net.minecraft.server.v1_8_R3.ItemStack buyItem3) {
 		item1 = CraftItemStack.asCraftMirror(buyItem1);
 		item2 = CraftItemStack.asCraftMirror(buyItem2);
 		rewardItem = CraftItemStack.asCraftMirror(buyItem3);

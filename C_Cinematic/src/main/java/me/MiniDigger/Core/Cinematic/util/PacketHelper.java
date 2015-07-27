@@ -20,9 +20,9 @@
  */
 package me.MiniDigger.Core.Cinematic.util;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
-import net.minecraft.server.v1_8_R1.Packet;
+import net.minecraft.server.v1_8_R3.Packet;
 
 import org.bukkit.entity.Player;
 

@@ -3,10 +3,10 @@ package me.MiniDigger.CraftCore.Bar;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import org.bukkit.craftbukkit.v1_8_R1.util.CraftChatMessage;
+import org.bukkit.craftbukkit.v1_8_R3.util.CraftChatMessage;
 
-import net.minecraft.server.v1_8_R1.Packet;
-import net.minecraft.server.v1_8_R1.PlayerConnection;
+import net.minecraft.server.v1_8_R3.Packet;
+import net.minecraft.server.v1_8_R3.PlayerConnection;
 
 import org.bukkit.entity.Player;
 

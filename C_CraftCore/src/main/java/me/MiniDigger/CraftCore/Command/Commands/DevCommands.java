@@ -23,23 +23,24 @@ package me.MiniDigger.CraftCore.Command.Commands;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 import org.json.simple.JSONObject;
 
 import com.comphenix.protocol.utility.MinecraftReflection;
 
-import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 
-import net.minecraft.server.v1_8_R1.BlockPosition;
-import net.minecraft.server.v1_8_R1.Entity;
-import net.minecraft.server.v1_8_R1.NBTTagCompound;
-import net.minecraft.server.v1_8_R1.NBTTagList;
-import net.minecraft.server.v1_8_R1.NBTTagString;
-import net.minecraft.server.v1_8_R1.TileEntity;
-import net.minecraft.server.v1_8_R1.TileEntityMobSpawner;
-import net.minecraft.server.v1_8_R1.World;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagList;
+import net.minecraft.server.v1_8_R3.NBTTagString;
+import net.minecraft.server.v1_8_R3.TileEntity;
+import net.minecraft.server.v1_8_R3.TileEntityMobSpawner;
+import net.minecraft.server.v1_8_R3.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -249,7 +250,7 @@ public class DevCommands {
 	
 	@Command(name = "dev.itemSpawner", description = "DEV!", usage = "", permission = "dev")
 	public void itemSpawner(final CommandArgs args) {
-		@SuppressWarnings("deprecation") final Block target = args.getPlayer().getTargetBlock(null, 200);
+		final Block target = args.getPlayer().getTargetBlock((Set<Material>) null, 200);
 		if ((target == null) || (target.getType() != Material.MOB_SPAWNER)) {
 			System.out.println("no spawner");
 			return;
@@ -266,7 +267,7 @@ public class DevCommands {
 			final NBTTagCompound itemTag = new NBTTagCompound();
 			itemTag.setShort("Health", (short) 5);
 			itemTag.setShort("Age", (short) 0);
-			final net.minecraft.server.v1_8_R1.ItemStack itemStack = CraftItemStack.asNMSCopy(args.getPlayer().getItemInHand());
+			final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(args.getPlayer().getItemInHand());
 			final NBTTagCompound itemStackTag = new NBTTagCompound();
 			itemStack.save(itemStackTag);
 			itemStackTag.setByte("Count", (byte) 1);
@@ -381,7 +382,7 @@ public class DevCommands {
 	@Command(name = "dev.book2", description = "DEV!", usage = "", permission = "dev")
 	public void book2(final CommandArgs args) {
 		final ItemStack is = args.getPlayer().getItemInHand();
-		final net.minecraft.server.v1_8_R1.ItemStack mcStack = ((net.minecraft.server.v1_8_R1.ItemStack) MinecraftReflection.getMinecraftItemStack(is));
+		final net.minecraft.server.v1_8_R3.ItemStack mcStack = ((net.minecraft.server.v1_8_R3.ItemStack) MinecraftReflection.getMinecraftItemStack(is));
 		final NBTTagCompound tag = mcStack.getTag();
 		final NBTTagList pages = tag.getList("pages", 0);
 		pages.a(1, new NBTTagString(new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE).toJSONString()));

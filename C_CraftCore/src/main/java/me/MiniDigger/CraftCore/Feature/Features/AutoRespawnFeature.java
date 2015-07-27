@@ -23,10 +23,10 @@ package me.MiniDigger.CraftCore.Feature.Features;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 
-import net.minecraft.server.v1_8_R1.EnumClientCommand;
-import net.minecraft.server.v1_8_R1.PacketPlayInClientCommand;
+import net.minecraft.server.v1_8_R3.PacketPlayInClientCommand;
+import net.minecraft.server.v1_8_R3.PacketPlayInClientCommand.EnumClientCommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;

@@ -149,23 +149,23 @@
 			<id>carrade-repo</id><!-- FanyFull -->
 			<url>http://depot.carrade.eu/maven2/</url>
 		</repository>
-		<repository>
+		<repository><!-- Pex -->
 			<id>pex-repo</id>
-			<url>http://pex-repo.zachsthings.com</url>
+			<url>http://pex-repo.aoeu.xyz/</url>
 		</repository>
-		<repository>
-			<id>comphenix-repo</id><!-- PacketWrapper, ProtocolLib -->
-			<url>http://assets.comphenix.net/jenkins/plugin/repository/everything</url>
-		</repository>
-		<repository>
-			<id>comphenix-repo2</id><!-- PacketWrapper, ProtocolLib -->
-			<url>http://repo.comphenix.net/content/groups/public</url>
-		</repository>
+		<!-- <repository> -->
+		<!-- <id>comphenix-repo</id>PacketWrapper, ProtocolLib -->
+		<!-- <url>http://assets.comphenix.net/jenkins/plugin/repository/everything</url> -->
+		<!-- </repository> -->
+		<!-- <repository> -->
+		<!-- <id>comphenix-repo2</id>PacketWrapper, ProtocolLib -->
+		<!-- <url>http://repo.comphenix.net/content/groups/public</url> -->
+		<!-- </repository> -->
 		<repository>
 			<id>shadowvolt-repo</id><!-- New ProtocolLib -->
 			<url>http://ci.shadowvolt.com/plugin/repository/everything/</url>
 		</repository>
-		<repository>
+		<repository><!-- FancyFull -->
 			<id>fancyfull-repo</id>
 			<url>http://repo.franga2000.com/artifactory/public</url>
 		</repository>
@@ -173,7 +173,7 @@
 			<id>elmakers-repo</id><!-- EffectLib -->
 			<url>http://maven.elmakers.com/repository/</url>
 		</repository>
-		<repository>
+		<repository><!-- Spigot -->
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
@@ -199,19 +199,19 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot</artifactId>
-			<version>1.8-SNAPSHOT</version>
+			<version>1.8.8-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.8.7-R0.1-SNAPSHOT</version>
+			<version>1.8.8-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.comphenix.protocol</groupId>
 			<artifactId>ProtocolLib</artifactId>
-			<version>3.6.3-SNAPSHOT</version>
+			<version>3.6.4-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- <dependency> -->

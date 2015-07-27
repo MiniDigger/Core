@@ -24,11 +24,11 @@ import java.lang.reflect.Field;
 
 import org.apache.commons.lang.NullArgumentException;
 
-import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 
-import net.minecraft.server.v1_8_R1.Entity;
-import net.minecraft.server.v1_8_R1.EntityLiving;
-import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.EntityLiving;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
@@ -60,7 +60,7 @@ public class NMS {
 	 *
 	 * @return
 	 */
-	public static net.minecraft.server.v1_8_R1.ItemStack getNMSItemStack(final ItemStack itemstack) {
+	public static net.minecraft.server.v1_8_R3.ItemStack getNMSItemStack(final ItemStack itemstack) {
 		if (itemstack == null) {
 			throw new NullArgumentException("itemstack");
 		}
@@ -68,7 +68,7 @@ public class NMS {
 		try {
 			final Field handleField = cbStack.getClass().getDeclaredField("handle");
 			handleField.setAccessible(true);
-			return (net.minecraft.server.v1_8_R1.ItemStack) handleField.get(cbStack);
+			return (net.minecraft.server.v1_8_R3.ItemStack) handleField.get(cbStack);
 		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +85,7 @@ public class NMS {
 	 */
 	public static String getItemDisplayName(final ItemStack itemstack) {
 		// Ziskaj NMS ItemStack
-		final net.minecraft.server.v1_8_R1.ItemStack nmsstack = NMS.getNMSItemStack(itemstack);
+		final net.minecraft.server.v1_8_R3.ItemStack nmsstack = NMS.getNMSItemStack(itemstack);
 		// Ziskaj tag, ktory potrebujeme.
 		return ((NBTTagCompound) nmsstack.getTag().get("display")).getString("Name");
 	}
@@ -99,7 +99,7 @@ public class NMS {
 	 */
 	public static boolean hasDisplayTag(final ItemStack itemstack) {
 		// Ziskaj NMS ItemStack
-		final net.minecraft.server.v1_8_R1.ItemStack nmsstack = NMS.getNMSItemStack(itemstack);
+		final net.minecraft.server.v1_8_R3.ItemStack nmsstack = NMS.getNMSItemStack(itemstack);
 		// Zisti ci existuje tag 'display'
 		if (nmsstack.getTag() != null) {
 			return nmsstack.getTag().hasKey("display");
@@ -118,7 +118,7 @@ public class NMS {
 	 */
 	public static void setItemDisplayName(final ItemStack itemstack, final String name) {
 		// Ziskaj NMS ItemStack
-		final net.minecraft.server.v1_8_R1.ItemStack nmsstack = NMS.getNMSItemStack(itemstack);
+		final net.minecraft.server.v1_8_R3.ItemStack nmsstack = NMS.getNMSItemStack(itemstack);
 		// Ziskaj tag, ktory potrebujeme.
 		((NBTTagCompound) nmsstack.getTag().get("display")).setString("Name", name);
 	}
