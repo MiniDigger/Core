@@ -191,6 +191,7 @@
                 </exec>
                 <echo>Move it!</echo>
                 <copy />
+                <copy />
                 <available />
                 <fail />
                 <path>

@@ -199,8 +199,7 @@
 								<!-- Die mit geänderter yml -->
 								<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
 
-								<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Standalone\plugins" 
-									/> -->
+								<copy file="${basedir}\build\Core.jar" todir="C:\Users\Martin\Google Drive\CoreMaps\core" />
 								<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" 
 									/> -->
 								<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" 
