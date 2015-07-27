@@ -37,6 +37,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Event.EventListener;
@@ -68,6 +69,22 @@ public class CoreEventListener implements EventListener {
 				Core.getCore().getGameHandler().getMainGame().start();
 			}
 		}
+		
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			e.getPlayer().hidePlayer(p);
+			p.hidePlayer(e.getPlayer());
+		}
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					e.getPlayer().hidePlayer(p);
+					p.hidePlayer(e.getPlayer());
+				}
+			}
+		}.runTaskLater(Core.getCore().getInstance(), 10);
 	}
 	
 	@Override
