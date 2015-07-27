@@ -20,6 +20,9 @@
  */
 package me.MiniDigger.Core.Chat;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ChatChars {
 	
 	public static class Misc {
@@ -64,6 +67,51 @@ public class ChatChars {
 		public final static String	circle			= "○";
 		public final static String	katakana			= "ツ";
 		public final static String	bullet			= "•";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("happy", happy);
+			map.put("happyreverse", happyreverse);
+			map.put("unhappy", unhappy);
+			map.put("unhappyreverse", unhappyreverse);
+			map.put("love", love);
+			map.put("male", male);
+			map.put("female", female);
+			map.put("music1", music1);
+			map.put("music2", music2);
+			map.put("music3", music3);
+			map.put("music4", music4);
+			map.put("music", music);
+			map.put("checkmark", checkmark);
+			map.put("multiplication", multiplication);
+			map.put("copyright", copyright);
+			map.put("registered", registered);
+			map.put("hourglass", hourglass);
+			map.put("star", star);
+			map.put("phone", phone);
+			map.put("yingyang", yingyang);
+			map.put("skull", skull);
+			map.put("radioactive", radioactive);
+			map.put("biohazard", biohazard);
+			map.put("airplane", airplane);
+			map.put("envelop", envelop);
+			map.put("arrow", arrow);
+			map.put("armystar", armystar);
+			map.put("scissors", scissors);
+			map.put("peace", peace);
+			map.put("uncheckedbox", uncheckedbox);
+			map.put("checkedbox", checkedbox);
+			map.put("markedbox", markedbox);
+			map.put("shade", shade);
+			map.put("mediumshade", mediumshade);
+			map.put("darkshade", darkshade);
+			map.put("triangle", triangle);
+			map.put("square", square);
+			map.put("circle", circle);
+			map.put("katakana", katakana);
+			map.put("bullet", bullet);
+			return map;
+		}
 	}
 	
 	public static class Weather {
@@ -80,6 +128,23 @@ public class ChatChars {
 		public final static String	comet		= "☄";
 		public final static String	zap			= "Ϟ";
 		public final static String	snowflake	= "❅";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("sun1", sun1);
+			map.put("sun2", sun2);
+			map.put("moon1", moon1);
+			map.put("moon2", moon2);
+			map.put("clouds", clouds);
+			map.put("snowman", snowman);
+			map.put("umbrella", umbrella);
+			map.put("flower1", flower1);
+			map.put("flower2", flower2);
+			map.put("comet", comet);
+			map.put("zap", zap);
+			map.put("snowflake", snowflake);
+			return map;
+		}
 	}
 	
 	public static class Cards {
@@ -92,18 +157,40 @@ public class ChatChars {
 		public final static String	blackspade	= "♠";
 		public final static String	blackdiamond	= "♦";
 		public final static String	blackclub	= "♣";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("heart", heart);
+			map.put("spade", spade);
+			map.put("diamond", diamond);
+			map.put("club", club);
+			map.put("blackheart", blackheart);
+			map.put("blackspade", blackspade);
+			map.put("blackdiamond", blackdiamond);
+			map.put("blackclub", blackclub);
+			return map;
+		}
 	}
 	
 	public static class Directions {
 		
-		public final static String	left					= "←";
-		public final static String	right				= "→";
-		public final static String	up					= "↑";
-		public final static String	down					= "↓";
-		public final static String	doubleAngleLeft		= "«";
-		public final static String	doubleAngleRight		= "»";
-		public final static String	bigdoubleAngleRight	= "⟫";
-		public final static String	bigdoubleAngleLeft	= "⟪";
+		public final static String	left				= "←";
+		public final static String	right			= "→";
+		public final static String	up				= "↑";
+		public final static String	down				= "↓";
+		public final static String	doubleAngleLeft	= "«";
+		public final static String	doubleAngleRight	= "»";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("left", left);
+			map.put("right", right);
+			map.put("up", up);
+			map.put("down", down);
+			map.put("doubleAngleLeft", doubleAngleRight);
+			map.put("doubleAngleRight", doubleAngleRight);
+			return map;
+		}
 	}
 	
 	public static class Chess {
@@ -120,6 +207,23 @@ public class ChatChars {
 		public final static String	blackbishop	= "♝";
 		public final static String	blackknight	= "♞";
 		public final static String	blackpawn	= "♟";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("king", king);
+			map.put("queen", queen);
+			map.put("rook", rook);
+			map.put("bishop", bishop);
+			map.put("knight", knight);
+			map.put("pawn", pawn);
+			map.put("blackking", blackking);
+			map.put("blackqueen", blackqueen);
+			map.put("blackrook", blackrook);
+			map.put("blackbishop", blackbishop);
+			map.put("blackknight", blackknight);
+			map.put("blackpawn", blackpawn);
+			return map;
+		}
 	}
 	
 	public static class Zodiac {
@@ -136,6 +240,23 @@ public class ChatChars {
 		public final static String	mergoat		= "♑";
 		public final static String	waterbearer	= "♒";
 		public final static String	fish			= "♓";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("ram", ram);
+			map.put("bull", bull);
+			map.put("twins", twins);
+			map.put("crab", crab);
+			map.put("lion", lion);
+			map.put("maiden", maiden);
+			map.put("scale", scale);
+			map.put("scorpion", scorpion);
+			map.put("archer", archer);
+			map.put("mergoat", mergoat);
+			map.put("waterbearer", waterbearer);
+			map.put("fish", fish);
+			return map;
+		}
 	}
 	
 	public static class Art {
@@ -147,10 +268,39 @@ public class ChatChars {
 		public final static String	embarressed	= "(^_^;)";
 		public final static String	sleeping		= "(-_-)zzz";
 		public final static String	bomb			= "●~*";
-		public final static String	samazed		= "(@_@)";
+		public final static String	amazed		= "(@_@)";
 		public final static String	skrillex		= "ϟƘƦƖןןΣx";
 		public final static String	coffee		= "c[_]";
 		public final static String	rifle		= "︻╦╤─";
 		public final static String	ameno		= "༼ つ ◕_◕ ༽つ";
+		
+		public static Map<String, String> values() {
+			Map<String, String> map = new HashMap<>();
+			map.put("tableflip", tableflip);
+			map.put("disapproval", disapproval);
+			map.put("headphones", headphones);
+			map.put("troubled", troubled);
+			map.put("embarressed", embarressed);
+			map.put("sleeping", sleeping);
+			map.put("bomb", bomb);
+			map.put("amazed", amazed);
+			map.put("skrillex", skrillex);
+			map.put("coffee", coffee);
+			map.put("rifle", rifle);
+			map.put("ameno", ameno);
+			return map;
+		}
+	}
+	
+	public static Map<String, String> getAll() {
+		Map<String, String> map = new HashMap<>();
+		map.putAll(Art.values());
+		map.putAll(Zodiac.values());
+		map.putAll(Chess.values());
+		map.putAll(Directions.values());
+		map.putAll(Cards.values());
+		map.putAll(Weather.values());
+		map.putAll(Misc.values());
+		return map;
 	}
 }

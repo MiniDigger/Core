@@ -22,26 +22,30 @@ package me.MiniDigger.CraftCore.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
+
+import org.sqlite.SQLiteConfig.SynchronousMode;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChannel;
+import me.MiniDigger.Core.Chat.ChatChars;
 import me.MiniDigger.Core.User.User;
 
 import mkremins.fanciful.FancyMessage;
 
 public class CoreChatChannel implements ChatChannel {
 	
-	protected String	   name;
-	protected ChatColor	   color;
-	protected String	   hearPerm;
-	protected String	   speakPerm;
+	protected String		name;
+	protected ChatColor		color;
+	protected String		hearPerm;
+	protected String		speakPerm;
 	protected FancyMessage	prefix;
-	protected boolean	   global;
-	protected boolean	   showMsg;
+	protected boolean		global;
+	protected boolean		showMsg;
 	
 	@Override
 	public void init(final String name, final ChatColor color, final String hearPerm, final String speakPerm, final FancyMessage prefix) {
@@ -118,10 +122,19 @@ public class CoreChatChannel implements ChatChannel {
 			message = Core.getCore().getChatColorUtil().replaceAndToMc(message);
 		}
 		
+		if (chatUser.hasPermission("chat.emote")) {
+			Map<String, String> map = ChatChars.getAll();
+			for (String key : map.keySet()) {
+				if (message.contains(":" + key + ":")) {
+					message = message.replace(":" + key + ":", map.get(key));
+				}
+			}
+		}
+		
 		broadcast(getPrefix().then(chatUser.getPrefix() + server + chatUser.getDisplayName())
 		        .tooltip("Klicke hier um " + chatUser.getDisplayName() + " eine Nachricht zu schreiben").suggest("/pm " + chatUser.getDisplayName()).then("> " + message)
 		        .color(color));
-		
+				
 		Bukkit.getConsoleSender().sendMessage("[CHAT]<" + name + "> " + chatUser.getDisplayName() + ": " + message);
 	}
 	
