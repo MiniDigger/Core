@@ -114,6 +114,7 @@ public class ErrorLogger extends PluginLogger {
 		}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static HashMap<String, String> loadMap() {
 		String ser = getProperty("__ErrorLogger__");
 		return ser != null ? (JSONObject) JSONValue.parse(ser) : new HashMap();

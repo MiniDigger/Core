@@ -87,7 +87,6 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		}, 10 * 20);
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void shutdown() {
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			FancyMessage msg = Prefix.CORE.getPrefix().then("Der Server wird neugestartet!").color(ChatColor.RED).style(ChatColor.BOLD);

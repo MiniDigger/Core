@@ -33,7 +33,7 @@ import me.MiniDigger.Core.Dependencies.Dependency;
 import me.MiniDigger.Core.Dependencies.DependencyHanlder;
 import me.MiniDigger.Core.Lang.LogLevel;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreDependencyHandler implements DependencyHanlder {
 	
@@ -135,7 +135,7 @@ public class CoreDependencyHandler implements DependencyHanlder {
 			}
 		} catch (final Exception ex) {
 			Core.getCore().getInstance().error("The dependency-updater tried to download a new update for " + file + ", but was unsuccessful. " + ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		} finally {
 			try {
 				if (in != null) {

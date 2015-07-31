@@ -65,7 +65,7 @@ public class SpawnerFeature extends CoreFeature {
 			// Get the new registry HashMp from the Item class
 			final Field registryField = net.minecraft.server.v1_8_R3.Item.class.getDeclaredField("REGISTRY");
 			registryField.setAccessible(true);
-			final RegistryMaterials registry = (RegistryMaterials) registryField.get(null);
+			final RegistryMaterials<?, ?> registry = (RegistryMaterials<?, ?>) registryField.get(null);
 			// Get entry of the spawner
 			final Object spawnerEntry = registry.a(52);
 			// Set maxStackSize "e(int maxStackSize)"

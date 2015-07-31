@@ -48,7 +48,7 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamDeathMatchFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class BedFeature extends CoreFeature {
 	
@@ -137,7 +137,7 @@ public class BedFeature extends CoreFeature {
 	public void onPlayerRespawn(final PlayerRespawnEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (bed == null) {
-			_.msg(getPhase().getGame().getGamePrefix(), LangKeyType.Game.BedWars.OUT, MsgType.IMPORTANT, user.getPlayer());
+			MSG.msg(getPhase().getGame().getGamePrefix(), LangKeyType.Game.BedWars.OUT, MsgType.IMPORTANT, user.getPlayer());
 			try {
 				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				final Team t = tf.getTeam(user);

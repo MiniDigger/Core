@@ -129,7 +129,6 @@ public abstract class TextualComponent implements Cloneable {
 		}
 		
 		@Override
-		@SuppressWarnings("serial")
 		public Map<String, Object> serialize() {
 			return new HashMap<String, Object>() {
 				

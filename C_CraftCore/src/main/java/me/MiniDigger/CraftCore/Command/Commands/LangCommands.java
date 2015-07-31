@@ -27,7 +27,7 @@ import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Prefix.Prefix;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class LangCommands {
 	
@@ -41,9 +41,9 @@ public class LangCommands {
 		try {
 			final LangType lang = LangType.valueOf(args.getArgs()[0]);
 			args.getUser().setLanguage(lang);
-			_.msg(Prefix.LANG, LangKeyType.Lang.SET, MsgType.SUCESS, args.getSender(), args.getArgs()[0]);
+			MSG.msg(Prefix.LANG, LangKeyType.Lang.SET, MsgType.SUCESS, args.getSender(), args.getArgs()[0]);
 		} catch (final Exception ex) {
-			_.msg(Prefix.LANG, LangKeyType.Lang.ERROR_SET, MsgType.FAIL, args.getSender(), args.getArgs()[0]);
+			MSG.msg(Prefix.LANG, LangKeyType.Lang.ERROR_SET, MsgType.FAIL, args.getSender(), args.getArgs()[0]);
 		}
 	}
 }

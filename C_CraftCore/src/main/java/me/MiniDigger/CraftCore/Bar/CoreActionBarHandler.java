@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import me.MiniDigger.Core.Bar.ActionBarHandler;
 import me.MiniDigger.Core.Lang.LogLevel;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreActionBarHandler implements ActionBarHandler{
 	
@@ -35,7 +35,7 @@ public class CoreActionBarHandler implements ActionBarHandler{
 				pcon.getClass().getMethod("sendPacket", getNmsClass("Packet")).invoke(pcon, ppoc);
 			}
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 }

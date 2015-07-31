@@ -78,7 +78,6 @@ public class CoreVillagerHandler implements VillagerHandler {
 	}
 	
 	// https://github.com/nisovin/Shopkeepers/blob/master/modules/v1_8_R3/src/main/java/com/nisovin/shopkeepers/compat/v1_8_R3/NMSHandler.java
-	@SuppressWarnings("unchecked")
 	public boolean openTradeWindow(final String name, final List<VillagerTrade> recipes, final Player player) {
 		try {
 			final EntityVillager villager = new EntityVillager(((CraftPlayer) player).getHandle().world, 0);

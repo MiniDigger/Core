@@ -111,7 +111,7 @@ public class CoreServerHandler implements ServerHandler {
 			name = name.replaceAll("\"", "");
 			// System.out.println("could not read name from " +
 			// lines[1].getJson());
-			// _.stacktrace(LogLevel.DEBUG, ex);
+			// MSG.stacktrace(LogLevel.DEBUG, ex);
 			// return lines;
 			// System.out.println("name = " + name);
 		}

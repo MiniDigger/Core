@@ -31,7 +31,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamSelectFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
@@ -79,14 +79,14 @@ public class BedWarsGame extends CoreGame {
 		if (winner != null && winner.length == 1) {
 			final User w = winner[0];
 			if (w != null) {
-				_.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
+				MSG.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
 				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
 				
 				leave(w);
 			}
 		} else if (winner.length > 1) {
 			for (final User w : winner) {
-				_.msg(getGamePrefix(), LangKeyType.Game.TEAM_WIN, MsgType.IMPORTANT, w.getPlayer());
+				MSG.msg(getGamePrefix(), LangKeyType.Game.TEAM_WIN, MsgType.IMPORTANT, w.getPlayer());
 			}
 			final Team t = ((TeamFeature) getPhase().getFeature(FeatureType.TEAM)).getTeam(winner[0]);
 			broadCastMessage(LangKeyType.Game.TEAM_WON, MsgType.IMPORTANT, t.getName());

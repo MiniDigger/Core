@@ -211,7 +211,8 @@ public class CoreScoreboard implements Scoreboard {
 			t.setSuffix(team.getSuffix());
 			
 			for (final UUID id : team.getPlayers()) {
-				t.addPlayer(Bukkit.getOfflinePlayer(id));
+//				t.addPlayer(Bukkit.getOfflinePlayer(id));
+				t.addEntry(Bukkit.getOfflinePlayer(id).getName());
 			}
 		}
 		

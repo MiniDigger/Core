@@ -28,7 +28,7 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
@@ -77,7 +77,7 @@ public class KPGame extends CoreGame {
 		if (winner != null && winner.length == 1) {
 			final User w = winner[0];
 			if (w != null) {
-				_.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
+				MSG.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
 				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
 				
 				leave(w);

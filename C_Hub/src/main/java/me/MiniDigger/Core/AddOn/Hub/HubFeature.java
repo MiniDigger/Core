@@ -57,7 +57,7 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Menu.CoreItemBarMenu;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -376,7 +376,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("OITC"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 			}
@@ -390,7 +390,7 @@ public class HubFeature extends CoreFeature {
 				try {
 					u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT"));
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 			}
@@ -408,7 +408,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("KITPVP"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -427,7 +427,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GETTHEDROP"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -446,7 +446,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("GK"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -465,7 +465,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("CRANK"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -484,7 +484,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BMT"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -526,7 +526,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("SURVIVALGAMES"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -545,7 +545,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("INFECTED"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				
@@ -564,7 +564,7 @@ public class HubFeature extends CoreFeature {
 						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("BEDWARS"));
 					}
 				} catch (final Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 				}
 				

@@ -41,7 +41,7 @@ import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Map.MapHandler;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreMapHandler implements MapHandler {
 	
@@ -225,7 +225,7 @@ public class CoreMapHandler implements MapHandler {
 				}
 			}
 		} catch (Exception ex) {
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		final File mapDataFile = new File(new File(Bukkit.getWorldContainer(), map.getName()), "map.yml");

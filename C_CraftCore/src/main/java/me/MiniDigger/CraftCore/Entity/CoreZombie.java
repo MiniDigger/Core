@@ -64,9 +64,9 @@ public class CoreZombie extends EntityZombie {
 		goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntitySheep.class, 8.0F));
 		goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
 		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true, new Class[] { EntityPigZombie.class }));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, true));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityVillager>(this, EntityVillager.class, false));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityIronGolem>(this, EntityIronGolem.class, true));
 	}
 	
 	public void addCustomGoals() {
@@ -80,9 +80,9 @@ public class CoreZombie extends EntityZombie {
 		goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
 		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
 		targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true, new Class[] { EntityPigZombie.class }));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
-		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntitySheep.class, true));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityHuman>(this, EntityHuman.class, true));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntityVillager>(this, EntityVillager.class, false));
+		targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<EntitySheep>(this, EntitySheep.class, true));
 	}
 	
 }

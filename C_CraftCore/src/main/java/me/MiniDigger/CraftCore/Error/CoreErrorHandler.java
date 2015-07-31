@@ -31,7 +31,7 @@ import me.MiniDigger.Core.Error.ErrorHandler;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreErrorHandler implements ErrorHandler {
 	
@@ -65,10 +65,10 @@ public class CoreErrorHandler implements ErrorHandler {
 							msg = "<msg null>";
 						}
 					}
-					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", msg);
-					_.stacktrace(LogLevel.DEBUG, record.getThrown());
-					_.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
-					_.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
+					MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", msg);
+					MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
+					MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+					MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
 				}
 			}
 			

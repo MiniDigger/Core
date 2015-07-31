@@ -38,7 +38,7 @@ import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Packet.Packet;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreAddOn implements AddOn {
 	
@@ -57,7 +57,7 @@ public class CoreAddOn implements AddOn {
 	public void checkUpdate() {
 		final AddOnBean bean = Core.getCore().getRESTHandler().checkUpdate(this.bean);
 		if (bean.getVersion() != null) {
-			_.log(LogLevel.INFO, LangKeyType.AddOn.FOUND_UPDATE, name, this.bean.getVersion(), bean.getVersion());
+			MSG.log(LogLevel.INFO, LangKeyType.AddOn.FOUND_UPDATE, name, this.bean.getVersion(), bean.getVersion());
 		}
 	}
 	
@@ -105,7 +105,7 @@ public class CoreAddOn implements AddOn {
 		try {
 			config.save(configFile);
 		} catch (final IOException e) {
-			_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_SAVE_CONFIG, name);
+			MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_SAVE_CONFIG, name);
 			e.printStackTrace();
 		}
 	}
@@ -114,17 +114,17 @@ public class CoreAddOn implements AddOn {
 	public void loadConfig() {
 		dataFolder = new File((Core.getCore().getInstance()).getDataFolder(), name);
 		if (!dataFolder.exists()) {
-			_.log(LogLevel.INFO, LangKeyType.AddOn.CREATE_FOLDER, name);
+			MSG.log(LogLevel.INFO, LangKeyType.AddOn.CREATE_FOLDER, name);
 			dataFolder.mkdir();
 		}
 		
 		configFile = new File(dataFolder, name + ".yml");
 		if (!configFile.exists()) {
-			_.log(LogLevel.INFO, LangKeyType.AddOn.CREATE_CONFIG, name);
+			MSG.log(LogLevel.INFO, LangKeyType.AddOn.CREATE_CONFIG, name);
 			try {
 				configFile.createNewFile();
 			} catch (final IOException e) {
-				_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_CREATE_CONFIG, name);
+				MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_CREATE_CONFIG, name);
 				e.printStackTrace();
 			}
 		}

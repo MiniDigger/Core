@@ -46,7 +46,7 @@ import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.World.WorldHandler;
 
 import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 
 public class CoreWorldHandler implements WorldHandler {
@@ -137,7 +137,7 @@ public class CoreWorldHandler implements WorldHandler {
 		final World w = new CoreWorldLoader().loadWorld(wc);
 		w.setAutoSave(false);
 		
-		_.log(LogLevel.INFO, LangKeyType.World.LOADING_CHUNKS);
+		MSG.log(LogLevel.INFO, LangKeyType.World.LOADING_CHUNKS);
 		try {
 			MapData data = Core.getCore().getMapHandler().getMap(name);
 			if (data == null) {
@@ -145,10 +145,10 @@ public class CoreWorldHandler implements WorldHandler {
 				data = Core.getCore().getMapHandler().getMap(newName);
 			}
 			final int i = data.loadChunks();
-			_.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i + "");
+			MSG.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.World.CHUNK_LOAD_ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.World.CHUNK_LOAD_ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		return w;
@@ -171,13 +171,13 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		if (oldMap.exists() && oldMap.isDirectory()) {
 			try {
-				_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+				MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
 				Core.getCore().getFileUtil().deleteDirectory(oldMap);
 			} catch (final Exception ex) {
 				System.out.println("err");
 				fixSession(oldMap);
 				try {
-					_.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+					MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
 					Core.getCore().getFileUtil().deleteDirectory(oldMap);
 				} catch (final Exception exs) {
 					System.out.println("err124");
@@ -206,9 +206,9 @@ public class CoreWorldHandler implements WorldHandler {
 		// dataoutputstream.close();
 		// }
 		// } catch (final IOException ioexception) {
-		// _.log(LogLevel.ERROR, LangKeyType.Main.ERROR,
+		// MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR,
 		// ioexception.getMessage());
-		// _.stacktrace(LogLevel.DEBUG, ioexception);
+		// MSG.stacktrace(LogLevel.DEBUG, ioexception);
 		// }
 	}
 	
@@ -225,7 +225,7 @@ public class CoreWorldHandler implements WorldHandler {
 		
 		deleteWorld(name);
 		
-		_.log(LogLevel.DEBUG, LangKeyType.World.UNZIP, map.getAbsolutePath(), out.getAbsolutePath());
+		MSG.log(LogLevel.DEBUG, LangKeyType.World.UNZIP, map.getAbsolutePath(), out.getAbsolutePath());
 		
 		Core.getCore().getDeZipUtil().extract(new File(map.getAbsolutePath()), out);
 		

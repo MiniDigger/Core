@@ -32,7 +32,7 @@ import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.User.UserHandler;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -44,9 +44,9 @@ public class CoreUserHandler implements UserHandler {
 	
 	@Override
 	public boolean loadAll() {
-		_.log(LogLevel.INFO, LangKeyType.SQL.CREATE_TABLE, "User");
+		MSG.log(LogLevel.INFO, LangKeyType.SQL.CREATE_TABLE, "User");
 		if (!new CoreUser(null).createTable()) {
-			_.log(LogLevel.INFO, LangKeyType.SQL.CREATE_TABLE_FAILED);
+			MSG.log(LogLevel.INFO, LangKeyType.SQL.CREATE_TABLE_FAILED);
 		}
 		// users = new ArrayList<>();
 		// final ArrayList<String> uuids = new ArrayList<>();
@@ -121,7 +121,6 @@ public class CoreUserHandler implements UserHandler {
 		return u;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public List<User> getOnlineUsers() {
 		final List<User> users = new ArrayList<>();
@@ -133,7 +132,6 @@ public class CoreUserHandler implements UserHandler {
 		return users;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public List<Player> getOnlinePlayers() {
 		final List<Player> players = new ArrayList<>();

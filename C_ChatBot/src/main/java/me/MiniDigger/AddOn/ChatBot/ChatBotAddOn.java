@@ -14,7 +14,7 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserChatEvent;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.User.CoreUser;
 
 public class ChatBotAddOn extends CoreAddOn {
@@ -56,7 +56,7 @@ public class ChatBotAddOn extends CoreAddOn {
 				try {
 					bot1.load();
 				} catch (ClassNotFoundException | IOException e) {
-					_.stacktrace(LogLevel.DEBUG, e);
+					MSG.stacktrace(LogLevel.DEBUG, e);
 				}
 				
 				bot2.load();
@@ -77,12 +77,12 @@ public class ChatBotAddOn extends CoreAddOn {
 											Core.getCore().getChatHandler().handleChat(user1, sentence1);
 											Core.getCore().getChatHandler().handleChat(user2, sentence2);
 										} catch (final Exception ex) {
-											_.stacktrace(LogLevel.DEBUG, ex);
+											MSG.stacktrace(LogLevel.DEBUG, ex);
 										}
 									}
 								}
 							} catch (final InterruptedException e) {
-								_.stacktrace(LogLevel.DEBUG, e);
+								MSG.stacktrace(LogLevel.DEBUG, e);
 							}
 						}
 					}
@@ -116,7 +116,7 @@ public class ChatBotAddOn extends CoreAddOn {
 		try {
 			bot1.save();
 		} catch (final IOException e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 		
 		bot2.save();

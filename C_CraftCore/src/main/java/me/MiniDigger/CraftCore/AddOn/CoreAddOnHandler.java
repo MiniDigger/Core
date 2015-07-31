@@ -47,7 +47,7 @@ import me.MiniDigger.Core.AddOn.AddOnHandler;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreAddOnHandler implements AddOnHandler {
 	
@@ -88,7 +88,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 			addOns = (JSONArray) parser.parse(result);
 		} catch (final ParseException e) {
 			addOns = new JSONArray();
-			_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_FILE_CURRUPTED);
+			MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_FILE_CURRUPTED);
 		}
 	}
 	
@@ -100,27 +100,27 @@ public class CoreAddOnHandler implements AddOnHandler {
 			bean.setVersion(b.getVersion());
 			bean = Core.getCore().getRESTHandler().requestInfos(bean, true);
 			
-			_.log(LogLevel.INFO, LangKeyType.AddOn.LOAD, b.getName(), bean.getVersion(), bean.getAuthor());
+			MSG.log(LogLevel.INFO, LangKeyType.AddOn.LOAD, b.getName(), bean.getVersion(), bean.getAuthor());
 			
 			if (bean.getVersion() == null || bean.getAuthor() == null || bean.getPackage() == null) {
-				_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_RESULT_NULL, b.getName());
+				MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_RESULT_NULL, b.getName());
 				return;
 			}
 			
 			CoreAddOnClassLoader loader;
 			try {
 				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
-				_.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), url.toExternalForm());
+				MSG.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), url.toExternalForm());
 				String pack;
 				if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 					pack = bean.getPackageDev();
 				} else {
 					pack = bean.getPackage();
 				}
-				_.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), pack);
+				MSG.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), pack);
 				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), pack, url);
 			} catch (final Exception e) {
-				_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_LOAD, bean.getName(), bean.getVersion(), bean.getAuthor());
+				MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_LOAD, bean.getName(), bean.getVersion(), bean.getAuthor());
 				e.printStackTrace();
 				continue;
 			}
@@ -132,11 +132,11 @@ public class CoreAddOnHandler implements AddOnHandler {
 		
 		for (final AddOn addon : active) {
 			try {
-				_.log(LogLevel.INFO, LangKeyType.AddOn.ENABLE, addon.getName(), addon.getBean().getVersion(), addon.getBean().getAuthor());
+				MSG.log(LogLevel.INFO, LangKeyType.AddOn.ENABLE, addon.getName(), addon.getBean().getVersion(), addon.getBean().getAuthor());
 				addon.enable();
 				addon.checkUpdate();
 			} catch (final Exception ex) {
-				_.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_ENABLE, addon.getName(), addon.getBean().getVersion(), addon.getBean().getAuthor());
+				MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_ENABLE, addon.getName(), addon.getBean().getVersion(), addon.getBean().getAuthor());
 				ex.printStackTrace();
 			}
 		}
@@ -147,7 +147,7 @@ public class CoreAddOnHandler implements AddOnHandler {
 	@Override
 	public void disableAddOns() {
 		for (final AddOn addon : active) {
-			_.log(LogLevel.INFO, LangKeyType.AddOn.DISABLE, addon.getName(), addon.getBean().getVersion() + "`", addon.getBean().getAuthor());
+			MSG.log(LogLevel.INFO, LangKeyType.AddOn.DISABLE, addon.getName(), addon.getBean().getVersion() + "`", addon.getBean().getAuthor());
 			addon.disable();
 			final AddOnClassLoader loader = loaders.get(addon.getName());
 			loaders.remove(addon.getName());

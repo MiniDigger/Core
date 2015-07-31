@@ -21,7 +21,7 @@ import me.MiniDigger.Core.Broadcast.BroadcastMessage;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Prefix.Prefix;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -68,7 +68,7 @@ public class CoreBroadcastHandler implements BroadcastHandler {
 				msgs.add(msg);
 			}
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	
@@ -88,7 +88,7 @@ public class CoreBroadcastHandler implements BroadcastHandler {
 			a.writeJSONString(new PrintWriter(file));
 			System.out.println("saved");
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	

@@ -50,7 +50,7 @@ import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -129,12 +129,12 @@ public class CoreGame implements Game {
 	public void broadCastMessage(final LangKeyType type, final MsgType msg, final String... args) {
 		for (final UUID id : users) {
 			if (Bukkit.getPlayer(id) != null) {
-				_.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
+				MSG.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
 			}
 		}
 		for (final UUID id : specs) {
 			if (Bukkit.getPlayer(id) != null) {
-				_.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
+				MSG.msg(getGamePrefix(), type, msg, Bukkit.getPlayer(id), args);
 			}
 		}
 	}
@@ -359,7 +359,7 @@ public class CoreGame implements Game {
 						        .then("Der Spieler " + winner[0].getDisplayName() + " ist siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
 					}
 				} catch (Exception ex) {
-					_.stacktrace(LogLevel.DEBUG, ex);
+					MSG.stacktrace(LogLevel.DEBUG, ex);
 				}
 			}
 		}

@@ -14,7 +14,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Bar.TitleHandler;
 import me.MiniDigger.Core.Lang.LogLevel;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreTitleHandler implements TitleHandler {
 	
@@ -82,7 +82,7 @@ public class CoreTitleHandler implements TitleHandler {
 				nmsNetworkGetVersion = Core.getCore().getReflectionUtil().getMethod(nmsFieldNetworkManager.getType(), "getVersion", ioNettyChannel);
 				initialized = true;
 			} catch (Exception e) {
-				_.stacktrace(LogLevel.DEBUG, e);
+				MSG.stacktrace(LogLevel.DEBUG, e);
 			}
 		}
 	}
@@ -107,7 +107,7 @@ public class CoreTitleHandler implements TitleHandler {
 			Object packet = nmsPacketTitle.getConstructor(nmsTitleAction, nmsChatBaseComponent).newInstance(nmsTitleAction.getEnumConstants()[0], serialized);
 			nmsSendPacket.invoke(connection, packet);
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	
@@ -138,7 +138,7 @@ public class CoreTitleHandler implements TitleHandler {
 			Object packet = nmsPacketTitle.getConstructor(nmsTitleAction, nmsChatBaseComponent).newInstance(nmsTitleAction.getEnumConstants()[1], serialized);
 			nmsSendPacket.invoke(connection, packet);
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	
@@ -162,7 +162,7 @@ public class CoreTitleHandler implements TitleHandler {
 			Object packet = nmsPacketTitle.getConstructor(Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(fadeIn, stay, fadeOut);
 			nmsSendPacket.invoke(connection, packet);
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	
@@ -180,7 +180,7 @@ public class CoreTitleHandler implements TitleHandler {
 			Object packet = nmsPacketTitle.getConstructor(nmsTitleAction, nmsChatBaseComponent).newInstance(nmsTitleAction.getEnumConstants()[4], null);
 			nmsSendPacket.invoke(connection, packet);
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	
@@ -198,7 +198,7 @@ public class CoreTitleHandler implements TitleHandler {
 			Object packet = nmsPacketTitle.getConstructor(nmsTitleAction, nmsChatBaseComponent).newInstance(nmsTitleAction.getEnumConstants()[3], null);
 			nmsSendPacket.invoke(connection, packet);
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	
@@ -220,7 +220,7 @@ public class CoreTitleHandler implements TitleHandler {
 			// System.out.println("version " + version);
 			return (int) version;
 		} catch (Exception e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 			return 180;
 		}
 	}

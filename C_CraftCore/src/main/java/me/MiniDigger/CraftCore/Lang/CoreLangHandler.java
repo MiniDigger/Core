@@ -71,7 +71,7 @@ public class CoreLangHandler implements LangHandler {
 					final LangStorage s = new CoreLangStorage();
 					s.load(f);
 					langs.add(s);
-					_.log(LogLevel.INFO, LangKeyType.Lang.LOAD, s.getLangType(), s.getLangType().getCode(), s.getAuthor());
+					MSG.log(LogLevel.INFO, LangKeyType.Lang.LOAD, s.getLangType(), s.getLangType().getCode(), s.getAuthor());
 				}
 			}
 		}

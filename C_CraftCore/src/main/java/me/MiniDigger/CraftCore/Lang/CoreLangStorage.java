@@ -74,7 +74,7 @@ public class CoreLangStorage implements LangStorage {
 		try {
 			final List<String> lines = Files.readAllLines(Paths.get(file.toURI()), Charset.defaultCharset());
 			if (lines.size() < 2) {
-				_.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_DESCRIPTION, file.getAbsolutePath());
+				MSG.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_DESCRIPTION, file.getAbsolutePath());
 				return;
 			}
 			int x = 0;
@@ -88,7 +88,7 @@ public class CoreLangStorage implements LangStorage {
 				s = s.replace(LANG_KEY + "=", "");
 				lang = LangType.valueOf(s);
 			} else {
-				_.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_LANG_KEY, file.getAbsolutePath(), s);
+				MSG.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_LANG_KEY, file.getAbsolutePath(), s);
 			}
 			
 			x++;
@@ -102,7 +102,7 @@ public class CoreLangStorage implements LangStorage {
 				s = s.replace(AUTHOR + "=", "");
 				author = s;
 			} else {
-				_.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_AUTHOR, file.getAbsolutePath(), s);
+				MSG.log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_AUTHOR, file.getAbsolutePath(), s);
 			}
 			
 			for (int i = 2; i < lines.size(); i++) {
@@ -122,19 +122,19 @@ public class CoreLangStorage implements LangStorage {
 				}
 				
 				if (!found) {
-					_.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_MATCHED, s, file.getAbsolutePath());
+					MSG.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_MATCHED, s, file.getAbsolutePath());
 				}
 			}
 			
 			for (final LangKeyType type : LangKeyType.values()) {
 				if (!values.containsKey(type)) {
 					values.put(type, type.getDefaultValue());
-					_.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_TRANSLATED, type.getFullType(), file.getAbsolutePath());
+					MSG.log(LogLevel.WARNING, LangKeyType.Lang.WARNING_NOT_TRANSLATED, type.getFullType(), file.getAbsolutePath());
 					break;
 				}
 			}
 		} catch (final IOException e) {
-			_.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_LOAD, file.getAbsolutePath());
+			MSG.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_LOAD, file.getAbsolutePath());
 			e.printStackTrace();
 		}
 	}
@@ -166,7 +166,7 @@ public class CoreLangStorage implements LangStorage {
 			}
 			w.close();
 		} catch (final FileNotFoundException e) {
-			_.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_SAVE, file.getAbsolutePath());
+			MSG.log(LogLevel.ERROR, LangKeyType.Lang.ERROR_SAVE, file.getAbsolutePath());
 			e.printStackTrace();
 		}
 	}

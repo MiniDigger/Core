@@ -82,7 +82,7 @@ import me.MiniDigger.CraftCore.Command.Completer.ToggleCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
 
@@ -111,29 +111,29 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getLangHandler().load();
 		Prefix.load();
 		
-		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
+		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
 		
 		Date d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE);
 		try {
 			if (Core.getCore().getLicenseHandler().register()) {
 				final Date d2 = new Date();
-				_.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE_PASSED, (d2.getTime() - d1.getTime()) + "");
+				MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE_PASSED, (d2.getTime() - d1.getTime()) + "");
 			} else {
 				final Date d2 = new Date();
-				_.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE_FAILED, (d2.getTime() - d1.getTime()) + "");
+				MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE_FAILED, (d2.getTime() - d1.getTime()) + "");
 				core.getCommonMethods().killPlugin();
 				return;
 			}
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 			core.getCommonMethods().killPlugin();
 			return;
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.CHECK_UPDATES);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_UPDATES);
 		try {
 			Core.getCore().getDependencyHanlder().check();
 			
@@ -142,102 +142,102 @@ public class CoreMain extends JavaPlugin implements Main {
 				return;
 			}
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.SAVE_CONFIG);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.SAVE_CONFIG);
 		try {
 			saveDefaultConfig();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.ENABLE_LIBS);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.ENABLE_LIBS);
 		try {
 			enableExternalDependencies();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.REGISTER_COMMANDS);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.REGISTER_COMMANDS);
 		try {
 			registerCommands();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_HANDLER);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_HANDLER);
 		try {
 			enableHandler();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.LOAD_DATA);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD_DATA);
 		try {
 			loadStuff();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.REGISTER_LISTENER);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.REGISTER_LISTENER);
 		try {
 			registerListener();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.APPLY_FIXES);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.APPLY_FIXES);
 		try {
 			fixReload();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.SEARCH_GAME);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.SEARCH_GAME);
 		try {
 			Core.getCore().getGameHandler().searchMainGame();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.ENABLE_LOGGING);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.ENABLE_LOGGING);
 		try {
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 				
@@ -250,10 +250,10 @@ public class CoreMain extends JavaPlugin implements Main {
 							msg = "<msg null>";
 						}
 					}
-					_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", msg);
-					_.stacktrace(LogLevel.DEBUG, e);
-					_.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
-					_.stacktrace(LogLevel.DEBUG, e.getCause());
+					MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "1", msg);
+					MSG.stacktrace(LogLevel.DEBUG, e);
+					MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+					MSG.stacktrace(LogLevel.DEBUG, e.getCause());
 				}
 			});
 			
@@ -269,10 +269,10 @@ public class CoreMain extends JavaPlugin implements Main {
 								msg = "<msg null>";
 							}
 						}
-						_.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", msg);
-						_.stacktrace(LogLevel.DEBUG, record.getThrown());
-						_.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
-						_.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
+						MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", msg);
+						MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
+						MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+						MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
 					}
 					return true;
 				}
@@ -282,42 +282,42 @@ public class CoreMain extends JavaPlugin implements Main {
 			// TODO Fix ErrorLogger
 			Core.getCore().getErrorHandler().init();
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		d1 = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_SOCKET);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_SOCKET);
 		try {
 			Core.getCore().getSocketHandler().registerPackets();
 			// final String server = System.getProperty("server");
 			// if (server != null && server.equalsIgnoreCase("true")) {
 			if (getConfig().contains("startserver") && getConfig().getBoolean("startserver")) {
-				_.log(LogLevel.INFO, LangKeyType.Socket.START);
+				MSG.log(LogLevel.INFO, LangKeyType.Socket.START);
 				Core.getCore().getSocketHandler().startServer();
-				_.log(LogLevel.INFO, LangKeyType.Socket.STARTED);
+				MSG.log(LogLevel.INFO, LangKeyType.Socket.STARTED);
 			}
 			
 			Bukkit.getScheduler().runTaskLater(this, new Runnable() {
 				
 				@Override
 				public void run() {
-					_.log(LogLevel.INFO, LangKeyType.Socket.START_C);
+					MSG.log(LogLevel.INFO, LangKeyType.Socket.START_C);
 					Core.getCore().getSocketHandler().startClient();
 				}
 			}, 10);
 			final Date d2 = new Date();
-			_.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
+			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		core.enable();
 		final Date end = new Date();
-		_.log(LogLevel.INFO, LangKeyType.Main.ACTIVATED, end.getTime() - start.getTime() + "");
+		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATED, end.getTime() - start.getTime() + "");
 	}
 	
 	@Override
@@ -326,53 +326,53 @@ public class CoreMain extends JavaPlugin implements Main {
 			return;
 		}
 		
-		_.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE);
 		
-		_.log(LogLevel.INFO, LangKeyType.Socket.STOP_C);
+		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP_C);
 		try {
 			Core.getCore().getSocketHandler().stopClient();
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		_.log(LogLevel.INFO, LangKeyType.Socket.STOP);
+		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP);
 		try {
 			Core.getCore().getSocketHandler().stopServer();
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		_.log(LogLevel.INFO, LangKeyType.Main.UNREGISTER_LISTENER);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.UNREGISTER_LISTENER);
 		try {
 			HandlerList.unregisterAll(this);
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		_.log(LogLevel.INFO, LangKeyType.Main.STOP_TASKS);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.STOP_TASKS);
 		try {
 			Core.getCore().getTaskHandler().cancelAll();
 			Bukkit.getScheduler().cancelTasks(this);
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
-		_.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE_HANDLER);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE_HANDLER);
 		try {
 			disableHandler();
 		} catch (final Exception ex) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			_.stacktrace(LogLevel.DEBUG, ex);
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 		
 		core.disable();
 		core = null;
 		
-		_.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATED);
+		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATED);
 	}
 	
 	private void disableHandler() {
@@ -435,7 +435,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		        Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
 		for (final Listener listener : listeners) {
 			if (listener == null) {
-				_.log(LogLevel.DEBUG, LangKeyType.Main.LISTENER_NULL);
+				MSG.log(LogLevel.DEBUG, LangKeyType.Main.LISTENER_NULL);
 				continue;
 			}
 			Bukkit.getPluginManager().registerEvents(listener, this);
@@ -445,21 +445,21 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 	
 	private void loadStuff() {
-		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Stats");
+		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Stats");
 		if (!Core.getCore().getStatsHandler().loadAll()) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Stats");
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Stats");
 		}
-		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "User");
+		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD, "User");
 		if (!Core.getCore().getUserHandler().loadAll()) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "User");
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "User");
 		}
-		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Clients");
+		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Clients");
 		if (!Core.getCore().getClientHandler().loadAll()) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Clients");
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Clients");
 		}
-		_.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Kits");
+		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Kits");
 		if (!Core.getCore().getKitHandler().loadAll()) {
-			_.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Kits");
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Kits");
 		}
 	}
 	

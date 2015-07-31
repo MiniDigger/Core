@@ -6,7 +6,7 @@ import org.trypticon.megahal.engine.MegaHAL;
 
 import me.MiniDigger.Core.Lang.LogLevel;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class MegaHalHandler {
 	
@@ -25,7 +25,7 @@ public class MegaHalHandler {
 		try {
 			brain = new MegaHAL(addon.getDataFolder());
 		} catch (final IOException e) {
-			_.stacktrace(LogLevel.DEBUG, e);
+			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 	

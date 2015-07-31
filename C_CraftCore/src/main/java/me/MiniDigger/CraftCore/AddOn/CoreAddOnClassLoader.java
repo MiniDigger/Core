@@ -34,7 +34,7 @@ import me.MiniDigger.Core.AddOn.AddOn;
 import me.MiniDigger.Core.AddOn.AddOnClassLoader;
 import me.MiniDigger.Core.Lang.LangKeyType;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 /**
  * A ClassLoader for plugins, to allow shared classes across multiple plugins<br>
@@ -53,21 +53,21 @@ public class CoreAddOnClassLoader extends URLClassLoader implements AddOnClassLo
 			try {
 				jarClass = Class.forName(main, true, this);
 			} catch (final ClassNotFoundException ex) {
-				throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_NO_MAIN, main), ex);
+				throw new InvalidPluginException(MSG.msg(LangKeyType.AddOn.ERROR_NO_MAIN, main), ex);
 			}
 			
 			Class<? extends CoreAddOn> pluginClass;
 			try {
 				pluginClass = jarClass.asSubclass(CoreAddOn.class);
 			} catch (final ClassCastException ex) {
-				throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_NO_EXTEND, main), ex);
+				throw new InvalidPluginException(MSG.msg(LangKeyType.AddOn.ERROR_NO_EXTEND, main), ex);
 			}
 			
 			plugin = pluginClass.newInstance();
 		} catch (final IllegalAccessException ex) {
-			throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_NO_CONSTRUCTOR, main), ex);
+			throw new InvalidPluginException(MSG.msg(LangKeyType.AddOn.ERROR_NO_CONSTRUCTOR, main), ex);
 		} catch (final InstantiationException ex) {
-			throw new InvalidPluginException(_._(LangKeyType.AddOn.ERROR_ABNORMAL_TYPE, main), ex);
+			throw new InvalidPluginException(MSG.msg(LangKeyType.AddOn.ERROR_ABNORMAL_TYPE, main), ex);
 		}
 	}
 	

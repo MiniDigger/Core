@@ -35,7 +35,7 @@ import me.MiniDigger.Core.Command.BukkitCommand;
 import me.MiniDigger.Core.Command.BukkitCompleter;
 import me.MiniDigger.Core.Lang.LangKeyType;
 
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreBukkitCommand extends Command implements BukkitCommand {
 	
@@ -65,7 +65,7 @@ public class CoreBukkitCommand extends Command implements BukkitCommand {
 		try {
 			success = executor.onCommand(sender, this, commandLabel, args);
 		} catch (final Throwable ex) {
-			throw new CommandException(_._(LangKeyType.Cmd.EXCEPTION, commandLabel, owningPlugin.getDescription().getFullName()), ex);
+			throw new CommandException(MSG.msg(LangKeyType.Cmd.EXCEPTION, commandLabel, owningPlugin.getDescription().getFullName()), ex);
 		}
 		
 		if (!success && usageMessage.length() > 0) {
@@ -79,9 +79,9 @@ public class CoreBukkitCommand extends Command implements BukkitCommand {
 	
 	@Override
 	public java.util.List<String> tabComplete(final CommandSender sender, final String alias, final String[] args) throws CommandException, IllegalArgumentException {
-		Validate.notNull(sender, _._(LangKeyType.Cmd.CANNOT_NULL, "Sender"));
-		Validate.notNull(args, _._(LangKeyType.Cmd.CANNOT_NULL, "Arguments"));
-		Validate.notNull(alias, _._(LangKeyType.Cmd.CANNOT_NULL, "Alias"));
+		Validate.notNull(sender, MSG.msg(LangKeyType.Cmd.CANNOT_NULL, "Sender"));
+		Validate.notNull(args, MSG.msg(LangKeyType.Cmd.CANNOT_NULL, "Arguments"));
+		Validate.notNull(alias, MSG.msg(LangKeyType.Cmd.CANNOT_NULL, "Alias"));
 		
 		List<String> completions = null;
 		try {
@@ -98,7 +98,7 @@ public class CoreBukkitCommand extends Command implements BukkitCommand {
 				message.append(arg).append(' ');
 			}
 			message.deleteCharAt(message.length() - 1);
-			throw new CommandException(_._(LangKeyType.Cmd.EXCEPTION_TAB, message.toString(), owningPlugin.getDescription().getFullName()), ex);
+			throw new CommandException(MSG.msg(LangKeyType.Cmd.EXCEPTION_TAB, message.toString(), owningPlugin.getDescription().getFullName()), ex);
 		}
 		
 		if (completions == null) {

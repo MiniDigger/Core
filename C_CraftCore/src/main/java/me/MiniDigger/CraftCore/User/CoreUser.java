@@ -40,7 +40,7 @@ import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 import mkremins.fanciful.FancyMessage;
@@ -154,7 +154,7 @@ public class CoreUser implements User {
 			
 			final ResultSet r = stmt.executeQuery();
 			if (r == null) {
-				throw new NullPointerException(_._(LangKeyType.SQL.QUERY_FAILED));
+				throw new NullPointerException(MSG.msg(LangKeyType.SQL.QUERY_FAILED));
 			}
 			
 			r.next();

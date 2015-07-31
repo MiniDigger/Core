@@ -50,7 +50,7 @@ import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.VoteFeature;
-import me.MiniDigger.CraftCore.Lang._;
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class VotePhase extends CoreTimedPhase {
@@ -139,14 +139,14 @@ public class VotePhase extends CoreTimedPhase {
 		try {
 			id = Integer.parseInt(args.getArgs()[0]);
 		} catch (final Exception ex) {
-			_.msg(Prefix.VOTE, LangKeyType.Game.VOTE_UNKNOWN, MsgType.FAIL, args.getPlayer());
+			MSG.msg(Prefix.VOTE, LangKeyType.Game.VOTE_UNKNOWN, MsgType.FAIL, args.getPlayer());
 			return;
 		}
 		
 		if (f.vote(args.getUser(), id)) {
-			_.msg(Prefix.VOTE, LangKeyType.Game.VOTE_DONE, MsgType.SUCESS, args.getPlayer());
+			MSG.msg(Prefix.VOTE, LangKeyType.Game.VOTE_DONE, MsgType.SUCESS, args.getPlayer());
 		} else {
-			_.msg(Prefix.VOTE, LangKeyType.Game.VOTE_FAILED, MsgType.FAIL, args.getPlayer());
+			MSG.msg(Prefix.VOTE, LangKeyType.Game.VOTE_FAILED, MsgType.FAIL, args.getPlayer());
 		}
 	}
 	
