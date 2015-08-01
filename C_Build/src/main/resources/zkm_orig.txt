@@ -1,5 +1,4 @@
 classpath   "F:\DATA\Dev\bukkit_ws\C_Core\C_Build\libs\*"
-            "C:\Program Files\Java\jdk1.7.0_55\jre\lib\*"
             "%cp%";
 
 open        "%input%";
