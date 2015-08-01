@@ -36,11 +36,11 @@ import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreDependencyHandler implements DependencyHanlder {
-	
+
 	private static final int BYTE_SIZE = 1024;
-	
+
 	private final List<Dependency> dependencies = new ArrayList<Dependency>();
-	
+
 	public CoreDependencyHandler() {
 		dependencies.add(new CoreDependency("ProtocolLib", "187"));
 		dependencies.add(new CoreDependency("PermissionsEx", "1.23.1"));
@@ -50,11 +50,11 @@ public class CoreDependencyHandler implements DependencyHanlder {
 		dependencies.add(new CoreDependency("Citizens", "2.0.14"));
 		dependencies.add(new CoreDependency("LibsDisguises", "3.6.3"));
 	}
-	
+
 	private String check(final Dependency d) {
 		final File f = new File(Core.getCore().getInstance().getDataFolder().getParent());
 		for (final File p : f.listFiles(new FilenameFilter() {
-			
+
 			@Override
 			public boolean accept(final File dir, final String name) {
 				return name.contains(".jar");
@@ -66,19 +66,19 @@ public class CoreDependencyHandler implements DependencyHanlder {
 		}
 		return "true";
 	}
-	
+
 	@Override
 	public void check() {
 		for (final Dependency d : dependencies) {
 			String fullName = check(d);
-			
+
 			System.out.println("check update for dependencie " + d.getFullName() + ", result: " + fullName);
-			
+
 			if (fullName.equals("true")) {
 				download(d);
 				continue;
 			}
-			
+
 			if (!fullName.equals(d.getFullName() + ".jar")) {
 				final File f = new File(Core.getCore().getInstance().getDataFolder().getParent());
 				try {
@@ -94,12 +94,12 @@ public class CoreDependencyHandler implements DependencyHanlder {
 			}
 		}
 	}
-	
+
 	private void download(final Dependency d) {
 		saveFile(new File(Core.getCore().getInstance().getDataFolder().getParent()), d.getFullName() + ".jar",
-		        "http://api.minidigger.me/dependencies/" + d.getFullName() + ".jar");
+				"http://api.minidigger.me/dependencies/" + d.getFullName() + ".jar");
 	}
-	
+
 	private void saveFile(final File folder, final String file, final String link) {
 		if (!folder.exists()) {
 			folder.mkdir();
@@ -112,20 +112,21 @@ public class CoreDependencyHandler implements DependencyHanlder {
 			final int fileLength = url.openConnection().getContentLength();
 			in = new BufferedInputStream(url.openStream());
 			fout = new FileOutputStream(folder.getAbsolutePath() + File.separator + file);
-			
+
 			final byte[] data = new byte[BYTE_SIZE];
 			int count;
-			
+
 			long downloaded = 0;
 			while ((count = in.read(data, 0, BYTE_SIZE)) != -1) {
 				downloaded += count;
 				fout.write(data, 0, count);
 				final int percent = (int) ((downloaded * 100) / fileLength);
 				if (((percent % 10) == 0)) {
-					Core.getCore().getInstance().info("Downloading dependency file " + file + ": " + percent + "% of " + fileLength + " bytes.");
+					Core.getCore().getInstance().info(
+							"Downloading dependency file " + file + ": " + percent + "% of " + fileLength + " bytes.");
 				}
 			}
-			
+
 			Core.getCore().getInstance().info("Finished download of dependency file " + file);
 			if (in != null) {
 				in.close();
@@ -134,8 +135,13 @@ public class CoreDependencyHandler implements DependencyHanlder {
 				fout.close();
 			}
 		} catch (final Exception ex) {
-			Core.getCore().getInstance().error("The dependency-updater tried to download a new update for " + file + ", but was unsuccessful. " + ex.getMessage());
-			MSG.stacktrace(LogLevel.DEBUG, ex);
+			Core.getCore().getInstance().error("The dependency-updater tried to download a new update for " + file
+					+ ", but was unsuccessful. " + ex.getMessage());
+			if (ex.getClass().getName().contains("FileNotFound")) {
+				Core.getCore().getInstance().error("Looks like it was disabled");
+			} else {
+				MSG.stacktrace(LogLevel.DEBUG, ex);
+			}
 		} finally {
 			try {
 				if (in != null) {
@@ -144,7 +150,8 @@ public class CoreDependencyHandler implements DependencyHanlder {
 				if (fout != null) {
 					fout.close();
 				}
-			} catch (final Exception ex) {}
+			} catch (final Exception ex) {
+			}
 		}
 	}
 }
