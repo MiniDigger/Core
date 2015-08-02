@@ -44,54 +44,54 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpawnFeature extends CoreFeature {
-	
-	private DyeColor	locKey;
-	private boolean		spawn;
-	
+
+	private DyeColor locKey;
+	private boolean spawn;
+
 	public SpawnFeature(final Phase phase, final boolean spawn) {
 		super(phase);
 		this.spawn = spawn;
 		locKey = DyeColor.RED;
 	}
-	
+
 	public SpawnFeature(final Phase phase, final boolean spawn, final DyeColor locKey) {
 		this(phase, spawn);
 		this.locKey = locKey;
 	}
-	
-	private List<Location>	usedSpawns;
-	private Location[]		spawns;
-	
+
+	private List<Location> usedSpawns;
+	private Location[] spawns;
+
 	public boolean spawn() {
 		return spawn;
 	}
-	
+
 	public void setSpawn(final boolean spawn) {
 		this.spawn = spawn;
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.SPAWN;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		final List<FeatureType> result = new ArrayList<>();
 		result.add(FeatureType.MAP);
 		return result;
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<>();
 	}
-	
+
 	@Override
 	public void start() {
 		usedSpawns = new ArrayList<>();
@@ -102,7 +102,8 @@ public class SpawnFeature extends CoreFeature {
 		}
 		final HashMap<String, Location> spawns = data.getLocs(locKey);
 		if (spawns == null) {
-			System.out.println("spawns null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{" + data.getOldName() + "}");
+			System.out.println("spawns null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{"
+					+ data.getOldName() + "}");
 			return;
 		}
 		this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
@@ -116,44 +117,46 @@ public class SpawnFeature extends CoreFeature {
 			System.out.println("spawns null on start");
 		}
 	}
-	
+
 	@EventHandler
 	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			spawn(e.getUser());
 		}
 	}
-	
+
 	@Override
 	public void end() {
 		usedSpawns = null;
 		spawns = null;
 		System.out.println("end spawnfeature");
 	}
-	
+
 	public Location spawn(final User user) {
 		if (spawns == null) {
 			usedSpawns = new ArrayList<>();
 			MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 			if (data == null) {
 				System.out.println("no map to spawn2!");
-				
-				((MapFeature) getPhase().getFeature(FeatureType.MAP)).setMap(getPhase().getGame().getGameData("VoteWinner"));
+
+				((MapFeature) getPhase().getFeature(FeatureType.MAP))
+						.setMap(getPhase().getGame().getGameData("VoteWinner"));
 				data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 			}
-			
+
 			final HashMap<String, Location> spawns = data.getLocs(locKey);
 			if (spawns == null) {
-				System.out.println("spawns2 null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{" + data.getOldName() + "}");
+				System.out.println("spawns2 null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{"
+						+ data.getOldName() + "}");
 				return null;
 			}
 			this.spawns = spawns.values().toArray(new Location[spawns.values().size()]);
 		}
-		
+
 		if (usedSpawns.size() >= spawns.length) {
 			usedSpawns = new ArrayList<>();
 		}
-		
+
 		int counter = 0;// To prevent invinitiv loop
 		while (true) {
 			final Location loc = spawns[Core.getCore().getRandomUtil().nextInt(spawns.length)].clone();
@@ -175,9 +178,10 @@ public class SpawnFeature extends CoreFeature {
 			try {
 				System.out.println("respawn2");
 				System.out.println("loc: " + loc);
+				user.getPlayer().teleport(loc);
 				if (user.getPlayer().getLocation().distance(loc) > 5) {
 					Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-						
+
 						@Override
 						public void run() {
 							user.getPlayer().teleport(loc);
@@ -186,7 +190,7 @@ public class SpawnFeature extends CoreFeature {
 				}
 			} catch (final Exception ex) {
 				Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-					
+
 					@Override
 					public void run() {
 						try {
@@ -200,14 +204,14 @@ public class SpawnFeature extends CoreFeature {
 			return loc;
 		}
 	}
-	
+
 	@EventHandler
 	public void onJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier().equals(getPhase().getGame().getIdentifier())) {
 			spawn(e.getUser());
 		}
 	}
-	
+
 	@EventHandler(priority = EventPriority.LOW)
 	public void onDeath(final CoreUserDeathEvent e) {
 		if (!e.shouldRespawn()) {
@@ -217,7 +221,7 @@ public class SpawnFeature extends CoreFeature {
 			spawn(e.getUser());
 		}
 	}
-	
+
 	@EventHandler(ignoreCancelled = true)
 	public void onRespawn(final PlayerRespawnEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
