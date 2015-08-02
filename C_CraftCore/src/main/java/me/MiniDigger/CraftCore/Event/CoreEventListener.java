@@ -80,8 +80,8 @@ public class CoreEventListener implements EventListener {
 			@Override
 			public void run() {
 				for (Player p : Bukkit.getOnlinePlayers()) {
-					e.getPlayer().hidePlayer(p);
-					p.hidePlayer(e.getPlayer());
+					e.getPlayer().showPlayer(p);
+					p.showPlayer(e.getPlayer());
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10);
