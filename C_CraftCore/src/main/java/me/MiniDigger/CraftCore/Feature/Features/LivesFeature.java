@@ -99,6 +99,9 @@ public class LivesFeature extends CoreFeature {
 		for (final UUID uuid : getPhase().getGame().getPlayers()) {
 			Core.getCore().getScoreboardHandler().getBoard(uuid).clear();
 		}
+		for (final UUID uuid : getPhase().getGame().getSpecs()) {
+			Core.getCore().getScoreboardHandler().getBoard(uuid).clear();
+		}
 
 		lives = null;
 	}
@@ -153,13 +156,15 @@ public class LivesFeature extends CoreFeature {
 		}
 
 		final List<UUID> retry = new ArrayList<UUID>();
+		final List<UUID> combine = new ArrayList<>();
+		combine.addAll(getPhase().getGame().getPlayers());
+		combine.addAll(getPhase().getGame().getSpecs());
 
 		Core.getCore().getTaskHandler().runTask(new BukkitRunnable() {
 
 			@Override
 			public void run() {
-
-				for (final UUID uuid : getPhase().getGame().getPlayers()) {
+				for (final UUID uuid : combine) {
 					if (Bukkit.getPlayer(uuid) == null) {
 						retry.add(uuid);
 						continue;
@@ -216,6 +221,7 @@ public class LivesFeature extends CoreFeature {
 								.color(ChatColor.AQUA));
 
 				getPhase().getGame().leave(e.getUser());
+//				((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 
 				Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()).clear();
 
