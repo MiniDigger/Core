@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.event.Event;
 
 import me.MiniDigger.Core.Core;
@@ -19,19 +20,22 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class EHAddOn extends CoreAddOn {
 
+	public static EHAddOn INSTATNCE;
+
 	@Override
 	public void enable() {
+		INSTATNCE = this;
 		GameType.EH.setClass(EHGame.class);
 		Core.getCore().getCommandHandler().registerCommands(this);
 		super.enable();
 	}
-	
+
 	@Override
 	public void disable() {
 		Core.getCore().getCommandHandler().unregisterCommands(this);
 		super.disable();
 	}
-	
+
 	@Command(name = "eh", permission = "eh", usage = "", consol = true, description = "Initiiert ein EH Game", max = 0, sync = true)
 	public void getthedrop(final CommandArgs args) {
 		final EHGame game = new EHGame();
@@ -46,13 +50,21 @@ public class EHAddOn extends CoreAddOn {
 		// }
 		game.start();
 	}
-	
+
 	@Completer(name = "eh")
 	public List<String> getthedropC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-		
+
 		result.add("");
-		
+
 		return result;
+	}
+
+	@Command(name = "ehscan", permission = "ehscan", usage = "<world>", consol = true, description = "Scannt ne EH map", max = 1, min = 1, sync = true)
+	public void ehscan(final CommandArgs args) {
+		World w = Bukkit.getWorld(args.getArgs()[0]);
+		EHScanner s = new EHScanner(w);
+		s.scan();
+		s.save(getDataFolder());
 	}
 }

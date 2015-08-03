@@ -1,8 +1,14 @@
 package me.MiniDigger.Core.AddOn.Ehrenhalle;
 
+import java.sql.SQLException;
+
+import org.bukkit.Bukkit;
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
@@ -19,26 +25,25 @@ import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class EHPhase extends CorePhase {
 
+	private EHScanner s;
+	private EHData d;
+	private EHNPCs n;
+
 	@Override
 	public String getName() {
 		return "Hub";
 	}
-	
-	@Override
-	public void startPhase() {
-		super.startPhase();
-	}
-	
+
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean displayLevel() {
 		return false;
 	}
-	
+
 	@Override
 	public void init() {
 		addFeature(new FixedHealthFeature(this));
@@ -52,5 +57,40 @@ public class EHPhase extends CorePhase {
 		addFeature(new PvPFeature(this, false));
 		addFeature(new NoDropFeature(this));
 		addFeature(new NoPickupFeature(this));
+	}
+
+	@Override
+	public void startPhase() {
+		s = new EHScanner(Bukkit.getWorld("Ehrenhalle"));
+		s.load(EHAddOn.INSTATNCE.getDataFolder());
+
+		d = new EHData();
+		try {
+			d.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		n = new EHNPCs(s, d);
+		n.spawn(null);
+
+		super.startPhase();
+	}
+
+	@Command(name = "donation", permission = "donation", usage = "<name> <amount>", min = 2, max = 2)
+	public void donation(final CommandArgs args) {
+		try {
+			d.add(args.getArgs()[0], Double.parseDouble(args.getArgs()[1]));
+		} catch (NumberFormatException e) {
+			Prefix.API.getPrefix().then("Fehler: Dies ist eine Zahl! Format 10.00!").send(args.getSender());
+		} catch (SQLException e) {
+			Prefix.API.getPrefix()
+					.then("Fehler: SQL Fehler! " + e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage())
+					.send(args.getSender());
+			e.printStackTrace();
+		}
+
+		Prefix.API.getPrefix().then("Der User hat nun schon " + d.get(args.getArgs()[0]) + "€ gespendet!");
+		n.respawn(args.getArgs()[0]);
 	}
 }
