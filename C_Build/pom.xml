@@ -19,7 +19,8 @@
 			"${maven.dependency.avalon-framework.avalon-framework.jar.path}"
 			"${maven.dependency.commons-logging.commons-logging.jar.path}"
 			"${maven.dependency.com.wacos.NametagEdit.jar.path}"
-			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}</path>
+			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}"
+			"${maven.dependency.net.citizensnpcs.citizens.jar.path}</path>
 	</properties>
 
 	<reporting>
