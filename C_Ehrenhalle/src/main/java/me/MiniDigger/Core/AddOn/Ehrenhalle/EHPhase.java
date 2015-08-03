@@ -80,7 +80,7 @@ public class EHPhase extends CorePhase {
 		}
 
 		n = new EHNPCs(s, d);
-		n.spawn(null);
+		n.spawn(null, -1);
 
 		super.startPhase();
 	}
@@ -99,7 +99,7 @@ public class EHPhase extends CorePhase {
 		}
 
 		Prefix.API.getPrefix().then("Der User hat nun schon " + d.get(args.getArgs()[0]) + "€ gespendet!");
-		n.respawn(args.getArgs()[0]);
+		n.respawn(args.getArgs()[0], Double.parseDouble(args.getArgs()[1]));
 
 		((EHFeature) getFeature(FeatureType.EH)).updateScoreboard();
 	}
