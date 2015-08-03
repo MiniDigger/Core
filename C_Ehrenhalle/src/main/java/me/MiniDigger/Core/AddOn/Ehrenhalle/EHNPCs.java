@@ -29,7 +29,7 @@ public class EHNPCs {
 		npcs = new ArrayList<>();
 		spawn(newName);
 	}
-
+	
 	public void spawn(String newName) {
 		usedLocs = new ArrayList<>();
 		for (String name : d.getDonations().keySet()) {

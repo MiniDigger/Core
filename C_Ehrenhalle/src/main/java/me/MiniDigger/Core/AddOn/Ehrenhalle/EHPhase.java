@@ -8,6 +8,7 @@ import org.bukkit.WeatherType;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
@@ -99,6 +100,8 @@ public class EHPhase extends CorePhase {
 
 		Prefix.API.getPrefix().then("Der User hat nun schon " + d.get(args.getArgs()[0]) + "€ gespendet!");
 		n.respawn(args.getArgs()[0]);
+
+		((EHFeature) getFeature(FeatureType.EH)).updateScoreboard();
 	}
 
 	public EHScanner getS() {
