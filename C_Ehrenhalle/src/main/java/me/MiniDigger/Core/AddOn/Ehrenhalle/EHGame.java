@@ -1,9 +1,7 @@
 package me.MiniDigger.Core.AddOn.Ehrenhalle;
 
-import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 
-import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 
 public class EHGame extends CoreGame {
@@ -19,8 +17,8 @@ public class EHGame extends CoreGame {
 		
 		setGameData("Lobby", "Ehrenhalle");
 		
-		final EHPhase hub = new EHPhase();
-		((MapFeature) hub.getFeature(FeatureType.MAP)).setMap("Ehrenhalle");
+		final EHPhase hub = new EHPhase(this);
+//		((MapFeature) hub.getFeature(FeatureType.MAP)).setMap("Ehrenhalle");
 		
 		setPhase(hub);
 		

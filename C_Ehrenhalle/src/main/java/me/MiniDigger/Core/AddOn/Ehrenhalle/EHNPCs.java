@@ -82,12 +82,15 @@ public class EHNPCs {
 				return;
 			}
 
+			usedLocs.add(loc);
+			loc = loc.clone().add(0.5, -0.5, 0.5);
+			loc.setDirection(loc.getDirection().multiply(-1));
+
 			if (newName != null && name.equalsIgnoreCase(newName)) {
 				effect(loc, name);
 			}
 
 			npcs.add(npc);
-			usedLocs.add(loc);
 			npc.spawn(loc);
 		}
 	}

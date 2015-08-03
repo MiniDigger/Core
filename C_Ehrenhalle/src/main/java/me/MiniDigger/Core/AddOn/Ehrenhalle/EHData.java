@@ -30,7 +30,7 @@ public class EHData {
 		}
 
 		donations = sortByValue(donations);
-		
+
 		System.out.println(i + " dontatior loaded");
 	}
 
@@ -46,15 +46,15 @@ public class EHData {
 
 		SQLQuery deleteQ = new CoreSQLQuery(delete);
 		PreparedStatement deleteS = deleteQ.getStatement();
-		deleteS.setString(0, name);
+		deleteS.setString(1, name);
 		deleteS.execute();
 		deleteS.close();
 		deleteQ.kill();
 
 		SQLQuery insertQ = new CoreSQLQuery(insert);
 		PreparedStatement insertS = insertQ.getStatement();
-		insertS.setString(0, name);
-		insertS.setDouble(1, amount);
+		insertS.setString(1, name);
+		insertS.setDouble(2, donations.get(name));
 		insertS.execute();
 		insertS.close();
 		insertQ.kill();

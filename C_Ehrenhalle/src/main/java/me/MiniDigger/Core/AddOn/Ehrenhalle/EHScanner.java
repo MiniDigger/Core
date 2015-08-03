@@ -7,12 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.CraftCore.Lang.MSG;
 
@@ -36,7 +40,25 @@ public class EHScanner {
 
 	public EHScanner(World w) {
 		this.w = w;
-		this.spawn = new Location(w, 18.0, 5, 24.0);
+		this.spawn = new Location(w, 18.0, 5, 124.0);
+	}
+
+	public void clear() {
+		List<Location> locs = new ArrayList<>();
+		locs.addAll(tower1);
+		locs.addAll(tower2);
+		locs.addAll(tower3);
+		locs.addAll(wall1);
+		locs.addAll(wall2);
+		locs.addAll(wall3);
+		locs.addAll(fireworksI);
+		locs.addAll(fireworksO);
+
+		for (Location loc : locs) {
+			if (loc.getBlock().getState() instanceof Sign) {
+				loc.getBlock().setType(Material.AIR);
+			}
+		}
 	}
 
 	public void scan() {
@@ -51,6 +73,11 @@ public class EHScanner {
 		final int maxY = spawn.getWorld().getMaxHeight();
 		final int maxZ = startY + RANGE;
 
+		System.out.println("minx " + minX);
+		System.out.println("maxx " + maxX);
+		System.out.println("minz " + minZ);
+		System.out.println("maxz " + maxZ);
+
 		for (int x = minX; x <= maxX; x++) {
 			for (int y = minY; y <= maxY; y++) {
 				for (int z = minZ; z <= maxZ; z++) {
@@ -58,6 +85,9 @@ public class EHScanner {
 					if (loc.getBlock().getState() instanceof Sign) {
 						final Sign s = (Sign) loc.getBlock().getState();
 						if (s.getLine(0).equals("[EH]")) {
+							final org.bukkit.material.Sign sign = (org.bukkit.material.Sign) s.getData();
+							loc.setYaw(Core.getCore().getFaceUtil().faceToYaw(sign.getFacing().getOppositeFace()));
+
 							switch (s.getLine(1)) {
 							case "T":
 								if (s.getLine(2).equals("1")) {
@@ -84,13 +114,14 @@ public class EHScanner {
 							case "F":
 								if (s.getLine(2).equals("I")) {
 									fireworksI.add(loc);
-								} else if (s.getLine(2).equals("F")) {
+								} else if (s.getLine(2).equals("O")) {
 									fireworksO.add(loc);
 								} else {
-									System.out.println("failed scan for sign " + s.toString());
+									System.out.println("failed scan for sign f " + s.toString());
 								}
 								break;
 							default:
+								System.out.println("default");
 								break;
 							}
 						}
@@ -132,7 +163,7 @@ public class EHScanner {
 	}
 
 	public void save(File file) {
-		FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+		FileConfiguration config = YamlConfiguration.loadConfiguration(new File(file, "locs"));
 		config.set("wall1", wall1);
 		config.set("wall2", wall2);
 		config.set("wall3", wall3);
@@ -145,7 +176,7 @@ public class EHScanner {
 		config.set("fireworkO", fireworksO);
 
 		try {
-			config.save(file);
+			config.save(new File(file, "locs"));
 		} catch (IOException e) {
 			System.out.println("Error while saving config");
 			MSG.stacktrace(LogLevel.DEBUG, e);
@@ -154,7 +185,7 @@ public class EHScanner {
 
 	@SuppressWarnings("unchecked")
 	public void load(File file) {
-		FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+		FileConfiguration config = YamlConfiguration.loadConfiguration(new File(file, "locs"));
 		wall1 = (List<Location>) config.get("wall1");
 		wall2 = (List<Location>) config.get("wall2");
 		wall3 = (List<Location>) config.get("wall3");
@@ -162,7 +193,7 @@ public class EHScanner {
 		tower1 = (List<Location>) config.get("tower1");
 		tower2 = (List<Location>) config.get("tower2");
 		tower3 = (List<Location>) config.get("tower3");
-		
+
 		config.set("fireworkI", fireworksI);
 		config.set("fireworkO", fireworksO);
 	}

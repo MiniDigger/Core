@@ -8,6 +8,7 @@ import org.bukkit.WeatherType;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 
@@ -28,6 +29,10 @@ public class EHPhase extends CorePhase {
 	private EHScanner s;
 	private EHData d;
 	private EHNPCs n;
+
+	public EHPhase(final Game game) {
+		super(game, null);
+	}
 
 	@Override
 	public String getName() {
@@ -64,6 +69,8 @@ public class EHPhase extends CorePhase {
 		s = new EHScanner(Bukkit.getWorld("Ehrenhalle"));
 		s.load(EHAddOn.INSTATNCE.getDataFolder());
 
+		s.clear();
+
 		d = new EHData();
 		try {
 			d.load();
@@ -77,7 +84,7 @@ public class EHPhase extends CorePhase {
 		super.startPhase();
 	}
 
-	@Command(name = "donation", permission = "donation", usage = "<name> <amount>", min = 2, max = 2)
+	@Command(name = "donation", permission = "donation", usage = "<name> <amount>", min = 2, max = 2, sync = true)
 	public void donation(final CommandArgs args) {
 		try {
 			d.add(args.getArgs()[0], Double.parseDouble(args.getArgs()[1]));
@@ -92,5 +99,17 @@ public class EHPhase extends CorePhase {
 
 		Prefix.API.getPrefix().then("Der User hat nun schon " + d.get(args.getArgs()[0]) + "€ gespendet!");
 		n.respawn(args.getArgs()[0]);
+	}
+
+	public EHScanner getS() {
+		return s;
+	}
+
+	public EHData getD() {
+		return d;
+	}
+
+	public EHNPCs getN() {
+		return n;
 	}
 }
