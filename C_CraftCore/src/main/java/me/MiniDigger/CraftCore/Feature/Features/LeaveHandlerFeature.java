@@ -36,53 +36,53 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LeaveHandlerFeature extends CoreFeature {
-	
+
 	public LeaveHandlerFeature(final Phase phase) {
 		super(phase);
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.LEAVEHANDLER;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
 	}
-	
+
 	@Override
 	public void end() {
 	}
-	
+
 	@EventHandler
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
-			if (getPhase().getGame().getType() != GameType.TICTACTOE && getPhase().getGame().getType() != GameType.LOBBY) {
-				getPhase().getGame().broadCastMessage(
-				        Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-				                .then("Der Spieler " + e.getUser().getDisplayName() + " hat das Spiel verlassen!"));
+			if (getPhase().getGame().getType() != GameType.TICTACTOE && getPhase().getGame().getType() != GameType.LOBBY
+					&& getPhase().getGame().getType() != GameType.EH) {
+				getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+						.then("Der Spieler " + e.getUser().getDisplayName() + " hat das Spiel verlassen!"));
 			}
-			
+
 			if (getPhase().getGame().getPlayers().size() <= 2) {
-				if (getPhase().getGame().getType() == GameType.LOBBY) {
+				if (getPhase().getGame().getType() == GameType.LOBBY || getPhase().getGame().getType() == GameType.EH) {
 					return;
 				}
-				
+
 				User u = Core.getCore().getUserHandler().get(getPhase().getGame().getPlayers().get(0));
 				if (u.getUUID() == e.getUser().getUUID()) {
 					try {
