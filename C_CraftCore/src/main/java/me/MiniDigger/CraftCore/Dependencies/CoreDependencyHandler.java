@@ -47,7 +47,7 @@ public class CoreDependencyHandler implements DependencyHanlder {
 		dependencies.add(new CoreDependency("NametagEdit", "19"));
 		dependencies.add(new CoreDependency("HolographicDisplays", "2.1.10"));
 		dependencies.add(new CoreDependency("EffectLib", "3.4"));
-		dependencies.add(new CoreDependency("Citizens", "2.0.14"));
+		dependencies.add(new CoreDependency("Citizens", "2.0.16"));
 		dependencies.add(new CoreDependency("LibsDisguises", "3.6.3"));
 	}
 

@@ -198,8 +198,8 @@ public class EHScanner {
 		tower2 = (List<Location>) config.get("tower2");
 		tower3 = (List<Location>) config.get("tower3");
 
-		fireworksI = (List<Location>) config.get("fireworksI");
-		fireworksO = (List<Location>) config.get("fireworksO");
+		fireworksI = (List<Location>) config.get("fireworkI");
+		fireworksO = (List<Location>) config.get("fireworkO");
 	}
 
 	public Location getSpawn() {

@@ -10,11 +10,14 @@ import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Bar.Laser;
 import me.MiniDigger.Core.User.User;
+import me.MiniDigger.CraftCore.Bar.CoreLaser;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.event.DespawnReason;
 import net.citizensnpcs.api.npc.NPC;
@@ -95,16 +98,16 @@ public class EHNPCs {
 			loc = loc.clone().add(0.5, -0.5, 0.5);
 			loc.setDirection(loc.getDirection().multiply(-1));
 
-			if (newName != null && name.equalsIgnoreCase(newName)) {
-				effect(loc, name, amount);
-			}
-
 			npcs.add(npc);
 			npc.spawn(loc);
+
+			if (newName != null && name.equalsIgnoreCase(newName)) {
+				effect(loc, name, amount, npc);
+			}
 		}
 	}
 
-	public void effect(Location loc, String name, double amount) {
+	public void effect(Location loc, String name, double amount, NPC npc) {
 		for (User u : Core.getCore().getUserHandler().getOnlineUsers()) {
 			Core.getCore().getTitleHandler().sendTitle(u.getPlayer(), 1 * 20, 150, 1 * 20, ChatColor.GOLD + "Donation");
 			Core.getCore().getTitleHandler().sendSubTitle(u.getPlayer(), 1 * 20, 150, 1 * 20,
@@ -143,6 +146,27 @@ public class EHNPCs {
 					}
 				}
 			}.runTaskLater(Core.getCore().getInstance(), 20);
+
+			final List<Laser> lasers = new ArrayList<>();
+			for (Location l : s.getFireworksI()) {
+				Laser laser = new CoreLaser(l.clone().add(0.5, 0.5, 0.5));
+				laser.setTarget((LivingEntity) npc.getEntity());
+				lasers.add(laser);
+			}
+
+			new BukkitRunnable() {
+
+				@Override
+				public void run() {
+					for (Laser l : lasers) {
+						try {
+							l.despawn(null);
+						} catch (Exception ex) {
+
+						}
+					}
+				}
+			}.runTaskLater(Core.getCore().getInstance(), 10 * 20);
 		}
 	}
 }
