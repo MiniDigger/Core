@@ -54,9 +54,13 @@ public class EHScanner {
 		locs.addAll(fireworksI);
 		locs.addAll(fireworksO);
 
+		System.out.println("clear " + locs.size());
+
 		for (Location loc : locs) {
 			if (loc.getBlock().getState() instanceof Sign) {
 				loc.getBlock().setType(Material.AIR);
+			} else {
+				System.out.println("no sign at " + loc.toString());
 			}
 		}
 	}
@@ -194,8 +198,8 @@ public class EHScanner {
 		tower2 = (List<Location>) config.get("tower2");
 		tower3 = (List<Location>) config.get("tower3");
 
-		config.set("fireworkI", fireworksI);
-		config.set("fireworkO", fireworksO);
+		fireworksI = (List<Location>) config.get("fireworksI");
+		fireworksO = (List<Location>) config.get("fireworksO");
 	}
 
 	public Location getSpawn() {
