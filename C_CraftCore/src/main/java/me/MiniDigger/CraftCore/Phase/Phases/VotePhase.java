@@ -54,27 +54,27 @@ import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class VotePhase extends CoreTimedPhase {
-	
+
 	public VotePhase(final Game game, final Phase next, final int secs) {
 		super(game, next, secs);
 		init();
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Vote";
 	}
-	
+
 	@Override
 	public boolean displayBar() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean displayLevel() {
 		return true;
 	}
-	
+
 	@Override
 	public void init() {
 		addFeature(new FixedHealthFeature(this));
@@ -90,51 +90,55 @@ public class VotePhase extends CoreTimedPhase {
 		addFeature(new NoPickupFeature(this));
 		addFeature(new NoDropFeature(this));
 	}
-	
+
 	@Override
 	public void startPhase() {
 		super.startPhase();
 		getGame().broadCastMessage(LangKeyType.Game.VOTE_START1, MsgType.IMPORTANT);
 		getGame().broadCastMessage(LangKeyType.Game.VOTE_START2, MsgType.IMPORTANT, getSecs() + "");
-		
+
 		getGame().setAllowJoin(true);
 		getGame().setAllowSpectate(true);
 	}
-	
+
 	@Override
 	public void endPhase() {
 		final VoteFeature vote = ((VoteFeature) getFeature(FeatureType.VOTE));
 		vote.announceWinner();
-		
+
 		final String map = vote.getWinner();
 		getGame().setGameData("VoteWinner", map);
 		Core.getCore().getWorldHandler().copyWorld(map);
 		Core.getCore().getWorldHandler().loadWorld(map);
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(vote.getWinner());
-		((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
-		
+
+		try {
+			((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
+		} catch (Exception ex) {
+		}
+
 		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-			
+
 			@Override
 			public void run() {
 				((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
 			}
 		}, 20);
-		
+
 		getGame().setAllowJoin(false);
 		getGame().setAllowSpectate(true);
 		super.endPhase();
 	}
-	
+
 	@Command(name = "vote", description = "Votet für eine Map", permission = "vote", usage = "vote [id]", consol = false, noConsol = "Nur ein Spieler kann voten!", min = 0, max = 1)
 	public void vote(final CommandArgs args) {
 		final VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
-		
+
 		if (args.getArgs().length == 0) {
 			f.sendVoteMessage(args.getUser());
 			return;
 		}
-		
+
 		int id;
 		try {
 			id = Integer.parseInt(args.getArgs()[0]);
@@ -142,20 +146,20 @@ public class VotePhase extends CoreTimedPhase {
 			MSG.msg(Prefix.VOTE, LangKeyType.Game.VOTE_UNKNOWN, MsgType.FAIL, args.getPlayer());
 			return;
 		}
-		
+
 		if (f.vote(args.getUser(), id)) {
 			MSG.msg(Prefix.VOTE, LangKeyType.Game.VOTE_DONE, MsgType.SUCESS, args.getPlayer());
 		} else {
 			MSG.msg(Prefix.VOTE, LangKeyType.Game.VOTE_FAILED, MsgType.FAIL, args.getPlayer());
 		}
 	}
-	
+
 	@Completer(name = "vote")
 	public List<String> voteC(final CommandArgs args) {
 		final List<String> result = new ArrayList<>();
-		
+
 		final VoteFeature f = (VoteFeature) getFeature(FeatureType.VOTE);
-		
+
 		switch (f.getMapCount()) {
 		case 3:
 			result.add("3");
@@ -164,10 +168,10 @@ public class VotePhase extends CoreTimedPhase {
 		case 1:
 			result.add("1");
 		}
-		
+
 		result.add("");
-		
+
 		return result;
 	}
-	
+
 }
