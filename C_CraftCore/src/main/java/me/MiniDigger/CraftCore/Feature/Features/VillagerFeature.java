@@ -79,7 +79,7 @@ public class VillagerFeature extends CoreFeature {
 	}
 	
 	public void createVillager(final Location loc, final List<VillagerTrade> trades, final Profession prof, final String name, final boolean invincible) {
-		final Villager v = (Villager) loc.getWorld().spawnEntity(loc.add(0.5, 0.5, 0.5), EntityType.VILLAGER);
+		final Villager v = (Villager) loc.getWorld().spawnEntity(loc.clone().add(0.5, 0.5, 0.5), EntityType.VILLAGER);
 		if (name != null) {
 			v.setCustomName(name);
 			v.setCustomNameVisible(true);

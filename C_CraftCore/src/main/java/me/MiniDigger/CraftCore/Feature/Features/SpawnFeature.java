@@ -32,6 +32,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
@@ -59,7 +60,7 @@ public class SpawnFeature extends CoreFeature {
 		this.locKey = locKey;
 	}
 
-	private List<Location> usedSpawns;
+	private List<Vector> usedSpawns;
 	private Location[] spawns;
 
 	public boolean spawn() {
@@ -164,7 +165,7 @@ public class SpawnFeature extends CoreFeature {
 				counter++;
 				continue;
 			}
-			if (usedSpawns.contains(loc)) {
+			if (usedSpawns.contains(loc.toVector())) {
 				if (counter >= 100) {
 					usedSpawns = new ArrayList<>();
 					counter = 0;
@@ -173,7 +174,7 @@ public class SpawnFeature extends CoreFeature {
 				}
 				continue;
 			}
-			usedSpawns.add(loc);
+			usedSpawns.add(loc.toVector());
 			loc.add(0.5, 0.5, 0.5);
 			try {
 				System.out.println("respawn2");
