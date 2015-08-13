@@ -316,6 +316,9 @@ public class CoreMain extends JavaPlugin implements Main {
 		}
 		
 		core.enable();
+		
+		core.getMetricsHandler().start();
+		
 		final Date end = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATED, end.getTime() - start.getTime() + "");
 	}

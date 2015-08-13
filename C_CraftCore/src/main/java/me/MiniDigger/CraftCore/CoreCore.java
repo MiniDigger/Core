@@ -42,6 +42,7 @@ import me.MiniDigger.Core.Lang.LangHandler;
 import me.MiniDigger.Core.Licence.LicenseHandler;
 import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.Core.Menu.MenuHandler;
+import me.MiniDigger.Core.Metrics.MetricsHandler;
 import me.MiniDigger.Core.Mirror.MirrorHandler;
 import me.MiniDigger.Core.Packet.PacketHandler;
 import me.MiniDigger.Core.Protocol.ProtocolHandler;
@@ -99,6 +100,7 @@ import me.MiniDigger.CraftCore.Lang.CoreLangHandler;
 import me.MiniDigger.CraftCore.License.CoreLicenseHandler;
 import me.MiniDigger.CraftCore.Map.CoreMapHandler;
 import me.MiniDigger.CraftCore.Menu.CoreMenuHandler;
+import me.MiniDigger.CraftCore.Metrics.CoreMetricsHandler;
 import me.MiniDigger.CraftCore.Mirror.CoreMirrorHandler;
 import me.MiniDigger.CraftCore.Packet.CorePacketHandler;
 import me.MiniDigger.CraftCore.Protocol.CoreProtocolHandler;
@@ -180,6 +182,7 @@ public class CoreCore extends Core {
 	private BroadcastHandler	broadcastHandler;
 	private ActionBarHandler	actionBarHandler;
 	private TitleHandler	   titleHandler;
+	private MetricsHandler     metricsHandler;
 	
 	private ChatColorUtil	   chatColorUtil;
 	private CommonMethods	   commonMethods;
@@ -517,6 +520,14 @@ public class CoreCore extends Core {
 			titleHandler = new CoreTitleHandler();
 		}
 		return titleHandler;
+	}
+	
+	@Override
+	public MetricsHandler getMetricsHandler() {
+		if (metricsHandler == null) {
+			metricsHandler = new CoreMetricsHandler();
+		}
+		return metricsHandler;
 	}
 	
 	/***********/
