@@ -20,7 +20,6 @@
  */
 package me.MiniDigger.CraftCore.Feature.Features;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,6 @@ import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.EntityItem;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.RegistryMaterials;
 import net.minecraft.server.v1_8_R3.TileEntity;
 import net.minecraft.server.v1_8_R3.TileEntityMobSpawner;
 import net.minecraft.server.v1_8_R3.World;
@@ -48,6 +46,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
@@ -59,69 +58,77 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpawnerFeature extends CoreFeature {
-	
+
 	static {
 		try {
 			// Get the new registry HashMp from the Item class
-			final Field registryField = net.minecraft.server.v1_8_R3.Item.class.getDeclaredField("REGISTRY");
-			registryField.setAccessible(true);
-			final RegistryMaterials<?, ?> registry = (RegistryMaterials<?, ?>) registryField.get(null);
+			// final Field registryField =
+			// net.minecraft.server.v1_8_R3.Item.class.getDeclaredField("REGISTRY");
+			// registryField.setAccessible(true);
+			// final RegistryMaterials<?, ?> registry = (RegistryMaterials<?,
+			// ?>) registryField.get(null);
 			// Get entry of the spawner
-			final Object spawnerEntry = registry.a(52);
+			// final Object spawnerEntry = registry.a(52);
+			// final Object spawnerEntry =
+			// net.minecraft.server.v1_8_R3.Item.d("52");
 			// Set maxStackSize "e(int maxStackSize)"
-			final Field maxStackSize = net.minecraft.server.v1_8_R3.Item.class.getDeclaredField("maxStackSize");
-			maxStackSize.setAccessible(true);
-			maxStackSize.setInt(spawnerEntry, 1);
+			// maxStackSize.setAccessible(true);
+			// maxStackSize.setInt(spawnerEntry, 1);
 			// Cleanup
-			registryField.setAccessible(false);
-			maxStackSize.setAccessible(false);
+			// registryField.setAccessible(false);
+			// maxStackSize.setAccessible(false);
+
+//			final net.minecraft.server.v1_8_R3.Item spawnerEntry = net.minecraft.server.v1_8_R3.Item.d("52");
+//			spawnerEntry.c(1);
+
 		} catch (final Exception ex) {
 			System.out.println("could not set spawner items unstackable");
 			ex.printStackTrace();
 		}
 	}
-	
-	private final int			interval;
-	private final EntityType	type;
-	private final DyeColor		locKey;
-	private final ItemStack		item;
-	private Location[]			locs;
-	
-	public SpawnerFeature(final Phase phase, final DyeColor locKey, final int interval, final EntityType type, final ItemStack item) {
+
+	private final int interval;
+	private final EntityType type;
+	private final DyeColor locKey;
+	private final ItemStack item;
+	private Location[] locs;
+
+	public SpawnerFeature(final Phase phase, final DyeColor locKey, final int interval, final EntityType type,
+			final ItemStack item) {
 		super(phase);
 		this.locKey = locKey;
 		this.interval = interval;
 		this.type = type;
 		this.item = item;
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.SPAWNER;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		final List<FeatureType> list = new ArrayList<FeatureType>();
 		list.add(FeatureType.MAP);
 		return list;
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
 		// System.out.println("start spawner search for " + locKey.name());
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		
+
 		final HashMap<String, Location> n = data.getLocs(locKey);
 		try {
 			locs = n.values().toArray(new Location[n.values().size()]);
@@ -129,11 +136,11 @@ public class SpawnerFeature extends CoreFeature {
 			Core.getCore().getInstance().error("No SpawnerPoint found for locKey " + locKey.name());
 			return;
 		}
-		
+
 		if (locs.length == 0) {
 			Core.getCore().getInstance().error("No SpawnerPoints found for locKey " + locKey.name());
 		}
-		
+
 		for (final Location l : locs) {
 			l.getBlock().setType(Material.MOB_SPAWNER);
 			final Block b = l.getBlock();
@@ -152,6 +159,7 @@ public class SpawnerFeature extends CoreFeature {
 						itemTag.setShort("Health", (short) 1);
 						itemTag.setShort("Age", (short) 0);
 						final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(item);
+//						itemStack.getItem().c(1);
 						final NBTTagCompound itemStackTag = new NBTTagCompound();
 						itemStack.save(itemStackTag);
 						itemStackTag.setByte("Count", (byte) 1);
@@ -168,7 +176,7 @@ public class SpawnerFeature extends CoreFeature {
 						spawnerTag.setShort("MaxSpawnDelay", (short) (interval));
 						spawnerTag.setShort("MaxNearbyEntities", (short) 300);
 						spawnerTag.setShort("RequiredPlayerRange", (short) 300);
-						
+
 						mobSpawner.a(spawnerTag);
 					}
 				} else if (type != null) {
@@ -182,8 +190,8 @@ public class SpawnerFeature extends CoreFeature {
 			}
 		}
 	}
-	
-	@EventHandler
+
+	// @EventHandler
 	public void onEntitySpawn(final EntitySpawnEvent event) {
 		if (event.getEntityType() == EntityType.DROPPED_ITEM) {
 			final Item item = (Item) event.getEntity();
@@ -194,8 +202,8 @@ public class SpawnerFeature extends CoreFeature {
 				return;
 			}
 			event.setCancelled(true);
-			final EntityItem e = new CoreEntityItem(((CraftWorld) event.getLocation().getWorld()).getHandle(), event.getLocation().getX(), event.getLocation().getY(),
-			        event.getLocation().getZ());
+			final EntityItem e = new CoreEntityItem(((CraftWorld) event.getLocation().getWorld()).getHandle(),
+					event.getLocation().getX(), event.getLocation().getY(), event.getLocation().getZ());
 			e.setItemStack(CraftItemStack.asNMSCopy(item.getItemStack()));
 			e.fromMobSpawner = true;
 			CraftItem ee = new CraftItem((CraftServer) Bukkit.getServer(), e);
@@ -204,22 +212,23 @@ public class SpawnerFeature extends CoreFeature {
 			((CraftWorld) event.getLocation().getWorld()).getHandle().addEntity(e);
 		}
 	}
-	
+
 	@Override
 	public void end() {
-	
+
 	}
-	
+
 	public class CoreEntityItem extends EntityItem {
-		
+
 		public CoreEntityItem(final World world, final double d0, final double d1, final double d2) {
 			super(world, d0, d1, d2);
 		}
-		
+
 		@SuppressWarnings("unused")
 		private boolean a(final EntityItem entity) {
+			System.out.println("weird method call");
 			return false;
 		}
-		
+
 	}
 }

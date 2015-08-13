@@ -34,53 +34,54 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class NoDropFeature extends CoreFeature {
-	
+
 	public NoDropFeature(final Phase phase) {
 		super(phase);
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.NODROP;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
-	
+
 	}
-	
+
 	@Override
 	public void end() {
-	
+
 	}
-	
+
 	@EventHandler
 	public void onDrop(final PlayerDropItemEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			e.setCancelled(true);
 			e.getItemDrop().remove();
 			Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-				
+
 				@Override
 				public void run() {
 					e.getPlayer().updateInventory();
 				}
 			}, 10, getPhase());
+			System.out.println("don't drop item");
 		}
 	}
 }
