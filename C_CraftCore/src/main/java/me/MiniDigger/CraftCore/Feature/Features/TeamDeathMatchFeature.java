@@ -35,70 +35,72 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
-
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class TeamDeathMatchFeature extends CoreFeature {
-	
-	private final int	                 respawnCount;
-	private final HashMap<UUID, Integer>	respawns	= new HashMap<UUID, Integer>();
-	
-	public TeamDeathMatchFeature(final Phase phase, final int respawns) {
+
+	private final int respawnCount;
+	private final boolean friendlyFire;
+	private final HashMap<UUID, Integer> respawns = new HashMap<UUID, Integer>();
+
+	public TeamDeathMatchFeature(final Phase phase, final int respawns, final boolean friendlyFire) {
 		super(phase);
 		respawnCount = respawns;
+		this.friendlyFire = friendlyFire;
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.TEAM_DEATH_MATCH;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
 		for (final UUID id : getPhase().getGame().getPlayers()) {
 			respawns.put(id, respawnCount);
 		}
 	}
-	
+
 	@Override
 	public void end() {
-		
+
 	}
-	
+
 	public int getRespawns(final UUID id) {
 		final Integer i = respawns.get(id);
 		return i == null ? -1 : i;
 	}
-	
+
 	public void setRespawns(final UUID id, final int count) {
 		respawns.remove(id);
 		respawns.put(id, count);
 	}
-	
+
 	@EventHandler
 	public void onUserJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			respawns.put(e.getUser().getUUID(), respawnCount);
 		}
 	}
-	
+
 	@EventHandler
 	public void onQuit(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
@@ -107,7 +109,8 @@ public class TeamDeathMatchFeature extends CoreFeature {
 				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				final Team t = tf.getTeam(e.getUser().getPlayer());
 				System.out.println(t.getName() + "d raußen");
-				getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(t.getName()).color(t.getColor()).then(" ist draußen!"));
+				getPhase().getGame().broadCastMessage(
+						getPhase().getGame().getPrefix().then(t.getName()).color(t.getColor()).then(" ist draußen!"));
 				checkEnd();
 			} else {
 				System.out.println("noch drinnen");
@@ -115,7 +118,7 @@ public class TeamDeathMatchFeature extends CoreFeature {
 			System.out.println("c");
 		}
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onDeath(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
@@ -128,7 +131,8 @@ public class TeamDeathMatchFeature extends CoreFeature {
 						final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 						final Team t = tf.getTeam(e.getPlayer());
 						System.out.println(t.getName() + "d raußen");
-						getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(t.getName()).color(t.getColor()).then(" ist draußen!"));
+						getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(t.getName())
+								.color(t.getColor()).then(" ist draußen!"));
 						checkEnd();
 					} else {
 						System.out.println("noch drinnen");
@@ -140,7 +144,21 @@ public class TeamDeathMatchFeature extends CoreFeature {
 			}
 		}
 	}
-	
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onDmg(final CoreUserDamageEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+			final Team t1 = tf.getTeam(e.getDamaged());
+			final Team t2 = tf.getTeam(e.getDamager());
+			if (t1.getName().equals(t2.getName())) {
+				if (!friendlyFire) {
+					e.setCancelled(true);
+				}
+			}
+		}
+	}
+
 	private boolean isTeamAlive(final Player p) {
 		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		final Team t = tf.getTeam(p);
@@ -151,7 +169,7 @@ public class TeamDeathMatchFeature extends CoreFeature {
 		}
 		return false;
 	}
-	
+
 	private void checkEnd() {
 		final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 		final List<String> alive = new ArrayList<String>();
@@ -164,13 +182,13 @@ public class TeamDeathMatchFeature extends CoreFeature {
 				}
 			}
 		}
-		
+
 		if (alive.size() < 2) {
 			final List<User> user = new ArrayList<User>();
 			for (final UUID id : tf.getTeam(alive.get(0)).getPlayers()) {
 				user.add(Core.getCore().getUserHandler().get(id));
 			}
-			
+
 			getPhase().getGame().end(user.toArray(new User[user.size()]));
 		}
 	}

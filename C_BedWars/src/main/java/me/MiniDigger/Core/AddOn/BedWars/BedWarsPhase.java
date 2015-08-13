@@ -110,7 +110,7 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new TeamSpawnFeature(this, true, DyeColor.WHITE));
 		addFeature(new TeamBedFeature(this, 4));
 		addFeature(new TeamFeature(this, 4, 4));
-		addFeature(new TeamDeathMatchFeature(this, 0));
+		addFeature(new TeamDeathMatchFeature(this, 0, false));
 		addFeature(new VillagerFeature(this));
 		final List<Material> list = new ArrayList<>();
 		for (final Material m : Material.values()) {
