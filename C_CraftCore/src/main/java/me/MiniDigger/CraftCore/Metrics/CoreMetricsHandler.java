@@ -2,14 +2,13 @@ package me.MiniDigger.CraftCore.Metrics;
 
 import java.io.IOException;
 
-import org.mcstats.Metrics;
-import org.mcstats.Metrics.Graph;
-import org.mcstats.Metrics.Plotter;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.AddOn.AddOnBean;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Lang.LogLevel;
+import me.MiniDigger.Core.Metrics.Metrics;
+import me.MiniDigger.Core.Metrics.Metrics.Graph;
+import me.MiniDigger.Core.Metrics.Metrics.Plotter;
 import me.MiniDigger.Core.Metrics.MetricsHandler;
 import me.MiniDigger.CraftCore.Lang.MSG;
 
