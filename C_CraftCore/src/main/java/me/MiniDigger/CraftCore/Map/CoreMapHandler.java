@@ -44,14 +44,14 @@ import me.MiniDigger.Core.Map.MapHandler;
 import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreMapHandler implements MapHandler {
-	
-	private final ArrayList<MapData>	maps	= new ArrayList<>();
-	private final File	             mapFolder;
-	private final File	             mapConfig;
-	private final List<String>	     mapNames;
-	
-	private final FileConfiguration	 con;
-	
+
+	private final ArrayList<MapData> maps = new ArrayList<>();
+	private final File mapFolder;
+	private final File mapConfig;
+	private final List<String> mapNames;
+
+	private final FileConfiguration con;
+
 	public CoreMapHandler() {
 		mapFolder = new File((Core.getCore().getInstance()).getConfig().getString("mapFolder"));
 		mapConfig = new File(mapFolder, "maps.yml");
@@ -62,33 +62,33 @@ public class CoreMapHandler implements MapHandler {
 			warning.mkdir();
 		}
 	}
-	
+
 	@Override
 	public List<String> getMapNames() {
 		return mapNames;
 	}
-	
+
 	@Override
 	public void addMap(final MapData data) {
 		if (data.getName() == null) {
 			System.out.println("Could not add map: Name was null");
 			return;
 		}
-		
+
 		maps.add(data);
 	}
-	
+
 	@Override
 	public MapData getMap(final String name) {
 		if (name == null) {
 			return null;
 		}
-		
+
 		for (final MapData data : maps) {
 			if (data == null) {
 				continue;
 			}
-			
+
 			if (data.getName().equals(name)) {
 				return data;
 			}
@@ -97,18 +97,18 @@ public class CoreMapHandler implements MapHandler {
 			if (data == null) {
 				continue;
 			}
-			
+
 			if (data.getOldName() == null) {
 				continue;
 			}
-			
+
 			if (data.getOldName().equals(name)) {
 				return data;
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
 	public List<MapData> getMaps(final List<DyeColor> types) {
 		final List<MapData> result = new ArrayList<>();
@@ -120,57 +120,57 @@ public class CoreMapHandler implements MapHandler {
 					break;
 				}
 			}
-			
+
 			if (!breaked) {
 				result.add(data);
 			}
 		}
 		return result;
 	}
-	
+
 	@Override
 	public String getAuthor(final String map) {
 		return con.getString(map + ".author");
 	}
-	
+
 	@Override
 	public String getName(final String map) {
 		return con.getString(map + ".name");
 	}
-	
+
 	@Override
 	public ArrayList<String> loadMapConfig(final GameType type) {
 		final List<String> maps = con.getStringList("maps");
 		final List<String> matched = new ArrayList<>();
-		
+
 		for (final String s : maps) {
 			final List<String> types = con.getStringList(s + ".gametypes");
 			if (types.contains(type.name())) {
 				matched.add(s);
 			}
 		}
-		
+
 		String map1 = null;
 		String map2 = null;
 		String map3 = null;
 		try {
 			map1 = matched.get(Core.getCore().getRandomUtil().nextInt(matched.size()));
 			matched.remove(map1);
-			
+
 			map2 = matched.get(Core.getCore().getRandomUtil().nextInt(matched.size()));
 			matched.remove(map2);
-			
+
 			map3 = matched.get(Core.getCore().getRandomUtil().nextInt(matched.size()));
 			matched.remove(map3);
 		} catch (final Exception ex) {
-			
+
 		}
-		
+
 		if (map1 == null) {
 			Core.getCore().getInstance().error("No Map found for GameType " + type);
 			return new ArrayList<>();
 		}
-		
+
 		final ArrayList<String> list = new ArrayList<>();
 		if (map1 != null) {
 			list.add(map1);
@@ -183,37 +183,44 @@ public class CoreMapHandler implements MapHandler {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public List<GameType> getGameTypes(final String name) {
 		final List<GameType> result = new ArrayList<GameType>();
-		
+
 		for (final String s : con.getStringList(name + ".gametypes")) {
 			try {
 				result.add(GameType.valueOf(s));
 			} catch (final Exception ex) {
-				
+
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public void unload(final MapData map) {
 		maps.remove(map);
 	}
-	
+
 	@Override
 	public void fixMap(MapData map) {
+		String name = map.getOldName();
+		if (name == null) {
+			name = map.getName();
+		}
+
 		try {
-			OutputStream out = new FileOutputStream(new File(new File(Bukkit.getWorldContainer(), map.getName()), "map.yml"));
-			FileInputStream fin = new FileInputStream(new File(Core.getCore().getInstance().getConfig().getString("mapFolder"), map.getOldName() + ".zip"));
+			OutputStream out = new FileOutputStream(
+					new File(new File(Bukkit.getWorldContainer(), map.getName()), "map.yml"));
+			FileInputStream fin = new FileInputStream(
+					new File(Core.getCore().getInstance().getConfig().getString("mapFolder"), name + ".zip"));
 			BufferedInputStream bin = new BufferedInputStream(fin);
 			ZipInputStream zin = new ZipInputStream(bin);
 			ZipEntry ze = null;
 			while ((ze = zin.getNextEntry()) != null) {
-				if (ze.getName().equals("Lobby/map.yml")) {
+				if (ze.getName().equals(map.getName() + "/map.yml")) {
 					byte[] buffer = new byte[8192];
 					int len;
 					while ((len = zin.read(buffer)) != -1) {
@@ -227,7 +234,7 @@ public class CoreMapHandler implements MapHandler {
 		} catch (Exception ex) {
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		final File mapDataFile = new File(new File(Bukkit.getWorldContainer(), map.getName()), "map.yml");
 		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
 		map.load(con);

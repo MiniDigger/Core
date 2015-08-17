@@ -235,6 +235,7 @@ public class CoreWorldHandler implements WorldHandler {
 		fixSession(map);
 		
 		final File mapDataFile = new File(map, "map.yml");
+		System.out.println("load config " + mapDataFile.getAbsolutePath());
 		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
 		
 		final MapData data = new CoreMapData(con);
