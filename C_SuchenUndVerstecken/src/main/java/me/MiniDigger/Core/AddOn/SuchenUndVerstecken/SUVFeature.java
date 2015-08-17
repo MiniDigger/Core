@@ -39,8 +39,9 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
+import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
-
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
@@ -50,8 +51,8 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class SUVFeature extends CoreFeature {
 
-	private UUID	sucher1;
-	private UUID	sucher2;
+	private UUID sucher1;
+	private UUID sucher2;
 
 	public SUVFeature(final Phase phase) {
 		super(phase);
@@ -81,14 +82,16 @@ public class SUVFeature extends CoreFeature {
 	public void start() {
 		try {
 			sucher1 = UUID.fromString(getPhase().getGame().getGameData("sucher1"));
-			Bukkit.getPlayer(sucher1).getInventory()
-			        .setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.LIGHT_PURPLE)).build());
-		} catch (final Exception ex) {}
+			Bukkit.getPlayer(sucher1).getInventory().setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET)
+					.color(Core.getCore().getChatColorUtil().toColor(ChatColor.LIGHT_PURPLE)).build());
+		} catch (final Exception ex) {
+		}
 		try {
 			sucher2 = UUID.fromString(getPhase().getGame().getGameData("sucher2"));
-			Bukkit.getPlayer(sucher2).getInventory()
-			        .setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
-		} catch (final Exception ex) {}
+			Bukkit.getPlayer(sucher2).getInventory().setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET)
+					.color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
+		} catch (final Exception ex) {
+		}
 
 		showLives();
 	}
@@ -105,12 +108,16 @@ public class SUVFeature extends CoreFeature {
 		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 
 		if (sucher1 != null) {
-			board.addLine(new CoreScoreboardLine(3, "Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(2, t.getTeams().get(0).getPlayers().size() + " Spieler ", DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(3,
+					"Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, t.getTeams().get(0).getPlayers().size() + " Spieler ",
+					DisplaySlot.SIDEBAR));
 		}
 		if (sucher2 != null) {
-			board.addLine(new CoreScoreboardLine(1, "Team " + Core.getCore().getUserHandler().get(sucher2).getDisplayName(), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(0, t.getTeams().get(1).getPlayers().size() + " Spieler", DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(1,
+					"Team " + Core.getCore().getUserHandler().get(sucher2).getDisplayName(), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(0, t.getTeams().get(1).getPlayers().size() + " Spieler",
+					DisplaySlot.SIDEBAR));
 		}
 	}
 
@@ -172,16 +179,25 @@ public class SUVFeature extends CoreFeature {
 				System.out.println("id1 is sucher1 and id2 in team 0");
 				final User os = Core.getCore().getUserHandler().get(sucher2);
 				if (os == null || os.getPlayer() == null) {
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-					        .then("Der Spieler " + v.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-					        .then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler am Leben!"));
+					t.getTeams().get(0).getPlayers().remove(id2);
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+									.then("Der Spieler " + v.getDisplayName()
+											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then(
+									"Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler am Leben!"));
 				} else {
 					t.getTeams().get(0).getPlayers().remove(id2);
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler " + v.getDisplayName()
-					        + " aus dem Team von " + os.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-					        .then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler in diesem Team am Leben!"));
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+									.then("Der Spieler " + v.getDisplayName() + " aus dem Team von "
+											+ os.getDisplayName()
+											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+									.then("Es sind noch " + t.getTeams().get(0).getPlayers().size()
+											+ " Spieler in diesem Team am Leben!"));
 				}
 
 				v.getPlayer().damage(9000.0);
@@ -191,16 +207,25 @@ public class SUVFeature extends CoreFeature {
 				System.out.println("id1 is sucher2 and id2 in team 1");
 				final User os = Core.getCore().getUserHandler().get(sucher1);
 				if (os == null || os.getPlayer() == null) {
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-					        .then("Der Spieler " + v.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-					        .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler am Leben!"));
+					t.getTeams().get(1).getPlayers().remove(id2);
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+									.then("Der Spieler " + v.getDisplayName()
+											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then(
+									"Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler am Leben!"));
 				} else {
 					t.getTeams().get(1).getPlayers().remove(id2);
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler " + v.getDisplayName()
-					        + " aus dem Team von " + os.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-					        .then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler in diesem Team am Leben!"));
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+									.then("Der Spieler " + v.getDisplayName() + " aus dem Team von "
+											+ os.getDisplayName()
+											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame()
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+									.then("Es sind noch " + t.getTeams().get(1).getPlayers().size()
+											+ " Spieler in diesem Team am Leben!"));
 				}
 
 				v.getPlayer().damage(9000.0);
@@ -225,8 +250,9 @@ public class SUVFeature extends CoreFeature {
 					ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(1).getPlayers().get(i));
 				}
 				ww[0] = w;
+				System.out.println("end1");
 				getPhase().getGame().end(w); // TODO it is not w but ww here,
-				                             // but pssst ;D
+												// but pssst ;D
 			} else if (t.getTeamCount() > 1 && t.getTeams().get(1).getPlayers().size() == 0) {
 				final User w = Core.getCore().getUserHandler().get(sucher2);
 				final User[] ww = new User[t.getTeams().get(0).getPlayers().size() + 1];
@@ -234,11 +260,15 @@ public class SUVFeature extends CoreFeature {
 					ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(0).getPlayers().get(i));
 				}
 				ww[0] = w;
+				System.out.println("end2");
 				getPhase().getGame().end(w);
 			}
 		} else {
 			final User w = Core.getCore().getUserHandler().get(sucher1);
-			getPhase().getGame().end(w);
+			if (t.getTeams().get(0).getPlayers().size() == 0) {
+				System.out.println("end3");
+				getPhase().getGame().end(w);
+			}
 		}
 	}
 
@@ -247,7 +277,7 @@ public class SUVFeature extends CoreFeature {
 		if (e.getRightClicked() instanceof Player) {
 			System.out.println("click");
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())
-			        && getPhase().getGame().getPlayers().contains(e.getRightClicked().getUniqueId())) {
+					&& getPhase().getGame().getPlayers().contains(e.getRightClicked().getUniqueId())) {
 				System.out.println("both ingame");
 				check(e.getPlayer().getUniqueId(), e.getRightClicked().getUniqueId(), false);
 			}
@@ -259,6 +289,23 @@ public class SUVFeature extends CoreFeature {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			check(null, e.getUser().getUUID(), true);
 			checkEnd();
+		}
+	}
+
+	@EventHandler
+	public void onDeath(final CoreUserDeathEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
+			if (e.getUser().getUUID() == sucher1 || e.getUser().getUUID() == sucher2) {
+				System.out.println("sucher death");
+				e.setShouldRespawn(true);
+			} else if (t.getTeam(e.getUser()) == null) {
+				System.out.println("teamless death");
+				e.setShouldRespawn(false);
+			} else {
+				Team team = t.getTeam(e.getUser());
+				System.out.println(team.getName() + " death");
+			}
 		}
 	}
 
