@@ -80,7 +80,8 @@ public enum FeatureType {
 	IF,
 	WORLDBOARDER,
 	EH,
-	NOINVENTORY;
+	NOINVENTORY, 
+	CUSTOM;
 	
 	/**
 	 * @return A human readable name for the feature

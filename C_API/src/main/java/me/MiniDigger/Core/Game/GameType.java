@@ -36,36 +36,37 @@ public enum GameType {
 	KP("KitPvP", "KP", null, "kp"),
 	KK("KistenKrieg", "KK", null, "kk"),
 	IF("Infected", "IF", null, "if"),
-	EH("Ehrenhalle", "EH", null, "eh");
-	
+	EH("Ehrenhalle", "EH", null, "eh"), 
+	CUSTOM("Custom", "C", null, "custom");
+
 	private String name;
 	private String abk;
 	private Class<Game> game;
 	private String cmd;
-	
+
 	private GameType(final String name, final String abk, final Class<Game> game, final String cmd) {
 		this.name = name;
 		this.abk = abk;
 		this.game = game;
 		this.cmd = cmd;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getAbk() {
 		return abk;
 	}
-	
+
 	public Class<?> getGame() {
 		return game;
 	}
-	
+
 	public String getCommand() {
 		return cmd;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void setClass(final Class<?> game) {
 		this.game = (Class<Game>) game;

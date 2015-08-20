@@ -23,17 +23,24 @@ package me.MiniDigger.Core.AddOn.Hub;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -51,6 +58,7 @@ import me.MiniDigger.Core.Menu.ItemBarMenu.ClickHandler;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
+import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
 
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
@@ -253,6 +261,59 @@ public class HubFeature extends CoreFeature {
 			}
 
 			Core.getCore().getServerHandler().connect(u, "event1");
+		}
+	}
+
+	// TELEPORTER 2
+	private Location loc1;
+	private Location loc2;
+	private final Map<UUID, Task> tasks = new HashMap<UUID, Task>();
+
+	@EventHandler(priority = EventPriority.LOW)
+	public void onInteract(final PlayerInteractEvent e) {
+		if (e.getAction() == Action.PHYSICAL) {
+			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
+				if (e.getClickedBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
+					final Sign s = (Sign) e.getClickedBlock().getRelative(BlockFace.DOWN, 2).getState();
+					if (s.getLine(0).equalsIgnoreCase("[PREMIUM]")) {
+						if (loc1 == null) {
+							loc1 = new Location(Bukkit.getWorld("Spawn"), -938, 144, -769);
+						}
+						if (loc2 == null) {
+							loc2 = new Location(Bukkit.getWorld("Spawn"), -857, 87, -680);
+						}
+
+						e.setCancelled(true);
+						final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
+						if (tasks.containsKey(u.getUUID())) {
+							return;
+						}
+						if (u.hasPermission("premium.launch")) {
+							if (s.getLocation().distance(loc1) < s.getLocation().distance(loc2)) {
+								u.getPlayer().teleport(loc2);
+								tasks.put(u.getUUID(),
+										Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+
+											@Override
+											public void run() {
+												tasks.remove(u.getUUID());
+											}
+										}, 2 * 20, getPhase()));
+							} else {
+								u.getPlayer().teleport(loc1);
+								tasks.put(u.getUUID(),
+										Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+
+											@Override
+											public void run() {
+												tasks.remove(u.getUUID());
+											}
+										}, 2 * 20, getPhase()));
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -615,6 +676,25 @@ public class HubFeature extends CoreFeature {
 			@Override
 			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
 				Bukkit.dispatchCommand(u.getPlayer(), "hub");
+			}
+		});
+		tp2.setIcon(5, new CoreItemBuilder(Material.GOLD_HELMET).name("Ehrenhalle").build());
+		tp2.setAction(5, new ClickHandler() {
+
+			@Override
+			public void click(final ItemBarMenu m, final ItemStack is, final User u, final Entity entity) {
+				try {
+					if (Core.getCore().getGameHandler().isDisabled(GameType.EH)) {
+						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+					} else {
+						u.getPlayer().teleport(
+								Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EHRENHALLE"));
+					}
+				} catch (final Exception ex) {
+					MSG.stacktrace(LogLevel.DEBUG, ex);
+					Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
+				}
+
 			}
 		});
 
