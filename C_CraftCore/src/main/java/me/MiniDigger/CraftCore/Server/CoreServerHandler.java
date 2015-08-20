@@ -46,23 +46,23 @@ import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 import mkremins.fanciful.FancyMessage;
 
 public class CoreServerHandler implements ServerHandler {
-	
-	private final ArrayList<Server>	servers	= new ArrayList<>();
-	private BukkitTask				task;
-	private BukkitTask				ping;
-	
+
+	private final ArrayList<Server> servers = new ArrayList<>();
+	private BukkitTask task;
+	private BukkitTask ping;
+
 	@Override
 	public void startTask() {
 		task = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
-			
+
 			@Override
 			public void run() {
 				Core.getCore().getPacketHandler().sendPacket(new ServerPacket(CoreServer.getForThis(true)));
 			}
 		}, 5 * 20, 1 * 20);
-		
+
 		ping = Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
-			
+
 			@Override
 			public void run() {
 				final FileConfiguration c = Core.getCore().getInstance().getConfig();
@@ -78,18 +78,18 @@ public class CoreServerHandler implements ServerHandler {
 			}
 		}, 5 * 20, 10 * 20);
 	}
-	
+
 	@Override
 	public void stopTask() {
 		task.cancel();
 		ping.cancel();
 	}
-	
+
 	@Override
 	public List<Server> getServers() {
 		return servers;
 	}
-	
+
 	@Override
 	public WrappedChatComponent[] getServerInfo(final WrappedChatComponent[] lines) {
 		FancyMessage msg;
@@ -115,7 +115,7 @@ public class CoreServerHandler implements ServerHandler {
 			// return lines;
 			// System.out.println("name = " + name);
 		}
-		
+
 		final Server server = getServerInfo(name);
 		if (server == null || !server.isOnline()) {
 			if (server == null) {
@@ -128,6 +128,15 @@ public class CoreServerHandler implements ServerHandler {
 			msg = new FancyMessage("RESTART").color(ChatColor.RED).style(ChatColor.BOLD, ChatColor.UNDERLINE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage("Bitte warten!").color(ChatColor.RED);
+			lines[2].setJson(msg.toJSONString());
+			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
+			lines[3].setJson(msg.toJSONString());
+		} else if (Core.getCore().getGameHandler().isDisabled(server.getPrimaryGameType())) {
+			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
+			lines[0].setJson(msg.toJSONString());
+			msg = new FancyMessage("DEAKTIVIERT").color(ChatColor.RED).style(ChatColor.BOLD, ChatColor.UNDERLINE);
+			lines[1].setJson(msg.toJSONString());
+			msg = new FancyMessage("SORRY!").color(ChatColor.RED);
 			lines[2].setJson(msg.toJSONString());
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
 			lines[3].setJson(msg.toJSONString());
@@ -152,7 +161,8 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isFull() && !server.isJoin()) {
 			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_BLUE);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
+					.color(ChatColor.DARK_BLUE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
 			lines[2].setJson(msg.toJSONString());
@@ -161,7 +171,8 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isFull()) {
 			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_BLUE);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
+					.color(ChatColor.DARK_BLUE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
 			lines[2].setJson(msg.toJSONString());
@@ -170,7 +181,8 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isJoin()) {
 			msg = new FancyMessage("[Join]").color(ChatColor.AQUA);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_GREEN);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
+					.color(ChatColor.DARK_GREEN);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_GREEN);
 			lines[2].setJson(msg.toJSONString());
@@ -179,7 +191,8 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isSpectate()) {
 			msg = new FancyMessage("[Specatete]").color(ChatColor.YELLOW);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.GOLD);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
+					.color(ChatColor.GOLD);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.GOLD);
 			lines[2].setJson(msg.toJSONString());
@@ -188,10 +201,10 @@ public class CoreServerHandler implements ServerHandler {
 		} else {
 			System.out.println("no option for " + server.toString());
 		}
-		
+
 		return lines;
 	}
-	
+
 	@Override
 	public Server getServerInfo(final String name) {
 		try {
@@ -211,7 +224,7 @@ public class CoreServerHandler implements ServerHandler {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void gotServerInfo(final Server server) {
 		if (getServerInfo(server.getName()) == null) {
@@ -221,7 +234,7 @@ public class CoreServerHandler implements ServerHandler {
 			servers.add(server);
 		}
 	}
-	
+
 	@Override
 	public void connect(User user, String server) {
 		final ByteArrayDataOutput out = ByteStreams.newDataOutput();
