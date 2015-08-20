@@ -111,7 +111,9 @@ public class CoreSignListeners implements SignListeners {
 				try {
 					Server s = Core.getCore().getServerHandler().getServerInfo(getSign().getLine(1));
 					if (Core.getCore().getGameHandler().isDisabled(s.getPrimaryGameType())) {
-						
+						getUser().sendMessage(Prefix.API.getPrefix()
+								.then("Dieser Spielmodi ist temporär deaktiviert! Sorry!").color(ChatColor.RED));
+						return;
 					}
 				} catch (Exception ex) {
 				}

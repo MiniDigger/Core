@@ -259,7 +259,7 @@ public class ChatCommands {
 				return;
 			}
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
-			user.setPrefix(args.getArgs()[1]);
+			user.setPrefix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(user.getPlayer());
 			;
 			Prefix.CHAT.getPrefix().then("Das Prefix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0])
@@ -282,7 +282,7 @@ public class ChatCommands {
 				return;
 			}
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
-			user.setSuffix(args.getArgs()[1]);
+			user.setSuffix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(user.getPlayer());
 			;
 			Prefix.CHAT.getPrefix().then("Das Suffix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0])
