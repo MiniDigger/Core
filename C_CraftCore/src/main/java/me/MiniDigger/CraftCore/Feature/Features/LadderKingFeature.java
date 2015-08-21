@@ -118,7 +118,7 @@ public class LadderKingFeature extends CoreFeature {
 							final User o = Core.getCore().getUserHandler().get(king);
 							king = null;
 							getPhase().getGame().broadCastMessage(
-							        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" hat seinen Tron verlassen!").color(ChatColor.GOLD));
+							        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
 						}
 					}, 5 * 20, getPhase()));
 				}
