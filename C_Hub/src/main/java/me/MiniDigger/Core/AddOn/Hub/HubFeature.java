@@ -231,11 +231,14 @@ public class HubFeature extends CoreFeature {
 					.then("Es werden keine Spieler mehr reingelassen, nächstes mal musst du schneller sein!"));
 
 			for (final UUID id : getPhase().getGame().getPlayers()) {
-				final Player p = Core.getCore().getUserHandler().get(id).getPlayer();
-				Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20,
-						ChatColor.GOLD + "" + ChatColor.BOLD + "Event ist voll");
-				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20,
-						ChatColor.GOLD + "" + ChatColor.BOLD + "Das nächste mal musst du wohl schneller sein ;D");
+				try {
+					final Player p = Core.getCore().getUserHandler().get(id).getPlayer();
+					Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20,
+							ChatColor.GOLD + "" + ChatColor.BOLD + "Event ist voll");
+					Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20,
+							ChatColor.GOLD + "" + ChatColor.BOLD + "Das nächste mal musst du wohl schneller sein ;D");
+				} catch (Exception ex) {
+				}
 			}
 		} else {
 			getPhase().getGame().broadCastMessage(
@@ -243,10 +246,13 @@ public class HubFeature extends CoreFeature {
 
 			for (final UUID id : getPhase().getGame().getPlayers()) {
 				final Player p = Core.getCore().getUserHandler().get(id).getPlayer();
-				Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20,
-						ChatColor.GOLD + "" + ChatColor.BOLD + "Event");
-				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20,
-						ChatColor.GOLD + "" + ChatColor.BOLD + "Begib dich zum Sammelpunkt");
+				try {
+					Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20,
+							ChatColor.GOLD + "" + ChatColor.BOLD + "Event");
+					Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20,
+							ChatColor.GOLD + "" + ChatColor.BOLD + "Begib dich zum Sammelpunkt");
+				} catch (Exception ex) {
+				}
 			}
 		}
 		event = !event;
@@ -275,7 +281,7 @@ public class HubFeature extends CoreFeature {
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 				if (e.getClickedBlock().getRelative(BlockFace.DOWN, 2).getState() instanceof Sign) {
 					final Sign s = (Sign) e.getClickedBlock().getRelative(BlockFace.DOWN, 2).getState();
-					if (s.getLine(0).equalsIgnoreCase("[PREMIUM]")) {
+					if (s.getLine(0).equalsIgnoreCase("[PREMIUM2]")) {
 						if (loc1 == null) {
 							loc1 = new Location(Bukkit.getWorld("Spawn"), -938, 144, -769);
 						}
@@ -687,8 +693,8 @@ public class HubFeature extends CoreFeature {
 					if (Core.getCore().getGameHandler().isDisabled(GameType.EH)) {
 						Prefix.API.getPrefix().then("Deaktiviert!").send(u.getPlayer());
 					} else {
-						u.getPlayer().teleport(
-								Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EHRENHALLE"));
+						u.getPlayer().teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE)
+								.get("EHRENHALLE"));
 					}
 				} catch (final Exception ex) {
 					MSG.stacktrace(LogLevel.DEBUG, ex);

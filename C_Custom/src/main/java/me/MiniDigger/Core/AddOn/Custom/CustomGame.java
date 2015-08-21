@@ -16,14 +16,12 @@ import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 public class CustomGame extends CoreGame {
 
 	LobbyPhase lobby;
-	VotePhase vote;
-	GracePhase grace;
 	CustomPhase custom;
 	PostPhase post;
 
 	@Override
 	public GameType getType() {
-		return GameType.CRANK;
+		return GameType.CUSTOM;
 	}
 
 	@Override
@@ -32,19 +30,16 @@ public class CustomGame extends CoreGame {
 
 		setGameData("Lobby", "Lobby");
 
-		lobby = new LobbyPhase(this, null, 5);
-		vote = new VotePhase(this, null, 30);
-		grace = new GracePhase(this, null, 15);
+		lobby = new LobbyPhase(this, null, 500);
 		custom = new CustomPhase(this);
 		post = new PostPhase(this, 10);
 
-		grace.setNextPhase(custom);
-		vote.setNextPhase(grace);
-		lobby.setNextPhase(vote);
+		lobby.addFeature(new CustomLobbyFeature(lobby));
+
+		lobby.setNextPhase(custom);
 		custom.setNextPhase(post);
 
 		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
-		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
 		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
 
 		setPhase(lobby);
@@ -71,6 +66,7 @@ public class CustomGame extends CoreGame {
 		super.start();
 
 		lobby.init();
+		custom.init();
 
 		getPhase().startPhase();
 	}

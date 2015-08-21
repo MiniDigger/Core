@@ -240,4 +240,13 @@ public class LivesFeature extends CoreFeature {
 			showLives();
 		}
 	}
+
+	public void setLives(int i) {
+		for(UUID id : lives.keySet()){
+			if(lives.get(id) == max){
+				lives.remove(id);
+				lives.put(id, i);
+			}
+		}
+	}
 }

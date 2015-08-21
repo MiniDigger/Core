@@ -240,6 +240,7 @@ public class CoreItemBarMenu implements ItemBarMenu {
 		for (int i = 0; i < 9; i++) {
 			m.setAction(i, actions[i]);
 			m.setIcon(i, icons[i]);
+			m.setPermission(i, perms[i]);
 		}
 		return m;
 	}

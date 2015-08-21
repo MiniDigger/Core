@@ -166,7 +166,7 @@ public class WorldCommands {
 
 			for (Player pp : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				pp.teleport(p);
-				args.getUser().sendMessage(Prefix.API.getPrefix().then("Wuusch..."));
+				Prefix.API.getPrefix().then("Wuusch...").send(pp);
 			}
 		} else if (args.getArgs().length == 3) {
 			int x, y, z;
@@ -181,7 +181,7 @@ public class WorldCommands {
 
 			for (Player pp : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				pp.teleport(new Location(args.getPlayer().getWorld(), x, y, z));
-				args.getUser().sendMessage(Prefix.API.getPrefix().then("Wuusch..."));
+				Prefix.API.getPrefix().then("Wuusch...").send(pp);
 			}
 		} else {
 			args.getSender().sendMessage(Prefix.API.getConsolPrefix() + " Falsche Benutzung!");

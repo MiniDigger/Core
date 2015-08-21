@@ -81,7 +81,8 @@ public enum FeatureType {
 	WORLDBOARDER,
 	EH,
 	NOINVENTORY, 
-	CUSTOM;
+	CUSTOM,
+	CUSTOM_LOBBY;
 	
 	/**
 	 * @return A human readable name for the feature
