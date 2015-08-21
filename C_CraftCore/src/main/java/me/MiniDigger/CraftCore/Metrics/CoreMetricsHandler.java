@@ -28,6 +28,9 @@ public class CoreMetricsHandler implements MetricsHandler {
 			Core.getCore().getInstance().debug("No metrics for you then!");
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
+		
+		CoreConnectHandler c = new CoreConnectHandler();
+		c.start();
 	}
 
 	private void gamemode(Metrics metrics) {

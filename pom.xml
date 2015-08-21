@@ -272,5 +272,10 @@
 			<version>8.6.2-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.getconnect</groupId>
+			<artifactId>connect-client-java</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>
