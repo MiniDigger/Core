@@ -78,7 +78,7 @@ public class SGPhase1 extends CoreTimedPhase {
 		addFeature(new AutoRespawnFeature(this));
 		addFeature(new LastManStandingFeature(this));
 		addFeature(new MobFeature(this,
-		        Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY, Type.ANGRY, Type.PASSIV, Type.FRIENDLY)));
+		        Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY, Type.FRIENDLY)));
 		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, null, false));
