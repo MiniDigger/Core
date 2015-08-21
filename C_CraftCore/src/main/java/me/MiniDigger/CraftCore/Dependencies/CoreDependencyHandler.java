@@ -72,7 +72,7 @@ public class CoreDependencyHandler implements DependencyHanlder {
 		for (final Dependency d : dependencies) {
 			String fullName = check(d);
 
-			System.out.println("check update for dependencie " + d.getFullName() + ", result: " + fullName);
+			Core.getCore().getInstance().debug("check update for dependencie " + d.getFullName() + ", result: " + fullName);
 
 			if (fullName.equals("true")) {
 				download(d);
@@ -85,9 +85,9 @@ public class CoreDependencyHandler implements DependencyHanlder {
 					final File old = new File(f, fullName);
 					old.delete();
 					old.deleteOnExit();
-					System.out.println("Deleting old file: " + old.getName());
+					Core.getCore().getInstance().debug("Deleting old file: " + old.getName());
 				} catch (Exception ex) {
-					System.out.println("failed to delete old");
+					Core.getCore().getInstance().debug("failed to delete old");
 				}
 				download(d);
 				continue;

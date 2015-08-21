@@ -95,7 +95,7 @@ public class CoreCommandHandler implements CommandHandler {
 			if (m.getAnnotation(Command.class) != null) {
 				final Command command = m.getAnnotation(Command.class);
 				if (m.getParameterTypes().length > 1 || m.getParameterTypes()[0] != CommandArgs.class) {
-					System.out.println("Unable to unregister command " + m.getName() + ". Unexpected method arguments");
+					Core.getCore().getInstance().debug("Unable to unregister command " + m.getName() + ". Unexpected method arguments");
 					continue;
 				}
 				unregister(command.name());
@@ -278,7 +278,7 @@ public class CoreCommandHandler implements CommandHandler {
 			if (m.getAnnotation(Command.class) != null) {
 				final Command command = m.getAnnotation(Command.class);
 				if (m.getParameterTypes().length > 1 || m.getParameterTypes()[0] != CommandArgs.class) {
-					System.out.println("Unable to register command " + m.getName() + ". Unexpected method arguments");
+					Core.getCore().getInstance().debug("Unable to register command " + m.getName() + ". Unexpected method arguments");
 					continue;
 				}
 				registerCommand(command, command.name(), m, obj);
@@ -288,11 +288,11 @@ public class CoreCommandHandler implements CommandHandler {
 			} else if (m.getAnnotation(Completer.class) != null) {
 				final Completer comp = m.getAnnotation(Completer.class);
 				if (m.getParameterTypes().length > 1 || m.getParameterTypes().length == 0 || m.getParameterTypes()[0] != CommandArgs.class) {
-					System.out.println("Unable to register tab completer " + m.getName() + ". Unexpected method arguments");
+					Core.getCore().getInstance().debug("Unable to register tab completer " + m.getName() + ". Unexpected method arguments");
 					continue;
 				}
 				if (m.getReturnType() != List.class) {
-					System.out.println("Unable to register tab completer " + m.getName() + ". Unexpected return type");
+					Core.getCore().getInstance().debug("Unable to register tab completer " + m.getName() + ". Unexpected return type");
 					continue;
 				}
 				registerCompleter(comp.name(), m, obj);
@@ -358,7 +358,7 @@ public class CoreCommandHandler implements CommandHandler {
 					final BukkitCompleter completer = (CoreBukkitCompleter) field.get(command);
 					completer.addCompleter(label, m, obj);
 				} else {
-					System.out.println("Unable to register tab completer " + m.getName() + ". A tab completer is already registered for that command!");
+					Core.getCore().getInstance().debug("Unable to register tab completer " + m.getName() + ". A tab completer is already registered for that command!");
 				}
 			} catch (final Exception ex) {
 				ex.printStackTrace();

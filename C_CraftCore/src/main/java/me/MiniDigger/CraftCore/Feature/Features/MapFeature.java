@@ -118,10 +118,10 @@ public class MapFeature extends CoreFeature {
 				i += this.map.getLocs(color).size();
 			}
 		}
-		System.out.println("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs");
+		Core.getCore().getInstance().debug("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs");
 		
 		if (i == 0) {
-			System.out.println("Well, thats bad, try to grab a new YML!");
+			Core.getCore().getInstance().debug("Well, thats bad, try to grab a new YML!");
 			Core.getCore().getMapHandler().fixMap(this.map);
 			
 			i = 0;
@@ -130,7 +130,7 @@ public class MapFeature extends CoreFeature {
 					i += this.map.getLocs(color).size();
 				}
 			}
-			System.out.println("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs after fixing");
+			Core.getCore().getInstance().debug("Map " + this.map.getName() + "(" + this.map.getOldName() + ") was loaded with " + i + " Locs after fixing");
 		}
 	}
 	
@@ -147,7 +147,7 @@ public class MapFeature extends CoreFeature {
 		if (map == null) {
 			name = getPhase().getGame().getGameData("Lobby");
 			if (name == null) {
-				System.out.println("idk what to do...");
+				Core.getCore().getInstance().debug("idk what to do...");
 			}
 		} else {
 			name = map.getName();
@@ -157,8 +157,8 @@ public class MapFeature extends CoreFeature {
 			name = getPhase().getGame().getType().getAbk() + "_Lobby";
 		}
 		
-		System.out.println("phase: " + getPhase().getName());
-		System.out.println("name: " + name);
+		Core.getCore().getInstance().debug("phase: " + getPhase().getName());
+		Core.getCore().getInstance().debug("name: " + name);
 		return name;
 	}
 	

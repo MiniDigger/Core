@@ -86,7 +86,7 @@ public class CoreKit implements Kit {
 			stmt.execute();
 			query.kill();
 		} catch (final Exception ex) {
-			System.out.println("Failed to delete kit");
+			Core.getCore().getInstance().debug("Failed to delete kit");
 		}
 	}
 	

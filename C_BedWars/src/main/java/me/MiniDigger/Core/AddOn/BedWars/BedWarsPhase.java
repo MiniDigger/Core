@@ -96,7 +96,7 @@ public class BedWarsPhase extends CorePhase {
 
 	@Override
 	public void init() {
-		System.out.println("init");
+		Core.getCore().getInstance().debug("init");
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
 		final List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE,
@@ -502,7 +502,7 @@ public class BedWarsPhase extends CorePhase {
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		if (data == null) {
 			if (((MapFeature) getFeature(FeatureType.MAP)).getMap() == null) {
-				System.out.println("data and map null!");
+				Core.getCore().getInstance().debug("data and map null!");
 			}
 		}
 		final HashMap<String, Location> locs = data.getLocs(locKey);

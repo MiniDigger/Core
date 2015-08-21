@@ -73,14 +73,14 @@ public class DropFeature extends CoreFeature {
 		try {
 			normal = n.values().toArray(new Location[n.values().size()]);
 		} catch (final Exception ex) {
-			System.out.println("No normal drop points found");
+			Core.getCore().getInstance().debug("No normal drop points found");
 		}
 		
 		try {
 			n = data.getLocs(DyeColor.LIME);
 			special = n.values().toArray(new Location[n.values().size()]);
 		} catch (final Exception ex) {
-			System.out.println("No special drop points found");
+			Core.getCore().getInstance().debug("No special drop points found");
 		}
 	}
 	

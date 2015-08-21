@@ -141,7 +141,7 @@ public class DevCommands {
 		} else {
 			Core.getCore().getPacketHandler().sendBroadcast(packet);
 		}
-		System.out.println("packet erstellt: " + packet.toString());
+		Core.getCore().getInstance().debug("packet erstellt: " + packet.toString());
 	}
 
 	@Command(name = "dev.getUUID", description = "DEV!", usage = "", permission = "dev")
@@ -153,7 +153,7 @@ public class DevCommands {
 		}
 		if (args.isPlayer()) {
 			args.getPlayer().sendMessage("UUID: " + args.getPlayer().getUniqueId());
-			System.out.println("UUID " + args.getPlayer().getName() + ": " + args.getPlayer().getUniqueId());
+			Core.getCore().getInstance().debug("UUID " + args.getPlayer().getName() + ": " + args.getPlayer().getUniqueId());
 		}
 	}
 
@@ -213,7 +213,7 @@ public class DevCommands {
 			public void run() {
 				final Date d2 = new Date();
 				final long time = d2.getTime() - d1.getTime();
-				System.out.println("TIME PASSED: " + Core.getCore().getTimeUtil().formatTime((int) (time / 1000)));
+				Core.getCore().getInstance().debug("TIME PASSED: " + Core.getCore().getTimeUtil().formatTime((int) (time / 1000)));
 			}
 		}, Integer.parseInt(args.getArgs()[0]));
 	}
@@ -238,8 +238,8 @@ public class DevCommands {
 	@Command(name = "dev.rest", description = "DEV!", usage = "", permission = "dev")
 	public void rest(final CommandArgs args) {
 		final JSONObject obj = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get(args.getArgs()[0]);
-		System.out.println(obj.toJSONString());
-		System.out.println(obj.get("success"));
+		Core.getCore().getInstance().debug(obj.toJSONString());
+		Core.getCore().getInstance().debug(obj.get("success") + "");
 	}
 
 	@Command(name = "dev.showBlocks", description = "DEV!", usage = "", permission = "dev")
@@ -255,7 +255,7 @@ public class DevCommands {
 	public void itemSpawner(final CommandArgs args) {
 		final Block target = args.getPlayer().getTargetBlock((Set<Material>) null, 200);
 		if ((target == null) || (target.getType() != Material.MOB_SPAWNER)) {
-			System.out.println("no spawner");
+			Core.getCore().getInstance().debug("no spawner");
 			return;
 		}
 		final int delay = 20;
@@ -290,7 +290,7 @@ public class DevCommands {
 			mobSpawner.a(spawnerTag);
 			args.getPlayer().sendMessage(ChatColor.GREEN + "Properties were successfully edited!");
 		} else {
-			System.out.println("fail");
+			Core.getCore().getInstance().debug("fail");
 		}
 	}
 
@@ -314,7 +314,7 @@ public class DevCommands {
 			public boolean click(final Player p, final ItemMenu menu, final Row row, final int slot,
 					final ItemStack item) {
 				if (row.getRow() == 1) {
-					System.out.println(row.getRowItem(slot).getType().name());
+					Core.getCore().getInstance().debug(row.getRowItem(slot).getType().name());
 				}
 				return true;
 			}
@@ -357,7 +357,7 @@ public class DevCommands {
 	@Command(name = "dev.inv", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void inv(final CommandArgs args) {
 		final String data = Core.getCore().getItemUtil().invToBase64(args.getPlayer().getInventory());
-		System.out.println("data!: " + data);
+		Core.getCore().getInstance().debug("data!: " + data);
 		args.getPlayer().openInventory(Core.getCore().getItemUtil().invFromBase64(data));
 	}
 

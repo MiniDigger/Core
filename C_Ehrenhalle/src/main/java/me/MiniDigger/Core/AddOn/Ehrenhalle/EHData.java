@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
@@ -31,7 +32,7 @@ public class EHData {
 
 		donations = sortByValue(donations);
 
-		System.out.println(i + " dontatior loaded");
+		Core.getCore().getInstance().debug(i + " dontatior loaded");
 	}
 
 	public void add(String name, double amount) throws SQLException {

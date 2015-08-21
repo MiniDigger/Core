@@ -73,9 +73,9 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public void setNewName(String name) {
-		System.out.println("set new name: " + name + " old was " + this.name + "(" + this.newName + ")");
+		Core.getCore().getInstance().debug("set new name: " + name + " old was " + this.name + "(" + this.newName + ")");
 		if (name.contains("_Lobby") && this.name == null) {
-			System.out.println("well, thats fucked up, use Lobby as old and " + name + " as new name");
+			Core.getCore().getInstance().debug("well, thats fucked up, use Lobby as old and " + name + " as new name");
 			this.name = "Lobby";
 			this.newName = name;
 		} else {
@@ -86,7 +86,7 @@ public class CoreMapData implements MapData {
 		World w = Bukkit.getWorld(name);
 		
 		if (w == null) {
-			System.out.println("New Map not loaded! (" + getName() + "," + getOldName() + ")");
+			Core.getCore().getInstance().debug("New Map not loaded! (" + getName() + "," + getOldName() + ")");
 			return;
 		}
 		
@@ -134,7 +134,7 @@ public class CoreMapData implements MapData {
 	
 	@Override
 	public void smothLocs() {
-		System.out.println("lets smoth the shit out of the map!");
+		Core.getCore().getInstance().debug("lets smoth the shit out of the map!");
 		@SuppressWarnings("unchecked") final HashMap<DyeColor, HashMap<String, Location>> locs = (HashMap<DyeColor, HashMap<String, Location>>) this.locs.clone();
 		for (final DyeColor type : locs.keySet()) {
 			final HashMap<String, Location> m = this.locs.remove(type);
@@ -260,7 +260,7 @@ public class CoreMapData implements MapData {
 		// CoreMapData.this.locs.put(color, l);
 		// }
 		
-		System.out.println("Size: " + CoreMapData.this.locs.keySet().size());
+		Core.getCore().getInstance().debug("Size: " + CoreMapData.this.locs.keySet().size());
 		Bukkit.getScheduler().runTask(Core.getCore().getInstance(), finished);
 		
 		// }
@@ -302,11 +302,11 @@ public class CoreMapData implements MapData {
 				}
 				try {
 					if (l == null || l.getBlock() == null) {
-						System.out.println("Failed i");
+						Core.getCore().getInstance().debug("Failed i");
 						continue;
 					}
 				} catch (final Exception ex) {
-					System.out.println("Failed !");
+					Core.getCore().getInstance().debug("Failed !");
 					// ex.printStackTrace(); Always NPE at
 					// org.bukkit.Location.getBlock(Location.java:82)
 					continue;
@@ -339,7 +339,7 @@ public class CoreMapData implements MapData {
 				}
 			}
 		}
-		System.out.println("Didn't load " + a + " Chunks");
+		Core.getCore().getInstance().debug("Didn't load " + a + " Chunks");
 		return i;
 	}
 }

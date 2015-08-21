@@ -145,9 +145,9 @@ public class CoreLicenseHandler implements LicenseHandler {
 		String readOld = "";
 		String key = "";
 		boolean keyEnd = false;
-		// System.out.println("TK: " + token);
-		// System.out.println("TR: " + tokenR);
-		// System.out.println("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
+		// Core.getCore().getInstance().debug("TK: " + token);
+		// Core.getCore().getInstance().debug("TR: " + tokenR);
+		// Core.getCore().getInstance().debug("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
 		for (int i = 0; i < tokenR.length(); i++) {
 			read += tokenR.charAt(i);
 			if (!token.startsWith(read) && !keyEnd) {
@@ -156,44 +156,44 @@ public class CoreLicenseHandler implements LicenseHandler {
 					keyEnd = true;
 				}
 				if (!"MiniDiggerTheBoss".startsWith(key)) {
-					// System.out.println("SOMETHING IS WRONG WITH " + key);
+					// Core.getCore().getInstance().debug("SOMETHING IS WRONG WITH " + key);
 					if (key.equalsIgnoreCase("i")) {
 						key = "Mi";
 						readOld = CoreMain.getCore().getStringUtil().replaceLast(readOld, "M", "");
-						// System.out.println("FIXED");
+						// Core.getCore().getInstance().debug("FIXED");
 					} else {
-						// System.out.println("COULD NOT FIX");
+						// Core.getCore().getInstance().debug("COULD NOT FIX");
 						return false;
 					}
 				}
 			} else {
 				readOld += tokenR.charAt(i);
 			}
-			// System.out.println("read: " + read);
-			// System.out.println("readOld: " + readOld);
-			// System.out.println("key: " + key);
+			// Core.getCore().getInstance().debug("read: " + read);
+			// Core.getCore().getInstance().debug("readOld: " + readOld);
+			// Core.getCore().getInstance().debug("key: " + key);
 		}
 		
-		// System.out.println("END");
-		// System.out.println("Key: " + key);
-		// System.out.println("readold: " + readOld);
-		// System.out.println("read: " + read);
-		// System.out.println("token: " + token);
+		// Core.getCore().getInstance().debug("END");
+		// Core.getCore().getInstance().debug("Key: " + key);
+		// Core.getCore().getInstance().debug("readold: " + readOld);
+		// Core.getCore().getInstance().debug("read: " + read);
+		// Core.getCore().getInstance().debug("token: " + token);
 		if (key.equals("MiniDiggerTheBoss")) {
-			// System.out.println("key right");
+			// Core.getCore().getInstance().debug("key right");
 			if (readOld.equals(token)) {
-				// System.out.println("token right");
+				// Core.getCore().getInstance().debug("token right");
 				return true;
 			}
 		}
-		// System.out.println("FAILED!");
-		// System.out.println("Key: " + key);
-		// System.out.println("readold: " + readOld);
-		// System.out.println("read: " + read);
-		// System.out.println("token: " + token);
-		// System.out.println("TK: " + token);
-		// System.out.println("TR: " + tokenR);
-		// System.out.println("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
+		// Core.getCore().getInstance().debug("FAILED!");
+		// Core.getCore().getInstance().debug("Key: " + key);
+		// Core.getCore().getInstance().debug("readold: " + readOld);
+		// Core.getCore().getInstance().debug("read: " + read);
+		// Core.getCore().getInstance().debug("token: " + token);
+		// Core.getCore().getInstance().debug("TK: " + token);
+		// Core.getCore().getInstance().debug("TR: " + tokenR);
+		// Core.getCore().getInstance().debug("Tr: " + tokenR.replace("MiniDiggerTheBoss", ""));
 		return false;
 	}
 }

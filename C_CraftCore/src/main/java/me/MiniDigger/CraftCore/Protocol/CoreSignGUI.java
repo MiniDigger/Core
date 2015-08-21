@@ -82,14 +82,14 @@ public class CoreSignGUI implements SignGUI, Listener {
 			// packet53.getIntegers().write(0,
 			// org.bukkit.Material.SIGN_POST.getId());
 			
-			System.out.println("==========" + packet53.getType().name() + "=========");
+			Core.getCore().getInstance().debug("==========" + packet53.getType().name() + "=========");
 			for (final String s : Core.getCore().getProtocolHandler().packetcontainerToString(packet53)) {
 				// if (s.endsWith("0")) {
 				// continue;
 				// }
-				System.out.println(s);
+				Core.getCore().getInstance().debug(s);
 			}
-			System.out.println("=========================================");
+			Core.getCore().getInstance().debug("=========================================");
 			
 			// packet53.getBlocks().write(0, Material.SIGN_POST);
 			// packet53.getIntegers().write(0, Material.SIGN_POST.getId() << 4 |
@@ -174,7 +174,7 @@ public class CoreSignGUI implements SignGUI, Listener {
 						// "\",\"color\":\"" + color + "\"}";
 						lines[i] = ChatColor.translateAlternateColorCodes('&', lines[i]);
 					} catch (final Exception ex) {
-						System.out.println("error while reading default text?");
+						Core.getCore().getInstance().debug("error while reading default text?");
 						ex.printStackTrace();
 						lines[i] = "fail";
 					}

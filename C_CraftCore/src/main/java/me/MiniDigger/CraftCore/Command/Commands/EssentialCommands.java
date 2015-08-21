@@ -159,7 +159,7 @@ public class EssentialCommands {
 					.invoke(args.getPlayer(), new Object[0]);
 			ping = (int) handle.getClass().getDeclaredField("ping").get(handle);
 		} catch (Exception ex) {
-			System.out.println("could not get ping");
+			Core.getCore().getInstance().debug("could not get ping");
 		}
 		Prefix.API.getPrefix().then("Dein Ping ist: " + ping + "ms").send(args.getPlayer());
 	}

@@ -112,7 +112,7 @@ public class TeamSpawnFeature extends CoreFeature {
 					}
 					spawn.add(loc);
 					this.spawns.put(name, spawn);
-					System.out.println("Found spawn for Team: " + name);
+					Core.getCore().getInstance().debug("Found spawn for Team: " + name);
 				}
 			}
 		}
@@ -146,7 +146,7 @@ public class TeamSpawnFeature extends CoreFeature {
 		}
 		
 		if (spawns == null) {
-			System.out.println("SPAWNS FOR TEAM " + t.getName() + " = NULL");
+			Core.getCore().getInstance().debug("SPAWNS FOR TEAM " + t.getName() + " = NULL");
 		}
 		
 		if (usedSpawns.size() >= spawns.size()) {
@@ -183,15 +183,15 @@ public class TeamSpawnFeature extends CoreFeature {
 		final Location loc = getSpawn(t);
 		
 		if (user == null) {
-			System.out.println("wait, user null?!");
+			Core.getCore().getInstance().debug("wait, user null?!");
 		}
 		
 		if (loc == null) {
-			System.out.println("wait, loc null?! " + t.getName());
+			Core.getCore().getInstance().debug("wait, loc null?! " + t.getName());
 		}
 		
 		if (user.getPlayer() == null) {
-			System.out.println("wait, player null?! " + user.getDisplayName() + " " + user.getUUID());
+			Core.getCore().getInstance().debug("wait, player null?! " + user.getDisplayName() + " " + user.getUUID());
 		}
 		
 		user.getPlayer().teleport(loc);

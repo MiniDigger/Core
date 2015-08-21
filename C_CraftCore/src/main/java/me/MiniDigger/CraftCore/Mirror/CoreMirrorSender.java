@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import net.minecraft.util.com.google.gson.Gson;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Mirror.MirrorSender;
 
 public class CoreMirrorSender implements MirrorSender {
@@ -57,11 +58,11 @@ public class CoreMirrorSender implements MirrorSender {
 		@Override
 		public void run() {
 			try {
-				System.out.println("server started");
+				Core.getCore().getInstance().debug("server started");
 				socket = new ServerSocket(port);
 				Socket client;
 				while ((client = socket.accept()) != null) {
-					System.out.println("client connected");
+					Core.getCore().getInstance().debug("client connected");
 					final ClientThread thread = new ClientThread(client);
 					thread.start();
 					clients.add(thread);

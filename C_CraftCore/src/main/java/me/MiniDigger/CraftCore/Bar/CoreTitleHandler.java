@@ -75,7 +75,7 @@ public class CoreTitleHandler implements TitleHandler {
 				nmsFieldNetworkManagerM = Core.getCore().getReflectionUtil().getField(nmsFieldNetworkManager.getType(), "m");
 				nmsSendPacket = Core.getCore().getReflectionUtil().getMethod(nmsPlayerConnection, "sendPacket", (Class<?>[]) new Class[0]);
 				if (nmsSendPacket == null) {
-					// System.out.println("null....");
+					// Core.getCore().getInstance().debug("null....");
 					nmsSendPacket = PlayerConnection.class.getMethod("sendPacket", Packet.class);
 				}
 				nmsChatSerializerA = Core.getCore().getReflectionUtil().getMethod(nmsChatSerializer, "a", String.class);
@@ -102,7 +102,7 @@ public class CoreTitleHandler implements TitleHandler {
 			final Object handle = Core.getCore().getReflectionUtil().getHandle(p);
 			final Object connection = nmsFieldPlayerConnection.get(handle);
 			// final Object serialized = nmsChatSerializerA.invoke(null, title);
-			// System.out.println("title " + title);
+			// Core.getCore().getInstance().debug("title " + title);
 			final Object serialized = CraftChatMessage.fromString(title)[0];
 			Object packet = nmsPacketTitle.getConstructor(nmsTitleAction, nmsChatBaseComponent).newInstance(nmsTitleAction.getEnumConstants()[0], serialized);
 			nmsSendPacket.invoke(connection, packet);
@@ -217,7 +217,7 @@ public class CoreTitleHandler implements TitleHandler {
 				channel = nmsFieldNetworkManagerI.get(network);
 			}
 			final Object version = (serverVersion == 1.7) ? nmsNetworkGetVersion.invoke(network, channel) : 47;
-			// System.out.println("version " + version);
+			// Core.getCore().getInstance().debug("version " + version);
 			return (int) version;
 		} catch (Exception e) {
 			MSG.stacktrace(LogLevel.DEBUG, e);

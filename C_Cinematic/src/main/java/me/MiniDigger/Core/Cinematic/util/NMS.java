@@ -161,7 +161,7 @@ public class NMS {
 	 */
 	public static int fixedPointNumInteger(final double i) {
 		if (i >= 134217728) {
-			System.out.println("Can't cast double bigger then 134217728 to fixed point number using int32.");
+			Core.getCore().getInstance().debug("Can't cast double bigger then 134217728 to fixed point number using int32.");
 		}
 		return (int) (i * 32);
 	}
@@ -172,7 +172,7 @@ public class NMS {
 	 */
 	public static byte fixedPointNumByte(final double i) {
 		if (i >= 8) {
-			System.out.println("Can't cast double bigger then 8 to fixed point number using byte.");
+			Core.getCore().getInstance().debug("Can't cast double bigger then 8 to fixed point number using byte.");
 		}
 		return (byte) (i * 32);
 	}

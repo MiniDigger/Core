@@ -250,10 +250,10 @@ public class CoreGame implements Game {
 					try {
 						w.getPlayer().teleport(loc);
 					} catch (Exception e) {
-						System.out.println("can't tp to fallback2....");
+						Core.getCore().getInstance().debug("can't tp to fallback2....");
 					}
 				} else {
-					System.out.println("can't tp to fallback....");
+					Core.getCore().getInstance().debug("can't tp to fallback....");
 				}
 			}
 		}
@@ -294,14 +294,14 @@ public class CoreGame implements Game {
 				Core.getCore().getCommandHandler().unregisterCommands(f);
 				f.end();
 			} catch (Exception ex) {
-				System.out.println("could not end feature " + f.getType().name());
+				Core.getCore().getInstance().debug("could not end feature " + f.getType().name());
 			}
 		}
 
 		try {
 			((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
 		} catch (Exception ex) {
-			System.out.println("could not unload map");
+			Core.getCore().getInstance().debug("could not unload map");
 		}
 
 		if (Core.getCore().getGameHandler().getMainGame().equals(this)) {
@@ -327,7 +327,7 @@ public class CoreGame implements Game {
 							Core.getCore().getScoreboardHandler().getBoard(w).clear();
 
 							if (Core.getCore().getGameHandler().getMainGame() != getPhase().getGame()) {
-								System.out.println("maybe this forced the player to respawn...");
+								Core.getCore().getInstance().debug("maybe this forced the player to respawn...");
 								return;
 								// Core.getCore().getGameHandler().joinGame(u,
 								// Core.getCore().getGameHandler().getMainGame());

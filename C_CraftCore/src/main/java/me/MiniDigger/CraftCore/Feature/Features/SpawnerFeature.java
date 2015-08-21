@@ -82,7 +82,7 @@ public class SpawnerFeature extends CoreFeature {
 //			spawnerEntry.c(1);
 
 		} catch (final Exception ex) {
-			System.out.println("could not set spawner items unstackable");
+			Core.getCore().getInstance().debug("could not set spawner items unstackable");
 			ex.printStackTrace();
 		}
 	}
@@ -126,7 +126,7 @@ public class SpawnerFeature extends CoreFeature {
 
 	@Override
 	public void start() {
-		// System.out.println("start spawner search for " + locKey.name());
+		// Core.getCore().getInstance().debug("start spawner search for " + locKey.name());
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 
 		final HashMap<String, Location> n = data.getLocs(locKey);
@@ -146,7 +146,7 @@ public class SpawnerFeature extends CoreFeature {
 			final Block b = l.getBlock();
 			if (b.getType() == Material.MOB_SPAWNER) {
 				if (item != null) {
-					// System.out.println("create spawner: " + locKey.name());
+					// Core.getCore().getInstance().debug("create spawner: " + locKey.name());
 					final World world = ((CraftWorld) b.getWorld()).getHandle();
 					final TileEntity tileEntity = world.getTileEntity(new BlockPosition(b.getX(), b.getY(), b.getZ()));
 					if ((tileEntity instanceof TileEntityMobSpawner)) {
@@ -166,10 +166,10 @@ public class SpawnerFeature extends CoreFeature {
 						itemTag.set("Item", itemStackTag);
 						spawnerTag.set("SpawnData", itemTag);
 						spawnerTag.setShort("SpawnCount", (short) 1);
-						// System.out.println("SpawnCount" +
+						// Core.getCore().getInstance().debug("SpawnCount" +
 						// spawnerTag.getShort("SpawnCount"));
 						spawnerTag.setShort("SpawnRange", (short) 0.1);
-						// System.out.println("SpawnRange" +
+						// Core.getCore().getInstance().debug("SpawnRange" +
 						// spawnerTag.getShort("SpawnRange"));
 						spawnerTag.setShort("Delay", (short) interval);
 						spawnerTag.setShort("MinSpawnDelay", (short) (interval));
@@ -183,10 +183,10 @@ public class SpawnerFeature extends CoreFeature {
 					final CreatureSpawner s = (CreatureSpawner) b;
 					s.setSpawnedType(type);
 				} else {
-					System.out.println("failed to spawner");
+					Core.getCore().getInstance().debug("failed to spawner");
 				}
 			} else {
-				System.out.println("no spawner!");
+				Core.getCore().getInstance().debug("no spawner!");
 			}
 		}
 	}
@@ -226,7 +226,7 @@ public class SpawnerFeature extends CoreFeature {
 
 		@SuppressWarnings("unused")
 		private boolean a(final EntityItem entity) {
-			System.out.println("weird method call");
+			Core.getCore().getInstance().debug("weird method call");
 			return false;
 		}
 

@@ -156,14 +156,14 @@ public class BedFeature extends CoreFeature {
 				getPhase().getGame().leave(user);
 				s.spec(user);
 			} catch (final Exception ex) {
-				System.out.println("no respawn found");
+				Core.getCore().getInstance().debug("no respawn found");
 			}
 		} else {
 			try {
 				final TeamDeathMatchFeature tdm = (TeamDeathMatchFeature) getPhase().getFeature(FeatureType.TEAM_DEATH_MATCH);
 				tdm.setRespawns(e.getPlayer().getUniqueId(), tdm.getRespawns(e.getPlayer().getUniqueId()) + 1);
 			} catch (final Exception ex) {
-				System.out.println("tdm respawn bed error: " + ex.getMessage());
+				Core.getCore().getInstance().debug("tdm respawn bed error: " + ex.getMessage());
 			}
 			e.setRespawnLocation(bed.clone().add(0.5, 1, 0.5));
 		}
@@ -181,11 +181,11 @@ public class BedFeature extends CoreFeature {
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBedDestory(final BlockBreakEvent e) {
-		// System.out.println("break");
+		// Core.getCore().getInstance().debug("break");
 		if (e.getBlock().getType() == Material.BED_BLOCK) {
-			// System.out.println("is bed");
+			// Core.getCore().getInstance().debug("is bed");
 			if (bed == null) {
-				// System.out.println("bed null");
+				// Core.getCore().getInstance().debug("bed null");
 				return;
 			}
 			final Location loc = e.getBlock().getLocation();
@@ -194,17 +194,17 @@ public class BedFeature extends CoreFeature {
 			bed.setPitch(0.0F);
 			bed.setYaw(0.0F);
 			
-			// System.out.println(e.getBlock().getLocation().toString() + ": " +
+			// Core.getCore().getInstance().debug(e.getBlock().getLocation().toString() + ": " +
 			// bed.toString());
 			if (e.getBlock().getLocation().equals(bed) || e.getBlock().getLocation().add(1, 0, 0).equals(bed) || e.getBlock().getLocation().add(-1, 0, 0).equals(bed)
 			        || e.getBlock().getLocation().add(0, 0, 1).equals(bed) || e.getBlock().getLocation().add(0, 0, -1).equals(bed)) {
-				// System.out.println("does fit");
+				// Core.getCore().getInstance().debug("does fit");
 				if (teamName != null) {
 					final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 					final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 					final Team t = tf.getTeam(user);
 					if (t.getName().equalsIgnoreCase(teamName)) {
-						System.out.println("eigenes bed");
+						Core.getCore().getInstance().debug("eigenes bed");
 						e.setCancelled(true);
 						return;
 					} else {

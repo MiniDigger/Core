@@ -82,7 +82,7 @@ public class CoreStats implements Stats {
 			query.kill();
 		} catch (final Exception ex) {
 			// ex.printStackTrace();
-			System.out.println("try update");
+			Core.getCore().getInstance().debug("try update");
 			try {
 				query.kill();
 			} catch (final Exception e) {}
@@ -95,7 +95,7 @@ public class CoreStats implements Stats {
 				}
 				q = Core.getCore().getStringUtil().replaceLast(q, ",", "");
 				q += " WHERE `uuid` = '" + user.toString() + "'";
-				System.out.println("querry: " + q);
+				Core.getCore().getInstance().debug("querry: " + q);
 				query = new CoreSQLQuery(q);
 				final PreparedStatement stmt = query.getStatement();
 				int i;
@@ -105,7 +105,7 @@ public class CoreStats implements Stats {
 					} catch (final Exception ex1) {}
 				}
 				final int count = stmt.executeUpdate();
-				System.out.println("yedah: " + count);
+				Core.getCore().getInstance().debug("yedah: " + count);
 				query.kill();
 			} catch (final Exception e) {
 				ex.printStackTrace();
@@ -208,7 +208,7 @@ public class CoreStats implements Stats {
 			}
 		}
 		query = Core.getCore().getStringUtil().replaceLast(query, ",", ";");
-		// System.out.println("query: " + query);
+		// Core.getCore().getInstance().debug("query: " + query);
 		
 		final SQLQuery q2 = new CoreSQLQuery(query);
 		try {

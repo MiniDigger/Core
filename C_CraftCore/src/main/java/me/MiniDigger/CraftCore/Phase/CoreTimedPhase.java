@@ -69,14 +69,14 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 				passed++;
 				final int toGo = secs - passed;
 				if (toGo <= 0) {
-					if (getName().equals("GetTheDropTwo")) System.out.println("cancel timedphase task");
+					if (getName().equals("GetTheDropTwo")) Core.getCore().getInstance().debug("cancel timedphase task");
 					task.getTask().cancel();
 					endPhase();
 					Core.getCore().getBarHandler().removeAllStatusBars();
 					return;
 				}
 				
-				if (getName().equals("GetTheDropTwo")) System.out.println("tick");
+				if (getName().equals("GetTheDropTwo")) Core.getCore().getInstance().debug("tick");
 				
 				tick(passed, toGo);
 				
@@ -129,15 +129,15 @@ public abstract class CoreTimedPhase extends CorePhase implements TimedPhase {
 					// double perD2 = per / 2;
 					// double perXmax = 200 * (per / 100);
 					//
-					// System.out.println("===============================");
-					// System.out.println("PER: " + per);
-					// System.out.println("PERX2: " + perX2);
-					// System.out.println("PERX4: " + perX4);
-					// System.out.println("PERX2M100: " + perX2M100);
-					// System.out.println("PERD2: " + perD2);
-					// System.out.println("MAXDPER: " + maxDper);
-					// System.out.println("PERXMAX: " + perXmax);
-					// System.out.println("===============================");
+					// Core.getCore().getInstance().debug("===============================");
+					// Core.getCore().getInstance().debug("PER: " + per);
+					// Core.getCore().getInstance().debug("PERX2: " + perX2);
+					// Core.getCore().getInstance().debug("PERX4: " + perX4);
+					// Core.getCore().getInstance().debug("PERX2M100: " + perX2M100);
+					// Core.getCore().getInstance().debug("PERD2: " + perD2);
+					// Core.getCore().getInstance().debug("MAXDPER: " + maxDper);
+					// Core.getCore().getInstance().debug("PERXMAX: " + perXmax);
+					// Core.getCore().getInstance().debug("===============================");
 					
 					Core.getCore().getBarHandler().setBar(p, getBarMessage(), perX2);
 				}

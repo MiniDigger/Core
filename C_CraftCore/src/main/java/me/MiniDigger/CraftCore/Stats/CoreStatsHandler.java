@@ -72,7 +72,7 @@ public class CoreStatsHandler implements StatsHandler {
 		// boolean b = true;
 		// for (final String s : uuids) {
 		// final Stats stat = new CoreStats(UUID.fromString(s));
-		// // System.out.println("load " + s);
+		// // Core.getCore().getInstance().debug("load " + s);
 		// if (!stat.load()) {
 		// b = false;
 		// }

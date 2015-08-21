@@ -70,7 +70,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 				return;
 			}
 		} catch (final Exception ex) {
-			System.out.println("ex" + ex.getMessage());
+			Core.getCore().getInstance().debug("ex" + ex.getMessage());
 			return;
 		}
 		
@@ -91,7 +91,7 @@ public class CoreMirrorHandler implements MirrorHandler {
 			public void onPacketSending(final PacketEvent event) {
 				try {
 					// printInformation(event);
-					System.out.println("got " + event.getPacketType().name());
+					Core.getCore().getInstance().debug("got " + event.getPacketType().name());
 					sender.send(event);
 				} catch (final Exception e) {
 					

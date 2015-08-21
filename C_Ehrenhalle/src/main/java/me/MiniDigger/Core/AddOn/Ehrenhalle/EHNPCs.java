@@ -90,7 +90,7 @@ public class EHNPCs {
 			}
 
 			if (loc == null) {
-				System.out.println("Well, we are fucked");
+				Core.getCore().getInstance().debug("Well, we are fucked");
 				return;
 			}
 

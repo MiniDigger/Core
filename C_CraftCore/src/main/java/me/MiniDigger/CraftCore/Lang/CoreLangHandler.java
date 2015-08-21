@@ -77,12 +77,12 @@ public class CoreLangHandler implements LangHandler {
 		}
 		
 		if (langs.size() == 1) {
-			System.out.println("Saving default lang!");
+			Core.getCore().getInstance().debug("Saving default lang!");
 			final LangStorage s = new CoreLangStorage();
 			s.setAuthor("MiniDigger");
 			s.setLangType(LangType.en_US);
 			s.save(new File(langFolder, "en_US.lang"));
-			System.out.println("reload");
+			Core.getCore().getInstance().debug("reload");
 			load();
 		}
 	}

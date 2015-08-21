@@ -87,9 +87,9 @@ public class VoteFeature extends CoreFeature {
 	public void start() {
 		voted = new ArrayList<>();
 		
-		System.out.println("searching maps for gametype " + getPhase().getGame().getType());
+		Core.getCore().getInstance().debug("searching maps for gametype " + getPhase().getGame().getType());
 		final ArrayList<String> maps = Core.getCore().getMapHandler().loadMapConfig(getPhase().getGame().getType());
-		System.out.println(maps.size() + " maps found");
+		Core.getCore().getInstance().debug(maps.size() + " maps found");
 		
 		Collections.shuffle(maps);
 		try {

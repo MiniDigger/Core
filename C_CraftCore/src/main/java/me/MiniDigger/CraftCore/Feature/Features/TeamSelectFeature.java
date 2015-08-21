@@ -164,7 +164,7 @@ public class TeamSelectFeature extends CoreFeature {
 				
 				@Override
 				public void run() {
-					System.out.println("starting suv part");
+					Core.getCore().getInstance().debug("starting suv part");
 					
 					for (Team t : teams) {
 						t.getPlayers().clear();
@@ -173,19 +173,19 @@ public class TeamSelectFeature extends CoreFeature {
 					teams = new ArrayList<Team>();
 					
 					List<UUID> exceptions2 = new ArrayList<UUID>();
-					System.out.println("size1: " + exceptions.size());
+					Core.getCore().getInstance().debug("size1: " + exceptions.size());
 					for (UUID id : exceptions) {
 						if (id != null) {
 							exceptions2.add(id);
-							System.out.println("add " + id);
+							Core.getCore().getInstance().debug("add " + id);
 						}
 					}
-					System.out.println("size12: " + exceptions2.size());
+					Core.getCore().getInstance().debug("size12: " + exceptions2.size());
 					
 					for (UUID id : exceptions2) {
 						final User u = Core.getCore().getUserHandler().get(id);
 						final Team t = new CoreTeam(teamSize, u.getDisplayName(), ChatColor.GREEN, getPhase().getGame());
-						System.out.println("add team " + u.getDisplayName());
+						Core.getCore().getInstance().debug("add team " + u.getDisplayName());
 						teams.add(t);
 					}
 					
@@ -216,9 +216,9 @@ public class TeamSelectFeature extends CoreFeature {
 					((TeamFeature) next.getFeature(FeatureType.TEAM)).setExceptions(exceptions2);
 					
 					for (Team t : teams) {
-						System.out.println("Team: " + t.getName());
+						Core.getCore().getInstance().debug("Team: " + t.getName());
 						for (UUID id : t.getPlayers()) {
-							System.out.println(Core.getCore().getUserHandler().get(id).getDisplayName());
+							Core.getCore().getInstance().debug(Core.getCore().getUserHandler().get(id).getDisplayName());
 						}
 					}
 				}
@@ -261,9 +261,9 @@ public class TeamSelectFeature extends CoreFeature {
 		final HashMap<String, Integer> sizes = calcSizes();
 		final String large = findLargest(sizes);
 		if (large == null || large.equals("")) {
-			System.out.println("no balancing");
+			Core.getCore().getInstance().debug("no balancing");
 			for (final Team t : teams) {
-				System.out.println(t.getName() + ": " + t.getPlayers().size());
+				Core.getCore().getInstance().debug(t.getName() + ": " + t.getPlayers().size());
 			}
 			return;
 		}
@@ -272,8 +272,8 @@ public class TeamSelectFeature extends CoreFeature {
 		final String small = findSmallest(sizes);
 		final int smallCount = sizes.get(small);
 		
-		System.out.println("LARGE: " + large + " : " + largeCount);
-		System.out.println("SMALL: " + small + " : " + smallCount);
+		Core.getCore().getInstance().debug("LARGE: " + large + " : " + largeCount);
+		Core.getCore().getInstance().debug("SMALL: " + small + " : " + smallCount);
 		
 		if (!(largeCount == smallCount || largeCount == smallCount + 1)) {
 			final Team largeT = getTeam(large);
@@ -282,7 +282,7 @@ public class TeamSelectFeature extends CoreFeature {
 			boolean switched = false;
 			for (int i = largeT.getPlayers().size() - 1; i > 0; i--) {
 				final UUID player = largeT.getPlayers().get(i);
-				System.out.println("SWITCH: " + player + " from " + large + " to " + small);
+				Core.getCore().getInstance().debug("SWITCH: " + player + " from " + large + " to " + small);
 				if (Core.getCore().getSquadHandler().getSquad(player) == null) {
 					largeT.leave(player);
 					smallT.join(player);
@@ -292,8 +292,8 @@ public class TeamSelectFeature extends CoreFeature {
 			}
 			
 			if (!switched) {
-				System.out.println(largeT.getName());
-				System.out.println(largeT.getPlayers().size());
+				Core.getCore().getInstance().debug(largeT.getName());
+				Core.getCore().getInstance().debug(largeT.getPlayers().size() + "");
 				final UUID player = largeT.getPlayers().get(largeT.getPlayers().size() - 1);
 				largeT.leave(player);
 				smallT.join(player);
@@ -328,7 +328,7 @@ public class TeamSelectFeature extends CoreFeature {
 				name = s;
 			}
 		}
-		System.out.println("smallest = " + name);
+		Core.getCore().getInstance().debug("smallest = " + name);
 		return name;
 	}
 }

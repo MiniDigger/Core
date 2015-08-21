@@ -96,10 +96,10 @@ public class TicTacToePhase extends CoreRepeatingPhase {
 		o.sendMessage(Prefix.TICTACTOE.getPrefix().then("Bitte warte, während " + u.getDisplayName() + " seinen Zug macht!"));
 		
 		if (acting.equals(CoreBot.getBotUUID())) {
-			// System.out.println("best slot = " + ((TicTacToeGame)
+			// Core.getCore().getInstance().debug("best slot = " + ((TicTacToeGame)
 			// getGame()).getBestSlot());
 			final int i = ((TicTacToeGame) getGame()).click(acting, ((TicTacToeGame) getGame()).getBestSlot());
-			// System.out.println("result " + i);
+			// Core.getCore().getInstance().debug("result " + i);
 			if (i == 1) {
 				didStep = true;
 				endPhase();
@@ -125,7 +125,7 @@ public class TicTacToePhase extends CoreRepeatingPhase {
 	@Command(name = "tictactoe.doStep", permission = "tictactoe.doStep", consol = false, max = 0, min = 0, usage = "", description = "Öffnet das Inventar um einen Zug zu machen")
 	public void doStepCommand(final CommandArgs args) {
 		if (!args.getUser().getUUID().equals(acting)) {
-			System.out.println("möööp");
+			Core.getCore().getInstance().debug("möööp");
 			return;
 		}
 		final TicTacToeGame game = (TicTacToeGame) getGame();

@@ -87,7 +87,7 @@ public class TagCommands {
 	@Command(name = "tag.prefix", description = "Verändert das Prefix von einem Spieler", permission = "tag.prefix", min = 1, max = 2, string = 1, sync = true)
 	public void prefix(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
-			System.out.println("args.getPlayer.getName():" + args.getPlayer().getName());
+			Core.getCore().getInstance().debug("args.getPlayer.getName():" + args.getPlayer().getName());
 			Core.getCore().getScoreboardHandler().getTeam(args.getPlayer().getName()).setPrefix(Core.getCore().getChatColorUtil().replaceAndToMc(args.getArgs()[0]));
 			Core.getCore().getScoreboardHandler().updateAll();
 			Prefix.TAG.getPrefix().then("Prefix geändert!").color(ChatColor.GREEN).send(args.getSender());

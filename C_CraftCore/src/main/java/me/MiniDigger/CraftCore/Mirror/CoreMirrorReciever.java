@@ -31,6 +31,7 @@ import org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Mirror.MirrorReviever;
 
 public class CoreMirrorReciever implements MirrorReviever {
@@ -38,7 +39,7 @@ public class CoreMirrorReciever implements MirrorReviever {
 	@Override
 	public void init(final String ip, final int port) {
 		try {
-			System.out.println("starting client");
+			Core.getCore().getInstance().debug("starting client");
 			final Socket client = new Socket(ip, port);
 			new InputThread(client).start();
 		} catch (final Exception e) {
@@ -63,7 +64,7 @@ public class CoreMirrorReciever implements MirrorReviever {
 				while ((buffer = in.readLine()) != null) {
 					
 					final Event event = new Gson().fromJson(buffer, Event.class);
-					System.out.println("received gson " + event.getEventName());
+					Core.getCore().getInstance().debug("received gson " + event.getEventName());
 					Bukkit.getServer().getPluginManager().callEvent(event);
 				}
 				in.close();
@@ -79,11 +80,11 @@ public class CoreMirrorReciever implements MirrorReviever {
 			// Object obj = in.readObject();
 			// if (obj instanceof PacketContainer) {
 			// PacketContainer packet = (PacketContainer) obj;
-			// System.out.println("received " + packet.getType().name());
+			// Core.getCore().getInstance().debug("received " + packet.getType().name());
 			// ProtocolLibrary.getProtocolManager().broadcastServerPacket(packet);
 			// } else if (obj instanceof Event) {
 			// Event event = (Event) obj;
-			// System.out.println("received " + event.getEventName());
+			// Core.getCore().getInstance().debug("received " + event.getEventName());
 			// Bukkit.getServer().getPluginManager().callEvent(event);
 			// }
 			// } catch (Exception ex) {

@@ -72,7 +72,7 @@ public class GrablingHook extends CoreItem {
 		if (e.getState() == State.IN_GROUND || e.getHook().isOnGround() || e.getHook().doesBounce() || e.getHook().getLocation().getBlock().getType() != Material.AIR
 		        || e.getHook().getLocation().add(0, -1, 0).getBlock().getType() != Material.AIR
 		        || e.getHook().getLocation().add(0, 1, 0).getBlock().getType() != Material.AIR) {
-			// System.out.println("hook");
+			// Core.getCore().getInstance().debug("hook");
 			final Location loc = e.getHook().getLocation();
 			
 			for (final Entity ent : e.getHook().getNearbyEntities(1.5D, 1.0D, 1.5D)) {

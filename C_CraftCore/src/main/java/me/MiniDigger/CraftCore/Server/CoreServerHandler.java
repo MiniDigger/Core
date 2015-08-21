@@ -72,7 +72,7 @@ public class CoreServerHandler implements ServerHandler {
 					try {
 						gotServerInfo(new CoreServerPing(name, host, Integer.parseInt(port)).getServerInfo());
 					} catch (final Exception ex) {
-						System.out.println("could not ping " + name + ", " + host + ", " + port);
+						Core.getCore().getInstance().debug("could not ping " + name + ", " + host + ", " + port);
 					}
 				}
 			}
@@ -103,31 +103,31 @@ public class CoreServerHandler implements ServerHandler {
 				name = (String) obj.get("extra");
 			}
 			if (name == null || name.equals("")) {
-				System.out.println("No name in line 1? " + lines[1].getJson());
+				Core.getCore().getInstance().debug("No name in line 1? " + lines[1].getJson());
 			}
 		} catch (final Exception ex) {
 			// ex.printStackTrace();
 			name = lines[1].getJson();
 			name = name.replaceAll("\"", "");
-			// System.out.println("could not read name from " +
+			// Core.getCore().getInstance().debug("could not read name from " +
 			// lines[1].getJson());
 			// MSG.stacktrace(LogLevel.DEBUG, ex);
 			// return lines;
-			// System.out.println("name = " + name);
+			// Core.getCore().getInstance().debug("name = " + name);
 		}
 
 		final Server server = getServerInfo(name);
 		if (server != null) {
-			System.out.println("test Server " + server.getName());
-			System.out.println("type is " + server.getPrimaryGameType());
+			Core.getCore().getInstance().debug("test Server " + server.getName());
+			Core.getCore().getInstance().debug("type is " + server.getPrimaryGameType());
 			System.out
 					.println("is disbaled: " + Core.getCore().getGameHandler().isDisabled(server.getPrimaryGameType()));
 		}
 		if (server == null || !server.isOnline()) {
 			if (server == null) {
-				System.out.println("idk who " + name + " is!");
+				Core.getCore().getInstance().debug("idk who " + name + " is!");
 			} else if (!server.isOnline()) {
-				System.out.println(name + " is offline");
+				Core.getCore().getInstance().debug(name + " is offline");
 			}
 			msg = new FancyMessage("██████████").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
@@ -205,7 +205,7 @@ public class CoreServerHandler implements ServerHandler {
 			msg = new FancyMessage(server.getName()).color(ChatColor.GOLD);
 			lines[3].setJson(msg.toJSONString());
 		} else {
-			System.out.println("no option for " + server.toString());
+			Core.getCore().getInstance().debug("no option for " + server.toString());
 		}
 
 		return lines;

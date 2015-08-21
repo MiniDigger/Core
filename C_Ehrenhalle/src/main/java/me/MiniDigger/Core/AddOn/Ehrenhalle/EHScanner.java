@@ -54,13 +54,13 @@ public class EHScanner {
 		locs.addAll(fireworksI);
 		locs.addAll(fireworksO);
 
-		System.out.println("clear " + locs.size());
+		Core.getCore().getInstance().debug("clear " + locs.size());
 
 		for (Location loc : locs) {
 			if (loc.getBlock().getState() instanceof Sign) {
 				loc.getBlock().setType(Material.AIR);
 			} else {
-				System.out.println("no sign at " + loc.toString());
+				Core.getCore().getInstance().debug("no sign at " + loc.toString());
 			}
 		}
 	}
@@ -77,10 +77,10 @@ public class EHScanner {
 		final int maxY = spawn.getWorld().getMaxHeight();
 		final int maxZ = startY + RANGE;
 
-		System.out.println("minx " + minX);
-		System.out.println("maxx " + maxX);
-		System.out.println("minz " + minZ);
-		System.out.println("maxz " + maxZ);
+		Core.getCore().getInstance().debug("minx " + minX);
+		Core.getCore().getInstance().debug("maxx " + maxX);
+		Core.getCore().getInstance().debug("minz " + minZ);
+		Core.getCore().getInstance().debug("maxz " + maxZ);
 
 		for (int x = minX; x <= maxX; x++) {
 			for (int y = minY; y <= maxY; y++) {
@@ -101,7 +101,7 @@ public class EHScanner {
 								} else if (s.getLine(2).equals("3")) {
 									tower3.add(loc);
 								} else {
-									System.out.println("failed scan for sign t " + s.toString());
+									Core.getCore().getInstance().debug("failed scan for sign t " + s.toString());
 								}
 								break;
 							case "W":
@@ -112,7 +112,7 @@ public class EHScanner {
 								} else if (s.getLine(2).equals("3")) {
 									wall3.add(loc);
 								} else {
-									System.out.println("failed scan for sign w " + s.toString());
+									Core.getCore().getInstance().debug("failed scan for sign w " + s.toString());
 								}
 								break;
 							case "F":
@@ -121,11 +121,11 @@ public class EHScanner {
 								} else if (s.getLine(2).equals("O")) {
 									fireworksO.add(loc);
 								} else {
-									System.out.println("failed scan for sign f " + s.toString());
+									Core.getCore().getInstance().debug("failed scan for sign f " + s.toString());
 								}
 								break;
 							default:
-								System.out.println("default");
+								Core.getCore().getInstance().debug("default");
 								break;
 							}
 						}
@@ -134,14 +134,14 @@ public class EHScanner {
 			}
 		}
 
-		System.out.println("Scan ended, Results: ");
-		System.out.println("Wall: Row 1:" + wall1.size() + ", Row 2: " + wall2.size() + ", Row 3: " + wall3.size()
+		Core.getCore().getInstance().debug("Scan ended, Results: ");
+		Core.getCore().getInstance().debug("Wall: Row 1:" + wall1.size() + ", Row 2: " + wall2.size() + ", Row 3: " + wall3.size()
 				+ ", Combined: " + (wall1.size() + wall2.size() + wall3.size()));
-		System.out.println("Tower: Row 1:" + tower1.size() + ", Row 2: " + tower2.size() + ", Row 3: " + tower3.size()
+		Core.getCore().getInstance().debug("Tower: Row 1:" + tower1.size() + ", Row 2: " + tower2.size() + ", Row 3: " + tower3.size()
 				+ ", Combined: " + (tower1.size() + tower2.size() + tower3.size()));
-		System.out.println("Fireworks: Inner:" + fireworksI.size() + ", Outer: " + fireworksO.size() + ", Combined: "
+		Core.getCore().getInstance().debug("Fireworks: Inner:" + fireworksI.size() + ", Outer: " + fireworksO.size() + ", Combined: "
 				+ (fireworksI.size() + fireworksO.size()));
-		System.out.println("All combined: " + (wall1.size() + wall2.size() + wall3.size() + tower1.size()
+		Core.getCore().getInstance().debug("All combined: " + (wall1.size() + wall2.size() + wall3.size() + tower1.size()
 				+ tower2.size() + tower3.size() + fireworksI.size() + fireworksO.size()));
 	}
 
@@ -162,7 +162,7 @@ public class EHScanner {
 				a++;
 			}
 		}
-		System.out.println("Didn't load " + a + " Chunks");
+		Core.getCore().getInstance().debug("Didn't load " + a + " Chunks");
 		return i;
 	}
 
@@ -182,7 +182,7 @@ public class EHScanner {
 		try {
 			config.save(new File(file, "locs"));
 		} catch (IOException e) {
-			System.out.println("Error while saving config");
+			Core.getCore().getInstance().debug("Error while saving config");
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}

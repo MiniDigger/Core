@@ -68,7 +68,7 @@ public class Basic extends CoreAddOn {
 	public void test(final PlayerInteractEvent e) {
 		boolean b = true;
 		if ((b = false)) {
-			System.out.println("hey" + b);
+			Core.getCore().getInstance().debug("hey" + b);
 		}
 	}
 }

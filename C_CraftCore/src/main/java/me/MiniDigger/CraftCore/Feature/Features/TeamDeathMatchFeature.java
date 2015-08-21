@@ -108,14 +108,14 @@ public class TeamDeathMatchFeature extends CoreFeature {
 			if (!isTeamAlive(e.getUser().getPlayer())) {
 				final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 				final Team t = tf.getTeam(e.getUser().getPlayer());
-				System.out.println(t.getName() + "d raußen");
+				Core.getCore().getInstance().debug(t.getName() + "d raußen");
 				getPhase().getGame().broadCastMessage(
 						getPhase().getGame().getPrefix().then(t.getName()).color(t.getColor()).then(" ist draußen!"));
 				checkEnd();
 			} else {
-				System.out.println("noch drinnen");
+				Core.getCore().getInstance().debug("noch drinnen");
 			}
-			System.out.println("c");
+			Core.getCore().getInstance().debug("c");
 		}
 	}
 
@@ -124,20 +124,20 @@ public class TeamDeathMatchFeature extends CoreFeature {
 		if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
 			final Integer count = respawns.remove(e.getPlayer().getUniqueId());
 			if (count == null) {
-				System.out.println(e.getPlayer().getName() + " died again!");
+				Core.getCore().getInstance().debug(e.getPlayer().getName() + " died again!");
 			} else {
 				if (count == 0) {
 					if (!isTeamAlive(e.getPlayer())) {
 						final TeamFeature tf = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 						final Team t = tf.getTeam(e.getPlayer());
-						System.out.println(t.getName() + "d raußen");
+						Core.getCore().getInstance().debug(t.getName() + "d raußen");
 						getPhase().getGame().broadCastMessage(getPhase().getGame().getPrefix().then(t.getName())
 								.color(t.getColor()).then(" ist draußen!"));
 						checkEnd();
 					} else {
-						System.out.println("noch drinnen");
+						Core.getCore().getInstance().debug("noch drinnen");
 					}
-					System.out.println("c");
+					Core.getCore().getInstance().debug("c");
 				} else {
 					respawns.put(e.getPlayer().getUniqueId(), count - 1);
 				}

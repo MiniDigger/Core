@@ -61,7 +61,7 @@ public class CommandPacket extends CorePacket {
 		} else {
 			final Session s = Core.getCore().getSocketHandler().getSession(toServer);
 			if (s == null) {
-				System.out.println("no client called " + toServer);
+				Core.getCore().getInstance().debug("no client called " + toServer);
 				return;
 			}
 			Core.getCore().getPacketHandler().sendPacket(this, s);

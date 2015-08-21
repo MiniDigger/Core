@@ -167,16 +167,16 @@ public class SUVFeature extends CoreFeature {
 		}
 
 		if (id1.equals(sucher1) || id1.equals(sucher2)) {
-			System.out.println("is sucher");
+			Core.getCore().getInstance().debug("is sucher");
 			if (id2.equals(sucher1) || id2.equals(sucher2)) {
-				System.out.println("both sucher");
+				Core.getCore().getInstance().debug("both sucher");
 				return;
 			}
 			// User s = Core.getCore().getUserHandler().get(id1);
 			final User v = Core.getCore().getUserHandler().get(id2);
 
 			if (id1.equals(sucher1) && t.getTeams().get(0).getPlayers().contains(id2)) {
-				System.out.println("id1 is sucher1 and id2 in team 0");
+				Core.getCore().getInstance().debug("id1 is sucher1 and id2 in team 0");
 				final User os = Core.getCore().getUserHandler().get(sucher2);
 				if (os == null || os.getPlayer() == null) {
 					t.getTeams().get(0).getPlayers().remove(id2);
@@ -204,7 +204,7 @@ public class SUVFeature extends CoreFeature {
 				final Location l = v.getPlayer().getLocation();
 				l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			} else if (id1.equals(sucher2) && t.getTeams().get(1).getPlayers().contains(id2)) {
-				System.out.println("id1 is sucher2 and id2 in team 1");
+				Core.getCore().getInstance().debug("id1 is sucher2 and id2 in team 1");
 				final User os = Core.getCore().getUserHandler().get(sucher1);
 				if (os == null || os.getPlayer() == null) {
 					t.getTeams().get(1).getPlayers().remove(id2);
@@ -232,7 +232,7 @@ public class SUVFeature extends CoreFeature {
 				final Location l = v.getPlayer().getLocation();
 				l.getWorld().createExplosion(l.getX(), l.getY(), l.getZ(), 1, false, false);
 			} else {
-				System.out.println("cmon");
+				Core.getCore().getInstance().debug("cmon");
 			}
 
 			showLives();
@@ -250,7 +250,7 @@ public class SUVFeature extends CoreFeature {
 					ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(1).getPlayers().get(i));
 				}
 				ww[0] = w;
-				System.out.println("end1");
+				Core.getCore().getInstance().debug("end1");
 				getPhase().getGame().end(w); // TODO it is not w but ww here,
 												// but pssst ;D
 			} else if (t.getTeamCount() > 1 && t.getTeams().get(1).getPlayers().size() == 0) {
@@ -260,13 +260,13 @@ public class SUVFeature extends CoreFeature {
 					ww[i] = Core.getCore().getUserHandler().get(t.getTeams().get(0).getPlayers().get(i));
 				}
 				ww[0] = w;
-				System.out.println("end2");
+				Core.getCore().getInstance().debug("end2");
 				getPhase().getGame().end(w);
 			}
 		} else {
 			final User w = Core.getCore().getUserHandler().get(sucher1);
 			if (t.getTeams().get(0).getPlayers().size() == 0) {
-				System.out.println("end3");
+				Core.getCore().getInstance().debug("end3");
 				getPhase().getGame().end(w);
 			}
 		}
@@ -275,10 +275,10 @@ public class SUVFeature extends CoreFeature {
 	@EventHandler
 	public void onInteract(final PlayerInteractEntityEvent e) {
 		if (e.getRightClicked() instanceof Player) {
-			System.out.println("click");
+			Core.getCore().getInstance().debug("click");
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())
 					&& getPhase().getGame().getPlayers().contains(e.getRightClicked().getUniqueId())) {
-				System.out.println("both ingame");
+				Core.getCore().getInstance().debug("both ingame");
 				check(e.getPlayer().getUniqueId(), e.getRightClicked().getUniqueId(), false);
 			}
 		}
@@ -297,14 +297,14 @@ public class SUVFeature extends CoreFeature {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 			if (e.getUser().getUUID() == sucher1 || e.getUser().getUUID() == sucher2) {
-				System.out.println("sucher death");
+				Core.getCore().getInstance().debug("sucher death");
 				e.setShouldRespawn(true);
 			} else if (t.getTeam(e.getUser()) == null) {
-				System.out.println("teamless death");
+				Core.getCore().getInstance().debug("teamless death");
 				e.setShouldRespawn(false);
 			} else {
 				Team team = t.getTeam(e.getUser());
-				System.out.println(team.getName() + " death");
+				Core.getCore().getInstance().debug(team.getName() + " death");
 			}
 		}
 	}

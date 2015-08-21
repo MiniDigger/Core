@@ -65,7 +65,7 @@ public class ChatPacket extends CorePacket {
 				c.chat(Core.getCore().getUserHandler().get(user), server + "|" + msg);
 			}
 		} catch (final Exception ex) {
-			System.out.println("No channel called " + channel + " at this server!");
+			Core.getCore().getInstance().debug("No channel called " + channel + " at this server!");
 		}
 	}
 	

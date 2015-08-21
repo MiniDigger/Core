@@ -200,7 +200,7 @@ public class LivesFeature extends CoreFeature {
 				e.setShouldRespawn(false);
 				final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("Lobby"));
 				if (map == null) {
-					System.out.println("map == null in livesfeature");
+					Core.getCore().getInstance().debug("map == null in livesfeature");
 				} else {
 					final HashMap<String, Location> locs = map.getLocs(DyeColor.RED);
 					final Location loc = locs.get(locs.keySet().iterator().next());

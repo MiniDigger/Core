@@ -74,7 +74,7 @@ public class CoreBroadcastHandler implements BroadcastHandler {
 	
 	@SuppressWarnings("unchecked")
 	public void saveAll() {
-		System.out.println("save");
+		Core.getCore().getInstance().debug("save");
 		List<JSONObject> o = new ArrayList<JSONObject>();
 		
 		for (BroadcastMessage msg : msgs) {
@@ -86,7 +86,7 @@ public class CoreBroadcastHandler implements BroadcastHandler {
 		
 		try {
 			a.writeJSONString(new PrintWriter(file));
-			System.out.println("saved");
+			Core.getCore().getInstance().debug("saved");
 		} catch (Exception e) {
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}

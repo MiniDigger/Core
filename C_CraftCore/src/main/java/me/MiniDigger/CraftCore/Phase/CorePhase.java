@@ -67,7 +67,7 @@ public abstract class CorePhase implements Phase {
 	@Override
 	public void startPhase() {
 		if (!checkCombability()) {
-			System.out.println("Incombability found!");
+			Core.getCore().getInstance().debug("Incombability found!");
 			return;
 		}
 		for (final Feature f : features) {

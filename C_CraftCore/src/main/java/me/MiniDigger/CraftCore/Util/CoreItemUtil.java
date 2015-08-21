@@ -31,6 +31,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Util.ItemUtil;
 
 /*
@@ -72,7 +73,7 @@ public class CoreItemUtil implements ItemUtil {
 			dataInput.close();
 			return is;
 		} catch (final Exception e) {
-			System.out.println("Unable to decode class type: " + e.getMessage());
+			Core.getCore().getInstance().debug("Unable to decode class type: " + e.getMessage());
 		}
 		return null;
 	}
@@ -103,7 +104,7 @@ public class CoreItemUtil implements ItemUtil {
 			dataInput.close();
 			return is;
 		} catch (final Exception e) {
-			System.out.println("Unable to decode class type: " + e.getMessage());
+			Core.getCore().getInstance().debug("Unable to decode class type: " + e.getMessage());
 		}
 		return null;
 	}
@@ -144,7 +145,7 @@ public class CoreItemUtil implements ItemUtil {
 			dataInput.close();
 			return inventory;
 		} catch (final Exception e) {
-			System.out.println("Unable to decode class type: " + e.getMessage());
+			Core.getCore().getInstance().debug("Unable to decode class type: " + e.getMessage());
 		}
 		return null;
 	}

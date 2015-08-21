@@ -57,7 +57,7 @@ public class CoreKitHandler implements KitHandler {
 			kit.save();
 			return kit;
 		} else {
-			System.out.println("A kit named " + kit.getName() + " already exists!");
+			Core.getCore().getInstance().debug("A kit named " + kit.getName() + " already exists!");
 			return null;
 		}
 	}
@@ -98,11 +98,11 @@ public class CoreKitHandler implements KitHandler {
 	@Override
 	public void give(final Player p, final Kit kit) {
 		if (kit == null) {
-			System.out.println("kit is null");
+			Core.getCore().getInstance().debug("kit is null");
 			return;
 		}
 		if (p == null) {
-			System.out.println("player is null");
+			Core.getCore().getInstance().debug("player is null");
 			return;
 		}
 		if (activKits.containsKey(p.getUniqueId())) {
@@ -166,7 +166,7 @@ public class CoreKitHandler implements KitHandler {
 			kits.add(k);
 		}
 		
-		System.out.println(ids.size() + " kits loaded!");
+		Core.getCore().getInstance().debug(ids.size() + " kits loaded!");
 		
 		return true;
 	}

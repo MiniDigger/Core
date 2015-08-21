@@ -97,7 +97,7 @@ public class CoreEventHandler implements Listener, org.bukkit.plugin.EventExecut
 	
 	@Override
 	public void execute(final Listener listener, final Event event) throws EventException {
-		System.out.println("got " + event.getEventName());
+		Core.getCore().getInstance().debug("got " + event.getEventName());
 		if (!blacklist.contains(event.getEventName())) {
 			Core.getCore().getMirrorHandler().getSender().send(event);
 		}

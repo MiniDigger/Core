@@ -48,7 +48,7 @@ public class SoundUtility {
 	 * @param worldwide
 	 */
 	public static void playCustomSound(final Player p, final String soundName, final float volume, final float pitch, final boolean worldwide) {
-		System.out.println("CustomSound: " + p.getName() + ", " + soundName + ", " + volume + ", " + pitch + ", " + worldwide);
+		Core.getCore().getInstance().debug("CustomSound: " + p.getName() + ", " + soundName + ", " + volume + ", " + pitch + ", " + worldwide);
 		if (worldwide) {
 			final PacketPlayOutNamedSoundEffect packet = new PacketPlayOutNamedSoundEffect(soundName, p.getLocation().getX(), p.getLocation().getY(),
 			        p.getLocation().getZ(), Float.MAX_VALUE, pitch);

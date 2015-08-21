@@ -124,8 +124,8 @@ public class CoreEventListener implements EventListener {
 				Bukkit.getPluginManager().callEvent(event);
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
-				System.out.println("set canceled " + event.isCancelled());
-				System.out.println("get dmg " + event.getDmg());
+				Core.getCore().getInstance().debug("set canceled " + event.isCancelled());
+				Core.getCore().getInstance().debug("get dmg " + event.getDmg());
 				if (!event.isCancelled()) {
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
@@ -135,7 +135,7 @@ public class CoreEventListener implements EventListener {
 			}
 
 			if (e.getDamage() == 0.0) {
-				System.out.println("set canceled in the end");
+				Core.getCore().getInstance().debug("set canceled in the end");
 				e.setCancelled(true);
 			}
 		}
@@ -166,8 +166,8 @@ public class CoreEventListener implements EventListener {
 				Bukkit.getPluginManager().callEvent(event);
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
-				System.out.println("set canceled " + event.isCancelled());
-				System.out.println("get dmg " + event.getDmg());
+				Core.getCore().getInstance().debug("set canceled " + event.isCancelled());
+				Core.getCore().getInstance().debug("get dmg " + event.getDmg());
 				if (!event.isCancelled()) {
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
@@ -177,7 +177,7 @@ public class CoreEventListener implements EventListener {
 			}
 
 			if (e.getDamage() == 0.0) {
-				System.out.println("set canceled in the end2");
+				Core.getCore().getInstance().debug("set canceled in the end2");
 				e.setCancelled(true);
 			}
 		}

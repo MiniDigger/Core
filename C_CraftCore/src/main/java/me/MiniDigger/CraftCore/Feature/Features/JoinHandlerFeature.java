@@ -85,18 +85,18 @@ public class JoinHandlerFeature extends CoreFeature {
 						e.getUser().getPlayer().teleport(loc);
 					}
 				} catch (final Exception ex) {
-					System.out.println("error while join tp");
+					Core.getCore().getInstance().debug("error while join tp");
 				}
 			} else if (getPhase().getGame().allowSpectate()) {
 				Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
 				try {
-					System.out.println("join as spec");
+					Core.getCore().getInstance().debug("join as spec");
 					((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 				} catch (Exception ex) {
-					System.out.println("could not specate");
+					Core.getCore().getInstance().debug("could not specate");
 				}
 			} else {
-				System.out.println("fuck you, you can't join here: " + getPhase().getGame().getType().name());
+				Core.getCore().getInstance().debug("fuck you, you can't join here: " + getPhase().getGame().getType().name());
 			}
 		}
 	}

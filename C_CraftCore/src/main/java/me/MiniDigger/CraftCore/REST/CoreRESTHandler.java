@@ -84,7 +84,7 @@ public class CoreRESTHandler implements RESTHandler {
 		try {
 			return (JSONObject) parser.parse(result);
 		} catch (final Exception e) {
-			System.out.println("RESULT: " + result);
+			Core.getCore().getInstance().debug("RESULT: " + result);
 			e.printStackTrace();
 		}
 		return null;
@@ -92,19 +92,19 @@ public class CoreRESTHandler implements RESTHandler {
 	
 	@Override
 	public String checkLicence(final String licence, final String token, final String sessionToken) {
-		// System.out.println("");
-		// System.out.println("=======================================");
-		// System.out.println("PRÜFE LICENCE: " + licence);
-		// System.out.println("TOKEN: " + token);
-		// System.out.println("SESSIONTOKEN: " + sessionToken);
+		// Core.getCore().getInstance().debug("");
+		// Core.getCore().getInstance().debug("=======================================");
+		// Core.getCore().getInstance().debug("PRÜFE LICENCE: " + licence);
+		// Core.getCore().getInstance().debug("TOKEN: " + token);
+		// Core.getCore().getInstance().debug("SESSIONTOKEN: " + sessionToken);
 		final JSONObject response = ((CoreRESTHandler) Core.getCore().getRESTHandler()).get("v1/licence/isvalid/" + licence + "/" + token + "/" + sessionToken);
 		
 		if (!checkResponse(response, "Could not request licenceCheck")) {
 			return null;
 		}
-		// System.out.println(response.toJSONString());
-		// System.out.println("=======================================");
-		// System.out.println("");
+		// Core.getCore().getInstance().debug(response.toJSONString());
+		// Core.getCore().getInstance().debug("=======================================");
+		// Core.getCore().getInstance().debug("");
 		
 		return (String) response.get("result");
 	}
@@ -240,7 +240,7 @@ public class CoreRESTHandler implements RESTHandler {
 		if (response == null || response.get("success") == null || response.get("success") == Boolean.valueOf(false)) {
 			Core.getCore().getInstance().error(msg);
 			try {
-				System.out.println("res: " + response.toJSONString());
+				Core.getCore().getInstance().debug("res: " + response.toJSONString());
 				
 				final JSONObject error = (JSONObject) response.get("result");
 				final Integer id = (Integer) error.get("id");

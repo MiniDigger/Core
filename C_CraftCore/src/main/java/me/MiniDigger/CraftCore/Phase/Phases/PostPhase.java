@@ -80,7 +80,7 @@ public class PostPhase extends CoreTimedPhase {
 	
 	@Override
 	public void startPhase() {
-		System.out.println("POST PHASE");
+		Core.getCore().getInstance().debug("POST PHASE");
 		getGame().setAllowJoin(false);
 		getGame().setAllowSpectate(false);
 		super.startPhase();

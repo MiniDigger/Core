@@ -111,7 +111,7 @@ public class ToggleCommands implements Listener {
 			Prefix.API.getPrefix().then("Du hast deine Hacks deaktiviert!").color(ChatColor.GOLD).send(args.getSender());
 		} else {
 			hacks.add(args.getPlayer().getUniqueId());
-			System.out.println("Apn: " + args.getPlayer().getName() + "uuid: " + args.getPlayer().getUniqueId());
+			Core.getCore().getInstance().debug("Apn: " + args.getPlayer().getName() + "uuid: " + args.getPlayer().getUniqueId());
 			Prefix.API.getPrefix().then("Du hast deine Hacks aktiviert!").color(ChatColor.GOLD).send(args.getSender());
 		}
 	}

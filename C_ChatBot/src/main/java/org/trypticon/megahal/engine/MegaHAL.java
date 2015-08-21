@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import me.MiniDigger.Core.Core;
+
 /**
  * Main class implementing the main MegaHAL engine. Provides methods to train
  * the brain, and to generate text responses from it.
@@ -75,7 +77,7 @@ public class MegaHAL {
 			trainCount++;
 		}
 		reader.close();
-		System.out.println("Trained with " + trainCount + " sentences.");
+		Core.getCore().getInstance().debug("Trained with " + trainCount + " sentences.");
 	}
 	
 	/**
@@ -132,17 +134,17 @@ public class MegaHAL {
 			System.out.print("Generating... ");
 			final List<Symbol> candidateReply = model.generateRandomSymbols(rng, userKeywords);
 			candidateCount++;
-			System.out.println("Candidate: " + candidateReply);
+			Core.getCore().getInstance().debug("Candidate: " + candidateReply);
 			
 			final double infoContent = model.calculateInformation(candidateReply, userKeywords);
-			System.out.println("infoContent=" + infoContent);
+			Core.getCore().getInstance().debug("infoContent=" + infoContent);
 			if (infoContent > bestInfoContent && !Utils.equals(candidateReply, userWords)) {
 				bestInfoContent = infoContent;
 				bestReply = candidateReply;
 			}
 		}
-		System.out.println("Candidates generated: " + candidateCount);
-		System.out.println("Best reply generated: " + bestReply);
+		Core.getCore().getInstance().debug("Candidates generated: " + candidateCount);
+		Core.getCore().getInstance().debug("Best reply generated: " + bestReply);
 		
 		// Return the generated string, tacked back together.
 		return (bestReply == null) ? null : splitter.join(bestReply);

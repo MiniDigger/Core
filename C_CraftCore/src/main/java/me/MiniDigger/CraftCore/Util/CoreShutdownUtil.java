@@ -157,7 +157,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 		AsyncCatcher.enabled = false;
 		try {
 			if (script.isFile()) {
-				System.out.println("Attempting to restart with " + SpigotConfig.restartScript);
+				Core.getCore().getInstance().debug("Attempting to restart with " + SpigotConfig.restartScript);
 				final Thread shutdownHook = new Thread() {
 					
 					@Override
@@ -177,7 +177,7 @@ public class CoreShutdownUtil implements ShutdownUtil {
 				shutdownHook.setDaemon(true);
 				Runtime.getRuntime().addShutdownHook(shutdownHook);
 			} else {
-				System.out.println("Startup script '" + SpigotConfig.restartScript + "' does not exist! Stopping server.");
+				Core.getCore().getInstance().debug("Startup script '" + SpigotConfig.restartScript + "' does not exist! Stopping server.");
 			}
 		} catch (final Exception ex) {
 			ex.printStackTrace();

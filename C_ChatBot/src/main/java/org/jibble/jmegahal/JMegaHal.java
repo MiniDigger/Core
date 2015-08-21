@@ -98,7 +98,7 @@ public class JMegaHal implements Serializable {
 		
 		if (parts.size() >= 4) {
 			for (i = 0; i < parts.size() - 3; i++) {
-				// System.out.println("\"" + parts.get(i) + "\"");
+				// Core.getCore().getInstance().debug("\"" + parts.get(i) + "\"");
 				Quad quad = new Quad(parts.get(i), parts.get(i + 1), parts.get(i + 2), parts.get(i + 3));
 				if (quads.containsKey(quad)) {
 					quad = quads.get(quad);

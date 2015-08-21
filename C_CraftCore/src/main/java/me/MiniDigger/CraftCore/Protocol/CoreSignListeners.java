@@ -71,7 +71,7 @@ public class CoreSignListeners implements SignListeners {
 
 			@Override
 			public void run() {
-				System.out.println("Player " + getPlayer().getName() + " punshed sign with lines: "
+				Core.getCore().getInstance().debug("Player " + getPlayer().getName() + " punshed sign with lines: "
 						+ Core.getCore().getStringUtil().toString(getSign().getLines()));
 			}
 		}, false));

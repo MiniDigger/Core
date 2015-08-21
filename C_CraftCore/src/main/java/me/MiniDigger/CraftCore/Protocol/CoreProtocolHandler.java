@@ -228,7 +228,7 @@ public class CoreProtocolHandler implements ProtocolHandler {
 		protocolVersions.remove(key);
 		protocolVersions.put(name, protocol);
 		
-		System.out.println(name + "'s protocol version is " + protocol);
+		Core.getCore().getInstance().debug(name + "'s protocol version is " + protocol);
 	}
 	
 	@Override

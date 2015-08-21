@@ -186,11 +186,11 @@ public class HubFeature extends CoreFeature {
 
 			@Override
 			public void run() {
-				System.out.println("run hide (" + e.getUser().getDisplayName() + ")");
+				Core.getCore().getInstance().debug("run hide (" + e.getUser().getDisplayName() + ")");
 				if (!e.getUser().getPlayer().hasPermission("donthideme")) {
 					for (UUID id : hide) {
 						Player p = Bukkit.getPlayer(id);
-						System.out.println(
+						Core.getCore().getInstance().debug(
 								"joined " + e.getUser().getDisplayName() + " should be hidden for " + p.getName());
 						if (p != null) {
 							if (e.getUser().getPlayer() != null) {

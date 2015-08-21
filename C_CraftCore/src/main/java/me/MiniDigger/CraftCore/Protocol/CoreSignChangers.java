@@ -237,7 +237,7 @@ public class CoreSignChangers implements SignChangers {
 						try {
 							top = Integer.parseInt(s.charAt(0) + "");
 						} catch (final Exception ex) {
-							System.out.println("FAILED TO PARSE INT " + s.charAt(0) + " FOR STATS SIGN AT " + loc.toString());
+							Core.getCore().getInstance().debug("FAILED TO PARSE INT " + s.charAt(0) + " FOR STATS SIGN AT " + loc.toString());
 						}
 						s = s.substring(1);
 						StatsType type = null;
@@ -443,13 +443,13 @@ public class CoreSignChangers implements SignChangers {
 		// if (mod.size() == 0) {
 		// continue;
 		// }
-		// System.out.println(m.getName() + ": " + mod.size());
+		// Core.getCore().getInstance().debug(m.getName() + ": " + mod.size());
 		// } catch (final Exception e) {
 		// if (e.getMessage() != null &&
 		// e.getMessage().contains("wrong number of arguments")) {
-		// System.out.println("wron nums");
+		// Core.getCore().getInstance().debug("wron nums");
 		// } else {
-		// System.out.println("oh noes");
+		// Core.getCore().getInstance().debug("oh noes");
 		// e.printStackTrace();
 		// }
 		// }

@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Util.DeZipUtil;
 
 public class CoreDeZipUtil implements DeZipUtil {
@@ -125,7 +126,7 @@ public class CoreDeZipUtil implements DeZipUtil {
 		try {
 			f.createNewFile();
 		} catch (final Exception ex) {
-			System.out.println("failed");
+			Core.getCore().getInstance().debug("failed");
 		}
 		final BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
 		int count = -1;
@@ -167,7 +168,7 @@ public class CoreDeZipUtil implements DeZipUtil {
 					extractFile(zin, outdir, name);
 				} catch (final Exception ex) {
 					// ex.printStackTrace();
-					System.out.println("Error: " + ex.getMessage());
+					Core.getCore().getInstance().debug("Error: " + ex.getMessage());
 					ex.printStackTrace();
 				}
 			}

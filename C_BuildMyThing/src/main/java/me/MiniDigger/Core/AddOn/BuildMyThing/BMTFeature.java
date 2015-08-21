@@ -154,9 +154,9 @@ public class BMTFeature extends CoreFeature {
 		
 		// TP
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
-		System.out.println("map " + data.getName());
+		Core.getCore().getInstance().debug("map " + data.getName());
 		if (data.getLocs(DyeColor.GREEN) == null) {
-			System.out.println("locs null");
+			Core.getCore().getInstance().debug("locs null");
 		}
 		u.getPlayer().teleport(data.getLocs(DyeColor.GREEN).values().iterator().next());
 		

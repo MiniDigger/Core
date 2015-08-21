@@ -98,12 +98,12 @@ public class SpawnFeature extends CoreFeature {
 		usedSpawns = new ArrayList<>();
 		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 		if (data == null) {
-			System.out.println("no map to spawn!");
+			Core.getCore().getInstance().debug("no map to spawn!");
 			return;
 		}
 		final HashMap<String, Location> spawns = data.getLocs(locKey);
 		if (spawns == null) {
-			System.out.println("spawns null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{"
+			Core.getCore().getInstance().debug("spawns null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{"
 					+ data.getOldName() + "}");
 			return;
 		}
@@ -115,7 +115,7 @@ public class SpawnFeature extends CoreFeature {
 				}
 			}
 		} else {
-			System.out.println("spawns null on start");
+			Core.getCore().getInstance().debug("spawns null on start");
 		}
 	}
 
@@ -130,7 +130,7 @@ public class SpawnFeature extends CoreFeature {
 	public void end() {
 		usedSpawns = null;
 		spawns = null;
-		System.out.println("end spawnfeature");
+		Core.getCore().getInstance().debug("end spawnfeature");
 	}
 
 	public Location spawn(final User user) {
@@ -138,7 +138,7 @@ public class SpawnFeature extends CoreFeature {
 			usedSpawns = new ArrayList<>();
 			MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
 			if (data == null) {
-				System.out.println("no map to spawn2!");
+				Core.getCore().getInstance().debug("no map to spawn2!");
 
 				((MapFeature) getPhase().getFeature(FeatureType.MAP))
 						.setMap(getPhase().getGame().getGameData("VoteWinner"));
@@ -147,7 +147,7 @@ public class SpawnFeature extends CoreFeature {
 
 			final HashMap<String, Location> spawns = data.getLocs(locKey);
 			if (spawns == null) {
-				System.out.println("spawns2 null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{"
+				Core.getCore().getInstance().debug("spawns2 null in spawnfeature (lockey: " + locKey + ", map " + data.getName() + "{"
 						+ data.getOldName() + "}");
 				return null;
 			}
@@ -177,8 +177,8 @@ public class SpawnFeature extends CoreFeature {
 			usedSpawns.add(loc.toVector());
 			loc.add(0.5, 0.5, 0.5);
 			try {
-				System.out.println("respawn2");
-				System.out.println("loc: " + loc);
+				Core.getCore().getInstance().debug("respawn2");
+				Core.getCore().getInstance().debug("loc: " + loc);
 				user.getPlayer().teleport(loc);
 				if (user.getPlayer().getLocation().distance(loc) > 5) {
 					Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
@@ -197,7 +197,7 @@ public class SpawnFeature extends CoreFeature {
 						try {
 							user.getPlayer().teleport(loc);
 						} catch (final Exception ex) {
-							System.out.println("respawn failed after second try");
+							Core.getCore().getInstance().debug("respawn failed after second try");
 						}
 					}
 				}, 20 * 2, getPhase());
@@ -227,7 +227,7 @@ public class SpawnFeature extends CoreFeature {
 	public void onRespawn(final PlayerRespawnEvent e) {
 		final User user = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 		if (getPhase().getGame().getPlayers().contains(user.getUUID())) {
-			System.out.println("respawn");
+			Core.getCore().getInstance().debug("respawn");
 			e.setRespawnLocation(spawn(user));
 		}
 	}

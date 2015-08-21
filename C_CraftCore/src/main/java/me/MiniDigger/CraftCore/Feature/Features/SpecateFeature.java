@@ -123,9 +123,9 @@ public class SpecateFeature extends CoreFeature {
 			if (loc != null) {
 				e.setRespawnLocation(loc);
 				e.getPlayer().teleport(loc);
-				System.out.println("set respawn loc");
+				Core.getCore().getInstance().debug("set respawn loc");
 			} else {
-				System.out.println("respawn loc = null");
+				Core.getCore().getInstance().debug("respawn loc = null");
 			}
 		}
 	}

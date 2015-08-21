@@ -115,7 +115,7 @@ public class CoreGameHandler implements GameHandler {
 		}
 		game.join(user);
 		
-		System.out.println("join " + game.getChatChannel().getName());
+		Core.getCore().getInstance().debug("join " + game.getChatChannel().getName());
 		user.setPrimaryChannel(game.getChatChannel());
 		
 		Core.getCore().getPlayerUtil().prepare(user.getPlayer());
@@ -133,7 +133,7 @@ public class CoreGameHandler implements GameHandler {
 		
 		game.leave(user);
 		
-		System.out.println("leave " + game.getChatChannel().getName());
+		Core.getCore().getInstance().debug("leave " + game.getChatChannel().getName());
 		user.leaveChannel(game.getChatChannel());
 		user.setPrimaryChannel(Core.getCore().getChatHandler().getChannel("Default"));
 		
@@ -177,7 +177,7 @@ public class CoreGameHandler implements GameHandler {
 			try {
 				disabled.add(GameType.valueOf(s.toUpperCase()));
 			} catch (Exception ex) {
-				System.out.println("Unknown gametype " + s);
+				Core.getCore().getInstance().debug("Unknown gametype " + s);
 			}
 		}
 		Core.getCore().getInstance().info(disabled.size() + " Spielmodi wurden deaktiviert");

@@ -25,7 +25,7 @@ public class CoreMetricsHandler implements MetricsHandler {
 			metrics.start();
 		} catch (IOException e) {
 			// Failed to submit the stats :-(
-			System.out.println("No metrics for you then!");
+			Core.getCore().getInstance().debug("No metrics for you then!");
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}

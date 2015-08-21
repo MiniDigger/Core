@@ -89,15 +89,15 @@ public class SUVSelectFeature extends CoreFeature {
 			final User user2 = Core.getCore().getUserHandler().get(sucher2);
 			
 			try {
-				System.out.println("user1: " + user1.getDisplayName());
+				Core.getCore().getInstance().debug("user1: " + user1.getDisplayName());
 			} catch (final Exception ex) {}
 			try {
-				System.out.println("user2: " + user2.getDisplayName());
+				Core.getCore().getInstance().debug("user2: " + user2.getDisplayName());
 			} catch (final Exception ex) {}
 			
 		} catch (final Exception ex) {
 			ex.printStackTrace();
-			System.out.println("Couldn't search for searchers....");
+			Core.getCore().getInstance().debug("Couldn't search for searchers....");
 		}
 	}
 	

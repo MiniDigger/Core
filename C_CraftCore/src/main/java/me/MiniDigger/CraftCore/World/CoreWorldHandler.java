@@ -59,24 +59,24 @@ public class CoreWorldHandler implements WorldHandler {
 	public Location getFallbackLoc() {
 		// return new Location(Bukkit.getWorld("Spawn"), 969, 108, 85);
 		if (Bukkit.getWorld("Spawn") != null) {
-			System.out.println("spawn");
+			Core.getCore().getInstance().debug("spawn");
 			final MapData map = Core.getCore().getMapHandler().getMap("Spawn");
 			if (map != null) {
 				return (Location) map.getLocs(DyeColor.RED).values().toArray()[0];
 			}
 		} else {
-			System.out.println("lobby");
+			Core.getCore().getInstance().debug("lobby");
 			if (Bukkit.getWorld(Core.getCore().getGameHandler().getMainGame().getType().getAbk() + "_Lobby") != null) {
 				return new Location(Bukkit.getWorld("Spawn"), -38, 4, -41);
 			}
 		}
-		System.out.println("fallback");
+		Core.getCore().getInstance().debug("fallback");
 		return new Location(Bukkit.getWorld("Spawn"), -937.5, 38.0, -768.5);
 	}
 	
 	@Override
 	public void unloadWorld(final String world, final Location fallBackLoc) {
-		System.out.println("unload " + world);
+		Core.getCore().getInstance().debug("unload " + world);
 		
 		Core.getCore().getMapHandler().unload(Core.getCore().getMapHandler().getMap(world));
 		
@@ -88,7 +88,7 @@ public class CoreWorldHandler implements WorldHandler {
 		try {
 			w.save();
 		} catch (final Exception ex) {
-			System.out.println("No save for you, bitch");
+			Core.getCore().getInstance().debug("No save for you, bitch");
 		}
 		
 		try {
@@ -100,7 +100,7 @@ public class CoreWorldHandler implements WorldHandler {
 				}
 			}
 		} catch (final Exception ex) {
-			System.out.println("Ok, you can live some seconds longer...");
+			Core.getCore().getInstance().debug("Ok, you can live some seconds longer...");
 		}
 		
 		try {
@@ -109,12 +109,12 @@ public class CoreWorldHandler implements WorldHandler {
 				w.unloadChunk(c);
 			}
 		} catch (final Exception ex) {
-			System.out.println("I will unload you later...");
+			Core.getCore().getInstance().debug("I will unload you later...");
 		}
 		try {
 			Bukkit.unloadWorld(w, true);
 		} catch (final Exception ex) {
-			System.out.println("Will, that sucks");
+			Core.getCore().getInstance().debug("Will, that sucks");
 		}
 	}
 	
@@ -125,7 +125,7 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public World loadWorld(final String name, final String newName) {
-		System.out.println("load " + name + " as " + newName);
+		Core.getCore().getInstance().debug("load " + name + " as " + newName);
 		final WorldCreator wc = WorldCreator.name(newName);
 		wc.environment(Environment.NORMAL);
 		wc.generateStructures(false);
@@ -141,7 +141,7 @@ public class CoreWorldHandler implements WorldHandler {
 		try {
 			MapData data = Core.getCore().getMapHandler().getMap(name);
 			if (data == null) {
-				System.out.println("try other name: " + newName);
+				Core.getCore().getInstance().debug("try other name: " + newName);
 				data = Core.getCore().getMapHandler().getMap(newName);
 			}
 			final int i = data.loadChunks();
@@ -160,7 +160,7 @@ public class CoreWorldHandler implements WorldHandler {
 			return;
 		}
 		
-		System.out.println("delete " + name);
+		Core.getCore().getInstance().debug("delete " + name);
 		
 		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
 		final File oldMap = new File(out, name);
@@ -174,23 +174,23 @@ public class CoreWorldHandler implements WorldHandler {
 				MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
 				Core.getCore().getFileUtil().deleteDirectory(oldMap);
 			} catch (final Exception ex) {
-				System.out.println("err");
+				Core.getCore().getInstance().debug("err");
 				fixSession(oldMap);
 				try {
 					MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
 					Core.getCore().getFileUtil().deleteDirectory(oldMap);
 				} catch (final Exception exs) {
-					System.out.println("err124");
+					Core.getCore().getInstance().debug("err124");
 				}
 			}
 		}
 	}
 	
 	private void fixSession(final File oldMap) {
-		System.out.println("fix session");
+		Core.getCore().getInstance().debug("fix session");
 		final File session = new File(oldMap, "session.lock");
 		session.delete();
-		System.out.println("deleted " + session.getAbsolutePath());
+		Core.getCore().getInstance().debug("deleted " + session.getAbsolutePath());
 		
 		final File uid = new File(oldMap, "uid.dat");
 		uid.delete();
@@ -235,7 +235,7 @@ public class CoreWorldHandler implements WorldHandler {
 		fixSession(map);
 		
 		final File mapDataFile = new File(map, "map.yml");
-		System.out.println("load config " + mapDataFile.getAbsolutePath());
+		Core.getCore().getInstance().debug("load config " + mapDataFile.getAbsolutePath());
 		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapDataFile);
 		
 		final MapData data = new CoreMapData(con);
@@ -245,7 +245,7 @@ public class CoreWorldHandler implements WorldHandler {
 	
 	@Override
 	public void cleanup() {
-		System.out.println("cleanup");
+		Core.getCore().getInstance().debug("cleanup");
 		File mapFolder = Bukkit.getWorldContainer();
 		String[] ignore = new String[] { "logs", "plugins", "world", "world_the_end" };
 		for (World w : Bukkit.getWorlds()) {
@@ -257,7 +257,7 @@ public class CoreWorldHandler implements WorldHandler {
 			if (f.isDirectory()) {
 				if (!i.contains(f.getName())) {
 					if (Core.getCore().getFileUtil().deleteDirectory(f)) {
-						System.out.println("Could not delete " + f.getName());
+						Core.getCore().getInstance().debug("Could not delete " + f.getName());
 					}
 				}
 			}

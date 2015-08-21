@@ -79,7 +79,7 @@ public class FixedTimeFeature extends CoreFeature {
 	public void start() {
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		if (m.getMap() == null) {
-			System.out.println("ftf: map null");
+			Core.getCore().getInstance().debug("ftf: map null");
 			return;
 		}
 		world = m.getMap().getName();

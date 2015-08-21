@@ -29,6 +29,7 @@ import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 
@@ -78,7 +79,7 @@ public class FixedWeatherFeature extends CoreFeature {
 	public void start() {
 		final MapFeature m = (MapFeature) getPhase().getFeature(FeatureType.MAP);
 		if (m.getMap() == null) {
-			System.out.println("fwf: map null");
+			Core.getCore().getInstance().debug("fwf: map null");
 			return;
 		}
 		world = m.getMap().getName();

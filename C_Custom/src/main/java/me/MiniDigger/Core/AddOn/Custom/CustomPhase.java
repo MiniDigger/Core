@@ -64,7 +64,7 @@ public class CustomPhase extends CorePhase {
 
 	@Override
 	public void startPhase() {
-		System.out.println("start custom");
+		Core.getCore().getInstance().debug("start custom");
 		super.startPhase();
 	}
 

@@ -524,7 +524,7 @@ public class WorldCommands {
 											+ File.separatorChar + session.get("world") + ".zip");
 						} catch (final Exception e) {
 							e.printStackTrace();
-							System.out.println("ZIP ALLREADY THERE?! Retrying...");
+							Core.getCore().getInstance().debug("ZIP ALLREADY THERE?! Retrying...");
 							try {
 								Core.getCore().getZipUtil().zipFolder(
 										Core.getCore().getStringUtil()
@@ -535,7 +535,7 @@ public class WorldCommands {
 												+ Core.getCore().getRandomUtil().nextInt(1000));
 							} catch (final Exception e1) {
 								e1.printStackTrace();
-								System.out.println("Giving up....");
+								Core.getCore().getInstance().debug("Giving up....");
 							}
 						}
 

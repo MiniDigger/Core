@@ -52,7 +52,7 @@ public class CoreCommonMethods implements CommonMethods {
 	@Override
 	public void printJoinMessage(final User user) {
 		if (user.getPlayer() == null) {
-			System.out.println("no join msg for you, sir!");
+			Core.getCore().getInstance().debug("no join msg for you, sir!");
 			return;
 		}
 		final Date d1 = new Date();
@@ -72,7 +72,7 @@ public class CoreCommonMethods implements CommonMethods {
 					
 					final Date d2 = new Date();
 					if (d2.getTime() - d1.getTime() > 1000 * 5) {
-						System.out.println("fuck that");
+						Core.getCore().getInstance().debug("fuck that");
 					} else {
 						user.sendMessage(Prefix.API.getPrefix().then("Willkommen").color(ChatColor.GOLD));
 						user.sendMessage(Prefix.API.getPrefix().then(user.getDisplayName()).color(ChatColor.YELLOW));
@@ -108,7 +108,7 @@ public class CoreCommonMethods implements CommonMethods {
 	
 	@Override
 	public void killPlugin() {
-		// System.out.println("Licene check failed but I don't care as long as you registered it at startup");
+		// Core.getCore().getInstance().debug("Licene check failed but I don't care as long as you registered it at startup");
 		Bukkit.getConsoleSender().sendMessage("[Core] " + ChatColor.RED + "[Error] The Plugin decided to kill itselve");
 		Bukkit.getConsoleSender().sendMessage(
 		        "[Core] " + ChatColor.RED + "[Error] This mostly happens, if your licence is wrong, or a other server uses the same licence");

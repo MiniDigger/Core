@@ -71,7 +71,7 @@ public class CoreMapHandler implements MapHandler {
 	@Override
 	public void addMap(final MapData data) {
 		if (data.getName() == null) {
-			System.out.println("Could not add map: Name was null");
+			Core.getCore().getInstance().debug("Could not add map: Name was null");
 			return;
 		}
 

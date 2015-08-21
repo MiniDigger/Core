@@ -81,7 +81,7 @@ public class NoDropFeature extends CoreFeature {
 					e.getPlayer().updateInventory();
 				}
 			}, 10, getPhase());
-			System.out.println("don't drop item");
+			Core.getCore().getInstance().debug("don't drop item");
 		}
 	}
 }

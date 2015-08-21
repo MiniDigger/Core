@@ -192,7 +192,7 @@ public class CoreDashingHandler implements DashingHandler {
 			while ((buffer = reader.readLine()) != null) {
 				complete += " " + buffer;
 			}
-			System.out.println("error in dashing handler: " + complete);
+			Core.getCore().getInstance().debug("error in dashing handler: " + complete);
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}

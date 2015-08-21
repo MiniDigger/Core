@@ -190,7 +190,7 @@ public class Model {
 	 * @return the randomly-determined next symbol in the list.
 	 */
 	protected Symbol generateRandomSymbol(final TrieNode trie, final List<Symbol> symbols, final Random rng, final List<Symbol> userKeywords) {
-		// System.out.println("symbols=" + symbols);
+		// Core.getCore().getInstance().debug("symbols=" + symbols);
 		// Trivial case: If the list of generated symbols is empty, use a random
 		// keyword, if one exists.
 		if (symbols.isEmpty() && !userKeywords.isEmpty()) {
@@ -217,7 +217,7 @@ public class Model {
 		TrieNode subnode;
 		Symbol subnodeSymbol;
 
-		// System.out.println("size: " + childNodes.size() + " index: " +
+		// Core.getCore().getInstance().debug("size: " + childNodes.size() + " index: " +
 		// index);
 		
 		do {

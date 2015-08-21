@@ -81,7 +81,7 @@ public class IFFeature extends CoreFeature {
 	@Override
 	public void start() {
 		final int count = getPhase().getGame().getPlayers().size() / 6;
-		System.out.println("count " + count);
+		Core.getCore().getInstance().debug("count " + count);
 
 		if (count != 0) {
 			for (int i = 0; i < count; i++) {
@@ -89,7 +89,7 @@ public class IFFeature extends CoreFeature {
 			}
 		} else {
 			infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
-			System.out.println("no zombies....");
+			Core.getCore().getInstance().debug("no zombies....");
 		}
 
 		for (final UUID id : infeced) {
@@ -263,15 +263,15 @@ public class IFFeature extends CoreFeature {
 			boolean damagerZombie = false;
 			boolean damagedZombie = false;
 
-			System.out.println("dmg");
+			Core.getCore().getInstance().debug("dmg");
 
 			if (e.getDamager() != null) {
 				if (infeced.contains(e.getDamager().getUUID())) {
 					damagerZombie = true;
-					System.out.println("damager is zombie");
+					Core.getCore().getInstance().debug("damager is zombie");
 				}
 			} else {
-				System.out.println("damager null");
+				Core.getCore().getInstance().debug("damager null");
 				e.setDmg(0.0);
 				e.setCancelled(true);
 				return;
@@ -279,17 +279,17 @@ public class IFFeature extends CoreFeature {
 
 			if (infeced.contains(e.getDamaged().getUUID())) {
 				damagedZombie = true;
-				System.out.println("damaged is zombie");
+				Core.getCore().getInstance().debug("damaged is zombie");
 			}
 
 			if (damagedZombie && damagerZombie) {
-				System.out.println("zombie fight");
+				Core.getCore().getInstance().debug("zombie fight");
 				e.setDmg(0.0);
 				e.setCancelled(true);
 			}
 
 			if (!damagedZombie && !damagerZombie) {
-				System.out.println("normal fight");
+				Core.getCore().getInstance().debug("normal fight");
 				e.setDmg(0.0);
 				e.setCancelled(true);
 			}
