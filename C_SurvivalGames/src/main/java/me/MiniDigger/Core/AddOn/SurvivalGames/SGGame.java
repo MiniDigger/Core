@@ -57,9 +57,9 @@ public class SGGame extends CoreGame {
 		setGameData("Lobby", "Lobby");
 
 		if (Core.getCore().getInstance().getConfig().contains("minisg")) {
-			lobby = new LobbyPhase(this, null, 5);
-		} else {
 			lobby = new LobbyPhase(this, null, 2);
+		} else {
+			lobby = new LobbyPhase(this, null, 5);
 		}
 		vote = new VotePhase(this, null, 30);
 		cage = new CagePhase(this, null, 15);

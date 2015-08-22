@@ -45,71 +45,75 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LadderKingFeature extends CoreFeature {
-	
-	private UUID	              king;
-	private final Map<UUID, Task>	tasks	= new HashMap<UUID, Task>();
-	
+
+	private UUID king;
+	private String kingname;
+	private final Map<UUID, Task> tasks = new HashMap<UUID, Task>();
+
 	public LadderKingFeature(final Phase phase) {
 		super(phase);
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.LADDERKING;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
-		
+
 	}
-	
+
 	@Override
 	public void end() {
-		
+
 	}
-	
+
 	@EventHandler
 	public void onPlayerMove(final PlayerMoveEvent e) {
 		if (e.getTo().getBlock() != null && e.getTo().getBlock().getType() == Material.GOLD_PLATE) {
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
-				if (!e.getPlayer().getUniqueId().equals(king)) {
+				if (!e.getPlayer().getUniqueId().equals(king) && !e.getPlayer().getDisplayName().equals(kingname)) {
 					if (king == null) {
 						final User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-						getPhase().getGame().broadCastMessage(
-						        Prefix.API.getPrefix().then(k.getDisplayName()).color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
+						getPhase().getGame().broadCastMessage(Prefix.API.getPrefix().then(k.getDisplayName())
+								.color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
 						king = k.getUUID();
-						
+						kingname = k.getPlayer().getDisplayName();
 					} else {
 						final User o = Core.getCore().getUserHandler().get(king);
 						final User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
-						getPhase().getGame().broadCastMessage(
-						        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" ist kein Ladderkönig mehr. ").color(ChatColor.GOLD)
-						                .then(k.getDisplayName()).color(ChatColor.YELLOW).then(" ist der neue König!").color(ChatColor.GOLD));
+						getPhase().getGame()
+								.broadCastMessage(Prefix.API.getPrefix().then(o.getDisplayName())
+										.color(ChatColor.YELLOW).then(" ist kein Ladderkönig mehr. ")
+										.color(ChatColor.GOLD).then(k.getDisplayName()).color(ChatColor.YELLOW)
+										.then(" ist der neue König!").color(ChatColor.GOLD));
 						king = k.getUUID();
+						kingname = k.getPlayer().getDisplayName();
 					}
-					
+
 					for (final Task r : tasks.values()) {
 						Core.getCore().getTaskHandler().cancel(r);
 					}
 					tasks.clear();
-					
+
 					tasks.put(king, Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-						
+
 						@Override
 						public void run() {
 							if (king == null) {
@@ -118,25 +122,27 @@ public class LadderKingFeature extends CoreFeature {
 							final User o = Core.getCore().getUserHandler().get(king);
 							king = null;
 							getPhase().getGame().broadCastMessage(
-							        Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW).then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
+									Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW)
+											.then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
 						}
 					}, 5 * 20, getPhase()));
 				}
 			}
 		}
 	}
-	
-	@EventHandler(priority = EventPriority.HIGH)
+
+	@EventHandler(priority = EventPriority.LOW)
 	public void onPvP(final EntityDamageByEntityEvent e) {
 		if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
 			final User damager = Core.getCore().getUserHandler().get(((Player) e.getDamager()).getUniqueId());
 			final User damaged = Core.getCore().getUserHandler().get(((Player) e.getEntity()).getUniqueId());
-			
-			if (getPhase().getGame().getPlayers().contains(damaged.getUUID()) && getPhase().getGame().getPlayers().contains(damager.getUUID())) {
-				if (damager.getUUID() == king) {
+
+			if (getPhase().getGame().getPlayers().contains(damaged.getUUID())
+					&& getPhase().getGame().getPlayers().contains(damager.getUUID())) {
+				if (damager.getUUID().equals(king)) {
 					e.setDamage(0.0);
 					e.setCancelled(false);
-				} else if (damaged.getUUID() == king) {
+				} else if (damaged.getUUID().equals(king)) {
 					e.setDamage(0.0);
 					e.setCancelled(false);
 				}
