@@ -60,7 +60,7 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
-
+import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
@@ -221,6 +221,13 @@ public class HubFeature extends CoreFeature {
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
 			eventlist.remove(e.getUser().getUUID());
+		}
+	}
+
+	@EventHandler
+	public void onLeave(final CoreUserDeathEvent e) {
+		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
+			e.setKeepDrops(false);
 		}
 	}
 
