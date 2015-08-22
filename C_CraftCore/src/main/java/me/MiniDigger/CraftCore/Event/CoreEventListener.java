@@ -124,8 +124,10 @@ public class CoreEventListener implements EventListener {
 				Bukkit.getPluginManager().callEvent(event);
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
-				Core.getCore().getInstance().debug("set canceled " + event.isCancelled());
-				Core.getCore().getInstance().debug("get dmg " + event.getDmg());
+				// Core.getCore().getInstance().debug("set canceled " +
+				// event.isCancelled());
+				// Core.getCore().getInstance().debug("get dmg " +
+				// event.getDmg());
 				if (!event.isCancelled()) {
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
@@ -135,14 +137,15 @@ public class CoreEventListener implements EventListener {
 			}
 
 			if (e.getDamage() == 0.0) {
-				Core.getCore().getInstance().debug("set canceled in the end");
+				// Core.getCore().getInstance().debug("set canceled in the
+				// end");
 				e.setCancelled(true);
 			}
 		}
 	}
 
 	@Override
-	@EventHandler(priority = EventPriority.MONITOR) // TODO Does this make
+	@EventHandler(priority = EventPriority.LOWEST) // TODO Does this make
 													// sense?
 	public void onPlayerDamageByPlayer(final EntityDamageByEntityEvent e) {
 		if (e.getEntityType() == EntityType.PLAYER) {
@@ -166,8 +169,10 @@ public class CoreEventListener implements EventListener {
 				Bukkit.getPluginManager().callEvent(event);
 				e.setDamage(event.getDmg());
 				e.setCancelled(event.isCancelled());
-				Core.getCore().getInstance().debug("set canceled " + event.isCancelled());
-				Core.getCore().getInstance().debug("get dmg " + event.getDmg());
+				// Core.getCore().getInstance().debug("set canceled " +
+				// event.isCancelled());
+				// Core.getCore().getInstance().debug("get dmg " +
+				// event.getDmg());
 				if (!event.isCancelled()) {
 					lastDamaged.remove(user.getUUID());
 					if (damager != null) {
@@ -177,7 +182,8 @@ public class CoreEventListener implements EventListener {
 			}
 
 			if (e.getDamage() == 0.0) {
-				Core.getCore().getInstance().debug("set canceled in the end2");
+				// Core.getCore().getInstance().debug("set canceled in the
+				// end2");
 				e.setCancelled(true);
 			}
 		}

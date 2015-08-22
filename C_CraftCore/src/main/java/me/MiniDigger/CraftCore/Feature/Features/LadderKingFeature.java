@@ -120,10 +120,14 @@ public class LadderKingFeature extends CoreFeature {
 								return;
 							}
 							final User o = Core.getCore().getUserHandler().get(king);
-							king = null;
-							getPhase().getGame().broadCastMessage(
-									Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW)
-											.then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
+							if (o.getPlayer().getLocation().getBlock() == null
+									|| o.getPlayer().getLocation().getBlock().getType() != Material.GOLD_PLATE) {
+								king = null;
+								kingname = null;
+								getPhase().getGame().broadCastMessage(
+										Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW)
+												.then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
+							}
 						}
 					}, 5 * 20, getPhase()));
 				}
@@ -131,7 +135,7 @@ public class LadderKingFeature extends CoreFeature {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.LOW)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPvP(final EntityDamageByEntityEvent e) {
 		if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
 			final User damager = Core.getCore().getUserHandler().get(((Player) e.getDamager()).getUniqueId());
@@ -140,11 +144,13 @@ public class LadderKingFeature extends CoreFeature {
 			if (getPhase().getGame().getPlayers().contains(damaged.getUUID())
 					&& getPhase().getGame().getPlayers().contains(damager.getUUID())) {
 				if (damager.getUUID().equals(king)) {
-					e.setDamage(0.0);
+					e.setDamage(1.0);
 					e.setCancelled(false);
+					System.out.println("damager is king");
 				} else if (damaged.getUUID().equals(king)) {
-					e.setDamage(0.0);
+					e.setDamage(1.0);
 					e.setCancelled(false);
+					System.out.println("damaged is king");
 				}
 			}
 		}
