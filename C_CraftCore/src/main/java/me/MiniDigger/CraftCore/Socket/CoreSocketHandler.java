@@ -30,12 +30,13 @@ import java.util.List;
 import org.bukkit.Bukkit;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Packet.Packet;
 import me.MiniDigger.Core.Socket.Session;
 import me.MiniDigger.Core.Socket.SocketClient;
 import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.SocketServer;
-
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Packet.Packets.ChatPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.CommandPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.IdentificationPacket;
@@ -44,25 +45,25 @@ import me.MiniDigger.CraftCore.Packet.Packets.ServerCommandPacket;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 
 public class CoreSocketHandler implements SocketHandler {
-	
-	private final List<Session>	sessions	= new ArrayList<>();
-	private SocketServer	    server;
-	private SocketClient	    client;
-	
+
+	private final List<Session> sessions = new ArrayList<>();
+	private SocketServer server;
+	private SocketClient client;
+
 	@Override
 	public void startServer() {
 		server = new CoreSocketServer(new InetSocketAddress(33333));
 		((CoreSocketServer) server).start();
 	}
-	
+
 	@Override
 	public void startClient() {
 		try {
 			client = new CoreSocketClient(new URI("ws://localhost:33333"));
 			((CoreSocketClient) client).connect();
-			
+
 			Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-				
+
 				@Override
 				public void run() {
 					final IdentificationPacket packet = new IdentificationPacket();
@@ -72,28 +73,28 @@ public class CoreSocketHandler implements SocketHandler {
 				}
 			}, 10);
 		} catch (final URISyntaxException e) {
-			e.printStackTrace();
+			MSG.stacktrace(LogLevel.DEBUG, e, true);
 		}
 	}
-	
+
 	@Override
 	public void stopClient() {
 		((CoreSocketClient) client).close();
 	}
-	
+
 	@Override
 	public void stopServer() {
 		final ServerCommandPacket packet = new ServerCommandPacket();
 		packet.setCommand("CloseClient");
 		Core.getCore().getPacketHandler().sendBroadcast(packet);
-		
+
 		try {
 			((CoreSocketServer) server).stop();
 		} catch (IOException | InterruptedException e) {
-			e.printStackTrace();
+			MSG.stacktrace(LogLevel.DEBUG, e, true);
 		}
 	}
-	
+
 	@Override
 	public void registerPackets() {
 		final List<Class<? extends Packet>> classes = new ArrayList<Class<? extends Packet>>();
@@ -103,34 +104,34 @@ public class CoreSocketHandler implements SocketHandler {
 		classes.add(LogRecordPacket.class);
 		classes.add(CommandPacket.class);
 		classes.add(ServerCommandPacket.class);
-		
+
 		for (final Class<? extends Packet> c : classes) {
 			try {
 				Core.getCore().getPacketHandler().registerPacket(c.newInstance().getName(), c);
 			} catch (final Exception e) {
-				e.printStackTrace();
+				MSG.stacktrace(LogLevel.DEBUG, e, true);
 			}
 		}
 	}
-	
+
 	@Override
 	public void openSession(final InetSocketAddress address) {
 		final Session session = new CoreSession(address);
 		sessions.add(session);
 	}
-	
+
 	@Override
 	public void closeSession(final InetSocketAddress address) {
 		while (getSession(address) != null && sessions.contains(getSession(address))) {
 			sessions.remove(getSession(address));
 		}
 	}
-	
+
 	@Override
 	public void reciveName(final String name, final InetSocketAddress address) {
 		getSession(address).setName(name);
 	}
-	
+
 	@Override
 	public Session getSession(final String name) {
 		for (final Session session : sessions) {
@@ -143,7 +144,7 @@ public class CoreSocketHandler implements SocketHandler {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Session getSession(final InetSocketAddress address) {
 		for (final Session session : sessions) {
@@ -159,12 +160,12 @@ public class CoreSocketHandler implements SocketHandler {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public SocketServer getServer() {
 		return server;
 	}
-	
+
 	@Override
 	public SocketClient getClient() {
 		return client;

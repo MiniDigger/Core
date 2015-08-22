@@ -117,12 +117,6 @@ public class CoreServerHandler implements ServerHandler {
 		}
 
 		final Server server = getServerInfo(name);
-		if (server != null) {
-			Core.getCore().getInstance().debug("test Server " + server.getName());
-			Core.getCore().getInstance().debug("type is " + server.getPrimaryGameType());
-			System.out
-					.println("is disbaled: " + Core.getCore().getGameHandler().isDisabled(server.getPrimaryGameType()));
-		}
 		if (server == null || !server.isOnline()) {
 			if (server == null) {
 				Core.getCore().getInstance().debug("idk who " + name + " is!");

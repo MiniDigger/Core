@@ -32,6 +32,7 @@ import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Prefix.Prefix;
+import me.MiniDigger.CraftCore.CoreMain;
 
 public class MSG {
 
@@ -123,6 +124,28 @@ public class MSG {
 			if (t.getCause() != null) {
 				lvl.getMsg("Caused by:").send(Bukkit.getConsoleSender());
 				stacktrace(lvl, t.getCause());
+			}
+		}
+	}
+
+	public static void stacktrace(LogLevel lvl, Throwable t, boolean websocket) {
+		if (!websocket) {
+			stacktrace(lvl, t);
+		} else {
+			if (t == null) {
+				return;
+			}
+			if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)
+					|| Core.getCore().getLangHandler().getLogLevel() == lvl) {
+				CoreMain.logger.info(t.getClass().getName() + (t.getMessage() == null ? "" : ": " + t.getMessage()));
+				for (final StackTraceElement e : t.getStackTrace()) {
+					CoreMain.logger.info(e.toString());
+				}
+
+				if (t.getCause() != null) {
+					CoreMain.logger.info("Caused by:");
+					stacktrace(lvl, t.getCause(), true);
+				}
 			}
 		}
 	}

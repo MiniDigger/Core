@@ -28,24 +28,26 @@ import org.java_websocket.handshake.ServerHandshake;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Socket.SocketClient;
+import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreSocketClient extends WebSocketClient implements SocketClient {
-	
+
 	public CoreSocketClient(final URI serverURI) {
 		super(serverURI);
 	}
-	
+
 	@Override
 	public void onOpen(final ServerHandshake handshakedata) {
 		Core.getCore().getInstance().info("[Client] Connected to server");
 	}
-	
+
 	@Override
 	public void onMessage(final String message) {
 		Core.getCore().getPacketHandler().handleIncome(message);
 	}
-	
+
 	@Override
 	public void onClose(final int code, final String reason, final boolean remote) {
 		Core.getCore().getInstance().info("[Client] Closed " + reason);
@@ -56,7 +58,7 @@ public class CoreSocketClient extends WebSocketClient implements SocketClient {
 		}
 		Core.getCore().getInstance().info("[Client] Try to restart in 1min!");
 		new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
 				Core.getCore().getInstance().info("[Client] Try to restart!");
@@ -64,11 +66,11 @@ public class CoreSocketClient extends WebSocketClient implements SocketClient {
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 60 * 20);
 	}
-	
+
 	@Override
 	public void onError(final Exception ex) {
 		Core.getCore().getInstance().info("[Client] Error " + ex.getMessage());
-		ex.printStackTrace();
+		MSG.stacktrace(LogLevel.DEBUG, ex, true);
 	}
-	
+
 }

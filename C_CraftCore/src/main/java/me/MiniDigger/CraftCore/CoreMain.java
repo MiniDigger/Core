@@ -20,12 +20,18 @@
  */
 package me.MiniDigger.CraftCore;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.FileHandler;
 import java.util.logging.Filter;
+import java.util.logging.Handler;
 import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -89,10 +95,11 @@ import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
 import mkremins.fanciful.FancyMessage;
 
 public class CoreMain extends JavaPlugin implements Main {
-	
-	private boolean		update	= false;
-	private static Core	core;
-	
+
+	private boolean update = false;
+	private static Core core;
+	public static Logger logger;
+
 	/**
 	 * DO NO USE
 	 * 
@@ -102,17 +109,17 @@ public class CoreMain extends JavaPlugin implements Main {
 	public static Core getCore() {
 		return core;
 	}
-	
+
 	@Override
 	public void onEnable() {
 		final Date start = new Date();
 		core = new CoreCore(this);
-		
+
 		Core.getCore().getLangHandler().load();
 		Prefix.load();
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE, getDescription().getFullName(), "MiniDigger");
-		
+
 		Date d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_LICENCE);
 		try {
@@ -131,12 +138,12 @@ public class CoreMain extends JavaPlugin implements Main {
 			core.getCommonMethods().killPlugin();
 			return;
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_UPDATES);
 		try {
 			Core.getCore().getDependencyHanlder().check();
-			
+
 			if (Core.getCore().getUpdateHandler().updateCheck()) {
 				update = true;
 				return;
@@ -147,7 +154,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.SAVE_CONFIG);
 		try {
@@ -158,7 +165,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ENABLE_LIBS);
 		try {
@@ -169,7 +176,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.REGISTER_COMMANDS);
 		try {
@@ -180,7 +187,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_HANDLER);
 		try {
@@ -191,7 +198,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD_DATA);
 		try {
@@ -202,7 +209,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.REGISTER_LISTENER);
 		try {
@@ -213,7 +220,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.APPLY_FIXES);
 		try {
@@ -224,7 +231,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.SEARCH_GAME);
 		try {
@@ -235,12 +242,12 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ENABLE_LOGGING);
 		try {
 			Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-				
+
 				@Override
 				public void uncaughtException(final Thread t, final Throwable e) {
 					String msg = e.getMessage();
@@ -256,9 +263,9 @@ public class CoreMain extends JavaPlugin implements Main {
 					MSG.stacktrace(LogLevel.DEBUG, e.getCause());
 				}
 			});
-			
+
 			Bukkit.getLogger().setFilter(new Filter() {
-				
+
 				@Override
 				public boolean isLoggable(final LogRecord record) {
 					if (record.getThrown() != null) {
@@ -273,6 +280,7 @@ public class CoreMain extends JavaPlugin implements Main {
 						MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
 						MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
 						MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
+						return false;
 					}
 					return true;
 				}
@@ -287,7 +295,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		d1 = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATE_SOCKET);
 		try {
@@ -299,38 +307,55 @@ public class CoreMain extends JavaPlugin implements Main {
 				Core.getCore().getSocketHandler().startServer();
 				MSG.log(LogLevel.INFO, LangKeyType.Socket.STARTED);
 			}
-			
+
 			Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-				
+
 				@Override
 				public void run() {
 					MSG.log(LogLevel.INFO, LangKeyType.Socket.START_C);
 					Core.getCore().getSocketHandler().startClient();
 				}
 			}, 10);
+
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		} catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		core.enable();
-		
+
 		core.getMetricsHandler().start();
-		
+
+		try {
+			FileHandler h = new java.util.logging.FileHandler(
+					new File(Bukkit.getWorldContainer().getAbsolutePath() + "/logs", "websocket.log")
+							.getAbsolutePath());
+			h.setFormatter(new SimpleFormatter());
+			logger = Logger.getLogger("WebSocket");
+			for (Handler hh : logger.getHandlers()) {
+				logger.removeHandler(hh);
+			}
+			logger.addHandler(h);
+			logger.setUseParentHandlers(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		final Date end = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATED, end.getTime() - start.getTime() + "");
+
 	}
-	
+
 	@Override
 	public void onDisable() {
 		if (update) {
 			return;
 		}
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE);
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP_C);
 		try {
 			Core.getCore().getSocketHandler().stopClient();
@@ -338,7 +363,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP);
 		try {
 			Core.getCore().getSocketHandler().stopServer();
@@ -346,7 +371,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Main.UNREGISTER_LISTENER);
 		try {
 			HandlerList.unregisterAll(this);
@@ -354,7 +379,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Main.STOP_TASKS);
 		try {
 			Core.getCore().getTaskHandler().cancelAll();
@@ -363,7 +388,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE_HANDLER);
 		try {
 			disableHandler();
@@ -371,48 +396,52 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
-		
+
 		core.disable();
 		core = null;
-		
+
 		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATED);
 	}
-	
+
 	private void disableHandler() {
 		Core.getCore().getBarHandler();
 		Core.getCore().getAddOnHandler().disableAddOns();
 	}
-	
+
 	private void fixReload() {
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.startSession();
 		}
 	}
-	
+
 	private void registerCommands() {
 		final Map<String, String> reloc = new HashMap<String, String>();
 		reloc.put("pex", "coreperm");
 		reloc.put("timings", "debug");
 		Core.getCore().setCommandHandler(new CoreCommandHandler(reloc));
-		
-		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(),
-		        new SquadCommands(), new WorldCommands(), new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(),
-		        new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(), new TagCommands(), new GameCommands() };
+
+		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(),
+				new ChatCommands(), new TrollCommands(), new SquadCommands(), new WorldCommands(), new ToggleCommands(),
+				new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(),
+				new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(), new TagCommands(),
+				new GameCommands() };
 		for (final Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
-		
-		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(),
-		        new SquadCompleter(), new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new AddOnCompleter(),
-		        new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter(), new LangCompleter(), new TagCompleter(), new GameCompleter() };
+
+		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(),
+				new StatsCompleter(), new ChatCompleter(), new TrollCompleter(), new SquadCompleter(),
+				new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(),
+				new AddOnCompleter(), new EssentialCompleter(), new TeamCompleter(), new KitCompleter(),
+				new EffectsCompleter(), new LangCompleter(), new TagCompleter(), new GameCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
-		
+
 		Core.getCore().getCommandHandler().registerHelp();
 	}
-	
+
 	private void enableHandler() {
 		Core.getCore().getAddOnHandler().load();
 		Core.getCore().getProtocolHandler().init();
@@ -423,19 +452,20 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getDashingHandler().init();
 		Core.getCore().getMenuHandler().load();
 		Core.getCore().getBroadcastHandler().init();
-		
+
 		Core.getCore().getAddOnHandler().enableAddOns();
 	}
-	
+
 	private void enableExternalDependencies() {
 		// Lag.init();
 		// GhostFactory.getInstance(); //TODO Disabled due to a strange NPE
 	}
-	
+
 	private void registerListener() {
-		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(),
-		        new CoreEventListener(), new CoreBlockListener(), Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),
-		        Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
+		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(),
+				Core.getCore().getProtocolHandler().getSignChangers(), new CoreEventListener(), new CoreBlockListener(),
+				Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),
+				Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
 		for (final Listener listener : listeners) {
 			if (listener == null) {
 				MSG.log(LogLevel.DEBUG, LangKeyType.Main.LISTENER_NULL);
@@ -443,10 +473,10 @@ public class CoreMain extends JavaPlugin implements Main {
 			}
 			Bukkit.getPluginManager().registerEvents(listener, this);
 		}
-		
+
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}
-	
+
 	private void loadStuff() {
 		MSG.log(LogLevel.INFO, LangKeyType.Main.LOAD, "Stats");
 		if (!Core.getCore().getStatsHandler().loadAll()) {
@@ -465,33 +495,46 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.NOT_LOADED, "Kits");
 		}
 	}
-	
+
 	@Override
-	public boolean onCommand(final CommandSender sender, final org.bukkit.command.Command command, final String label, final String[] args) {
+	public boolean onCommand(final CommandSender sender, final org.bukkit.command.Command command, final String label,
+			final String[] args) {
 		return Core.getCore().getCommandHandler().handleCommand(sender, label, command, args);
 	}
-	
+
 	// TODO Remove these methods
 	@Deprecated
 	@Override
 	public void debug(final String s) {
 		if (getConfig().isBoolean("debug")) {
-			getLogger().info("[DEBUG]" + s);
+			if (s.startsWith("[Client]") || s.startsWith("[Server]")) {
+				logger.info("[DEBUG] " + s);
+			} else {
+				getLogger().info("[DEBUG] " + s);
+			}
 		}
 	}
-	
+
 	@Deprecated
 	@Override
 	public void info(final String s) {
-		getLogger().info(s);
+		if (s.startsWith("[Client]") || s.startsWith("[Server]")) {
+			logger.info(s);
+		} else {
+			getLogger().info(s);
+		}
 	}
-	
+
 	@Deprecated
 	@Override
 	public void error(final String s) {
-		getLogger().severe(s);
+		if (s.startsWith("[Client]") || s.startsWith("[Server]")) {
+			logger.severe(s);
+		} else {
+			getLogger().severe(s);
+		}
 	}
-	
+
 	@Deprecated
 	@Override
 	public void broadcast(final FancyMessage msg) {
