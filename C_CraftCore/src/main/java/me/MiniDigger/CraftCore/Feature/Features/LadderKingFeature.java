@@ -87,7 +87,7 @@ public class LadderKingFeature extends CoreFeature {
 	public void onPlayerMove(final PlayerMoveEvent e) {
 		if (e.getTo().getBlock() != null && e.getTo().getBlock().getType() == Material.GOLD_PLATE) {
 			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())) {
-				if (e.getPlayer().getUniqueId() != king) {
+				if (!e.getPlayer().getUniqueId().equals(king)) {
 					if (king == null) {
 						final User k = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 						getPhase().getGame().broadCastMessage(
