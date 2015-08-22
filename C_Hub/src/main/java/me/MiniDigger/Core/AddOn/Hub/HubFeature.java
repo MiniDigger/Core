@@ -229,7 +229,6 @@ public class HubFeature extends CoreFeature {
 		if (event) {
 			getPhase().getGame().broadCastMessage(Prefix.API.getPrefix()
 					.then("Es werden keine Spieler mehr reingelassen, nächstes mal musst du schneller sein!"));
-
 			for (final UUID id : getPhase().getGame().getPlayers()) {
 				try {
 					final Player p = Core.getCore().getUserHandler().get(id).getPlayer();
@@ -258,7 +257,7 @@ public class HubFeature extends CoreFeature {
 		event = !event;
 	}
 
-	@Command(name = "eventp", permission = "eventtp", usage = "", description = "Teleportiert alle Spieler im Event zum Server")
+	@Command(name = "eventtp", permission = "eventtp", usage = "<eventserver>", description = "Teleportiert alle Spieler im Event zum Server", min = 1)
 	public void eventtp(final CommandArgs args) {
 		for (final UUID id : eventlist) {
 			final User u = Core.getCore().getUserHandler().get(id);
@@ -266,8 +265,23 @@ public class HubFeature extends CoreFeature {
 				continue;
 			}
 
-			Core.getCore().getServerHandler().connect(u, "event1");
+			Core.getCore().getServerHandler().connect(u, args.getArgs()[0]);
 		}
+
+		getPhase().getGame().broadCastMessage(Prefix.API.getPrefix()
+				.then("Es werden keine Spieler mehr reingelassen, nächstes mal musst du schneller sein!"));
+		for (final UUID id2 : getPhase().getGame().getPlayers()) {
+			try {
+				final Player p = Core.getCore().getUserHandler().get(id2).getPlayer();
+				Core.getCore().getTitleHandler().sendTitle(p, 1 * 20, 150, 1 * 20,
+						ChatColor.GOLD + "" + ChatColor.BOLD + "Event ist voll");
+				Core.getCore().getTitleHandler().sendSubTitle(p, 1 * 20, 150, 1 * 20,
+						ChatColor.GOLD + "" + ChatColor.BOLD + "Das nächste mal musst du wohl schneller sein ;D");
+			} catch (Exception ex) {
+			}
+		}
+
+		event = false;
 	}
 
 	// TELEPORTER 2
@@ -394,7 +408,9 @@ public class HubFeature extends CoreFeature {
 						try {
 							entity.teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE)
 									.get("EVENT2"));
-							eventlist.add(entity.getUniqueId());
+							if (!eventlist.contains(entity.getUniqueId())) {
+								eventlist.add(entity.getUniqueId());
+							}
 						} catch (final Exception ex) {
 							Prefix.API.getPrefix().then("Not setup!").send(u.getPlayer());
 						}
@@ -414,7 +430,9 @@ public class HubFeature extends CoreFeature {
 					try {
 						u.getPlayer().teleport(
 								Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT2"));
-						eventlist.add(u.getUUID());
+						if (!eventlist.contains(u.getUUID())) {
+							eventlist.add(u.getUUID());
+						}
 					} catch (final Exception ex) {
 						Prefix.API.getPrefix().then("Not setup!").send(u.getPlayer());
 					}
