@@ -107,32 +107,37 @@ public class LadderKingFeature extends CoreFeature {
 						kingname = k.getPlayer().getDisplayName();
 					}
 
-					for (final Task r : tasks.values()) {
-						Core.getCore().getTaskHandler().cancel(r);
-					}
-					tasks.clear();
-
-					tasks.put(king, Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-
-						@Override
-						public void run() {
-							if (king == null) {
-								return;
-							}
-							final User o = Core.getCore().getUserHandler().get(king);
-							if (o.getPlayer().getLocation().getBlock() == null
-									|| o.getPlayer().getLocation().getBlock().getType() != Material.GOLD_PLATE) {
-								king = null;
-								kingname = null;
-								getPhase().getGame().broadCastMessage(
-										Prefix.API.getPrefix().then(o.getDisplayName()).color(ChatColor.YELLOW)
-												.then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
-							}
-						}
-					}, 5 * 20, getPhase()));
+					startTask();
 				}
 			}
 		}
+	}
+
+	public void startTask() {
+		for (final Task r : tasks.values()) {
+			Core.getCore().getTaskHandler().cancel(r);
+		}
+		tasks.clear();
+
+		tasks.put(king, Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				if (king == null) {
+					return;
+				}
+				final User o = Core.getCore().getUserHandler().get(king);
+				if (o.getPlayer().getLocation().getBlock() == null
+						|| o.getPlayer().getLocation().getBlock().getType() != Material.GOLD_PLATE) {
+					king = null;
+					kingname = null;
+					getPhase().getGame().broadCastMessage(Prefix.API.getPrefix().then(o.getDisplayName())
+							.color(ChatColor.YELLOW).then(" hat seinen Thron verlassen!").color(ChatColor.GOLD));
+				}else{
+					start();
+				}
+			}
+		}, 5 * 20, getPhase()));
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)

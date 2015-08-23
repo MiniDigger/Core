@@ -26,7 +26,7 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
-
+import me.MiniDigger.CraftCore.Feature.Features.DayNightFeature;
 import me.MiniDigger.CraftCore.Feature.Features.DoubleJumpFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
@@ -94,7 +94,8 @@ public class HubPhase extends CorePhase {
 		addFeature(new HubFeature(this));
 		addFeature(new FixedFoodFeature(this));
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER)));
-		addFeature(new FixedTimeFeature(this, 6000));
+//		addFeature(new FixedTimeFeature(this, 6000));
+		addFeature(new DayNightFeature(this));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, "Spawn", true));
 		addFeature(new SpawnFeature(this, true));

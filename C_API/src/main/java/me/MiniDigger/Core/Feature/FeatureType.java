@@ -82,7 +82,8 @@ public enum FeatureType {
 	EH,
 	NOINVENTORY, 
 	CUSTOM,
-	CUSTOM_LOBBY;
+	CUSTOM_LOBBY,
+	DAYNIGHT;
 	
 	/**
 	 * @return A human readable name for the feature
