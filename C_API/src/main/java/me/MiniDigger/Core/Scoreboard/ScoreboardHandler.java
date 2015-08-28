@@ -25,6 +25,8 @@ import java.util.UUID;
 
 import org.bukkit.scoreboard.DisplaySlot;
 
+import me.MiniDigger.Core.User.User;
+
 public interface ScoreboardHandler {
 
 	/**
@@ -75,5 +77,12 @@ public interface ScoreboardHandler {
 	 * recalculates all teams (with pre- and suffixes) and updates all boards
 	 */
 	void recalc();
+
+	/**
+	 * Update the scoreboard prefix for a user
+	 * 
+	 * @param user
+	 */
+	void updatePrefix(User user);
 
 }

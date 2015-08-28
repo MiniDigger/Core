@@ -250,7 +250,7 @@ public class ChatCommands {
 		if (args.getArgs().length == 1) {
 			args.getUser().setPrefix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(args.getPlayer());
-			;
+			Core.getCore().getScoreboardHandler().updatePrefix(args.getUser());
 		} else {
 			Player p = Bukkit.getPlayer(args.getArgs()[1]);
 			if (p == null) {
@@ -261,10 +261,9 @@ public class ChatCommands {
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.setPrefix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(user.getPlayer());
-			;
 			Prefix.CHAT.getPrefix().then("Das Prefix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0])
 					.send(args.getPlayer());
-			;
+			Core.getCore().getScoreboardHandler().updatePrefix(user);
 		}
 	}
 

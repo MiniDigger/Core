@@ -105,11 +105,18 @@ public class CoreScoreboardHandler implements ScoreboardHandler {
 		t.setName(name);
 		t.setNameTagVisibility(NameTagVisibility.ALWAYS);
 		t.addPlayer(user.getUUID());
-//		t.setPrefix(user.getPrefix()); //TODO Fix prefix system first...
-//		t.setSuffix(user.getSuffix());
-//		Core.getCore().getInstance()
-//				.debug("Added to sb: " + t.getPrefix() + " " + name + " " + t.getSuffix());
+		t.setPrefix(user.getPrefix());
+		t.setSuffix(user.getSuffix());
+		Core.getCore().getInstance().debug("Added to sb: " + t.getPrefix() + " " + name + " " + t.getSuffix());
 		teams.add(t);
 		return t;
+	}
+
+	@Override
+	public void updatePrefix(final User user) {
+		final ScoreboardTeam t = getTeam(user.getDisplayName());
+		t.setPrefix(user.getPrefix());
+		t.setSuffix(user.getSuffix());
+		recalc();
 	}
 }
