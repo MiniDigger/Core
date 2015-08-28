@@ -44,6 +44,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoNameTagFeature;
 import me.MiniDigger.CraftCore.Feature.Features.TeamFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
@@ -92,6 +93,9 @@ public class SUVFeature extends CoreFeature {
 					.color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
 		} catch (final Exception ex) {
 		}
+		
+		((NoNameTagFeature) getPhase().getFeature(FeatureType.NONAMETAG)).addIgnore(sucher1);
+		((NoNameTagFeature) getPhase().getFeature(FeatureType.NONAMETAG)).addIgnore(sucher2);
 
 		showLives();
 	}
