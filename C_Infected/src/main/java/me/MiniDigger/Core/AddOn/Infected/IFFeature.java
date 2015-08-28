@@ -41,6 +41,7 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDamageEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserDeathEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
@@ -51,8 +52,8 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 
 public class IFFeature extends CoreFeature {
 
-	private List<UUID>	infeced	= new ArrayList<>();
-	private boolean		cure		= false;
+	private List<UUID> infeced = new ArrayList<>();
+	private boolean cure = false;
 
 	public IFFeature(final Phase phase) {
 		super(phase);
@@ -85,20 +86,25 @@ public class IFFeature extends CoreFeature {
 
 		if (count != 0) {
 			for (int i = 0; i < count; i++) {
-				infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
+				infeced.add(getPhase().getGame().getPlayers()
+						.get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
 			}
 		} else {
-			infeced.add(getPhase().getGame().getPlayers().get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
+			infeced.add(getPhase().getGame().getPlayers()
+					.get(Core.getCore().getRandomUtil().nextInt(getPhase().getGame().getPlayers().size())));
 			Core.getCore().getInstance().debug("no zombies....");
 		}
 
 		for (final UUID id : infeced) {
 			final User user = Core.getCore().getUserHandler().get(id);
-			Prefix.IF.getPrefix().then("Du bist einer der ersten Zombies!").color(ChatColor.GOLD).send(user.getPlayer());
-			Prefix.IF.getPrefix().then("Töte alle Überlebenden um sie zu infizieren!").color(ChatColor.GOLD).send(user.getPlayer());
+			Prefix.IF.getPrefix().then("Du bist einer der ersten Zombies!").color(ChatColor.GOLD)
+					.send(user.getPlayer());
+			Prefix.IF.getPrefix().then("Töte alle Überlebenden um sie zu infizieren!").color(ChatColor.GOLD)
+					.send(user.getPlayer());
 
 			Core.getCore().getPlayerUtil().prepare(user.getPlayer());
-			user.getPlayer().getInventory().setHelmet(new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).build());
+			user.getPlayer().getInventory()
+					.setHelmet(new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).build());
 			user.getPlayer().getInventory().addItem(new CoreItemBuilder(Material.WOOD_SWORD).build());
 			user.getPlayer().updateInventory();
 
@@ -174,16 +180,20 @@ public class IFFeature extends CoreFeature {
 		board.clear(DisplaySlot.SIDEBAR);
 		board.setTitle(new CoreScoreboardTitle(ChatColor.GOLD + "Infected", DisplaySlot.SIDEBAR));
 
-		board.addLine(new CoreScoreboardLine(3, ChatColor.GOLD + ChatChars.Misc.bullet + " Überlebende:", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(3, ChatColor.GOLD + ChatChars.Misc.bullet + " Überlebende:",
+				DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(2, ChatColor.AQUA + " " + alive, DisplaySlot.SIDEBAR));
-		board.addLine(new CoreScoreboardLine(1, ChatColor.GOLD + ChatChars.Misc.bullet + " Zombies:", DisplaySlot.SIDEBAR));
+		board.addLine(
+				new CoreScoreboardLine(1, ChatColor.GOLD + ChatChars.Misc.bullet + " Zombies:", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(0, ChatColor.AQUA + " " + ifcount + " ", DisplaySlot.SIDEBAR));
 	}
 
 	public void cure() {
 		cure = true;
-		getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Es wurde ein Heilmittel gefunden!").color(ChatColor.GOLD));
-		getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Die Zombies können jetzt nicht mehr wiederaufstehen!").color(ChatColor.GOLD));
+		getPhase().getGame().broadCastMessage(
+				Prefix.IF.getPrefix().then("Es wurde ein Heilmittel gefunden!").color(ChatColor.GOLD));
+		getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix()
+				.then("Die Zombies können jetzt nicht mehr wiederaufstehen!").color(ChatColor.GOLD));
 	}
 
 	@Override
@@ -202,16 +212,20 @@ public class IFFeature extends CoreFeature {
 			e.setKeepDrops(true);
 			if (infeced.contains(e.getUser().getUUID())) {
 				if (cure) {
-					getPhase().getGame().leave(e.getUser());
+					// getPhase().getGame().leave(e.getUser());
+					((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 				}
 			} else {
 				infeced.add(e.getUser().getUUID());
-				Prefix.IF.getPrefix().then("Du bist jetzt ein Zombie!").color(ChatColor.GOLD).send(e.getUser().getPlayer());
-				Prefix.IF.getPrefix().then("Töte die letzten Überlebenen!").color(ChatColor.GOLD).send(e.getUser().getPlayer());
+				Prefix.IF.getPrefix().then("Du bist jetzt ein Zombie!").color(ChatColor.GOLD)
+						.send(e.getUser().getPlayer());
+				Prefix.IF.getPrefix().then("Töte die letzten Überlebenen!").color(ChatColor.GOLD)
+						.send(e.getUser().getPlayer());
 			}
 
 			Core.getCore().getPlayerUtil().prepare(e.getUser().getPlayer());
-			e.getUser().getPlayer().getInventory().setHelmet(new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).build());
+			e.getUser().getPlayer().getInventory()
+					.setHelmet(new CoreItemBuilder(Material.SKULL_ITEM).data(2).durability(2).build());
 			e.getUser().getPlayer().getInventory().addItem(new CoreItemBuilder(Material.WOOD_SWORD).build());
 			e.getUser().getPlayer().updateInventory();
 
@@ -241,16 +255,20 @@ public class IFFeature extends CoreFeature {
 		final int alive = playercount - ifcount;
 
 		if (alive == 0) {
-			getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Alle Überlebenden wurden ausgelöscht!").color(ChatColor.GOLD));
-			getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Die Menschheit ist untergegangen!").color(ChatColor.GOLD));
+			getPhase().getGame().broadCastMessage(
+					Prefix.IF.getPrefix().then("Alle Überlebenden wurden ausgelöscht!").color(ChatColor.GOLD));
+			getPhase().getGame().broadCastMessage(
+					Prefix.IF.getPrefix().then("Die Menschheit ist untergegangen!").color(ChatColor.GOLD));
 
 			getPhase().getGame().end();
 		}
 
 		if (cure) {
 			if (ifcount == 0) {
-				getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Der Zombievirus wurde vernichtet!").color(ChatColor.GOLD));
-				getPhase().getGame().broadCastMessage(Prefix.IF.getPrefix().then("Die Menschheit ist gerettet!").color(ChatColor.GOLD));
+				getPhase().getGame().broadCastMessage(
+						Prefix.IF.getPrefix().then("Der Zombievirus wurde vernichtet!").color(ChatColor.GOLD));
+				getPhase().getGame().broadCastMessage(
+						Prefix.IF.getPrefix().then("Die Menschheit ist gerettet!").color(ChatColor.GOLD));
 
 				getPhase().getGame().end();
 			}

@@ -153,7 +153,6 @@ public class BedFeature extends CoreFeature {
 				e.setRespawnLocation(d.getLocs(DyeColor.RED).values().iterator().next());
 				
 				final SpecateFeature s = (SpecateFeature) getPhase().getFeature(FeatureType.SPEC);
-				getPhase().getGame().leave(user);
 				s.spec(user);
 			} catch (final Exception ex) {
 				Core.getCore().getInstance().debug("no respawn found");

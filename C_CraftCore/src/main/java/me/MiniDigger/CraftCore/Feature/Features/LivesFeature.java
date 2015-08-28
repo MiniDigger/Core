@@ -220,8 +220,8 @@ public class LivesFeature extends CoreFeature {
 								.then(e.getUser().getDisplayName()).color(ChatColor.BLUE).then(" ist draußen!")
 								.color(ChatColor.AQUA));
 
-				getPhase().getGame().leave(e.getUser());
-//				((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
+				// getPhase().getGame().leave(e.getUser());
+				((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 
 				Core.getCore().getScoreboardHandler().getBoard(e.getUser().getUUID()).clear();
 
@@ -242,8 +242,8 @@ public class LivesFeature extends CoreFeature {
 	}
 
 	public void setLives(int i) {
-		for(UUID id : lives.keySet()){
-			if(lives.get(id) == max){
+		for (UUID id : lives.keySet()) {
+			if (lives.get(id) == max) {
 				lives.remove(id);
 				lives.put(id, i);
 			}

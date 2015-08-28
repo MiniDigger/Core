@@ -394,6 +394,7 @@ public class CoreGame implements Game {
 	public void addSpec(final UUID id) {
 		if (!specs.contains(id)) {
 			specs.add(id);
+			users.remove(id);
 		}
 	}
 

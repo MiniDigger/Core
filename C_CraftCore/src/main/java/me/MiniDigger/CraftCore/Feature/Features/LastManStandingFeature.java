@@ -173,7 +173,8 @@ public class LastManStandingFeature extends CoreFeature {
 				e.getUser().getPlayer().teleport(loc);
 			}
 
-			getPhase().getGame().leave(e.getUser());
+			// getPhase().getGame().leave(e.getUser());
+			((SpecateFeature) getPhase().getFeature(FeatureType.SPEC)).spec(e.getUser());
 
 			if (getPhase().getGame().getPlayers().size() < 2) {
 				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {

@@ -46,33 +46,33 @@ import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class SpecateFeature extends CoreFeature {
-	
+
 	private Location loc;
-	
+
 	public SpecateFeature(final Phase phase) {
 		super(phase);
 	}
-	
+
 	@Override
 	public FeatureType getType() {
 		return FeatureType.SPEC;
 	}
-	
+
 	@Override
 	public List<FeatureType> getDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getSoftDependencies() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public List<FeatureType> getIncompabilities() {
 		return new ArrayList<FeatureType>();
 	}
-	
+
 	@Override
 	public void start() {
 		final MapData map = Core.getCore().getMapHandler().getMap(getPhase().getGame().getGameData("VoteWinner"));
@@ -81,42 +81,45 @@ public class SpecateFeature extends CoreFeature {
 			loc = locs.get(locs.keySet().iterator().next());
 		}
 	}
-	
+
 	@Override
 	public void end() {
-	
+
 	}
-	
+
 	public boolean isSpec(final UUID id) {
 		return getPhase().getGame().getSpecs().contains(id);
 	}
-	
+
 	public void spec(final User user) {
-		getPhase().getGame().addSpec(user.getUUID());
-		user.getPlayer().setGameMode(GameMode.SPECTATOR);
-		
-		Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
-		
-		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
-			
-			@Override
-			public void run() {
-				if (loc != null) {
-					user.getPlayer().teleport(loc);
+		if (!getPhase().getGame().getSpecs().contains(user.getUUID())) {
+			getPhase().getGame().leave(user);
+			getPhase().getGame().addSpec(user.getUUID());
+			user.getPlayer().setGameMode(GameMode.SPECTATOR);
+
+			Core.getCore().getScoreboardHandler().getBoard(user.getUUID()).clear();
+
+			Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
+
+				@Override
+				public void run() {
+					if (loc != null) {
+						user.getPlayer().teleport(loc);
+					}
 				}
-			}
-		}, 10, getPhase());// Wait for respawn
-		
-		Prefix.SPEC.getPrefix().then("Du bist jetzt Zuschauer!").send(user.getPlayer());
+			}, 10, getPhase());// Wait for respawn
+
+			Prefix.SPEC.getPrefix().then("Du bist jetzt Zuschauer!").send(user.getPlayer());
+		}
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onDeath(final CoreUserDeathEvent e) {
 		if (!e.shouldRespawn()) {
 			spec(e.getUser());
 		}
 	}
-	
+
 	@EventHandler
 	public void respawn(final PlayerRespawnEvent e) {
 		if (getPhase().getGame().getSpecs().contains(e.getPlayer().getUniqueId())) {
@@ -129,12 +132,12 @@ public class SpecateFeature extends CoreFeature {
 			}
 		}
 	}
-	
+
 	public void remSpec(final User user) {
 		getPhase().getGame().remSpec(user.getUUID());
 		user.getPlayer().setGameMode(GameMode.SURVIVAL);
 	}
-	
+
 	@EventHandler
 	public void onJoin(final CoreUserJoinGameEvent e) {
 		if (e.getGame().getIdentifier() == getPhase().getGame().getIdentifier()) {
@@ -145,7 +148,7 @@ public class SpecateFeature extends CoreFeature {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onLeave(final CoreUserLeaveGameEvent e) {
 		if (isSpec(e.getUser().getUUID())) {
