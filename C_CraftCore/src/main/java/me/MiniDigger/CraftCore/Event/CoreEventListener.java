@@ -58,7 +58,7 @@ public class CoreEventListener implements EventListener {
 		e.setJoinMessage(null);
 		Core.getCore().getPlayerUtil().prepare(e.getPlayer());
 		Core.getCore().getCommonMethods().printJoinMessage(user);
-		Core.getCore().getScoreboardHandler().update(e.getPlayer().getUniqueId());
+		Core.getCore().getScoreboardHandler().recalc();
 
 		if (Core.getCore().getGameHandler().getMainGame() != null
 				&& Core.getCore().getGameHandler().getMainGame().getType() != GameType.NOTHING) {
@@ -71,6 +71,7 @@ public class CoreEventListener implements EventListener {
 			}
 		}
 
+		/* HIDE FIX */
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			e.getPlayer().hidePlayer(p);
 			p.hidePlayer(e.getPlayer());
@@ -81,8 +82,10 @@ public class CoreEventListener implements EventListener {
 			@Override
 			public void run() {
 				for (Player p : Bukkit.getOnlinePlayers()) {
-					e.getPlayer().showPlayer(p);
-					p.showPlayer(e.getPlayer());
+					if (e.getPlayer() != null) {
+						e.getPlayer().showPlayer(p);
+						p.showPlayer(e.getPlayer());
+					}
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 10);
