@@ -35,7 +35,7 @@ public class DayNightFeature extends CoreFeature {
 
 	/**
 	 * Screw that, use http://dev.bukkit.org/bukkit-plugins/real-time-rotation/
-	 * 
+	 *
 	 * @param phase
 	 */
 	public DayNightFeature(final Phase phase) {
@@ -72,7 +72,7 @@ public class DayNightFeature extends CoreFeature {
 			Core.getCore().getInstance().debug("dnf: map null");
 			return;
 		}
-		String world = m.getMap().getName();
+		final String world = m.getMap().getName();
 		final World w = Bukkit.getWorld(world);
 		Core.getCore().getTaskHandler().runTaskLater(new TimeUpdater(this, w), 1, getPhase());
 	}
@@ -85,20 +85,20 @@ public class DayNightFeature extends CoreFeature {
 }
 
 class TimeUpdater extends BukkitRunnable {
-	public static final float MINECRAFT_TIME_PER_DAY = 24000.0f;
-	public static final float REAL_TIME_PER_DAY = 86400.0f;
-	private Plugin plugin = Core.getCore().getInstance();
-	public static String sunsetString;
-	public static String sunriseString;
-	private static int currentTick;
-	private static float lastCalculatedTime;
-	public static int lunarIndex;
-	public static boolean timeHaveBeenFetched;
-	public static boolean triedToFetchTime;
-	private static int ticksPerCalculation;
-	private static float timeOffset;
-	private DayNightFeature f;
-	private World w;
+	public static final float		MINECRAFT_TIME_PER_DAY	= 24000.0f;
+	public static final float		REAL_TIME_PER_DAY		= 86400.0f;
+	private final Plugin			plugin					= Core.getCore().getInstance();
+	public static String			sunsetString;
+	public static String			sunriseString;
+	private static int				currentTick;
+	private static float			lastCalculatedTime;
+	public static int				lunarIndex;
+	public static boolean			timeHaveBeenFetched;
+	public static boolean			triedToFetchTime;
+	private static int				ticksPerCalculation;
+	private static float			timeOffset;
+	private final DayNightFeature	f;
+	private final World				w;
 
 	static {
 		TimeUpdater.currentTick = 0;
@@ -109,7 +109,7 @@ class TimeUpdater extends BukkitRunnable {
 		TimeUpdater.timeOffset = 0.0f;
 	}
 
-	public TimeUpdater(DayNightFeature f, World w) {
+	public TimeUpdater(final DayNightFeature f, final World w) {
 		this.f = f;
 		this.w = w;
 	}
@@ -125,7 +125,7 @@ class TimeUpdater extends BukkitRunnable {
 			this.plugin.getLogger().info("Sunrise: " + TimeUpdater.sunriseString);
 			TimeUpdater.sunsetString = "21:00:00";
 			this.plugin.getLogger().info("Sunset: " + TimeUpdater.sunsetString);
-//			TimeUpdater.lunarIndex = 0;
+			// TimeUpdater.lunarIndex = 0;
 			this.plugin.getLogger().info("Lunar index: " + TimeUpdater.lunarIndex);
 
 			if (!TimeUpdater.timeHaveBeenFetched) {
@@ -142,6 +142,7 @@ class TimeUpdater extends BukkitRunnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		if (!this.loadConfiguration()) {
 			return;
@@ -208,8 +209,7 @@ class TimeUpdater extends BukkitRunnable {
 		final Calendar cal = Calendar.getInstance();
 		final int currentDay = cal.get(5);
 		final int currentMonth = cal.get(2) + 1;
-		final String XMLLocation = "http://www.earthtools.org/sun/" + latitude + "/" + longitude + "/" + currentDay
-				+ "/" + currentMonth + "/" + timeoffset + "/0";
+		final String XMLLocation = "http://www.earthtools.org/sun/" + latitude + "/" + longitude + "/" + currentDay + "/" + currentMonth + "/" + timeoffset + "/0";
 		final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
 			final DocumentBuilder db = dbf.newDocumentBuilder();
@@ -231,16 +231,20 @@ class TimeUpdater extends BukkitRunnable {
 			} else {
 				TimeUpdater.timeHaveBeenFetched = false;
 			}
-		} catch (ParserConfigurationException e) {
+		}
+		catch (final ParserConfigurationException e) {
 			this.plugin.getLogger().info("ErrorCode: #2004");
 			TimeUpdater.timeHaveBeenFetched = false;
-		} catch (MalformedURLException e2) {
+		}
+		catch (final MalformedURLException e2) {
 			this.plugin.getLogger().info("ErrorCode: #2005");
 			TimeUpdater.timeHaveBeenFetched = false;
-		} catch (SAXException e3) {
+		}
+		catch (final SAXException e3) {
 			this.plugin.getLogger().info("ErrorCode: #2006");
 			TimeUpdater.timeHaveBeenFetched = false;
-		} catch (IOException e4) {
+		}
+		catch (final IOException e4) {
 			this.plugin.getLogger().info("ErrorCode: #2007");
 			TimeUpdater.timeHaveBeenFetched = false;
 			e4.printStackTrace();
@@ -262,17 +266,17 @@ class TimeUpdater extends BukkitRunnable {
 			Input.close();
 			final JSONArray inputStream = (JSONArray) new JSONParser().parse(JSonContent);
 			final JSONObject resultObject = (JSONObject) inputStream.get(0);
-			if (resultObject.containsKey((Object) "Index")) {
-				TimeUpdater.lunarIndex = (int) (Long.parseLong(resultObject.get((Object) "Index").toString()) / 3.75)
-						+ 5;
-				this.plugin.getLogger().info("Lunar index: " + resultObject.get((Object) "Index").toString() + " "
-						+ "-> MC Lunar index: " + TimeUpdater.lunarIndex);
+			if (resultObject.containsKey("Index")) {
+				TimeUpdater.lunarIndex = (int) (Long.parseLong(resultObject.get("Index").toString()) / 3.75) + 5;
+				this.plugin.getLogger().info("Lunar index: " + resultObject.get("Index").toString() + " " + "-> MC Lunar index: " + TimeUpdater.lunarIndex);
 			}
-		} catch (ParseException e) {
+		}
+		catch (final ParseException e) {
 			this.plugin.getLogger().info("ErrorCode: #2008");
 			TimeUpdater.timeHaveBeenFetched = false;
 			e.printStackTrace();
-		} catch (IOException e2) {
+		}
+		catch (final IOException e2) {
 			this.plugin.getLogger().info("ErrorCode: #2009");
 			TimeUpdater.timeHaveBeenFetched = false;
 			e2.printStackTrace();

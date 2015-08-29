@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -46,7 +59,8 @@ public class EssentialCommands {
 		final EntityType type;
 		try {
 			type = EntityType.valueOf(args.getArgs()[0]);
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			Prefix.API.getPrefix().then("Unbekanntes Entity!").color(ChatColor.RED).send(args.getPlayer());
 			;
 			return;
@@ -54,7 +68,8 @@ public class EssentialCommands {
 
 		try {
 			c = Integer.parseInt(args.getArgs()[1]);
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			c = 1;
 		}
 
@@ -66,8 +81,7 @@ public class EssentialCommands {
 				for (int i = 0; i < fC; i++) {
 					args.getPlayer().getWorld().spawn(args.getPlayer().getLocation(), type.getEntityClass());
 				}
-				Prefix.API.getPrefix().then("Es wurde" + (fC > 1 ? "n " : " ") + fC + " " + type.name() + " gespawnt!")
-						.color(ChatColor.GREEN).send(args.getPlayer());
+				Prefix.API.getPrefix().then("Es wurde" + (fC > 1 ? "n " : " ") + fC + " " + type.name() + " gespawnt!").color(ChatColor.GREEN).send(args.getPlayer());
 			}
 
 		});
@@ -79,8 +93,7 @@ public class EssentialCommands {
 		for (final World world : Bukkit.getWorlds()) {
 			for (final Entity e : world.getEntities()) {
 				boolean b = false;
-				for (final EntityType t : Core.getCore().getEntityUtil().getAll(Type.ANGRY, Type.FRIENDLY, Type.PASSIV,
-						Type.PROJECTILE)) {
+				for (final EntityType t : Core.getCore().getEntityUtil().getAll(Type.ANGRY, Type.FRIENDLY, Type.PASSIV, Type.PROJECTILE)) {
 					if (t == e.getType()) {
 						b = true;
 					}
@@ -91,12 +104,10 @@ public class EssentialCommands {
 				}
 			}
 		}
-		Prefix.API.getPrefix().then("Es wurde" + (i > 1 ? "n " : " ") + i + " Entities gelöscht!")
-				.color(ChatColor.GREEN).send(args.getSender());
+		Prefix.API.getPrefix().then("Es wurde" + (i > 1 ? "n " : " ") + i + " Entities gelöscht!").color(ChatColor.GREEN).send(args.getSender());
 	}
 
-	@Command(name = "hub", aliases = {
-			"spawn" }, usage = "", min = 0, max = 0, consol = false, permission = "hub", description = "Teleportiert den Spieler zum Hub", sync = true)
+	@Command(name = "hub", aliases = { "spawn" }, usage = "", min = 0, max = 0, consol = false, permission = "hub", description = "Teleportiert den Spieler zum Hub", sync = true)
 	public void hub(final CommandArgs args) {
 		try {
 			if (Core.getCore().getGameHandler().getMainGame().getType() == GameType.LOBBY) {
@@ -107,18 +118,18 @@ public class EssentialCommands {
 				// Server!").color(ChatColor.RED).send(args.getPlayer());
 				Core.getCore().getServerHandler().connect(args.getUser(), "lobby");
 			}
-		} catch (Exception ex) {
+		}
+		catch (final Exception ex) {
 			Core.getCore().getServerHandler().connect(args.getUser(), "lobby");
 		}
 	}
 
 	@Command(name = "ban", usage = "<user> <reason>", min = 2, consol = true, permission = "ban", description = "Ban a user", sync = true, string = 2)
 	public void ban(final CommandArgs args) {
-		Bukkit.getBanList(BanList.Type.NAME).addBan(args.getArgs()[0], args.getArgs()[1], null,
-				args.getSender().getName());
+		Bukkit.getBanList(BanList.Type.NAME).addBan(args.getArgs()[0], args.getArgs()[1], null, args.getSender().getName());
 		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " wurde gebannt!").send(args.getSender());
 
-		Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		if (p != null) {
 			p.kickPlayer("Du wurdest von " + args.getSender().getName() + " gebannt: " + args.getArgs()[1]);
 		}
@@ -126,28 +137,24 @@ public class EssentialCommands {
 
 	@Command(name = "tempban", usage = "<user> <time> <reason>", min = 3, consol = true, permission = "tempban", description = "TempBan a user", sync = true, string = 3)
 	public void tempban(final CommandArgs args) {
-		int time = Integer.parseInt(args.getArgs()[1]);
-		Calendar c = Calendar.getInstance();
+		final int time = Integer.parseInt(args.getArgs()[1]);
+		final Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.add(Calendar.DATE, time);
 
-		Bukkit.getBanList(BanList.Type.NAME).addBan(args.getArgs()[0], args.getArgs()[2], c.getTime(),
-				args.getSender().getName());
-		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " wurde für " + time + " Tage gebannt!")
-				.send(args.getSender());
+		Bukkit.getBanList(BanList.Type.NAME).addBan(args.getArgs()[0], args.getArgs()[2], c.getTime(), args.getSender().getName());
+		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " wurde für " + time + " Tage gebannt!").send(args.getSender());
 
-		Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		if (p != null) {
-			p.kickPlayer("Du wurdest von " + args.getSender().getName() + " für " + time + " Tage gebannt: "
-					+ args.getArgs()[2]);
+			p.kickPlayer("Du wurdest von " + args.getSender().getName() + " für " + time + " Tage gebannt: " + args.getArgs()[2]);
 		}
 	}
 
 	@Command(name = "unban", usage = "<user>", min = 1, max = 1, consol = true, permission = "unban", description = "UnBan a user", sync = true)
 	public void unban(final CommandArgs args) {
 		Bukkit.getBanList(BanList.Type.NAME).pardon(args.getArgs()[0]);
-		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " kann jetzt wieder Spielen!")
-				.send(args.getSender());
+		Prefix.API.getPrefix().then("Der Spieler " + args.getArgs()[0] + " kann jetzt wieder Spielen!").send(args.getSender());
 	}
 
 	@Command(name = "ping", usage = "", consol = false, permission = "ping", description = "Shows your ping")
@@ -155,10 +162,10 @@ public class EssentialCommands {
 		Object handle = null;
 		int ping = 0;
 		try {
-			handle = args.getPlayer().getClass().getMethod("getHandle", (Class<?>[]) new Class[0])
-					.invoke(args.getPlayer(), new Object[0]);
+			handle = args.getPlayer().getClass().getMethod("getHandle", new Class[0]).invoke(args.getPlayer(), new Object[0]);
 			ping = (int) handle.getClass().getDeclaredField("ping").get(handle);
-		} catch (Exception ex) {
+		}
+		catch (final Exception ex) {
 			Core.getCore().getInstance().debug("could not get ping");
 		}
 		Prefix.API.getPrefix().then("Dein Ping ist: " + ping + "ms").send(args.getPlayer());

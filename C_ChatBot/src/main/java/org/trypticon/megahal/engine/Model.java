@@ -11,29 +11,29 @@ import java.util.Random;
  * @author Trejkaz
  */
 public class Model {
-	
+
 	/**
 	 * The order of this model.
 	 */
 	private final int order;
-	
+
 	/**
 	 * The forward trie.
 	 */
 	private final TrieNode forwardTrie;
-	
+
 	/**
 	 * The backward trie.
 	 */
 	private final TrieNode backwardTrie;
-	
+
 	/**
 	 * Create a new model with the default order of 4.
 	 */
 	public Model() {
 		this(4);
 	}
-	
+
 	/**
 	 * Create a new model with the given order. The order is the maximum number
 	 * of symbols which can occur in a given context.
@@ -46,11 +46,11 @@ public class Model {
 		forwardTrie = new TrieNode();
 		backwardTrie = new TrieNode();
 	}
-	
+
 	public int getOrder() {
 		return order;
 	}
-	
+
 	/**
 	 * Finds the context associated with the end of the given list of symbols.
 	 * I'm not sure if I've named this appropriately...
@@ -73,9 +73,9 @@ public class Model {
 		}
 		return node;
 	}
-	
+
 	// ---------------- METHODS FOR TRAINING THE BRAIN ----------------
-	
+
 	/**
 	 * Train the model with a list of symbols.
 	 *
@@ -88,16 +88,16 @@ public class Model {
 		if (symbols.size() < order + 1) {
 			return;
 		}
-		
+
 		// Train in the forward direction.
 		train(forwardTrie, symbols);
-		
+
 		// Train in the backward direction.
 		Collections.reverse(symbols);
 		train(backwardTrie, symbols);
 		Collections.reverse(symbols);
 	}
-	
+
 	/**
 	 * For convenience, to avoid duplicating code. This is called from the
 	 * public train(List) method, once for each of the forward and backward
@@ -109,11 +109,11 @@ public class Model {
 	 *            the list of symbols.
 	 */
 	private void train(final TrieNode trie, final List<Symbol> symbols) {
-		
+
 		// Iterate from the start to the end of the list.
 		for (int i = 0; i < symbols.size(); i++) {
 			TrieNode node = trie;
-			
+
 			// Iterate over the five symbols occurring at the current position.
 			for (int j = i; j < i + order + 1 && j < symbols.size(); j++) {
 				final Symbol symbol = symbols.get(j);
@@ -124,7 +124,7 @@ public class Model {
 			}
 		}
 	}
-	
+
 	// ---------------- METHODS TO GENERATE RESPONSES ----------------
 	/**
 	 * Generates a list of random symbols, forming a random response to the
@@ -139,19 +139,19 @@ public class Model {
 	public List<Symbol> generateRandomSymbols(final Random rng, final List<Symbol> userKeywords) {
 		// This is the list which will be returned.
 		final ArrayList<Symbol> symbols = new ArrayList<Symbol>();
-		
+
 		// Generate in the forward direction.
 		generateRandomSymbols(forwardTrie, symbols, rng, userKeywords, Symbol.END);
-		
+
 		// Reverse the list, and then generate in the backward direction.
 		Collections.reverse(symbols);
 		generateRandomSymbols(backwardTrie, symbols, rng, userKeywords, Symbol.START);
-		
+
 		// Reverse the list back again, and return it.
 		Collections.reverse(symbols);
 		return symbols;
 	}
-	
+
 	/**
 	 * Generates random symbols until a list terminator is found.
 	 *
@@ -173,9 +173,10 @@ public class Model {
 			symbol = generateRandomSymbol(trie, symbols, rng, userKeywords);
 			symbols.add(symbol);
 			// System.out.print("{"+symbol+"}");
-		} while (!symbol.equals(stopSymbol));
+		}
+		while (!symbol.equals(stopSymbol));
 	}
-	
+
 	/**
 	 * Generates a random symbol for the next symbol in the list.
 	 *
@@ -196,39 +197,41 @@ public class Model {
 		if (symbols.isEmpty() && !userKeywords.isEmpty()) {
 			return userKeywords.get(rng.nextInt(userKeywords.size()));
 		}
-		
+
 		// Find the longest context available in the list of symbols.
 		final TrieNode node = findLongestContext(trie, symbols);
-		
+
 		// Pick a random number, which will be used as a count-down.
 		int total = rng.nextInt(node.count > 0 ? node.count : 1); // remember,
-		                                                          // our 'count'
-		                                                          // is the
-		                                                          // total of
-		                                                          // all
-		                                                          // children's
-		                                                          // 'usages'
-		
+																	// our
+																	// 'count'
+																	// is the
+																	// total of
+																	// all
+																	// children's
+																	// 'usages'
+
 		// Pick a random number, which will be used as an initial index into the
 		// list of children.
 		final List<?> childNodes = node.getChildList();
 		int index = childNodes.size() > 0 ? rng.nextInt(childNodes.size()) : 0;
-		
+
 		TrieNode subnode;
 		Symbol subnodeSymbol;
 
-		// Core.getCore().getInstance().debug("size: " + childNodes.size() + " index: " +
+		// Core.getCore().getInstance().debug("size: " + childNodes.size() + "
+		// index: " +
 		// index);
-		
+
 		do {
 			subnode = (TrieNode) childNodes.get(index);
 			subnodeSymbol = subnode.symbol;
-			
+
 			// If the child is a keyword the user used, use it immediately.
 			if (userKeywords.contains(subnodeSymbol)) {
 				return subnodeSymbol;
 			}
-			
+
 			// Otherwise, subtract the count of the child off the total, and
 			// look at the
 			// next word in the list. We'll actually loop around backwards
@@ -242,14 +245,15 @@ public class Model {
 			if (index < 0) {
 				index = childNodes.size() - 1;
 			}
-		} while (total >= 0);
-		
+		}
+		while (total >= 0);
+
 		// Once total hits zero, return the current child.
 		return subnodeSymbol;
 	}
-	
+
 	// ---------------- METHODS TO ANALYSE RESPONSES ----------------
-	
+
 	/**
 	 * Calculates the amount of 'information' contained in the given candidate
 	 * response.
@@ -262,15 +266,15 @@ public class Model {
 	 */
 	protected double calculateInformation(final List<Symbol> reply, final List<Symbol> userKeywords) {
 		double info = 0.0;
-		
+
 		// Calculate information for the forward trie.
 		info += calculateInformation(forwardTrie, reply, userKeywords);
-		
+
 		// Calculate information for the backward trie.
 		Collections.reverse(reply);
 		info += calculateInformation(backwardTrie, reply, userKeywords);
 		Collections.reverse(reply);
-		
+
 		// Count the keywords in the reply, and scale the information value
 		// depending on how
 		// many keywords are present.
@@ -288,7 +292,7 @@ public class Model {
 		}
 		return info;
 	}
-	
+
 	/**
 	 * Calculates the amount of 'information' contained in the given list of
 	 * symbols, with respect to the given trie.
@@ -303,7 +307,7 @@ public class Model {
 	 */
 	protected double calculateInformation(final TrieNode trie, final List<Symbol> reply, final List<Symbol> userKeywords) {
 		double info = 0.0;
-		
+
 		for (int i = 0; i < reply.size(); i++) {
 			final Symbol symbol = reply.get(i);
 			if (userKeywords.contains(symbol)) {
@@ -316,7 +320,7 @@ public class Model {
 		}
 		return info;
 	}
-	
+
 	/**
 	 * Calculates the average probability of the last symbol in a list being in
 	 * each context.
@@ -342,5 +346,5 @@ public class Model {
 		}
 		return (total / symbols.size());
 	}
-	
+
 }

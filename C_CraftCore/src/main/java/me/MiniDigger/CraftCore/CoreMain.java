@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -21,7 +34,6 @@
 package me.MiniDigger.CraftCore;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Date;
 import java.util.HashMap;
@@ -46,7 +58,6 @@ import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Achievement.CoreAchievementListener;
 import me.MiniDigger.CraftCore.Block.CoreBlockListener;
 import me.MiniDigger.CraftCore.Chat.CoreChatListener;
@@ -91,18 +102,17 @@ import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreMain extends JavaPlugin implements Main {
 
-	private boolean update = false;
-	private static Core core;
-	public static Logger logger;
+	private boolean			update	= false;
+	private static Core		core;
+	public static Logger	logger;
 
 	/**
 	 * DO NO USE
-	 * 
+	 *
 	 * @deprecated DO NOT USE
 	 */
 	@Deprecated
@@ -132,7 +142,8 @@ public class CoreMain extends JavaPlugin implements Main {
 				core.getCommonMethods().killPlugin();
 				return;
 			}
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 			core.getCommonMethods().killPlugin();
@@ -150,7 +161,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			}
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -161,7 +173,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			saveDefaultConfig();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -172,7 +185,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			enableExternalDependencies();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -183,7 +197,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			registerCommands();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -194,7 +209,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			enableHandler();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -205,7 +221,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			loadStuff();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -216,7 +233,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			registerListener();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -227,7 +245,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			fixReload();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -238,7 +257,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			Core.getCore().getGameHandler().searchMainGame();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -291,7 +311,8 @@ public class CoreMain extends JavaPlugin implements Main {
 			Core.getCore().getErrorHandler().init();
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -319,7 +340,8 @@ public class CoreMain extends JavaPlugin implements Main {
 
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -329,17 +351,16 @@ public class CoreMain extends JavaPlugin implements Main {
 		core.getMetricsHandler().start();
 
 		try {
-			FileHandler h = new java.util.logging.FileHandler(
-					new File(Bukkit.getWorldContainer().getAbsolutePath() + "/logs", "websocket.log")
-							.getAbsolutePath());
+			final FileHandler h = new java.util.logging.FileHandler(new File(Bukkit.getWorldContainer().getAbsolutePath() + "/logs", "websocket.log").getAbsolutePath());
 			h.setFormatter(new SimpleFormatter());
 			logger = Logger.getLogger("WebSocket");
-			for (Handler hh : logger.getHandlers()) {
+			for (final Handler hh : logger.getHandlers()) {
 				logger.removeHandler(hh);
 			}
 			logger.addHandler(h);
 			logger.setUseParentHandlers(false);
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 
@@ -359,7 +380,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP_C);
 		try {
 			Core.getCore().getSocketHandler().stopClient();
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -367,7 +389,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP);
 		try {
 			Core.getCore().getSocketHandler().stopServer();
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -375,7 +398,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		MSG.log(LogLevel.INFO, LangKeyType.Main.UNREGISTER_LISTENER);
 		try {
 			HandlerList.unregisterAll(this);
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -384,7 +408,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		try {
 			Core.getCore().getTaskHandler().cancelAll();
 			Bukkit.getScheduler().cancelTasks(this);
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -392,7 +417,8 @@ public class CoreMain extends JavaPlugin implements Main {
 		MSG.log(LogLevel.INFO, LangKeyType.Main.DEACTIVATE_HANDLER);
 		try {
 			disableHandler();
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
@@ -421,20 +447,16 @@ public class CoreMain extends JavaPlugin implements Main {
 		reloc.put("timings", "debug");
 		Core.getCore().setCommandHandler(new CoreCommandHandler(reloc));
 
-		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(),
-				new ChatCommands(), new TrollCommands(), new SquadCommands(), new WorldCommands(), new ToggleCommands(),
-				new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(),
-				new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(), new TagCommands(),
-				new GameCommands() };
+		final Object[] commandHandler = new Object[] { new PluginCommands(), new DevCommands(), new StatsCommands(), new ChatCommands(), new TrollCommands(), new SquadCommands(), new WorldCommands(),
+				new ToggleCommands(), new ItemCommands(), new SettingsCommands(), new AddOnCommands(), new EssentialCommands(), new TeamCommands(), new KitCommands(), new EffectsCommands(), new LangCommands(),
+				new TagCommands(), new GameCommands() };
 		for (final Object obj : commandHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
 
-		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(),
-				new StatsCompleter(), new ChatCompleter(), new TrollCompleter(), new SquadCompleter(),
-				new WorldCompleter(), new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(),
-				new AddOnCompleter(), new EssentialCompleter(), new TeamCompleter(), new KitCompleter(),
-				new EffectsCompleter(), new LangCompleter(), new TagCompleter(), new GameCompleter() };
+		final Object[] completerHandler = new Object[] { new PluginCompleter(), new DevCompleter(), new StatsCompleter(), new ChatCompleter(), new TrollCompleter(), new SquadCompleter(), new WorldCompleter(),
+				new ToggleCompleter(), new ItemCompleter(), new SettingCompleter(), new AddOnCompleter(), new EssentialCompleter(), new TeamCompleter(), new KitCompleter(), new EffectsCompleter(), new LangCompleter(),
+				new TagCompleter(), new GameCompleter() };
 		for (final Object obj : completerHandler) {
 			Core.getCore().getCommandHandler().registerCommands(obj);
 		}
@@ -462,10 +484,8 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 
 	private void registerListener() {
-		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(),
-				Core.getCore().getProtocolHandler().getSignChangers(), new CoreEventListener(), new CoreBlockListener(),
-				Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(),
-				Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
+		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(), new CoreEventListener(), new CoreBlockListener(),
+				Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(), Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
 		for (final Listener listener : listeners) {
 			if (listener == null) {
 				MSG.log(LogLevel.DEBUG, LangKeyType.Main.LISTENER_NULL);
@@ -497,8 +517,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 
 	@Override
-	public boolean onCommand(final CommandSender sender, final org.bukkit.command.Command command, final String label,
-			final String[] args) {
+	public boolean onCommand(final CommandSender sender, final org.bukkit.command.Command command, final String label, final String[] args) {
 		return Core.getCore().getCommandHandler().handleCommand(sender, label, command, args);
 	}
 

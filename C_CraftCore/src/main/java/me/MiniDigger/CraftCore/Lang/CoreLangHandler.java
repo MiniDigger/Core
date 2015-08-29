@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -36,26 +49,26 @@ import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.Lang.LogLevel;
 
 public class CoreLangHandler implements LangHandler {
-	
-	private final List<LangStorage>	langs	    = new ArrayList<LangStorage>();
-	private LangStorage	            fallbackStorage;
-	private LangType	            defaultLang	= LangType.en_US;
-	private LogLevel	            log;
-	private final File	            langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
-	
+
+	private final List<LangStorage>	langs		= new ArrayList<LangStorage>();
+	private LangStorage				fallbackStorage;
+	private LangType				defaultLang	= LangType.en_US;
+	private LogLevel				log;
+	private final File				langFolder	= new File(Core.getCore().getInstance().getDataFolder(), "lang");
+
 	@Override
 	public void load() {
 		if (!langFolder.exists()) {
 			langFolder.mkdirs();
 		}
-		
+
 		log = LogLevel.valueOf(Core.getCore().getInstance().getConfig().getString("log-level"));
 		if (log == null) {
 			log = LogLevel.DEBUG;
 		}
-		
+
 		defaultLang = LangType.valueOf(Core.getCore().getInstance().getConfig().getString("default-lang"));
-		
+
 		fallbackStorage = new CoreLangStorage();
 		fallbackStorage.setLangType(defaultLang);
 		final Map<LangKeyType, String> values = new HashMap<LangKeyType, String>();
@@ -64,7 +77,7 @@ public class CoreLangHandler implements LangHandler {
 		}
 		fallbackStorage.setValues(values);
 		langs.add(0, fallbackStorage);
-		
+
 		for (final File f : langFolder.listFiles()) {
 			if (f.isFile()) {
 				if (f.getName().endsWith(".lang")) {
@@ -75,7 +88,7 @@ public class CoreLangHandler implements LangHandler {
 				}
 			}
 		}
-		
+
 		if (langs.size() == 1) {
 			Core.getCore().getInstance().debug("Saving default lang!");
 			final LangStorage s = new CoreLangStorage();
@@ -86,14 +99,14 @@ public class CoreLangHandler implements LangHandler {
 			load();
 		}
 	}
-	
+
 	@Override
 	public LangStorage getStorage(final LangType type) {
 		if (langs.size() == 0) {
 			LogLevel.ERROR.getMsg(LangKeyType.Lang.ERROR_NO_LANGS.getDefaultValue()).send(Bukkit.getConsoleSender());
 			return fallbackStorage;
 		}
-		
+
 		if (type == defaultLang) {
 			for (final LangStorage s : langs) {
 				if (s.getLangType().equals(type)) {
@@ -115,17 +128,17 @@ public class CoreLangHandler implements LangHandler {
 		}
 		return getStorage(defaultLang);
 	}
-	
+
 	@Override
 	public LangStorage getStorage() {
 		return getStorage(defaultLang);
 	}
-	
+
 	@Override
 	public LogLevel getLogLevel() {
 		return log;
 	}
-	
+
 	@Override
 	public LangType getDefaultLang() {
 		return defaultLang;

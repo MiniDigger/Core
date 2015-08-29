@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -17,7 +16,6 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Scoreboard.Scoreboard;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
@@ -57,7 +55,7 @@ public class EHFeature extends CoreFeature {
 			u.getPlayer().setGameMode(GameMode.SPECTATOR);
 			u.getPlayer().teleport(((EHPhase) getPhase()).getS().getSpawn());
 		}
-		
+
 		updateScoreboard();
 	}
 
@@ -93,8 +91,8 @@ public class EHFeature extends CoreFeature {
 
 		board.setTitle(new CoreScoreboardTitle("Euro", DisplaySlot.BELOW_NAME));
 
-		Map<String, Double> donations = ((EHPhase) getPhase()).getD().getDonations();
-		for (String name : donations.keySet()) {
+		final Map<String, Double> donations = ((EHPhase) getPhase()).getD().getDonations();
+		for (final String name : donations.keySet()) {
 			board.addLine(new CoreScoreboardLine(donations.get(name).intValue(), name, DisplaySlot.BELOW_NAME));
 		}
 	}

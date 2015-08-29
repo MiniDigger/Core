@@ -1,17 +1,30 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
  *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -25,53 +38,35 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.GameType;
-
 import mkremins.fanciful.FancyMessage;
 
 public enum Prefix {
-	ERROR(ChatColor.RED, ChatColor.DARK_RED, "Error", GameType.NOTHING),
-	CORE(ChatColor.RED, ChatColor.GRAY, "WtD|Server", GameType.NOTHING),
-	HUB(ChatColor.AQUA, ChatColor.BLUE, "Hub", GameType.LOBBY),
-	TICTACTOE(ChatColor.RESET, ChatColor.BLUE, "TicTacToe> ", GameType.TICTACTOE),
-	STATS(ChatColor.RESET, ChatColor.GOLD, "Stats> ", GameType.NOTHING),
-	API(ChatColor.GRAY, ChatColor.RED, "WtD|Server", GameType.NOTHING),
-	SECURITY(ChatColor.RESET, ChatColor.AQUA, "Security> ", GameType.NOTHING),
-	CHAT(ChatColor.RESET, ChatColor.DARK_GRAY, "ChatManagment> ", GameType.NOTHING),
-	SQUAD(ChatColor.AQUA, ChatColor.BLUE, "Squad", GameType.NOTHING),
-	HINT(ChatColor.MAGIC, ChatColor.GOLD, "JustATip", GameType.NOTHING),
-	GETHEDROP(ChatColor.AQUA, ChatColor.BLUE, "GetTheDrop", GameType.GETTHEDROP),
-	VOTE(ChatColor.AQUA, ChatColor.BLUE, "Vote", GameType.NOTHING),
-	SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY),
-	ADDON(ChatColor.RESET, ChatColor.AQUA, "AddOn>", GameType.NOTHING),
-	BEDWARS(ChatColor.AQUA, ChatColor.BLUE, "BedWars", GameType.BEDWARS),
-	CINE(ChatColor.RESET, ChatColor.AQUA, "Cinematic>", GameType.NOTHING),
-	CRANK(ChatColor.AQUA, ChatColor.BLUE, "Crank", GameType.CRANK),
-	KIT(ChatColor.RED, ChatColor.GREEN, "Kit", GameType.NOTHING),
-	LANG(ChatColor.AQUA, ChatColor.BLUE, "Lang", GameType.NOTHING),
-	SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING),
-	OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC", GameType.OITC),
-	ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.GK),
-	TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag", GameType.NOTHING),
-	SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV),
-	BMT(ChatColor.AQUA, ChatColor.BLUE, "BMT", GameType.BMT),
-	SG(ChatColor.AQUA, ChatColor.BLUE, "SG", GameType.SG),
-	IF(ChatColor.AQUA, ChatColor.BLUE, "IF", GameType.IF),
-	KK(ChatColor.AQUA, ChatColor.BLUE, "KK", GameType.KK),
-	KP(ChatColor.AQUA, ChatColor.BLUE, "KP", GameType.KP),
-	BROADCAST(ChatColor.AQUA, ChatColor.BLUE, "Broadcast", GameType.NOTHING);
-	
+	ERROR(ChatColor.RED, ChatColor.DARK_RED, "Error", GameType.NOTHING), CORE(ChatColor.RED, ChatColor.GRAY, "WtD|Server", GameType.NOTHING), HUB(ChatColor.AQUA, ChatColor.BLUE, "Hub",
+			GameType.LOBBY), TICTACTOE(ChatColor.RESET, ChatColor.BLUE, "TicTacToe> ", GameType.TICTACTOE), STATS(ChatColor.RESET, ChatColor.GOLD, "Stats> ", GameType.NOTHING), API(ChatColor.GRAY, ChatColor.RED,
+					"WtD|Server", GameType.NOTHING), SECURITY(ChatColor.RESET, ChatColor.AQUA, "Security> ", GameType.NOTHING), CHAT(ChatColor.RESET, ChatColor.DARK_GRAY, "ChatManagment> ", GameType.NOTHING), SQUAD(
+							ChatColor.AQUA, ChatColor.BLUE, "Squad", GameType.NOTHING), HINT(ChatColor.MAGIC, ChatColor.GOLD, "JustATip", GameType.NOTHING), GETHEDROP(ChatColor.AQUA, ChatColor.BLUE, "GetTheDrop",
+									GameType.GETTHEDROP), VOTE(ChatColor.AQUA, ChatColor.BLUE, "Vote", GameType.NOTHING), SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY), ADDON(ChatColor.RESET,
+											ChatColor.AQUA, "AddOn>", GameType.NOTHING), BEDWARS(ChatColor.AQUA, ChatColor.BLUE, "BedWars", GameType.BEDWARS), CINE(ChatColor.RESET, ChatColor.AQUA, "Cinematic>",
+													GameType.NOTHING), CRANK(ChatColor.AQUA, ChatColor.BLUE, "Crank", GameType.CRANK), KIT(ChatColor.RED, ChatColor.GREEN, "Kit", GameType.NOTHING), LANG(ChatColor.AQUA,
+															ChatColor.BLUE, "Lang", GameType.NOTHING), SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING), OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC",
+																	GameType.OITC), ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.GK), TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag",
+																			GameType.NOTHING), SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV), BMT(ChatColor.AQUA, ChatColor.BLUE, "BMT",
+																					GameType.BMT), SG(ChatColor.AQUA, ChatColor.BLUE, "SG", GameType.SG), IF(ChatColor.AQUA, ChatColor.BLUE, "IF",
+																							GameType.IF), KK(ChatColor.AQUA, ChatColor.BLUE, "KK", GameType.KK), KP(ChatColor.AQUA, ChatColor.BLUE, "KP",
+																									GameType.KP), BROADCAST(ChatColor.AQUA, ChatColor.BLUE, "Broadcast", GameType.NOTHING);
+
 	private ChatColor klammer;
 	private ChatColor color;
 	private String name;
 	private GameType type;
-	
+
 	private Prefix(final ChatColor klammer, final ChatColor color, final String name, final GameType type) {
 		this.klammer = klammer;
 		this.color = color;
 		this.name = name;
 		this.type = type;
 	}
-	
+
 	public static void load() {
 		final FileConfiguration c = Core.getCore().getInstance().getConfig();
 		for (final Prefix p : values()) {
@@ -88,7 +83,7 @@ public enum Prefix {
 			}
 		}
 	}
-	
+
 	public static void save() {
 		final FileConfiguration c = Core.getCore().getInstance().getConfig();
 		for (final Prefix p : values()) {
@@ -98,7 +93,7 @@ public enum Prefix {
 		}
 		Core.getCore().getInstance().saveConfig();
 	}
-	
+
 	/**
 	 * @param klammer
 	 *            the klammer to set
@@ -106,7 +101,7 @@ public enum Prefix {
 	public void setKlammer(final ChatColor klammer) {
 		this.klammer = klammer;
 	}
-	
+
 	/**
 	 * @param color
 	 *            the color to set
@@ -114,7 +109,7 @@ public enum Prefix {
 	public void setColor(final ChatColor color) {
 		this.color = color;
 	}
-	
+
 	/**
 	 * @param name
 	 *            the name to set
@@ -122,35 +117,35 @@ public enum Prefix {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * @return The color used for the brackets
 	 */
 	public ChatColor getBracket() {
 		return klammer;
 	}
-	
+
 	/**
 	 * @return The color used for the name
 	 */
 	public ChatColor getColor() {
 		return color;
 	}
-	
+
 	/**
 	 * @return The name
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * @return The type, this prefix is assiocated with
 	 */
 	public GameType getType() {
 		return type;
 	}
-	
+
 	/**
 	 * @return The final prefix
 	 */
@@ -159,21 +154,20 @@ public enum Prefix {
 			return new FancyMessage(name).color(color).tooltip("Made by MiniDigger", "more Infos:", "info@minidigger.me");
 		}
 		if (klammer == ChatColor.MAGIC) {
-			return new FancyMessage("s").color(ChatColor.YELLOW).style(ChatColor.MAGIC).then("u").color(ChatColor.GOLD).style(ChatColor.MAGIC).then(name)
-			        .tooltip("Made by MiniDigger", "more Infos:", "info@minidigger.me").color(color).then("c").color(ChatColor.GOLD).style(ChatColor.MAGIC).then("s")
-			        .color(ChatColor.YELLOW).style(ChatColor.MAGIC);
+			return new FancyMessage("s").color(ChatColor.YELLOW).style(ChatColor.MAGIC).then("u").color(ChatColor.GOLD).style(ChatColor.MAGIC).then(name).tooltip("Made by MiniDigger", "more Infos:", "info@minidigger.me")
+					.color(color).then("c").color(ChatColor.GOLD).style(ChatColor.MAGIC).then("s").color(ChatColor.YELLOW).style(ChatColor.MAGIC);
 		}
 		return new FancyMessage("[").color(klammer).then(name).color(color).tooltip("Made by MiniDigger", "more Infos:", "info@minidigger.me").then("] ").color(klammer);
-		
+
 	}
-	
+
 	/**
 	 * @return The prefix, optimized for consol use
 	 */
 	public String getConsolPrefix() {
 		return klammer + "[" + color + name + klammer + "]";
 	}
-	
+
 	/**
 	 * Searches for a prefix for that game
 	 *

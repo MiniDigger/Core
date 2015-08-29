@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -47,25 +60,23 @@ import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Tasks.Task;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Chat.CoreChatChannel;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Lang.MSG;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreGame implements Game {
 
-	private final UUID id = UUID.randomUUID();
-	private final List<UUID> users = new ArrayList<>();
-	private final List<UUID> specs = new ArrayList<UUID>();
-	private final HashMap<String, String> gameData = new HashMap<>();
-	private Phase phase;
-	private GameType type;
-	private boolean allowJoin;
-	private boolean allowSpectate;
-	private final ChatChannel channel;
-	protected int maxplayers = 1000;
+	private final UUID						id			= UUID.randomUUID();
+	private final List<UUID>				users		= new ArrayList<>();
+	private final List<UUID>				specs		= new ArrayList<UUID>();
+	private final HashMap<String, String>	gameData	= new HashMap<>();
+	private Phase							phase;
+	private GameType						type;
+	private boolean							allowJoin;
+	private boolean							allowSpectate;
+	private final ChatChannel				channel;
+	protected int							maxplayers	= 1000;
 
 	public CoreGame() {
 		channel = new CoreChatChannel();
@@ -249,7 +260,8 @@ public class CoreGame implements Game {
 				if (loc != null) {
 					try {
 						w.getPlayer().teleport(loc);
-					} catch (Exception e) {
+					}
+					catch (final Exception e) {
 						Core.getCore().getInstance().debug("can't tp to fallback2....");
 					}
 				} else {
@@ -293,14 +305,16 @@ public class CoreGame implements Game {
 				HandlerList.unregisterAll(f);
 				Core.getCore().getCommandHandler().unregisterCommands(f);
 				f.end();
-			} catch (Exception ex) {
+			}
+			catch (final Exception ex) {
 				Core.getCore().getInstance().debug("could not end feature " + f.getType().name());
 			}
 		}
 
 		try {
 			((MapFeature) getPhase().getFeature(FeatureType.MAP)).unload();
-		} catch (Exception ex) {
+		}
+		catch (final Exception ex) {
 			Core.getCore().getInstance().debug("could not unload map");
 		}
 
@@ -315,7 +329,8 @@ public class CoreGame implements Game {
 					for (final UUID w : combined) {
 						final Player p = Bukkit.getPlayer(w);
 						if (p != null) {
-							final User u = Core.getCore().getUserHandler().get(p.getUniqueId());
+							// final User u =
+							// Core.getCore().getUserHandler().get(p.getUniqueId());
 
 							p.getInventory().clear();
 
@@ -344,7 +359,7 @@ public class CoreGame implements Game {
 			if (g.getType() == GameType.LOBBY) {
 				try {
 					if (winnerids.size() > 1) {
-						StringBuilder sb = new StringBuilder();
+						final StringBuilder sb = new StringBuilder();
 						for (int i = 0; i < winner.length; i++) {
 							if (i == winner.length) {
 								sb.append(" und " + winner[i].getDisplayName());
@@ -352,13 +367,12 @@ public class CoreGame implements Game {
 								sb.append(", " + winner[i].getDisplayName());
 							}
 						}
-						g.broadCastMessage(Prefix.API.getPrefix().then("Die Spieler " + sb.toString()
-								+ " sind siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
+						g.broadCastMessage(Prefix.API.getPrefix().then("Die Spieler " + sb.toString() + " sind siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
 					} else {
-						g.broadCastMessage(Prefix.API.getPrefix().then("Der Spieler " + winner[0].getDisplayName()
-								+ " ist siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
+						g.broadCastMessage(Prefix.API.getPrefix().then("Der Spieler " + winner[0].getDisplayName() + " ist siegreich aus einer Runde " + g.getType().getName() + " hervorgegangen!"));
 					}
-				} catch (Exception ex) {
+				}
+				catch (final Exception ex) {
 					MSG.stacktrace(LogLevel.DEBUG, ex);
 				}
 			}
@@ -377,7 +391,8 @@ public class CoreGame implements Game {
 
 		try {
 			finalize();
-		} catch (final Throwable e) {
+		}
+		catch (final Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -419,7 +434,7 @@ public class CoreGame implements Game {
 	}
 
 	@Override
-	public void remPlayer(UUID uuid) {
+	public void remPlayer(final UUID uuid) {
 		users.remove(uuid);
 	}
 

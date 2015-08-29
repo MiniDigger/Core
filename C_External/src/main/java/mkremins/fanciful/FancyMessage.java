@@ -17,12 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonWriter;
-
 import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -35,6 +29,12 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonWriter;
 
 import net.amoebaman.util.ArrayWrapper;
 import net.amoebaman.util.Reflection;
@@ -58,17 +58,17 @@ import net.amoebaman.util.Reflection;
  * </p>
  */
 public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<MessagePart>, ConfigurationSerializable {
-	
+
 	static {
 		ConfigurationSerialization.registerClass(FancyMessage.class);
 	}
-	
+
 	private List<MessagePart>	messageParts;
 	private String				jsonString;
 	private boolean				dirty;
-	
+
 	private static Constructor<?> nmsPacketPlayOutChatConstructor;
-	
+
 	@Override
 	public FancyMessage clone() throws CloneNotSupportedException {
 		final FancyMessage instance = (FancyMessage) super.clone();
@@ -80,45 +80,47 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		instance.jsonString = null;
 		return instance;
 	}
-	
+
 	/**
 	 * Creates a JSON message with text.
-	 * 
+	 *
 	 * @param firstPartText
 	 *            The existing text in the message.
 	 */
 	public FancyMessage(final String firstPartText) {
 		this(rawText(firstPartText));
 	}
-	
+
 	public FancyMessage(final TextualComponent firstPartText) {
 		messageParts = new ArrayList<MessagePart>();
 		messageParts.add(new MessagePart(firstPartText));
 		jsonString = null;
 		dirty = false;
-		
+
 		if (nmsPacketPlayOutChatConstructor == null) {
 			try {
 				nmsPacketPlayOutChatConstructor = Reflection.getNMSClass("PacketPlayOutChat").getDeclaredConstructor(Reflection.getNMSClass("IChatBaseComponent"));
 				nmsPacketPlayOutChatConstructor.setAccessible(true);
-			} catch (final NoSuchMethodException e) {
+			}
+			catch (final NoSuchMethodException e) {
 				Bukkit.getLogger().log(Level.SEVERE, "Could not find Minecraft method or constructor.", e);
-			} catch (final SecurityException e) {
+			}
+			catch (final SecurityException e) {
 				Bukkit.getLogger().log(Level.WARNING, "Could not access constructor.", e);
 			}
 		}
 	}
-	
+
 	/**
 	 * Creates a JSON message without text.
 	 */
 	public FancyMessage() {
 		this((TextualComponent) null);
 	}
-	
+
 	/**
 	 * Sets the text of the current editing component to a value.
-	 * 
+	 *
 	 * @param text
 	 *            The new text of the current editing component.
 	 * @return This builder instance.
@@ -129,10 +131,10 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	/**
 	 * Sets the text of the current editing component to a value.
-	 * 
+	 *
 	 * @param text
 	 *            The new text of the current editing component.
 	 * @return This builder instance.
@@ -143,10 +145,10 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	/**
 	 * Sets the color of the current editing component to a value.
-	 * 
+	 *
 	 * @param color
 	 *            The new color of the current editing component.
 	 * @return This builder instance.
@@ -162,10 +164,10 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	/**
 	 * Sets the stylization of the current editing component.
-	 * 
+	 *
 	 * @param styles
 	 *            The array of styles to apply to the editing component.
 	 * @return This builder instance.
@@ -183,12 +185,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to instruct the client
 	 * to open a file on the client side filesystem when the currently edited
 	 * part of the {@code FancyMessage} is clicked.
-	 * 
+	 *
 	 * @param path
 	 *            The path of the file on the client filesystem.
 	 * @return This builder instance.
@@ -197,12 +199,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		onClick("open_file", path);
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to instruct the client
 	 * to open a webpage in the client's web browser when the currently edited
 	 * part of the {@code FancyMessage} is clicked.
-	 * 
+	 *
 	 * @param url
 	 *            The URL of the page to open when the link is clicked.
 	 * @return This builder instance.
@@ -211,7 +213,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		onClick("open_url", url);
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to instruct the client
 	 * to replace the chat input box content with the specified string when the
@@ -219,7 +221,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * will not immediately send the command to the server to be executed unless
 	 * the client player submits the command/chat message, usually with the
 	 * enter key.
-	 * 
+	 *
 	 * @param command
 	 *            The text to display in the chat bar of the client.
 	 * @return This builder instance.
@@ -236,7 +238,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * client will not immediately send the command to the server to be executed
 	 * unless the client player submits the command/chat message, usually with
 	 * the enter key.
-	 * 
+	 *
 	 * @param command
 	 *            The text to append to the chat bar of the client.
 	 * @return This builder instance.
@@ -246,14 +248,14 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to instruct the client
 	 * to send the specified string to the server as a chat message when the
 	 * currently edited part of the {@code FancyMessage} is clicked. The client
 	 * <b>will</b> immediately send the command to the server to be executed
 	 * when the editing component is clicked.
-	 * 
+	 *
 	 * @param command
 	 *            The text to display in the chat bar of the client.
 	 * @return This builder instance.
@@ -262,7 +264,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		onClick("run_command", command);
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about an achievement when the client hovers over the text.
@@ -270,7 +272,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param name
 	 *            The name of the achievement to display, excluding the
 	 *            "achievement." prefix.
@@ -280,7 +282,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		onHover("show_achievement", new JsonString("achievement." + name));
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about an achievement when the client hovers over the text.
@@ -288,7 +290,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param which
 	 *            The achievement to display.
 	 * @return This builder instance.
@@ -297,18 +299,21 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		try {
 			final Object achievement = Reflection.getMethod(Reflection.getOBCClass("CraftStatistic"), "getNMSAchievement", Achievement.class).invoke(null, which);
 			return achievementTooltip((String) Reflection.getField(Reflection.getNMSClass("Achievement"), "name").get(achievement));
-		} catch (final IllegalAccessException e) {
+		}
+		catch (final IllegalAccessException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not access method.", e);
 			return this;
-		} catch (final IllegalArgumentException e) {
+		}
+		catch (final IllegalArgumentException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Argument could not be passed.", e);
 			return this;
-		} catch (final InvocationTargetException e) {
+		}
+		catch (final InvocationTargetException e) {
 			Bukkit.getLogger().log(Level.WARNING, "A error has occured durring invoking of method.", e);
 			return this;
 		}
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about a parameterless statistic when the client hovers over the text.
@@ -316,7 +321,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param which
 	 *            The statistic to display.
 	 * @return This builder instance.
@@ -332,18 +337,21 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		try {
 			final Object statistic = Reflection.getMethod(Reflection.getOBCClass("CraftStatistic"), "getNMSStatistic", Statistic.class).invoke(null, which);
 			return achievementTooltip((String) Reflection.getField(Reflection.getNMSClass("Statistic"), "name").get(statistic));
-		} catch (final IllegalAccessException e) {
+		}
+		catch (final IllegalAccessException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not access method.", e);
 			return this;
-		} catch (final IllegalArgumentException e) {
+		}
+		catch (final IllegalArgumentException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Argument could not be passed.", e);
 			return this;
-		} catch (final InvocationTargetException e) {
+		}
+		catch (final InvocationTargetException e) {
 			Bukkit.getLogger().log(Level.WARNING, "A error has occured durring invoking of method.", e);
 			return this;
 		}
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about a statistic parameter with a material when the client hovers over
@@ -352,7 +360,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param which
 	 *            The statistic to display.
 	 * @param item
@@ -372,21 +380,23 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 			throw new IllegalArgumentException("Wrong parameter type for that statistic - needs " + type + "!");
 		}
 		try {
-			final Object statistic = Reflection.getMethod(Reflection.getOBCClass("CraftStatistic"), "getMaterialStatistic", Statistic.class, Material.class).invoke(null,
-			        which, item);
+			final Object statistic = Reflection.getMethod(Reflection.getOBCClass("CraftStatistic"), "getMaterialStatistic", Statistic.class, Material.class).invoke(null, which, item);
 			return achievementTooltip((String) Reflection.getField(Reflection.getNMSClass("Statistic"), "name").get(statistic));
-		} catch (final IllegalAccessException e) {
+		}
+		catch (final IllegalAccessException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not access method.", e);
 			return this;
-		} catch (final IllegalArgumentException e) {
+		}
+		catch (final IllegalArgumentException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Argument could not be passed.", e);
 			return this;
-		} catch (final InvocationTargetException e) {
+		}
+		catch (final InvocationTargetException e) {
 			Bukkit.getLogger().log(Level.WARNING, "A error has occured durring invoking of method.", e);
 			return this;
 		}
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about a statistic parameter with an entity type when the client hovers
@@ -395,7 +405,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param which
 	 *            The statistic to display.
 	 * @param entity
@@ -415,21 +425,23 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 			throw new IllegalArgumentException("Wrong parameter type for that statistic - needs " + type + "!");
 		}
 		try {
-			final Object statistic = Reflection.getMethod(Reflection.getOBCClass("CraftStatistic"), "getEntityStatistic", Statistic.class, EntityType.class).invoke(null,
-			        which, entity);
+			final Object statistic = Reflection.getMethod(Reflection.getOBCClass("CraftStatistic"), "getEntityStatistic", Statistic.class, EntityType.class).invoke(null, which, entity);
 			return achievementTooltip((String) Reflection.getField(Reflection.getNMSClass("Statistic"), "name").get(statistic));
-		} catch (final IllegalAccessException e) {
+		}
+		catch (final IllegalAccessException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not access method.", e);
 			return this;
-		} catch (final IllegalArgumentException e) {
+		}
+		catch (final IllegalArgumentException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Argument could not be passed.", e);
 			return this;
-		} catch (final InvocationTargetException e) {
+		}
+		catch (final InvocationTargetException e) {
 			Bukkit.getLogger().log(Level.WARNING, "A error has occured durring invoking of method.", e);
 			return this;
 		}
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about an item when the client hovers over the text.
@@ -437,7 +449,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param itemJSON
 	 *            A string representing the JSON-serialized NBT data tag of an
 	 *            {@link ItemStack}.
@@ -445,12 +457,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 */
 	public FancyMessage itemTooltip(final String itemJSON) {
 		onHover("show_item", new JsonString(itemJSON)); // Seems a bit hacky,
-		                                                // considering we have a
-		                                                // JSON object as a
-		                                                // parameter
+														// considering we have a
+														// JSON object as a
+														// parameter
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display information
 	 * about an item when the client hovers over the text.
@@ -458,7 +470,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param itemStack
 	 *            The stack for which to display information.
 	 * @return This builder instance.
@@ -466,14 +478,15 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	public FancyMessage itemTooltip(final ItemStack itemStack) {
 		try {
 			final Object nmsItem = Reflection.getMethod(Reflection.getOBCClass("inventory.CraftItemStack"), "asNMSCopy", ItemStack.class).invoke(null, itemStack);
-			return itemTooltip(Reflection.getMethod(Reflection.getNMSClass("ItemStack"), "save", Reflection.getNMSClass("NBTTagCompound"))
-			        .invoke(nmsItem, Reflection.getNMSClass("NBTTagCompound").newInstance()).toString());
-		} catch (final Exception e) {
+			return itemTooltip(
+					Reflection.getMethod(Reflection.getNMSClass("ItemStack"), "save", Reflection.getNMSClass("NBTTagCompound")).invoke(nmsItem, Reflection.getNMSClass("NBTTagCompound").newInstance()).toString());
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 			return this;
 		}
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display raw text
 	 * when the client hovers over the text.
@@ -481,7 +494,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param text
 	 *            The text, which supports newlines, which will be displayed to
 	 *            the client upon hovering.
@@ -491,7 +504,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		onHover("show_text", new JsonString(text));
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display raw text
 	 * when the client hovers over the text.
@@ -499,7 +512,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param lines
 	 *            The lines of text which will be displayed to the client upon
 	 *            hovering. The iteration order of this object will be the order
@@ -510,7 +523,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		tooltip(ArrayWrapper.toArray(lines, String.class));
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display raw text
 	 * when the client hovers over the text.
@@ -518,7 +531,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param lines
 	 *            The lines of text which will be displayed to the client upon
 	 *            hovering.
@@ -535,7 +548,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		tooltip(builder.toString());
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display formatted
 	 * text when the client hovers over the text.
@@ -543,7 +556,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param text
 	 *            The formatted text which will be displayed to the client upon
 	 *            hovering.
@@ -560,7 +573,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		onHover("show_text", text);
 		return this;
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display the
 	 * specified lines of formatted text when the client hovers over the text.
@@ -568,7 +581,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param lines
 	 *            The lines of formatted text which will be displayed to the
 	 *            client upon hovering.
@@ -579,12 +592,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 			onHover(null, null); // Clear tooltip
 			return this;
 		}
-		
+
 		final FancyMessage result = new FancyMessage();
 		result.messageParts.clear(); // Remove the one existing text component
-		                             // that exists by default, which
-		                             // destabilizes the object
-		
+										// that exists by default, which
+										// destabilizes the object
+
 		for (int i = 0; i < lines.length; i++) {
 			try {
 				for (final MessagePart component : lines[i]) {
@@ -600,20 +613,21 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 				if (i != lines.length - 1) {
 					result.messageParts.add(new MessagePart(rawText("\n")));
 				}
-			} catch (final CloneNotSupportedException e) {
+			}
+			catch (final CloneNotSupportedException e) {
 				Bukkit.getLogger().log(Level.WARNING, "Failed to clone object", e);
 				return this;
 			}
 		}
 		return formattedTooltip(result.messageParts.isEmpty() ? null : result); // Throws
-		                                                                        // NPE
-		                                                                        // if
-		                                                                        // size
-		                                                                        // is
-		                                                                        // 0,
-		                                                                        // intended
+																				// NPE
+																				// if
+																				// size
+																				// is
+																				// 0,
+																				// intended
 	}
-	
+
 	/**
 	 * Set the behavior of the current editing component to display the
 	 * specified lines of formatted text when the client hovers over the text.
@@ -621,7 +635,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Tooltips do not inherit display characteristics, such as color and
 	 * styles, from the message component on which they are applied.
 	 * </p>
-	 * 
+	 *
 	 * @param lines
 	 *            The lines of text which will be displayed to the client upon
 	 *            hovering. The iteration order of this object will be the order
@@ -631,12 +645,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	public FancyMessage formattedTooltip(final Iterable<FancyMessage> lines) {
 		return formattedTooltip(ArrayWrapper.toArray(lines, FancyMessage.class));
 	}
-	
+
 	/**
 	 * If the text is a translatable key, and it has replaceable values, this
 	 * function can be used to set the replacements that will be used in the
 	 * message.
-	 * 
+	 *
 	 * @param replacements
 	 *            The replacements, in order, that will be used in the
 	 *            language-specific message.
@@ -651,30 +665,31 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		return this;
 	}
 	/*
-	 * 
+	 *
 	 * /** If the text is a translatable key, and it has replaceable values,
 	 * this function can be used to set the replacements that will be used in
 	 * the message.
-	 * 
+	 *
 	 * @param replacements The replacements, in order, that will be used in the
 	 * language-specific message.
-	 * 
+	 *
 	 * @return This builder instance.
 	 */ /*
-	    * ------------ public FancyMessage translationReplacements(final
-	    * Iterable<? extends CharSequence> replacements){ for(CharSequence str :
-	    * replacements){ latest().translationReplacements.add(new
-	    * JsonString(str)); }
-	    * 
-	    * return this; }
-	    * 
-	    */
-		
+		 * ------------ public FancyMessage translationReplacements(final
+		 * Iterable<? extends CharSequence> replacements){ for(CharSequence str
+		 * :
+		 * replacements){ latest().translationReplacements.add(new
+		 * JsonString(str)); }
+		 * 
+		 * return this; }
+		 * 
+		 */
+
 	/**
 	 * If the text is a translatable key, and it has replaceable values, this
 	 * function can be used to set the replacements that will be used in the
 	 * message.
-	 * 
+	 *
 	 * @param replacements
 	 *            The replacements, in order, that will be used in the
 	 *            language-specific message.
@@ -694,7 +709,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * If the text is a translatable key, and it has replaceable values, this
 	 * function can be used to set the replacements that will be used in the
 	 * message.
-	 * 
+	 *
 	 * @param replacements
 	 *            The replacements, in order, that will be used in the
 	 *            language-specific message.
@@ -709,7 +724,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * construction of a new message component. After a successful call to this
 	 * method, all setter methods will refer to a new message component, created
 	 * as a result of the call to this method.
-	 * 
+	 *
 	 * @param text
 	 *            The text which will populate the new message component.
 	 * @return This builder instance.
@@ -717,13 +732,13 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	public FancyMessage then(final String text) {
 		return then(rawText(text));
 	}
-	
+
 	/**
 	 * Terminate construction of the current editing component, and begin
 	 * construction of a new message component. After a successful call to this
 	 * method, all setter methods will refer to a new message component, created
 	 * as a result of the call to this method.
-	 * 
+	 *
 	 * @param text
 	 *            The text which will populate the new message component.
 	 * @return This builder instance.
@@ -736,13 +751,13 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	/**
 	 * Terminate construction of the current editing component, and begin
 	 * construction of a new message component. After a successful call to this
 	 * method, all setter methods will refer to a new message component, created
 	 * as a result of the call to this method.
-	 * 
+	 *
 	 * @return This builder instance.
 	 */
 	public FancyMessage then() {
@@ -753,7 +768,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		dirty = true;
 		return this;
 	}
-	
+
 	@Override
 	public void writeJson(final JsonWriter writer) throws IOException {
 		if (messageParts.size() == 1) {
@@ -766,12 +781,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 			writer.endArray().endObject();
 		}
 	}
-	
+
 	/**
 	 * Serialize this fancy message, converting it into syntactically-valid JSON
 	 * using a {@link JsonWriter}. This JSON should be compatible with vanilla
 	 * formatter commands such as {@code /tellraw}.
-	 * 
+	 *
 	 * @return The JSON string representing this object.
 	 */
 	public String toJSONString() {
@@ -783,25 +798,26 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		try {
 			writeJson(json);
 			json.close();
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			throw new RuntimeException("invalid message");
 		}
 		jsonString = string.toString();
 		dirty = false;
 		return jsonString;
 	}
-	
+
 	/**
 	 * Sends this message to a player. The player will receive the fully-fledged
 	 * formatted display of this message.
-	 * 
+	 *
 	 * @param player
 	 *            The player who will receive the message.
 	 */
 	public void send(final Player player) {
 		send(player, toJSONString());
 	}
-	
+
 	private void send(final CommandSender sender, final String jsonString) {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage(toOldMessageFormat());
@@ -812,48 +828,52 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 			final Object handle = Reflection.getHandle(player);
 			final Object connection = Reflection.getField(handle.getClass(), "playerConnection").get(handle);
 			Reflection.getMethod(connection.getClass(), "sendPacket", Reflection.getNMSClass("Packet")).invoke(connection, createChatPacket(jsonString));
-		} catch (final IllegalArgumentException e) {
+		}
+		catch (final IllegalArgumentException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Argument could not be passed.", e);
-		} catch (final IllegalAccessException e) {
+		}
+		catch (final IllegalAccessException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not access method.", e);
-		} catch (final InstantiationException e) {
+		}
+		catch (final InstantiationException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Underlying class is abstract.", e);
-		} catch (final InvocationTargetException e) {
+		}
+		catch (final InvocationTargetException e) {
 			Bukkit.getLogger().log(Level.WARNING, "A error has occured durring invoking of method.", e);
-		} catch (final NoSuchMethodException e) {
+		}
+		catch (final NoSuchMethodException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not find method.", e);
-		} catch (final ClassNotFoundException e) {
+		}
+		catch (final ClassNotFoundException e) {
 			Bukkit.getLogger().log(Level.WARNING, "Could not find class.", e);
 		}
 	}
-	
+
 	// The ChatSerializer's instance of Gson
 	private static Object	nmsChatSerializerGsonInstance;
 	private static Method	fromJsonMethod;
-	
-	private Object createChatPacket(final String json)
-	        throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException {
+
+	private Object createChatPacket(final String json) throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException {
 		if (nmsChatSerializerGsonInstance == null) {
 			// Find the field and its value, completely bypassing obfuscation
 			Class<?> chatSerializerClazz;
-			
+
 			final String version = Reflection.getVersion();
 			final double majorVersion = Double.parseDouble(version.replace('_', '.').substring(1, 4));
 			final int lesserVersion = Integer.parseInt(version.substring(6, 7));
-			
+
 			if (majorVersion < 1.8 || (majorVersion == 1.8 && lesserVersion == 1)) {
 				chatSerializerClazz = Reflection.getNMSClass("ChatSerializer");
 			} else {
 				chatSerializerClazz = Reflection.getNMSClass("IChatBaseComponent$ChatSerializer");
 			}
-			
+
 			if (chatSerializerClazz == null) {
 				throw new ClassNotFoundException("Can't find the ChatSerializer class");
 			}
-			
+
 			for (final Field declaredField : chatSerializerClazz.getDeclaredFields()) {
-				if (Modifier.isFinal(declaredField.getModifiers()) && Modifier.isStatic(declaredField.getModifiers())
-				        && declaredField.getType().getName().endsWith("Gson")) {
+				if (Modifier.isFinal(declaredField.getModifiers()) && Modifier.isStatic(declaredField.getModifiers()) && declaredField.getType().getName().endsWith("Gson")) {
 					// We've found our field
 					declaredField.setAccessible(true);
 					nmsChatSerializerGsonInstance = declaredField.get(null);
@@ -862,23 +882,23 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 				}
 			}
 		}
-		
+
 		// Since the method is so simple, and all the obfuscated methods have
 		// the same name, it's easier to reimplement 'IChatBaseComponent
 		// a(String)' than to reflectively call it
 		// Of course, the implementation may change, but fuzzy matches might
 		// break with signature changes
 		final Object serializedChatComponent = fromJsonMethod.invoke(nmsChatSerializerGsonInstance, json, Reflection.getNMSClass("IChatBaseComponent"));
-		
+
 		return nmsPacketPlayOutChatConstructor.newInstance(serializedChatComponent);
 	}
-	
+
 	/**
 	 * Sends this message to a command sender. If the sender is a player, they
 	 * will receive the fully-fledged formatted display of this message.
 	 * Otherwise, they will receive a version of this message with less
 	 * formatting.
-	 * 
+	 *
 	 * @param sender
 	 *            The command sender who will receive the message.
 	 * @see #toOldMessageFormat()
@@ -886,10 +906,10 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	public void send(final CommandSender sender) {
 		send(sender, toJSONString());
 	}
-	
+
 	/**
 	 * Sends this message to multiple command senders.
-	 * 
+	 *
 	 * @param senders
 	 *            The command senders who will receive the message.
 	 * @see #send(CommandSender)
@@ -900,7 +920,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 			send(sender, string);
 		}
 	}
-	
+
 	/**
 	 * Convert this message to a human-readable string with limited formatting.
 	 * This method is used to send this message to clients without JSON
@@ -920,7 +940,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Color and formatting can be removed from the returned string by using
 	 * {@link ChatColor#stripColor(String)}.
 	 * </p>
-	 * 
+	 *
 	 * @return A human-readable string representing limited formatting in
 	 *         addition to the core text of this message.
 	 */
@@ -935,25 +955,25 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		}
 		return result.toString();
 	}
-	
+
 	private MessagePart latest() {
 		return messageParts.get(messageParts.size() - 1);
 	}
-	
+
 	private void onClick(final String name, final String data) {
 		final MessagePart latest = latest();
 		latest.clickActionName = name;
 		latest.clickActionData = data;
 		dirty = true;
 	}
-	
+
 	private void onHover(final String name, final JsonRepresentedObject data) {
 		final MessagePart latest = latest();
 		latest.hoverActionName = name;
 		latest.hoverActionData = data;
 		dirty = true;
 	}
-	
+
 	// Doc copied from interface
 	@Override
 	public Map<String, Object> serialize() {
@@ -962,12 +982,12 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		// map.put("JSON", toJSONString());
 		return map;
 	}
-	
+
 	/**
 	 * Deserializes a JSON-represented message from a mapping of key-value
 	 * pairs. This is called by the Bukkit serialization API. It is not intended
 	 * for direct public API consumption.
-	 * 
+	 *
 	 * @param serialized
 	 *            The key-value mapping which represents a fancy message.
 	 */
@@ -979,7 +999,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 		msg.dirty = !serialized.containsKey("JSON");
 		return msg;
 	}
-	
+
 	/**
 	 * <b>Internally called method. Not for API consumption.</b>
 	 */
@@ -994,7 +1014,7 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	 * Deserializes a fancy message from its JSON representation. This JSON
 	 * representation is of the format of that returned by
 	 * {@link #toJSONString()}, and is compatible with vanilla inputs.
-	 * 
+	 *
 	 * @param json
 	 *            The JSON string which represents a fancy message.
 	 * @return A {@code FancyMessage} representing the parameterized JSON
@@ -1003,8 +1023,8 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 	public static FancyMessage deserialize(final String json) {
 		final JsonObject serialized = _stringParser.parse(json).getAsJsonObject();
 		final JsonArray extra = serialized.getAsJsonArray("extra"); // Get the
-		                                                            // extra
-		                                                            // component
+																	// extra
+																	// component
 		final FancyMessage returnVal = new FancyMessage();
 		returnVal.messageParts.clear();
 		for (final JsonElement mPrt : extra) {
@@ -1016,14 +1036,14 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 					// The map mimics the YAML serialization, which has a "key"
 					// field and one or more "value" fields
 					final Map<String, Object> serializedMapForm = new HashMap<String, Object>(); // Must
-					                                                                             // be
-					                                                                             // object
-					                                                                             // due
-					                                                                             // to
-					                                                                             // Bukkit
-					                                                                             // serializer
-					                                                                             // API
-					                                                                             // compliance
+																									// be
+																									// object
+																									// due
+																									// to
+																									// Bukkit
+																									// serializer
+																									// API
+																									// compliance
 					serializedMapForm.put("key", entry.getKey());
 					if (entry.getValue().isJsonPrimitive()) {
 						// Assume string
@@ -1058,10 +1078,10 @@ public class FancyMessage implements JsonRepresentedObject, Cloneable, Iterable<
 						// FancyMessage
 						// Therefore, recursion time!
 						component.hoverActionData = deserialize(object.get("value")
-						        .toString() /*
-						                     * This should properly serialize
-						                     * the JSON object as a JSON string
-						                     */);
+								.toString() /*
+											 * This should properly serialize
+											 * the JSON object as a JSON string
+											 */);
 					}
 				} else if (entry.getKey().equals("insertion")) {
 					component.insertionData = entry.getValue().getAsString();

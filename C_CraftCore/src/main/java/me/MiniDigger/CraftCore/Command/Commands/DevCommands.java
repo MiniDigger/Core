@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -26,34 +39,23 @@ import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
-import org.json.simple.JSONObject;
-
-import com.comphenix.protocol.utility.MinecraftReflection;
-
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
-
-import net.minecraft.server.v1_8_R3.BlockPosition;
-import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.NBTTagList;
-import net.minecraft.server.v1_8_R3.NBTTagString;
-import net.minecraft.server.v1_8_R3.TileEntity;
-import net.minecraft.server.v1_8_R3.TileEntityMobSpawner;
-import net.minecraft.server.v1_8_R3.World;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.DisplaySlot;
+import org.json.simple.JSONObject;
+
+import com.comphenix.protocol.utility.MinecraftReflection;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Chat.ChatChars;
@@ -79,8 +81,15 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardLine;
 import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 import me.MiniDigger.CraftCore.Socket.CoreSocketClient;
 import me.MiniDigger.CraftCore.Socket.CoreSocketServer;
-
 import mkremins.fanciful.FancyMessage;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagList;
+import net.minecraft.server.v1_8_R3.NBTTagString;
+import net.minecraft.server.v1_8_R3.TileEntity;
+import net.minecraft.server.v1_8_R3.TileEntityMobSpawner;
+import net.minecraft.server.v1_8_R3.World;
 
 public class DevCommands {
 
@@ -108,15 +117,15 @@ public class DevCommands {
 	public void stopServer(final CommandArgs args) {
 		try {
 			((CoreSocketServer) Core.getCore().getSocketHandler().getServer()).stop(10);
-		} catch (IOException | InterruptedException e) {
+		}
+		catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Command(name = "dev.sendToServer", description = "DEV!", usage = "", permission = "dev")
 	public void sendToServer(final CommandArgs args) {
-		((CoreSocketClient) Core.getCore().getSocketHandler().getClient())
-				.send(Core.getCore().getStringUtil().toString(args.getArgs()));
+		((CoreSocketClient) Core.getCore().getSocketHandler().getClient()).send(Core.getCore().getStringUtil().toString(args.getArgs()));
 	}
 
 	@Command(name = "dev.reload", description = "DEV!", usage = "", permission = "dev")
@@ -169,27 +178,27 @@ public class DevCommands {
 		byte direction = (byte) (0x0);
 
 		switch (face) {
-		case EAST:
-			flags = (byte) (flags | 0x3);
-			direction = (byte) (0x3);
-			break;
+			case EAST:
+				flags = (byte) (flags | 0x3);
+				direction = (byte) (0x3);
+				break;
 
-		case SOUTH:
-			flags = (byte) (flags | 0x0);
-			direction = (byte) (0x0);
-			break;
+			case SOUTH:
+				flags = (byte) (flags | 0x0);
+				direction = (byte) (0x0);
+				break;
 
-		case WEST:
-			flags = (byte) (flags | 0x1);
-			direction = (byte) (0x1);
-			break;
+			case WEST:
+				flags = (byte) (flags | 0x1);
+				direction = (byte) (0x1);
+				break;
 
-		case NORTH:
-			flags = (byte) (flags | 0x2);
-			direction = (byte) (0x2);
-			break;
-		default:
-			break;
+			case NORTH:
+				flags = (byte) (flags | 0x2);
+				direction = (byte) (0x2);
+				break;
+			default:
+				break;
 		}
 
 		bed.setTypeIdAndData(Material.BED_BLOCK.getId(), direction, false);
@@ -225,8 +234,7 @@ public class DevCommands {
 		// b.setTranslatedBlock(args.getPlayer().getLocation(),
 		// Integer.parseInt(args.getArgs()[0]),
 		// Integer.parseInt(args.getArgs()[1]));
-		Bukkit.getPlayer(args.getArgs()[1]).sendBlockChange(args.getPlayer().getLocation(),
-				Material.valueOf(args.getArgs()[0]), (byte) 0);
+		Bukkit.getPlayer(args.getArgs()[1]).sendBlockChange(args.getPlayer().getLocation(), Material.valueOf(args.getArgs()[0]), (byte) 0);
 	}
 
 	@Command(name = "dev.pack", description = "DEV!", usage = "", permission = "dev")
@@ -260,8 +268,7 @@ public class DevCommands {
 		}
 		final int delay = 20;
 		final World world = ((CraftWorld) target.getWorld()).getHandle();
-		final TileEntity tileEntity = world
-				.getTileEntity(new BlockPosition(target.getX(), target.getY(), target.getZ()));
+		final TileEntity tileEntity = world.getTileEntity(new BlockPosition(target.getX(), target.getY(), target.getZ()));
 		if ((tileEntity instanceof TileEntityMobSpawner)) {
 			final TileEntityMobSpawner mobSpawner = (TileEntityMobSpawner) tileEntity;
 			final NBTTagCompound spawnerTag = new NBTTagCompound();
@@ -271,16 +278,14 @@ public class DevCommands {
 			final NBTTagCompound itemTag = new NBTTagCompound();
 			itemTag.setShort("Health", (short) 5);
 			itemTag.setShort("Age", (short) 0);
-			final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack
-					.asNMSCopy(args.getPlayer().getItemInHand());
+			final net.minecraft.server.v1_8_R3.ItemStack itemStack = CraftItemStack.asNMSCopy(args.getPlayer().getItemInHand());
 			final NBTTagCompound itemStackTag = new NBTTagCompound();
 			itemStack.save(itemStackTag);
 			itemStackTag.setByte("Count", (byte) 1);
 			itemTag.set("Item", itemStackTag);
 			spawnerTag.set("SpawnData", itemTag);
 			spawnerTag.setShort("SpawnCount", (short) itemStack.count);
-			spawnerTag.setShort("SpawnRange",
-					(short) (int) args.getPlayer().getLocation().distance(target.getLocation()));
+			spawnerTag.setShort("SpawnRange", (short) (int) args.getPlayer().getLocation().distance(target.getLocation()));
 			spawnerTag.setShort("Delay", (short) 0);
 			spawnerTag.setShort("MinSpawnDelay", (short) (delay));
 			spawnerTag.setShort("MaxSpawnDelay", (short) (delay));
@@ -296,13 +301,9 @@ public class DevCommands {
 
 	@Command(name = "dev.itemBuilder", description = "DEV!", usage = "", permission = "dev")
 	public void itemBuilder(final CommandArgs args) {
-		final ItemStack is = new CoreItemBuilder(Material.MONSTER_EGG).durability(95).data(95)
-				.name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
-				.effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2)
-				.effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20)
-				.effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2)
-				.effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
-				.lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
+		final ItemStack is = new CoreItemBuilder(Material.MONSTER_EGG).durability(95).data(95).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode").effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20)
+				.effect(PotionEffectType.SPEED, 2 * 60 * 20, 2).effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20).effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2)
+				.effect(PotionEffectType.ABSORPTION, 2 * 60 * 20).lore(" " + ChatChars.Misc.bullet + " Become The Beast").build();
 		args.getPlayer().getInventory().addItem(is);
 	}
 
@@ -311,8 +312,7 @@ public class DevCommands {
 		final ItemMenu menu = new CoreItemMenu("ItemMenu", 2, new onClick() {
 
 			@Override
-			public boolean click(final Player p, final ItemMenu menu, final Row row, final int slot,
-					final ItemStack item) {
+			public boolean click(final Player p, final ItemMenu menu, final Row row, final int slot, final ItemStack item) {
 				if (row.getRow() == 1) {
 					Core.getCore().getInstance().debug(row.getRowItem(slot).getType().name());
 				}
@@ -335,8 +335,7 @@ public class DevCommands {
 	public void mob(final CommandArgs args) {
 		// CoreEntityType.ZOMBIE.spawnEntity(args.getPlayer().getLocation());
 		final Entity entity = new CoreZombie(args.getPlayer().getWorld());
-		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(),
-				args.getPlayer().getLocation().getZ(), args.getPlayer().getLocation().getYaw(),
+		entity.setLocation(args.getPlayer().getLocation().getX(), args.getPlayer().getLocation().getY(), args.getPlayer().getLocation().getZ(), args.getPlayer().getLocation().getYaw(),
 				args.getPlayer().getLocation().getPitch());
 		entity.getBukkitEntity().setMetadata("spawn", new FixedMetadataValue(Core.getCore().getInstance(), true));
 		((CraftWorld) args.getPlayer().getLocation().getWorld()).getHandle().addEntity(entity);
@@ -368,10 +367,8 @@ public class DevCommands {
 
 	@Command(name = "dev.title", description = "DEV!", usage = "", permission = "dev", sync = true)
 	public void title(final CommandArgs args) {
-		Core.getCore().getTitleHandler().sendTitle(args.getPlayer(), 1 * 20, 5 * 20, 1 * 20, ChatColor.BOLD + ""
-				+ ChatColor.RED + "I am the " + ChatColor.BLUE + "" + ChatColor.UNDERLINE + "Title");
-		Core.getCore().getTitleHandler().sendSubTitle(args.getPlayer(), 1 * 20, 5 * 20, 1 * 20, ChatColor.BOLD + ""
-				+ ChatColor.RED + "I am the " + ChatColor.BLUE + "" + ChatColor.UNDERLINE + "SubTitle");
+		Core.getCore().getTitleHandler().sendTitle(args.getPlayer(), 1 * 20, 5 * 20, 1 * 20, ChatColor.BOLD + "" + ChatColor.RED + "I am the " + ChatColor.BLUE + "" + ChatColor.UNDERLINE + "Title");
+		Core.getCore().getTitleHandler().sendSubTitle(args.getPlayer(), 1 * 20, 5 * 20, 1 * 20, ChatColor.BOLD + "" + ChatColor.RED + "I am the " + ChatColor.BLUE + "" + ChatColor.UNDERLINE + "SubTitle");
 	}
 
 	@Command(name = "dev.book1", description = "DEV!", usage = "", permission = "dev")
@@ -392,30 +389,29 @@ public class DevCommands {
 
 	@Command(name = "dev.laser", description = "DEV!", usage = "", permission = "dev")
 	public void laser(final CommandArgs args) {
-		CoreLaser laser = new CoreLaser(args.getPlayer().getLocation().add(10, 10, 10));
+		final CoreLaser laser = new CoreLaser(args.getPlayer().getLocation().add(10, 10, 10));
 		laser.setTarget(args.getPlayer());
 	}
 
 	@Command(name = "dev.book2", description = "DEV!", usage = "", permission = "dev")
 	public void book2(final CommandArgs args) {
 		final ItemStack is = args.getPlayer().getItemInHand();
-		final net.minecraft.server.v1_8_R3.ItemStack mcStack = ((net.minecraft.server.v1_8_R3.ItemStack) MinecraftReflection
-				.getMinecraftItemStack(is));
+		final net.minecraft.server.v1_8_R3.ItemStack mcStack = ((net.minecraft.server.v1_8_R3.ItemStack) MinecraftReflection.getMinecraftItemStack(is));
 		final NBTTagCompound tag = mcStack.getTag();
 		final NBTTagList pages = tag.getList("pages", 0);
-		pages.a(1, new NBTTagString(
-				new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE).toJSONString()));
+		pages.a(1, new NBTTagString(new FancyMessage("Hello").color(ChatColor.RED).then(" there").color(ChatColor.BLUE).toJSONString()));
 		try {
 			final Field f = mcStack.getClass().getDeclaredField("tag");
 			f.setAccessible(true);
 			f.set(mcStack, tag);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	ItemBarMenu m = new CoreItemBarMenu("m1");
-	ItemBarMenu m2 = new CoreItemBarMenu("m2");
+	ItemBarMenu	m	= new CoreItemBarMenu("m1");
+	ItemBarMenu	m2	= new CoreItemBarMenu("m2");
 
 	@Command(name = "dev.iconbar", description = "DEV!", usage = "", permission = "dev")
 	public void iconbar(final CommandArgs args) {
@@ -423,8 +419,7 @@ public class DevCommands {
 		m2.setAction(0, new ClickHandler() {
 
 			@Override
-			public void click(final ItemBarMenu m, final ItemStack is, final User u,
-					final org.bukkit.entity.Entity entity) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u, final org.bukkit.entity.Entity entity) {
 				u.sendMessage(Prefix.API.getPrefix().then("test3"));
 			}
 		});
@@ -432,8 +427,7 @@ public class DevCommands {
 		m2.setAction(1, new ClickHandler() {
 
 			@Override
-			public void click(final ItemBarMenu md, final ItemStack is, final User u,
-					final org.bukkit.entity.Entity entity) {
+			public void click(final ItemBarMenu md, final ItemStack is, final User u, final org.bukkit.entity.Entity entity) {
 				u.sendMessage(Prefix.API.getPrefix().then("gooing back"));
 				m2.close(u);
 				m.open(u);
@@ -444,8 +438,7 @@ public class DevCommands {
 		m.setAction(0, new ClickHandler() {
 
 			@Override
-			public void click(final ItemBarMenu m, final ItemStack is, final User u,
-					final org.bukkit.entity.Entity entity) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u, final org.bukkit.entity.Entity entity) {
 				u.sendMessage(Prefix.API.getPrefix().then("test"));
 			}
 		});
@@ -454,8 +447,7 @@ public class DevCommands {
 		m.setAction(8, new ClickHandler() {
 
 			@Override
-			public void click(final ItemBarMenu m, final ItemStack is, final User u,
-					final org.bukkit.entity.Entity entity) {
+			public void click(final ItemBarMenu m, final ItemStack is, final User u, final org.bukkit.entity.Entity entity) {
 				u.sendMessage(Prefix.API.getPrefix().then("test2"));
 				m.close(u);
 				m2.open(u);

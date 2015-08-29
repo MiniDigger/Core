@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -25,10 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.events.PacketEvent;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Skull;
@@ -36,16 +45,21 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Protocol.SkullChangers;
 import me.MiniDigger.Core.Stats.StatsType;
 
 public class CoreSkullChangers implements SkullChangers {
-	
-	private final ArrayList<SkullChanger>	                                       skullchangers	= new ArrayList<>();
-	private final ArrayList<Location>	                                           last_seen_skulls	= new ArrayList<>();
-	@SuppressWarnings("unused") private final HashMap<Location, ArrayList<String>>	players_skulls	= new HashMap<>();
-	
+
+	private final ArrayList<SkullChanger>				skullchangers		= new ArrayList<>();
+	private final ArrayList<Location>					last_seen_skulls	= new ArrayList<>();
+	@SuppressWarnings("unused")
+	private final HashMap<Location, ArrayList<String>>	players_skulls		= new HashMap<>();
+
 	@Override
 	public void update(final List<UUID> noUpdates) {
 		for (final Location loc : last_seen_skulls) {
@@ -60,26 +74,26 @@ public class CoreSkullChangers implements SkullChangers {
 			}
 		}
 	}
-	
+
 	@Override
 	public void init() {
 		addSkullChanger(new SkullChanger("[Fame]", "skullchanger.create.me", "Zeigt den Famen Player an") {
-			
+
 			@Override
 			public String getValue(final Player paramPlayer, final Location paramLocation) {
 				return Core.getCore().getProtocolHandler().getFame();
 			}
 		});
-		
+
 		addSkullChanger(new SkullChanger("[Player]", "skullchanger.create.playername", "Zeigt den Spielernamen") {
-			
+
 			@Override
 			public String getValue(final Player player, final Location loc) {
 				return player.getName();
 			}
 		});
 		addSkullChanger(new SkullChanger("[T_", "skullchanger.create.stats", "Zeigt den Besten in dem StatsType an") {
-			
+
 			@Override
 			public String getValue(final Player player, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Skull) || ((Skull) loc.getBlock().getState()).getOwner() == null) {
@@ -93,16 +107,17 @@ public class CoreSkullChangers implements SkullChangers {
 				StatsType type = null;
 				try {
 					type = StatsType.valueOf(s);
-				} catch (final Exception ex) {
+				}
+				catch (final Exception ex) {
 					return "MHF_Question";
 				}
-				
+
 				final List<String> tops = Core.getCore().getStatsHandler().getTop(type, 1);
 				return ChatColor.BOLD + "" + tops.get(0).split(":")[0];
 			}
 		});
 	}
-	
+
 	private PacketContainer modifySkull(final PacketContainer pa, final Player player) {
 		// final String SKULL_NICK_KEY = "SkullOwner";
 		// final WrapperPlayServerTileEntityData p = new
@@ -139,11 +154,12 @@ public class CoreSkullChangers implements SkullChangers {
 		// TODO Disabled skullchangers
 		return pa;
 	}
-	
+
 	private void sendSkullChange(final Player player, final Location loc) {
 		final PacketContainer result = Core.getCore().getProtocolHandler().getManager().createPacket(PacketType.Play.Server.TILE_ENTITY_DATA);
 		try {
-			@SuppressWarnings("unused") final Skull skull = (Skull) loc.getBlock().getState();
+			@SuppressWarnings("unused")
+			final Skull skull = (Skull) loc.getBlock().getState();
 			// TODO Fix Update of SkullChanger
 			// NbtCompound tag = new NbtFactory().
 			// tag.setString("id", "Skull");
@@ -157,14 +173,15 @@ public class CoreSkullChangers implements SkullChangers {
 			result.getSpecificModifier(Integer.TYPE).write(1, (int) loc.getY());
 			result.getSpecificModifier(Integer.TYPE).write(2, (int) loc.getZ());
 			result.getSpecificModifier(Integer.TYPE).write(3, 4);
-			
+
 			Core.getCore().getProtocolHandler().getManager().sendServerPacket(player, result);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 			return;
 		}
 	}
-	
+
 	@Override
 	public void addSkullChanger(final SkullChanger changer) {
 		if (changer == null) {
@@ -178,20 +195,20 @@ public class CoreSkullChangers implements SkullChangers {
 		}
 		skullchangers.add(changer);
 	}
-	
+
 	@Override
 	public void removeSkullChanger(final SkullChanger changer) {
 		skullchangers.remove(changer);
 	}
-	
+
 	@Override
 	public List<SkullChanger> getSkullChangerList() {
 		return skullchangers;
 	}
-	
+
 	@Override
 	public void handlePacket(final PacketEvent event) {
 		event.setPacket(modifySkull(event.getPacket(), event.getPlayer()));
 	}
-	
+
 }

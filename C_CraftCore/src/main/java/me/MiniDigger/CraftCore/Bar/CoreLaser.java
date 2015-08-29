@@ -3,13 +3,6 @@ package me.MiniDigger.CraftCore.Bar;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import net.minecraft.server.v1_8_R3.DataWatcher;
-import net.minecraft.server.v1_8_R3.EntityInsentient;
-import net.minecraft.server.v1_8_R3.Packet;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityMetadata;
-import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntityLiving;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
@@ -21,16 +14,22 @@ import org.bukkit.entity.Player;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Bar.Laser;
+import net.minecraft.server.v1_8_R3.DataWatcher;
+import net.minecraft.server.v1_8_R3.EntityInsentient;
+import net.minecraft.server.v1_8_R3.Packet;
+import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
+import net.minecraft.server.v1_8_R3.PacketPlayOutEntityMetadata;
+import net.minecraft.server.v1_8_R3.PacketPlayOutSpawnEntityLiving;
 
 public class CoreLaser implements Laser {
 
-	private int entityId;
-	private DataWatcher dataWatcher;
-	private List<Entity> targets;
+	private final int			entityId;
+	private final DataWatcher	dataWatcher;
+	private List<Entity>		targets;
 
-	private Location location;
+	private final Location location;
 
-	public CoreLaser(Location location) {
+	public CoreLaser(final Location location) {
 		entityId = Core.getCore().getRandomUtil().nextInt(Integer.MAX_VALUE);
 		dataWatcher = new DataWatcher(null);
 		byte data = (byte) calcData(0, 0, false); // onFire
@@ -46,19 +45,19 @@ public class CoreLaser implements Laser {
 		this.location = location;
 	}
 
-	private void sendPacket(Packet<?> packet) {
-		for (Player player : Bukkit.getOnlinePlayers()) {
+	private void sendPacket(final Packet<?> packet) {
+		for (final Player player : Bukkit.getOnlinePlayers()) {
 			((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
 		}
 	}
 
-	private void sendPacket(Player player, Packet<?> packet) {
+	private void sendPacket(final Player player, final Packet<?> packet) {
 		((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
 	}
 
-	private void spawn(Player show) {
+	private void spawn(final Player show) {
 		try {
-			PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving();
+			final PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving();
 			set(packet, "a", entityId);
 			set(packet, "b", 68);
 			set(packet, "c", toFixedPointNumber(location.getX()));
@@ -76,53 +75,56 @@ public class CoreLaser implements Laser {
 			} else {
 				sendPacket(show, packet);
 			}
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void setTarget(LivingEntity target) {
+	public void setTarget(final LivingEntity target) {
 		try {
 			spawn(null);
-			PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata();
+			final PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata();
 			set(packet, "a", entityId);
-			dataWatcher.a(17, (int) ((CraftEntity) target).getHandle().getId());
+			dataWatcher.a(17, ((CraftEntity) target).getHandle().getId());
 			set(packet, "b", dataWatcher.b());
 			sendPacket(packet);
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void setTarget(Player show, LivingEntity target) {
+	public void setTarget(final Player show, final LivingEntity target) {
 		try {
 			spawn(show);
-			PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata();
+			final PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata();
 			set(packet, "a", entityId);
-			dataWatcher.a(17, (int) ((CraftEntity) target).getHandle().getId());
+			dataWatcher.a(17, ((CraftEntity) target).getHandle().getId());
 			set(packet, "b", dataWatcher.b());
 			sendPacket(show, packet);
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void despawn(Player show) {
-		PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(new int[] { entityId });
+	public void despawn(final Player show) {
+		final PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(new int[] { entityId });
 		if (show == null) {
 			sendPacket(packet);
 		} else {
 			sendPacket(show, packet);
 		}
-		for (Entity e : targets) {
+		for (final Entity e : targets) {
 			e.remove();
 		}
 	}
 
-	private int calcData(int data, int id, boolean flag) {
+	private int calcData(final int data, final int id, final boolean flag) {
 		if (flag) {
 			return Integer.valueOf(data | 1 << id);
 		} else {
@@ -130,7 +132,7 @@ public class CoreLaser implements Laser {
 		}
 	}
 
-	private int calcType(int type, int id, boolean flag) {
+	private int calcType(final int type, final int id, final boolean flag) {
 		if (flag) {
 			return Integer.valueOf(type | id);
 		} else {
@@ -138,23 +140,23 @@ public class CoreLaser implements Laser {
 		}
 	}
 
-	private byte toPackedByte(float f) {
+	private byte toPackedByte(final float f) {
 		return (byte) ((int) (f * 256.0F / 360.0F));
 	}
 
-	private int toFixedPointNumber(Double d) {
+	private int toFixedPointNumber(final Double d) {
 		return (int) (d * 32D);
 	}
 
-	private void set(Object instance, String name, Object value) throws Exception {
-		Field field = instance.getClass().getDeclaredField(name);
+	private void set(final Object instance, final String name, final Object value) throws Exception {
+		final Field field = instance.getClass().getDeclaredField(name);
 		field.setAccessible(true);
 		field.set(instance, value);
 	}
 
 	@Override
-	public void setTarget(Location target) {
-		CraftEntity e = (CraftEntity) target.getWorld().spawnEntity(target, EntityType.BAT);
+	public void setTarget(final Location target) {
+		final CraftEntity e = (CraftEntity) target.getWorld().spawnEntity(target, EntityType.BAT);
 		e.getHandle().b(true);// Silent
 		e.getHandle().setInvisible(true);
 		((EntityInsentient) e.getHandle()).k(true);// No ai
@@ -163,8 +165,8 @@ public class CoreLaser implements Laser {
 	}
 
 	@Override
-	public void setTarget(Player show, Location target) {
-		CraftEntity e = (CraftEntity) target.getWorld().spawnEntity(target, EntityType.BAT);
+	public void setTarget(final Player show, final Location target) {
+		final CraftEntity e = (CraftEntity) target.getWorld().spawnEntity(target, EntityType.BAT);
 		e.getHandle().b(true);// Silent
 		e.getHandle().setInvisible(true);
 		((EntityInsentient) e.getHandle()).k(true);// No ai

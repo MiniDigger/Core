@@ -12,20 +12,21 @@ import org.apache.commons.lang.Validate;
  * <p>
  * This class is intended for use as a key to a map.
  * </p>
- * 
+ *
  * @author Glen Husman
  * @param <E>
  *            The type of elements in the array.
  * @see Arrays
  */
 public final class ArrayWrapper<E> {
-	
+
 	/**
 	 * Creates an array wrapper with some elements.
-	 * 
+	 *
 	 * @param elements
 	 *            The elements of the array.
 	 */
+	@SafeVarargs
 	public ArrayWrapper(final E... elements) {
 		setArray(elements);
 	}
@@ -34,7 +35,7 @@ public final class ArrayWrapper<E> {
 
 	/**
 	 * Retrieves a reference to the wrapped array instance.
-	 * 
+	 *
 	 * @return The array wrapped by this instance.
 	 */
 	public E[] getArray() {
@@ -43,7 +44,7 @@ public final class ArrayWrapper<E> {
 
 	/**
 	 * Set this wrapper to wrap a new array instance.
-	 * 
+	 *
 	 * @param array
 	 *            The new wrapped array.
 	 */
@@ -54,7 +55,7 @@ public final class ArrayWrapper<E> {
 
 	/**
 	 * Determines if this object has a value equivalent to another object.
-	 * 
+	 *
 	 * @see Arrays#equals(Object[], Object[])
 	 */
 	@SuppressWarnings("rawtypes")
@@ -65,10 +66,10 @@ public final class ArrayWrapper<E> {
 		}
 		return Arrays.equals(_array, ((ArrayWrapper) other)._array);
 	}
-	
+
 	/**
 	 * Gets the hash code represented by this objects value.
-	 * 
+	 *
 	 * @see Arrays#hashCode(Object[])
 	 * @return This object's hash code.
 	 */
@@ -76,12 +77,12 @@ public final class ArrayWrapper<E> {
 	public int hashCode() {
 		return Arrays.hashCode(_array);
 	}
-	
+
 	/**
 	 * Converts an iterable element collection to an array of elements. The
 	 * iteration order of the specified object will be used as the array element
 	 * order.
-	 * 
+	 *
 	 * @param list
 	 *            The iterable of objects which will be converted to an array.
 	 * @param c
@@ -92,23 +93,25 @@ public final class ArrayWrapper<E> {
 	public static <T> T[] toArray(final Iterable<? extends T> list, final Class<T> c) {
 		int size = -1;
 		if (list instanceof Collection<?>) {
-			@SuppressWarnings("rawtypes") final Collection coll = (Collection) list;
+			@SuppressWarnings("rawtypes")
+			final Collection coll = (Collection) list;
 			size = coll.size();
 		}
-		
+
 		if (size < 0) {
 			size = 0;
 			// Ugly hack: Count it ourselves
-			for (@SuppressWarnings("unused") final T element : list) {
+			for (@SuppressWarnings("unused")
+			final T element : list) {
 				size++;
 			}
 		}
-		
+
 		final T[] result = (T[]) Array.newInstance(c, size);
 		int i = 0;
 		for (final T element : list) { // Assumes iteration order is consistent
 			result[i++] = element; // Assign array element at index THEN
-			                       // increment counter
+									// increment counter
 		}
 		return result;
 	}

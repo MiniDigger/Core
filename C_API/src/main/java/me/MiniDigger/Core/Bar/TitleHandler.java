@@ -19,5 +19,5 @@ public interface TitleHandler {
 	void clear(Player p);
 
 	int getVersion(Player p);
-	
+
 }

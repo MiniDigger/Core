@@ -11,8 +11,9 @@ import java.util.Set;
  */
 public class SimpleKeywordChecker extends KeywordChecker {
 
-	private final Set<?>								banWords;
-	@SuppressWarnings("unused") private final Set<?>	auxWords;
+	private final Set<?>	banWords;
+	@SuppressWarnings("unused")
+	private final Set<?>	auxWords;
 
 	public SimpleKeywordChecker(final Set<?> banWords, final Set<?> auxWords) {
 		this.banWords = banWords;

@@ -25,5 +25,5 @@ public interface BroadcastMessage {
 	void setInterval(int interval);
 
 	void addMsg(String msg);
-	
+
 }

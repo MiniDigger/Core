@@ -1,17 +1,30 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
  *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -27,19 +40,19 @@ import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 
 public interface MathUtil {
-	
+
 	double lengthSquared(final double... values);
-	
+
 	double length(final double... values);
-	
+
 	double distance(final double x1, final double y1, final double x2, final double y2);
-	
+
 	double distanceSquared(final double x1, final double y1, final double x2, final double y2);
-	
+
 	double distance(final double x1, final double y1, final double z1, final double x2, final double y2, final double z2);
-	
+
 	double distanceSquared(final double x1, final double y1, final double z1, final double x2, final double y2, final double z2);
-	
+
 	/**
 	 * Gets a percentage and round it with a cusotm amound of decimals
 	 *
@@ -51,9 +64,9 @@ public interface MathUtil {
 	 *            to round with
 	 * @return Percentage for subtotal with custom decimals
 	 */
-	
+
 	double getPercentage(final int subtotal, final int total, final int decimals);
-	
+
 	/**
 	 * Gets a percentags of 2 values
 	 *
@@ -63,9 +76,9 @@ public interface MathUtil {
 	 *            to sue as 100% value
 	 * @return percentage
 	 */
-	
+
 	double getPercentage(final int subtotal, final int total);
-	
+
 	/**
 	 * Gets the angle difference between two angles
 	 *
@@ -74,7 +87,7 @@ public interface MathUtil {
 	 * @return angle difference
 	 */
 	int getAngleDifference(final int angle1, final int angle2);
-	
+
 	/**
 	 * Gets the angle difference between two angles
 	 *
@@ -83,7 +96,7 @@ public interface MathUtil {
 	 * @return angle difference
 	 */
 	float getAngleDifference(final float angle1, final float angle2);
-	
+
 	/**
 	 * Wraps the angle to be between -180 and 180 degrees
 	 *
@@ -92,7 +105,7 @@ public interface MathUtil {
 	 * @return [-180 > angle >= 180]
 	 */
 	int wrapAngle(final int angle);
-	
+
 	/**
 	 * Wraps the angle to be between -180 and 180 degrees
 	 *
@@ -101,7 +114,7 @@ public interface MathUtil {
 	 * @return [-180 > angle >= 180]
 	 */
 	float wrapAngle(final float angle);
-	
+
 	/**
 	 * Normalizes a 2D-vector to be the length of another 2D-vector<br>
 	 * Calculates the normalization factor to multiply the input vector with, to
@@ -118,15 +131,15 @@ public interface MathUtil {
 	 * @return the normalization factor
 	 */
 	double normalize(final double x, final double z, final double reqx, final double reqz);
-	
+
 	float getLookAtYaw(final Entity loc, final Entity lookat);
-	
+
 	float getLookAtYaw(final Block loc, final Block lookat);
-	
+
 	float getLookAtYaw(final Location loc, final Location lookat);
-	
+
 	float getLookAtYaw(final Vector motion);
-	
+
 	/**
 	 * Gets the horizontal look-at angle in degrees to look into the
 	 * 2D-direction specified
@@ -138,7 +151,7 @@ public interface MathUtil {
 	 * @return the angle in degrees
 	 */
 	float getLookAtYaw(final double dx, final double dz);
-	
+
 	/**
 	 * Gets the pitch angle in degrees to look into the direction specified
 	 *
@@ -151,7 +164,7 @@ public interface MathUtil {
 	 * @return look-at angle in degrees
 	 */
 	float getLookAtPitch(final double dX, final double dY, final double dZ);
-	
+
 	/**
 	 * Gets the pitch angle in degrees to look into the direction specified
 	 *
@@ -162,7 +175,7 @@ public interface MathUtil {
 	 * @return look-at angle in degrees
 	 */
 	float getLookAtPitch(final double dY, final double dXZ);
-	
+
 	/**
 	 * Gets the inverse tangent of the value in degrees
 	 *
@@ -170,7 +183,7 @@ public interface MathUtil {
 	 * @return inverse tangent angle in degrees
 	 */
 	float atan(final double value);
-	
+
 	/**
 	 * Gets the inverse tangent angle in degrees of the rectangle vector
 	 *
@@ -181,7 +194,7 @@ public interface MathUtil {
 	 * @return inverse tangent 2 angle in degrees
 	 */
 	float atan2(final double y, final double x);
-	
+
 	/**
 	 * Gets the floor integer value from a double value
 	 *
@@ -190,7 +203,7 @@ public interface MathUtil {
 	 * @return floor value
 	 */
 	int floor(final double value);
-	
+
 	/**
 	 * Gets the floor integer value from a float value
 	 *
@@ -199,7 +212,7 @@ public interface MathUtil {
 	 * @return floor value
 	 */
 	int floor(final float value);
-	
+
 	/**
 	 * Gets the ceiling integer value from a double value
 	 *
@@ -208,7 +221,7 @@ public interface MathUtil {
 	 * @return ceiling value
 	 */
 	int ceil(final double value);
-	
+
 	/**
 	 * Gets the ceiling integer value from a float value
 	 *
@@ -217,7 +230,7 @@ public interface MathUtil {
 	 * @return ceiling value
 	 */
 	int ceil(final float value);
-	
+
 	/**
 	 * Moves a Location into the yaw and pitch of the Location in the offset
 	 * specified
@@ -229,7 +242,7 @@ public interface MathUtil {
 	 * @return Translated Location
 	 */
 	Location move(final Location loc, final Vector offset);
-	
+
 	/**
 	 * Moves a Location into the yaw and pitch of the Location in the offset
 	 * specified
@@ -245,7 +258,7 @@ public interface MathUtil {
 	 * @return Translated Location
 	 */
 	Location move(final Location loc, final double dx, final double dy, final double dz);
-	
+
 	/**
 	 * Rotates a 3D-vector using yaw and pitch
 	 *
@@ -258,7 +271,7 @@ public interface MathUtil {
 	 * @return Vector rotated by the angle (new instance)
 	 */
 	Vector rotate(final float yaw, final float pitch, final Vector vector);
-	
+
 	/**
 	 * Rotates a 3D-vector using yaw and pitch
 	 *
@@ -275,7 +288,7 @@ public interface MathUtil {
 	 * @return Vector rotated by the angle
 	 */
 	Vector rotate(final float yaw, final float pitch, final double x, final double y, final double z);
-	
+
 	/**
 	 * Rounds the specified value to the amount of decimals specified
 	 *
@@ -286,7 +299,7 @@ public interface MathUtil {
 	 * @return value round to the decimal count specified
 	 */
 	double round(final double value, final int decimals);
-	
+
 	/**
 	 * Returns 0 if the value is not-a-number
 	 *
@@ -295,7 +308,7 @@ public interface MathUtil {
 	 * @return The value, or 0 if it is NaN
 	 */
 	double fixNaN(final double value);
-	
+
 	/**
 	 * Returns the default if the value is not-a-number
 	 *
@@ -306,7 +319,7 @@ public interface MathUtil {
 	 * @return The value, or the default if it is NaN
 	 */
 	double fixNaN(final double value, final double def);
-	
+
 	/**
 	 * Converts a location value into a chunk coordinate
 	 *
@@ -315,7 +328,7 @@ public interface MathUtil {
 	 * @return chunk coordinate
 	 */
 	int toChunk(final double loc);
-	
+
 	/**
 	 * Converts a location value into a chunk coordinate
 	 *
@@ -324,15 +337,15 @@ public interface MathUtil {
 	 * @return chunk coordinate
 	 */
 	int toChunk(final int loc);
-	
+
 	double useOld(final double oldvalue, final double newvalue, final double peruseold);
-	
+
 	double lerp(final double d1, final double d2, final double stage);
-	
+
 	Vector lerp(final Vector vec1, final Vector vec2, final double stage);
-	
+
 	Location lerp(final Location loc1, final Location loc2, final double stage);
-	
+
 	/**
 	 * Checks whether one value is negative and the other positive, or opposite
 	 *
@@ -343,7 +356,7 @@ public interface MathUtil {
 	 * @return True if value1 is inverted from value2
 	 */
 	boolean isInverted(final double value1, final double value2);
-	
+
 	/**
 	 * Gets the direction of yaw and pitch angles
 	 *
@@ -354,7 +367,7 @@ public interface MathUtil {
 	 * @return Direction Vector
 	 */
 	Vector getDirection(final float yaw, final float pitch);
-	
+
 	/**
 	 * Clamps the value between -limit and limit
 	 *
@@ -364,7 +377,7 @@ public interface MathUtil {
 	 * @return value, -limit or limit
 	 */
 	double clamp(final double value, final double limit);
-	
+
 	/**
 	 * Clamps the value between the min and max values
 	 *
@@ -375,7 +388,7 @@ public interface MathUtil {
 	 * @return value, min or max
 	 */
 	double clamp(final double value, final double min, final double max);
-	
+
 	/**
 	 * Clamps the value between -limit and limit
 	 *
@@ -385,7 +398,7 @@ public interface MathUtil {
 	 * @return value, -limit or limit
 	 */
 	float clamp(final float value, final float limit);
-	
+
 	/**
 	 * Clamps the value between the min and max values
 	 *
@@ -396,7 +409,7 @@ public interface MathUtil {
 	 * @return value, min or max
 	 */
 	float clamp(final float value, final float min, final float max);
-	
+
 	/**
 	 * Clamps the value between -limit and limit
 	 *
@@ -406,7 +419,7 @@ public interface MathUtil {
 	 * @return value, -limit or limit
 	 */
 	int clamp(final int value, final int limit);
-	
+
 	/**
 	 * Clamps the value between the min and max values
 	 *
@@ -417,7 +430,7 @@ public interface MathUtil {
 	 * @return value, min or max
 	 */
 	int clamp(final int value, final int min, final int max);
-	
+
 	/**
 	 * Turns a value negative or keeps it positive based on a boolean input
 	 *
@@ -428,7 +441,7 @@ public interface MathUtil {
 	 * @return the value or inverted (-value)
 	 */
 	int invert(final int value, final boolean negative);
-	
+
 	/**
 	 * Turns a value negative or keeps it positive based on a boolean input
 	 *
@@ -439,7 +452,7 @@ public interface MathUtil {
 	 * @return the value or inverted (-value)
 	 */
 	float invert(final float value, final boolean negative);
-	
+
 	/**
 	 * Turns a value negative or keeps it positive based on a boolean input
 	 *
@@ -450,7 +463,7 @@ public interface MathUtil {
 	 * @return the value or inverted (-value)
 	 */
 	double invert(final double value, final boolean negative);
-	
+
 	/**
 	 * Merges two ints into a long
 	 *
@@ -461,23 +474,23 @@ public interface MathUtil {
 	 * @return merged long value
 	 */
 	long toLong(final int msw, final int lsw);
-	
+
 	long longHashToLong(final int msw, final int lsw);
-	
+
 	int longHashMsw(final long key);
-	
+
 	int longHashLsw(final long key);
-	
+
 	void setVectorLength(final Vector vector, final double length);
-	
+
 	void setVectorLengthSquared(final Vector vector, final double lengthsquared);
-	
+
 	boolean isHeadingTo(final BlockFace direction, final Vector velocity);
-	
+
 	boolean isHeadingTo(final Location from, final Location to, final Vector velocity);
-	
+
 	boolean isHeadingTo(final Vector offset, final Vector velocity);
-	
+
 	double getHalfRootOfTwo();
-	
+
 }

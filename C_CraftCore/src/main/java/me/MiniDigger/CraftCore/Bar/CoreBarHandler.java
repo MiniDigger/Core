@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -32,14 +45,14 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Bar.BarHandler;
 
 public class CoreBarHandler implements BarHandler {
-	
-	private final Map<UUID, CoreFakeDragon>	DRAGONS	= new HashMap<>();
-	
+
+	private final Map<UUID, CoreFakeDragon> DRAGONS = new HashMap<>();
+
 	@Override
 	public boolean hasBar(final Player player) {
 		return DRAGONS.containsKey(player.getUniqueId()) && DRAGONS.get(player.getUniqueId()) != null;
 	}
-	
+
 	@Override
 	public void removeBar(final Player player) {
 		if (hasBar(player)) {
@@ -47,11 +60,11 @@ public class CoreBarHandler implements BarHandler {
 			DRAGONS.remove(player.getUniqueId());
 		}
 	}
-	
+
 	@Override
 	public void setBar(final Player player, String text, float health) {
 		CoreFakeDragon dragon = DRAGONS.containsKey(player.getUniqueId()) ? DRAGONS.get(player.getUniqueId()) : null;
-		
+
 		if (text.length() > 64) {
 			text = text.substring(0, 63);
 		}
@@ -61,11 +74,11 @@ public class CoreBarHandler implements BarHandler {
 		if (health < 0) {
 			health = 0;
 		}
-		
+
 		if (text.isEmpty() && dragon != null) {
 			removeBar(player);
 		}
-		
+
 		if (dragon == null) {
 			dragon = new CoreFakeDragon(player.getLocation().add(0, -200, 0), text, health);
 			sendPacket(player, dragon.getSpawnPacket());
@@ -76,13 +89,13 @@ public class CoreBarHandler implements BarHandler {
 			sendPacket(player, dragon.getMetaPacket(dragon.getWatcher()));
 			sendPacket(player, dragon.getTeleportPacket(player.getLocation().add(0, -200, 0)));
 		}
-		
+
 	}
-	
+
 	@Override
 	public void setBar(final Player player, String text, double health) {
 		CoreFakeDragon dragon = DRAGONS.containsKey(player.getUniqueId()) ? DRAGONS.get(player.getUniqueId()) : null;
-		
+
 		if (text.length() > 64) {
 			text = text.substring(0, 63);
 		}
@@ -92,11 +105,11 @@ public class CoreBarHandler implements BarHandler {
 		if (health < 0) {
 			health = 0;
 		}
-		
+
 		if (text.isEmpty() && dragon != null) {
 			removeBar(player);
 		}
-		
+
 		if (dragon == null) {
 			dragon = new CoreFakeDragon(player.getLocation().add(0, -200, 0), text, (float) (200 / health));
 			sendPacket(player, dragon.getSpawnPacket());
@@ -107,23 +120,23 @@ public class CoreBarHandler implements BarHandler {
 			sendPacket(player, dragon.getMetaPacket(dragon.getWatcher()));
 			sendPacket(player, dragon.getTeleportPacket(player.getLocation().add(0, -200, 0)));
 		}
-		
+
 	}
-	
+
 	@Override
 	public void removeAllStatusBars() {
 		for (final Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			removeBar(each);
 		}
 	}
-	
+
 	@Override
 	public void setAllStatusBars(final String text, final float percent) {
 		for (final Player each : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			setBar(each, text, percent);
 		}
 	}
-	
+
 	private static void sendPacket(final Player player, final Object packet) {
 		try {
 			final Object nmsPlayer = Core.getCore().getReflectionUtil().getHandle(player);
@@ -131,7 +144,8 @@ public class CoreBarHandler implements BarHandler {
 			final Object connection = connectionField.get(nmsPlayer);
 			final Method sendPacket = Core.getCore().getReflectionUtil().getMethod(connection.getClass(), "sendPacket");
 			sendPacket.invoke(connection, packet);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}

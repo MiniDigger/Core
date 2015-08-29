@@ -7,89 +7,89 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Broadcast.BroadcastHandler;
 import me.MiniDigger.Core.Broadcast.BroadcastMessage;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Prefix.Prefix;
-
 import me.MiniDigger.CraftCore.Lang.MSG;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreBroadcastHandler implements BroadcastHandler {
-	
+
 	private List<BroadcastMessage>	msgs	= new ArrayList<BroadcastMessage>();
-	private File	               file	 = new File(Core.getCore().getInstance().getDataFolder(), "broadcast.json");
-	private List<BukkitTask>	   tasks	= new ArrayList<BukkitTask>();
-	
+	private final File				file	= new File(Core.getCore().getInstance().getDataFolder(), "broadcast.json");
+	private final List<BukkitTask>	tasks	= new ArrayList<BukkitTask>();
+
 	@Override
 	public void init() {
 		loadAll();
 		start();
 	}
-	
+
 	public void start() {
-		for (BukkitTask t : tasks) {
+		for (final BukkitTask t : tasks) {
 			t.cancel();
 		}
 		tasks.clear();
-		
+
 		for (final BroadcastMessage msg : msgs) {
 			tasks.add(new BukkitRunnable() {
-				
+
 				@Override
 				public void run() {
-					FancyMessage msg1 = Prefix.BROADCAST.getPrefix().then(msg.getCurrent());
-					for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+					final FancyMessage msg1 = Prefix.BROADCAST.getPrefix().then(msg.getCurrent());
+					for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 						msg1.send(p);
 					}
 				}
 			}.runTaskTimer(Core.getCore().getInstance(), msg.getDelay(), msg.getInterval()));
 		}
 	}
-	
+
 	public void loadAll() {
 		msgs = new ArrayList<BroadcastMessage>();
 		try {
-			JSONArray a = (JSONArray) new JSONParser().parse(new FileReader(file));
-			@SuppressWarnings("unchecked") Iterator<JSONObject> iterator = a.iterator();
+			final JSONArray a = (JSONArray) new JSONParser().parse(new FileReader(file));
+			@SuppressWarnings("unchecked")
+			final Iterator<JSONObject> iterator = a.iterator();
 			while (iterator.hasNext()) {
-				BroadcastMessage msg = new CoreBroadcastMessage();
+				final BroadcastMessage msg = new CoreBroadcastMessage();
 				msg.load(iterator.next());
 				msgs.add(msg);
 			}
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void saveAll() {
 		Core.getCore().getInstance().debug("save");
-		List<JSONObject> o = new ArrayList<JSONObject>();
-		
-		for (BroadcastMessage msg : msgs) {
+		final List<JSONObject> o = new ArrayList<JSONObject>();
+
+		for (final BroadcastMessage msg : msgs) {
 			o.add(msg.save());
 		}
-		
-		JSONArray a = new JSONArray();
+
+		final JSONArray a = new JSONArray();
 		a.addAll(o);
-		
+
 		try {
 			a.writeJSONString(new PrintWriter(file));
 			Core.getCore().getInstance().debug("saved");
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
-	
+
 }

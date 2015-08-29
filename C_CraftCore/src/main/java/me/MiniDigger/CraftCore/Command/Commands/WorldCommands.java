@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -27,11 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-
-import net.minecraft.server.v1_8_R3.ExceptionWorldConflict;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -39,6 +47,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -48,10 +58,9 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Prefix.Prefix;
-
 import me.MiniDigger.CraftCore.Map.CoreMapData;
-
 import mkremins.fanciful.FancyMessage;
+import net.minecraft.server.v1_8_R3.ExceptionWorldConflict;
 
 public class WorldCommands {
 
@@ -61,30 +70,22 @@ public class WorldCommands {
 		if (args.getArgs().length == 0) {
 			if (w.hasStorm()) {
 				if (w.isThundering()) {
-					args.getUser().sendMessage(Prefix.API.getPrefix().then("Es gewittert noch ").color(ChatColor.GOLD)
-							.then(w.getThunderDuration() + "").color(ChatColor.YELLOW).then(" Ticks und regnet noch ")
-							.color(ChatColor.GOLD).then("" + w.getWeatherDuration()).color(ChatColor.YELLOW)
-							.then(" Ticks.").color(ChatColor.GOLD));
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Es gewittert noch ").color(ChatColor.GOLD).then(w.getThunderDuration() + "").color(ChatColor.YELLOW).then(" Ticks und regnet noch ")
+							.color(ChatColor.GOLD).then("" + w.getWeatherDuration()).color(ChatColor.YELLOW).then(" Ticks.").color(ChatColor.GOLD));
 				} else {
-					args.getUser()
-							.sendMessage(Prefix.API.getPrefix().then("Es regnet noch ").color(ChatColor.GOLD)
-									.then("" + w.getWeatherDuration()).color(ChatColor.YELLOW).then(" Ticks.")
-									.color(ChatColor.GOLD));
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Es regnet noch ").color(ChatColor.GOLD).then("" + w.getWeatherDuration()).color(ChatColor.YELLOW).then(" Ticks.").color(ChatColor.GOLD));
 				}
 			} else {
-				args.getUser()
-						.sendMessage(Prefix.API.getPrefix().then("Die Sonne scheint noch ").color(ChatColor.GOLD)
-								.then("" + w.getWeatherDuration()).color(ChatColor.YELLOW).then(" Ticks.")
-								.color(ChatColor.GOLD));
+				args.getUser().sendMessage(Prefix.API.getPrefix().then("Die Sonne scheint noch ").color(ChatColor.GOLD).then("" + w.getWeatherDuration()).color(ChatColor.YELLOW).then(" Ticks.").color(ChatColor.GOLD));
 			}
 		} else if (args.getArgs().length >= 1) {
 			int duration = 5 * 20;
 			if (args.getArgs().length >= 2) {
 				try {
 					duration = Integer.parseInt(args.getArgs()[1]);
-				} catch (final Exception ex) {
-					args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannte Dauer! ").color(ChatColor.RED)
-							.then(args.getArgs()[1]).color(ChatColor.DARK_RED));
+				}
+				catch (final Exception ex) {
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannte Dauer! ").color(ChatColor.RED).then(args.getArgs()[1]).color(ChatColor.DARK_RED));
 					return;
 				}
 			}
@@ -102,8 +103,7 @@ public class WorldCommands {
 				storm = false;
 				thunder = false;
 			} else {
-				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekanntes Wetter! ").color(ChatColor.RED)
-						.then(args.getArgs()[0]).color(ChatColor.DARK_RED));
+				args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekanntes Wetter! ").color(ChatColor.RED).then(args.getArgs()[0]).color(ChatColor.DARK_RED));
 				return;
 			}
 
@@ -124,8 +124,7 @@ public class WorldCommands {
 
 	@Command(name = "world.info", description = "Zeigt Infos übder die aktuelle Welt", usage = "", permission = "world.info", consol = false)
 	public void info(final CommandArgs args) {
-		args.getUser().sendMessage(Prefix.API.getPrefix()
-				.then("Du bist auf World " + args.getPlayer().getWorld().getName()).color(ChatColor.GREEN));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Du bist auf World " + args.getPlayer().getWorld().getName()).color(ChatColor.GREEN));
 	}
 
 	@Command(name = "tp", permission = "tp", description = "Teleportiert", usage = "<x> <y> <z> / <spieler>", consol = false, min = 1, max = 3, sync = true)
@@ -144,7 +143,8 @@ public class WorldCommands {
 				x = Integer.parseInt(args.getArgs()[0]);
 				y = Integer.parseInt(args.getArgs()[1]);
 				z = Integer.parseInt(args.getArgs()[2]);
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Falsche Eingabe!").color(ChatColor.RED));
 				return;
 			}
@@ -164,7 +164,7 @@ public class WorldCommands {
 				return;
 			}
 
-			for (Player pp : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player pp : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				pp.teleport(p);
 				Prefix.API.getPrefix().then("Wuusch...").send(pp);
 			}
@@ -174,12 +174,13 @@ public class WorldCommands {
 				x = Integer.parseInt(args.getArgs()[0]);
 				y = Integer.parseInt(args.getArgs()[1]);
 				z = Integer.parseInt(args.getArgs()[2]);
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Falsche Eingabe!").color(ChatColor.RED));
 				return;
 			}
 
-			for (Player pp : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player pp : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				pp.teleport(new Location(args.getPlayer().getWorld(), x, y, z));
 				Prefix.API.getPrefix().then("Wuusch...").send(pp);
 			}
@@ -211,7 +212,8 @@ public class WorldCommands {
 				x = Integer.parseInt(args.getArgs()[1]);
 				y = Integer.parseInt(args.getArgs()[2]);
 				z = Integer.parseInt(args.getArgs()[3]);
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Falsche Eingabe!").color(ChatColor.RED));
 				return;
 			}
@@ -242,7 +244,8 @@ public class WorldCommands {
 			try {
 				Core.getCore().getWorldHandler().loadWorld(map);
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map geladen!").color(ChatColor.GREEN));
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Map nicht geladen!").color(ChatColor.RED));
 				return;
 			}
@@ -268,17 +271,14 @@ public class WorldCommands {
 		final FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
 		final List<String> maps = con.getStringList("maps");
 
-		if (maps.contains(map) && Bukkit.getWorld(map) != null
-				|| (args.getArgs().length > 1 && args.getArgs()[1].contains("-f"))) {
+		if (maps.contains(map) && Bukkit.getWorld(map) != null || (args.getArgs().length > 1 && args.getArgs()[1].contains("-f"))) {
 			try {
 				Core.getCore().getWorldHandler().unloadWorld(map, Core.getCore().getWorldHandler().getFallbackLoc());
 				args.getUser().sendMessage(Prefix.API.getPrefix().then("Welt unloaded! Lösche sie..."));
-			} catch (final Exception ex) {
 			}
+			catch (final Exception ex) {}
 			System.gc();
-			final File file = new File(
-					Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""),
-					map);
+			final File file = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""), map);
 			Core.getCore().getFileUtil().deleteDirectory(file);
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Welt gelöscht!"));
 		} else {
@@ -317,12 +317,10 @@ public class WorldCommands {
 		for (final String map : maps) {
 			FancyMessage msg;
 			if (Bukkit.getWorld(map) == null) {
-				msg = Prefix.API.getPrefix().then("# ").then(map).color(ChatColor.RED).command("/world load " + map)
-						.formattedTooltip(new FancyMessage("Klicke hier um die Map zu laden!").color(ChatColor.GOLD));
+				msg = Prefix.API.getPrefix().then("# ").then(map).color(ChatColor.RED).command("/world load " + map).formattedTooltip(new FancyMessage("Klicke hier um die Map zu laden!").color(ChatColor.GOLD));
 			} else {
 				msg = Prefix.API.getPrefix().then("# ").then(map).color(ChatColor.GREEN).command("/world tp " + map)
-						.formattedTooltip(new FancyMessage("Klicke ").then("hier").style(ChatColor.UNDERLINE)
-								.then(" um zu der Welt zu kommen!"));
+						.formattedTooltip(new FancyMessage("Klicke ").then("hier").style(ChatColor.UNDERLINE).then(" um zu der Welt zu kommen!"));
 
 			}
 			if (args.isUser()) {
@@ -366,7 +364,8 @@ public class WorldCommands {
 				final String in = args.getArgs()[0].replace("r:", "");
 				try {
 					Integer.parseInt(in);
-				} catch (final Exception ex) {
+				}
+				catch (final Exception ex) {
 					args.getUser().sendMessage(Prefix.API.getPrefix().then("Gibt ne Zahl ein!").color(ChatColor.RED));
 					range(args);
 					return;
@@ -469,132 +468,113 @@ public class WorldCommands {
 		}
 
 		final MapData data = new CoreMapData(session.get("world"));
-		data.scanMap(Core.getCore().getLocationUtil().StringToLocation(session.get("middle")),
-				Integer.parseInt(session.get("range")), color, new Runnable() {
+		data.scanMap(Core.getCore().getLocationUtil().StringToLocation(session.get("middle")), Integer.parseInt(session.get("range")), color, new Runnable() {
 
-					@Override
-					public void run() {
-						data.createConfig();
+			@Override
+			public void run() {
+				data.createConfig();
 
-						final File mapFolder = new File(
-								((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
-						final File mapConfig = new File(mapFolder, "maps.yml");
+				final File mapFolder = new File(((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder"));
+				final File mapConfig = new File(mapFolder, "maps.yml");
 
-						final FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
-						final List<String> maps = con.getStringList("maps");
-						maps.add(session.get("world"));
-						con.set("maps", maps);
+				final FileConfiguration con = YamlConfiguration.loadConfiguration(mapConfig);
+				final List<String> maps = con.getStringList("maps");
+				maps.add(session.get("world"));
+				con.set("maps", maps);
 
-						final List<String> types = Core.getCore().getStringUtil()
-								.stringToList(session.get("gameTypes"));
-						con.set(session.get("world") + ".gametypes", types);
-						con.set(session.get("world") + ".author", session.get("author"));
-						con.set(session.get("world") + ".name", session.get("name"));
+				final List<String> types = Core.getCore().getStringUtil().stringToList(session.get("gameTypes"));
+				con.set(session.get("world") + ".gametypes", types);
+				con.set(session.get("world") + ".author", session.get("author"));
+				con.set(session.get("world") + ".name", session.get("name"));
 
-						Bukkit.getWorld(session.get("world")).setAutoSave(false);
-						args.getUser().sendMessage(Prefix.API.getPrefix().then("Speicher...").color(ChatColor.GREEN));
-						final World world = Bukkit.getWorld(session.get("world"));
-						final CraftWorld w = (CraftWorld) world;
+				Bukkit.getWorld(session.get("world")).setAutoSave(false);
+				args.getUser().sendMessage(Prefix.API.getPrefix().then("Speicher...").color(ChatColor.GREEN));
+				final World world = Bukkit.getWorld(session.get("world"));
+				final CraftWorld w = (CraftWorld) world;
 
-						((CraftServer) Bukkit.getServer()).checkSaveState();
-						w.getHandle().savingDisabled = false;
-						try {
-							w.getHandle().save(true, null);
-						} catch (final ExceptionWorldConflict e2) {
-							e2.printStackTrace();
-						}
-						w.getHandle().savingDisabled = true;
+				((CraftServer) Bukkit.getServer()).checkSaveState();
+				w.getHandle().savingDisabled = false;
+				try {
+					w.getHandle().save(true, null);
+				}
+				catch (final ExceptionWorldConflict e2) {
+					e2.printStackTrace();
+				}
+				w.getHandle().savingDisabled = true;
 
-						try {
-							con.save(mapConfig);
-							args.getUser().sendMessage(Prefix.API.getPrefix().then("FERTIG!").color(ChatColor.GREEN));
-						} catch (final IOException e) {
-							args.getUser().sendMessage(Prefix.API.getPrefix().then("Error!").color(ChatColor.RED));
-							e.printStackTrace();
-						}
+				try {
+					con.save(mapConfig);
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("FERTIG!").color(ChatColor.GREEN));
+				}
+				catch (final IOException e) {
+					args.getUser().sendMessage(Prefix.API.getPrefix().then("Error!").color(ChatColor.RED));
+					e.printStackTrace();
+				}
 
-						args.getUser().sendMessage(Prefix.API.getPrefix().then("Zippe..."));
+				args.getUser().sendMessage(Prefix.API.getPrefix().then("Zippe..."));
 
-						try {
-							Core.getCore().getZipUtil().zipFolder(
-									Core.getCore().getStringUtil()
-											.replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "")
-											+ File.separatorChar + session.get("world"),
-									((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder")
-											+ File.separatorChar + session.get("world") + ".zip");
-						} catch (final Exception e) {
-							e.printStackTrace();
-							Core.getCore().getInstance().debug("ZIP ALLREADY THERE?! Retrying...");
-							try {
-								Core.getCore().getZipUtil().zipFolder(
-										Core.getCore().getStringUtil()
-												.replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "")
-												+ File.separatorChar + session.get("world"),
-										((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder")
-												+ File.separatorChar + session.get("world") + ".zip"
-												+ Core.getCore().getRandomUtil().nextInt(1000));
-							} catch (final Exception e1) {
-								e1.printStackTrace();
-								Core.getCore().getInstance().debug("Giving up....");
-							}
-						}
-
-						args.getUser().sendMessage(Prefix.API.getPrefix().then("Finished!"));
-						WorldCommands.this.data.remove(args.getUser().getUUID());
+				try {
+					Core.getCore().getZipUtil().zipFolder(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "") + File.separatorChar + session.get("world"),
+							((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder") + File.separatorChar + session.get("world") + ".zip");
+				}
+				catch (final Exception e) {
+					e.printStackTrace();
+					Core.getCore().getInstance().debug("ZIP ALLREADY THERE?! Retrying...");
+					try {
+						Core.getCore().getZipUtil().zipFolder(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", "") + File.separatorChar + session.get("world"),
+								((JavaPlugin) Core.getCore().getInstance()).getConfig().getString("mapFolder") + File.separatorChar + session.get("world") + ".zip" + Core.getCore().getRandomUtil().nextInt(1000));
 					}
-				});
+					catch (final Exception e1) {
+						e1.printStackTrace();
+						Core.getCore().getInstance().debug("Giving up....");
+					}
+				}
+
+				args.getUser().sendMessage(Prefix.API.getPrefix().then("Finished!"));
+				WorldCommands.this.data.remove(args.getUser().getUUID());
+			}
+		});
 	}
 
 	private void locTypes(final CommandArgs args) {
-		args.getUser().sendMessage(Prefix.API.getPrefix().then("Welche LocTypes gibt es? Du kannst mehrmals klicken!")
-				.color(ChatColor.YELLOW));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Welche LocTypes gibt es? Du kannst mehrmals klicken!").color(ChatColor.YELLOW));
 		final FancyMessage msg = Prefix.API.getPrefix();
 		for (final DyeColor type : DyeColor.values()) {
 			msg.then(type.name() + " ").command("/world create lc:" + type.name());
 		}
 		args.getUser().sendMessage(msg);
-		args.getUser()
-				.sendMessage(Prefix.API.getPrefix().then("Fertig? Klick mich hart!").command("/world create finish"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Fertig? Klick mich hart!").command("/world create finish"));
 	}
 
 	private void gameTypes(final CommandArgs args) {
-		args.getUser().sendMessage(Prefix.API.getPrefix()
-				.then("Welche Modi soll man Spielen? Du kannst mehrmals klicken!").color(ChatColor.YELLOW));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Welche Modi soll man Spielen? Du kannst mehrmals klicken!").color(ChatColor.YELLOW));
 		final FancyMessage msg = Prefix.API.getPrefix();
 		for (final GameType type : GameType.values()) {
 			msg.then(type.getName() + " ").command("/world create t:" + type.name());
 		}
 		args.getUser().sendMessage(msg);
-		args.getUser()
-				.sendMessage(Prefix.API.getPrefix().then("Fertig? Klick mich hart!").command("/world create finish"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Fertig? Klick mich hart!").command("/world create finish"));
 
 	}
 
 	private void name(final CommandArgs args) {
-		args.getUser().sendMessage(
-				Prefix.API.getPrefix().then("Wie heißt die Map? KEINE LEERZEICHEN!").color(ChatColor.YELLOW));
-		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier und gibt den Namen ein")
-				.color(ChatColor.YELLOW).suggest("/world create n:"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Wie heißt die Map? KEINE LEERZEICHEN!").color(ChatColor.YELLOW));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier und gibt den Namen ein").color(ChatColor.YELLOW).suggest("/world create n:"));
 	}
 
 	private void author(final CommandArgs args) {
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Wer hat die Map gebaut?").color(ChatColor.YELLOW));
-		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier und gibt den Author ein")
-				.color(ChatColor.YELLOW).suggest("/world create a:"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier und gibt den Author ein").color(ChatColor.YELLOW).suggest("/world create a:"));
 	}
 
 	private void range(final CommandArgs args) {
-		args.getUser().sendMessage(Prefix.API.getPrefix()
-				.then("Wie groß ist der Radius der Map? Lieber zu viel als zu wenig!").color(ChatColor.YELLOW));
-		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier und gib den Radius ein")
-				.color(ChatColor.YELLOW).suggest("/world create r:"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Wie groß ist der Radius der Map? Lieber zu viel als zu wenig!").color(ChatColor.YELLOW));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier und gib den Radius ein").color(ChatColor.YELLOW).suggest("/world create r:"));
 	}
 
 	private void middle(final CommandArgs args) {
-		args.getUser().sendMessage(Prefix.API.getPrefix()
-				.then("Wo ist der Mittelpunkt? Muss nicht exakt sein, aber annähernd!").color(ChatColor.YELLOW));
-		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier wenn du im Mittelpunkt bist")
-				.color(ChatColor.YELLOW).command("/world create m:"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Wo ist der Mittelpunkt? Muss nicht exakt sein, aber annähernd!").color(ChatColor.YELLOW));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klick hier wenn du im Mittelpunkt bist").color(ChatColor.YELLOW).command("/world create m:"));
 	}
 
 	private void world(final CommandArgs args) {
@@ -602,22 +582,16 @@ public class WorldCommands {
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Welche Welt meinst du?").color(ChatColor.YELLOW));
 		final FancyMessage msg = Prefix.API.getPrefix();
 		for (final World w : Bukkit.getWorlds()) {
-			msg.then(w.getName() + " ").color(ChatColor.AQUA).command("/world create w:" + w.getName())
-					.tooltip("Klickste hier!");
+			msg.then(w.getName() + " ").color(ChatColor.AQUA).command("/world create w:" + w.getName()).tooltip("Klickste hier!");
 		}
 		args.getUser().sendMessage(msg);
 	}
 
 	private void start(final CommandArgs args) {
 		args.getUser().sendMessage(Prefix.API.getPrefix().then("Starte Welt erstellung...").color(ChatColor.GOLD));
-		args.getUser().sendMessage(
-				Prefix.API.getPrefix().then("Beim Setup wirst du deine Maus brauchen.").color(ChatColor.GOLD));
-		args.getUser()
-				.sendMessage(Prefix.API.getPrefix().then("Klicke zum Testen ").color(ChatColor.YELLOW).then("HIER")
-						.color(ChatColor.RED)
-						.formattedTooltip(new FancyMessage("Na klick schon!").color(ChatColor.GOLD)
-								.style(ChatColor.UNDERLINE, ChatColor.BOLD))
-						.style(ChatColor.UNDERLINE, ChatColor.BOLD).command("/world create s:"));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Beim Setup wirst du deine Maus brauchen.").color(ChatColor.GOLD));
+		args.getUser().sendMessage(Prefix.API.getPrefix().then("Klicke zum Testen ").color(ChatColor.YELLOW).then("HIER").color(ChatColor.RED)
+				.formattedTooltip(new FancyMessage("Na klick schon!").color(ChatColor.GOLD).style(ChatColor.UNDERLINE, ChatColor.BOLD)).style(ChatColor.UNDERLINE, ChatColor.BOLD).command("/world create s:"));
 	}
 
 }

@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -41,14 +54,14 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Menu.ItemMenu;
 
 public class CoreItemMenu implements ItemMenu {
-	
-	private final String	  name;
-	private final int	      size;
-	private final onClick	  click;
-	List<UUID>	              viewing	= new ArrayList<UUID>();
-	
-	private final ItemStack[]	items;
-	
+
+	private final String	name;
+	private final int		size;
+	private final onClick	click;
+	List<UUID>				viewing	= new ArrayList<UUID>();
+
+	private final ItemStack[] items;
+
 	public CoreItemMenu(final String name, final int size, final onClick click) {
 		this.name = name;
 		this.size = size * 9;
@@ -56,7 +69,7 @@ public class CoreItemMenu implements ItemMenu {
 		this.click = click;
 		Bukkit.getPluginManager().registerEvents(this, Core.getCore().getInstance());
 	}
-	
+
 	@Override
 	@EventHandler
 	public void onPluginDisable(final PluginDisableEvent event) {
@@ -64,14 +77,14 @@ public class CoreItemMenu implements ItemMenu {
 			close(p);
 		}
 	}
-	
+
 	@Override
 	public ItemMenu open(final Player p) {
 		p.openInventory(getInventory(p));
 		viewing.add(p.getUniqueId());
 		return this;
 	}
-	
+
 	private Inventory getInventory(final Player p) {
 		final Inventory inv = Bukkit.createInventory(p, size, name);
 		for (int i = 0; i < items.length; i++) {
@@ -81,7 +94,7 @@ public class CoreItemMenu implements ItemMenu {
 		}
 		return inv;
 	}
-	
+
 	@Override
 	public ItemMenu close(final Player p) {
 		if (p.getOpenInventory().getTitle().equals(name)) {
@@ -89,7 +102,7 @@ public class CoreItemMenu implements ItemMenu {
 		}
 		return this;
 	}
-	
+
 	@Override
 	public List<Player> getViewers() {
 		final List<Player> viewers = new ArrayList<Player>();
@@ -98,7 +111,7 @@ public class CoreItemMenu implements ItemMenu {
 		}
 		return viewers;
 	}
-	
+
 	@Override
 	@EventHandler
 	public void onInventoryClick(final InventoryClickEvent event) {
@@ -116,7 +129,7 @@ public class CoreItemMenu implements ItemMenu {
 			p.updateInventory();
 		}
 	}
-	
+
 	@Override
 	@EventHandler
 	public void onInventoryDrag(final InventoryDragEvent event) {
@@ -125,7 +138,7 @@ public class CoreItemMenu implements ItemMenu {
 			((Player) event.getWhoClicked()).updateInventory();
 		}
 	}
-	
+
 	@Override
 	@EventHandler
 	public void onInventoryClose(final InventoryCloseEvent event) {
@@ -133,23 +146,23 @@ public class CoreItemMenu implements ItemMenu {
 			viewing.remove(event.getPlayer().getName());
 		}
 	}
-	
+
 	@Override
 	public ItemMenu addButton(final Row row, final int position, final ItemStack item, final String name, final String... lore) {
 		items[row.getRow() * 9 + position] = getItem(item, name, lore);
 		return this;
 	}
-	
+
 	@Override
 	public Row getRowFromSlot(final int slot) {
 		return new CoreRow(slot / 9, items);
 	}
-	
+
 	@Override
 	public Row getRow(final int row) {
 		return new CoreRow(row, items);
 	}
-	
+
 	private ItemStack getItem(final ItemStack item, final String name, final String... lore) {
 		final ItemMeta im = item.getItemMeta();
 		im.setDisplayName(name);
@@ -157,12 +170,12 @@ public class CoreItemMenu implements ItemMenu {
 		item.setItemMeta(im);
 		return item;
 	}
-	
+
 	public class CoreRow implements Row {
-		
+
 		private final ItemStack[]	rowItems	= new ItemStack[9];
-		int		                  row;
-		
+		int							row;
+
 		public CoreRow(final int row, final ItemStack[] items) {
 			this.row = row;
 			int j = 0;
@@ -171,17 +184,17 @@ public class CoreItemMenu implements ItemMenu {
 				j++;
 			}
 		}
-		
+
 		@Override
 		public ItemStack[] getRowItems() {
 			return rowItems;
 		}
-		
+
 		@Override
 		public ItemStack getRowItem(final int item) {
 			return rowItems[item] == null ? new ItemStack(Material.AIR) : rowItems[item];
 		}
-		
+
 		@Override
 		public int getRow() {
 			return row;

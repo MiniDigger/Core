@@ -20,7 +20,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 
 public class CustomLobbyFeature extends CoreFeature {
 
-	public CustomLobbyFeature(Phase phase) {
+	public CustomLobbyFeature(final Phase phase) {
 		super(phase);
 	}
 
@@ -57,7 +57,7 @@ public class CustomLobbyFeature extends CoreFeature {
 	@Command(name = "setmap", permission = "setmap", min = 1, sync = true)
 	public void setmap(final CommandArgs args) {
 		if (Core.getCore().getMapHandler().getMapNames().contains(args.getArgs()[0])) {
-			MapFeature m = (MapFeature) getPhase().getNextPhase().getFeature(FeatureType.MAP);
+			final MapFeature m = (MapFeature) getPhase().getNextPhase().getFeature(FeatureType.MAP);
 			m.setMap(args.getArgs()[0]);
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Map SET!").color(ChatColor.GREEN));
 		} else {
@@ -68,8 +68,7 @@ public class CustomLobbyFeature extends CoreFeature {
 	@Completer(name = "setmap")
 	public List<String> setmapC(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
-			return Core.getCore().getCommonMethods().completer(Core.getCore().getMapHandler().getMapNames(),
-					args.getArgs()[0]);
+			return Core.getCore().getCommonMethods().completer(Core.getCore().getMapHandler().getMapNames(), args.getArgs()[0]);
 		} else {
 			return new ArrayList<String>();
 		}
@@ -77,9 +76,9 @@ public class CustomLobbyFeature extends CoreFeature {
 
 	@Command(name = "setplayer", permission = "setplayer", min = 1, sync = true)
 	public void setplayer(final CommandArgs args) {
-		Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		final Player p = Bukkit.getPlayer(args.getArgs()[0]);
 		if (p != null) {
-			CustomFeature m = (CustomFeature) getPhase().getNextPhase().getFeature(FeatureType.CUSTOM);
+			final CustomFeature m = (CustomFeature) getPhase().getNextPhase().getFeature(FeatureType.CUSTOM);
 			m.addPlayer(p, args);
 		} else {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannter Spieler!").color(ChatColor.RED));
@@ -89,11 +88,12 @@ public class CustomLobbyFeature extends CoreFeature {
 	@Command(name = "setlives", permission = "setlives", min = 1, sync = true)
 	public void setlives(final CommandArgs args) {
 		try {
-			int i = Integer.parseInt(args.getArgs()[0]);
-			LivesFeature m = (LivesFeature) getPhase().getNextPhase().getFeature(FeatureType.LIVES);
+			final int i = Integer.parseInt(args.getArgs()[0]);
+			final LivesFeature m = (LivesFeature) getPhase().getNextPhase().getFeature(FeatureType.LIVES);
 			m.setLives(i);
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Lives SET!").color(ChatColor.GREEN));
-		} catch (Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Unbekannter Spieler!").color(ChatColor.RED));
 		}
 	}

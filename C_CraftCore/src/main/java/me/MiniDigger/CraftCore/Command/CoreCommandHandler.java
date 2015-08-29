@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -30,8 +43,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.minnymin.zephyrus.core.util.map.MultiMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandMap;
@@ -46,6 +57,8 @@ import org.bukkit.help.IndexHelpTopic;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 
+import com.minnymin.zephyrus.core.util.map.MultiMap;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.BukkitCommand;
 import me.MiniDigger.Core.Command.BukkitCompleter;
@@ -55,17 +68,16 @@ import me.MiniDigger.Core.Command.CommandHandler;
 import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreCommandHandler implements CommandHandler {
-	
+
 	private final MultiMap<String, Method, Object>	commandMap	= new MultiMap<String, Method, Object>();
-	private CommandMap	                           map;
-	private final Plugin	                       plugin;
-	
+	private CommandMap								map;
+	private final Plugin							plugin;
+
 	/* Core Start + */
-	
+
 	@Override
 	public void unregister(final String command) {
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
@@ -76,19 +88,21 @@ public class CoreCommandHandler implements CommandHandler {
 				map = (CommandMap) field.get(manager);
 				final Field field2 = SimpleCommandMap.class.getDeclaredField("knownCommands");
 				field2.setAccessible(true);
-				@SuppressWarnings("unchecked") final Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
+				@SuppressWarnings("unchecked")
+				final Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
 				for (final Map.Entry<String, org.bukkit.command.Command> entry : knownCommands.entrySet()) {
 					if (entry.getKey().equals(command)) {
 						entry.getValue().unregister(map);
 					}
 				}
 				knownCommands.remove(command);
-			} catch (IllegalArgumentException | NoSuchFieldException | IllegalAccessException | SecurityException e) {
+			}
+			catch (IllegalArgumentException | NoSuchFieldException | IllegalAccessException | SecurityException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	@Override
 	public void unregisterCommands(final Object obj) {
 		for (final Method m : obj.getClass().getMethods()) {
@@ -105,9 +119,9 @@ public class CoreCommandHandler implements CommandHandler {
 			}
 		}
 	}
-	
+
 	/* Core End */
-	
+
 	public CoreCommandHandler(final Map<String, String> relocations) {
 		plugin = Core.getCore().getInstance();
 		if (plugin.getServer().getPluginManager() instanceof SimplePluginManager) {
@@ -116,12 +130,13 @@ public class CoreCommandHandler implements CommandHandler {
 				final Field field = SimplePluginManager.class.getDeclaredField("commandMap");
 				field.setAccessible(true);
 				map = (CommandMap) field.get(manager);
-				
+
 				/* Core Start */
 				final Field field2 = SimpleCommandMap.class.getDeclaredField("knownCommands");
 				field2.setAccessible(true);
 				final Map<String, org.bukkit.command.Command> newknownCommands = new HashMap<>();
-				@SuppressWarnings("unchecked") final Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
+				@SuppressWarnings("unchecked")
+				final Map<String, org.bukkit.command.Command> knownCommands = (Map<String, org.bukkit.command.Command>) field2.get(map);
 				for (final Map.Entry<String, org.bukkit.command.Command> entry : knownCommands.entrySet()) {
 					for (final String key : relocations.keySet()) {
 						if (entry.getKey().startsWith(key)) {
@@ -135,18 +150,22 @@ public class CoreCommandHandler implements CommandHandler {
 				knownCommands.clear();
 				knownCommands.putAll(newknownCommands);
 				/* Core End */
-			} catch (final IllegalArgumentException e) {
+			}
+			catch (final IllegalArgumentException e) {
 				e.printStackTrace();
-			} catch (final SecurityException e) {
+			}
+			catch (final SecurityException e) {
 				e.printStackTrace();
-			} catch (final IllegalAccessException e) {
+			}
+			catch (final IllegalAccessException e) {
 				e.printStackTrace();
-			} catch (final NoSuchFieldException e) {
+			}
+			catch (final NoSuchFieldException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean handleCommand(final CommandSender sender, final String label, final org.bukkit.command.Command cmd, String[] args) {
 		for (int i = args.length; i >= 0; i--) {
@@ -159,10 +178,10 @@ public class CoreCommandHandler implements CommandHandler {
 			if (commandMap.containsKey(cmdLabel)) {
 				final Method method = commandMap.getFirstValue(cmdLabel);
 				final Object methodObject = commandMap.getSecondValue(cmdLabel);
-				
+
 				/* Core Start */
 				final Command command = method.getAnnotation(Command.class);
-				
+
 				final List<String> newArgs = new ArrayList<String>();
 				boolean add = false;
 				String toAdd = "";
@@ -171,12 +190,12 @@ public class CoreCommandHandler implements CommandHandler {
 					if (a == (command.string() - 1)) {
 						add = true;
 					}
-					
+
 					if (add) {
 						toAdd += " " + s;
 						continue;
 					}
-					
+
 					if (s.startsWith("\"")) {
 						final StringBuilder arg = new StringBuilder();
 						while (!s.endsWith("\"")) {
@@ -185,21 +204,21 @@ public class CoreCommandHandler implements CommandHandler {
 							s = args[a];
 						}
 						arg.append(s.replaceFirst("\"", ""));
-						
+
 						newArgs.add(arg.toString());
 					} else {
 						newArgs.add(s);
 					}
 				}
-				
+
 				if (add) {
 					newArgs.add(toAdd);
 				}
-				
+
 				args = newArgs.toArray(new String[newArgs.size()]);
-				
+
 				final CommandArgs cmdArgs = new CoreCommandArgs(sender, cmd, label, args, cmdLabel.split("\\.").length - 1);
-				
+
 				if (sender instanceof Player) {
 					final User user = Core.getCore().getUserHandler().get(((Player) sender).getUniqueId());
 					if (!user.hasPermission(command.permission())) {
@@ -208,62 +227,68 @@ public class CoreCommandHandler implements CommandHandler {
 						return true;
 					}
 				}
-				
+
 				if (!sender.hasPermission(command.permission())) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noPerm()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
-				
+
 				if (!command.consol() && !(sender instanceof Player)) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.noConsol()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
-				
+
 				if (cmdArgs.getArgs().length < command.min()) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.fewArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
-				
+
 				if (cmdArgs.getArgs().length > command.max() && command.max() != -1) {
 					final FancyMessage msg = Prefix.SECURITY.getPrefix().then(command.manyArgs()).color(ChatColor.DARK_RED);
 					msg.send(sender);
 					return true;
 				}
-				
+
 				if (command.sync()) {
 					try {
 						method.invoke(methodObject, cmdArgs);
-					} catch (final IllegalArgumentException e) {
+					}
+					catch (final IllegalArgumentException e) {
 						e.printStackTrace();
-					} catch (final IllegalAccessException e) {
+					}
+					catch (final IllegalAccessException e) {
 						e.printStackTrace();
-					} catch (final InvocationTargetException e) {
+					}
+					catch (final InvocationTargetException e) {
 						e.printStackTrace();
 					}
 					return true;
 				}
-				
+
 				final Thread thread = new Thread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						try {
 							method.invoke(methodObject, cmdArgs);
-						} catch (final IllegalArgumentException e) {
+						}
+						catch (final IllegalArgumentException e) {
 							e.printStackTrace();
-						} catch (final IllegalAccessException e) {
+						}
+						catch (final IllegalAccessException e) {
 							e.printStackTrace();
-						} catch (final InvocationTargetException e) {
+						}
+						catch (final InvocationTargetException e) {
 							e.printStackTrace();
 						}
 					}
 				});
 				thread.setName("Core Command Worker (" + buffer + ")[" + sender.getName() + "]");
 				thread.start();
-				
+
 				/* Core End */
 				return true;
 			}
@@ -271,7 +296,7 @@ public class CoreCommandHandler implements CommandHandler {
 		defaultCommand(new CoreCommandArgs(sender, cmd, label, args, 0));
 		return true;
 	}
-	
+
 	@Override
 	public void registerCommands(final Object obj) {
 		for (final Method m : obj.getClass().getMethods()) {
@@ -302,7 +327,7 @@ public class CoreCommandHandler implements CommandHandler {
 			}
 		}
 	}
-	
+
 	@Override
 	public void registerHelp() {
 		final Set<HelpTopic> help = new TreeSet<HelpTopic>(HelpTopicComparator.helpTopicComparatorInstance());
@@ -313,11 +338,10 @@ public class CoreCommandHandler implements CommandHandler {
 				help.add(topic);
 			}
 		}
-		final IndexHelpTopic topic = new IndexHelpTopic(plugin.getName(), "All commands for " + plugin.getName(), null, help, "Below is a list of all "
-		        + plugin.getName() + " commands:");
+		final IndexHelpTopic topic = new IndexHelpTopic(plugin.getName(), "All commands for " + plugin.getName(), null, help, "Below is a list of all " + plugin.getName() + " commands:");
 		Bukkit.getServer().getHelpMap().addTopic(topic);
 	}
-	
+
 	private void registerCommand(final Command command, final String label, final Method m, final Object obj) {
 		commandMap.put(label.toLowerCase(), m, obj);
 		final String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
@@ -332,7 +356,7 @@ public class CoreCommandHandler implements CommandHandler {
 			map.getCommand(cmdLabel).setUsage(command.usage());
 		}
 	}
-	
+
 	private void registerCompleter(final String label, final Method m, final Object obj) {
 		final String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
 		if (map.getCommand(cmdLabel) == null) {
@@ -360,12 +384,13 @@ public class CoreCommandHandler implements CommandHandler {
 				} else {
 					Core.getCore().getInstance().debug("Unable to register tab completer " + m.getName() + ". A tab completer is already registered for that command!");
 				}
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
-	
+
 	private void defaultCommand(final CommandArgs args) {
 		args.getSender().sendMessage(args.getLabel() + " is not handled! Oh noes!");
 	}

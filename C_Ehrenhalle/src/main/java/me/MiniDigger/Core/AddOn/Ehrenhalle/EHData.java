@@ -19,10 +19,10 @@ public class EHData {
 	private Map<String, Double> donations = new HashMap<>();
 
 	public void load() throws SQLException {
-		String select = "SELECT * FROM `donation`";
-		SQLQuery selectQ = new CoreSQLQuery(select);
-		PreparedStatement selectS = selectQ.getStatement();
-		ResultSet r = selectS.executeQuery();
+		final String select = "SELECT * FROM `donation`";
+		final SQLQuery selectQ = new CoreSQLQuery(select);
+		final PreparedStatement selectS = selectQ.getStatement();
+		final ResultSet r = selectS.executeQuery();
 
 		int i = 0;
 		while (r.next()) {
@@ -35,25 +35,25 @@ public class EHData {
 		Core.getCore().getInstance().debug(i + " dontatior loaded");
 	}
 
-	public void add(String name, double amount) throws SQLException {
+	public void add(final String name, final double amount) throws SQLException {
 		if (donations.containsKey(name)) {
 			donations.put(name, donations.remove(name) + amount);
 		} else {
 			donations.put(name, amount);
 		}
 
-		String delete = "DELETE FROM `donation` WHERE `name` = ?";
-		String insert = "INSERT INTO `donation`(`name`, `amount`) VALUES (?,?)";
+		final String delete = "DELETE FROM `donation` WHERE `name` = ?";
+		final String insert = "INSERT INTO `donation`(`name`, `amount`) VALUES (?,?)";
 
-		SQLQuery deleteQ = new CoreSQLQuery(delete);
-		PreparedStatement deleteS = deleteQ.getStatement();
+		final SQLQuery deleteQ = new CoreSQLQuery(delete);
+		final PreparedStatement deleteS = deleteQ.getStatement();
 		deleteS.setString(1, name);
 		deleteS.execute();
 		deleteS.close();
 		deleteQ.kill();
 
-		SQLQuery insertQ = new CoreSQLQuery(insert);
-		PreparedStatement insertS = insertQ.getStatement();
+		final SQLQuery insertQ = new CoreSQLQuery(insert);
+		final PreparedStatement insertS = insertQ.getStatement();
 		insertS.setString(1, name);
 		insertS.setDouble(2, donations.get(name));
 		insertS.execute();
@@ -65,21 +65,21 @@ public class EHData {
 		return donations;
 	}
 
-	public double get(String string) {
+	public double get(final String string) {
 		return donations.get(string);
 	}
 
-	public <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
-		List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
+	public <K, V extends Comparable<? super V>> Map<K, V> sortByValue(final Map<K, V> map) {
+		final List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
 		Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
 			@Override
-			public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+			public int compare(final Map.Entry<K, V> o1, final Map.Entry<K, V> o2) {
 				return (o1.getValue()).compareTo(o2.getValue());
 			}
 		});
 
-		Map<K, V> result = new LinkedHashMap<>();
-		for (Map.Entry<K, V> entry : list) {
+		final Map<K, V> result = new LinkedHashMap<>();
+		for (final Map.Entry<K, V> entry : list) {
 			result.put(entry.getKey(), entry.getValue());
 		}
 		return result;

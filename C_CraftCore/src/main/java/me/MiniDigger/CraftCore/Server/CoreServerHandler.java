@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -24,6 +37,10 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.scheduler.BukkitTask;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -31,25 +48,18 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.scheduler.BukkitTask;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Server.Server;
 import me.MiniDigger.Core.Server.ServerHandler;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreServerHandler implements ServerHandler {
 
-	private final ArrayList<Server> servers = new ArrayList<>();
-	private BukkitTask task;
-	private BukkitTask ping;
+	private final ArrayList<Server>	servers	= new ArrayList<>();
+	private BukkitTask				task;
+	private BukkitTask				ping;
 
 	@Override
 	public void startTask() {
@@ -71,7 +81,8 @@ public class CoreServerHandler implements ServerHandler {
 					final String port = c.getString("server." + name + ".port");
 					try {
 						gotServerInfo(new CoreServerPing(name, host, Integer.parseInt(port)).getServerInfo());
-					} catch (final Exception ex) {
+					}
+					catch (final Exception ex) {
 						Core.getCore().getInstance().debug("could not ping " + name + ", " + host + ", " + port);
 					}
 				}
@@ -105,7 +116,8 @@ public class CoreServerHandler implements ServerHandler {
 			if (name == null || name.equals("")) {
 				Core.getCore().getInstance().debug("No name in line 1? " + lines[1].getJson());
 			}
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			// ex.printStackTrace();
 			name = lines[1].getJson();
 			name = name.replaceAll("\"", "");
@@ -161,8 +173,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isFull() && !server.isJoin()) {
 			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
-					.color(ChatColor.DARK_BLUE);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_BLUE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
 			lines[2].setJson(msg.toJSONString());
@@ -171,8 +182,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isFull()) {
 			msg = new FancyMessage("[Full]").color(ChatColor.DARK_RED);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
-					.color(ChatColor.DARK_BLUE);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_BLUE);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_BLUE);
 			lines[2].setJson(msg.toJSONString());
@@ -181,8 +191,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isJoin()) {
 			msg = new FancyMessage("[Join]").color(ChatColor.AQUA);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
-					.color(ChatColor.DARK_GREEN);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.DARK_GREEN);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.DARK_GREEN);
 			lines[2].setJson(msg.toJSONString());
@@ -191,8 +200,7 @@ public class CoreServerHandler implements ServerHandler {
 		} else if (server.isSpectate()) {
 			msg = new FancyMessage("[Specatete]").color(ChatColor.YELLOW);
 			lines[0].setJson(msg.toJSONString());
-			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase())
-					.color(ChatColor.GOLD);
+			msg = new FancyMessage(server.getPrimaryGameType().getAbk() + " | " + server.getPhase()).color(ChatColor.GOLD);
 			lines[1].setJson(msg.toJSONString());
 			msg = new FancyMessage(server.getNumPlayers() + "/" + server.getMaxPlayers()).color(ChatColor.GOLD);
 			lines[2].setJson(msg.toJSONString());
@@ -215,7 +223,8 @@ public class CoreServerHandler implements ServerHandler {
 					}
 				}
 			}
-		} catch (ConcurrentModificationException e) {
+		}
+		catch (final ConcurrentModificationException e) {
 			for (final Server s : servers.toArray(new Server[servers.size()])) {
 				if (s.getName().equalsIgnoreCase(name)) {
 					return s;
@@ -236,7 +245,7 @@ public class CoreServerHandler implements ServerHandler {
 	}
 
 	@Override
-	public void connect(User user, String server) {
+	public void connect(final User user, final String server) {
 		final ByteArrayDataOutput out = ByteStreams.newDataOutput();
 		out.writeUTF("Connect");
 		out.writeUTF(server);

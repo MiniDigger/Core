@@ -1,17 +1,30 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
  *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -52,7 +65,6 @@ import org.bukkit.util.Vector;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Item.ItemType;
-
 import me.MiniDigger.CraftCore.Item.CoreItem;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
@@ -63,7 +75,7 @@ import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
  */
 @SuppressWarnings("deprecation")
 public class GravityGun extends CoreItem {
-	
+
 	public static Map<Player, Material>		block;
 	public static Map<Player, Byte>			blockByte;
 	public static Map<Player, FallingBlock>	hold;
@@ -71,10 +83,10 @@ public class GravityGun extends CoreItem {
 	public static List<Player>				entityList;
 	public static Map<FallingBlock, Player>	flyingBlock;
 	public static List<FallingBlock>		flyingBlockList;
-	
+
 	public String	permission_give;
 	public String	permission_use;
-	
+
 	static {
 		GravityGun.block = new HashMap<Player, Material>();
 		GravityGun.blockByte = new HashMap<Player, Byte>();
@@ -83,9 +95,9 @@ public class GravityGun extends CoreItem {
 		GravityGun.entityList = new ArrayList<Player>();
 		GravityGun.flyingBlock = new HashMap<FallingBlock, Player>();
 		GravityGun.flyingBlockList = new ArrayList<FallingBlock>();
-		
+
 		Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), new Runnable() {
-			
+
 			@Override
 			public void run() {
 				move();
@@ -93,19 +105,18 @@ public class GravityGun extends CoreItem {
 			}
 		}, 0L, 0L);
 	}
-	
+
 	public GravityGun() {
 		super(ItemType.GRAVITYGUN);
 		permission_give = "GravityGun.give";
 		permission_use = "GravityGun.use";
 	}
-	
+
 	@Override
 	public ItemStack getItem() {
-		return new CoreItemBuilder(Material.STICK).name(ChatColor.BLUE + "Gravity" + ChatColor.RED + "Gun").amount(1).enchantment(Enchantment.ARROW_DAMAGE, 9001)
-		        .lore("Power over 9000!").build();
+		return new CoreItemBuilder(Material.STICK).name(ChatColor.BLUE + "Gravity" + ChatColor.RED + "Gun").amount(1).enchantment(Enchantment.ARROW_DAMAGE, 9001).lore("Power over 9000!").build();
 	}
-	
+
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void EntityChangeBlockEvent(final EntityChangeBlockEvent event) {
 		if (event.getEntityType() == EntityType.FALLING_BLOCK) {
@@ -127,16 +138,17 @@ public class GravityGun extends CoreItem {
 			}
 		}
 	}
-	
+
 	@EventHandler(ignoreCancelled = true)
 	public void SlotChange(final PlayerItemHeldEvent e) {
 		try {
 			GravityGun.block.remove(e.getPlayer());
 			GravityGun.hold.remove(e.getPlayer());
 			GravityGun.entity.remove(e.getPlayer());
-		} catch (final Exception ex) {}
+		}
+		catch (final Exception ex) {}
 	}
-	
+
 	public static void hit() {
 		try {
 			for (final FallingBlock all : GravityGun.flyingBlockList) {
@@ -150,18 +162,20 @@ public class GravityGun extends CoreItem {
 					GravityGun.flyingBlockList.remove(all);
 				}
 			}
-		} catch (final Exception ex) {}
+		}
+		catch (final Exception ex) {}
 	}
-	
+
 	@EventHandler(ignoreCancelled = true)
 	public void onDeath(final PlayerDeathEvent e) {
 		try {
 			GravityGun.block.remove(e.getEntity().getPlayer());
 			GravityGun.hold.remove(e.getEntity().getPlayer());
 			GravityGun.entity.remove(e.getEntity().getPlayer());
-		} catch (final Exception ex) {}
+		}
+		catch (final Exception ex) {}
 	}
-	
+
 	public static void move() {
 		List<Player> onlinePlayers;
 		for (int length = (onlinePlayers = Core.getCore().getUserHandler().getOnlinePlayers()).size(), i = 0; i < length; ++i) {
@@ -193,7 +207,7 @@ public class GravityGun extends CoreItem {
 					}
 					if (fs.getLocation().getBlock().getType() != Material.AIR) {
 						Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-							
+
 							@Override
 							public void run() {
 								all.sendBlockChange(fs.getLocation(), fs.getLocation().getBlock().getType(), fs.getLocation().getBlock().getData());
@@ -243,13 +257,12 @@ public class GravityGun extends CoreItem {
 			}
 		}
 	}
-	
+
 	// @EventHandler(ignoreCancelled = true) disable entity pushing for now
 	public void EntityDamageByEntityEvent(final EntityDamageByEntityEvent e) {
 		if (e.getDamager() instanceof Player) {
 			final Player h = (Player) e.getDamager();
-			if (h.hasPermission(permission_use) && h.getItemInHand().getType() == getItem().getType()
-			        && h.getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
+			if (h.hasPermission(permission_use) && h.getItemInHand().getType() == getItem().getType() && h.getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
 				e.setCancelled(true);
 				e.getEntity().setVelocity(h.getLocation().getDirection().multiply(3));
 				for (int i = 0; i <= 10; ++i) {
@@ -258,19 +271,19 @@ public class GravityGun extends CoreItem {
 			}
 		}
 	}
-	
+
 	public void setBlock(final int x, final int y, final int z, final Location loc, final Player p) {
 		loc.add(x, y, z);
 		loc.getBlock().setType(GravityGun.hold.get(p).getMaterial());
 		loc.getBlock().setData(GravityGun.hold.get(p).getBlockData());
 	}
-	
+
 	@EventHandler(ignoreCancelled = true)
 	@Override
 	public void onUse(final PlayerInteractEvent e) {
 		try {
 			if (e.getPlayer().hasPermission(permission_use) && e.getPlayer().getItemInHand().getType() == getItem().getType()
-			        && e.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
+					&& e.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
 				e.setCancelled(true);
 				if (!GravityGun.entity.containsKey(e.getPlayer())) {
 					if (GravityGun.block.containsKey(e.getPlayer())) {
@@ -342,13 +355,14 @@ public class GravityGun extends CoreItem {
 					}
 				}
 			}
-		} catch (final Exception ex) {}
+		}
+		catch (final Exception ex) {}
 	}
-	
+
 	@EventHandler(ignoreCancelled = true)
 	public void PlayerInteractEntityEvent(final PlayerInteractEntityEvent e) {
 		if (e.getPlayer().hasPermission(permission_use) && e.getPlayer().getItemInHand().getType() == getItem().getType()
-		        && e.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
+				&& e.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(getItem().getItemMeta().getDisplayName())) {
 			if (GravityGun.entity.containsKey(e.getPlayer())) {
 				GravityGun.entity.remove(e.getPlayer());
 				e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.LAVA_POP, 7.0f, 4.0f);
@@ -371,9 +385,10 @@ public class GravityGun extends CoreItem {
 					// }, 20L);
 					// }
 					// disable entity movement for now
-				} catch (final Exception ex) {}
+				}
+				catch (final Exception ex) {}
 			}
 		}
 	}
-	
+
 }

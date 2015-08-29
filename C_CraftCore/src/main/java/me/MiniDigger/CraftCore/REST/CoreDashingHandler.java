@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -48,11 +61,11 @@ import me.MiniDigger.Core.REST.DashingHandler;
 import me.MiniDigger.Core.Server.Server;
 
 public class CoreDashingHandler implements DashingHandler {
-	
+
 	private final Map<String, List<Date>>	words	= new HashMap<String, List<Date>>();
-	private final List<Integer>	          players	= new ArrayList<Integer>();
-	private int	                          playerX	= 1;
-	
+	private final List<Integer>				players	= new ArrayList<Integer>();
+	private int								playerX	= 1;
+
 	@Override
 	public void init() {
 		// new BukkitRunnable() {
@@ -73,7 +86,7 @@ public class CoreDashingHandler implements DashingHandler {
 		// }.runTaskTimer(Core.getCore().getInstance(), 10 * 1 * 20, 10 * 1 *
 		// 20);
 	}
-	
+
 	@Override
 	public void say(final String msg) {
 		final String[] split = msg.split(" ");
@@ -96,7 +109,7 @@ public class CoreDashingHandler implements DashingHandler {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void mostWords() {
@@ -104,22 +117,22 @@ public class CoreDashingHandler implements DashingHandler {
 		for (final String s : words.keySet()) {
 			count.put(s, words.get(s).size());
 		}
-		
+
 		final Set<Entry<String, Integer>> set = count.entrySet();
 		final List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
 		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-			
+
 			@Override
 			public int compare(final Map.Entry<String, Integer> o1, final Map.Entry<String, Integer> o2) {
 				return (o2.getValue()).compareTo(o1.getValue());
 			}
 		});
-		
+
 		int max = 10;
 		if (list.size() < max) {
 			max = list.size();
 		}
-		
+
 		final JSONArray obj = new JSONArray();
 		for (int i = 0; i < max; i++) {
 			final Entry<String, Integer> entry = list.get(i);
@@ -128,13 +141,13 @@ public class CoreDashingHandler implements DashingHandler {
 			o.put("value", entry.getValue());
 			obj.add(o);
 		}
-		
+
 		final JSONObject o = new JSONObject();
 		o.put("items", obj);
-		
+
 		go("mostwords", o);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void totalPlayers() {
@@ -142,17 +155,17 @@ public class CoreDashingHandler implements DashingHandler {
 		for (final Server server : Core.getCore().getServerHandler().getServers()) {
 			users += server.getNumPlayers();
 		}
-		
+
 		while (players.size() < 10) {
 			players.add(0);
 		}
-		
+
 		players.remove(0);
 		players.add(users);
-		
+
 		int x = playerX;
 		playerX++;
-		
+
 		final JSONArray array = new JSONArray();
 		for (final int i : players) {
 			final JSONObject obj = new JSONObject();
@@ -161,13 +174,13 @@ public class CoreDashingHandler implements DashingHandler {
 			array.add(obj);
 			x++;
 		}
-		
+
 		final JSONObject o = new JSONObject();
 		o.put("points", array);
-		
+
 		go("player", o);
 	}
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void go(final String widget, final JSONObject content) {
@@ -178,7 +191,7 @@ public class CoreDashingHandler implements DashingHandler {
 			String j = content.toJSONString();
 			j = j.replaceAll(Pattern.quote("\\"), "");
 			j = new String(j.getBytes(), "UTF-8");
-			
+
 			final StringEntity se = new StringEntity(j);
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 			post.setEntity(se);
@@ -193,7 +206,8 @@ public class CoreDashingHandler implements DashingHandler {
 				complete += " " + buffer;
 			}
 			Core.getCore().getInstance().debug("error in dashing handler: " + complete);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}

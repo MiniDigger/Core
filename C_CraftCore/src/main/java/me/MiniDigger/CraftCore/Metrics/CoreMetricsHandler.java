@@ -17,24 +17,25 @@ public class CoreMetricsHandler implements MetricsHandler {
 	@Override
 	public void start() {
 		try {
-			Metrics metrics = new Metrics(Core.getCore().getInstance());
+			final Metrics metrics = new Metrics(Core.getCore().getInstance());
 
 			gamemode(metrics);
 			addons(metrics);
 
 			metrics.start();
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			// Failed to submit the stats :-(
 			Core.getCore().getInstance().debug("No metrics for you then!");
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
-		
-		CoreConnectHandler c = new CoreConnectHandler();
+
+		final CoreConnectHandler c = new CoreConnectHandler();
 		c.start();
 	}
 
-	private void gamemode(Metrics metrics) {
-		Graph g = metrics.createGraph("MainGameMode");
+	private void gamemode(final Metrics metrics) {
+		final Graph g = metrics.createGraph("MainGameMode");
 		for (final GameType t : GameType.values()) {
 			g.addPlotter(new Plotter(t.getName()) {
 
@@ -46,8 +47,8 @@ public class CoreMetricsHandler implements MetricsHandler {
 		}
 	}
 
-	private void addons(Metrics metrics) {
-		Graph g = metrics.createGraph("AddOns");
+	private void addons(final Metrics metrics) {
+		final Graph g = metrics.createGraph("AddOns");
 		for (final AddOnBean b : Core.getCore().getRESTHandler().getAllAddOns()) {
 			g.addPlotter(new Plotter(b.getName()) {
 

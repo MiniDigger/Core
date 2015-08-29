@@ -12,7 +12,6 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
-
 import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedHealthFeature;
 import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
@@ -27,9 +26,9 @@ import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class EHPhase extends CorePhase {
 
-	private EHScanner s;
-	private EHData d;
-	private EHNPCs n;
+	private EHScanner	s;
+	private EHData		d;
+	private EHNPCs		n;
 
 	public EHPhase(final Game game) {
 		super(game, null);
@@ -75,7 +74,8 @@ public class EHPhase extends CorePhase {
 		d = new EHData();
 		try {
 			d.load();
-		} catch (SQLException e) {
+		}
+		catch (final SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -89,12 +89,12 @@ public class EHPhase extends CorePhase {
 	public void donation(final CommandArgs args) {
 		try {
 			d.add(args.getArgs()[0], Double.parseDouble(args.getArgs()[1]));
-		} catch (NumberFormatException e) {
+		}
+		catch (final NumberFormatException e) {
 			Prefix.API.getPrefix().then("Fehler: Dies ist eine Zahl! Format 10.00!").send(args.getSender());
-		} catch (SQLException e) {
-			Prefix.API.getPrefix()
-					.then("Fehler: SQL Fehler! " + e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage())
-					.send(args.getSender());
+		}
+		catch (final SQLException e) {
+			Prefix.API.getPrefix().then("Fehler: SQL Fehler! " + e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage()).send(args.getSender());
 			e.printStackTrace();
 		}
 

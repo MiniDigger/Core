@@ -19,9 +19,9 @@ import me.MiniDigger.CraftCore.Feature.CoreFeature;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
 public class CustomFeature extends CoreFeature {
-	private List<UUID> players = new ArrayList<>();
+	private final List<UUID> players = new ArrayList<>();
 
-	public CustomFeature(Phase phase) {
+	public CustomFeature(final Phase phase) {
 		super(phase);
 	}
 
@@ -47,20 +47,17 @@ public class CustomFeature extends CoreFeature {
 
 	@Override
 	public void start() {
-		for (UUID id : getPhase().getGame().getPlayers()) {
-			User u = Core.getCore().getUserHandler().get(id);
-			Player p = u.getPlayer();
+		for (final UUID id : getPhase().getGame().getPlayers()) {
+			final User u = Core.getCore().getUserHandler().get(id);
+			final Player p = u.getPlayer();
 			if (players.contains(id)) {
-				p.getInventory().addItem(new CoreItemBuilder(Material.DIAMOND_SWORD).name("INSTAKILL")
-						.enchantment(Enchantment.DAMAGE_ALL, 9000).build());
+				p.getInventory().addItem(new CoreItemBuilder(Material.DIAMOND_SWORD).name("INSTAKILL").enchantment(Enchantment.DAMAGE_ALL, 9000).build());
 				p.getInventory().addItem(new CoreItemBuilder(Material.IRON_SWORD).name("NICHT INSTAKILL").build());
-				p.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16),
-						new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16));
+				p.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16));
 				p.updateInventory();
 			} else {
 				p.getInventory().addItem(new CoreItemBuilder(Material.WOOD_SWORD).build());
-				p.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16),
-						new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16));
+				p.getInventory().addItem(new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16), new ItemStack(Material.SNOW_BALL, 16));
 				p.updateInventory();
 			}
 		}
@@ -71,7 +68,7 @@ public class CustomFeature extends CoreFeature {
 
 	}
 
-	public void addPlayer(Player p, CommandArgs args) {
+	public void addPlayer(final Player p, final CommandArgs args) {
 		if (players.contains(p.getUniqueId())) {
 			players.remove(p.getUniqueId());
 			args.getUser().sendMessage(Prefix.API.getPrefix().then("Removed"));

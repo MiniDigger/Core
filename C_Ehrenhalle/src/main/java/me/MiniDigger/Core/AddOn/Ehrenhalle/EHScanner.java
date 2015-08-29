@@ -3,15 +3,11 @@ package me.MiniDigger.Core.AddOn.Ehrenhalle;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -24,27 +20,27 @@ public class EHScanner {
 
 	private final int RANGE = 100;
 
-	private final World w;
-	private final Location spawn;
+	private final World		w;
+	private final Location	spawn;
 
-	private List<Location> tower1 = new ArrayList<>();
-	private List<Location> tower2 = new ArrayList<>();
-	private List<Location> tower3 = new ArrayList<>();
+	private List<Location>	tower1	= new ArrayList<>();
+	private List<Location>	tower2	= new ArrayList<>();
+	private List<Location>	tower3	= new ArrayList<>();
 
-	private List<Location> wall1 = new ArrayList<>();
-	private List<Location> wall2 = new ArrayList<>();
-	private List<Location> wall3 = new ArrayList<>();
+	private List<Location>	wall1	= new ArrayList<>();
+	private List<Location>	wall2	= new ArrayList<>();
+	private List<Location>	wall3	= new ArrayList<>();
 
-	private List<Location> fireworksI = new ArrayList<>();
-	private List<Location> fireworksO = new ArrayList<>();
+	private List<Location>	fireworksI	= new ArrayList<>();
+	private List<Location>	fireworksO	= new ArrayList<>();
 
-	public EHScanner(World w) {
+	public EHScanner(final World w) {
 		this.w = w;
 		this.spawn = new Location(w, 18.0, 5, 124.0);
 	}
 
 	public void clear() {
-		List<Location> locs = new ArrayList<>();
+		final List<Location> locs = new ArrayList<>();
 		locs.addAll(tower1);
 		locs.addAll(tower2);
 		locs.addAll(tower3);
@@ -56,7 +52,7 @@ public class EHScanner {
 
 		Core.getCore().getInstance().debug("clear " + locs.size());
 
-		for (Location loc : locs) {
+		for (final Location loc : locs) {
 			if (loc.getBlock().getState() instanceof Sign) {
 				loc.getBlock().setType(Material.AIR);
 			} else {
@@ -93,40 +89,40 @@ public class EHScanner {
 							loc.setYaw(Core.getCore().getFaceUtil().faceToYaw(sign.getFacing().getOppositeFace()));
 
 							switch (s.getLine(1)) {
-							case "T":
-								if (s.getLine(2).equals("1")) {
-									tower1.add(loc);
-								} else if (s.getLine(2).equals("2")) {
-									tower2.add(loc);
-								} else if (s.getLine(2).equals("3")) {
-									tower3.add(loc);
-								} else {
-									Core.getCore().getInstance().debug("failed scan for sign t " + s.toString());
-								}
-								break;
-							case "W":
-								if (s.getLine(2).equals("1")) {
-									wall1.add(loc);
-								} else if (s.getLine(2).equals("2")) {
-									wall2.add(loc);
-								} else if (s.getLine(2).equals("3")) {
-									wall3.add(loc);
-								} else {
-									Core.getCore().getInstance().debug("failed scan for sign w " + s.toString());
-								}
-								break;
-							case "F":
-								if (s.getLine(2).equals("I")) {
-									fireworksI.add(loc);
-								} else if (s.getLine(2).equals("O")) {
-									fireworksO.add(loc);
-								} else {
-									Core.getCore().getInstance().debug("failed scan for sign f " + s.toString());
-								}
-								break;
-							default:
-								Core.getCore().getInstance().debug("default");
-								break;
+								case "T":
+									if (s.getLine(2).equals("1")) {
+										tower1.add(loc);
+									} else if (s.getLine(2).equals("2")) {
+										tower2.add(loc);
+									} else if (s.getLine(2).equals("3")) {
+										tower3.add(loc);
+									} else {
+										Core.getCore().getInstance().debug("failed scan for sign t " + s.toString());
+									}
+									break;
+								case "W":
+									if (s.getLine(2).equals("1")) {
+										wall1.add(loc);
+									} else if (s.getLine(2).equals("2")) {
+										wall2.add(loc);
+									} else if (s.getLine(2).equals("3")) {
+										wall3.add(loc);
+									} else {
+										Core.getCore().getInstance().debug("failed scan for sign w " + s.toString());
+									}
+									break;
+								case "F":
+									if (s.getLine(2).equals("I")) {
+										fireworksI.add(loc);
+									} else if (s.getLine(2).equals("O")) {
+										fireworksO.add(loc);
+									} else {
+										Core.getCore().getInstance().debug("failed scan for sign f " + s.toString());
+									}
+									break;
+								default:
+									Core.getCore().getInstance().debug("default");
+									break;
 							}
 						}
 					}
@@ -135,20 +131,16 @@ public class EHScanner {
 		}
 
 		Core.getCore().getInstance().debug("Scan ended, Results: ");
-		Core.getCore().getInstance().debug("Wall: Row 1:" + wall1.size() + ", Row 2: " + wall2.size() + ", Row 3: " + wall3.size()
-				+ ", Combined: " + (wall1.size() + wall2.size() + wall3.size()));
-		Core.getCore().getInstance().debug("Tower: Row 1:" + tower1.size() + ", Row 2: " + tower2.size() + ", Row 3: " + tower3.size()
-				+ ", Combined: " + (tower1.size() + tower2.size() + tower3.size()));
-		Core.getCore().getInstance().debug("Fireworks: Inner:" + fireworksI.size() + ", Outer: " + fireworksO.size() + ", Combined: "
-				+ (fireworksI.size() + fireworksO.size()));
-		Core.getCore().getInstance().debug("All combined: " + (wall1.size() + wall2.size() + wall3.size() + tower1.size()
-				+ tower2.size() + tower3.size() + fireworksI.size() + fireworksO.size()));
+		Core.getCore().getInstance().debug("Wall: Row 1:" + wall1.size() + ", Row 2: " + wall2.size() + ", Row 3: " + wall3.size() + ", Combined: " + (wall1.size() + wall2.size() + wall3.size()));
+		Core.getCore().getInstance().debug("Tower: Row 1:" + tower1.size() + ", Row 2: " + tower2.size() + ", Row 3: " + tower3.size() + ", Combined: " + (tower1.size() + tower2.size() + tower3.size()));
+		Core.getCore().getInstance().debug("Fireworks: Inner:" + fireworksI.size() + ", Outer: " + fireworksO.size() + ", Combined: " + (fireworksI.size() + fireworksO.size()));
+		Core.getCore().getInstance().debug("All combined: " + (wall1.size() + wall2.size() + wall3.size() + tower1.size() + tower2.size() + tower3.size() + fireworksI.size() + fireworksO.size()));
 	}
 
 	public int loadChunks() {
 		int i = 0;
 		int a = 0;
-		List<Location> combined = new ArrayList<>();
+		final List<Location> combined = new ArrayList<>();
 		combined.addAll(wall1);
 		combined.addAll(tower1);
 		combined.addAll(fireworksI);
@@ -166,8 +158,8 @@ public class EHScanner {
 		return i;
 	}
 
-	public void save(File file) {
-		FileConfiguration config = YamlConfiguration.loadConfiguration(new File(file, "locs"));
+	public void save(final File file) {
+		final FileConfiguration config = YamlConfiguration.loadConfiguration(new File(file, "locs"));
 		config.set("wall1", wall1);
 		config.set("wall2", wall2);
 		config.set("wall3", wall3);
@@ -181,15 +173,16 @@ public class EHScanner {
 
 		try {
 			config.save(new File(file, "locs"));
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			Core.getCore().getInstance().debug("Error while saving config");
 			MSG.stacktrace(LogLevel.DEBUG, e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public void load(File file) {
-		FileConfiguration config = YamlConfiguration.loadConfiguration(new File(file, "locs"));
+	public void load(final File file) {
+		final FileConfiguration config = YamlConfiguration.loadConfiguration(new File(file, "locs"));
 		wall1 = (List<Location>) config.get("wall1");
 		wall2 = (List<Location>) config.get("wall2");
 		wall3 = (List<Location>) config.get("wall3");

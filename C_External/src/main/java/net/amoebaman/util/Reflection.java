@@ -14,18 +14,18 @@ import org.bukkit.Bukkit;
  * return {@code null}.
  */
 public final class Reflection {
-	
+
 	private static String _versionString;
 
 	private Reflection() {
-	
+
 	}
 
 	/**
 	 * Gets the version string from the package name of the CraftBukkit server
 	 * implementation. This is needed to bypass the JAR package name changing on
 	 * each update.
-	 * 
+	 *
 	 * @return The version string of the OBC and NMS packages,
 	 *         <em>including the trailing dot</em>.
 	 */
@@ -41,7 +41,7 @@ public final class Reflection {
 
 		return _versionString;
 	}
-	
+
 	/**
 	 * Stores loaded classes from the {@code net.minecraft.server} package.
 	 */
@@ -57,7 +57,7 @@ public final class Reflection {
 	 * {@code net.minecraft.server} versioned package. The class instances
 	 * returned by this method are cached, such that no lookup will be done
 	 * twice (unless multiple threads are accessing this method simultaneously).
-	 * 
+	 *
 	 * @param className
 	 *            The name of the class, excluding the package, within NMS.
 	 * @return The class instance representing the specified NMS class, or
@@ -72,7 +72,8 @@ public final class Reflection {
 		Class<?> clazz = null;
 		try {
 			clazz = Class.forName(fullName);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 			_loadedNMSClasses.put(className, null);
 			return null;
@@ -80,13 +81,13 @@ public final class Reflection {
 		_loadedNMSClasses.put(className, clazz);
 		return clazz;
 	}
-	
+
 	/**
 	 * Gets a {@link Class} object representing a type contained within the
 	 * {@code org.bukkit.craftbukkit} versioned package. The class instances
 	 * returned by this method are cached, such that no lookup will be done
 	 * twice (unless multiple threads are accessing this method simultaneously).
-	 * 
+	 *
 	 * @param className
 	 *            The name of the class, excluding the package, within OBC. This
 	 *            name may contain a subpackage name, such as
@@ -103,7 +104,8 @@ public final class Reflection {
 		Class<?> clazz = null;
 		try {
 			clazz = Class.forName(fullName);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 			_loadedOBCClasses.put(className, null);
 			return null;
@@ -111,7 +113,7 @@ public final class Reflection {
 		_loadedOBCClasses.put(className, clazz);
 		return clazz;
 	}
-	
+
 	/**
 	 * Attempts to get the NMS handle of a CraftBukkit object.
 	 * <p>
@@ -119,7 +121,7 @@ public final class Reflection {
 	 * a parameterless {@code getHandle()} method implemented by the runtime
 	 * type of the specified object.
 	 * </p>
-	 * 
+	 *
 	 * @param obj
 	 *            The object for which to retrieve an NMS handle.
 	 * @return The NMS handle of the specified object, or {@code null} if it
@@ -128,12 +130,13 @@ public final class Reflection {
 	public synchronized static Object getHandle(final Object obj) {
 		try {
 			return getMethod(obj.getClass(), "getHandle").invoke(obj);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	private static final Map<Class<?>, Map<String, Field>> _loadedFields = new HashMap<Class<?>, Map<String, Field>>();
 
 	/**
@@ -153,7 +156,7 @@ public final class Reflection {
 	 * callers do not have to check or worry about Java access modifiers when
 	 * dealing with the returned instance.
 	 * </p>
-	 * 
+	 *
 	 * @param clazz
 	 *            The class which contains the field to retrieve.
 	 * @param name
@@ -180,7 +183,8 @@ public final class Reflection {
 			field.setAccessible(true);
 			loaded.put(name, field);
 			return field;
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			// Error loading
 			e.printStackTrace();
 			// Cache field as not existing
@@ -188,7 +192,7 @@ public final class Reflection {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Contains loaded methods in a cache. The map maps [types to maps of
 	 * [method names to maps of [parameter types to method instances]]].
@@ -216,7 +220,7 @@ public final class Reflection {
 	 * This method does <em>not</em> search superclasses of the specified type
 	 * for methods with the specified signature. Callers wishing this behavior
 	 * should use {@link Class#getDeclaredMethod(String, Class...)}.
-	 * 
+	 *
 	 * @param clazz
 	 *            The class which contains the method to retrieve.
 	 * @param name
@@ -252,5 +256,5 @@ public final class Reflection {
 		loadedSignatures.put(wrappedArg, null);
 		return null;
 	}
-	
+
 }

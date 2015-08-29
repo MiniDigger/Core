@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -22,18 +35,9 @@ package me.MiniDigger.CraftCore.World;
 
 import java.io.File;
 
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-
-import net.minecraft.server.v1_8_R3.EntityTracker;
-import net.minecraft.server.v1_8_R3.ServerNBTManager;
-import net.minecraft.server.v1_8_R3.WorldData;
-import net.minecraft.server.v1_8_R3.WorldManager;
-import net.minecraft.server.v1_8_R3.WorldServer;
-import net.minecraft.server.v1_8_R3.WorldSettings;
-import net.minecraft.server.v1_8_R3.WorldSettings.EnumGamemode;
-
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.world.WorldInitEvent;
@@ -45,18 +49,24 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.World.WorldLoader;
-
 import me.MiniDigger.CraftCore.Lang.MSG;
+import net.minecraft.server.v1_8_R3.EntityTracker;
+import net.minecraft.server.v1_8_R3.ServerNBTManager;
+import net.minecraft.server.v1_8_R3.WorldData;
+import net.minecraft.server.v1_8_R3.WorldManager;
+import net.minecraft.server.v1_8_R3.WorldServer;
+import net.minecraft.server.v1_8_R3.WorldSettings;
+import net.minecraft.server.v1_8_R3.WorldSettings.EnumGamemode;
 
 public class CoreWorldLoader implements WorldLoader {
-	
+
 	@Override
 	public World loadWorld(final WorldCreator creator) {
 		final CraftServer server = (CraftServer) org.bukkit.Bukkit.getServer();
 		if (creator == null) {
 			throw new IllegalArgumentException(MSG.msg(LangKeyType.Cmd.CANNOT_NULL, "Creator"));
 		}
-		
+
 		final String name = creator.name();
 		MSG.log(LogLevel.INFO, LangKeyType.World.LOADING_WORLD, name);
 		ChunkGenerator generator = creator.generator();
@@ -64,19 +74,19 @@ public class CoreWorldLoader implements WorldLoader {
 		final World world = server.getWorld(name);
 		final net.minecraft.server.v1_8_R3.WorldType type = net.minecraft.server.v1_8_R3.WorldType.getType(creator.type().getName());
 		final boolean generateStructures = creator.generateStructures();
-		
+
 		if (world != null) {
 			return world;
 		}
-		
+
 		if ((folder.exists()) && (!folder.isDirectory())) {
 			throw new IllegalArgumentException(MSG.msg(LangKeyType.World.FILE_ERROR, name));
 		}
-		
+
 		if (generator == null) {
 			generator = server.getGenerator(name);
 		}
-		
+
 		// final Convertable converter = new
 		// net.minecraft.server.v1_8_R3.WorldLoaderServer(server.getWorldContainer());
 		// if (converter.isConvertable(name)) {
@@ -84,7 +94,7 @@ public class CoreWorldLoader implements WorldLoader {
 		// converter.convert(name, new
 		// ConvertProgressUpdater(server.getServer()));
 		// } //TODO Do we need word converison? it is broken since 1.8.R3
-		
+
 		int dimension = 3 + server.getServer().worlds.size() + 1;
 		boolean used = false;
 		do {
@@ -95,11 +105,12 @@ public class CoreWorldLoader implements WorldLoader {
 					break;
 				}
 			}
-		} while (used);
+		}
+		while (used);
 		final boolean hardcore = false;
 		dimension = dimension + 3;
 		MSG.log(LogLevel.INFO, LangKeyType.World.CREATED, dimension + "");
-		
+
 		// final WorldServer internal = new WorldServer(server.getServer(), new
 		// net.minecraft.server.v1_8_R3.ServerNBTManager(server.getWorldContainer(),
 		// name, true), name,
@@ -107,11 +118,10 @@ public class CoreWorldLoader implements WorldLoader {
 		// generateStructures, hardcore, type),
 		// server.getServer().methodProfiler,
 		// creator.environment(), generator);
-		
+
 		final WorldServer internal = new WorldServer(server.getServer(), new ServerNBTManager(server.getWorldContainer(), name, true),
-		        new WorldData(new WorldSettings(creator.seed(), EnumGamemode.SURVIVAL, generateStructures, hardcore, type), name), dimension,
-		        server.getServer().methodProfiler, creator.environment(), generator);
-				
+				new WorldData(new WorldSettings(creator.seed(), EnumGamemode.SURVIVAL, generateStructures, hardcore, type), name), dimension, server.getServer().methodProfiler, creator.environment(), generator);
+
 		boolean containsWorld = false;
 		for (final World otherWorld : server.getWorlds()) {
 			if (otherWorld.getName().equalsIgnoreCase(name.toLowerCase())) {
@@ -119,11 +129,11 @@ public class CoreWorldLoader implements WorldLoader {
 				break;
 			}
 		}
-		
+
 		if (!containsWorld) {
 			return null;
 		}
-		
+
 		internal.scoreboard = server.getScoreboardManager().getMainScoreboard().getHandle();
 		internal.worldMaps = server.getServer().worlds.get(0).worldMaps;
 		internal.tracker = new EntityTracker(internal);
@@ -133,22 +143,22 @@ public class CoreWorldLoader implements WorldLoader {
 		internal.savingDisabled = true;
 		internal.b();
 		server.getServer().worlds.add(internal);
-		
+
 		if (generator != null) {
 			internal.getWorld().getPopulators().addAll(generator.getDefaultPopulators(internal.getWorld()));
 		}
-		
+
 		server.getPluginManager().callEvent(new WorldInitEvent(internal.getWorld()));
 		server.getPluginManager().callEvent(new WorldLoadEvent(internal.getWorld()));
-		
+
 		for (final Entity e : internal.getWorld().getEntities()) {
 			if (!(e instanceof Player)) {
 				e.remove();
 			}
 		}
-		
+
 		new BukkitRunnable() {
-			
+
 			@Override
 			public void run() {
 				for (final Entity e : internal.getWorld().getEntities()) {
@@ -158,7 +168,7 @@ public class CoreWorldLoader implements WorldLoader {
 				}
 			}
 		}.runTaskLater(Core.getCore().getInstance(), 5 * 20);
-		
+
 		return internal.getWorld();
 	}
 }

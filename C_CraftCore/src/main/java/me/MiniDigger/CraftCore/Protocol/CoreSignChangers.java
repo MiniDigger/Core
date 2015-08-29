@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -26,13 +39,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.reflect.FieldAccessException;
-import com.comphenix.protocol.wrappers.BlockPosition;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -44,6 +50,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.reflect.FieldAccessException;
+import com.comphenix.protocol.wrappers.BlockPosition;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Game.GameType;
@@ -51,28 +64,26 @@ import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Protocol.SignChangers;
 import me.MiniDigger.Core.Stats.StatsType;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Protocol.SignGUI.NMSUtils;
-
 import mkremins.fanciful.FancyMessage;
 
 public class CoreSignChangers implements SignChangers {
-	
-	private final ArrayList<String>						edit				= new ArrayList<>();
-	private final ArrayList<SignChanger>				signchangers		= new ArrayList<>();
+
+	private final ArrayList<String>						edit			= new ArrayList<>();
+	private final ArrayList<SignChanger>				signchangers	= new ArrayList<>();
 	private final ArrayList<Location>					last_seen_signs	= new ArrayList<>();
 	private final HashMap<Location, ArrayList<String>>	players_signs	= new HashMap<>();
 	public final ArrayList<String>						justJoined		= new ArrayList<>();
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void update(final List<UUID> noUpdates) {
 		for (final Location loc : (ArrayList<Location>) last_seen_signs.clone()) {
 			new BukkitRunnable() {
-				
+
 				@Override
 				public void run() {
-					
+
 					for (final Entity e : loc.getWorld().getChunkAt(loc).getEntities()) {
 						if (e != null && e.getType() == EntityType.PLAYER) {
 							if (loc.getBlock().getState() instanceof Sign) {
@@ -90,7 +101,7 @@ public class CoreSignChangers implements SignChangers {
 			}.runTask(Core.getCore().getInstance());
 		}
 	}
-	
+
 	@Override
 	public void handlePacket(final PacketEvent event) {
 		if (event.getPacketType() == PacketType.Play.Server.UPDATE_SIGN) {
@@ -100,17 +111,18 @@ public class CoreSignChangers implements SignChangers {
 					b = false;
 				}
 				event.setPacket(modifySign(event.getPacket(), event.getPlayer(), b));
-			} catch (final FieldAccessException e) {
+			}
+			catch (final FieldAccessException e) {
 				Core.getCore().getInstance().error("Couldn't access field");
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	@Override
 	public void init() {
 		addSignChanger(new SignChanger("[Player]", "signchanger.create.player", "Zeigt den Spielernamen an") {
-			
+
 			@Override
 			public String getValue(final Player player, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -120,7 +132,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger("[Tokens]", "signchanger.create.tokens", "Zeigt wie viele Tokens der Spieler hat") {
-			
+
 			@Override
 			public String getValue(final Player player, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -130,7 +142,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger("[Paesse]", "signchanger.create.paesse", "Zeigt wie viele Pässe der Spieler hat") {
-			
+
 			@Override
 			public String getValue(final Player player, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -140,7 +152,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger("[Warns]", "signchanger.create.warns", "Zeigt wie vieler Warns der Spieler hat") {
-			
+
 			@Override
 			public String getValue(final Player player, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -148,20 +160,20 @@ public class CoreSignChangers implements SignChangers {
 				}
 				final int i = 0;
 				// if (Core.getSQLHandler().getModProvider()
-		        // .loadList(player.getName()) == null) {
-		        // return 0 + "";
-		        // }
-		        // for (final ModEntry entry : Core.getSQLHandler()
-		        // .getModProvider().loadList(player.getName())) {
-		        // if (entry.getAction().equals(Action.WARN.name())) {
-		        // i++;
-		        // }
-		        // }
+				// .loadList(player.getName()) == null) {
+				// return 0 + "";
+				// }
+				// for (final ModEntry entry : Core.getSQLHandler()
+				// .getModProvider().loadList(player.getName())) {
+				// if (entry.getAction().equals(Action.WARN.name())) {
+				// i++;
+				// }
+				// }
 				return i + "";
 			}
 		});
 		addSignChanger(new SignChanger("[Teleport]", "signchanger.create.teleport", "Teleportiert den Spieler zum angegebenen Server", true) {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -170,23 +182,22 @@ public class CoreSignChangers implements SignChangers {
 				return "server";
 			}
 		});
-		addSignChanger(
-		        new SignChanger(ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]", "signchanger.create.full", "Wichtig für die Teleport Schilder") {
-			        
-			        @Override
-			        public String getValue(final Player p, final Location loc) {
-				        if (!(loc.getBlock().getState() instanceof Sign)) {
-					        return ChatColor.RED + "fail";
-				        }
-				        if (Core.getCore().getUserHandler().get(p.getUniqueId()).hasPermission("premium.joinfull")) {
-					        return ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "[KICKJOIN]";
-				        } else {
-					        return ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]";
-				        }
-			        }
-		        });
+		addSignChanger(new SignChanger(ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]", "signchanger.create.full", "Wichtig für die Teleport Schilder") {
+
+			@Override
+			public String getValue(final Player p, final Location loc) {
+				if (!(loc.getBlock().getState() instanceof Sign)) {
+					return ChatColor.RED + "fail";
+				}
+				if (Core.getCore().getUserHandler().get(p.getUniqueId()).hasPermission("premium.joinfull")) {
+					return ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "[KICKJOIN]";
+				} else {
+					return ChatColor.RED + "" + ChatColor.BOLD + ChatColor.UNDERLINE + "[Full]";
+				}
+			}
+		});
 		addSignChanger(new SignChanger("[R_", "signchanger.create.rank", "Zeigt den Rank in dem StatsType an") {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -202,10 +213,11 @@ public class CoreSignChangers implements SignChangers {
 						StatsType type = null;
 						try {
 							type = StatsType.valueOf(s);
-						} catch (final Exception ex) {
+						}
+						catch (final Exception ex) {
 							return ChatColor.RED + "fail";
 						}
-						
+
 						int rank = 1;
 						for (final String top : Core.getCore().getStatsHandler().getTop(type, -1)) {
 							final String name = top.split(":")[0];
@@ -220,7 +232,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger("[T_", "signchanger.create.top", "Zeig den Besten in dem StatsType an") {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -236,21 +248,24 @@ public class CoreSignChangers implements SignChangers {
 						int top = 1;
 						try {
 							top = Integer.parseInt(s.charAt(0) + "");
-						} catch (final Exception ex) {
+						}
+						catch (final Exception ex) {
 							Core.getCore().getInstance().debug("FAILED TO PARSE INT " + s.charAt(0) + " FOR STATS SIGN AT " + loc.toString());
 						}
 						s = s.substring(1);
 						StatsType type = null;
 						try {
 							type = StatsType.valueOf(s);
-						} catch (final Exception ex) {
+						}
+						catch (final Exception ex) {
 							return ChatColor.RED + "fail";
 						}
-						
+
 						final List<String> tops = Core.getCore().getStatsHandler().getTop(type, top);
 						try {
 							return ChatColor.BOLD + "" + tops.get(top - 1).split(":")[0];
-						} catch (final Exception ex) {
+						}
+						catch (final Exception ex) {
 							return ChatColor.RED + "fail";
 						}
 					}
@@ -259,7 +274,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger("[S_", "signchanger.create.stats", "Zeigt den Wert in dem StatsType an") {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -276,7 +291,8 @@ public class CoreSignChangers implements SignChangers {
 						StatsType type = null;
 						try {
 							type = StatsType.valueOf(s);
-						} catch (final Exception ex) {
+						}
+						catch (final Exception ex) {
 							return ChatColor.RED + "fail";
 						}
 						return ChatColor.BOLD + "" + Core.getCore().getStatsHandler().get(p.getUniqueId()).get(type);
@@ -285,17 +301,17 @@ public class CoreSignChangers implements SignChangers {
 				return ChatColor.RED + "fail";
 			}
 		});
-		
+
 		addSignChanger(new SignChanger("[Fame]", "signchanger.create.fame", "Zeigt den Famen Player an") {
-			
+
 			@Override
 			public String getValue(final Player paramPlayer, final Location paramLocation) {
 				return Core.getCore().getProtocolHandler().getFame();
 			}
 		});
-		
+
 		addSignChanger(new SignChanger("[Team]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -305,9 +321,9 @@ public class CoreSignChangers implements SignChangers {
 				return "Klicke hier, um%:%Team " + sign.getLine(1) + "%:%beizutreten!%:% ";
 			}
 		});
-		
+
 		addSignChanger(new SignChanger("[GameL]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -317,7 +333,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 		addSignChanger(new SignChanger("[GameJ]", "signchangers.create.team", "Zeigt das Team schön formatiert an", true) {
-			
+
 			@Override
 			public String getValue(final Player p, final Location loc) {
 				if (!(loc.getBlock().getState() instanceof Sign)) {
@@ -373,7 +389,7 @@ public class CoreSignChangers implements SignChangers {
 			}
 		});
 	}
-	
+
 	private void handleSignEdit(final PlayerInteractEvent event, final Sign sign) {
 		final User user = Core.getCore().getUserHandler().get(event.getPlayer().getUniqueId());
 		String[] lines = sign.getLines();
@@ -407,20 +423,20 @@ public class CoreSignChangers implements SignChangers {
 		NMSUtils.sendPacket(event.getPlayer(), NMSUtils.getSignChangePacket(sign.getBlock(), lines));
 		NMSUtils.sendEditor(event.getPlayer(), sign.getBlock());
 	}
-	
+
 	private PacketContainer modifySign(final PacketContainer psign, final Player player, final boolean edit) {
 		// BlockPosition pos = BlockPosition.fromLong(psign.getLongs().read(0));
 		final BlockPosition pos = psign.getBlockPositionModifier().read(0);
 		final Location location = new Location(player.getWorld(), pos.getX(), pos.getY(), pos.getZ());
-		
+
 		if (!(location.getBlock().getState() instanceof Sign)) {
 			return psign;
 		}
-		
+
 		if (!last_seen_signs.contains(location)) {
 			last_seen_signs.add(location);
 		}
-		
+
 		ArrayList<String> players = players_signs.get(location);
 		if (players == null) {
 			players = new ArrayList<>();
@@ -428,10 +444,10 @@ public class CoreSignChangers implements SignChangers {
 		if (!players.contains(player.getName())) {
 			players.add(player.getName());
 		}
-		
+
 		players_signs.remove(location);
 		players_signs.put(location, players);
-		
+
 		// for (final Method m : psign.getClass().getMethods()) {
 		// if (m.getName().startsWith("get")) {
 		// if
@@ -456,11 +472,11 @@ public class CoreSignChangers implements SignChangers {
 		// }
 		// }
 		// }
-		
+
 		final WrappedChatComponent[] lines = psign.getChatComponentArrays().read(0);
-		
+
 		WrappedChatComponent[] newLines = { lines[0], lines[1], lines[2], lines[3] };
-		
+
 		if (newLines[0] != null && newLines[0].getJson() != null && (newLines[0].getJson().contains("[Teleport]") || newLines[0].getJson().contains("[Game]")) && edit) {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				for (int i = 0; i < 4; i++) {
@@ -469,7 +485,7 @@ public class CoreSignChangers implements SignChangers {
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
 				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-					
+
 					@Override
 					public void run() {
 						sendSignChange(player, (Sign) location.getBlock().getState());
@@ -477,7 +493,7 @@ public class CoreSignChangers implements SignChangers {
 				}, 10L);
 			}
 		}
-		
+
 		String value = null;
 		String key = null;
 		for (final SignChanger c : signchangers) {
@@ -494,19 +510,19 @@ public class CoreSignChangers implements SignChangers {
 						if (key.startsWith("&y") || newLines[i].getJson().contains("&y") || key.startsWith("[S_") || key.startsWith("[R_") || key.startsWith("[T_")) {
 							clear = true;
 						}
-						
+
 						if (value == null) {
 							value = c.getValue(player, location);
 							if (value == null) {
 								break;
 							}
 						}
-						
+
 						if (c.isFullChanger()) {
 							full = true;
 							break;
 						}
-						
+
 						if (!edit) {
 							break;
 						}
@@ -530,7 +546,8 @@ public class CoreSignChangers implements SignChangers {
 							for (int i = 0; i < newLines.length; i++) {
 								newLines[i].setJson(new FancyMessage(s[i]).toJSONString());
 							}
-						} catch (final Exception ex) {
+						}
+						catch (final Exception ex) {
 							for (int i = 0; i < 4; i++) {
 								newLines[i].setJson(new FancyMessage(value).toJSONString());
 							}
@@ -551,13 +568,13 @@ public class CoreSignChangers implements SignChangers {
 		// ChatComponentText(newLines[i].getText().substring(0, 15));
 		// }
 		// }
-		
+
 		final PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
 		out.getBlockPositionModifier().write(0, pos);
 		out.getChatComponentArrays().write(0, lines);
 		return out;
 	}
-	
+
 	private void sendSignChange(final Player player, final Sign sign) {
 		final String[] lin = sign.getLines();
 		final PacketContainer result = Core.getCore().getProtocolHandler().getManager().createPacket(PacketType.Play.Server.UPDATE_SIGN);
@@ -566,17 +583,18 @@ public class CoreSignChangers implements SignChangers {
 		for (int i = 0; i < 4; i++) {
 			lines[i] = WrappedChatComponent.fromText(lin[i]);
 		}
-		
+
 		try {
 			result.getBlockPositionModifier().write(0, pos);
 			result.getChatComponentArrays().write(0, lines);
 			Core.getCore().getProtocolHandler().getManager().sendServerPacket(player, result);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 			return;
 		}
 	}
-	
+
 	@Override
 	public void addSignChanger(final SignChanger changer) {
 		if (changer == null) {
@@ -590,17 +608,17 @@ public class CoreSignChangers implements SignChangers {
 		}
 		signchangers.add(changer);
 	}
-	
+
 	@Override
 	public void removeSignChanger(final SignChanger changer) {
 		signchangers.remove(changer);
 	}
-	
+
 	@Override
 	public List<SignChanger> getSignChangerList() {
 		return signchangers;
 	}
-	
+
 	@Override
 	@EventHandler
 	public void handleInteract(final PlayerInteractEvent event) {
@@ -618,6 +636,6 @@ public class CoreSignChangers implements SignChangers {
 				sendSignChange(event.getPlayer(), sign);
 			}
 		}
-		
+
 	}
 }

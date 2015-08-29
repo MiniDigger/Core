@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.stream.JsonWriter;
-
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.bukkit.configuration.serialization.ConfigurationSerialization;
 
 /**
  * Represents a textual component of a message part. This can be used to not
@@ -21,7 +21,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
  * </p>
  */
 public abstract class TextualComponent implements Cloneable {
-	
+
 	static {
 		ConfigurationSerialization.registerClass(TextualComponent.ArbitraryTextTypeComponent.class);
 		ConfigurationSerialization.registerClass(TextualComponent.ComplexTextTypeComponent.class);
@@ -36,12 +36,12 @@ public abstract class TextualComponent implements Cloneable {
 	 * @return The JSON key used to represent text components of this type.
 	 */
 	public abstract String getKey();
-	
+
 	/**
 	 * @return A readable String
 	 */
 	public abstract String getReadableString();
-	
+
 	/**
 	 * Clones a textual component instance. The returned object should not
 	 * reference this textual component instance, but should maintain the same
@@ -54,7 +54,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * Writes the text data represented by this textual component to the
 	 * specified JSON writer object. A new object within the writer is not
 	 * started.
-	 * 
+	 *
 	 * @param writer
 	 *            The object to which to write the JSON data.
 	 * @throws IOException
@@ -67,7 +67,7 @@ public abstract class TextualComponent implements Cloneable {
 			// Arbitrary text component
 			return ArbitraryTextTypeComponent.deserialize(map);
 		} else if (map.size() >= 2 && map.containsKey("key") && !map.containsKey(
-		        "value") /* It contains keys that START WITH value */) {
+				"value") /* It contains keys that START WITH value */) {
 			// Complex JSON object
 			return ComplexTextTypeComponent.deserialize(map);
 		}
@@ -88,7 +88,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * validating done is on keys and values.
 	 */
 	private static final class ArbitraryTextTypeComponent extends TextualComponent implements ConfigurationSerializable {
-		
+
 		public ArbitraryTextTypeComponent(final String key, final String value) {
 			setKey(key);
 			setValue(value);
@@ -98,7 +98,7 @@ public abstract class TextualComponent implements Cloneable {
 		public String getKey() {
 			return _key;
 		}
-		
+
 		public void setKey(final String key) {
 			Preconditions.checkArgument(key != null && !key.isEmpty(), "The key must be specified.");
 			_key = key;
@@ -107,12 +107,12 @@ public abstract class TextualComponent implements Cloneable {
 		public String getValue() {
 			return _value;
 		}
-		
+
 		public void setValue(final String value) {
 			Preconditions.checkArgument(value != null, "The value must be specified.");
 			_value = value;
 		}
-		
+
 		private String	_key;
 		private String	_value;
 
@@ -122,21 +122,21 @@ public abstract class TextualComponent implements Cloneable {
 			// reinstantiate this class instead of casting super.clone
 			return new ArbitraryTextTypeComponent(getKey(), getValue());
 		}
-		
+
 		@Override
 		public void writeJson(final JsonWriter writer) throws IOException {
 			writer.name(getKey()).value(getValue());
 		}
-		
+
 		@Override
 		public Map<String, Object> serialize() {
 			return new HashMap<String, Object>() {
-				
+
 				/**
-				* 
+				*
 				*/
 				private static final long serialVersionUID = 5815563846416376082L;
-				
+
 				{
 					put("key", getKey());
 					put("value", getValue());
@@ -147,7 +147,7 @@ public abstract class TextualComponent implements Cloneable {
 		public static ArbitraryTextTypeComponent deserialize(final Map<String, Object> map) {
 			return new ArbitraryTextTypeComponent(map.get("key").toString(), map.get("value").toString());
 		}
-		
+
 		@Override
 		public String getReadableString() {
 			return getValue();
@@ -159,7 +159,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * value. Exception validating done is on keys and values.
 	 */
 	private static final class ComplexTextTypeComponent extends TextualComponent implements ConfigurationSerializable {
-		
+
 		public ComplexTextTypeComponent(final String key, final Map<String, String> values) {
 			setKey(key);
 			setValue(values);
@@ -169,7 +169,7 @@ public abstract class TextualComponent implements Cloneable {
 		public String getKey() {
 			return _key;
 		}
-		
+
 		public void setKey(final String key) {
 			Preconditions.checkArgument(key != null && !key.isEmpty(), "The key must be specified.");
 			_key = key;
@@ -178,12 +178,12 @@ public abstract class TextualComponent implements Cloneable {
 		public Map<String, String> getValue() {
 			return _value;
 		}
-		
+
 		public void setValue(final Map<String, String> value) {
 			Preconditions.checkArgument(value != null, "The value must be specified.");
 			_value = value;
 		}
-		
+
 		private String				_key;
 		private Map<String, String>	_value;
 
@@ -193,7 +193,7 @@ public abstract class TextualComponent implements Cloneable {
 			// reinstantiate this class instead of casting super.clone
 			return new ComplexTextTypeComponent(getKey(), getValue());
 		}
-		
+
 		@Override
 		public void writeJson(final JsonWriter writer) throws IOException {
 			writer.name(getKey());
@@ -208,7 +208,7 @@ public abstract class TextualComponent implements Cloneable {
 		@SuppressWarnings("serial")
 		public Map<String, Object> serialize() {
 			return new java.util.HashMap<String, Object>() {
-				
+
 				{
 					put("key", getKey());
 					for (final Map.Entry<String, String> valEntry : getValue().entrySet()) {
@@ -226,7 +226,7 @@ public abstract class TextualComponent implements Cloneable {
 					key = (String) valEntry.getValue();
 				} else if (valEntry.getKey().startsWith("value.")) {
 					value.put(valEntry.getKey()
-					        .substring(6) /* Strips out the value prefix */, valEntry.getValue().toString());
+							.substring(6) /* Strips out the value prefix */, valEntry.getValue().toString());
 				}
 			}
 			return new ComplexTextTypeComponent(key, value);
@@ -242,7 +242,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * Create a textual component representing a string literal. This is the
 	 * default type of textual component when a single string literal is given
 	 * to a method.
-	 * 
+	 *
 	 * @param textValue
 	 *            The text which will be represented.
 	 * @return The text component representing the specified literal text.
@@ -250,7 +250,7 @@ public abstract class TextualComponent implements Cloneable {
 	public static TextualComponent rawText(final String textValue) {
 		return new ArbitraryTextTypeComponent("text", textValue);
 	}
-	
+
 	/**
 	 * Create a textual component representing a localized string. The client
 	 * will see this text component as their localized version of the specified
@@ -260,7 +260,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * pack, the translation key will be displayed as a string literal to the
 	 * client.
 	 * </p>
-	 * 
+	 *
 	 * @param translateKey
 	 *            The string key which maps to localized text.
 	 * @return The text component representing the specified localized text.
@@ -282,7 +282,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * {@code UnsupportedOperationException} as it is only supported on snapshot
 	 * clients.</b>
 	 * </p>
-	 * 
+	 *
 	 * @param scoreboardObjective
 	 *            The name of the objective for which to display the score.
 	 * @return The text component representing the specified scoreboard score
@@ -302,7 +302,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * {@code UnsupportedOperationException} as it is only supported on snapshot
 	 * clients.</b>
 	 * </p>
-	 * 
+	 *
 	 * @param playerName
 	 *            The name of the player whos score will be shown. If this
 	 *            string represents the single-character sequence "*", the
@@ -316,9 +316,9 @@ public abstract class TextualComponent implements Cloneable {
 	 */
 	public static TextualComponent objectiveScore(final String playerName, final String scoreboardObjective) {
 		throwUnsupportedSnapshot(); // Remove this line when the feature is
-		                            // released to non-snapshot versions, in
-		                            // addition to updating ALL THE OVERLOADS
-		                            // documentation accordingly
+									// released to non-snapshot versions, in
+									// addition to updating ALL THE OVERLOADS
+									// documentation accordingly
 
 		return new ComplexTextTypeComponent("score", ImmutableMap.<String, String> builder().put("name", playerName).put("objective", scoreboardObjective).build());
 	}
@@ -333,7 +333,7 @@ public abstract class TextualComponent implements Cloneable {
 	 * {@code UnsupportedOperationException} as it is only supported on snapshot
 	 * clients.</b>
 	 * </p>
-	 * 
+	 *
 	 * @param selector
 	 *            The minecraft player or entity selector which will capture the
 	 *            entities whose string representations will be displayed in the
@@ -343,9 +343,9 @@ public abstract class TextualComponent implements Cloneable {
 	 */
 	public static TextualComponent selector(final String selector) {
 		throwUnsupportedSnapshot(); // Remove this line when the feature is
-		                            // released to non-snapshot versions, in
-		                            // addition to updating ALL THE OVERLOADS
-		                            // documentation accordingly
+									// released to non-snapshot versions, in
+									// addition to updating ALL THE OVERLOADS
+									// documentation accordingly
 
 		return new ArbitraryTextTypeComponent("selector", selector);
 	}

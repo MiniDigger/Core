@@ -14,7 +14,6 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
-
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
@@ -28,7 +27,6 @@ import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Feature.Features.WorldBoarderFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
-
 import mkremins.fanciful.FancyMessage;
 
 public class SGPhase2 extends CorePhase {
@@ -57,18 +55,15 @@ public class SGPhase2 extends CorePhase {
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
 		addFeature(new LastManStandingFeature(this));
-		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE,
-				Type.UTILITY, Type.FRIENDLY)));
+		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY, Type.FRIENDLY)));
 		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, null, true));
 		addFeature(new PvPFeature(this, true));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SpecateFeature(this));
-		addFeature(new BuildFeature(this, Material.LEAVES, Material.LEAVES_2, Material.VINE, Material.RED_MUSHROOM,
-				Material.BROWN_MUSHROOM, Material.COAL_ORE, Material.IRON_ORE, Material.DIAMOND_ORE, Material.GOLD_ORE,
-				Material.REDSTONE_ORE, Material.LAPIS_ORE, Material.MELON, Material.MELON_BLOCK, Material.WHEAT,
-				Material.PUMPKIN));
+		addFeature(new BuildFeature(this, Material.LEAVES, Material.LEAVES_2, Material.VINE, Material.RED_MUSHROOM, Material.BROWN_MUSHROOM, Material.COAL_ORE, Material.IRON_ORE, Material.DIAMOND_ORE, Material.GOLD_ORE,
+				Material.REDSTONE_ORE, Material.LAPIS_ORE, Material.MELON, Material.MELON_BLOCK, Material.WHEAT, Material.PUMPKIN));
 		addFeature(new WorldBoarderFeature(this, true));
 	}
 
@@ -81,8 +76,7 @@ public class SGPhase2 extends CorePhase {
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
 
 		final MapData m = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
-		((WorldBoarderFeature) getFeature(FeatureType.WORLDBOARDER))
-				.fakeStart(m.getLocs(DyeColor.BLACK).values().iterator().next(), 5 * 60, 25);
+		((WorldBoarderFeature) getFeature(FeatureType.WORLDBOARDER)).fakeStart(m.getLocs(DyeColor.BLACK).values().iterator().next(), 5 * 60, 25);
 
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 

@@ -1,12 +1,8 @@
 package me.MiniDigger.Core.AddOn.Custom;
 
-import java.util.List;
-import java.util.UUID;
-
 import org.bukkit.WeatherType;
 
 import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
@@ -18,16 +14,13 @@ import me.MiniDigger.CraftCore.Feature.Features.KitFeature;
 import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
-import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
-import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Phase.CorePhase;
 
 public class CustomPhase extends CorePhase {
-	
-	
+
 	public CustomPhase(final Game game) {
 		super(game, null);
 	}
@@ -47,8 +40,7 @@ public class CustomPhase extends CorePhase {
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
 		addFeature(new FixedFoodFeature(this));
-		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE,
-				Type.UTILITY, Type.FRIENDLY)));
+		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY, Type.FRIENDLY)));
 		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
 		addFeature(new MapFeature(this, null, true));

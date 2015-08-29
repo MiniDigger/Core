@@ -1,17 +1,30 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
  *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -52,8 +65,8 @@ import me.MiniDigger.CraftCore.Scoreboard.CoreScoreboardTitle;
 
 public class SUVFeature extends CoreFeature {
 
-	private UUID sucher1;
-	private UUID sucher2;
+	private UUID	sucher1;
+	private UUID	sucher2;
 
 	public SUVFeature(final Phase phase) {
 		super(phase);
@@ -83,17 +96,15 @@ public class SUVFeature extends CoreFeature {
 	public void start() {
 		try {
 			sucher1 = UUID.fromString(getPhase().getGame().getGameData("sucher1"));
-			Bukkit.getPlayer(sucher1).getInventory().setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET)
-					.color(Core.getCore().getChatColorUtil().toColor(ChatColor.LIGHT_PURPLE)).build());
-		} catch (final Exception ex) {
+			Bukkit.getPlayer(sucher1).getInventory().setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.LIGHT_PURPLE)).build());
 		}
+		catch (final Exception ex) {}
 		try {
 			sucher2 = UUID.fromString(getPhase().getGame().getGameData("sucher2"));
-			Bukkit.getPlayer(sucher2).getInventory().setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET)
-					.color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
-		} catch (final Exception ex) {
+			Bukkit.getPlayer(sucher2).getInventory().setHelmet(new CoreItemBuilder(Material.LEATHER_HELMET).color(Core.getCore().getChatColorUtil().toColor(ChatColor.GREEN)).build());
 		}
-		
+		catch (final Exception ex) {}
+
 		((NoNameTagFeature) getPhase().getFeature(FeatureType.NONAMETAG)).addIgnore(sucher1);
 		((NoNameTagFeature) getPhase().getFeature(FeatureType.NONAMETAG)).addIgnore(sucher2);
 
@@ -112,16 +123,12 @@ public class SUVFeature extends CoreFeature {
 		final TeamFeature t = (TeamFeature) getPhase().getFeature(FeatureType.TEAM);
 
 		if (sucher1 != null) {
-			board.addLine(new CoreScoreboardLine(3,
-					"Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(2, t.getTeams().get(0).getPlayers().size() + " Spieler ",
-					DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(3, "Team " + Core.getCore().getUserHandler().get(sucher1).getDisplayName(), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(2, t.getTeams().get(0).getPlayers().size() + " Spieler ", DisplaySlot.SIDEBAR));
 		}
 		if (sucher2 != null) {
-			board.addLine(new CoreScoreboardLine(1,
-					"Team " + Core.getCore().getUserHandler().get(sucher2).getDisplayName(), DisplaySlot.SIDEBAR));
-			board.addLine(new CoreScoreboardLine(0, t.getTeams().get(1).getPlayers().size() + " Spieler",
-					DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(1, "Team " + Core.getCore().getUserHandler().get(sucher2).getDisplayName(), DisplaySlot.SIDEBAR));
+			board.addLine(new CoreScoreboardLine(0, t.getTeams().get(1).getPlayers().size() + " Spieler", DisplaySlot.SIDEBAR));
 		}
 	}
 
@@ -185,23 +192,14 @@ public class SUVFeature extends CoreFeature {
 				if (os == null || os.getPlayer() == null) {
 					t.getTeams().get(0).getPlayers().remove(id2);
 					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-									.then("Der Spieler " + v.getDisplayName()
-											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then(
-									"Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler am Leben!"));
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler " + v.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler am Leben!"));
 				} else {
 					t.getTeams().get(0).getPlayers().remove(id2);
+					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+							.then("Der Spieler " + v.getDisplayName() + " aus dem Team von " + os.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
 					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-									.then("Der Spieler " + v.getDisplayName() + " aus dem Team von "
-											+ os.getDisplayName()
-											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-									.then("Es sind noch " + t.getTeams().get(0).getPlayers().size()
-											+ " Spieler in diesem Team am Leben!"));
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch " + t.getTeams().get(0).getPlayers().size() + " Spieler in diesem Team am Leben!"));
 				}
 
 				v.getPlayer().damage(9000.0);
@@ -213,23 +211,14 @@ public class SUVFeature extends CoreFeature {
 				if (os == null || os.getPlayer() == null) {
 					t.getTeams().get(1).getPlayers().remove(id2);
 					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-									.then("Der Spieler " + v.getDisplayName()
-											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then(
-									"Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler am Leben!"));
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Der Spieler " + v.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
+					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler am Leben!"));
 				} else {
 					t.getTeams().get(1).getPlayers().remove(id2);
+					getPhase().getGame().broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
+							.then("Der Spieler " + v.getDisplayName() + " aus dem Team von " + os.getDisplayName() + (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
 					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-									.then("Der Spieler " + v.getDisplayName() + " aus dem Team von "
-											+ os.getDisplayName()
-											+ (leave ? " hat das Spiel verlassen!" : " wurde gefunden!")));
-					getPhase().getGame()
-							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix()
-									.then("Es sind noch " + t.getTeams().get(1).getPlayers().size()
-											+ " Spieler in diesem Team am Leben!"));
+							.broadCastMessage(Prefix.getByGameType(getPhase().getGame().getType()).getPrefix().then("Es sind noch " + t.getTeams().get(1).getPlayers().size() + " Spieler in diesem Team am Leben!"));
 				}
 
 				v.getPlayer().damage(9000.0);
@@ -280,8 +269,7 @@ public class SUVFeature extends CoreFeature {
 	public void onInteract(final PlayerInteractEntityEvent e) {
 		if (e.getRightClicked() instanceof Player) {
 			Core.getCore().getInstance().debug("click");
-			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId())
-					&& getPhase().getGame().getPlayers().contains(e.getRightClicked().getUniqueId())) {
+			if (getPhase().getGame().getPlayers().contains(e.getPlayer().getUniqueId()) && getPhase().getGame().getPlayers().contains(e.getRightClicked().getUniqueId())) {
 				Core.getCore().getInstance().debug("both ingame");
 				check(e.getPlayer().getUniqueId(), e.getRightClicked().getUniqueId(), false);
 			}
@@ -307,7 +295,7 @@ public class SUVFeature extends CoreFeature {
 				Core.getCore().getInstance().debug("teamless death");
 				e.setShouldRespawn(false);
 			} else {
-				Team team = t.getTeam(e.getUser());
+				final Team team = t.getTeam(e.getUser());
 				Core.getCore().getInstance().debug(team.getName() + " death");
 			}
 		}

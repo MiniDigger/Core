@@ -23,62 +23,62 @@ import net.citizensnpcs.api.event.DespawnReason;
 import net.citizensnpcs.api.npc.NPC;
 
 public class EHNPCs {
-	private EHScanner s;
-	private EHData d;
+	private final EHScanner	s;
+	private final EHData	d;
 
-	private List<NPC> npcs = new ArrayList<>();
-	private List<Location> usedLocs = new ArrayList<>();
+	private List<NPC>		npcs		= new ArrayList<>();
+	private List<Location>	usedLocs	= new ArrayList<>();
 
-	public EHNPCs(EHScanner s, EHData d) {
+	public EHNPCs(final EHScanner s, final EHData d) {
 		this.s = s;
 		this.d = d;
 	}
 
-	public void respawn(String newName, double amount) {
-		for (NPC npc : npcs) {
+	public void respawn(final String newName, final double amount) {
+		for (final NPC npc : npcs) {
 			npc.despawn(DespawnReason.REMOVAL);
 		}
 		npcs = new ArrayList<>();
 		spawn(newName, amount);
 	}
 
-	public void spawn(String newName, double amount) {
+	public void spawn(final String newName, final double amount) {
 		usedLocs = new ArrayList<>();
-		for (String name : d.getDonations().keySet()) {
-			NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, name);
+		for (final String name : d.getDonations().keySet()) {
+			final NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, name);
 
 			Location loc = null;
-			for (Location l : s.getTower1()) {
+			for (final Location l : s.getTower1()) {
 				if (!usedLocs.contains(l)) {
 					loc = l;
 				}
 			}
 			if (loc == null) {
-				for (Location l : s.getTower2()) {
+				for (final Location l : s.getTower2()) {
 					if (!usedLocs.contains(l)) {
 						loc = l;
 					}
 				}
 				if (loc == null) {
-					for (Location l : s.getTower3()) {
+					for (final Location l : s.getTower3()) {
 						if (!usedLocs.contains(l)) {
 							loc = l;
 						}
 					}
 					if (loc == null) {
-						for (Location l : s.getWall1()) {
+						for (final Location l : s.getWall1()) {
 							if (!usedLocs.contains(l)) {
 								loc = l;
 							}
 						}
 						if (loc == null) {
-							for (Location l : s.getWall2()) {
+							for (final Location l : s.getWall2()) {
 								if (!usedLocs.contains(l)) {
 									loc = l;
 								}
 							}
 							if (loc == null) {
-								for (Location l : s.getWall3()) {
+								for (final Location l : s.getWall3()) {
 									if (!usedLocs.contains(l)) {
 										loc = l;
 									}
@@ -107,25 +107,22 @@ public class EHNPCs {
 		}
 	}
 
-	public void effect(Location loc, String name, double amount, NPC npc) {
-		for (User u : Core.getCore().getUserHandler().getOnlineUsers()) {
+	public void effect(final Location loc, final String name, final double amount, final NPC npc) {
+		for (final User u : Core.getCore().getUserHandler().getOnlineUsers()) {
 			Core.getCore().getTitleHandler().sendTitle(u.getPlayer(), 1 * 20, 150, 1 * 20, ChatColor.GOLD + "Donation");
-			Core.getCore().getTitleHandler().sendSubTitle(u.getPlayer(), 1 * 20, 150, 1 * 20,
-					ChatColor.GOLD + name + " hat " + amount + " Euro gespendet!");
+			Core.getCore().getTitleHandler().sendSubTitle(u.getPlayer(), 1 * 20, 150, 1 * 20, ChatColor.GOLD + name + " hat " + amount + " Euro gespendet!");
 
-			FireworkEffect e = FireworkEffect.builder().flicker(true).with(Type.BALL).trail(false)
-					.withColor(Color.ORANGE, Color.YELLOW, Color.RED).build();
-			Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
-			FireworkMeta m = fw.getFireworkMeta();
+			final FireworkEffect e = FireworkEffect.builder().flicker(true).with(Type.BALL).trail(false).withColor(Color.ORANGE, Color.YELLOW, Color.RED).build();
+			final Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
+			final FireworkMeta m = fw.getFireworkMeta();
 			m.setPower(0);
 			m.addEffect(e);
 			fw.setFireworkMeta(m);
 
-			for (Location l : s.getFireworksI()) {
-				FireworkEffect e1 = FireworkEffect.builder().flicker(true).with(Type.BURST).trail(false)
-						.withColor(Color.YELLOW).withFade(Color.AQUA).build();
-				Firework fw1 = (Firework) l.getWorld().spawnEntity(l, EntityType.FIREWORK);
-				FireworkMeta m1 = fw1.getFireworkMeta();
+			for (final Location l : s.getFireworksI()) {
+				final FireworkEffect e1 = FireworkEffect.builder().flicker(true).with(Type.BURST).trail(false).withColor(Color.YELLOW).withFade(Color.AQUA).build();
+				final Firework fw1 = (Firework) l.getWorld().spawnEntity(l, EntityType.FIREWORK);
+				final FireworkMeta m1 = fw1.getFireworkMeta();
 				m1.setPower(0);
 				m1.addEffect(e1);
 				fw1.setFireworkMeta(m1);
@@ -135,11 +132,10 @@ public class EHNPCs {
 
 				@Override
 				public void run() {
-					for (Location l : s.getFireworksO()) {
-						FireworkEffect e1 = FireworkEffect.builder().flicker(true).with(Type.STAR).trail(false)
-								.withColor(Color.GREEN, Color.BLACK).build();
-						Firework fw1 = (Firework) l.getWorld().spawnEntity(l, EntityType.FIREWORK);
-						FireworkMeta m1 = fw1.getFireworkMeta();
+					for (final Location l : s.getFireworksO()) {
+						final FireworkEffect e1 = FireworkEffect.builder().flicker(true).with(Type.STAR).trail(false).withColor(Color.GREEN, Color.BLACK).build();
+						final Firework fw1 = (Firework) l.getWorld().spawnEntity(l, EntityType.FIREWORK);
+						final FireworkMeta m1 = fw1.getFireworkMeta();
 						m1.setPower(0);
 						m1.addEffect(e1);
 						fw1.setFireworkMeta(m1);
@@ -148,8 +144,8 @@ public class EHNPCs {
 			}.runTaskLater(Core.getCore().getInstance(), 20);
 
 			final List<Laser> lasers = new ArrayList<>();
-			for (Location l : s.getFireworksI()) {
-				Laser laser = new CoreLaser(l.clone().add(0.5, 0.5, 0.5));
+			for (final Location l : s.getFireworksI()) {
+				final Laser laser = new CoreLaser(l.clone().add(0.5, 0.5, 0.5));
 				laser.setTarget((LivingEntity) npc.getEntity());
 				lasers.add(laser);
 			}
@@ -158,10 +154,11 @@ public class EHNPCs {
 
 				@Override
 				public void run() {
-					for (Laser l : lasers) {
+					for (final Laser l : lasers) {
 						try {
 							l.despawn(null);
-						} catch (Exception ex) {
+						}
+						catch (final Exception ex) {
 
 						}
 					}

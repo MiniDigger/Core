@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -31,23 +44,17 @@ import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
 
 public class TagCommands {
-	
+
 	@Command(name = "tag", description = "Macht alles mit Nametags", permission = "tag")
 	public void tag(final CommandArgs args) {
-		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/tag show").then("um dein Tag wieder anzuzeigen").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/tag hide").then("um dein Tag zu verstecken").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/tag suffix ").then("um Suffixe zu ändern").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/tag prefix ").then("um Prefixe zu ändern").color(ChatColor.GOLD)
-		        .send(args.getSender());
-		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon hide ").then("um das Tag von einem Spieler zu verstecken")
-		        .color(ChatColor.GOLD).send(args.getSender());
-		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon show  ").then("um das Tag von einem Spieler wieder anzuzeigen")
-		        .color(ChatColor.GOLD).send(args.getSender());
+		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/tag show").then("um dein Tag wieder anzuzeigen").color(ChatColor.GOLD).send(args.getSender());
+		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).command("/tag hide").then("um dein Tag zu verstecken").color(ChatColor.GOLD).send(args.getSender());
+		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/tag suffix ").then("um Suffixe zu ändern").color(ChatColor.GOLD).send(args.getSender());
+		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/tag prefix ").then("um Prefixe zu ändern").color(ChatColor.GOLD).send(args.getSender());
+		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon hide ").then("um das Tag von einem Spieler zu verstecken").color(ChatColor.GOLD).send(args.getSender());
+		Prefix.TAG.getPrefix().then("Klicke hier ").color(ChatColor.YELLOW).suggest("/addon show  ").then("um das Tag von einem Spieler wieder anzuzeigen").color(ChatColor.GOLD).send(args.getSender());
 	}
-	
+
 	@Command(name = "tag.show", description = "Zeigt den Nametag von einem Spieler oder dir wieder", permission = "tag.show", max = 1, sync = true)
 	public void show(final CommandArgs args) {
 		if (args.getArgs().length == 0) {
@@ -65,7 +72,7 @@ public class TagCommands {
 			Prefix.TAG.getPrefix().then("Der Tag von " + p.getDisplayName() + " ist nun wieder sichtbar!").color(ChatColor.GREEN).send(args.getSender());
 		}
 	}
-	
+
 	@Command(name = "tag.hide", description = "Versteckt den Nametag von einem Spieler oder dir", permission = "tag.show", max = 1, sync = true)
 	public void hide(final CommandArgs args) {
 		if (args.getArgs().length == 0) {
@@ -83,7 +90,7 @@ public class TagCommands {
 			Prefix.TAG.getPrefix().then("Der Tag von " + p.getDisplayName() + " ist nun unsichtbar!").color(ChatColor.GREEN).send(args.getSender());
 		}
 	}
-	
+
 	@Command(name = "tag.prefix", description = "Verändert das Prefix von einem Spieler", permission = "tag.prefix", min = 1, max = 2, string = 1, sync = true)
 	public void prefix(final CommandArgs args) {
 		if (args.getArgs().length == 1) {
@@ -102,7 +109,7 @@ public class TagCommands {
 			Prefix.TAG.getPrefix().then("Prefix geändert!").color(ChatColor.GREEN).send(args.getSender());
 		}
 	}
-	
+
 	@Command(name = "tag.suffix", description = "Verändert das Suffix von einem Spieler", permission = "tag.suffix", min = 1, max = 2, string = 1, sync = true)
 	public void suffix(final CommandArgs args) {
 		if (args.getArgs().length == 1) {

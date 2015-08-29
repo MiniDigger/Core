@@ -1,17 +1,30 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
  *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -52,7 +65,6 @@ import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
 import me.MiniDigger.Core.Villager.VillagerTrade;
-
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
@@ -99,8 +111,7 @@ public class BedWarsPhase extends CorePhase {
 		Core.getCore().getInstance().debug("init");
 		addFeature(new BleedFeature(this));
 		addFeature(new AutoRespawnFeature(this));
-		final List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE,
-				Type.UTILITY);
+		final List<EntityType> allowed = Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY);
 		allowed.add(EntityType.VILLAGER);
 		addFeature(new MobFeature(this, allowed));
 		addFeature(new FixedTimeFeature(this, 6000));
@@ -122,20 +133,15 @@ public class BedWarsPhase extends CorePhase {
 		addFeature(new SpawnersFeature(this));
 		addFeature(new TeamArmorFeature(this, false));
 
-		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1)
-				.build();
+		final ItemStack silver = new CoreItemBuilder(Material.IRON_INGOT).name(ChatColor.AQUA + "Silber").amount(1).build();
 
-		final ItemStack bronce = new CoreItemBuilder(Material.CLAY_BRICK).name(ChatColor.AQUA + "Bronze").amount(1)
-				.build();
+		final ItemStack bronce = new CoreItemBuilder(Material.CLAY_BRICK).name(ChatColor.AQUA + "Bronze").amount(1).build();
 
 		final ItemStack gold = new CoreItemBuilder(Material.GOLD_INGOT).name(ChatColor.AQUA + "Gold").amount(1).build();
 
-		((SpawnersFeature) getFeature(FeatureType.SPAWNERS))
-				.add(new SpawnerFeature(this, DyeColor.PINK, 20 * 2, null, bronce));
-		((SpawnersFeature) getFeature(FeatureType.SPAWNERS))
-				.add(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 6, null, silver));
-		((SpawnersFeature) getFeature(FeatureType.SPAWNERS))
-				.add(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 30, null, gold));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.PINK, 20 * 2, null, bronce));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.LIGHT_BLUE, 20 * 6, null, silver));
+		((SpawnersFeature) getFeature(FeatureType.SPAWNERS)).add(new SpawnerFeature(this, DyeColor.MAGENTA, 20 * 30, null, gold));
 
 		Core.getCore().getTaskHandler().runTaskLater(new BukkitRunnable() {
 
@@ -182,50 +188,41 @@ public class BedWarsPhase extends CorePhase {
 
 	}
 
-	private void genPotionVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver,
-			final ItemStack gold, final int id) {
+	private void genPotionVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 
 		bronce.setAmount(32);
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Speed")
-				.lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Speed").lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
 				.effect(PotionEffectType.SPEED, 90 * 20, 2).build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		silver.setAmount(1);
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Haste")
-				.lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Haste").lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
 				.effect(PotionEffectType.FAST_DIGGING, 90 * 20).build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(1);
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Strength")
-				.lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Strength").lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
 				.effect(PotionEffectType.INCREASE_DAMAGE, 90 * 20).build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(1);
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Resistance")
-				.lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.LIGHT_PURPLE + "Resistance").lore(ChatChars.Misc.bullet + "Causes Hunger").effect(PotionEffectType.HUNGER, 90 * 20, 2)
 				.effect(PotionEffectType.ABSORPTION, 90 * 20).build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
-		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode")
-				.effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2)
-				.effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20)
-				.effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2)
-				.effect(PotionEffectType.ABSORPTION, 2 * 60 * 20).lore(ChatChars.Misc.bullet + "Become The Beast")
-				.build();
+		is = new CoreItemBuilder(Material.POTION).durability(0).name(ChatColor.RED + "" + ChatColor.BOLD + "Beast Mode").effect(PotionEffectType.NIGHT_VISION, 2 * 60 * 20).effect(PotionEffectType.SPEED, 2 * 60 * 20, 2)
+				.effect(PotionEffectType.FAST_DIGGING, 2 * 60 * 20).effect(PotionEffectType.INCREASE_DAMAGE, 2 * 60 * 20).effect(PotionEffectType.JUMP, 2 * 60 * 20, 2).effect(PotionEffectType.ABSORPTION, 2 * 60 * 20)
+				.lore(ChatChars.Misc.bullet + "Become The Beast").build();
 		trades.add(new CoreVillagerTrade(new ItemStack(Material.BED), is));
 
 		final MapData data = ((MapFeature) getFeature(FeatureType.MAP)).getMap();
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
-			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST
-					|| b.getType() == Material.WALL_SIGN) {
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
@@ -237,47 +234,39 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 
-	private void genBlockVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver,
-			final ItemStack gold, final int id) {
+	private void genBlockVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 
 		bronce.setAmount(8);
-		is = new CoreItemBuilder(Material.NETHERRACK).amount(32).name(ChatColor.GOLD + "Block")
-				.lore(" " + ChatChars.Misc.bullet + " Level 1").build();
+		is = new CoreItemBuilder(Material.NETHERRACK).amount(32).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(16);
-		is = new CoreItemBuilder(Material.BRICK).amount(16).name(ChatColor.GOLD + "Block")
-				.lore(" " + ChatChars.Misc.bullet + " Level 2").build();
+		is = new CoreItemBuilder(Material.BRICK).amount(16).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(32);
-		is = new CoreItemBuilder(Material.EMERALD_BLOCK).amount(8).name(ChatColor.GOLD + "Block")
-				.lore(" " + ChatChars.Misc.bullet + " Level 3").build();
+		is = new CoreItemBuilder(Material.EMERALD_BLOCK).amount(8).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(8);
-		is = new CoreItemBuilder(Material.GLOWSTONE).amount(8).name(ChatColor.GOLD + "Block")
-				.lore(" " + ChatChars.Misc.bullet + " Level 4").lore(ChatChars.Misc.bullet + "Macht Licht!").build();
+		is = new CoreItemBuilder(Material.GLOWSTONE).amount(8).name(ChatColor.GOLD + "Block").lore(" " + ChatChars.Misc.bullet + " Level 4").lore(ChatChars.Misc.bullet + "Macht Licht!").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(6);
-		is = new CoreItemBuilder(Material.WOOD_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe")
-				.enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1").build();
+		is = new CoreItemBuilder(Material.WOOD_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		silver.setAmount(3);
-		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe")
-				.enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DIG_SPEED)
-				.lore(" " + ChatChars.Misc.bullet + " Level 2").build();
+		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DIG_SPEED).lore(" " + ChatChars.Misc.bullet + " Level 2")
+				.build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		gold.setAmount(1);
-		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe")
-				.enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DIG_SPEED, 3)
-				.lore(" " + ChatChars.Misc.bullet + " Level 3").build();
+		is = new CoreItemBuilder(Material.IRON_PICKAXE).name(ChatColor.DARK_PURPLE + "Pickaxe").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DIG_SPEED, 3).lore(" " + ChatChars.Misc.bullet + " Level 3")
+				.build();
 		trades.add(new CoreVillagerTrade(gold.clone(), is));
 
 		silver.setAmount(1);
@@ -287,8 +276,7 @@ public class BedWarsPhase extends CorePhase {
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
-			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST
-					|| b.getType() == Material.WALL_SIGN) {
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
@@ -300,33 +288,26 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 
-	private void genWeaponVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver,
-			final ItemStack gold, final int id) {
+	private void genWeaponVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 
 		silver.setAmount(2);
-		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword")
-				.enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1").build();
+		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(8);
-		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword")
-				.enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL)
-				.lore(" " + ChatChars.Misc.bullet + " Level 2").build();
+		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL).lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(16);
-		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword")
-				.enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL, 2)
-				.lore(" " + ChatChars.Misc.bullet + " Level 3").build();
+		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL, 2).lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(48);
-		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword")
-				.enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL, 2)
-				.enchantment(Enchantment.KNOCKBACK).lore(" " + ChatChars.Misc.bullet + " Level 4").build();
+		is = new CoreItemBuilder(Material.GOLD_SWORD).name(ChatColor.RED + "Sword").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.DAMAGE_ALL, 2).enchantment(Enchantment.KNOCKBACK)
+				.lore(" " + ChatChars.Misc.bullet + " Level 4").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(6);
@@ -339,8 +320,7 @@ public class BedWarsPhase extends CorePhase {
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
-			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST
-					|| b.getType() == Material.WALL_SIGN) {
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
@@ -352,30 +332,25 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 
-	private void genBowVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver,
-			final ItemStack gold, final int id) {
+	private void genBowVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 
 		gold.setAmount(2);
-		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE)
-				.lore(" " + ChatChars.Misc.bullet + " Level 1").build();
+		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(gold.clone(), is));
 
 		gold.setAmount(8);
-		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE)
-				.enchantment(Enchantment.ARROW_DAMAGE).lore(" " + ChatChars.Misc.bullet + " Level 2").build();
+		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.ARROW_DAMAGE).lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(gold.clone(), is));
 
 		gold.setAmount(12);
-		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE)
-				.enchantment(Enchantment.ARROW_DAMAGE, 2).lore(" " + ChatChars.Misc.bullet + " Level 3").build();
+		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.ARROW_DAMAGE, 2).lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(gold.clone(), is));
 
 		gold.setAmount(24);
-		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE)
-				.enchantment(Enchantment.ARROW_DAMAGE, 2).enchantment(Enchantment.ARROW_KNOCKBACK)
+		is = new CoreItemBuilder(Material.BOW).name(ChatColor.GREEN + "Bow").enchantment(Enchantment.ARROW_INFINITE).enchantment(Enchantment.ARROW_DAMAGE, 2).enchantment(Enchantment.ARROW_KNOCKBACK)
 				.lore(" " + ChatChars.Misc.bullet + " Level 4").build();
 		trades.add(new CoreVillagerTrade(gold.clone(), is));
 
@@ -392,8 +367,7 @@ public class BedWarsPhase extends CorePhase {
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
-			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST
-					|| b.getType() == Material.WALL_SIGN) {
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
@@ -405,51 +379,40 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 
-	private void genArmorVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver,
-			final ItemStack gold, final int id) {
+	private void genArmorVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 
 		bronce.setAmount(1);
-		is = new CoreItemBuilder(Material.LEATHER_HELMET).name(ChatColor.BLUE + "Armor")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE)
-				.lore("TeamArmor").build();
+		is = new CoreItemBuilder(Material.LEATHER_HELMET).name(ChatColor.BLUE + "Armor").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE).lore("TeamArmor").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(1);
-		is = new CoreItemBuilder(Material.LEATHER_LEGGINGS).name(ChatColor.BLUE + "Armor")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE)
-				.lore("TeamArmor").build();
+		is = new CoreItemBuilder(Material.LEATHER_LEGGINGS).name(ChatColor.BLUE + "Armor").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE).lore("TeamArmor").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(1);
-		is = new CoreItemBuilder(Material.LEATHER_BOOTS).name(ChatColor.BLUE + "Armor")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE)
-				.lore("TeamArmor").build();
+		is = new CoreItemBuilder(Material.LEATHER_BOOTS).name(ChatColor.BLUE + "Armor").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE).lore("TeamArmor").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		silver.setAmount(2);
-		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE)
+		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL).enchantment(Enchantment.ARROW_INFINITE)
 				.lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(8);
-		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2).enchantment(Enchantment.ARROW_INFINITE)
+		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2).enchantment(Enchantment.ARROW_INFINITE)
 				.lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(16);
-		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3).enchantment(Enchantment.ARROW_INFINITE)
+		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3).enchantment(Enchantment.ARROW_INFINITE)
 				.lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		silver.setAmount(48);
-		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate")
-				.enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5).enchantment(Enchantment.ARROW_INFINITE)
+		is = new CoreItemBuilder(Material.CHAINMAIL_CHESTPLATE).name(ChatColor.YELLOW + "Chestplate").enchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5).enchantment(Enchantment.ARROW_INFINITE)
 				.lore(" " + ChatChars.Misc.bullet + " Level 4").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
@@ -457,8 +420,7 @@ public class BedWarsPhase extends CorePhase {
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
-			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST
-					|| b.getType() == Material.WALL_SIGN) {
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));
@@ -470,25 +432,21 @@ public class BedWarsPhase extends CorePhase {
 		}
 	}
 
-	private void genFoodVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver,
-			final ItemStack gold, final int id) {
+	private void genFoodVillager(final DyeColor locKey, final ItemStack bronce, final ItemStack silver, final ItemStack gold, final int id) {
 		final VillagerFeature f = (VillagerFeature) getFeature(FeatureType.VILLAGER);
 		ItemStack is;
 		final List<VillagerTrade> trades = new ArrayList<VillagerTrade>();
 
 		bronce.setAmount(16);
-		is = new CoreItemBuilder(Material.APPLE).amount(4).name(ChatColor.YELLOW + "Food")
-				.lore(" " + ChatChars.Misc.bullet + " Level 1").build();
+		is = new CoreItemBuilder(Material.APPLE).amount(4).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 1").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		bronce.setAmount(32);
-		is = new CoreItemBuilder(Material.APPLE).amount(2).name(ChatColor.YELLOW + "Food")
-				.lore(" " + ChatChars.Misc.bullet + " Level 2").build();
+		is = new CoreItemBuilder(Material.APPLE).amount(2).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 2").build();
 		trades.add(new CoreVillagerTrade(bronce.clone(), is));
 
 		silver.setAmount(3);
-		is = new CoreItemBuilder(Material.GOLDEN_APPLE).name(ChatColor.YELLOW + "Food")
-				.lore(" " + ChatChars.Misc.bullet + " Level 3").build();
+		is = new CoreItemBuilder(Material.GOLDEN_APPLE).name(ChatColor.YELLOW + "Food").lore(" " + ChatChars.Misc.bullet + " Level 3").build();
 		trades.add(new CoreVillagerTrade(silver.clone(), is));
 
 		bronce.setAmount(64);
@@ -508,8 +466,7 @@ public class BedWarsPhase extends CorePhase {
 		final HashMap<String, Location> locs = data.getLocs(locKey);
 		for (final Location loc : locs.values()) {
 			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 2);
-			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST
-					|| b.getType() == Material.WALL_SIGN) {
+			if (b.getType() == Material.SIGN || b.getType() == Material.SIGN_POST || b.getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) b.getState();
 				if (s.getLine(0).equalsIgnoreCase("Villager")) {
 					final int i = Integer.parseInt(s.getLine(1));

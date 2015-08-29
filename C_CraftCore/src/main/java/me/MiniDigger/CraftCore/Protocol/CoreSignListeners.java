@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -55,8 +68,7 @@ public class CoreSignListeners implements SignListeners {
 			@Override
 			public void run() {
 				final String team = getSign().getLine(1);
-				final TeamSelectFeature tf = (TeamFeature) Core.getCore().getGameHandler().getMainGame().getPhase()
-						.getFeature(FeatureType.TEAM);
+				final TeamSelectFeature tf = (TeamFeature) Core.getCore().getGameHandler().getMainGame().getPhase().getFeature(FeatureType.TEAM);
 				if (tf == null) {
 					return;
 				}
@@ -71,8 +83,7 @@ public class CoreSignListeners implements SignListeners {
 
 			@Override
 			public void run() {
-				Core.getCore().getInstance().debug("Player " + getPlayer().getName() + " punshed sign with lines: "
-						+ Core.getCore().getStringUtil().toString(getSign().getLines()));
+				Core.getCore().getInstance().debug("Player " + getPlayer().getName() + " punshed sign with lines: " + Core.getCore().getStringUtil().toString(getSign().getLines()));
 			}
 		}, false));
 
@@ -82,8 +93,7 @@ public class CoreSignListeners implements SignListeners {
 			public void run() {
 				final Kit k = Core.getCore().getKitHandler().getKit(getSign().getLine(1));
 				if (k == null) {
-					getUser().sendMessage(Prefix.API.getPrefix()
-							.then("Dieses Schild ist kaputt! Bitte berichte einem Teammitglied!").color(ChatColor.RED));
+					getUser().sendMessage(Prefix.API.getPrefix().then("Dieses Schild ist kaputt! Bitte berichte einem Teammitglied!").color(ChatColor.RED));
 					return;
 				}
 				Core.getCore().getKitHandler().give(getPlayer(), k);
@@ -96,8 +106,7 @@ public class CoreSignListeners implements SignListeners {
 			public void run() {
 				final Kit k = Core.getCore().getKitHandler().getKit(getSign().getLine(1));
 				if (k == null) {
-					getUser().sendMessage(Prefix.API.getPrefix()
-							.then("Dieses Schild ist kaputt! Bitte berichte einem Teammitglied!").color(ChatColor.RED));
+					getUser().sendMessage(Prefix.API.getPrefix().then("Dieses Schild ist kaputt! Bitte berichte einem Teammitglied!").color(ChatColor.RED));
 					return;
 				}
 				Core.getCore().getKitHandler().give(getPlayer(), k);
@@ -109,14 +118,13 @@ public class CoreSignListeners implements SignListeners {
 			@Override
 			public void run() {
 				try {
-					Server s = Core.getCore().getServerHandler().getServerInfo(getSign().getLine(1));
+					final Server s = Core.getCore().getServerHandler().getServerInfo(getSign().getLine(1));
 					if (Core.getCore().getGameHandler().isDisabled(s.getPrimaryGameType())) {
-						getUser().sendMessage(Prefix.API.getPrefix()
-								.then("Dieser Spielmodi ist temporär deaktiviert! Sorry!").color(ChatColor.RED));
+						getUser().sendMessage(Prefix.API.getPrefix().then("Dieser Spielmodi ist temporär deaktiviert! Sorry!").color(ChatColor.RED));
 						return;
 					}
-				} catch (Exception ex) {
 				}
+				catch (final Exception ex) {}
 				Core.getCore().getServerHandler().connect(getUser(), getSign().getLine(1));
 			}
 		}, false));
@@ -154,8 +162,7 @@ public class CoreSignListeners implements SignListeners {
 								if (l.getKey().equalsIgnoreCase(line)) {
 									l.getAction().setSign(sign);
 									l.getAction().setPlayer(e.getPlayer());
-									l.getAction()
-											.setUser(Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId()));
+									l.getAction().setUser(Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId()));
 									l.doAction(sign);
 									if (l.isFinal()) {
 										return;

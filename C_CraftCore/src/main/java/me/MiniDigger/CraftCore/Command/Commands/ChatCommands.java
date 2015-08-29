@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -32,21 +45,17 @@ import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
-
 import mkremins.fanciful.FancyMessage;
 
 public class ChatCommands {
 
 	@Command(name = "chat", description = "Alles mit Chat", usage = "", permission = "chat")
 	public void chat(final CommandArgs args) {
-		final FancyMessage msg1 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY)
-				.then("/chat join <channel>").suggest("/chat join ").tooltip("Oder klicke hier").color(ChatColor.YELLOW)
+		final FancyMessage msg1 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY).then("/chat join <channel>").suggest("/chat join ").tooltip("Oder klicke hier").color(ChatColor.YELLOW)
 				.then(" um einem Channel beizutreten").color(ChatColor.GRAY);
-		final FancyMessage msg2 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY)
-				.then("/chat leave <channel>").suggest("/chat leave ").tooltip("Oder klicke hier")
-				.color(ChatColor.YELLOW).then(" um einen Channel zu verlassen").color(ChatColor.GRAY);
-		final FancyMessage msg3 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY).then("/chat list")
-				.suggest("/chat join ").tooltip("Oder klicke hier").color(ChatColor.YELLOW)
+		final FancyMessage msg2 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY).then("/chat leave <channel>").suggest("/chat leave ").tooltip("Oder klicke hier").color(ChatColor.YELLOW)
+				.then(" um einen Channel zu verlassen").color(ChatColor.GRAY);
+		final FancyMessage msg3 = Prefix.CHAT.getPrefix().then("Benutze ").color(ChatColor.GRAY).then("/chat list").suggest("/chat join ").tooltip("Oder klicke hier").color(ChatColor.YELLOW)
 				.then(" um alle für dich verfügbaren Channel anzuzeigen").color(ChatColor.GRAY);
 
 		msg1.send(args.getSender());
@@ -59,7 +68,8 @@ public class ChatCommands {
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then("Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
@@ -71,8 +81,7 @@ public class ChatCommands {
 		}
 
 		if (!args.getUser().hasPermission(ch.getHearPerm())) {
-			args.getUser().sendMessage(Prefix.CHAT.getPrefix()
-					.then(" Du hast keine Permissions diesen Channel zu betreten!").color(ChatColor.RED));
+			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Du hast keine Permissions diesen Channel zu betreten!").color(ChatColor.RED));
 			return;
 		}
 
@@ -84,7 +93,8 @@ public class ChatCommands {
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then("Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
@@ -114,13 +124,9 @@ public class ChatCommands {
 
 		for (final ChatChannel ch : channel.keySet()) {
 			if (channel.get(ch)) {
-				args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(ch.getName())
-						.color(ch.getColor() == ChatColor.RESET ? ChatColor.WHITE : ch.getColor()));
+				args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(ch.getName()).color(ch.getColor() == ChatColor.RESET ? ChatColor.WHITE : ch.getColor()));
 			} else {
-				args.getUser()
-						.sendMessage(Prefix.CHAT.getPrefix().then(ch.getName())
-								.color(ch.getColor() == ChatColor.RESET ? ChatColor.WHITE : ch.getColor())
-								.then(" hear-only").color(ChatColor.RED));
+				args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(ch.getName()).color(ch.getColor() == ChatColor.RESET ? ChatColor.WHITE : ch.getColor()).then(" hear-only").color(ChatColor.RED));
 			}
 		}
 	}
@@ -130,7 +136,8 @@ public class ChatCommands {
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then("Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
@@ -142,8 +149,7 @@ public class ChatCommands {
 		}
 
 		if (!args.getUser().hasPermission(ch.getSpeakPerm())) {
-			args.getUser().sendMessage(Prefix.CHAT.getPrefix()
-					.then(" Du hast keine Permissions in diesen Channel zu reden!").color(ChatColor.RED));
+			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then(" Du hast keine Permissions in diesen Channel zu reden!").color(ChatColor.RED));
 			return;
 		}
 
@@ -155,7 +161,8 @@ public class ChatCommands {
 		String channel = "";
 		try {
 			channel = args.getArgs()[1];
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then("Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
@@ -174,7 +181,8 @@ public class ChatCommands {
 		String channel = "";
 		try {
 			channel = args.getArgs()[1];
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then("Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
@@ -192,7 +200,8 @@ public class ChatCommands {
 		String channel = "";
 		try {
 			channel = args.getArgs()[0];
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			args.getUser().sendMessage(Prefix.CHAT.getPrefix().then("Unbekannter Channel!").color(ChatColor.RED));
 			return;
 		}
@@ -204,8 +213,7 @@ public class ChatCommands {
 		}
 
 		if (!args.getUser().hasPermission(ch.getSpeakPerm())) {
-			args.getUser().sendMessage(
-					Prefix.SECURITY.getPrefix().then("Du darfst in diesem Channel nicht reden!").color(ChatColor.RED));
+			args.getUser().sendMessage(Prefix.SECURITY.getPrefix().then("Du darfst in diesem Channel nicht reden!").color(ChatColor.RED));
 		}
 
 		String message = "";
@@ -227,8 +235,7 @@ public class ChatCommands {
 			user.setDisplayName(args.getArgs()[1]);
 			Prefix.CHAT.getPrefix().then("Dein Anzeigename ist nun " + args.getArgs()[0]).send(user.getPlayer());
 			;
-			Prefix.CHAT.getPrefix().then("Der Anzeigename von " + user.getRealName() + " ist nun " + args.getArgs()[0])
-					.send(args.getPlayer());
+			Prefix.CHAT.getPrefix().then("Der Anzeigename von " + user.getRealName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());
 			;
 		}
 	}
@@ -240,8 +247,7 @@ public class ChatCommands {
 			Prefix.CHAT.getPrefix().then("Unbekannter User " + args.getArgs()[0]).send(args.getSender());
 			return;
 		}
-		Prefix.CHAT.getPrefix().then("Der richtige Name von " + user.getDisplayName() + " ist " + user.getRealName())
-				.send(args.getSender());
+		Prefix.CHAT.getPrefix().then("Der richtige Name von " + user.getDisplayName() + " ist " + user.getRealName()).send(args.getSender());
 		;
 	}
 
@@ -252,17 +258,15 @@ public class ChatCommands {
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(args.getPlayer());
 			Core.getCore().getScoreboardHandler().updatePrefix(args.getUser());
 		} else {
-			Player p = Bukkit.getPlayer(args.getArgs()[1]);
+			final Player p = Bukkit.getPlayer(args.getArgs()[1]);
 			if (p == null) {
-				Prefix.CHAT.getPrefix().then("Unbekannter Spieler:  " + args.getArgs()[1]).color(ChatColor.RED)
-						.send(args.getSender());
+				Prefix.CHAT.getPrefix().then("Unbekannter Spieler:  " + args.getArgs()[1]).color(ChatColor.RED).send(args.getSender());
 				return;
 			}
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.setPrefix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Prefix ist nun " + args.getArgs()[0]).send(user.getPlayer());
-			Prefix.CHAT.getPrefix().then("Das Prefix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0])
-					.send(args.getPlayer());
+			Prefix.CHAT.getPrefix().then("Das Prefix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());
 			Core.getCore().getScoreboardHandler().updatePrefix(user);
 		}
 	}
@@ -274,54 +278,48 @@ public class ChatCommands {
 			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(args.getPlayer());
 			;
 		} else {
-			Player p = Bukkit.getPlayer(args.getArgs()[1]);
+			final Player p = Bukkit.getPlayer(args.getArgs()[1]);
 			if (p == null) {
-				Prefix.CHAT.getPrefix().then("Unbekannter Spieler:  " + args.getArgs()[1]).color(ChatColor.RED)
-						.send(args.getSender());
+				Prefix.CHAT.getPrefix().then("Unbekannter Spieler:  " + args.getArgs()[1]).color(ChatColor.RED).send(args.getSender());
 				return;
 			}
 			final User user = Core.getCore().getUserHandler().get(p.getUniqueId());
 			user.setSuffix(args.getArgs()[0]);
 			Prefix.CHAT.getPrefix().then("Dein Suffix ist nun " + args.getArgs()[0]).send(user.getPlayer());
 			;
-			Prefix.CHAT.getPrefix().then("Das Suffix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0])
-					.send(args.getPlayer());
+			Prefix.CHAT.getPrefix().then("Das Suffix von " + user.getDisplayName() + " ist nun " + args.getArgs()[0]).send(args.getPlayer());
 			;
 		}
 	}
 
 	@Command(name = "pm", description = "Sendet eine PM", usage = "pm <spieler> <nachricht>", permission = "pm", consol = false, min = 1, string = 2)
 	public void pm(final CommandArgs args) {
-		User u = Core.getCore().getUserHandler().getFromDisplayName(args.getArgs()[0]);
+		final User u = Core.getCore().getUserHandler().getFromDisplayName(args.getArgs()[0]);
 		String msg = args.getArgs()[1];
 
 		if (args.getUser().hasPermission("chat.color")) {
 			msg = Core.getCore().getChatColorUtil().replaceAndToMc(msg);
 		}
 
-		new FancyMessage(args.getUser().getPrefix() + args.getUser().getDisplayName())
-				.tooltip("Klicke hier um " + args.getUser().getDisplayName() + " eine Nachricht zu schreiben")
-				.suggest("/pm " + args.getUser().getDisplayName()).then(" -> ").color(ChatColor.RED).then("DIR")
-				.color(ChatColor.RED).then(": " + msg).send(u.getPlayer());
-		new FancyMessage("DU").color(ChatColor.RED).then(" -> ").then(u.getPrefix() + u.getDisplayName())
-				.tooltip("Klicke hier um " + u.getDisplayName() + " eine Nachricht zu schreiben")
+		new FancyMessage(args.getUser().getPrefix() + args.getUser().getDisplayName()).tooltip("Klicke hier um " + args.getUser().getDisplayName() + " eine Nachricht zu schreiben")
+				.suggest("/pm " + args.getUser().getDisplayName()).then(" -> ").color(ChatColor.RED).then("DIR").color(ChatColor.RED).then(": " + msg).send(u.getPlayer());
+		new FancyMessage("DU").color(ChatColor.RED).then(" -> ").then(u.getPrefix() + u.getDisplayName()).tooltip("Klicke hier um " + u.getDisplayName() + " eine Nachricht zu schreiben")
 				.suggest("/pm " + u.getDisplayName()).then(": " + msg).send(args.getUser().getPlayer());
 
-		Core.getCore().getInstance().info(args.getUser().getPrefix() + args.getUser().getDisplayName() + " -> "
-				+ u.getPrefix() + u.getDisplayName() + ": " + msg);
+		Core.getCore().getInstance().info(args.getUser().getPrefix() + args.getUser().getDisplayName() + " -> " + u.getPrefix() + u.getDisplayName() + ": " + msg);
 	}
 
 	@Command(name = "clear", description = "Cleart den Chat", usage = "", permission = "clear", consol = true)
 	public void clear(final CommandArgs args) {
 		String s = "";
 		for (int i = 0; i < 100; i++) {
-			for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+			for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 				p.sendMessage(s);
 			}
 			s += " ";
 		}
 
-		for (Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
+		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			Prefix.API.getPrefix().then("Der Chat wurde gecleart!").color(ChatColor.GOLD).send(p);
 		}
 	}

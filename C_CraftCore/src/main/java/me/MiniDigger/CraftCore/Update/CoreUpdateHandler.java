@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -35,13 +48,13 @@ import me.MiniDigger.Core.Update.UpdateHandler;
 import me.MiniDigger.Core.Update.UpdateType;
 
 public class CoreUpdateHandler implements UpdateHandler {
-	
-	private static final int	BYTE_SIZE	 = 1024;
+
+	private static final int	BYTE_SIZE		= 1024;
 	private static final String	JAR_URL;
 	private static final String	VERSIONS_URL	= "http://game-repo.minidigger.me/TheCore/version.txt";
-	
-	private UpdateType	        type;
-	
+
+	private UpdateType type;
+
 	static {
 		if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 			JAR_URL = "http://api.minidigger.me/addons-dev/Core.jar";
@@ -49,60 +62,61 @@ public class CoreUpdateHandler implements UpdateHandler {
 			JAR_URL = "http://api.minidigger.me/addons/Core.jar";
 		}
 	}
-	
+
 	public CoreUpdateHandler() {
 		type = UpdateType.valueOf((Core.getCore().getInstance()).getConfig().getString("update-type"));
 		if (type == null) {
 			type = UpdateType.FORCE;
 		}
 	}
-	
+
 	@Override
 	public boolean updateCheck() {
 		// Core.getCore().getInstance().debug(getVersion().getRaw());
 		if (getLatestVersion().isNewer(getVersion(), type)) {
 			new Thread(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					update();
 				}
-				
+
 			}).start();
 			return true;
 		}
 		// Core.getCore().getInstance().debug("not newer!");
 		return false;
 	}
-	
+
 	private PluginVersion getVersion() {
 		return new CorePluginVersion((Core.getCore().getInstance()).getDescription().getVersion());
 	}
-	
+
 	private PluginVersion getLatestVersion() {
 		try {
 			final URL url = new URL(VERSIONS_URL);
 			final BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 			String inputLine;
-			
+
 			while ((inputLine = in.readLine()) != null) {
 				return new CorePluginVersion(inputLine);
 			}
-			
+
 			in.close();
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			Core.getCore().getInstance().error("Could not reach repo!");
 			e.printStackTrace();
 			return null;
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void update() {
 		saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "Core.jar", JAR_URL);
 	}
-	
+
 	private void saveFile(final File folder, final String file, final String link) {
 		if (!folder.exists()) {
 			folder.mkdir();
@@ -115,10 +129,10 @@ public class CoreUpdateHandler implements UpdateHandler {
 			final int fileLength = url.openConnection().getContentLength();
 			in = new BufferedInputStream(url.openStream());
 			fout = new FileOutputStream(folder.getAbsolutePath() + File.separator + file);
-			
+
 			final byte[] data = new byte[BYTE_SIZE];
 			int count;
-			
+
 			long downloaded = 0;
 			while ((count = in.read(data, 0, BYTE_SIZE)) != -1) {
 				downloaded += count;
@@ -128,7 +142,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 					Core.getCore().getInstance().info("Downloading update: " + percent + "% of " + fileLength + " bytes.");
 				}
 			}
-			
+
 			Core.getCore().getInstance().info("Finished updating.");
 			if (in != null) {
 				in.close();
@@ -137,9 +151,11 @@ public class CoreUpdateHandler implements UpdateHandler {
 				fout.close();
 			}
 			// Bukkit.getServer().shutdown();
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			Core.getCore().getInstance().error("The auto-updater tried to download a new update, but was unsuccessful. " + ex.getMessage());
-		} finally {
+		}
+		finally {
 			try {
 				if (in != null) {
 					in.close();
@@ -147,7 +163,8 @@ public class CoreUpdateHandler implements UpdateHandler {
 				if (fout != null) {
 					fout.close();
 				}
-			} catch (final Exception ex) {}
+			}
+			catch (final Exception ex) {}
 		}
 	}
 }

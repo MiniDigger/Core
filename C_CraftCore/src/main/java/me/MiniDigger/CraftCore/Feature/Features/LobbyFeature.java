@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -42,14 +55,13 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
 
 public class LobbyFeature extends CoreFeature {
 
-	private Map<Integer, Map<Integer, String[]>> text1 = new HashMap<Integer, Map<Integer, String[]>>();
-	private Map<Integer, Map<Integer, String[]>> text2 = new HashMap<Integer, Map<Integer, String[]>>();
+	private Map<Integer, Map<Integer, String[]>>	text1	= new HashMap<Integer, Map<Integer, String[]>>();
+	private Map<Integer, Map<Integer, String[]>>	text2	= new HashMap<Integer, Map<Integer, String[]>>();
 
 	public LobbyFeature(final Phase phase) {
 		super(phase);
@@ -81,7 +93,8 @@ public class LobbyFeature extends CoreFeature {
 			final User u = e.getUser();
 			try {
 				Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				// try {
 				// Core.getCore().getMenuHandler().openMenu(u, "game");
 				// } catch (final Exception ex1) {
@@ -99,14 +112,16 @@ public class LobbyFeature extends CoreFeature {
 			final User u = Core.getCore().getUserHandler().get(e.getPlayer().getUniqueId());
 			try {
 				Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				try {
 					Core.getCore().getMenuHandler().openMenu(u, "game");
-				} catch (final Exception ex1) {
+				}
+				catch (final Exception ex1) {
 					try {
 						Core.getCore().getMenuHandler().openMenu(u, "menu");
-					} catch (final Exception ex2) {
 					}
+					catch (final Exception ex2) {}
 				}
 			}
 
@@ -132,14 +147,16 @@ public class LobbyFeature extends CoreFeature {
 					final User u = Core.getCore().getUserHandler().get(id);
 					try {
 						Core.getCore().getMenuHandler().openMenu(u, getPhase().getGame().getType().getName());
-					} catch (final Exception ex) {
+					}
+					catch (final Exception ex) {
 						try {
 							Core.getCore().getMenuHandler().openMenu(u, "game");
-						} catch (final Exception ex1) {
+						}
+						catch (final Exception ex1) {
 							try {
 								Core.getCore().getMenuHandler().openMenu(u, "menu");
-							} catch (final Exception ex2) {
 							}
+							catch (final Exception ex2) {}
 						}
 					}
 				}
@@ -166,8 +183,7 @@ public class LobbyFeature extends CoreFeature {
 
 						if (start.getState() instanceof Sign) {
 							final Sign sign = (Sign) start.getState();
-							final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState()
-									.getData());
+							final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
 							mat.setFacingDirection(BlockFace.EAST);
 							sign.setData(mat);
 
@@ -196,8 +212,7 @@ public class LobbyFeature extends CoreFeature {
 
 						if (start.getState() instanceof Sign) {
 							final Sign sign = (Sign) start.getState();
-							final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState()
-									.getData());
+							final org.bukkit.material.Sign mat = ((org.bukkit.material.Sign) start.getState().getData());
 							mat.setFacingDirection(BlockFace.SOUTH);
 							sign.setData(mat);
 
@@ -985,36 +1000,38 @@ public class LobbyFeature extends CoreFeature {
 
 		public static Map<Integer, Map<Integer, String[]>> getOne(final GameType type) {
 			switch (type) {
-			case BEDWARS:
-				return bedwarsOne();
-			case CRANK:
-				return crankOne();
-			case GETTHEDROP:
-				return getthedropOne();
-			case LOBBY:
-				return placeholder();
-			case NOTHING:
-				return placeholder();
-			case OITC:
-				return oitcOne();
-			case TICTACTOE:
-				return placeholder();
-			case GK:
-				return ultraspleefOne();
-			case BMT:
-				return bmtOne();
-			case IF:
-				return ifOne();
-			case KK:
-				return kkOne();
-			case KP:
-				return kpOne();
-			case SG:
-				return sgOne();
-			case SUV:
-				return suvOne();
-			case EH:
-				return ehOne();
+				case BEDWARS:
+					return bedwarsOne();
+				case CRANK:
+					return crankOne();
+				case GETTHEDROP:
+					return getthedropOne();
+				case LOBBY:
+					return placeholder();
+				case NOTHING:
+					return placeholder();
+				case OITC:
+					return oitcOne();
+				case TICTACTOE:
+					return placeholder();
+				case GK:
+					return ultraspleefOne();
+				case BMT:
+					return bmtOne();
+				case IF:
+					return ifOne();
+				case KK:
+					return kkOne();
+				case KP:
+					return kpOne();
+				case SG:
+					return sgOne();
+				case SUV:
+					return suvOne();
+				case EH:
+					return ehOne();
+				case CUSTOM:
+					return placeholder();
 			}
 
 			return placeholder();
@@ -1022,36 +1039,38 @@ public class LobbyFeature extends CoreFeature {
 
 		public static Map<Integer, Map<Integer, String[]>> getTwo(final GameType type) {
 			switch (type) {
-			case BEDWARS:
-				return bedwarsTwo();
-			case CRANK:
-				return crankTwo();
-			case GETTHEDROP:
-				return getthedropTwo();
-			case LOBBY:
-				return placeholder();
-			case NOTHING:
-				return placeholder();
-			case OITC:
-				return oitcTwo();
-			case TICTACTOE:
-				return placeholder();
-			case GK:
-				return ultraspleefTwo();
-			case BMT:
-				return bmtTwo();
-			case IF:
-				return ifTwo();
-			case KK:
-				return kkTwo();
-			case KP:
-				return kpTwo();
-			case SG:
-				return sgTwo();
-			case SUV:
-				return suvTwo();
-			case EH:
-				return ehTwo();
+				case BEDWARS:
+					return bedwarsTwo();
+				case CRANK:
+					return crankTwo();
+				case GETTHEDROP:
+					return getthedropTwo();
+				case LOBBY:
+					return placeholder();
+				case NOTHING:
+					return placeholder();
+				case OITC:
+					return oitcTwo();
+				case TICTACTOE:
+					return placeholder();
+				case GK:
+					return ultraspleefTwo();
+				case BMT:
+					return bmtTwo();
+				case IF:
+					return ifTwo();
+				case KK:
+					return kkTwo();
+				case KP:
+					return kpTwo();
+				case SG:
+					return sgTwo();
+				case SUV:
+					return suvTwo();
+				case EH:
+					return ehTwo();
+				case CUSTOM:
+					return placeholder();
 			}
 
 			return placeholder();

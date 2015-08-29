@@ -8,7 +8,7 @@ public interface Laser {
 
 	/**
 	 * Sets the target for the laser for one player
-	 * 
+	 *
 	 * @param show
 	 *            who should see the laser
 	 * @param target
@@ -18,7 +18,7 @@ public interface Laser {
 
 	/**
 	 * Sets the target for the laser for all players
-	 * 
+	 *
 	 * @param target
 	 *            the target
 	 */
@@ -26,7 +26,7 @@ public interface Laser {
 
 	/**
 	 * Sets the target for the laser for all players
-	 * 
+	 *
 	 * @param target
 	 *            the target
 	 */
@@ -34,7 +34,7 @@ public interface Laser {
 
 	/**
 	 * Despawns the laser for one or all players
-	 * 
+	 *
 	 * @param show
 	 *            the player to despawn for, null for all
 	 */
@@ -42,7 +42,7 @@ public interface Laser {
 
 	/**
 	 * D Sets the target for the laser for one players
-	 * 
+	 *
 	 * @param show
 	 *            the player to show for
 	 * @param target

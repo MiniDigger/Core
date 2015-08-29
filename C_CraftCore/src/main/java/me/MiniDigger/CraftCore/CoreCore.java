@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -80,7 +93,6 @@ import me.MiniDigger.Core.Util.TimeUtil;
 import me.MiniDigger.Core.Util.ZipUtil;
 import me.MiniDigger.Core.Villager.VillagerHandler;
 import me.MiniDigger.Core.World.WorldHandler;
-
 import me.MiniDigger.CraftCore.Achievement.CoreAchievementHandler;
 import me.MiniDigger.CraftCore.AddOn.CoreAddOnHandler;
 import me.MiniDigger.CraftCore.Bar.CoreActionBarHandler;
@@ -140,79 +152,79 @@ import me.MiniDigger.CraftCore.Villager.CoreVillagerHandler;
 import me.MiniDigger.CraftCore.World.CoreWorldHandler;
 
 public class CoreCore extends Core {
-	
-	private final Main	       instance;
-	
-	private ItemHandler	       itemHandler;
+
+	private final Main instance;
+
+	private ItemHandler			itemHandler;
 	private AchievementHandler	achievementHandler;
-	private BuildHandler	   buildHandler;
-	private BoosterHandler	   boosterHandler;
-	private ChatHandler	       chatHandler;
-	private CommandHandler	   commandHandler;
-	private GameHandler	       gameHandler;
-	private HoloHandler	       holoHandler;
-	private MapHandler	       mapHandler;
-	private PacketHandler	   packetHandler;
-	private ProtocolHandler	   protocolHandler;
-	private RegenHandler	   regenHandler;
-	private ServerHandler	   serverHandler;
-	private SocketHandler	   socketHandler;
-	private ClientHandler	   clientHandler;
-	private SquadHandler	   squadHandler;
-	private SQLHandler	       sqlHandler;
-	private StatsHandler	   statsHandler;
-	private UpdateHandler	   updateHandler;
-	private TipHandler	       tipHandler;
-	private UserHandler	       userHandler;
-	private WorldHandler	   worldHandler;
-	private BarHandler	       barHandler;
-	private RESTHandler	       restHandler;
-	private AddOnHandler	   addOnHandler;
-	private MirrorHandler	   mirrorHandler;
-	private LicenseHandler	   licenseHandler;
-	private VillagerHandler	   villagerHandler;
-	private KitHandler	       kitHandler;
+	private BuildHandler		buildHandler;
+	private BoosterHandler		boosterHandler;
+	private ChatHandler			chatHandler;
+	private CommandHandler		commandHandler;
+	private GameHandler			gameHandler;
+	private HoloHandler			holoHandler;
+	private MapHandler			mapHandler;
+	private PacketHandler		packetHandler;
+	private ProtocolHandler		protocolHandler;
+	private RegenHandler		regenHandler;
+	private ServerHandler		serverHandler;
+	private SocketHandler		socketHandler;
+	private ClientHandler		clientHandler;
+	private SquadHandler		squadHandler;
+	private SQLHandler			sqlHandler;
+	private StatsHandler		statsHandler;
+	private UpdateHandler		updateHandler;
+	private TipHandler			tipHandler;
+	private UserHandler			userHandler;
+	private WorldHandler		worldHandler;
+	private BarHandler			barHandler;
+	private RESTHandler			restHandler;
+	private AddOnHandler		addOnHandler;
+	private MirrorHandler		mirrorHandler;
+	private LicenseHandler		licenseHandler;
+	private VillagerHandler		villagerHandler;
+	private KitHandler			kitHandler;
 	private ScoreboardHandler	scoreboardHandler;
-	private DashingHandler	   dashingHandler;
-	private LangHandler	       langHandler;
+	private DashingHandler		dashingHandler;
+	private LangHandler			langHandler;
 	private DependencyHanlder	dependencyHanlder;
-	private ErrorHandler	   errorHandler;
-	private MenuHandler	       menuHandler;
-	private TaskHandler	       taskHandler;
+	private ErrorHandler		errorHandler;
+	private MenuHandler			menuHandler;
+	private TaskHandler			taskHandler;
 	private BroadcastHandler	broadcastHandler;
 	private ActionBarHandler	actionBarHandler;
-	private TitleHandler	   titleHandler;
-	private MetricsHandler     metricsHandler;
-	
-	private ChatColorUtil	   chatColorUtil;
-	private CommonMethods	   commonMethods;
-	private DeZipUtil	       deZipUtil;
-	private EntityUtil	       entityUtil;
-	private FileUtil	       fileUtil;
-	private LocationUtil	   locationUtil;
-	private PlayerUtil	       playerUtil;
-	private RandomUtil	       randomUtil;
-	private ShutdownUtil	   shutdownUtil;
-	private StringUtil	       stringUtil;
-	private TimeUtil	       timeUtil;
-	private ZipUtil	           zipUtil;
-	private ReflectionUtil	   reflectionUtil;
-	private BaseUtil	       baseUtil;
-	private EnumUtil	       enumUtil;
-	private ItemUtil	       itemUtil;
-	private FaceUtil	       faceUtil;
-	private MathUtil	       mathUtil;
-	
+	private TitleHandler		titleHandler;
+	private MetricsHandler		metricsHandler;
+
+	private ChatColorUtil	chatColorUtil;
+	private CommonMethods	commonMethods;
+	private DeZipUtil		deZipUtil;
+	private EntityUtil		entityUtil;
+	private FileUtil		fileUtil;
+	private LocationUtil	locationUtil;
+	private PlayerUtil		playerUtil;
+	private RandomUtil		randomUtil;
+	private ShutdownUtil	shutdownUtil;
+	private StringUtil		stringUtil;
+	private TimeUtil		timeUtil;
+	private ZipUtil			zipUtil;
+	private ReflectionUtil	reflectionUtil;
+	private BaseUtil		baseUtil;
+	private EnumUtil		enumUtil;
+	private ItemUtil		itemUtil;
+	private FaceUtil		faceUtil;
+	private MathUtil		mathUtil;
+
 	public CoreCore(final Main instance) {
 		super();
 		this.instance = instance;
 	}
-	
+
 	@Override
 	public Main getInstance() {
 		return instance;
 	}
-	
+
 	@Override
 	public AchievementHandler getAchievmentHandler() {
 		if (achievementHandler == null) {
@@ -220,7 +232,7 @@ public class CoreCore extends Core {
 		}
 		return achievementHandler;
 	}
-	
+
 	@Override
 	public ItemHandler getItemHandler() {
 		if (itemHandler == null) {
@@ -228,7 +240,7 @@ public class CoreCore extends Core {
 		}
 		return itemHandler;
 	}
-	
+
 	@Override
 	public BuildHandler getBuildHandler() {
 		if (buildHandler == null) {
@@ -236,7 +248,7 @@ public class CoreCore extends Core {
 		}
 		return buildHandler;
 	}
-	
+
 	@Override
 	public BoosterHandler getBoosterHandler() {
 		if (boosterHandler == null) {
@@ -244,7 +256,7 @@ public class CoreCore extends Core {
 		}
 		return boosterHandler;
 	}
-	
+
 	@Override
 	public ChatHandler getChatHandler() {
 		if (chatHandler == null) {
@@ -252,12 +264,12 @@ public class CoreCore extends Core {
 		}
 		return chatHandler;
 	}
-	
+
 	@Override
 	public CommandHandler getCommandHandler() {
 		return commandHandler;
 	}
-	
+
 	@Override
 	public GameHandler getGameHandler() {
 		if (gameHandler == null) {
@@ -265,7 +277,7 @@ public class CoreCore extends Core {
 		}
 		return gameHandler;
 	}
-	
+
 	@Override
 	public HoloHandler getHoloHandler() {
 		if (holoHandler == null) {
@@ -273,7 +285,7 @@ public class CoreCore extends Core {
 		}
 		return holoHandler;
 	}
-	
+
 	@Override
 	public MapHandler getMapHandler() {
 		if (mapHandler == null) {
@@ -281,7 +293,7 @@ public class CoreCore extends Core {
 		}
 		return mapHandler;
 	}
-	
+
 	@Override
 	public PacketHandler getPacketHandler() {
 		if (packetHandler == null) {
@@ -289,7 +301,7 @@ public class CoreCore extends Core {
 		}
 		return packetHandler;
 	}
-	
+
 	@Override
 	public ProtocolHandler getProtocolHandler() {
 		if (protocolHandler == null) {
@@ -297,7 +309,7 @@ public class CoreCore extends Core {
 		}
 		return protocolHandler;
 	}
-	
+
 	@Override
 	public RegenHandler getRegenHandler() {
 		if (regenHandler == null) {
@@ -305,7 +317,7 @@ public class CoreCore extends Core {
 		}
 		return regenHandler;
 	}
-	
+
 	@Override
 	public ServerHandler getServerHandler() {
 		if (serverHandler == null) {
@@ -313,7 +325,7 @@ public class CoreCore extends Core {
 		}
 		return serverHandler;
 	}
-	
+
 	@Override
 	public SocketHandler getSocketHandler() {
 		if (socketHandler == null) {
@@ -321,7 +333,7 @@ public class CoreCore extends Core {
 		}
 		return socketHandler;
 	}
-	
+
 	@Override
 	public ClientHandler getClientHandler() {
 		if (clientHandler == null) {
@@ -329,7 +341,7 @@ public class CoreCore extends Core {
 		}
 		return clientHandler;
 	}
-	
+
 	@Override
 	public SquadHandler getSquadHandler() {
 		if (squadHandler == null) {
@@ -337,7 +349,7 @@ public class CoreCore extends Core {
 		}
 		return squadHandler;
 	}
-	
+
 	@Override
 	public SQLHandler getSqlHandler() {
 		if (sqlHandler == null) {
@@ -345,7 +357,7 @@ public class CoreCore extends Core {
 		}
 		return sqlHandler;
 	}
-	
+
 	@Override
 	public StatsHandler getStatsHandler() {
 		if (statsHandler == null) {
@@ -353,7 +365,7 @@ public class CoreCore extends Core {
 		}
 		return statsHandler;
 	}
-	
+
 	@Override
 	public UpdateHandler getUpdateHandler() {
 		if (updateHandler == null) {
@@ -361,7 +373,7 @@ public class CoreCore extends Core {
 		}
 		return updateHandler;
 	}
-	
+
 	@Override
 	public TipHandler getTipHandler() {
 		if (tipHandler == null) {
@@ -369,7 +381,7 @@ public class CoreCore extends Core {
 		}
 		return tipHandler;
 	}
-	
+
 	@Override
 	public UserHandler getUserHandler() {
 		if (userHandler == null) {
@@ -377,7 +389,7 @@ public class CoreCore extends Core {
 		}
 		return userHandler;
 	}
-	
+
 	@Override
 	public WorldHandler getWorldHandler() {
 		if (worldHandler == null) {
@@ -385,7 +397,7 @@ public class CoreCore extends Core {
 		}
 		return worldHandler;
 	}
-	
+
 	@Override
 	public BarHandler getBarHandler() {
 		if (barHandler == null) {
@@ -393,7 +405,7 @@ public class CoreCore extends Core {
 		}
 		return barHandler;
 	}
-	
+
 	@Override
 	public RESTHandler getRESTHandler() {
 		if (restHandler == null) {
@@ -401,7 +413,7 @@ public class CoreCore extends Core {
 		}
 		return restHandler;
 	}
-	
+
 	@Override
 	public AddOnHandler getAddOnHandler() {
 		if (addOnHandler == null) {
@@ -409,7 +421,7 @@ public class CoreCore extends Core {
 		}
 		return addOnHandler;
 	}
-	
+
 	@Override
 	public MirrorHandler getMirrorHandler() {
 		if (mirrorHandler == null) {
@@ -417,7 +429,7 @@ public class CoreCore extends Core {
 		}
 		return mirrorHandler;
 	}
-	
+
 	@Override
 	public LicenseHandler getLicenseHandler() {
 		if (licenseHandler == null) {
@@ -425,7 +437,7 @@ public class CoreCore extends Core {
 		}
 		return licenseHandler;
 	}
-	
+
 	@Override
 	public VillagerHandler getVillagerHandler() {
 		if (villagerHandler == null) {
@@ -433,7 +445,7 @@ public class CoreCore extends Core {
 		}
 		return villagerHandler;
 	}
-	
+
 	@Override
 	public KitHandler getKitHandler() {
 		if (kitHandler == null) {
@@ -441,7 +453,7 @@ public class CoreCore extends Core {
 		}
 		return kitHandler;
 	}
-	
+
 	@Override
 	public ScoreboardHandler getScoreboardHandler() {
 		if (scoreboardHandler == null) {
@@ -449,7 +461,7 @@ public class CoreCore extends Core {
 		}
 		return scoreboardHandler;
 	}
-	
+
 	@Override
 	public DashingHandler getDashingHandler() {
 		if (dashingHandler == null) {
@@ -457,7 +469,7 @@ public class CoreCore extends Core {
 		}
 		return dashingHandler;
 	}
-	
+
 	@Override
 	public LangHandler getLangHandler() {
 		if (langHandler == null) {
@@ -465,7 +477,7 @@ public class CoreCore extends Core {
 		}
 		return langHandler;
 	}
-	
+
 	@Override
 	public DependencyHanlder getDependencyHanlder() {
 		if (dependencyHanlder == null) {
@@ -473,7 +485,7 @@ public class CoreCore extends Core {
 		}
 		return dependencyHanlder;
 	}
-	
+
 	@Override
 	public ErrorHandler getErrorHandler() {
 		if (errorHandler == null) {
@@ -481,7 +493,7 @@ public class CoreCore extends Core {
 		}
 		return errorHandler;
 	}
-	
+
 	@Override
 	public MenuHandler getMenuHandler() {
 		if (menuHandler == null) {
@@ -489,7 +501,7 @@ public class CoreCore extends Core {
 		}
 		return menuHandler;
 	}
-	
+
 	@Override
 	public TaskHandler getTaskHandler() {
 		if (taskHandler == null) {
@@ -497,7 +509,7 @@ public class CoreCore extends Core {
 		}
 		return taskHandler;
 	}
-	
+
 	@Override
 	public BroadcastHandler getBroadcastHandler() {
 		if (broadcastHandler == null) {
@@ -505,7 +517,7 @@ public class CoreCore extends Core {
 		}
 		return broadcastHandler;
 	}
-	
+
 	@Override
 	public ActionBarHandler getActionBarHandler() {
 		if (actionBarHandler == null) {
@@ -513,7 +525,7 @@ public class CoreCore extends Core {
 		}
 		return actionBarHandler;
 	}
-	
+
 	@Override
 	public TitleHandler getTitleHandler() {
 		if (titleHandler == null) {
@@ -521,7 +533,7 @@ public class CoreCore extends Core {
 		}
 		return titleHandler;
 	}
-	
+
 	@Override
 	public MetricsHandler getMetricsHandler() {
 		if (metricsHandler == null) {
@@ -529,9 +541,9 @@ public class CoreCore extends Core {
 		}
 		return metricsHandler;
 	}
-	
+
 	/***********/
-	
+
 	@Override
 	public ChatColorUtil getChatColorUtil() {
 		if (chatColorUtil == null) {
@@ -539,7 +551,7 @@ public class CoreCore extends Core {
 		}
 		return chatColorUtil;
 	}
-	
+
 	@Override
 	public CommonMethods getCommonMethods() {
 		if (commonMethods == null) {
@@ -547,7 +559,7 @@ public class CoreCore extends Core {
 		}
 		return commonMethods;
 	}
-	
+
 	@Override
 	public DeZipUtil getDeZipUtil() {
 		if (deZipUtil == null) {
@@ -555,7 +567,7 @@ public class CoreCore extends Core {
 		}
 		return deZipUtil;
 	}
-	
+
 	@Override
 	public EntityUtil getEntityUtil() {
 		if (entityUtil == null) {
@@ -563,7 +575,7 @@ public class CoreCore extends Core {
 		}
 		return entityUtil;
 	}
-	
+
 	@Override
 	public FileUtil getFileUtil() {
 		if (fileUtil == null) {
@@ -571,7 +583,7 @@ public class CoreCore extends Core {
 		}
 		return fileUtil;
 	}
-	
+
 	@Override
 	public LocationUtil getLocationUtil() {
 		if (locationUtil == null) {
@@ -579,7 +591,7 @@ public class CoreCore extends Core {
 		}
 		return locationUtil;
 	}
-	
+
 	@Override
 	public PlayerUtil getPlayerUtil() {
 		if (playerUtil == null) {
@@ -587,7 +599,7 @@ public class CoreCore extends Core {
 		}
 		return playerUtil;
 	}
-	
+
 	@Override
 	public RandomUtil getRandomUtil() {
 		if (randomUtil == null) {
@@ -595,7 +607,7 @@ public class CoreCore extends Core {
 		}
 		return randomUtil;
 	}
-	
+
 	@Override
 	public ShutdownUtil getShutdownUtil() {
 		if (shutdownUtil == null) {
@@ -603,7 +615,7 @@ public class CoreCore extends Core {
 		}
 		return shutdownUtil;
 	}
-	
+
 	@Override
 	public StringUtil getStringUtil() {
 		if (stringUtil == null) {
@@ -611,7 +623,7 @@ public class CoreCore extends Core {
 		}
 		return stringUtil;
 	}
-	
+
 	@Override
 	public TimeUtil getTimeUtil() {
 		if (timeUtil == null) {
@@ -619,7 +631,7 @@ public class CoreCore extends Core {
 		}
 		return timeUtil;
 	}
-	
+
 	@Override
 	public ZipUtil getZipUtil() {
 		if (zipUtil == null) {
@@ -627,7 +639,7 @@ public class CoreCore extends Core {
 		}
 		return zipUtil;
 	}
-	
+
 	@Override
 	public ReflectionUtil getReflectionUtil() {
 		if (reflectionUtil == null) {
@@ -635,7 +647,7 @@ public class CoreCore extends Core {
 		}
 		return reflectionUtil;
 	}
-	
+
 	@Override
 	public BaseUtil getBaseUtil() {
 		if (baseUtil == null) {
@@ -643,7 +655,7 @@ public class CoreCore extends Core {
 		}
 		return baseUtil;
 	}
-	
+
 	@Override
 	public EnumUtil getEnumUtil() {
 		if (enumUtil == null) {
@@ -651,7 +663,7 @@ public class CoreCore extends Core {
 		}
 		return enumUtil;
 	}
-	
+
 	@Override
 	public MathUtil getMathUtil() {
 		if (mathUtil == null) {
@@ -659,7 +671,7 @@ public class CoreCore extends Core {
 		}
 		return mathUtil;
 	}
-	
+
 	@Override
 	public FaceUtil getFaceUtil() {
 		if (faceUtil == null) {
@@ -667,7 +679,7 @@ public class CoreCore extends Core {
 		}
 		return faceUtil;
 	}
-	
+
 	@Override
 	public ItemUtil getItemUtil() {
 		if (itemUtil == null) {
@@ -675,11 +687,11 @@ public class CoreCore extends Core {
 		}
 		return itemUtil;
 	}
-	
+
 	/* Setter */
 	@Override
 	public void setCommandHandler(final CommandHandler c) {
 		commandHandler = c;
 	}
-	
+
 }

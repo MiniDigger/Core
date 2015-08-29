@@ -19,22 +19,22 @@ import me.MiniDigger.Core.Core;
  * @author Trejkaz
  */
 public class MegaHAL {
-	
+
 	// Fixed word sets.
 	private final Map<Symbol, Symbol> swapWords; // A mapping of
-	                                             // words which will
-	                                             // be swapped for
-	                                             // other words.
+													// words which will
+													// be swapped for
+													// other words.
 
 	// Hidden Markov first_attempt.Model
 	private final Model model;
-	
+
 	// Parsing utilities
 	private final Splitter splitter;
-	
+
 	// Random Number Generator
 	private final Random rng = new Random();
-	
+
 	/**
 	 * Constructs the engine, reading the configuration from the data directory.
 	 *
@@ -50,7 +50,7 @@ public class MegaHAL {
 		 */
 		// dictionary.add("<BEGIN>");
 		// dictionary.add("<END>");
-		
+
 		swapWords = Utils.readSymbolMapFromFile(data.getAbsolutePath() + "/megahal.swp");
 		final Set<Symbol> banWords = Utils.readSymbolSetFromFile(data.getAbsolutePath() + "/megahal.ban");
 		final Set<Symbol> auxWords = Utils.readSymbolSetFromFile(data.getAbsolutePath() + "/megahal.aux");
@@ -59,9 +59,9 @@ public class MegaHAL {
 		// Utils.readSymbolSetFromFile(data.getAbsolutePath() + "/megahal.grt");
 		final SymbolFactory symbolFactory = new SymbolFactory(new SimpleKeywordChecker(banWords, auxWords));
 		splitter = new WordNonwordSplitter(symbolFactory);
-		
+
 		model = new Model();
-		
+
 		final BufferedReader reader = new BufferedReader(new FileReader(data.getAbsolutePath() + "/megahal.trn"));
 		String line;
 		int trainCount = 0;
@@ -79,7 +79,7 @@ public class MegaHAL {
 		reader.close();
 		Core.getCore().getInstance().debug("Trained with " + trainCount + " sentences.");
 	}
-	
+
 	/**
 	 * Trains on a single line of text.
 	 *
@@ -89,11 +89,11 @@ public class MegaHAL {
 	public void trainOnly(final String userText) {
 		// Split the user's line into symbols.
 		final List<Symbol> userWords = splitter.split(userText.toUpperCase());
-		
+
 		// Train the brain from the user's list of symbols.
 		model.train(userWords);
 	}
-	
+
 	/**
 	 * Formulates a line back to the user, and also trains from the user's text.
 	 *
@@ -105,13 +105,13 @@ public class MegaHAL {
 		if (userText == null) {
 			return null;
 		}
-		
+
 		// Split the user's line into symbols.
 		final List<Symbol> userWords = splitter.split(userText.toUpperCase());
-		
+
 		// Train the brain from the user's list of symbols.
 		model.train(userWords);
-		
+
 		// Find keywords in the user's input.
 		final List<Symbol> userKeywords = new ArrayList<Symbol>(userWords.size());
 		for (Symbol s : userWords) {
@@ -123,7 +123,7 @@ public class MegaHAL {
 				userKeywords.add(s);
 			}
 		}
-		
+
 		// Generate candidate replies.
 		int candidateCount = 0;
 		double bestInfoContent = 0.0;
@@ -135,7 +135,7 @@ public class MegaHAL {
 			final List<Symbol> candidateReply = model.generateRandomSymbols(rng, userKeywords);
 			candidateCount++;
 			Core.getCore().getInstance().debug("Candidate: " + candidateReply);
-			
+
 			final double infoContent = model.calculateInformation(candidateReply, userKeywords);
 			Core.getCore().getInstance().debug("infoContent=" + infoContent);
 			if (infoContent > bestInfoContent && !Utils.equals(candidateReply, userWords)) {
@@ -145,7 +145,7 @@ public class MegaHAL {
 		}
 		Core.getCore().getInstance().debug("Candidates generated: " + candidateCount);
 		Core.getCore().getInstance().debug("Best reply generated: " + bestReply);
-		
+
 		// Return the generated string, tacked back together.
 		return (bestReply == null) ? null : splitter.join(bestReply);
 	}

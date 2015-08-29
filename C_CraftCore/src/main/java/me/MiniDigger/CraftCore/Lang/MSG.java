@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -47,14 +60,14 @@ public class MSG {
 	}
 
 	@SuppressWarnings("all")
-	public static String msg(final LangType lang, final LangKeyType type, final ChatColor markup,
-			final String... args) {
+	public static String msg(final LangType lang, final LangKeyType type, final ChatColor markup, final String... args) {
 		String result = Core.getCore().getLangHandler().getStorage(lang).get(type);
 
 		for (int i = 0; i < args.length; i++) {
 			try {
 				result = result.replaceAll("%" + i + "%", args[i]);
-			} catch (final Exception ex) {
+			}
+			catch (final Exception ex) {
 				log(LogLevel.WARNING, LangKeyType.Lang.ERROR_NO_ARG, i + "", type.getFullType());
 			}
 		}
@@ -77,7 +90,8 @@ public class MSG {
 	public static void log(final LogLevel lvl, final LangKeyType type, final String... args) {
 		try {
 			log(lvl, type, Core.getCore().getLangHandler().getDefaultLang(), args);
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			log(lvl, type, LangType.en_US, args);
 		}
 	}
@@ -86,25 +100,22 @@ public class MSG {
 		log(lvl, type, lang, Bukkit.getConsoleSender(), args);
 	}
 
-	public static void log(final LogLevel lvl, final LangKeyType type, final LangType lang, final CommandSender sender,
-			final String... args) {
+	public static void log(final LogLevel lvl, final LangKeyType type, final LangType lang, final CommandSender sender, final String... args) {
 		try {
-			if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)
-					|| Core.getCore().getLangHandler().getLogLevel() == lvl) {
+			if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
 				lvl.getMsg(msg(lang, type, args)).send(sender);
 			}
-		} catch (final Exception ex) {
+		}
+		catch (final Exception ex) {
 			lvl.getMsg(msg(lang, type, args)).send(sender);
 		}
 	}
 
-	public static void msg(final Prefix prefix, final LangKeyType key, final MsgType type, final CommandSender sender,
-			final String... args) {
+	public static void msg(final Prefix prefix, final LangKeyType key, final MsgType type, final CommandSender sender, final String... args) {
 		msg(prefix, key, type, sender, Core.getCore().getLangHandler().getDefaultLang(), args);
 	}
 
-	public static void msg(final Prefix prefix, final LangKeyType key, final MsgType type, final CommandSender sender,
-			final LangType lang, final String... args) {
+	public static void msg(final Prefix prefix, final LangKeyType key, final MsgType type, final CommandSender sender, final LangType lang, final String... args) {
 		final String msg = msg(lang, key, args);
 		prefix.getPrefix().then(msg).color(type.getColor()).send(sender);
 	}
@@ -113,10 +124,8 @@ public class MSG {
 		if (t == null) {
 			return;
 		}
-		if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)
-				|| Core.getCore().getLangHandler().getLogLevel() == lvl) {
-			lvl.getMsg(t.getClass().getName() + (t.getMessage() == null ? "" : ": " + t.getMessage()))
-					.send(Bukkit.getConsoleSender());
+		if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
+			lvl.getMsg(t.getClass().getName() + (t.getMessage() == null ? "" : ": " + t.getMessage())).send(Bukkit.getConsoleSender());
 			for (final StackTraceElement e : t.getStackTrace()) {
 				lvl.getMsg(e.toString()).send(Bukkit.getConsoleSender());
 			}
@@ -128,15 +137,14 @@ public class MSG {
 		}
 	}
 
-	public static void stacktrace(LogLevel lvl, Throwable t, boolean websocket) {
+	public static void stacktrace(final LogLevel lvl, final Throwable t, final boolean websocket) {
 		if (!websocket) {
 			stacktrace(lvl, t);
 		} else {
 			if (t == null) {
 				return;
 			}
-			if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl)
-					|| Core.getCore().getLangHandler().getLogLevel() == lvl) {
+			if (!Core.getCore().getLangHandler().getLogLevel().isGreaterThen(lvl) || Core.getCore().getLangHandler().getLogLevel() == lvl) {
 				CoreMain.logger.info(t.getClass().getName() + (t.getMessage() == null ? "" : ": " + t.getMessage()));
 				for (final StackTraceElement e : t.getStackTrace()) {
 					CoreMain.logger.info(e.toString());

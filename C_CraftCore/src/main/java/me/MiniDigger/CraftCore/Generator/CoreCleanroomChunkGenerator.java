@@ -1,18 +1,31 @@
 /**
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
- * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
- * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
- * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
- * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ * █░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█
+ * █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █░░░░░░▄▀░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░████░░▄▀░░███░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░░░▄▀░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░▄▀░░█████░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░░░░░▄▀░░░░███░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░████████████░░▄▀░░█████████░░▄▀░░██░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░█████░░▄▀░░█████████
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░████░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░
+ * ░█░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░░░░░░░░░█
+ * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░
+ * ░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
+ * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░
+ * ░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
+ * █████████████████████████████████████████████████████████████████████████████
+ * ████████████████████████████████████
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -35,25 +48,25 @@ import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Generator.CleanroomChunkGenerator;
 
 public class CoreCleanroomChunkGenerator extends ChunkGenerator implements CleanroomChunkGenerator {
-	
+
 	private short[]	layer;
 	private byte[]	layerDataValues;
-	
+
 	public CoreCleanroomChunkGenerator() {
 		this("64,stone");
 	}
-	
+
 	public CoreCleanroomChunkGenerator(final String id) {
 		parse(id);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void parse(String id) {
 		if (id != null) {
 			try {
 				int y = 0;
-				
+
 				layer = new short[''];
 				layerDataValues = null;
 				if ((id.length() > 0) && (id.charAt(0) == '.')) {
@@ -77,7 +90,8 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 						if (materialTokens.length == 2) {
 							try {
 								dataValue = Byte.parseByte(materialTokens[1]);
-							} catch (final Exception e) {
+							}
+							catch (final Exception e) {
 								Core.getCore().getInstance().error("[CleanroomGenerator] Invalid Data Value '" + materialTokens[1] + "'. Defaulting to 0.");
 								dataValue = 0;
 							}
@@ -86,7 +100,8 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 						if (mat == null) {
 							try {
 								mat = Material.getMaterial(Integer.parseInt(materialTokens[0]));
-							} catch (final Exception e) {}
+							}
+							catch (final Exception e) {}
 							if (mat == null) {
 								Core.getCore().getInstance().error("[CleanroomGenerator] Invalid Block ID '" + materialTokens[0] + "'. Defaulting to stone.");
 								mat = Material.STONE;
@@ -126,7 +141,8 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 					System.arraycopy(layerDataValues, 0, newLayerDataValues, 0, y);
 					layerDataValues = newLayerDataValues;
 				}
-			} catch (final Exception e) {
+			}
+			catch (final Exception e) {
 				Core.getCore().getInstance().error("[CleanroomGenerator] Error parsing CleanroomGenerator ID '" + id + "'. using defaults '64,1': " + e.toString());
 				e.printStackTrace();
 				layerDataValues = null;
@@ -141,15 +157,12 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 			Arrays.fill(layer, 1, 65, (short) Material.STONE.getId());
 		}
 	}
-	
+
 	@Override
 	public short[][] generateExtBlockSections(final World world, final Random random, final int x, final int z, final BiomeGrid biomes) {
 		final int maxHeight = world.getMaxHeight();
 		if (layer.length > maxHeight) {
-			Core.getCore()
-			        .getInstance()
-			        .error("[CleanroomGenerator] Error, chunk height " + layer.length + " is greater than the world max height (" + maxHeight
-			                + "). Trimming to world max height.");
+			Core.getCore().getInstance().error("[CleanroomGenerator] Error, chunk height " + layer.length + " is greater than the world max height (" + maxHeight + "). Trimming to world max height.");
 			final short[] newLayer = new short[maxHeight];
 			System.arraycopy(layer, 0, newLayer, 0, maxHeight);
 			layer = newLayer;
@@ -163,7 +176,7 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 		}
 		return result;
 	}
-	
+
 	@Override
 	public List<BlockPopulator> getDefaultPopulators(final World world) {
 		if (layerDataValues != null) {
@@ -171,7 +184,7 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 		}
 		return new ArrayList<>();
 	}
-	
+
 	@Override
 	public Location getFixedSpawnLocation(final World world, final Random random) {
 		if (!world.isChunkLoaded(0, 0)) {
@@ -181,7 +194,7 @@ public class CoreCleanroomChunkGenerator extends ChunkGenerator implements Clean
 			return new Location(world, 0.0D, 64.0D, 0.0D);
 		}
 		return new Location(world, 0.0D, world.getHighestBlockYAt(0, 0), 0.0D);
-		
+
 	}
-	
+
 }

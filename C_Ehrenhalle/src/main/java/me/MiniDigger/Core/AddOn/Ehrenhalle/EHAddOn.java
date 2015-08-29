@@ -14,7 +14,6 @@ import me.MiniDigger.Core.Command.Completer;
 import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
 import me.MiniDigger.Core.Game.GameType;
 import me.MiniDigger.Core.User.User;
-
 import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
@@ -62,8 +61,8 @@ public class EHAddOn extends CoreAddOn {
 
 	@Command(name = "ehscan", permission = "ehscan", usage = "<world>", consol = true, description = "Scannt ne EH map", max = 1, min = 1, sync = true)
 	public void ehscan(final CommandArgs args) {
-		World w = Bukkit.getWorld(args.getArgs()[0]);
-		EHScanner s = new EHScanner(w);
+		final World w = Bukkit.getWorld(args.getArgs()[0]);
+		final EHScanner s = new EHScanner(w);
 		s.scan();
 		s.save(getDataFolder());
 	}

@@ -17,7 +17,7 @@ import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
 import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
 
 public class CustomAddOn extends CoreAddOn {
-	
+
 	@Override
 	public void enable() {
 		GameType.CUSTOM.setClass(CustomGame.class);

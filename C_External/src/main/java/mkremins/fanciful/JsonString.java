@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gson.stream.JsonWriter;
-
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+
+import com.google.gson.stream.JsonWriter;
 
 /**
  * Represents a JSON string value. Writes by this object will not write name
@@ -14,13 +14,13 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
  * represented string value.
  */
 final class JsonString implements JsonRepresentedObject, ConfigurationSerializable {
-	
+
 	private final String _value;
 
 	public JsonString(final CharSequence value) {
 		_value = value == null ? null : value.toString();
 	}
-	
+
 	@Override
 	public void writeJson(final JsonWriter writer) throws IOException {
 		writer.value(getValue());
@@ -29,7 +29,7 @@ final class JsonString implements JsonRepresentedObject, ConfigurationSerializab
 	public String getValue() {
 		return _value;
 	}
-	
+
 	@Override
 	public Map<String, Object> serialize() {
 		final HashMap<String, Object> theSingleValue = new HashMap<String, Object>();

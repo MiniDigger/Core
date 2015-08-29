@@ -8,16 +8,14 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang.MSG;
-import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
 import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
 import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
-import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class CustomGame extends CoreGame {
 
-	LobbyPhase lobby;
-	CustomPhase custom;
-	PostPhase post;
+	LobbyPhase	lobby;
+	CustomPhase	custom;
+	PostPhase	post;
 
 	@Override
 	public GameType getType() {
