@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -33,6 +33,7 @@ import org.bukkit.plugin.Plugin;
 import me.MiniDigger.Core.Command.BukkitCommand;
 import me.MiniDigger.Core.Command.BukkitCompleter;
 import me.MiniDigger.Core.Lang.LangKeyType;
+
 import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class CoreBukkitCommand extends Command implements BukkitCommand {

@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -34,6 +34,7 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.Util.EntityUtil.Type;
+
 import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
 import me.MiniDigger.CraftCore.Feature.Features.BuildFeature;
@@ -47,6 +48,7 @@ import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
 import me.MiniDigger.CraftCore.Feature.Features.WorldBoarderFeature;
 import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
+
 import mkremins.fanciful.FancyMessage;
 
 public class SGPhase1 extends CoreTimedPhase {

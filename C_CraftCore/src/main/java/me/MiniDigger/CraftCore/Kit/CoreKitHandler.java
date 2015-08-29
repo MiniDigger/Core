@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -35,6 +35,7 @@ import me.MiniDigger.Core.Kit.Kit;
 import me.MiniDigger.Core.Kit.KitHandler;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 public class CoreKitHandler implements KitHandler {

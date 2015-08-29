@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -26,6 +26,7 @@ import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.Lang.MsgType;
 import me.MiniDigger.Core.Prefix.Prefix;
+
 import me.MiniDigger.CraftCore.Lang.MSG;
 
 public class LangCommands {

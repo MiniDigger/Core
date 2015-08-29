@@ -8,12 +8,6 @@ import java.util.UUID;
 
 import org.bukkit.ChatColor;
 
-import de.slikey.effectlib.Effect;
-import de.slikey.effectlib.EffectLib;
-import de.slikey.effectlib.EffectManager;
-import de.slikey.effectlib.EffectType;
-import de.slikey.effectlib.effect.TraceEffect;
-import de.slikey.effectlib.util.ParticleEffect;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Command.Command;
 import me.MiniDigger.Core.Command.CommandArgs;
@@ -22,15 +16,23 @@ import me.MiniDigger.Core.Feature.FeatureType;
 import me.MiniDigger.Core.Phase.Phase;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Feature.CoreFeature;
+
+import de.slikey.effectlib.Effect;
+import de.slikey.effectlib.EffectLib;
+import de.slikey.effectlib.EffectManager;
+import de.slikey.effectlib.EffectType;
+import de.slikey.effectlib.effect.TraceEffect;
+import de.slikey.effectlib.util.ParticleEffect;
 
 public class ParticleTrailFeature extends CoreFeature {
 
-	private Map<UUID, Effect>	effects	= new HashMap<>();
-	private EffectLib			lib		= EffectLib.instance();
-	private EffectManager		em		= new EffectManager(lib);
+	private final Map<UUID, Effect>	effects	= new HashMap<>();
+	private final EffectLib			lib		= EffectLib.instance();
+	private final EffectManager		em		= new EffectManager(lib);
 
-	public ParticleTrailFeature(Phase phase) {
+	public ParticleTrailFeature(final Phase phase) {
 		super(phase);
 	}
 
@@ -64,8 +66,8 @@ public class ParticleTrailFeature extends CoreFeature {
 		em.disposeOnTermination();
 	}
 
-	private void effect(final User user, ParticleEffect e) {
-		TraceEffect effect = new TraceEffect(em) {
+	private void effect(final User user, final ParticleEffect e) {
+		final TraceEffect effect = new TraceEffect(em) {
 			@Override
 			public void onDone() {
 				System.out.println("looks like I am done");
@@ -81,11 +83,11 @@ public class ParticleTrailFeature extends CoreFeature {
 
 	}
 
-	private void cancel(User user) {
+	private void cancel(final User user) {
 		try {
 			effects.remove(user.getUUID()).cancel();
 		}
-		catch (Exception ex) {}
+		catch (final Exception ex) {}
 	}
 
 	@Command(name = "trail", usage = "<type>", min = 1, max = 1, consol = false, sync = true, permission = "trail")
@@ -99,7 +101,7 @@ public class ParticleTrailFeature extends CoreFeature {
 			cancel(args.getUser());
 			effect(args.getUser(), ParticleEffect.valueOf(args.getArgs()[0]));
 		}
-		catch (Exception ex) {
+		catch (final Exception ex) {
 			Prefix.API.getPrefix().then("Unbekannter Effect Typ").color(ChatColor.RED).send(args.getPlayer());
 		}
 	}
@@ -110,7 +112,7 @@ public class ParticleTrailFeature extends CoreFeature {
 
 		if (args.getArgs().length == 1) {
 			result.add("NONE");
-			for (ParticleEffect e : ParticleEffect.values()) {
+			for (final ParticleEffect e : ParticleEffect.values()) {
 				result.add(e.name());
 			}
 

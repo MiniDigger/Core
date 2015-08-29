@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -33,7 +33,9 @@ import me.MiniDigger.Core.Chat.ChatChannel;
 import me.MiniDigger.Core.Game.Game;
 import me.MiniDigger.Core.Team.Team;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Chat.Channels.TeamChannel;
+
 import mkremins.fanciful.FancyMessage;
 
 public class CoreTeam implements Team {

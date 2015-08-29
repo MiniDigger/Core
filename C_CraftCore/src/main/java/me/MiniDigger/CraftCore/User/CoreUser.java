@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -38,9 +38,11 @@ import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.User.User;
+
 import me.MiniDigger.CraftCore.Chat.Channels.EmptyChannel;
 import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
+
 import mkremins.fanciful.FancyMessage;
 
 public class CoreUser implements User {

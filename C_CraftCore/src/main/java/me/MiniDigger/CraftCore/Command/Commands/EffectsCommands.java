@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -25,6 +25,10 @@ import java.io.IOException;
 import java.util.HashSet;
 
 import org.bukkit.ChatColor;
+
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
 
 import de.slikey.effectlib.EffectManager;
 import de.slikey.effectlib.effect.AnimatedBallEffect;
@@ -69,9 +73,6 @@ import de.slikey.effectlib.effect.VortexEffect;
 import de.slikey.effectlib.effect.WarpEffect;
 import de.slikey.effectlib.effect.WaveEffect;
 import de.slikey.effectlib.util.ParticleEffect;
-import me.MiniDigger.Core.Core;
-import me.MiniDigger.Core.Command.Command;
-import me.MiniDigger.Core.Command.CommandArgs;
 
 public class EffectsCommands {
 

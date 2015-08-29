@@ -12,7 +12,7 @@
  * █████░░▄▀░░█████░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
  * █████░░░░░░█████░░░░░░██░░░░░░█░░░░░░░░░░░░░░████░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░░░░░█░░░░░░░░░░░░░░█
  * █████████████████████████████████████████████████████████████████████████████████████████████████████████████████
- * 
+ *
  * Copyright © MiniDigger and others - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
@@ -31,6 +31,7 @@ import me.MiniDigger.Core.SQL.SQLQuery;
 import me.MiniDigger.Core.Stats.Stats;
 import me.MiniDigger.Core.Stats.StatsHandler;
 import me.MiniDigger.Core.Stats.StatsType;
+
 import me.MiniDigger.CraftCore.SQL.CoreSQLQuery;
 
 public class CoreStatsHandler implements StatsHandler {
