@@ -37,6 +37,7 @@ import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
 import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
+import me.MiniDigger.CraftCore.Feature.Features.ParticleTrailFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PremiumLaunchFeature;
 import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
 import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
@@ -103,6 +104,7 @@ public class HubPhase extends CorePhase {
 		addFeature(new NoPickupFeature(this));
 		addFeature(new LadderKingFeature(this));
 		addFeature(new PremiumLaunchFeature(this));
+		addFeature(new ParticleTrailFeature(this));
 	}
 
 }
