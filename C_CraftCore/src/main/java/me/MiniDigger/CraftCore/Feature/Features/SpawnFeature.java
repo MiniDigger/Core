@@ -28,6 +28,9 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -172,6 +175,19 @@ public class SpawnFeature extends CoreFeature {
 			}
 			usedSpawns.add(loc.toVector());
 			loc.add(0.5, 0.5, 0.5);
+
+			final Block b = loc.getBlock().getRelative(BlockFace.DOWN, 1);
+			if (b.getType() == Material.AIR) {
+				b.setType(Material.GLASS);
+				Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
+
+					@Override
+					public void run() {
+						b.setType(Material.AIR);
+					}
+				}, 20 * 5);
+			}
+
 			try {
 				Core.getCore().getInstance().debug("respawn2");
 				Core.getCore().getInstance().debug("loc: " + loc);
