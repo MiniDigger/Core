@@ -29,19 +29,36 @@ import me.MiniDigger.Core.Game.GameType;
 import mkremins.fanciful.FancyMessage;
 
 public enum Prefix {
-	ERROR(ChatColor.RED, ChatColor.DARK_RED, "Error", GameType.NOTHING), CORE(ChatColor.RED, ChatColor.GRAY, "WtD|Server", GameType.NOTHING), HUB(ChatColor.AQUA, ChatColor.BLUE, "Hub",
-			GameType.LOBBY), TICTACTOE(ChatColor.RESET, ChatColor.BLUE, "TicTacToe> ", GameType.TICTACTOE), STATS(ChatColor.RESET, ChatColor.GOLD, "Stats> ", GameType.NOTHING), API(ChatColor.GRAY, ChatColor.RED,
-					"WtD|Server", GameType.NOTHING), SECURITY(ChatColor.RESET, ChatColor.AQUA, "Security> ", GameType.NOTHING), CHAT(ChatColor.RESET, ChatColor.DARK_GRAY, "ChatManagment> ", GameType.NOTHING), SQUAD(
-							ChatColor.AQUA, ChatColor.BLUE, "Squad", GameType.NOTHING), HINT(ChatColor.MAGIC, ChatColor.GOLD, "JustATip", GameType.NOTHING), GETHEDROP(ChatColor.AQUA, ChatColor.BLUE, "GetTheDrop",
-									GameType.GETTHEDROP), VOTE(ChatColor.AQUA, ChatColor.BLUE, "Vote", GameType.NOTHING), SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY), ADDON(ChatColor.RESET,
-											ChatColor.AQUA, "AddOn>", GameType.NOTHING), BEDWARS(ChatColor.AQUA, ChatColor.BLUE, "BedWars", GameType.BEDWARS), CINE(ChatColor.RESET, ChatColor.AQUA, "Cinematic>",
-													GameType.NOTHING), CRANK(ChatColor.AQUA, ChatColor.BLUE, "Crank", GameType.CRANK), KIT(ChatColor.RED, ChatColor.GREEN, "Kit", GameType.NOTHING), LANG(ChatColor.AQUA,
-															ChatColor.BLUE, "Lang", GameType.NOTHING), SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING), OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC",
-																	GameType.OITC), ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.GK), TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag",
-																			GameType.NOTHING), SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV), BMT(ChatColor.AQUA, ChatColor.BLUE, "BMT",
-																					GameType.BMT), SG(ChatColor.AQUA, ChatColor.BLUE, "SG", GameType.SG), IF(ChatColor.AQUA, ChatColor.BLUE, "IF",
-																							GameType.IF), KK(ChatColor.AQUA, ChatColor.BLUE, "KK", GameType.KK), KP(ChatColor.AQUA, ChatColor.BLUE, "KP",
-																									GameType.KP), BROADCAST(ChatColor.AQUA, ChatColor.BLUE, "Broadcast", GameType.NOTHING);
+	ERROR(ChatColor.RED, ChatColor.DARK_RED, "Error", GameType.NOTHING),
+	CORE(ChatColor.RED, ChatColor.GRAY, "WtD|Server", GameType.NOTHING),
+	HUB(ChatColor.AQUA, ChatColor.BLUE, "Hub", GameType.LOBBY),
+	TICTACTOE(ChatColor.RESET, ChatColor.BLUE, "TicTacToe> ", GameType.TICTACTOE),
+	STATS(ChatColor.RESET, ChatColor.GOLD, "Stats> ", GameType.NOTHING),
+	API(ChatColor.GRAY, ChatColor.RED, "WtD|Server", GameType.NOTHING),
+	SECURITY(ChatColor.RESET, ChatColor.AQUA, "Security> ", GameType.NOTHING),
+	CHAT(ChatColor.RESET, ChatColor.DARK_GRAY, "ChatManagment> ", GameType.NOTHING),
+	SQUAD(ChatColor.AQUA, ChatColor.BLUE, "Squad", GameType.NOTHING),
+	HINT(ChatColor.MAGIC, ChatColor.GOLD, "JustATip", GameType.NOTHING),
+	GETHEDROP(ChatColor.AQUA, ChatColor.BLUE, "GetTheDrop", GameType.GETTHEDROP),
+	VOTE(ChatColor.AQUA, ChatColor.BLUE, "Vote", GameType.NOTHING),
+	SHOP(ChatColor.AQUA, ChatColor.BLUE, "Shop", GameType.LOBBY),
+	ADDON(ChatColor.RESET, ChatColor.AQUA, "AddOn>", GameType.NOTHING),
+	BEDWARS(ChatColor.AQUA, ChatColor.BLUE, "BedWars", GameType.BEDWARS),
+	CINE(ChatColor.RESET, ChatColor.AQUA, "Cinematic>", GameType.NOTHING),
+	CRANK(ChatColor.AQUA, ChatColor.BLUE, "Crank", GameType.CRANK),
+	KIT(ChatColor.RED, ChatColor.GREEN, "Kit", GameType.NOTHING),
+	LANG(ChatColor.AQUA, ChatColor.BLUE, "Lang", GameType.NOTHING),
+	SPEC(ChatColor.AQUA, ChatColor.BLUE, "Spec", GameType.NOTHING),
+	OITC(ChatColor.AQUA, ChatColor.BLUE, "OITC", GameType.OITC),
+	ULTRASPLEEF(ChatColor.AQUA, ChatColor.BLUE, "GravityKing", GameType.GK),
+	TAG(ChatColor.AQUA, ChatColor.BLUE, "Tag", GameType.NOTHING),
+	SUV(ChatColor.AQUA, ChatColor.BLUE, "SUV", GameType.SUV),
+	BMT(ChatColor.AQUA, ChatColor.BLUE, "BMT", GameType.BMT),
+	SG(ChatColor.AQUA, ChatColor.BLUE, "SG", GameType.SG),
+	IF(ChatColor.AQUA, ChatColor.BLUE, "IF", GameType.IF),
+	KK(ChatColor.AQUA, ChatColor.BLUE, "KK", GameType.KK),
+	KP(ChatColor.AQUA, ChatColor.BLUE, "KP", GameType.KP),
+	BROADCAST(ChatColor.AQUA, ChatColor.BLUE, "Broadcast", GameType.NOTHING);
 
 	private ChatColor klammer;
 	private ChatColor color;

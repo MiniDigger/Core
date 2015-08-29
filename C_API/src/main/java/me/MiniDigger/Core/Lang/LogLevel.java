@@ -25,7 +25,10 @@ import org.bukkit.ChatColor;
 import mkremins.fanciful.FancyMessage;
 
 public enum LogLevel {
-	ERROR("[Error]", ChatColor.RED), WARNING("[Warning]", ChatColor.YELLOW), INFO("[Info]", ChatColor.WHITE), DEBUG("[Debug]", ChatColor.GRAY);
+	ERROR("[Error]", ChatColor.RED),
+	WARNING("[Warning]", ChatColor.YELLOW),
+	INFO("[Info]", ChatColor.WHITE),
+	DEBUG("[Debug]", ChatColor.GRAY);
 
 	private String key;
 	private ChatColor color;

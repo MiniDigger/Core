@@ -21,7 +21,8 @@
 package me.MiniDigger.Core.Lang;
 
 public enum LangType {
-	de_DE("de", "DE", "deutsch", "Deutschland"), en_US("en", "US", "english", "United States");
+	de_DE("de", "DE", "deutsch", "Deutschland"),
+	en_US("en", "US", "english", "United States");
 
 	private String nameCode;
 	private String countryCode;

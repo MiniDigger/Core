@@ -27,7 +27,13 @@ import org.bukkit.entity.EntityType;
 public interface EntityUtil {
 
 	public enum Type {
-		PASSIV, ANGRY, FRIENDLY, PROJECTILE, OTHER, UTILITY, CART;
+		PASSIV,
+		ANGRY,
+		FRIENDLY,
+		PROJECTILE,
+		OTHER,
+		UTILITY,
+		CART;
 	}
 
 	/**

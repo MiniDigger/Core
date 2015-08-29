@@ -31,14 +31,14 @@ public enum Error {
 
 	NO_ERROR("", "", "", ErrorType.CONSOL, ErrorLevel.MINOR),
 	// Player
-	USER_ALLREADY_JOINED("USER-1", "User allready joined", "User allready joined that game or channel!", ErrorType.BOTH, ErrorLevel.MINOR), USER_NOT_JOINED("USER-2", "User not joined",
-			"The user is not in that game or channel!", ErrorType.BOTH, ErrorLevel.MINOR),
-			// Consol
-			// SQL
-	SQL_CONNECTION_FAILED("SQL-1", "Connection failed", "Could not connect to the datebase!", ErrorType.CONSOL, ErrorLevel.BREAKING), SQL_STMT_CREATION_FAILED("SQL-2", "STMT creation failed",
-			"Could not create a statement!", ErrorType.CONSOL, ErrorLevel.MAJOR),
-			// MAP
-			MAP_NO_SPAWN("MAP-1", "No spawn found", "Could not find a spawn!", ErrorType.BOTH, ErrorLevel.BREAKING);
+	USER_ALLREADY_JOINED("USER-1", "User allready joined", "User allready joined that game or channel!", ErrorType.BOTH, ErrorLevel.MINOR),
+	USER_NOT_JOINED("USER-2", "User not joined", "The user is not in that game or channel!", ErrorType.BOTH, ErrorLevel.MINOR),
+	// Consol
+	// SQL
+	SQL_CONNECTION_FAILED("SQL-1", "Connection failed", "Could not connect to the datebase!", ErrorType.CONSOL, ErrorLevel.BREAKING),
+	SQL_STMT_CREATION_FAILED("SQL-2", "STMT creation failed", "Could not create a statement!", ErrorType.CONSOL, ErrorLevel.MAJOR),
+	// MAP
+	MAP_NO_SPAWN("MAP-1", "No spawn found", "Could not find a spawn!", ErrorType.BOTH, ErrorLevel.BREAKING);
 
 	private String id;
 	private String name;

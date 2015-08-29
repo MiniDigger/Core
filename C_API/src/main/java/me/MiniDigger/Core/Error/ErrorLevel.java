@@ -21,7 +21,10 @@
 package me.MiniDigger.Core.Error;
 
 public enum ErrorLevel {
-	BREAKING("breaking"), MAJOR("wichtig"), MINOR("unwichtig"), WARNING("warnend");
+	BREAKING("breaking"),
+	MAJOR("wichtig"),
+	MINOR("unwichtig"),
+	WARNING("warnend");
 
 	private String verb;
 

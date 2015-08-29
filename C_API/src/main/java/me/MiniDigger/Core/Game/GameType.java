@@ -22,10 +22,22 @@ package me.MiniDigger.Core.Game;
 
 public enum GameType {
 
-	TICTACTOE("TicTacToe", "TTT", null, "tictactoe"), LOBBY("Lobby", "Lobby", null, ""), GETTHEDROP("GetTheDrop", "GTD", null, "getthedrop"), NOTHING("Nothing", "", null, ""), BEDWARS("BedWars", "BW", null,
-			"bedwars"), CRANK("Crank", "Crank", null, "crank"), OITC("OneInTheChamber", "OITC", null, "oitc"), GK("Gravity King", "GK", null, "gk"), SUV("SuchenUndVerstecken", "SUV", null, "suv"), BMT("BuildMyThing",
-					"BMT", null, "bmt"), SG("SurvivalGames", "SG", null, "sg"), KP("KitPvP", "KP", null, "kp"), KK("KistenKrieg", "KK", null, "kk"), IF("Infected", "IF", null, "if"), EH("Ehrenhalle", "EH", null,
-							"eh"), CUSTOM("Custom", "C", null, "custom");
+	TICTACTOE("TicTacToe", "TTT", null, "tictactoe"),
+	LOBBY("Lobby", "Lobby", null, ""),
+	GETTHEDROP("GetTheDrop", "GTD", null, "getthedrop"),
+	NOTHING("Nothing", "", null, ""),
+	BEDWARS("BedWars", "BW", null, "bedwars"),
+	CRANK("Crank", "Crank", null, "crank"),
+	OITC("OneInTheChamber", "OITC", null, "oitc"),
+	GK("Gravity King", "GK", null, "gk"),
+	SUV("SuchenUndVerstecken", "SUV", null, "suv"),
+	BMT("BuildMyThing", "BMT", null, "bmt"),
+	SG("SurvivalGames", "SG", null, "sg"),
+	KP("KitPvP", "KP", null, "kp"),
+	KK("KistenKrieg", "KK", null, "kk"),
+	IF("Infected", "IF", null, "if"),
+	EH("Ehrenhalle", "EH", null, "eh"),
+	CUSTOM("Custom", "C", null, "custom");
 
 	private String name;
 	private String abk;

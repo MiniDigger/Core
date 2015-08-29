@@ -21,5 +21,9 @@
 package me.MiniDigger.Core.Achievement;
 
 public enum AchievmentType {
-	JOINS, PLAYTIME, WINS_TICTACTOE, WINS_GTD, WINS_BEDWARS;
+	JOINS,
+	PLAYTIME,
+	WINS_TICTACTOE,
+	WINS_GTD,
+	WINS_BEDWARS;
 }
