@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>de.Slikey</groupId>
+  <artifactId>EffectLib</artifactId>
+  <versioning>
+    <versions>
+      <version>3.4-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20150829174450</lastUpdated>
+  </versioning>
+</metadata>

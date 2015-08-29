@@ -14,8 +14,8 @@
 	</organization>
 
 	<issueManagement>
-		<system>BitBucket</system>
-		<url>http://source.minidigger.me/thecore/issues</url>
+		<system>GitLab</system>
+		<url>http://bugs.minidigger.me</url>
 	</issueManagement>
 
 
@@ -33,7 +33,7 @@
 	</distributionManagement>
 
 	<scm>
-		<url>https://MiniDigger@bitbucket.org/MiniDigger/thecore-2.0.git</url>
+		<url>http://git.minidigger.me:8080/core/core.git</url>
 		<connection>git</connection>
 		<developerConnection>MiniDigger</developerConnection>
 	</scm>
@@ -142,7 +142,7 @@
 	<repositories>
 		<repository>
 			<id>local-repo</id>
-			<url>file:${project.basedir}/repo</url>
+			<url>file:Z:\Dev\core-ws\C_Core\repo</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -152,11 +152,7 @@
 			<url>http://repo.dmulloy2.net/content/groups/public</url>
 		</repository>
 		<repository>
-			<id>elmakers-repo</id><!-- EffectLib -->
-			<url>http://maven.elmakers.com/repository/</url>
-		</repository>
-		<repository><!-- Spigot -->
-			<id>spigot-repo</id>
+			<id>spigot-repo</id><!-- Spigot libs -->
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
 		<repository>
@@ -173,7 +169,7 @@
 		</repository>
 		<repository><!-- Lib's Disguises -->
 			<id>libs</id>
-			<url>http://psmc.ca/repo/</url>
+			<url>http://server.psmc.ca/repo/</url>
 		</repository>
 		<repository>
 			<id>pex-repo</id><!-- PEX -->
@@ -197,21 +193,9 @@
 		<dependency>
 			<groupId>com.comphenix.protocol</groupId>
 			<artifactId>ProtocolLib</artifactId>
-			<version>3.6.4-SNAPSHOT</version>
+			<version>3.6.4</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>com.comphenix.packetwrapper</groupId> -->
-		<!-- <artifactId>PacketWrapper</artifactId> -->
-		<!-- <version>1.7.2-R0.5</version> -->
-		<!-- <scope>compile</scope> -->
-		<!-- <exclusions> -->
-		<!-- <exclusion> -->
-		<!-- <artifactId>bukkit</artifactId> -->
-		<!-- <groupId>org.bukkit</groupId> -->
-		<!-- </exclusion> -->
-		<!-- </exclusions> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.java-websocket</groupId>
 			<artifactId>Java-WebSocket</artifactId>
@@ -219,9 +203,9 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>de.slikey</groupId>
+			<groupId>de.Slikey</groupId>
 			<artifactId>EffectLib</artifactId>
-			<version>2.4-SNAPSHOT</version>
+			<version>3.4-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -244,6 +228,10 @@
 				<exclusion>
 					<artifactId>bukkit</artifactId>
 					<groupId>org.bukkit</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>updater</artifactId>
+					<groupId>net.gravitydevelopment.updater</groupId>
 				</exclusion>
 			</exclusions>
 			<scope>provided</scope>
@@ -269,7 +257,7 @@
 		<dependency>
 			<groupId>LibsDisguises</groupId>
 			<artifactId>LibsDisguises</artifactId>
-			<version>8.6.2-SNAPSHOT</version>
+			<version>8.6.5-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

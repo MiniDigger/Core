@@ -278,7 +278,7 @@
     <dependency>
       <groupId>com.comphenix.protocol</groupId>
       <artifactId>ProtocolLib</artifactId>
-      <version>3.6.4-SNAPSHOT</version>
+      <version>3.6.4</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -292,9 +292,9 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>de.slikey</groupId>
+      <groupId>de.Slikey</groupId>
       <artifactId>EffectLib</artifactId>
-      <version>2.4-SNAPSHOT</version>
+      <version>3.4-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -320,12 +320,12 @@
           <groupId>org.bukkit</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>commons-dbcp</artifactId>
-          <groupId>commons-dbcp</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>updater</artifactId>
           <groupId>net.gravitydevelopment.updater</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>commons-dbcp</artifactId>
+          <groupId>commons-dbcp</groupId>
         </exclusion>
         <exclusion>
           <artifactId>AccountsClient</artifactId>
@@ -370,7 +370,7 @@
     <dependency>
       <groupId>LibsDisguises</groupId>
       <artifactId>LibsDisguises</artifactId>
-      <version>8.6.2-SNAPSHOT</version>
+      <version>8.6.5-SNAPSHOT</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -399,7 +399,8 @@
 			"${maven.dependency.commons-logging.commons-logging.jar.path}"
 			"${maven.dependency.com.wacos.NametagEdit.jar.path}"
 			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}"
-			"${maven.dependency.net.citizensnpcs.citizens.jar.path}</path>
+			"${maven.dependency.net.citizensnpcs.citizens.jar.path}"
+			"${maven.dependency.de.Slikey.EffectLib.jar.path}</path>
   </properties>
 </project>
 

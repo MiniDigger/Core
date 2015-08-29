@@ -1,2 +1,6 @@
  
-  mvn install:install-file -Dfile=craftbukkit-1.8.7.jar -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.8-SNAPSHOT -Dpackaging=jar  -DlocalRepositoryPath=F:\DATA\Dev\bukkit_ws\C_Core\repo
+  mvn install:install-file -Dfile=craftbukkit-1.8.7.jar -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.8-SNAPSHOT -Dpackaging=jar  -DlocalRepositoryPath=Z:\Dev\core-ws\C_Core\repo 
+  
+  
+  mvn install:install-file -Dfile=EffectLib-3.4.jar -DgroupId=de.Slikey -DartifactId=EffectLib -Dversion=3.4-SNAPSHOT -Dpackaging=jar  -DlocalRepositoryPath=Z:\Dev\core-ws\C_Core\repo
+  
