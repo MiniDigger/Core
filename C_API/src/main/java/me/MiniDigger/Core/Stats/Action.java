@@ -72,4 +72,9 @@ public interface Action {
 	 */
 	void setServer(String server);
 
+	/**
+	 * adds the action to the queque
+	 */
+	void submit();
+
 }

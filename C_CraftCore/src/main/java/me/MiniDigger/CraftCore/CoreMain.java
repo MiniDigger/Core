@@ -90,6 +90,7 @@ import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
 import me.MiniDigger.CraftCore.Lang.MSG;
+import me.MiniDigger.CraftCore.Stats.CoreActionListener;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerListener;
 
@@ -302,7 +303,7 @@ public class CoreMain extends JavaPlugin implements Main {
 			// TODO Fix ErrorLogger
 			Core.getCore().getErrorHandler().init();
 
-			//TPS GETTING
+			// TPS GETTING
 			timer = new EssentialsTimer();
 			Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), timer, 1000, 50);
 
@@ -484,7 +485,7 @@ public class CoreMain extends JavaPlugin implements Main {
 
 	private void registerListener() {
 		final Listener[] listeners = new Listener[] { new CoreUserListener(), new CoreChatListener(), Core.getCore().getProtocolHandler().getSignChangers(), new CoreEventListener(), new CoreBlockListener(),
-				Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(), Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands() };
+				Core.getCore().getProtocolHandler(), new CoreAchievementListener(), new CoreVillagerListener(), Core.getCore().getProtocolHandler().getSignListeners(), new ToggleCommands(), new CoreActionListener() };
 		for (final Listener listener : listeners) {
 			if (listener == null) {
 				MSG.log(LogLevel.DEBUG, LangKeyType.Main.LISTENER_NULL);
@@ -560,9 +561,9 @@ public class CoreMain extends JavaPlugin implements Main {
 			msg.send(p);
 		}
 	}
-	
+
 	@Override
-	public double getTPS(){
+	public double getTPS() {
 		return timer.getAverageTPS();
 	}
 }

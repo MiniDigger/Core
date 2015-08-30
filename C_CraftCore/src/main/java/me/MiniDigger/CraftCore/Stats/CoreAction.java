@@ -108,4 +108,9 @@ public class CoreAction implements Action {
 	public void setServer(String server) {
 		this.server = server;
 	}
+
+	@Override
+	public void submit() {
+		Core.getCore().getActionHandler().newAction(this);
+	}
 }

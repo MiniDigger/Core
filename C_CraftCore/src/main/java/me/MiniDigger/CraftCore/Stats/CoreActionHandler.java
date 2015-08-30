@@ -39,7 +39,7 @@ public class CoreActionHandler implements ActionHandler {
 
 			@Override
 			public void run() {
-				newAction(new CoreAction(ActionType.TPS, Core.getCore().getInstance().getTPS() + "", PLACEHOLDERUUID));
+				new CoreAction(ActionType.TPS, Core.getCore().getInstance().getTPS() + "", PLACEHOLDERUUID).submit();
 			}
 		}.runTaskTimer(Core.getCore().getInstance(), 20 * 60, 20 * 60);
 	}
