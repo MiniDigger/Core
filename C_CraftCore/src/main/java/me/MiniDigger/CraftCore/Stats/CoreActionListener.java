@@ -6,7 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.MiniDigger.Core.Stats.ActionType;
 
@@ -35,5 +37,15 @@ public class CoreActionListener implements Listener {
 		if (!e.isCancelled()) {
 			new CoreAction(ActionType.ITEM_EATEN, e.getItem().getType().name(), e.getPlayer().getUniqueId()).submit();
 		}
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onJoin(PlayerJoinEvent e) {
+		new CoreAction(ActionType.JOIN, "", e.getPlayer().getUniqueId()).submit();
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onLeave(PlayerQuitEvent e) {
+		new CoreAction(ActionType.LEAVE, "", e.getPlayer().getUniqueId()).submit();
 	}
 }

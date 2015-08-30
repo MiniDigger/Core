@@ -46,6 +46,8 @@ public class CoreActionHandler implements ActionHandler {
 
 	@Override
 	public void stop() {
+		new CoreAction(ActionType.SERVER_RESTART, "", PLACEHOLDERUUID).submit();;
+		
 		task.cancel();
 		insertWaiting();
 	}

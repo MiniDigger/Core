@@ -364,7 +364,6 @@ public class CoreMain extends JavaPlugin implements Main {
 
 		final Date end = new Date();
 		MSG.log(LogLevel.INFO, LangKeyType.Main.ACTIVATED, end.getTime() - start.getTime() + "");
-
 	}
 
 	@Override
