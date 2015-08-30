@@ -39,6 +39,8 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.earth2me.essentials.EssentialsTimer;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Main;
 import me.MiniDigger.Core.Lang.LangKeyType;
@@ -98,6 +100,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private boolean			update	= false;
 	private static Core		core;
 	public static Logger	logger;
+	private EssentialsTimer	timer;
 
 	/**
 	 * DO NO USE
@@ -298,6 +301,11 @@ public class CoreMain extends JavaPlugin implements Main {
 			// "bugs.minidigger.me");
 			// TODO Fix ErrorLogger
 			Core.getCore().getErrorHandler().init();
+
+			//TPS GETTING
+			timer = new EssentialsTimer();
+			Bukkit.getScheduler().runTaskTimer(Core.getCore().getInstance(), timer, 1000, 50);
+
 			final Date d2 = new Date();
 			MSG.log(LogLevel.INFO, LangKeyType.Main.CHECK_DONE, (d2.getTime() - d1.getTime()) + "");
 		}
@@ -419,7 +427,8 @@ public class CoreMain extends JavaPlugin implements Main {
 	}
 
 	private void disableHandler() {
-		Core.getCore().getBarHandler();
+		Core.getCore().getBarHandler().removeAllStatusBars();
+		Core.getCore().getActionHandler().stop();
 		Core.getCore().getAddOnHandler().disableAddOns();
 	}
 
@@ -463,6 +472,7 @@ public class CoreMain extends JavaPlugin implements Main {
 		Core.getCore().getDashingHandler().init();
 		Core.getCore().getMenuHandler().load();
 		Core.getCore().getBroadcastHandler().init();
+		Core.getCore().getActionHandler().start();
 
 		Core.getCore().getAddOnHandler().enableAddOns();
 	}
@@ -549,5 +559,10 @@ public class CoreMain extends JavaPlugin implements Main {
 		for (final Player p : Core.getCore().getUserHandler().getOnlinePlayers()) {
 			msg.send(p);
 		}
+	}
+	
+	@Override
+	public double getTPS(){
+		return timer.getAverageTPS();
 	}
 }

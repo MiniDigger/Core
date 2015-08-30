@@ -53,6 +53,7 @@ import me.MiniDigger.Core.Server.ServerHandler;
 import me.MiniDigger.Core.Socket.SocketHandler;
 import me.MiniDigger.Core.Socket.Client.ClientHandler;
 import me.MiniDigger.Core.Squad.SquadHandler;
+import me.MiniDigger.Core.Stats.ActionHandler;
 import me.MiniDigger.Core.Stats.StatsHandler;
 import me.MiniDigger.Core.Tasks.TaskHandler;
 import me.MiniDigger.Core.Tip.TipHandler;
@@ -191,6 +192,8 @@ public abstract class Core {
 
 	public abstract TitleHandler getTitleHandler();
 
+	public abstract ActionHandler getActionHandler();
+
 	public abstract MetricsHandler getMetricsHandler();
 
 	/*
@@ -234,4 +237,5 @@ public abstract class Core {
 	public abstract FaceUtil getFaceUtil();
 
 	public abstract void setCommandHandler(final CommandHandler c);
+
 }

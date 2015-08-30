@@ -87,4 +87,6 @@ public interface Main extends Plugin {
 	 *            The message
 	 */
 	public void broadcast(final FancyMessage msg);
+
+	public double getTPS();
 }
