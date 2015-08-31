@@ -157,4 +157,9 @@ public class EssentialCommands {
 		}
 		Prefix.API.getPrefix().then("Dein Ping ist: " + ping + "ms").send(args.getPlayer());
 	}
+
+	@Command(name = "tps", usage = "", consol = true, permission = "tps", description = "Shows the server tps")
+	public void tps(final CommandArgs args) {
+		Prefix.API.getPrefix().then("Der Server läuft gerade mit ca " + Core.getCore().getInstance().getTPS() + " Ticks pro Sekunde").send(args.getSender());
+	}
 }
