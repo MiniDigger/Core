@@ -114,10 +114,10 @@ public class OITCFeature extends CoreFeature {
 	public void giveItems(final Player p) {
 		final int lives = ((LivesFeature) getPhase().getFeature(FeatureType.LIVES)).getLives(p.getUniqueId());
 		p.getInventory().clear();
-		p.getInventory().addItem(new ItemStack(Material.REDSTONE, lives));
 		p.getInventory().addItem(new ItemStack(Material.WOOD_SWORD));
 		p.getInventory().addItem(new ItemStack(Material.BOW));
 		p.getInventory().addItem(new ItemStack(Material.ARROW));
+		p.getInventory().setItem(8,new ItemStack(Material.REDSTONE, lives));
 		p.updateInventory();
 	}
 }
