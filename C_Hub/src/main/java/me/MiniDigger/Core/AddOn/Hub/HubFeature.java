@@ -124,7 +124,7 @@ public class HubFeature extends CoreFeature {
 		board.addLine(new CoreScoreboardLine(3, ChatColor.GOLD + "" + ChatColor.BOLD + "" + ChatColor.UNDERLINE + "Bug gefunden?", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(2, ChatColor.GOLD + "Schick eine kurze", DisplaySlot.SIDEBAR));
 		board.addLine(new CoreScoreboardLine(1, ChatColor.GOLD + "E-Mail an:", DisplaySlot.SIDEBAR));
-		board.addLine(new CoreScoreboardLine(0, ChatColor.GOLD + "bugs@minidigger.me", DisplaySlot.SIDEBAR));
+		board.addLine(new CoreScoreboardLine(0, ChatColor.GOLD + "minecraft@wartimedignity.de", DisplaySlot.SIDEBAR));
 	}
 
 	public void showBoard() {
