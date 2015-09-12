@@ -53,6 +53,7 @@ import org.bukkit.util.Vector;
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Item.ItemType;
 
+import me.MiniDigger.CraftCore.Event.Events.CoreUserLeaveGameEvent;
 import me.MiniDigger.CraftCore.Item.CoreItem;
 import me.MiniDigger.CraftCore.Item.CoreItemBuilder;
 
@@ -162,6 +163,16 @@ public class GravityGun extends CoreItem {
 			GravityGun.block.remove(e.getEntity().getPlayer());
 			GravityGun.hold.remove(e.getEntity().getPlayer());
 			GravityGun.entity.remove(e.getEntity().getPlayer());
+		}
+		catch (final Exception ex) {}
+	}
+
+	@EventHandler
+	public void onLeave(final CoreUserLeaveGameEvent e) {
+		try {
+			GravityGun.block.remove(e.getUser().getPlayer());
+			GravityGun.hold.remove(e.getUser().getPlayer());
+			GravityGun.entity.remove(e.getUser().getPlayer());
 		}
 		catch (final Exception ex) {}
 	}
