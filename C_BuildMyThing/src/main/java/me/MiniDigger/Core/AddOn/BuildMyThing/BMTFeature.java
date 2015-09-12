@@ -131,6 +131,7 @@ public class BMTFeature extends CoreFeature {
 
 		if (available.size() == 0) {
 			available.clear();
+			builded.clear();
 			available = getPhase().getGame().getPlayers();
 		}
 
