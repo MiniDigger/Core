@@ -281,21 +281,26 @@ public class CoreMain extends JavaPlugin implements Main {
 
 				@Override
 				public boolean isLoggable(final LogRecord record) {
-					if (record.getThrown() != null) {
-						String msg = record.getThrown().getMessage();
-						if (msg == null) {
-							msg = record.getThrown().getCause().getMessage();
+					try {
+						if (record.getThrown() != null) {
+							String msg = record.getThrown().getMessage();
 							if (msg == null) {
-								msg = "<msg null>";
+								msg = record.getThrown().getCause().getMessage();
+								if (msg == null) {
+									msg = "<msg null>";
+								}
 							}
+							MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", msg);
+							MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
+							MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+							MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
+							return false;
 						}
-						MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "2", msg);
-						MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
-						MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
-						MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
-						return false;
 					}
-					return true;
+					catch (Exception ex) {
+						return true;
+					}
+					return false;
 				}
 			});
 			// ErrorLogger.register(this, "Core", "me.MiniDigger",

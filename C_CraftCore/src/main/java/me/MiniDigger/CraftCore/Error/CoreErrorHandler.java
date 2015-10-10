@@ -51,25 +51,28 @@ public class CoreErrorHandler implements ErrorHandler {
 
 			@Override
 			public void publish(final LogRecord record) {
-				if (record == null) {
-					return;
-				}
-				if (record.getThrown() == null) {
-					return;
-				}
-				if (record.getLevel() == Level.SEVERE) {
-					String msg = record.getThrown().getMessage();
-					if (msg == null) {
-						msg = record.getThrown().getCause().getMessage();
-						if (msg == null) {
-							msg = "<msg null>";
-						}
+				try {
+					if (record == null) {
+						return;
 					}
-					MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", msg);
-					MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
-					MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
-					MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
+					if (record.getThrown() == null) {
+						return;
+					}
+					if (record.getLevel() == Level.SEVERE) {
+						String msg = record.getThrown().getMessage();
+						if (msg == null) {
+							msg = record.getThrown().getCause().getMessage();
+							if (msg == null) {
+								msg = "<msg null>";
+							}
+						}
+						MSG.log(LogLevel.ERROR, LangKeyType.Log.CATCHED, "3", msg);
+						MSG.stacktrace(LogLevel.DEBUG, record.getThrown());
+						MSG.log(LogLevel.DEBUG, LangKeyType.Log.CAUSED);
+						MSG.stacktrace(LogLevel.DEBUG, record.getThrown().getCause());
+					}
 				}
+				catch (Exception ex) {}
 			}
 
 		};

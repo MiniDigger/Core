@@ -279,6 +279,29 @@ public class HubFeature extends CoreFeature {
 		event = false;
 	}
 
+	@Command(name = "eventadd", permission = "eventadd", usage = "<username>", description = "Teleportiert den Spieler zum Event", min = 1, max = 1, consol = false)
+	public void eventadd(final CommandArgs args) {
+		if (Bukkit.getPlayer(args.getArgs()[0]) == null) {
+			Prefix.API.getPrefix().then("Dieser Spieler ist nicht online!").color(ChatColor.RED);
+			return;
+		}
+		Player p = Bukkit.getPlayer(args.getArgs()[0]);
+		eventlist.add(p.getUniqueId());
+		if (event) {
+			try {
+				p.teleport(Core.getCore().getMapHandler().getMap("Spawn").getLocs(DyeColor.ORANGE).get("EVENT2"));
+				if (!eventlist.contains(p.getUniqueId())) {
+					eventlist.add(p.getUniqueId());
+				}
+			}
+			catch (final Exception ex) {
+				Prefix.API.getPrefix().then("Not setup!").send(p);
+			}
+		} else {
+			Prefix.API.getPrefix().then("Es läuft gerade kein Event!").send(p);
+		}
+	}
+
 	// TELEPORTER 2
 	private Location				loc1;
 	private Location				loc2;

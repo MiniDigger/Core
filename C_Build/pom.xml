@@ -22,6 +22,7 @@
 			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}"
 			"${maven.dependency.net.citizensnpcs.citizens.jar.path}"
 			"${maven.dependency.de.Slikey.EffectLib.jar.path}</path>
+		<main.basedir>${project.basedir}/..</main.basedir>
 	</properties>
 
 	<reporting>

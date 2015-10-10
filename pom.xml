@@ -18,7 +18,6 @@
 		<url>http://bugs.minidigger.me</url>
 	</issueManagement>
 
-
 	<distributionManagement>
 		<repository>
 			<id>archiva.release</id>
@@ -33,9 +32,7 @@
 	</distributionManagement>
 
 	<scm>
-		<url>http://git.minidigger.me:8080/core/core.git</url>
-		<connection>git</connection>
-		<developerConnection>MiniDigger</developerConnection>
+		<connection>scm:git://git.minidigger.me:8080/core/core.git</connection>
 	</scm>
 
 	<properties>
@@ -43,6 +40,8 @@
 		<api.version>0.0.1-SNAPSHOT</api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<rootPath>${basedir}</rootPath>
+		<main.basedir>${project.basedir}</main.basedir>
+		<maven.buildNumber.scmDirectory>Z:\Dev\core-ws\C_Core/.git</maven.buildNumber.scmDirectory>
 	</properties>
 
 	<modules>
@@ -135,6 +134,22 @@
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<shortRevisionLength>5</shortRevisionLength>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

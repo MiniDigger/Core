@@ -469,7 +469,8 @@ public class CoreSignChangers implements SignChangers {
 		if (newLines[0] != null && newLines[0].getJson() != null && (newLines[0].getJson().contains("[Teleport]") || newLines[0].getJson().contains("[Game]")) && edit) {
 			if (Core.getCore().getServerHandler().getServerInfo(lines) != null) {
 				for (int i = 0; i < 4; i++) {
-					lines[i].setJson(new FancyMessage(((Sign) location.getBlock().getState()).getLines()[i]).toJSONString());
+					String line = ((Sign) location.getBlock().getState()).getLines()[i];
+					lines[i].setJson(new FancyMessage(line).toJSONString());
 				}
 				newLines = Core.getCore().getServerHandler().getServerInfo(lines);
 			} else {
@@ -558,9 +559,22 @@ public class CoreSignChangers implements SignChangers {
 		// }
 		// }
 
+		// color
+		for (int i = 0; i < newLines.length; i++) {
+			if(newLines[i] == null){
+				continue;
+			}
+			String json = newLines[i].getJson();
+			json = Core.getCore().getChatColorUtil().replaceAndToMc(json);
+			newLines[i].setJson(json);
+			if (json.contains("TEST")) {
+				System.out.println("change color to " + newLines[i].getJson());
+			}
+		}
+
 		final PacketContainer out = new PacketContainer(PacketType.Play.Server.UPDATE_SIGN);
 		out.getBlockPositionModifier().write(0, pos);
-		out.getChatComponentArrays().write(0, lines);
+		out.getChatComponentArrays().write(0, newLines);
 		return out;
 	}
 
