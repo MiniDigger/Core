@@ -1,5 +1,5 @@
 name: MiniCore
-version: 0.0.1-SNAPSHOT-b{buildNumber}
+version: 0.0.1-SNAPSHOT-b${buildNumber}
 author: MiniDigger
 load: POSTWORLD
 main: Core.CoreMain

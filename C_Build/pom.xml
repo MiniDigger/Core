@@ -46,6 +46,7 @@
 				<includes>
 					<include>config.yml</include>
 					<include>plugin.yml</include>
+					<include>plugin-debug.yml</include>
 					<include>menu.yml</include>
 				</includes>
 			</resource>
