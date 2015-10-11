@@ -29,18 +29,10 @@ import me.MiniDigger.Core.User.User;
 import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
 import me.MiniDigger.CraftCore.Game.CoreGame;
 import me.MiniDigger.CraftCore.Lang.MSG;
-import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
-import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
-import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
-import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
 public class KPGame extends CoreGame {
 
-	LobbyPhase	lobby;
-	VotePhase	vote;
-	GracePhase	grace;
-	KPPhase		kp;
-	PostPhase	post;
+	KPPhase kp;
 
 	@Override
 	public GameType getType() {
@@ -51,24 +43,10 @@ public class KPGame extends CoreGame {
 	public void init() {
 		super.maxplayers = 16;
 
-		setGameData("Lobby", "Lobby");
-
-		lobby = new LobbyPhase(this, null, 5);
-		vote = new VotePhase(this, null, 30);
-		grace = new GracePhase(this, null, 15);
 		kp = new KPPhase(this);
-		post = new PostPhase(this, 10);
+		setGameData("VoteWinner", "raid");
 
-		grace.setNextPhase(kp);
-		vote.setNextPhase(grace);
-		lobby.setNextPhase(vote);
-		kp.setNextPhase(post);
-
-		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
-		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
-		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
-
-		setPhase(lobby);
+		setPhase(kp);
 		super.init();
 	}
 
@@ -91,7 +69,8 @@ public class KPGame extends CoreGame {
 	public void start() {
 		super.start();
 
-		lobby.init();
+		kp.init();
+		((MapFeature) kp.getFeature(FeatureType.MAP)).setMap(getGameData("VoteWinner"));
 
 		getPhase().startPhase();
 	}
