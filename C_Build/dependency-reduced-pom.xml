@@ -106,7 +106,7 @@
                 </goals>
                 <configuration>
                   <fileset>
-                    <directory>${basedir}\build-out\Core.jar\</directory>
+                    <directory>Z:\Dev\core-ws\C_Core\C_Build\build-out\Core.jar\</directory>
                     <includes>
                       <include>plugin.yml</include>
                       <include>plugin-debug.yml</include>
@@ -123,8 +123,8 @@
                 <configuration>
                   <files>
                     <file>
-                      <source>${basedir}\src\main\resources\plugin.yml</source>
-                      <outputDirectory>${basedir}\build-out\Core.jar\</outputDirectory>
+                      <source>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources\plugin.yml</source>
+                      <outputDirectory>Z:\Dev\core-ws\C_Core\C_Build\build-out\Core.jar\</outputDirectory>
                       <destName>plugin.yml</destName>
                     </file>
                   </files>
@@ -152,7 +152,7 @@
                 </goals>
                 <configuration>
                   <fileset>
-                    <directory>/Users/marcmaurer/Documents/workspace/C_Core/C_Build\build\Core.jar\</directory>
+                    <directory>${basedir}\build\Core.jar\</directory>
                     <includes>
                       <include>plugin.yml</include>
                       <include>plugin-debug.yml</include>
@@ -169,8 +169,8 @@
                 <configuration>
                   <files>
                     <file>
-                      <source>/Users/marcmaurer/Documents/workspace/C_Core/C_Build\src\main\resources\plugin-debug.yml</source>
-                      <outputDirectory>/Users/marcmaurer/Documents/workspace/C_Core/C_Build\build\Core.jar\</outputDirectory>
+                      <source>${basedir}\src\main\resources\plugin-debug.yml</source>
+                      <outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
                       <destName>plugin.yml</destName>
                     </file>
                   </files>
@@ -217,18 +217,6 @@
                   </tasks>
                 </configuration>
               </execution>
-              <execution>
-                <id>movecore</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <tasks>
-                    <copy />
-                  </tasks>
-                </configuration>
-              </execution>
             </executions>
           </plugin>
         </plugins>
@@ -240,7 +228,7 @@
         <resources>
           <resource>
             <filtering>true</filtering>
-            <directory>/Users/marcmaurer/Documents/workspace/C_Core/C_Build/src/main/resources</directory>
+            <directory>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources</directory>
             <includes>
               <include>config.yml</include>
               <include>plugin.yml</include>
@@ -330,7 +318,7 @@
                   <target>1.7</target>
                   <showDeprecation>true</showDeprecation>
                   <showWarnings>true</showWarnings>
-                  <executable>${env.JAVA_HOME}/bin/javac</executable>
+                  <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
                   <fork>true</fork>
                 </configuration>
               </execution>
@@ -345,7 +333,7 @@
                   <target>1.7</target>
                   <showDeprecation>true</showDeprecation>
                   <showWarnings>true</showWarnings>
-                  <executable>${env.JAVA_HOME}/bin/javac</executable>
+                  <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
                   <fork>true</fork>
                 </configuration>
               </execution>
@@ -355,7 +343,7 @@
               <target>1.7</target>
               <showDeprecation>true</showDeprecation>
               <showWarnings>true</showWarnings>
-              <executable>${env.JAVA_HOME}/bin/javac</executable>
+              <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
               <fork>true</fork>
             </configuration>
           </plugin>
