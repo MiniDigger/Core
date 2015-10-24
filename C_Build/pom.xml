@@ -178,7 +178,7 @@
 								<phase>verify</phase>
 								<configuration>
 									<fileset>
-										<directory>${basedir}\target\Core.jar</directory>
+										<directory>${basedir}\target\Core.jar\</directory>
 										<includes>
 											<include>plugin.yml</include>
 										</includes>
@@ -195,7 +195,7 @@
 									<files>
 										<file>
 											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-											<outputDirectory>${basedir}\target\Core.jar</outputDirectory>
+											<outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
 											<destName>plugin.yml</destName>
 										</file>
 									</files>

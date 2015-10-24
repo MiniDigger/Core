@@ -114,7 +114,7 @@
                 </goals>
                 <configuration>
                   <fileset>
-                    <directory>/Users/marcmaurer/Documents/workspace/C_Core/C_Build\target\Core.jar\</directory>
+                    <directory>${basedir}\target\Core.jar\</directory>
                     <includes>
                       <include>plugin.yml</include>
                     </includes>
@@ -130,8 +130,8 @@
                 <configuration>
                   <files>
                     <file>
-                      <source>/Users/marcmaurer/Documents/workspace/C_Core/C_Build\src\main\resources\plugin-debug.yml</source>
-                      <outputDirectory>/Users/marcmaurer/Documents/workspace/C_Core/C_Build\target\Core.jar\</outputDirectory>
+                      <source>${basedir}\src\main\resources\plugin-debug.yml</source>
+                      <outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
                       <destName>plugin.yml</destName>
                     </file>
                   </files>
@@ -160,18 +160,6 @@
                   </tasks>
                 </configuration>
               </execution>
-              <execution>
-                <id>movecore</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <tasks>
-                    <copy />
-                  </tasks>
-                </configuration>
-              </execution>
             </executions>
           </plugin>
         </plugins>
@@ -184,7 +172,7 @@
           <resource>
             <targetPath>.</targetPath>
             <filtering>true</filtering>
-            <directory>/Users/marcmaurer/Documents/workspace/C_Core/C_Build/src/main/resources</directory>
+            <directory>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources</directory>
             <includes>
               <include>config.yml</include>
               <include>plugin.yml</include>
@@ -274,7 +262,7 @@
                   <target>1.7</target>
                   <showDeprecation>true</showDeprecation>
                   <showWarnings>true</showWarnings>
-                  <executable>${env.JAVA_HOME}/bin/javac</executable>
+                  <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
                   <fork>true</fork>
                 </configuration>
               </execution>
@@ -289,7 +277,7 @@
                   <target>1.7</target>
                   <showDeprecation>true</showDeprecation>
                   <showWarnings>true</showWarnings>
-                  <executable>${env.JAVA_HOME}/bin/javac</executable>
+                  <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
                   <fork>true</fork>
                 </configuration>
               </execution>
@@ -299,7 +287,7 @@
               <target>1.7</target>
               <showDeprecation>true</showDeprecation>
               <showWarnings>true</showWarnings>
-              <executable>${env.JAVA_HOME}/bin/javac</executable>
+              <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
               <fork>true</fork>
             </configuration>
           </plugin>
@@ -350,6 +338,30 @@
       <version>1.8.8-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>commons-lang</artifactId>
+          <groupId>commons-lang</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>json-simple</artifactId>
+          <groupId>com.googlecode.json-simple</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>ebean</artifactId>
+          <groupId>org.avaje</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>snakeyaml</artifactId>
+          <groupId>org.yaml</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>bungeecord-chat</artifactId>
           <groupId>net.md-5</groupId>
@@ -425,6 +437,10 @@
           <groupId>org.bukkit</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>metrics</artifactId>
+          <groupId>org.mcstats.bukkit</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>HikariCP-java6</artifactId>
           <groupId>com.zaxxer</groupId>
         </exclusion>
@@ -439,7 +455,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>net.citizens</groupId>
+      <groupId>net.citizensnpcs</groupId>
       <artifactId>citizens</artifactId>
       <version>2.0.14-SNAPSHOT</version>
       <scope>provided</scope>
@@ -449,6 +465,12 @@
       <artifactId>LibsDisguises</artifactId>
       <version>8.6.5-SNAPSHOT</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>bukkit</artifactId>
+          <groupId>org.bukkit</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <reporting>
