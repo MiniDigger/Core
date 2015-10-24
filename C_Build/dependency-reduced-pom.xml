@@ -11,216 +11,320 @@
   <description>The build and delopy mechanisems</description>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
-    <resources>
-      <resource>
-        <targetPath>.</targetPath>
-        <filtering>true</filtering>
-        <directory>${basedir}/src/main/resources/</directory>
-        <includes>
-          <include>config.yml</include>
-          <include>plugin.yml</include>
-          <include>plugin-debug.yml</include>
-          <include>menu.yml</include>
-        </includes>
-      </resource>
-    </resources>
-    <finalName>Core</finalName>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <versionRange>[2.6,)</versionRange>
-                    <goals>
-                      <goal>remove</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.2</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <promoteTransitiveDependencies>false</promoteTransitiveDependencies>
-          <minimizeJar>false</minimizeJar>
-          <filters>
-            <filter>
-              <artifact>*:*</artifact>
-              <excludes>
-                <exclude>META-INF/*.SF</exclude>
-                <exclude>META-INF/*.DSA</exclude>
-                <exclude>META-INF/*.RSA</exclude>
-              </excludes>
-            </filter>
-            <filter>
-              <artifact>me.confuser:BarAPI</artifact>
-              <excludes>
-                <exclude>*.yml</exclude>
-              </excludes>
-            </filter>
-            <filter>
-              <artifact>com.comphenix.packetwrapper:PacketWrapper</artifact>
-              <excludes>
-                <exclude>*.yml</exclude>
-              </excludes>
-            </filter>
-          </filters>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-          <showDeprecation>true</showDeprecation>
-          <showWarnings>true</showWarnings>
-          <executable>${env.JAVA_HOME}/bin/javac</executable>
-          <fork>true</fork>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>truezip-maven-plugin</artifactId>
-        <version>1.2</version>
-        <executions>
-          <execution>
-            <id>remove-a-file</id>
-            <phase>install</phase>
-            <goals>
-              <goal>remove</goal>
-            </goals>
-            <configuration>
-              <fileset>
-                <directory>${basedir}\target\Core.jar\</directory>
-                <includes>
-                  <include>plugin.yml</include>
-                </includes>
-              </fileset>
-            </configuration>
-          </execution>
-          <execution>
-            <id>copy-into</id>
-            <phase>install</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <files>
-                <file>
-                  <source>${basedir}\src\main\resources\plugin-debug.yml</source>
-                  <outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
-                  <destName>plugin.yml</destName>
-                </file>
-              </files>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <tasks>
-                <echo>Copy it!</echo>
-                <delete />
-                <copy />
-                <replace />
-              </tasks>
-            </configuration>
-          </execution>
-          <execution>
-            <id>movecore</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <tasks>
-                <copy />
-              </tasks>
-            </configuration>
-          </execution>
-          <execution>
-            <id>dostuff</id>
-            <phase>install</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <tasks>
-                <echo>ZKM</echo>
-                <exec>
-                  <arg />
-                  <arg />
-                  <arg />
-                  <arg />
-                  <arg />
-                  <arg />
-                </exec>
-                <echo>Move it!</echo>
-                <copy />
-                <copy />
-                <available />
-                <fail />
-                <path>
-                  <pathelement />
-                  <pathelement />
-                </path>
-                <taskdef />
-                <echo>Delete Backups</echo>
-                <delete>
-                  <fileset />
-                </delete>
-                <scp>
-                  <fileset>
-                    <include />
-                  </fileset>
-                </scp>
-                <scp>
-                  <fileset>
-                    <include />
-                  </fileset>
-                </scp>
-              </tasks>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>buildNormal</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>copy</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <echo>Copy it!</echo>
+                    <delete />
+                    <copy />
+                    <replace />
+                  </tasks>
+                </configuration>
+              </execution>
+              <execution>
+                <id>movecore</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy />
+                  </tasks>
+                </configuration>
+              </execution>
+              <execution>
+                <id>dostuff</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <echo>ZKM</echo>
+                    <exec>
+                      <arg />
+                      <arg />
+                      <arg />
+                      <arg />
+                      <arg />
+                      <arg />
+                    </exec>
+                    <echo>Move it!</echo>
+                    <copy />
+                    <copy />
+                    <available />
+                    <fail />
+                    <path>
+                      <pathelement />
+                      <pathelement />
+                    </path>
+                    <taskdef />
+                    <echo>Delete Backups</echo>
+                    <delete>
+                      <fileset />
+                    </delete>
+                    <scp>
+                      <fileset>
+                        <include />
+                      </fileset>
+                    </scp>
+                    <scp>
+                      <fileset>
+                        <include />
+                      </fileset>
+                    </scp>
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>buildLocal</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>movefinal</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy />
+                    <copy>
+                      <fileset>
+                        <exclude />
+                      </fileset>
+                    </copy>
+                  </tasks>
+                </configuration>
+              </execution>
+              <execution>
+                <id>movecore</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy />
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>build</id>
+      <build>
+        <resources>
+          <resource>
+            <targetPath>.</targetPath>
+            <filtering>true</filtering>
+            <directory>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources</directory>
+            <includes>
+              <include>config.yml</include>
+              <include>plugin.yml</include>
+              <include>plugin-debug.yml</include>
+              <include>menu.yml</include>
+            </includes>
+          </resource>
+        </resources>
+        <finalName>Core</finalName>
+        <plugins>
+          <plugin>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.2</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <promoteTransitiveDependencies>false</promoteTransitiveDependencies>
+                  <minimizeJar>false</minimizeJar>
+                  <filters>
+                    <filter>
+                      <artifact>*:*</artifact>
+                      <excludes>
+                        <exclude>META-INF/*.SF</exclude>
+                        <exclude>META-INF/*.DSA</exclude>
+                        <exclude>META-INF/*.RSA</exclude>
+                      </excludes>
+                    </filter>
+                    <filter>
+                      <artifact>me.confuser:BarAPI</artifact>
+                      <excludes>
+                        <exclude>*.yml</exclude>
+                      </excludes>
+                    </filter>
+                    <filter>
+                      <artifact>com.comphenix.packetwrapper:PacketWrapper</artifact>
+                      <excludes>
+                        <exclude>*.yml</exclude>
+                      </excludes>
+                    </filter>
+                  </filters>
+                </configuration>
+              </execution>
+            </executions>
+            <configuration>
+              <promoteTransitiveDependencies>false</promoteTransitiveDependencies>
+              <minimizeJar>false</minimizeJar>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>me.confuser:BarAPI</artifact>
+                  <excludes>
+                    <exclude>*.yml</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>com.comphenix.packetwrapper:PacketWrapper</artifact>
+                  <excludes>
+                    <exclude>*.yml</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <executions>
+              <execution>
+                <id>default-compile</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+                  <showDeprecation>true</showDeprecation>
+                  <showWarnings>true</showWarnings>
+                  <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
+                  <fork>true</fork>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-testCompile</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>testCompile</goal>
+                </goals>
+                <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+                  <showDeprecation>true</showDeprecation>
+                  <showWarnings>true</showWarnings>
+                  <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
+                  <fork>true</fork>
+                </configuration>
+              </execution>
+            </executions>
+            <configuration>
+              <source>1.7</source>
+              <target>1.7</target>
+              <showDeprecation>true</showDeprecation>
+              <showWarnings>true</showWarnings>
+              <executable>Z:\Programme\JDK 8u51/bin/javac</executable>
+              <fork>true</fork>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>truezip-maven-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <id>remove-a-file</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>remove</goal>
+                </goals>
+                <configuration>
+                  <fileset>
+                    <directory>Z:\Dev\core-ws\C_Core\C_Build\target\Core.jar\</directory>
+                    <includes>
+                      <include>plugin.yml</include>
+                    </includes>
+                  </fileset>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-into</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>copy</goal>
+                </goals>
+                <configuration>
+                  <files>
+                    <file>
+                      <source>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources\plugin-debug.yml</source>
+                      <outputDirectory>Z:\Dev\core-ws\C_Core\C_Build\target\Core.jar\</outputDirectory>
+                      <destName>plugin.yml</destName>
+                    </file>
+                  </files>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>movecore</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy />
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>avalon-framework</groupId>

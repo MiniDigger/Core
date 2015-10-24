@@ -112,16 +112,18 @@ public class CoreAddOnHandler implements AddOnHandler {
 
 			CoreAddOnClassLoader loader;
 			try {
-				final URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
-				MSG.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), url.toExternalForm());
-				String pack;
+				URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());String pack;
 				if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 					pack = bean.getPackageDev();
+					// TODO New debug mode, load from filesystem (could be buggy as hell ;)
+					url = new URL("file://" + Core.getCore().getInstance().getDataFolder().getAbsolutePath() + "/DEV-addons/" + bean.getName() + "-" + bean.getVersion() + ".jar");
 				} else {
 					pack = bean.getPackage();
 				}
+				MSG.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), url.toExternalForm());
 				MSG.log(LogLevel.DEBUG, LangKeyType.AddOn.SHOW_URL, bean.getName(), pack);
 				loader = new CoreAddOnClassLoader(getClass().getClassLoader(), pack, url);
+				System.out.println(loader.getURLs());
 			}
 			catch (final Exception e) {
 				MSG.log(LogLevel.ERROR, LangKeyType.AddOn.ERROR_LOAD, bean.getName(), bean.getVersion(), bean.getAuthor());

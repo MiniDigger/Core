@@ -18,18 +18,19 @@
 		<url>http://bugs.minidigger.me</url>
 	</issueManagement>
 
-	<distributionManagement>
-		<repository>
-			<id>archiva.release</id>
-			<name>Internal Release Repository</name>
-			<url>http://atlas.minidigger.me:8060/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>archiva.snapshots</id>
-			<name>Internal Snapshot Repository</name>
-			<url>http://atlas.minidigger.me:8060/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
+	<!-- Maybe in the futre... -->
+	<!-- <distributionManagement> -->
+	<!-- <repository> -->
+	<!-- <id>archiva.release</id> -->
+	<!-- <name>Internal Release Repository</name> -->
+	<!-- <url>http://atlas.minidigger.me:8060/repositories/releases/</url> -->
+	<!-- </repository> -->
+	<!-- <snapshotRepository> -->
+	<!-- <id>archiva.snapshots</id> -->
+	<!-- <name>Internal Snapshot Repository</name> -->
+	<!-- <url>http://atlas.minidigger.me:8060/repositories/snapshots/</url> -->
+	<!-- </snapshotRepository> -->
+	<!-- </distributionManagement> -->
 
 	<scm>
 		<connection>scm:git://git.minidigger.me:8080/core/core.git</connection>
@@ -83,6 +84,9 @@
 		</profile>
 		<profile>
 			<id>all</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<modules>
 				<module>C_External</module>
 				<module>C_API</module>
@@ -130,6 +134,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
 				<configuration>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>

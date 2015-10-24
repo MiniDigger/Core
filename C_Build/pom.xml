@@ -35,254 +35,305 @@
 		</plugins>
 	</reporting>
 
+	<profiles>
+		<profile>
+			<id>buildNormal</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<!-- All the funky zelix and upload stuff -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<!-- Prepares the Zelix config file -->
+								<id>copy</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo>
+											Copy it!
+										</echo>
+										<delete file="${basedir}\src\main\resources\zkm.txt" />
+										<copy file="${basedir}\src\main\resources\zkm_orig.txt"
+											tofile="${basedir}\src\main\resources\zkm.txt" />
+										<replace file="${basedir}\src\main\resources\zkm.txt"
+											token="%cp%" value="${path}" />
+									</tasks>
+								</configuration>
+							</execution>
+							<execution>
+								<!-- Moves to compiled (non obfuscated) Core.jar to the build folder 
+									(to be obfuscated) -->
+								<id>movecore</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<!-- die ohne geänderte yml -->
+										<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
+									</tasks>
+								</configuration>
+							</execution>
+							<execution>
+								<!-- Executes Zelix -->
+								<id>dostuff</id>
+								<phase>install</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo>ZKM
+										</echo>
+										<exec executable="Z:\Programme\JDK 7u79\bin\java">
+											<arg value="-jar" />
+											<arg value="-Dinput=${basedir}\build\*.jar" />
+											<arg value="-Doutput=${basedir}\build-out" />
+											<arg value="${basedir}\libs\ZKM.jar" />
+											<arg value="-v" />
+											<arg value="${basedir}\src\main\resources\zkm.txt" />
+										</exec>
+										<echo>Move it!
+										</echo>
+
+										<!-- Die mit geänderter yml (TODO do we need step movecore then?!) -->
+										<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
+
+										<copy file="${basedir}\build\Core.jar" todir="Z:\Google Drive\CoreMaps\core" />
+										<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" 
+											/> -->
+										<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" 
+											/> -->
+
+										<!-- Load the jsch lib (stuff for ftp stuff) -->
+										<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
+										<fail if="ant-jsch.present"
+											message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
+										<path id="jsch.class.path">
+											<pathelement location="${basedir}\libs\ant-jsch.jar" />
+											<pathelement location="${basedir}\libs\jsch-0.1.51.jar" />
+										</path>
+										<taskdef name="scp"
+											classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
+											classpathref="jsch.class.path" />
+
+										<!-- Delte old, backups (we never created some in the first place 
+											so ¯\_(ツ)_/¯ -->
+										<echo>Delete Backups</echo>
+										<delete includeemptydirs="true">
+											<fileset dir="${basedir}\build-out" includes="*.BACKUP"
+												defaultexcludes="false" />
+										</delete>
+
+										<!-- Upload normal addons -->
+										<scp
+											todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons"
+											trust="true">
+											<fileset dir="${basedir}\build-out">
+												<include name="*.jar" />
+											</fileset>
+										</scp>
+										<!-- upload debug addons -->
+										<scp
+											todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons-dev"
+											trust="true">
+											<fileset dir="${basedir}\build">
+												<include name="*.jar" />
+											</fileset>
+										</scp>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>buildLocal</id>
+			<build>
+				<plugins>
+					<!-- Move Local files to local test server -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<id>movefinal</id>
+								<phase>install</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<!-- Core -->
+										<copy file="${basedir}\build\Core.jar" todir="${devServer}\plugins\" />
+										<!-- Move Addons -->
+										<copy todir="${devServer}\plugins\MiniCore\DEV-addons\">
+											<fileset dir="${basedir}\build\">
+												<exclude name="Core.jar" />
+											</fileset>
+										</copy>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>build</id>
+			<build>
+				<finalName>Core</finalName>
+				<!-- Copies ressorces into final Core.jar -->
+				<resources>
+					<resource>
+						<targetPath>.</targetPath>
+						<filtering>true</filtering>
+						<directory>${basedir}/src/main/resources/</directory>
+						<includes>
+							<include>config.yml</include>
+							<include>plugin.yml</include>
+							<include>plugin-debug.yml</include>
+							<include>menu.yml</include>
+						</includes>
+					</resource>
+				</resources>
+				<plugins>
+					<!-- Shades Debendencies into final jars (and exclude some ymls -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-shade-plugin</artifactId>
+						<version>2.2</version>
+						<configuration>
+							<promoteTransitiveDependencies>false</promoteTransitiveDependencies>
+							<minimizeJar>false</minimizeJar>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+								<filter>
+									<artifact>me.confuser:BarAPI</artifact>
+									<excludes>
+										<exclude>*.yml</exclude>
+									</excludes>
+								</filter>
+								<filter>
+									<artifact>com.comphenix.packetwrapper:PacketWrapper</artifact>
+									<excludes>
+										<exclude>*.yml</exclude>
+									</excludes>
+								</filter>
+							</filters>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>shade</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Set compiler lvl -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>2.3.2</version>
+						<configuration>
+							<source>1.7</source>
+							<target>1.7</target>
+							<showDeprecation>true</showDeprecation>
+							<showWarnings>true</showWarnings>
+							<executable>${env.JAVA_HOME}/bin/javac</executable>
+							<fork>true</fork>
+						</configuration>
+					</plugin>
+					<!-- Change plugin.yml for debug jar -->
+					<!-- this is done after all the funky zelix stuff -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>truezip-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>remove-a-file</id>
+								<goals>
+									<goal>remove</goal>
+								</goals>
+								<phase>verify</phase>
+								<configuration>
+									<fileset>
+										<directory>${basedir}\target\Core.jar\</directory>
+										<includes>
+											<include>plugin.yml</include>
+										</includes>
+									</fileset>
+								</configuration>
+							</execution>
+							<execution>
+								<id>copy-into</id>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<phase>verify</phase>
+								<configuration>
+									<files>
+										<file>
+											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
+											<outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
+											<destName>plugin.yml</destName>
+										</file>
+									</files>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Only to move non obuscated core.jar to build folder -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<id>movecore</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<!-- die ohne geänderte yml -->
+										<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
-		<finalName>Core</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
-		<resources>
-			<resource>
-				<targetPath>.</targetPath>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/resources/</directory>
-				<includes>
-					<include>config.yml</include>
-					<include>plugin.yml</include>
-					<include>plugin-debug.yml</include>
-					<include>menu.yml</include>
-				</includes>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<promoteTransitiveDependencies>false</promoteTransitiveDependencies>
-					<minimizeJar>false</minimizeJar>
-					<filters>
-						<filter>
-							<artifact>*:*</artifact>
-							<excludes>
-								<exclude>META-INF/*.SF</exclude>
-								<exclude>META-INF/*.DSA</exclude>
-								<exclude>META-INF/*.RSA</exclude>
-							</excludes>
-						</filter>
-						<filter>
-							<artifact>me.confuser:BarAPI</artifact>
-							<excludes>
-								<exclude>*.yml</exclude>
-							</excludes>
-						</filter>
-						<filter>
-							<artifact>com.comphenix.packetwrapper:PacketWrapper</artifact>
-							<excludes>
-								<exclude>*.yml</exclude>
-							</excludes>
-						</filter>
-					</filters>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-					<executable>${env.JAVA_HOME}/bin/javac</executable>
-					<fork>true</fork>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>truezip-maven-plugin</artifactId>
-				<version>1.2</version>
-				<executions>
-					<execution>
-						<id>remove-a-file</id>
-						<goals>
-							<goal>remove</goal>
-						</goals>
-						<phase>install</phase>
-						<configuration>
-							<fileset>
-								<directory>${basedir}\target\Core.jar\</directory>
-								<includes>
-									<include>plugin.yml</include>
-								</includes>
-							</fileset>
-						</configuration>
-					</execution>
-					<execution>
-						<id>copy-into</id>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<phase>install</phase>
-						<configuration>
-							<files>
-								<file>
-									<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-									<outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
-									<destName>plugin.yml</destName>
-								</file>
-							</files>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>copy</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<echo>
-									Copy it!
-								</echo>
-								<delete file="${basedir}\src\main\resources\zkm.txt" />
-								<copy file="${basedir}\src\main\resources\zkm_orig.txt"
-									tofile="${basedir}\src\main\resources\zkm.txt" />
-								<replace file="${basedir}\src\main\resources\zkm.txt"
-									token="%cp%" value="${path}" />
-							</tasks>
-						</configuration>
-					</execution>
-					<execution>
-						<id>movecore</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<!-- die ohne geänderte yml -->
-								<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
-							</tasks>
-						</configuration>
-					</execution>
-					<execution>
-						<id>dostuff</id>
-						<phase>install</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<echo>ZKM
-								</echo>
-								<exec executable="Z:\Programme\JDK 7u79\bin\java">
-									<arg value="-jar" />
-									<arg value="-Dinput=${basedir}\build\*.jar" />
-									<arg value="-Doutput=${basedir}\build-out" />
-									<arg value="${basedir}\libs\ZKM.jar" />
-									<arg value="-v" />
-									<arg value="${basedir}\src\main\resources\zkm.txt" />
-								</exec>
-								<echo>Move it!
-								</echo>
-
-								<!-- Die mit geänderter yml -->
-								<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
-
-								<copy file="${basedir}\build\Core.jar" todir="Z:\Google Drive\CoreMaps\core" />
-								<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" 
-									/> -->
-								<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" 
-									/> -->
-
-								<!-- Load the jsch lib -->
-								<available property="ant-jsch.present" file="${ant.home}/lib/ant-jsch.jar" />
-								<fail if="ant-jsch.present"
-									message="Please remove ant-jsch.jar from ANT_HOME/lib see [http://ant.apache.org/faq.html#delegating-classloader]" />
-								<path id="jsch.class.path">
-									<pathelement location="${basedir}\libs\ant-jsch.jar" />
-									<pathelement location="${basedir}\libs\jsch-0.1.51.jar" />
-								</path>
-								<taskdef name="scp"
-									classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp"
-									classpathref="jsch.class.path" />
-
-								<echo>Delete Backups</echo>
-								<delete includeemptydirs="true">
-									<fileset dir="${basedir}\build-out" includes="*.BACKUP"
-										defaultexcludes="false" />
-								</delete>
-
-								<scp
-									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons"
-									trust="true">
-									<fileset dir="${basedir}\build-out">
-										<include name="*.jar" />
-									</fileset>
-								</scp>
-
-								<scp
-									todir="upload:ssddcwZJRCece2bmpwSR@atlas.minidigger.me:/var/www/virtual/minidigger.me/api/htdocs/addons-dev"
-									trust="true">
-									<fileset dir="${basedir}\build">
-										<include name="*.jar" />
-									</fileset>
-								</scp>
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>com.mycila</groupId>
-										<artifactId>
-											license-maven-plugin
-										</artifactId>
-										<versionRange>
-											[2.6,)
-										</versionRange>
-										<goals>
-											<goal>remove</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<dependencies>
