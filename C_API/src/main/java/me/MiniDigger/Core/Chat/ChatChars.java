@@ -273,6 +273,7 @@ public class ChatChars {
 		public final static String	coffee		= "c[_]";
 		public final static String	rifle		= "︻╦╤─";
 		public final static String	ameno		= "༼ つ ◕_◕ ༽つ";
+		public final static String	shrug		= "¯\\_(ツ)_/¯";
 
 		public static Map<String, String> values() {
 			final Map<String, String> map = new HashMap<>();
@@ -288,6 +289,7 @@ public class ChatChars {
 			map.put("coffee", coffee);
 			map.put("rifle", rifle);
 			map.put("ameno", ameno);
+			map.put("shrug", shrug);
 			return map;
 		}
 	}
