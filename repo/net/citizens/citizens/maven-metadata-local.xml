@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.citizens</groupId>
+  <artifactId>citizens</artifactId>
+  <versioning>
+    <versions>
+      <version>2.0.14-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20151024200750</lastUpdated>
+  </versioning>
+</metadata>

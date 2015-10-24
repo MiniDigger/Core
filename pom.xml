@@ -183,10 +183,6 @@
 			<id>nametagedit-repo</id><!-- NameTagEdit -->
 			<url>http://ci.playmc.cc/plugin/repository/everything</url>
 		</repository>
-		<repository>
-			<id>citizens</id><!-- Citizens -->
-			<url>http://repo.citizensnpcs.co/</url>
-		</repository>
 		<repository><!-- Lib's Disguises -->
 			<id>libs</id>
 			<url>http://server.psmc.ca/repo/</url>
@@ -273,9 +269,9 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>net.citizensnpcs</groupId>
+			<groupId>net.citizens</groupId>
 			<artifactId>citizens</artifactId>
-			<version>2.0.15-SNAPSHOT</version>
+			<version>2.0.14-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

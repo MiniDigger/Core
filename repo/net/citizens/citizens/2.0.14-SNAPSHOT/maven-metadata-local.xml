@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>net.citizens</groupId>
+  <artifactId>citizens</artifactId>
+  <version>2.0.14-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20151024200750</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>2.0.14-SNAPSHOT</value>
+        <updated>20151024200750</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>2.0.14-SNAPSHOT</value>
+        <updated>20151024200750</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
