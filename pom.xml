@@ -195,6 +195,10 @@
 			<id>pex-repo</id><!-- PEX -->
 			<url>http://pex-repo.aoeu.xyz</url>
 		</repository>
+		<repository>
+			<id>multiverse-repo</id><!-- Multiverse -->
+			<url>http://repo.onarandombox.com/content/repositories/multiverse/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -284,6 +288,11 @@
 			<groupId>io.getconnect</groupId>
 			<artifactId>connect-client-java</artifactId>
 			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.onarandombox.multiversecore</groupId>
+			<artifactId>Multiverse-Core</artifactId>
+			<version>2.5</version>
 		</dependency>
 	</dependencies>
 </project>

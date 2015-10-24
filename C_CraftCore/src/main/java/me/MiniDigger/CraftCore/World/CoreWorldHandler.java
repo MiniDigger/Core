@@ -38,6 +38,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
+import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MVWorldManager;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
@@ -77,6 +80,8 @@ public class CoreWorldHandler implements WorldHandler {
 	public void unloadWorld(final String world, final Location fallBackLoc) {
 		Core.getCore().getInstance().debug("unload " + world);
 
+//		MultiverseCore.//TODO MULTIVERSE
+		
 		Core.getCore().getMapHandler().unload(Core.getCore().getMapHandler().getMap(world));
 
 		final World w = Bukkit.getWorld(world);
