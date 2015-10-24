@@ -20,8 +20,14 @@
 			"${maven.dependency.commons-logging.commons-logging.jar.path}"
 			"${maven.dependency.com.wacos.NametagEdit.jar.path}"
 			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}"
-			"${maven.dependency.net.citizensnpcs.citizens.jar.path}"
-			"${maven.dependency.de.Slikey.EffectLib.jar.path}</path>
+			"${maven.dependency.net.citizens.citizens.jar.path}"
+			"${maven.dependency.de.Slikey.EffectLib.jar.path}"
+			"${maven.dependency.javax.servlet.javax.servlet-api.jar.path}"
+			"${maven.dependency.org.apache.ant.ant.jar.path}"
+			"${maven.dependency.org.scala-lang.scala-library.jar.path}"
+			"${maven.dependency.javax.transaction.jta.jar.path}"
+			"${maven.dependency.joda-time.joda-time.jar.path}"
+			"${maven.dependency.com.onarandombox.multiversecore.Multiverse-Core.jar.path}</path>
 		<main.basedir>${project.basedir}/..</main.basedir>
 	</properties>
 
@@ -109,7 +115,8 @@
 										<!-- Die mit geänderter yml (TODO do we need step movecore then?!) -->
 										<copy file="${basedir}\target\Core.jar" todir="${basedir}\build" />
 
-										<copy file="${basedir}\build\Core.jar" todir="Z:\Google Drive\CoreMaps\core" />
+										<!-- <copy file="${basedir}\build\Core.jar" todir="Z:\Google Drive\CoreMaps\core" 
+											/> -->
 										<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\MirrorClient\plugins" 
 											/> -->
 										<!-- <copy file="${basedir}\build\Core.jar" todir="F:\DATA\Dev\dev-server\Spigot1.8\plugins" 
@@ -156,6 +163,47 @@
 							</execution>
 						</executions>
 					</plugin>
+					<!-- Change plugin.yml -->
+					<!-- this is done after all the funky zelix stuff -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>truezip-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>remove-a-file</id>
+								<goals>
+									<goal>remove</goal>
+								</goals>
+								<phase>install</phase>
+								<configuration>
+									<fileset>
+										<directory>${basedir}\build-out\Core.jar\</directory>
+										<includes>
+											<include>plugin.yml</include>
+											<include>plugin-debug.yml</include>
+										</includes>
+									</fileset>
+								</configuration>
+							</execution>
+							<execution>
+								<id>copy-into</id>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<phase>install</phase>
+								<configuration>
+									<files>
+										<file>
+											<source>${basedir}\src\main\resources\plugin.yml</source>
+											<outputDirectory>${basedir}\build-out\Core.jar\</outputDirectory>
+											<destName>plugin.yml</destName>
+										</file>
+									</files>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -178,9 +226,10 @@
 								<phase>verify</phase>
 								<configuration>
 									<fileset>
-										<directory>${basedir}\target\Core.jar\</directory>
+										<directory>${basedir}\build\Core.jar\</directory>
 										<includes>
 											<include>plugin.yml</include>
+											<include>plugin-debug.yml</include>
 										</includes>
 									</fileset>
 								</configuration>
@@ -195,7 +244,7 @@
 									<files>
 										<file>
 											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-											<outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
+											<outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
 											<destName>plugin.yml</destName>
 										</file>
 									</files>
@@ -228,6 +277,31 @@
 									</tasks>
 								</configuration>
 							</execution>
+							<execution>
+								<!-- Replace stuff in plugin ymls -->
+								<id>copy</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo>
+											Copy it!
+										</echo>
+										<delete file="${basedir}\src\main\resources\plugin.yml" />
+										<delete file="${basedir}\src\main\resources\plugin-debug.yml" />
+										<copy file="${basedir}\src\main\resources\plugin-orig.yml"
+											tofile="${basedir}\src\main\resources\plugin.yml" />
+										<copy file="${basedir}\src\main\resources\plugin-debug-orig.yml"
+											tofile="${basedir}\src\main\resources\plugin-debug.yml" />
+										<replace file="${basedir}\src\main\resources\plugin.yml"
+											token="%buildNumber%" value="${buildNumber}" />
+										<replace file="${basedir}\src\main\resources\plugin-debug.yml"
+											token="%buildNumber%" value="${buildNumber}" />
+									</tasks>
+								</configuration>
+							</execution>
 						</executions>
 					</plugin>
 				</plugins>
@@ -243,7 +317,6 @@
 				<!-- Copies ressorces into final Core.jar -->
 				<resources>
 					<resource>
-						<targetPath>.</targetPath>
 						<filtering>true</filtering>
 						<directory>${basedir}/src/main/resources/</directory>
 						<includes>
@@ -372,6 +445,37 @@
 			<version>1.1.3</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>1.9.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.11.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.8.2</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- <dependency> -->
 		<!-- <groupId></groupId> -->
 		<!-- <artifactId></artifactId> -->
