@@ -163,6 +163,46 @@
 			<id>buildLocal</id>
 			<build>
 				<plugins>
+					<!-- Change plugin.yml for debug jar -->
+					<!-- this is done after all the funky zelix stuff -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>truezip-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>remove-a-file</id>
+								<goals>
+									<goal>remove</goal>
+								</goals>
+								<phase>verify</phase>
+								<configuration>
+									<fileset>
+										<directory>${basedir}\target\Core.jar\</directory>
+										<includes>
+											<include>plugin.yml</include>
+										</includes>
+									</fileset>
+								</configuration>
+							</execution>
+							<execution>
+								<id>copy-into</id>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<phase>verify</phase>
+								<configuration>
+									<files>
+										<file>
+											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
+											<outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
+											<destName>plugin.yml</destName>
+										</file>
+									</files>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 					<!-- Move Local files to local test server -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -195,6 +235,9 @@
 		</profile>
 		<profile>
 			<id>build</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<finalName>Core</finalName>
 				<!-- Copies ressorces into final Core.jar -->
@@ -265,46 +308,6 @@
 							<executable>${env.JAVA_HOME}/bin/javac</executable>
 							<fork>true</fork>
 						</configuration>
-					</plugin>
-					<!-- Change plugin.yml for debug jar -->
-					<!-- this is done after all the funky zelix stuff -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>truezip-maven-plugin</artifactId>
-						<version>1.2</version>
-						<executions>
-							<execution>
-								<id>remove-a-file</id>
-								<goals>
-									<goal>remove</goal>
-								</goals>
-								<phase>verify</phase>
-								<configuration>
-									<fileset>
-										<directory>${basedir}\target\Core.jar\</directory>
-										<includes>
-											<include>plugin.yml</include>
-										</includes>
-									</fileset>
-								</configuration>
-							</execution>
-							<execution>
-								<id>copy-into</id>
-								<goals>
-									<goal>copy</goal>
-								</goals>
-								<phase>verify</phase>
-								<configuration>
-									<files>
-										<file>
-											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-											<outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
-											<destName>plugin.yml</destName>
-										</file>
-									</files>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 					<!-- Only to move non obuscated core.jar to build folder -->
 					<plugin>
