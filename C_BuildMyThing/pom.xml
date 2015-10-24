@@ -10,7 +10,7 @@
 	<version>1.0</version>
 
 	<build>
-		<finalName>BMT-${project.version}</finalName>
+		<finalName>BuildMyThing-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

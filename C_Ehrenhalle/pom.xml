@@ -10,7 +10,7 @@
 	<version>1.0</version>
 
 	<build>
-		<finalName>EH-${project.version}</finalName>
+		<finalName>Ehrenhalle-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

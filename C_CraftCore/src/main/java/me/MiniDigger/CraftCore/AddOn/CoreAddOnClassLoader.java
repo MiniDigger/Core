@@ -48,7 +48,7 @@ public class CoreAddOnClassLoader extends URLClassLoader implements AddOnClassLo
 
 	public CoreAddOnClassLoader(final ClassLoader parent, final String main, final URL url) throws InvalidPluginException, MalformedURLException {
 		super(new URL[] { url }, parent);
-
+		
 		try {
 			Class<?> jarClass;
 			try {

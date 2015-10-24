@@ -11,7 +11,7 @@
 	<version>1.0</version>
 
 	<build>
-		<finalName>KK-${project.version}</finalName>
+		<finalName>Kistenkrieg-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

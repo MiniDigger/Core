@@ -11,7 +11,7 @@
 	<version>1.0</version>
 	
 	<build>
-		<finalName>KP-${project.version}</finalName>
+		<finalName>KitPvP-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
