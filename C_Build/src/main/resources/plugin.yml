@@ -1,7 +1,0 @@
-name: MiniCore
-version: 0.0.1-SNAPSHOT-b6c825
-author: MiniDigger
-load: POSTWORLD
-main: Core.CoreMain
-description: The Core
-website: minidigger.me
