@@ -67,7 +67,6 @@
                     </exec>
                     <echo>Move it!</echo>
                     <copy />
-                    <copy />
                     <available />
                     <fail />
                     <path>
@@ -94,6 +93,45 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>truezip-maven-plugin</artifactId>
+            <version>1.2</version>
+            <executions>
+              <execution>
+                <id>remove-a-file</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>remove</goal>
+                </goals>
+                <configuration>
+                  <fileset>
+                    <directory>Z:\Dev\core-ws\C_Core\C_Build\build-out\Core.jar\</directory>
+                    <includes>
+                      <include>plugin.yml</include>
+                      <include>plugin-debug.yml</include>
+                    </includes>
+                  </fileset>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy-into</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>copy</goal>
+                </goals>
+                <configuration>
+                  <files>
+                    <file>
+                      <source>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources\plugin.yml</source>
+                      <outputDirectory>Z:\Dev\core-ws\C_Core\C_Build\build-out\Core.jar\</outputDirectory>
+                      <destName>plugin.yml</destName>
+                    </file>
+                  </files>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -114,9 +152,10 @@
                 </goals>
                 <configuration>
                   <fileset>
-                    <directory>${basedir}\target\Core.jar\</directory>
+                    <directory>${basedir}\build\Core.jar\</directory>
                     <includes>
                       <include>plugin.yml</include>
+                      <include>plugin-debug.yml</include>
                     </includes>
                   </fileset>
                 </configuration>
@@ -131,7 +170,7 @@
                   <files>
                     <file>
                       <source>${basedir}\src\main\resources\plugin-debug.yml</source>
-                      <outputDirectory>${basedir}\target\Core.jar\</outputDirectory>
+                      <outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
                       <destName>plugin.yml</destName>
                     </file>
                   </files>
@@ -160,6 +199,24 @@
                   </tasks>
                 </configuration>
               </execution>
+              <execution>
+                <id>copy</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <echo>Copy it!</echo>
+                    <delete />
+                    <delete />
+                    <copy />
+                    <copy />
+                    <replace />
+                    <replace />
+                  </tasks>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
         </plugins>
@@ -170,7 +227,6 @@
       <build>
         <resources>
           <resource>
-            <targetPath>.</targetPath>
             <filtering>true</filtering>
             <directory>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources</directory>
             <includes>
@@ -327,6 +383,42 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.9.6</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>ant-launcher</artifactId>
+          <groupId>org.apache.ant</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>2.11.7</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>jta</artifactId>
+      <version>1.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.8.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
       <version>1.8.8-SNAPSHOT</version>
@@ -391,18 +483,6 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.ant</groupId>
-      <artifactId>ant</artifactId>
-      <version>1.8.2</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>ant-launcher</artifactId>
-          <groupId>org.apache.ant</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>ru.tehkode</groupId>
       <artifactId>PermissionsEx</artifactId>
       <version>1.23.2-SNAPSHOT</version>
@@ -455,7 +535,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>net.citizensnpcs</groupId>
+      <groupId>net.citizens</groupId>
       <artifactId>citizens</artifactId>
       <version>2.0.14-SNAPSHOT</version>
       <scope>provided</scope>
@@ -469,6 +549,46 @@
         <exclusion>
           <artifactId>bukkit</artifactId>
           <groupId>org.bukkit</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.onarandombox.multiversecore</groupId>
+      <artifactId>Multiverse-Core</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>SerializationConfig</artifactId>
+          <groupId>me.main__.util</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>Vault</artifactId>
+          <groupId>net.milkbowl.vault</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>CommandHandler</artifactId>
+          <groupId>com.pneumaticraft.commandhandler</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>buscript</artifactId>
+          <groupId>com.dumptruckman.minecraft</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>Logging</artifactId>
+          <groupId>com.dumptruckman.minecraft</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit</artifactId>
+          <groupId>junit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>bukkit</artifactId>
+          <groupId>org.bukkit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>metrics</artifactId>
+          <groupId>org.mcstats.bukkit</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -493,8 +613,14 @@
 			"${maven.dependency.commons-logging.commons-logging.jar.path}"
 			"${maven.dependency.com.wacos.NametagEdit.jar.path}"
 			"${maven.dependency.LibsDisguises.LibsDisguises.jar.path}"
-			"${maven.dependency.net.citizensnpcs.citizens.jar.path}"
-			"${maven.dependency.de.Slikey.EffectLib.jar.path}</path>
+			"${maven.dependency.net.citizens.citizens.jar.path}"
+			"${maven.dependency.de.Slikey.EffectLib.jar.path}"
+			"${maven.dependency.javax.servlet.javax.servlet-api.jar.path}"
+			"${maven.dependency.org.apache.ant.ant.jar.path}"
+			"${maven.dependency.org.scala-lang.scala-library.jar.path}"
+			"${maven.dependency.javax.transaction.jta.jar.path}"
+			"${maven.dependency.joda-time.joda-time.jar.path}"
+			"${maven.dependency.com.onarandombox.multiversecore.Multiverse-Core.jar.path}</path>
   </properties>
 </project>
 

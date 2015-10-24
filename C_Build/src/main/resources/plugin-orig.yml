@@ -1,7 +1,7 @@
 name: MiniCore
-version: 0.0.1-SNAPSHOT-b8a747
+version: 0.0.1-SNAPSHOT-b%buildNumber%
 author: MiniDigger
 load: POSTWORLD
-main: me.MiniDigger.CraftCore.CoreMain
+main: Core.CoreMain
 description: The Core
 website: minidigger.me
