@@ -42,7 +42,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<rootPath>${basedir}</rootPath>
 		<main.basedir>${project.basedir}</main.basedir>
-		<maven.buildNumber.scmDirectory>${basedir}/.git</maven.buildNumber.scmDirectory>
+		<maven.buildNumber.scmDirectory>${theProjectFolder}/.git</maven.buildNumber.scmDirectory>
 	</properties>
 
 	<modules>
