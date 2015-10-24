@@ -175,10 +175,10 @@
 								<goals>
 									<goal>remove</goal>
 								</goals>
-								<phase>install</phase>
+								<phase>verify</phase>
 								<configuration>
 									<fileset>
-										<directory>${basedir}\build-out\Core.jar\</directory>
+										<directory>${basedir}\build-out\Core.jar</directory>
 										<includes>
 											<include>plugin.yml</include>
 											<include>plugin-debug.yml</include>
@@ -196,7 +196,7 @@
 									<files>
 										<file>
 											<source>${basedir}\src\main\resources\plugin.yml</source>
-											<outputDirectory>${basedir}\build-out\Core.jar\</outputDirectory>
+											<outputDirectory>${basedir}\build-out\Core.jar</outputDirectory>
 											<destName>plugin.yml</destName>
 										</file>
 									</files>
@@ -226,7 +226,7 @@
 								<phase>verify</phase>
 								<configuration>
 									<fileset>
-										<directory>${basedir}\build\Core.jar\</directory>
+										<directory>${basedir}\build\Core.jar</directory>
 										<includes>
 											<include>plugin.yml</include>
 											<include>plugin-debug.yml</include>
@@ -244,7 +244,7 @@
 									<files>
 										<file>
 											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-											<outputDirectory>${basedir}\build\Core.jar\</outputDirectory>
+											<outputDirectory>${basedir}\build\Core.jar</outputDirectory>
 											<destName>plugin.yml</destName>
 										</file>
 									</files>
