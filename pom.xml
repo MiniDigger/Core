@@ -42,7 +42,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<rootPath>${basedir}</rootPath>
 		<main.basedir>${project.basedir}</main.basedir>
-		<maven.buildNumber.scmDirectory>Z:\Dev\core-ws\C_Core/.git</maven.buildNumber.scmDirectory>
+		<maven.buildNumber.scmDirectory>${basedir}/.git</maven.buildNumber.scmDirectory>
 	</properties>
 
 	<modules>
@@ -162,7 +162,7 @@
 	<repositories>
 		<repository>
 			<id>local-repo</id>
-			<url>file:Z:\Dev\core-ws\C_Core\repo</url>
+			<url>file:${theProjectFolder}/repo</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -275,7 +275,7 @@
 		<dependency>
 			<groupId>net.citizensnpcs</groupId>
 			<artifactId>citizens</artifactId>
-			<version>2.0.14-SNAPSHOT</version>
+			<version>2.0.15-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
