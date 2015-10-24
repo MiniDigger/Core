@@ -226,7 +226,7 @@
 								<phase>verify</phase>
 								<configuration>
 									<fileset>
-										<directory>${basedir}\build\Core.jar</directory>
+										<directory>${basedir}/build/Core.jar</directory>
 										<includes>
 											<include>plugin.yml</include>
 											<include>plugin-debug.yml</include>
@@ -243,8 +243,8 @@
 								<configuration>
 									<files>
 										<file>
-											<source>${basedir}\src\main\resources\plugin-debug.yml</source>
-											<outputDirectory>${basedir}\build\Core.jar</outputDirectory>
+											<source>${basedir}/src/main/resources/plugin-debug.yml</source>
+											<outputDirectory>${basedir}/build/Core.jar</outputDirectory>
 											<destName>plugin.yml</destName>
 										</file>
 									</files>

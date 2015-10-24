@@ -106,7 +106,7 @@
                 </goals>
                 <configuration>
                   <fileset>
-                    <directory>Z:\Dev\core-ws\C_Core\C_Build\build-out\Core.jar</directory>
+                    <directory>${basedir}\build-out\Core.jar</directory>
                     <includes>
                       <include>plugin.yml</include>
                       <include>plugin-debug.yml</include>
@@ -123,8 +123,8 @@
                 <configuration>
                   <files>
                     <file>
-                      <source>Z:\Dev\core-ws\C_Core\C_Build\src\main\resources\plugin.yml</source>
-                      <outputDirectory>Z:\Dev\core-ws\C_Core\C_Build\build-out\Core.jar</outputDirectory>
+                      <source>${basedir}\src\main\resources\plugin.yml</source>
+                      <outputDirectory>${basedir}\build-out\Core.jar</outputDirectory>
                       <destName>plugin.yml</destName>
                     </file>
                   </files>
@@ -152,7 +152,7 @@
                 </goals>
                 <configuration>
                   <fileset>
-                    <directory>${basedir}\build\Core.jar</directory>
+                    <directory>Z:\Dev\core-ws\C_Core\C_Build/build/Core.jar</directory>
                     <includes>
                       <include>plugin.yml</include>
                       <include>plugin-debug.yml</include>
@@ -169,8 +169,8 @@
                 <configuration>
                   <files>
                     <file>
-                      <source>${basedir}\src\main\resources\plugin-debug.yml</source>
-                      <outputDirectory>${basedir}\build\Core.jar</outputDirectory>
+                      <source>Z:\Dev\core-ws\C_Core\C_Build/src/main/resources/plugin-debug.yml</source>
+                      <outputDirectory>Z:\Dev\core-ws\C_Core\C_Build/build/Core.jar</outputDirectory>
                       <destName>plugin.yml</destName>
                     </file>
                   </files>
@@ -214,6 +214,18 @@
                     <copy />
                     <replace />
                     <replace />
+                  </tasks>
+                </configuration>
+              </execution>
+              <execution>
+                <id>movecore</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy />
                   </tasks>
                 </configuration>
               </execution>
