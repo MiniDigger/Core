@@ -75,13 +75,10 @@ public class AutoRespawnFeature extends CoreFeature {
 
 	@EventHandler
 	public void onDeath(final CoreUserDeathEvent e) {
-		final PacketPlayInClientCommand packet = new PacketPlayInClientCommand(EnumClientCommand.PERFORM_RESPAWN);
-		final CraftPlayer craftPlayer = (CraftPlayer) e.getUser().getPlayer();
 		Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {
-
 			@Override
 			public void run() {
-				craftPlayer.getHandle().playerConnection.a(packet);
+				e.getUser().getPlayer().spigot().respawn();
 			}
 		}, 2);
 	}
