@@ -18,81 +18,79 @@
  * Proprietary and confidential
  * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
  */
-package me.MiniDigger.Core.Feature;
+package de.marcmaurer.Core.Addon.Paintball;
 
-public enum FeatureType {
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
+import me.MiniDigger.Core.User.User;
 
-	AUTORESPAWN,
-	BLEED,
-	CLEARINV,
-	DOUBLEJUMP,
-	DROP,
-	FOOD,
-	FIXEDHEALTH,
-	FIXEDTIME,
-	FIXEDWEATHER,
-	HUB,
-	JUMPPAD,
-	LASTMANSTANDING,
-	MAP,
-	MOB,
-	NONAMETAG,
-	PVP,
-	SPAWN,
-	TWOPLAYER,
-	VOTE,
-	TEAM,
-	TEAM_SELECT,
-	SPAWNER,
-	BED,
-	TEAM_BED,
-	TEAM_DEATH_MATCH,
-	VILLAGER,
-	TEAM_SPAWN,
-	BUILD,
-	CRANK,
-	LIVES,
-	SPEC,
-	KIT,
-	OITC,
-	NOFALLDMG,
-	MAPINFO,
-	SHOWDROPS,
-	ULTRASPLEEF,
-	LOBBYFEATURE,
-	NODROP,
-	NOPICKUP,
-	KILLS,
-	SPAWNERS,
-	TEAM_ARMOR,
-	LADDERKING,
-	JOINHANDLER,
-	LEAVEHANDLER,
-	PREMIUMLAUNCH,
-	SUV,
-	SUVSELECT,
-	BTM,
-	NOINVENTORYINTERACTION,
-	MAPRESET,
-	SG,
-	KITPVP,
-	KISTENKRIEG,
-	IF,
-	WORLDBOARDER,
-	EH,
-	NOINVENTORY,
-	CUSTOM,
-	CUSTOM_LOBBY,
-	DAYNIGHT,
-	PARTICLE_TRAIL, 
-	PAINTBALL;
+import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Game.CoreGame;
+import me.MiniDigger.CraftCore.Lang.MSG;
+import me.MiniDigger.CraftCore.Phase.Phases.GracePhase;
+import me.MiniDigger.CraftCore.Phase.Phases.LobbyPhase;
+import me.MiniDigger.CraftCore.Phase.Phases.PostPhase;
+import me.MiniDigger.CraftCore.Phase.Phases.VotePhase;
 
-	/**
-	 * @return A human readable name for the feature
-	 * @deprecated use name() insted
-	 */
-	@Deprecated
-	public String getName() {
-		return name();
+public class PaintballGame extends CoreGame {
+
+	LobbyPhase	lobby;
+	VotePhase	vote;
+	PaintballPhase	paintball;
+	PostPhase	post;
+
+	@Override
+	public GameType getType() {
+		return GameType.PAINTBALL;
 	}
+
+	@Override
+	public void init() {
+		super.maxplayers = 12;
+
+		setGameData("Lobby", "Lobby");
+
+		lobby = new LobbyPhase(this, null, 5);
+		vote = new VotePhase(this, null, 30);
+		paintball = new PaintballPhase(this);
+		post = new PostPhase(this, 10);
+
+		vote.setNextPhase(paintball);
+		lobby.setNextPhase(vote);
+		paintball.setNextPhase(post);
+
+		((MapFeature) lobby.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) vote.getFeature(FeatureType.MAP)).setMap("Lobby");
+		((MapFeature) post.getFeature(FeatureType.MAP)).setMap("Lobby");
+
+		setPhase(lobby);
+		super.init();
+	}
+
+	@Override
+	public void end(final User... winner) {
+		if (winner != null && winner.length == 1) {
+			final User w = winner[0];
+			if (w != null) {
+				MSG.msg(getGamePrefix(), LangKeyType.Game.WIN, MsgType.IMPORTANT, w.getPlayer());
+				broadCastMessage(LangKeyType.Game.WON, MsgType.IMPORTANT, w.getDisplayName());
+
+				leave(w);
+			}
+		}
+		broadCastMessage(LangKeyType.Game.END, MsgType.IMPORTANT);
+		super.end(winner);
+	}
+
+	@Override
+	public void start() {
+		super.start();
+
+		lobby.init();
+
+		getPhase().startPhase();
+	}
+
 }

@@ -18,81 +18,79 @@
  * Proprietary and confidential
  * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
  */
-package me.MiniDigger.Core.Feature;
+package de.marcmaurer.Core.Addon.Paintball;
 
-public enum FeatureType {
+import org.bukkit.WeatherType;
 
-	AUTORESPAWN,
-	BLEED,
-	CLEARINV,
-	DOUBLEJUMP,
-	DROP,
-	FOOD,
-	FIXEDHEALTH,
-	FIXEDTIME,
-	FIXEDWEATHER,
-	HUB,
-	JUMPPAD,
-	LASTMANSTANDING,
-	MAP,
-	MOB,
-	NONAMETAG,
-	PVP,
-	SPAWN,
-	TWOPLAYER,
-	VOTE,
-	TEAM,
-	TEAM_SELECT,
-	SPAWNER,
-	BED,
-	TEAM_BED,
-	TEAM_DEATH_MATCH,
-	VILLAGER,
-	TEAM_SPAWN,
-	BUILD,
-	CRANK,
-	LIVES,
-	SPEC,
-	KIT,
-	OITC,
-	NOFALLDMG,
-	MAPINFO,
-	SHOWDROPS,
-	ULTRASPLEEF,
-	LOBBYFEATURE,
-	NODROP,
-	NOPICKUP,
-	KILLS,
-	SPAWNERS,
-	TEAM_ARMOR,
-	LADDERKING,
-	JOINHANDLER,
-	LEAVEHANDLER,
-	PREMIUMLAUNCH,
-	SUV,
-	SUVSELECT,
-	BTM,
-	NOINVENTORYINTERACTION,
-	MAPRESET,
-	SG,
-	KITPVP,
-	KISTENKRIEG,
-	IF,
-	WORLDBOARDER,
-	EH,
-	NOINVENTORY,
-	CUSTOM,
-	CUSTOM_LOBBY,
-	DAYNIGHT,
-	PARTICLE_TRAIL, 
-	PAINTBALL;
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Feature.FeatureType;
+import me.MiniDigger.Core.Game.Game;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.MsgType;
+import me.MiniDigger.Core.Util.EntityUtil.Type;
 
-	/**
-	 * @return A human readable name for the feature
-	 * @deprecated use name() insted
-	 */
-	@Deprecated
-	public String getName() {
-		return name();
+import me.MiniDigger.CraftCore.Feature.Features.AutoRespawnFeature;
+import me.MiniDigger.CraftCore.Feature.Features.BleedFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedFoodFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedTimeFeature;
+import me.MiniDigger.CraftCore.Feature.Features.FixedWeatherFeature;
+import me.MiniDigger.CraftCore.Feature.Features.KitFeature;
+import me.MiniDigger.CraftCore.Feature.Features.LivesFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MapFeature;
+import me.MiniDigger.CraftCore.Feature.Features.MobFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoDropFeature;
+import me.MiniDigger.CraftCore.Feature.Features.NoPickupFeature;
+import me.MiniDigger.CraftCore.Feature.Features.PvPFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpawnFeature;
+import me.MiniDigger.CraftCore.Feature.Features.SpecateFeature;
+import me.MiniDigger.CraftCore.Phase.CorePhase;
+
+public class PaintballPhase extends CorePhase {
+
+	public PaintballPhase(final Game game) {
+		super(game, null);
 	}
+
+	@Override
+	public String getName() {
+		return "Paintball";
+	}
+
+	@Override
+	public boolean displayBar() {
+		return true;
+	}
+
+	@Override
+	public boolean displayLevel() {
+		return false;
+	}
+
+	@Override
+	public void init() {
+		addFeature(new BleedFeature(this));
+		addFeature(new AutoRespawnFeature(this));
+		addFeature(new FixedFoodFeature(this));
+		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY)));
+		addFeature(new FixedTimeFeature(this, 6000));
+		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
+		addFeature(new MapFeature(this, null, true));
+		addFeature(new PvPFeature(this, true));
+		addFeature(new SpawnFeature(this, true));
+		addFeature(new LivesFeature(this, 3));
+		addFeature(new SpecateFeature(this));
+		addFeature(new KitFeature(this));
+		addFeature(new NoPickupFeature(this));
+		addFeature(new NoDropFeature(this));
+		addFeature(new PaintballFeature(this));
+	}
+
+	@Override
+	public void startPhase() {
+		final String winner = getGame().getGameData("VoteWinner");
+
+		((MapFeature) getFeature(FeatureType.MAP)).setMap(winner);
+		super.startPhase();
+	}
+
 }

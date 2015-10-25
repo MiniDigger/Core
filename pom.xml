@@ -70,6 +70,7 @@
 		<module>C_Ehrenhalle</module>
 		<module>C_Custom</module>
 		<module>C_Build</module>
+		<module>C_Paintball</module>
 	</modules>
 
 	<profiles>

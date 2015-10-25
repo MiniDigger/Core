@@ -18,81 +18,61 @@
  * Proprietary and confidential
  * Written by Martin Benndorf <admin@minidigger.me>, 2013-2015 and others
  */
-package me.MiniDigger.Core.Feature;
+package de.marcmaurer.Core.Addon.Paintball;
 
-public enum FeatureType {
+import java.util.ArrayList;
+import java.util.List;
 
-	AUTORESPAWN,
-	BLEED,
-	CLEARINV,
-	DOUBLEJUMP,
-	DROP,
-	FOOD,
-	FIXEDHEALTH,
-	FIXEDTIME,
-	FIXEDWEATHER,
-	HUB,
-	JUMPPAD,
-	LASTMANSTANDING,
-	MAP,
-	MOB,
-	NONAMETAG,
-	PVP,
-	SPAWN,
-	TWOPLAYER,
-	VOTE,
-	TEAM,
-	TEAM_SELECT,
-	SPAWNER,
-	BED,
-	TEAM_BED,
-	TEAM_DEATH_MATCH,
-	VILLAGER,
-	TEAM_SPAWN,
-	BUILD,
-	CRANK,
-	LIVES,
-	SPEC,
-	KIT,
-	OITC,
-	NOFALLDMG,
-	MAPINFO,
-	SHOWDROPS,
-	ULTRASPLEEF,
-	LOBBYFEATURE,
-	NODROP,
-	NOPICKUP,
-	KILLS,
-	SPAWNERS,
-	TEAM_ARMOR,
-	LADDERKING,
-	JOINHANDLER,
-	LEAVEHANDLER,
-	PREMIUMLAUNCH,
-	SUV,
-	SUVSELECT,
-	BTM,
-	NOINVENTORYINTERACTION,
-	MAPRESET,
-	SG,
-	KITPVP,
-	KISTENKRIEG,
-	IF,
-	WORLDBOARDER,
-	EH,
-	NOINVENTORY,
-	CUSTOM,
-	CUSTOM_LOBBY,
-	DAYNIGHT,
-	PARTICLE_TRAIL, 
-	PAINTBALL;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
 
-	/**
-	 * @return A human readable name for the feature
-	 * @deprecated use name() insted
-	 */
-	@Deprecated
-	public String getName() {
-		return name();
+import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Command.Command;
+import me.MiniDigger.Core.Command.CommandArgs;
+import me.MiniDigger.Core.Command.Completer;
+import me.MiniDigger.Core.Event.Events.UserJoinGameEvent;
+import me.MiniDigger.Core.Game.GameType;
+import me.MiniDigger.Core.User.User;
+
+import me.MiniDigger.CraftCore.AddOn.CoreAddOn;
+import me.MiniDigger.CraftCore.Event.Events.CoreUserJoinGameEvent;
+
+public class PaintballAddon extends CoreAddOn {
+
+	@Override
+	public void enable() {
+		GameType.PAINTBALL.setClass(PaintballGame.class);
+		Core.getCore().getCommandHandler().registerCommands(this);
+		super.enable();
+	}
+
+	@Override
+	public void disable() {
+		Core.getCore().getCommandHandler().unregisterCommands(this);
+		super.disable();
+	}
+
+	@Command(name = "paintball", permission = "paintball", usage = "", consol = true, description = "Initiiert ein Paintball Game", max = 0, sync = true)
+	public void paintball(final CommandArgs args) {
+		final PaintballGame game = new PaintballGame();
+		game.init();
+		Core.getCore().getGameHandler().addGame(game);
+		// for (final User user :
+		// Core.getCore().getUserHandler().getOnlineUsers()) {
+		final User user = args.getUser();
+		final UserJoinGameEvent e1 = new CoreUserJoinGameEvent(game, user);
+		Bukkit.getPluginManager().callEvent((Event) e1);
+		Core.getCore().getGameHandler().joinGame(user, game);
+		// }
+		game.start();
+	}
+
+	@Completer(name = "paintball")
+	public List<String> crankC(final CommandArgs args) {
+		final List<String> result = new ArrayList<>();
+
+		result.add("");
+
+		return result;
 	}
 }

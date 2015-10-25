@@ -37,7 +37,8 @@ public enum GameType {
 	KK("KistenKrieg", "KK", null, "kk"),
 	IF("Infected", "IF", null, "if"),
 	EH("Ehrenhalle", "EH", null, "eh"),
-	CUSTOM("Custom", "C", null, "custom");
+	CUSTOM("Custom", "C", null, "custom"), 
+	PAINTBALL("Paintball", "PB", null, "paintball");
 
 	private String name;
 	private String abk;
