@@ -59,6 +59,9 @@ public class CoreUpdateHandler implements UpdateHandler {
 
 	@Override
 	public boolean updateCheck() {
+		if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
+			return false;
+		}
 		// Core.getCore().getInstance().debug(getVersion().getRaw());
 		if (getLatestVersion().isNewer(getVersion(), type)) {
 			new Thread(new Runnable() {
@@ -101,7 +104,9 @@ public class CoreUpdateHandler implements UpdateHandler {
 
 	@Override
 	public void update() {
-		saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "Core.jar", JAR_URL);
+		if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
+			saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "Core.jar", JAR_URL);
+		}
 	}
 
 	private void saveFile(final File folder, final String file, final String link) {
