@@ -104,7 +104,7 @@ public class CoreUpdateHandler implements UpdateHandler {
 
 	@Override
 	public void update() {
-		if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
+		if (!Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 			saveFile(new File((Core.getCore().getInstance()).getDataFolder().getParent(), Bukkit.getServer().getUpdateFolder()), "Core.jar", JAR_URL);
 		}
 	}
