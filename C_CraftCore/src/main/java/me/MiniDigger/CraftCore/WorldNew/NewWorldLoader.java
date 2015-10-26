@@ -47,7 +47,7 @@ import net.minecraft.server.v1_8_R3.WorldServer;
 import net.minecraft.server.v1_8_R3.WorldSettings;
 import net.minecraft.server.v1_8_R3.WorldSettings.EnumGamemode;
 
-public class CoreWorldLoader implements WorldLoader {
+public class NewWorldLoader implements WorldLoader {
 
 	@Override
 	public World loadWorld(final WorldCreator creator) {
