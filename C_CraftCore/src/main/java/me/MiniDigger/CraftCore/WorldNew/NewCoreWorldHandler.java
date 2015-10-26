@@ -123,7 +123,7 @@ public class NewCoreWorldHandler implements WorldHandler {
 
 	@Override
 	public World loadWorld(final String name, final String newName) {
-		boolean b = mv.getMVWorldManager().addWorld(newName, Environment.NORMAL, "ichbinderseed", WorldType.FLAT, false, Core.getCore().getInstance().getDescription().getName());
+		boolean b = mv.getMVWorldManager().addWorld(newName, Environment.NORMAL, "ichbinderseed", WorldType.FLAT, false, "MiniCore");
 
 		Core.getCore().getInstance().debug("load " + name + " as " + newName + ": " + b);
 
