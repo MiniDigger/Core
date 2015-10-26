@@ -196,6 +196,8 @@ public abstract class Core {
 
 	public abstract MetricsHandler getMetricsHandler();
 
+	public abstract WorldHandler getNewWorldHandler() ;
+
 	/*
 	 * #################### UTILS ####################
 	 */

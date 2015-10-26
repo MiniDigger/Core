@@ -51,9 +51,11 @@ import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
 import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 
-public class CoreWorldHandler implements WorldHandler {
+public class NewCoreWorldHandler implements WorldHandler {
 
-	public CoreWorldHandler() {
+	private MultiverseCore mv;
+	
+	public NewCoreWorldHandler() {
 		cleanup();
 	}
 
@@ -142,7 +144,7 @@ public class CoreWorldHandler implements WorldHandler {
 
 		fixSession(new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), newName));
 
-		final World w = new CoreWorldLoader().loadWorld(wc);
+		final World w = new NewWorldLoader().loadWorld(wc);
 		w.setAutoSave(false);
 
 		MSG.log(LogLevel.INFO, LangKeyType.World.LOADING_CHUNKS);

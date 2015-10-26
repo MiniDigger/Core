@@ -140,6 +140,7 @@ import me.MiniDigger.CraftCore.Util.CoreTimeUtil;
 import me.MiniDigger.CraftCore.Util.CoreZipUtil;
 import me.MiniDigger.CraftCore.Villager.CoreVillagerHandler;
 import me.MiniDigger.CraftCore.World.CoreWorldHandler;
+import me.MiniDigger.CraftCore.WorldNew.NewCoreWorldHandler;
 
 public class CoreCore extends Core {
 
@@ -186,6 +187,7 @@ public class CoreCore extends Core {
 	private TitleHandler		titleHandler;
 	private MetricsHandler		metricsHandler;
 	private ActionHandler		actionHandler;
+	private NewCoreWorldHandler newWorldHandler;
 
 	private ChatColorUtil	chatColorUtil;
 	private CommonMethods	commonMethods;
@@ -539,6 +541,14 @@ public class CoreCore extends Core {
 			actionHandler = new CoreActionHandler();
 		}
 		return actionHandler;
+	}
+	
+	@Override
+	public NewCoreWorldHandler getNewWorldHandler(){
+		if(newWorldHandler == null){
+			newWorldHandler = new NewCoreWorldHandler();
+		}
+		return newWorldHandler;
 	}
 
 	/***********/
