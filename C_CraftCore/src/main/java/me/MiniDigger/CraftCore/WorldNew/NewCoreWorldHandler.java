@@ -26,37 +26,37 @@ import java.util.List;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
-import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
-
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Map.MapData;
 import me.MiniDigger.Core.World.WorldHandler;
 
-import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
 import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Map.CoreMapData;
 
 public class NewCoreWorldHandler implements WorldHandler {
 
 	private MultiverseCore mv;
-	
+
 	public NewCoreWorldHandler() {
-		cleanup();
+		try {
+			mv = getMultiverseCore();
+		}
+		catch (RuntimeException ex) {
+			mv = null; // mv not installed?!
+		}
 	}
 
 	@Override
@@ -82,50 +82,18 @@ public class NewCoreWorldHandler implements WorldHandler {
 	public void unloadWorld(final String world, final Location fallBackLoc) {
 		Core.getCore().getInstance().debug("unload " + world);
 
-//		MultiverseCore.//TODO MULTIVERSE
-		
-		Core.getCore().getMapHandler().unload(Core.getCore().getMapHandler().getMap(world));
-
 		final World w = Bukkit.getWorld(world);
 		if (w == null) {
 			return;
 		}
 
-		try {
-			w.save();
-		}
-		catch (final Exception ex) {
-			Core.getCore().getInstance().debug("No save for you, bitch");
+		for (Player p : w.getEntitiesByClass(Player.class)) {
+			p.teleport(fallBackLoc);
 		}
 
-		try {
-			for (final LivingEntity e : w.getLivingEntities()) {
-				if (e.getType() == EntityType.PLAYER) {
-					e.teleport(fallBackLoc);
-				} else {
-					e.remove();
-				}
-			}
-		}
-		catch (final Exception ex) {
-			Core.getCore().getInstance().debug("Ok, you can live some seconds longer...");
-		}
+		Core.getCore().getMapHandler().unload(Core.getCore().getMapHandler().getMap(world));
 
-		try {
-			for (final Chunk c : w.getLoadedChunks()) {
-				c.unload();
-				w.unloadChunk(c);
-			}
-		}
-		catch (final Exception ex) {
-			Core.getCore().getInstance().debug("I will unload you later...");
-		}
-		try {
-			Bukkit.unloadWorld(w, true);
-		}
-		catch (final Exception ex) {
-			Core.getCore().getInstance().debug("Will, that sucks");
-		}
+		mv.getMVWorldManager().unloadWorld(world, true);
 	}
 
 	@Override
@@ -135,24 +103,16 @@ public class NewCoreWorldHandler implements WorldHandler {
 
 	@Override
 	public World loadWorld(final String name, final String newName) {
-		Core.getCore().getInstance().debug("load " + name + " as " + newName);
-		final WorldCreator wc = WorldCreator.name(newName);
-		wc.environment(Environment.NORMAL);
-		wc.generateStructures(false);
-		wc.type(WorldType.FLAT);
-		wc.generator(new CoreCleanroomChunkGenerator("."));
+		boolean b = mv.getMVWorldManager().addWorld(newName, Environment.NORMAL, "ichbinderseed", WorldType.FLAT, false, "CoreCleanroomChunkGenerator");
 
-		fixSession(new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ",", ""), newName));
-
-		final World w = new NewWorldLoader().loadWorld(wc);
-		w.setAutoSave(false);
+		Core.getCore().getInstance().debug("load " + name + " as " + newName + ": " + b);
 
 		MSG.log(LogLevel.INFO, LangKeyType.World.LOADING_CHUNKS);
 		try {
-			MapData data = Core.getCore().getMapHandler().getMap(name);
+			MapData data = Core.getCore().getMapHandler().getMap(newName);
 			if (data == null) {
-				Core.getCore().getInstance().debug("try other name: " + newName);
-				data = Core.getCore().getMapHandler().getMap(newName);
+				Core.getCore().getInstance().debug("try other name: " + name);
+				data = Core.getCore().getMapHandler().getMap(name);
 			}
 			final int i = data.loadChunks();
 			MSG.log(LogLevel.INFO, LangKeyType.World.CHUNKS_LOADED, i + "");
@@ -162,7 +122,7 @@ public class NewCoreWorldHandler implements WorldHandler {
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 
-		return w;
+		return Bukkit.getWorld(newName);
 	}
 
 	@Override
@@ -171,32 +131,12 @@ public class NewCoreWorldHandler implements WorldHandler {
 			return;
 		}
 
-		Core.getCore().getInstance().debug("delete " + name);
-
-		final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
-		final File oldMap = new File(out, name);
-
 		if (Bukkit.getWorld(name) != null) {
 			unloadWorld(name, Core.getCore().getWorldHandler().getFallbackLoc());
 		}
 
-		if (oldMap.exists() && oldMap.isDirectory()) {
-			try {
-				MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
-				Core.getCore().getFileUtil().deleteDirectory(oldMap);
-			}
-			catch (final Exception ex) {
-				Core.getCore().getInstance().debug("err");
-				fixSession(oldMap);
-				try {
-					MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
-					Core.getCore().getFileUtil().deleteDirectory(oldMap);
-				}
-				catch (final Exception exs) {
-					Core.getCore().getInstance().debug("err124");
-				}
-			}
-		}
+		MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+		mv.getMVWorldManager().deleteWorld(name, true, true);
 	}
 
 	private void fixSession(final File oldMap) {
@@ -275,5 +215,15 @@ public class NewCoreWorldHandler implements WorldHandler {
 				}
 			}
 		}
+	}
+
+	public MultiverseCore getMultiverseCore() {
+		Plugin plugin = Core.getCore().getInstance().getServer().getPluginManager().getPlugin("MultiverseCore");
+
+		if (plugin instanceof MultiverseCore) {
+			return (MultiverseCore) plugin;
+		}
+
+		throw new RuntimeException("MultiVerse not found!");
 	}
 }
