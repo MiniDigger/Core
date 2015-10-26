@@ -37,6 +37,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MultiverseWorld;
+
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
 import me.MiniDigger.Core.Lang.LogLevel;
@@ -56,6 +58,23 @@ public class NewCoreWorldHandler implements WorldHandler {
 		}
 		catch (RuntimeException ex) {
 			mv = null; // mv not installed?!
+		}
+	}
+
+	@Override
+	public void disable() {
+		for (World w : Bukkit.getWorlds()) {
+			if (!w.getName().equals("world") && !w.getName().equals("Lobby")) {
+				// unloadWorld(w.getName(), l);
+				deleteWorld(w.getName());
+			}
+		}
+
+		for (MultiverseWorld w : mv.getMVWorldManager().getMVWorlds()) {
+			if (!w.getName().equals("world") && !w.getName().equals("Lobby")) {
+				// unloadWorld(w.getName(), l);
+				deleteWorld(w.getName());
+			}
 		}
 	}
 
@@ -84,6 +103,7 @@ public class NewCoreWorldHandler implements WorldHandler {
 
 		final World w = Bukkit.getWorld(world);
 		if (w == null) {
+			System.out.println("abort");
 			return;
 		}
 
@@ -103,7 +123,7 @@ public class NewCoreWorldHandler implements WorldHandler {
 
 	@Override
 	public World loadWorld(final String name, final String newName) {
-		boolean b = mv.getMVWorldManager().addWorld(newName, Environment.NORMAL, "ichbinderseed", WorldType.FLAT, false, "CoreCleanroomChunkGenerator");
+		boolean b = mv.getMVWorldManager().addWorld(newName, Environment.NORMAL, "ichbinderseed", WorldType.FLAT, false, Core.getCore().getInstance().getDescription().getName());
 
 		Core.getCore().getInstance().debug("load " + name + " as " + newName + ": " + b);
 
@@ -127,16 +147,44 @@ public class NewCoreWorldHandler implements WorldHandler {
 
 	@Override
 	public void deleteWorld(final String name) {
+		System.out.println("delte " + name);
 		if (name == null) {
 			return;
 		}
 
-		if (Bukkit.getWorld(name) != null) {
-			unloadWorld(name, Core.getCore().getWorldHandler().getFallbackLoc());
-		}
+		// if (Bukkit.getWorld(name) != null) {
+		// unloadWorld(name, Core.getCore().getWorldHandler().getFallbackLoc());
+		// }
 
 		MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
-		mv.getMVWorldManager().deleteWorld(name, true, true);
+		boolean b = mv.getMVWorldManager().deleteWorld(name, true, true);
+		System.out.println("done " + b);
+		if (!b) {
+			final File out = new File(Core.getCore().getStringUtil().replaceLast(Bukkit.getWorldContainer().getAbsolutePath(), ".", ""));
+			final File oldMap = new File(out, name);
+
+			if (Bukkit.getWorld(name) != null) {
+				unloadWorld(name, Core.getCore().getWorldHandler().getFallbackLoc());
+			}
+
+			if (oldMap.exists() && oldMap.isDirectory()) {
+				try {
+					MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+					Core.getCore().getFileUtil().deleteDirectory(oldMap);
+				}
+				catch (final Exception ex) {
+					Core.getCore().getInstance().debug("err");
+					fixSession(oldMap);
+					try {
+						MSG.log(LogLevel.DEBUG, LangKeyType.World.DELETE_OLD, name);
+						Core.getCore().getFileUtil().deleteDirectory(oldMap);
+					}
+					catch (final Exception exs) {
+						Core.getCore().getInstance().debug("err124");
+					}
+				}
+			}
+		}
 	}
 
 	private void fixSession(final File oldMap) {

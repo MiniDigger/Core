@@ -427,6 +427,7 @@ public class CoreMain extends JavaPlugin implements Main {
 	private void disableHandler() {
 		Core.getCore().getBarHandler().removeAllStatusBars();
 		Core.getCore().getActionHandler().stop();
+		Core.getCore().getWorldHandler().disable();
 		Core.getCore().getAddOnHandler().disableAddOns();
 	}
 

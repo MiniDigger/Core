@@ -85,4 +85,9 @@ public interface WorldHandler {
 	World loadWorld(String name, String newName);
 
 	void cleanup();
+
+	/**
+	 * unloads all worlds
+	 */
+	void disable();
 }

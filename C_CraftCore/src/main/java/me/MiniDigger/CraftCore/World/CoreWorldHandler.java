@@ -258,4 +258,9 @@ public class CoreWorldHandler implements WorldHandler {
 		// }
 		// }
 	}
+
+	@Override
+	public void disable() {
+		Core.getCore().getNewWorldHandler().disable();
+	}
 }
