@@ -86,6 +86,10 @@ public class CoreSocketHandler implements SocketHandler {
 
 	@Override
 	public void stopServer() {
+		if (server == null) {
+			return;
+		}
+		
 		final ServerCommandPacket packet = new ServerCommandPacket();
 		packet.setCommand("CloseClient");
 		Core.getCore().getPacketHandler().sendBroadcast(packet);
