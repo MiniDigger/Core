@@ -218,7 +218,7 @@ public class NewCoreWorldHandler implements WorldHandler {
 	}
 
 	public MultiverseCore getMultiverseCore() {
-		Plugin plugin = Core.getCore().getInstance().getServer().getPluginManager().getPlugin("MultiverseCore");
+		Plugin plugin = Core.getCore().getInstance().getServer().getPluginManager().getPlugin("Multiverse-Core");
 
 		if (plugin instanceof MultiverseCore) {
 			return (MultiverseCore) plugin;
