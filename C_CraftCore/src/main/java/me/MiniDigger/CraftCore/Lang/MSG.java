@@ -28,6 +28,7 @@ import org.bukkit.command.CommandSender;
 
 import me.MiniDigger.Core.Core;
 import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LangStorage;
 import me.MiniDigger.Core.Lang.LangType;
 import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Lang.MsgType;
@@ -49,7 +50,22 @@ public class MSG {
 
 	@SuppressWarnings("all")
 	public static String msg(final LangType lang, final LangKeyType type, final ChatColor markup, final String... args) {
-		String result = Core.getCore().getLangHandler().getStorage(lang).get(type);
+		if (Core.getCore() == null || Core.getCore().getLangHandler() == null) {
+			System.out.println("well, we are fucked");
+			return "FATAL ERRORZ OCCURED WHILE TRANSLATION SOME SHIT";
+		}
+
+		String result = null;
+		LangStorage s = Core.getCore().getLangHandler().getStorage(lang);
+		if (s == null) {
+			s = Core.getCore().getLangHandler().getStorage();
+			if (s == null) {
+				result = type.getDefaultValue();
+			}
+		}
+		if (result == null) {
+			result = Core.getCore().getLangHandler().getStorage(lang).get(type);
+		}
 
 		for (int i = 0; i < args.length; i++) {
 			try {
