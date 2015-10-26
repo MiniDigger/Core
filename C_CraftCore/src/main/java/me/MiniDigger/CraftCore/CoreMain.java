@@ -37,6 +37,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.earth2me.essentials.EssentialsTimer;
@@ -89,6 +90,7 @@ import me.MiniDigger.CraftCore.Command.Completer.ToggleCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.TrollCompleter;
 import me.MiniDigger.CraftCore.Command.Completer.WorldCompleter;
 import me.MiniDigger.CraftCore.Event.CoreEventListener;
+import me.MiniDigger.CraftCore.Generator.CoreCleanroomChunkGenerator;
 import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Stats.CoreActionListener;
 import me.MiniDigger.CraftCore.User.CoreUserListener;
@@ -560,5 +562,10 @@ public class CoreMain extends JavaPlugin implements Main {
 	@Override
 	public double getTPS() {
 		return timer.getAverageTPS();
+	}
+	
+	@Override
+	public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+		return new CoreCleanroomChunkGenerator(".");
 	}
 }

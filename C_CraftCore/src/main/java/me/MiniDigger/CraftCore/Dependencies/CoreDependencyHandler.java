@@ -49,6 +49,7 @@ public class CoreDependencyHandler implements DependencyHanlder {
 		dependencies.add(new CoreDependency("EffectLib", "3.4"));
 		dependencies.add(new CoreDependency("Citizens", "2.0.16"));
 		dependencies.add(new CoreDependency("LibsDisguises", "3.6.3"));
+		dependencies.add(new CoreDependency("MultiverseCore", "2.5"));
 	}
 
 	private String check(final Dependency d) {
