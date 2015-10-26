@@ -5,4 +5,4 @@ load: POSTWORLD
 main: Core.CoreMain
 description: The Core
 website: minidigger.me
-depend: [MultiverseCore,PermissionsEx]
+depend: [Multiverse-Core,PermissionsEx]
