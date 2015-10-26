@@ -35,9 +35,12 @@ import org.spigotmc.SpigotConfig;
 import org.spigotmc.WatchdogThread;
 
 import me.MiniDigger.Core.Core;
+import me.MiniDigger.Core.Lang.LangKeyType;
+import me.MiniDigger.Core.Lang.LogLevel;
 import me.MiniDigger.Core.Prefix.Prefix;
 import me.MiniDigger.Core.Util.ShutdownUtil;
 
+import me.MiniDigger.CraftCore.Lang.MSG;
 import me.MiniDigger.CraftCore.Packet.Packets.ServerPacket;
 import me.MiniDigger.CraftCore.Server.CoreServer;
 
@@ -74,6 +77,15 @@ public class CoreShutdownUtil implements ShutdownUtil {
 
 		if (!Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 			Core.getCore().getUpdateHandler().update();
+		}
+
+		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP);
+		try {
+			Core.getCore().getSocketHandler().stopServer();
+		}
+		catch (final Exception ex) {
+			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
+			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 
 		task = Bukkit.getScheduler().runTaskLater(Core.getCore().getInstance(), new Runnable() {

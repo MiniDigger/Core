@@ -388,15 +388,6 @@ public class CoreMain extends JavaPlugin implements Main {
 			MSG.stacktrace(LogLevel.DEBUG, ex);
 		}
 
-		MSG.log(LogLevel.INFO, LangKeyType.Socket.STOP);
-		try {
-			Core.getCore().getSocketHandler().stopServer();
-		}
-		catch (final Exception ex) {
-			MSG.log(LogLevel.ERROR, LangKeyType.Main.ERROR, ex.getMessage());
-			MSG.stacktrace(LogLevel.DEBUG, ex);
-		}
-
 		MSG.log(LogLevel.INFO, LangKeyType.Main.UNREGISTER_LISTENER);
 		try {
 			HandlerList.unregisterAll(this);
