@@ -112,12 +112,13 @@ public class CoreAddOnHandler implements AddOnHandler {
 
 			CoreAddOnClassLoader loader;
 			try {
-				URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());String pack;
+				URL url = Core.getCore().getRESTHandler().showFile(bean.getName(), bean.getVersion());
+				String pack;
 				if (Core.getCore().getInstance().getConfig().getBoolean("debug")) {
 					pack = bean.getPackageDev();
 					File f = new File(Core.getCore().getInstance().getDataFolder().getAbsolutePath() + "/DEV-addons/" + bean.getName() + "-" + bean.getVersion() + ".jar");
-					if(!f.exists()){
-						System.out.println("fuck this: " +f.getAbsolutePath());
+					if (!f.exists()) {
+						System.out.println("fuck this: " + f.getAbsolutePath());
 					}
 					url = f.toURI().toURL();
 				} else {
@@ -166,7 +167,8 @@ public class CoreAddOnHandler implements AddOnHandler {
 			}
 		}
 
-		Core.getCore().getCommandHandler().registerHelp();
+		// Core.getCore().getCommandHandler().registerHelp(); 
+		// Don't register help when shutting down, nobody cares anyways
 	}
 
 	@Override
