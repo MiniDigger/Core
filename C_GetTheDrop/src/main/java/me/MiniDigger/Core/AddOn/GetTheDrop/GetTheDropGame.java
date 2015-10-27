@@ -55,11 +55,11 @@ public class GetTheDropGame extends CoreGame {
 		setGameData("Lobby", "Lobby");
 
 		lobby = new LobbyPhase(this, null, 5);
-		vote = new VotePhase(this, null, 30);
 		countdown = new CountdownPhase(this, null, 15);
 		one = new GetTheDropPhaseOne(this, null, 90);
 		grace = new GracePhase(this, null, 15);
 		two = new GetTheDropPhaseTwo(this, null, 60);
+		vote = new VotePhase(this, null, 30, one);
 
 		two.setNextPhase(two);
 		grace.setNextPhase(two);

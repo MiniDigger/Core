@@ -55,9 +55,16 @@ import me.MiniDigger.CraftCore.Phase.CoreTimedPhase;
 
 public class VotePhase extends CoreTimedPhase {
 
+	private Phase gamePhase;
+
 	public VotePhase(final Game game, final Phase next, final int secs) {
 		super(game, next, secs);
 		init();
+	}
+
+	public VotePhase(final Game game, final Phase next, final int secs, Phase gamePhase) {
+		this(game, next, secs);
+		this.gamePhase = gamePhase;
 	}
 
 	@Override
@@ -112,8 +119,13 @@ public class VotePhase extends CoreTimedPhase {
 		Core.getCore().getWorldHandler().loadWorld(map);
 		((MapFeature) getFeature(FeatureType.MAP)).setMap(vote.getWinner());
 
+		if (gamePhase == null) {
+			gamePhase = getNextPhase();
+
+		}
+
 		try {
-			((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
+			((MapFeature) gamePhase.getFeature(FeatureType.MAP)).setMap(vote.getWinner());
 		}
 		catch (final Exception ex) {}
 
@@ -121,7 +133,7 @@ public class VotePhase extends CoreTimedPhase {
 
 			@Override
 			public void run() {
-				((MapFeature) getNextPhase().getFeature(FeatureType.MAP)).setMap(vote.getWinner());
+				((MapFeature) gamePhase.getFeature(FeatureType.MAP)).setMap(vote.getWinner());
 			}
 		}, 20);
 

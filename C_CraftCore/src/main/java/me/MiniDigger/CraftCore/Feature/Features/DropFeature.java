@@ -67,7 +67,12 @@ public class DropFeature extends CoreFeature {
 
 	@Override
 	public void start() {
-		final MapData data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+		MapData data = null;
+		if (getPhase().getName().contains("One")) {
+			data = Core.getCore().getMapHandler().getMap("GTD_Arena");
+		} else {
+			data = ((MapFeature) getPhase().getFeature(FeatureType.MAP)).getMap();
+		}
 
 		HashMap<String, Location> n = data.getLocs(DyeColor.YELLOW);
 		try {

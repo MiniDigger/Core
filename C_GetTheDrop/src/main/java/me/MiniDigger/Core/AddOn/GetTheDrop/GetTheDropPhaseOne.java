@@ -74,8 +74,8 @@ public class GetTheDropPhaseOne extends CoreTimedPhase {
 		addFeature(new MobFeature(this, Core.getCore().getEntityUtil().getAll(Type.OTHER, Type.CART, Type.PROJECTILE, Type.UTILITY)));
 		addFeature(new FixedTimeFeature(this, 6000));
 		addFeature(new FixedWeatherFeature(this, WeatherType.CLEAR));
-		addFeature(new DropFeature(this));
 		addFeature(new MapFeature(this, "GTD_Arena", true));
+		addFeature(new DropFeature(this));
 		addFeature(new PvPFeature(this, false));
 		addFeature(new SpawnFeature(this, false));
 		addFeature(new SpecateFeature(this));

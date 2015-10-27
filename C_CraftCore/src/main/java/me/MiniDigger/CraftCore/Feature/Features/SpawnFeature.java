@@ -190,7 +190,7 @@ public class SpawnFeature extends CoreFeature {
 			}
 
 			try {
-				Core.getCore().getInstance().debug("respawn2");
+				Core.getCore().getInstance().debug("respawn2 " + getPhase().getName());
 				Core.getCore().getInstance().debug("loc: " + loc);
 				user.getPlayer().teleport(loc);
 				if (user.getPlayer().getLocation().distance(loc) > 5) {
