@@ -1,0 +1,4 @@
+test:
+  script:
+    - mvn install -P buildLocal -P build -P !buildNormal --batch-mode
+  tags:
